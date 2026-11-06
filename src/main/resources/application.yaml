@@ -35,6 +35,10 @@ spring:
     compose:
       # compose.yaml'daki servisler uygulama kapaninca durmasin
       lifecycle-management: start-only
+      start:
+        # Bazi servisler zaten calisiyor olsa da "up" calissin: eksik olanlari (orn. laravel
+        # profilindeki kopru ve proxy) baslatir, calisanlara dokunmaz
+        skip: never
 
 server:
   port: 8081
