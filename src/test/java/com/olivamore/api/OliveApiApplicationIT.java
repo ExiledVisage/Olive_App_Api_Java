@@ -1,15 +1,61 @@
 package com.olivamore.api;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.client.RestClient;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Uygulamanin tamami gercek Tomcat'te: filtreler, Modulith insight proxy'leri ve hata
+ * yonetimi birlikte. MOCK web ortaminda filtreler baslatilmadigi icin bazi hatalar
+ * (orn. proxy'lenmis filtrenin init() hatasi) ancak burada gorunur.
+ */
 @Import(TestcontainersConfiguration.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// Spring Boot testlerde metrik disa aktarimini kapatir; Prometheus endpoint'i icin aciliyor
+@AutoConfigureMetrics
 class OliveApiApplicationIT {
 
+	@LocalServerPort
+	int port;
+
 	@Test
-	void contextLoads() {
+	void startsAndServesHealth() {
+		Response health = get("/actuator/health");
+		assertThat(health.status()).isEqualTo(200);
+		assertThat(health.body()).contains("\"status\":\"UP\"");
+	}
+
+	@Test
+	void unknownRouteReturnsLaravelBody() {
+		Response response = get("/api/yok-boyle-bir-yer?search=%20a%20");
+		assertThat(response.status()).isEqualTo(404);
+		assertThat(response.body()).isEqualTo("{\"message\":\"The route api/yok-boyle-bir-yer could not be found.\"}");
+	}
+
+	@Test
+	void exposesPrometheusMetrics() {
+		get("/actuator/health");
+		Response metrics = get("/actuator/prometheus");
+		assertThat(metrics.status()).isEqualTo(200);
+		assertThat(metrics.body()).contains("http_server_requests_seconds");
+	}
+
+	private Response get(String path) {
+		return RestClient.create("http://localhost:" + port).get().uri(path)
+			.exchange((request, response) -> new Response(response.getStatusCode(),
+				new String(response.getBody().readAllBytes())));
+	}
+
+	private record Response(HttpStatusCode code, String body) {
+		int status() {
+			return code.value();
+		}
 	}
 
 }

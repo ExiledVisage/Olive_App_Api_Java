@@ -34,3 +34,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Yerel sirlar
+.env
+
+# Python
+__pycache__/

@@ -76,14 +76,14 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 
 Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 - [x] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti (Spring Boot 4.1.2, Modulith 2.1.1, paket `com.olivamore.api`)
-- [ ] Docker Compose: Java uygulaması, Laravel, Postgres, Mailpit, reverse proxy
-- [ ] **Flyway baseline:** Faz 0'daki temiz DB'den şema `pg_dump --schema-only` ile `V1__baseline.sql` olarak alınır, `baselineOnMigrate` açılır. Hazır döküm: `reference/schema.sql` (pg_dump 17'nin eklediği `\restrict` / `\unrestrict` satırları Flyway'e verilmeden önce silinmeli). Geçiş bitene kadar şema değişiklikleri **sadece Laravel migration'larıyla** yapılır, Java tarafı okuyup uyum sağlar
-- [ ] Jackson: snake_case, Laravel ile aynı tarih formatı
-- [ ] Ortak pagination cevabı: `per_page` yoksa sayfasız `{"data": [...]}`, `per_page` (1–200) varsa Laravel `paginate()` çıktısının birebir aynısı (`data`, `links`, `meta`)
-- [ ] Global hata yönetimi: `BusinessRuleException`, validation (422), 404, 403 cevapları Laravel formatında
-- [ ] Silme koruması (`GuardsDeletion` karşılığı)
-- [ ] **Test altyapısı:** Testcontainers, dondurulmuş referans verinin test DB'sine yüklenmesi, Laravel/Java cevap karşılaştırma aracı, ilk `*IT` testi
-- [ ] **Gözlemlenebilirlik (en basit haliyle):** Actuator, Micrometer, Prometheus, Grafana. Her modül proxy'de Java'ya çevrildikten sonra hata oranı ve yanıt süresini izlemek için. Detaylı dashboard'lar Geçiş Sonrası'nda
+- [x] **Docker Compose** (`compose.yaml`): reverse proxy (Caddy, `:8080`), Laravel'in veritabanına köprü (`127.0.0.1:5433`), Mailpit, Prometheus, Grafana. Java bilgisayarda çalışır, istenirse konteynerde (`--profile container`). Laravel'in compose'una dokunulmadı: Java servisleri onun Docker ağına katılıyor. Taşınan yollar `docker/proxy/java-routes.caddy`'ye eklenir, cevaplarda `X-Served-By` başlığı var
+- [x] **Flyway baseline:** `V1__baseline.sql` = `reference/schema.sql` (psql komutları ve oturum ayarları çıkarıldı). Mevcut Laravel veritabanında V1 çalışmaz, baseline kabul edilir; boş veritabanında çalışır. `BaselineSchemaIT` V1'in Laravel şemasıyla kolon, constraint ve index düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`)
+- [x] **Jackson:** snake_case; `Instant`/`LocalDateTime` → `2026-11-06T15:35:14.000000Z` (UTC, mikrosaniye); gelen metinler Laravel gibi kırpılır, boş metin null olur (`TrimStrings` + `ConvertEmptyStringsToNull`, şifre alanları hariç). Query parametreleri için aynısı `InputNormalizationFilter`'da
+- [x] **Ortak pagination** (`Listing`, `LaravelPaginator`): `per_page` yoksa sayfasız `{"data": [...]}`, varsa Laravel'in `data / links / meta` formatı. "..." penceresi, link URL'leri, `per_page` validation'ı ve geçersiz `page` davranışı Laravel'den yakalanan 11 fixture ile birebir test edildi
+- [x] **Global hata yönetimi** (`ApiExceptionHandler`): 422 validation (`(and N more errors)` özeti, alan sırası, tip hataları), `BusinessRuleException` (boş `errors` → `{}`), 404 model (`No query results for model [App\Models\Order] 1`), 404 route, 405, 500. Gövdeler Laravel'den yakalanan cevaplarla test edildi. **403 ve 401 Faz 2'de** (Spring Security ile)
+- [x] **Silme koruması** (`DeletionGuard`): `"X silinemez; kullanıldığı yerler: 3 ürün, 2 parti."`
+- [x] **Test altyapısı:** Testcontainers Postgres 17, referans veri yüklü açılır (canlıdaki gibi dolu veritabanı). `reference/compare.py`: aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON'u karşılaştırır (adres normalizasyonu, sırasız diziler). Laravel'i kendisiyle (doğrudan ve proxy üzerinden) karşılaştırarak doğrulandı: 84/84 aynı. `OliveApiApplicationIT` gerçek Tomcat'te çalışır
+- [x] **Gözlemlenebilirlik (en basit haliyle):** Actuator, Micrometer, Prometheus, Grafana ("Olive API" dashboard'u: istek/sn, 5xx oranı, p95, 4xx, DB havuzu, heap; Modulith insight sayesinde metriklerde modül adı da var). Her modül proxy'de Java'ya çevrildikten sonra hata oranı ve yanıt süresini izlemek için. Detaylı dashboard'lar Geçiş Sonrası'nda
 
 ## Faz 2: Kimlik ve Yetki (identity)
 
@@ -245,7 +245,8 @@ Bölüm B: Geçiş Sonrası
 ## Genel kurallar
 - **Aynı anda tek modül.** Bir modül tamamlanma kriterini geçmeden bir sonrakine başlanmaz.
 - **Geçiş süresince yeni özellik yok.** Laravel'e yeni özellik eklenirse Java'ya da eklenmesi gerekir. Zorunlu bir değişiklik olursa önce taşınmış tarafta yapılır.
-- **Şemanın sahibi geçiş boyunca Laravel'dir.** İki tarafta migration yazılmaz.
+- **Şemanın sahibi geçiş boyunca Laravel'dir.** Laravel'in tablolarına Java migration yazmaz. Java yalnızca kendi altyapı tablolarını (Laravel'in kullanmadığı, örn. `event_publication`) ekleyebilir.
+- **Laravel'den her fark ya düzeltilir ya da [DEVIATIONS.md](laravel-reference/DEVIATIONS.md)'ye yazılır.**
 - **İş mantığı yeniden tasarlanmaz, birebir taşınır.** İyileştirmeler Bölüm B'de ya da sonrasında yapılır. Aksi halde bir hatanın taşımadan mı yoksa yeni tasarımdan mı geldiği anlaşılmaz.
 - **Laravel `dev` branch'ine yeni commit gelirse** ilgili fazlar `ba61990` sonrasındaki farka bakılarak güncellenir.
 - **Her modülün workflow dokümanı** (`docs/workflow-*.md`) o fazın şartnamesi gibi kullanılır.

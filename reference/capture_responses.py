@@ -19,8 +19,8 @@ HERE = Path(__file__).resolve().parent
 ROUTES = HERE.parent / "docs/laravel-reference/routes.json"
 OUT = HERE / "responses"
 
-compose_dir = sys.argv[1]
-base = sys.argv[2] if len(sys.argv) > 2 else "http://localhost:8001"
+compose_dir = None
+base = "http://localhost:8001"
 
 ADMIN = {"email": "admin@olivamore.com", "password": "123"}
 
@@ -38,6 +38,8 @@ EXTRA = [
 
 
 def sql(query: str) -> str:
+    if compose_dir is None:
+        raise RuntimeError("compose_dir ayarlanmadi")
     out = subprocess.run(
         ["docker", "compose", "exec", "-T", "db", "sh", "-c",
          'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -tAc "$0"', query],
@@ -146,4 +148,8 @@ def main():
         print(f"  {st} /{path}")
 
 
-main()
+if __name__ == "__main__":
+    compose_dir = sys.argv[1]
+    if len(sys.argv) > 2:
+        base = sys.argv[2]
+    main()

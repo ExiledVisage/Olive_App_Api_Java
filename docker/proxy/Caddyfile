@@ -1,0 +1,27 @@
+# Strangler Fig reverse proxy.
+#
+# Java'ya tasinan endpoint'ler java-routes.caddy'de. Orada eslesmeyen her istek
+# Laravel'e gider. Her cevaba X-Served-By basligi eklenir: hangi sistemin
+# cevap verdigi tarayicidan ve loglardan gorulebilir.
+#
+# Bir yonlendirmeyi geri almak: java-routes.caddy'deki blogu silip
+#   docker compose exec proxy caddy reload --config /etc/caddy/Caddyfile
+
+{
+	admin localhost:2019
+}
+
+:80 {
+	log {
+		output stdout
+		format console
+	}
+
+	import /etc/caddy/java-routes.caddy
+
+	handle {
+		reverse_proxy {$LARAVEL_UPSTREAM} {
+			header_down X-Served-By laravel
+		}
+	}
+}

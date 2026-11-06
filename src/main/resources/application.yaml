@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: olive-api
+  # Yerel sirlar (DB sifresi). Git'e girmez; sablon: .env.example
+  config:
+    import: optional:file:.env[.properties]
+  threads:
+    virtual:
+      enabled: true
+
+  # Laravel ile ortak veritabani. Yerelde Laravel'in Postgres'ine compose.yaml'daki
+  # db-bridge uzerinden (localhost:5433) baglanilir. Testlerde Testcontainers ezer.
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_DATABASE:olivamore}
+    username: ${DB_USERNAME:olivamore}
+    password: ${DB_PASSWORD:}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      # Sema Laravel'in: Hibernate dokunmaz, sadece entity'lerin semaya uydugunu dogrular.
+      ddl-auto: validate
+
+  flyway:
+    # Mevcut Laravel veritabaninda V1 calismaz, sema V1 olarak kabul edilir.
+    # Bos veritabaninda (testler) V1 calisir.
+    baseline-on-migrate: true
+    baseline-version: 1
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  docker:
+    compose:
+      # compose.yaml'daki servisler (db-bridge, proxy, mailpit, prometheus, grafana)
+      # uygulama kapaninca durmasin
+      lifecycle-management: start-only
+
+server:
+  port: 8081
+  # Reverse proxy'nin arkasinda: sayfalama linkleri istemcinin gordugu adresle uretilir
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true

@@ -1,0 +1,109 @@
+{
+  "uid": "olive-api",
+  "title": "Olive API",
+  "description": "Gecis guvenlik agi: bir modul proxy'de Java'ya cevrildikten sonra hata orani ve yanit suresi buradan izlenir.",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-1h", "to": "now" },
+  "templating": {
+    "list": [
+      {
+        "name": "uri",
+        "label": "Endpoint",
+        "type": "query",
+        "datasource": { "type": "prometheus", "uid": "prometheus" },
+        "query": "label_values(http_server_requests_seconds_count{application=\"olive-api\"}, uri)",
+        "includeAll": true,
+        "multi": true,
+        "current": { "text": "All", "value": "$__all" },
+        "refresh": 2
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Istek / sn (endpoint)",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "reqps" }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (method, uri) (rate(http_server_requests_seconds_count{application=\"olive-api\", uri=~\"$uri\"}[$__rate_interval]))",
+          "legendFormat": "{{method}} {{uri}}"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "5xx orani",
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "percentunit", "min": 0 }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (uri) (rate(http_server_requests_seconds_count{application=\"olive-api\", uri=~\"$uri\", outcome=\"SERVER_ERROR\"}[$__rate_interval])) / sum by (uri) (rate(http_server_requests_seconds_count{application=\"olive-api\", uri=~\"$uri\"}[$__rate_interval]))",
+          "legendFormat": "{{uri}}"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Yanit suresi p95",
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile(0.95, sum by (le, uri) (rate(http_server_requests_seconds_bucket{application=\"olive-api\", uri=~\"$uri\"}[$__rate_interval])))",
+          "legendFormat": "{{uri}}"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "4xx (durum koduna gore)",
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "reqps" }, "overrides": [] },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (status, uri) (rate(http_server_requests_seconds_count{application=\"olive-api\", uri=~\"$uri\", outcome=\"CLIENT_ERROR\"}[$__rate_interval]))",
+          "legendFormat": "{{status}} {{uri}}"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "DB baglanti havuzu (Hikari)",
+      "gridPos": { "x": 0, "y": 16, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "hikaricp_connections_active{application=\"olive-api\"}", "legendFormat": "aktif" },
+        { "refId": "B", "expr": "hikaricp_connections_pending{application=\"olive-api\"}", "legendFormat": "bekleyen" }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "JVM heap",
+      "gridPos": { "x": 12, "y": 16, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "bytes" }, "overrides": [] },
+      "targets": [
+        { "refId": "A", "expr": "sum(jvm_memory_used_bytes{application=\"olive-api\", area=\"heap\"})", "legendFormat": "kullanilan" },
+        { "refId": "B", "expr": "sum(jvm_memory_max_bytes{application=\"olive-api\", area=\"heap\"})", "legendFormat": "max" }
+      ]
+    }
+  ]
+}

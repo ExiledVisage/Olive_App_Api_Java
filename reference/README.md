@@ -13,6 +13,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | `schema.sql` | Sadece şema (73 tablo). Faz 1'de Flyway `V1__baseline.sql` buradan çıkarılacak | Evet |
 | `restore.sh` | Laravel'in dev veritabanını `reference-data.sql`'e geri döndürür | Evet |
 | `capture_responses.py` | Tüm GET endpoint'lerini admin olarak çağırıp cevapları `responses/`'a yazar | Evet |
+| `compare.py` | Aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON cevapları karşılaştırır | Evet |
 | `responses/` | Yakalanan cevaplar (84 istek, ~21 MB) | Hayır, yeniden üretilir |
 
 Endpoint envanteri: [docs/laravel-reference/ENDPOINTS.md](../docs/laravel-reference/ENDPOINTS.md)
@@ -28,6 +29,26 @@ python -I reference/capture_responses.py "$LARAVEL"   # cevapları yakala
 ```
 
 `restore.sh` hedef veritabanındaki her şeyi siler. Sadece `COMPOSE_PROJECT_NAME` içinde `dev` geçen ortamlarda çalışır.
+Java'nın kendi tabloları (`flyway_schema_history`, `event_publication`) da silinir; Java bir sonraki açılışta yeniden oluşturur.
+
+## Laravel / Java karşılaştırması (`compare.py`)
+
+Aynı isteği iki sisteme **aynı anda** atar ve JSON cevapları karşılaştırır. İki sistem aynı
+veritabanına baktığı için zamana bağlı cevaplar da karşılaştırılabilir. Token Laravel'den alınır.
+
+```bash
+# Bir modülün bütün GET endpoint'leri (routes.json'dan, parametreler veritabanından seçilir)
+python -I reference/compare.py "$LARAVEL" --only api/app
+
+# Belirli istekler
+MSYS_NO_PATHCONV=1 python -I reference/compare.py "$LARAVEL" --path "/api/customers?per_page=2&page=3"
+```
+
+- Git Bash'te `/api/...` ile başlayan argümanlar Windows yoluna çevrilir; `--path` kullanırken başa `MSYS_NO_PATHCONV=1` yazın.
+- Sayfalama linklerindeki adresler (`localhost:8001` / `localhost:8081`) `{BASE}` ile değiştirilerek karşılaştırılır.
+- Sırası rastgele olan diziler (rol izinleri) varsayılan olarak sırasız karşılaştırılır; başka yollar için `--unordered "data.*.alan"`.
+- Çıkış kodu: hepsi aynıysa 0. Farklar JSON yoluyla birlikte yazılır.
+- Araç doğrulaması: Laravel kendisiyle (doğrudan `8001`, proxy üzerinden `8080`) karşılaştırıldığında 84/84 aynı.
 
 ## Demo veri
 
@@ -56,6 +77,17 @@ Demo seeder veriyi seed günü (2026-11-06) bitecek şekilde son bir yıla yayı
 ### Rollerin izin listesinin sırası rastgele
 `/api/roles` (ve roller dönen her yer) rollerin izinlerini `ORDER BY` olmadan döndürüyor, sıra çağrıdan çağrıya değişiyor. Bu dosya dışındaki 83 cevap tekrar çalıştırmada birebir aynı çıktı.
 **Sonuç:** Karşılaştırmada izin listeleri sırasız küme olarak karşılaştırılmalı.
+
+### Hata ve validation formatları (Faz 1'de yakalandı)
+- 401: `{"message": "Unauthenticated."}`. `Accept: application/json` yoksa Laravel 500 HTML dönüyor (bkz. DEVIATIONS.md)
+- 403: `{"message": "User does not have the right roles."}` / `"... right permissions."` (Spatie)
+- 404 model: `{"message": "No query results for model [App\\Models\\Order] 999999"}`
+- 404 route: `{"message": "The route api/x could not be found."}`
+- 405: `{"message": "The PATCH method is not supported for route api/auth/login. Supported methods: POST."}`
+- 422: `{"message": "<ilk hata> (and N more error[s])", "errors": {"alan": ["..."]}}`. Mesajlar İngilizce (Laravel projesinde `lang` klasörü yok)
+- Yanlış şifre: 401 değil **422** `{"message": "The provided credentials are incorrect.", "errors": {"email": [...]}}`
+- `per_page=` (boş) iki hata verir (integer + min:1); `05` geçersiz, `+5` geçerli; geçersiz `page` sessizce 1 olur
+- Linklerde boş parametreler yazılmaz, değerler kırpılmış haliyle yazılır, tekrarlanan parametrede son değer ilk geçtiği sırada durur
 
 ### Sayfalama `per_page`'e bağlı
 `ResolvesPerPage`: `per_page` verilmezse liste endpoint'leri **sayfalamaz**, bütün kayıtları sadece `{"data": [...]}` olarak döner (`links`/`meta` yok). `per_page` (1–200) verilince Laravel'in sayfalı formatı (`data`, `links`, `meta`) döner.

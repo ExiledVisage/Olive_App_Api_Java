@@ -1,0 +1,5 @@
+target/
+.git/
+.env
+reference/
+docs/

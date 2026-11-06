@@ -1,0 +1,21 @@
+# Java'ya tasinmis endpoint'ler. Her modul tamamlanma kriterini gecince buraya eklenir
+# (bkz. docs/MIGRATION_ROADMAP.md). Sira onemli degil: Caddy yol eslesmelerini
+# ozgulluge gore siralar, eslesmeyen her istek Caddyfile'daki Laravel bloguna duser.
+#
+# Ornek (Faz 3, app-release):
+#
+#   @java_app_release path /api/app/version /api/app/download
+#   handle @java_app_release {
+#   	reverse_proxy {$JAVA_UPSTREAM} {
+#   		header_down X-Served-By java
+#   	}
+#   }
+
+# Java'nin saglik kontrolu, proxy uzerinden dogrulama icin
+@java_actuator path /java/actuator/*
+handle @java_actuator {
+	uri strip_prefix /java
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}
