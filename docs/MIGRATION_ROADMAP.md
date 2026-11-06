@@ -120,10 +120,17 @@ Diğer bütün modüller buna bağlı olduğu için ilk taşınacak modül budur
 
 ## Faz 3: Bağımsız Küçük Uç (app-release)
 
-Pipeline'ı uçtan uca denemek için en risksiz modül: DB'ye dokunmuyor, auth gerektirmiyor.
-- [ ] `/api/app/version`, `/api/app/download`
-- [ ] Proxy'de yönlendirme (ilk yönlendirme Faz 2'de identity ile yapıldı)
-- Test: `AppReleaseTest`
+Veritabanına dokunmayan, giriş gerektirmeyen iki endpoint: mobil uygulamanın kendi sunucumuzdan güncellenmesi.
+- [x] `/api/app/version`, `/api/app/download` (`apprelease` modülü). Sürüm klasörü `olive.releases-path` (`APP_RELEASES_PATH`, varsayılan `releases/`; `laravel` profilinde Laravel'in `docker-data/app` klasörü)
+- [x] Manifest (`version.json`) Laravel'deki gibi okunur: PHP `(int)` / `(string)` dönüşümleri (`"7abc"` → 7, `true` → `"1"`), `isset` kontrolü, BOM'lu ya da bozuk JSON geçersiz; `notes`, `sha256`, `published_at` olduğu gibi
+- [x] İndirme Symfony `BinaryFileResponse` gibi: `Content-Disposition` (boşlukta tırnak, ASCII dışı adda `Str::ascii` yedek + `filename*`), Range (206), HEAD, `Cache-Control: public`, `Last-Modified`; klasör dışına çıkış `basename` ile engellenir
+- [x] `throttle:30,1`: iki endpoint istemci başına dakikada toplam 30 isteği paylaşır (Laravel'de anahtar route'a değil istemciye bağlı; `@Throttle` buna göre düzeltildi)
+- [x] Ortak altyapıya eklenenler: `Php` (intval, strval, basename, ascii), her cevaba `Cache-Control: no-cache, private` (Laravel/Symfony varsayılanı)
+- [x] Proxy: `/api/app/*` Java'da; `download_url` istemcinin gördüğü adresle (proxy) üretiliyor
+- Testler:
+  - `AppReleaseParityIT`: Laravel'den yakalanan 32 istek (`reference/capture_app_release.py`, 17 senaryo: sürüm yok, PHP dönüşümleri, bozuk/BOM'lu manifest, klasör dışı, Türkçe dosya adı, Range, HEAD, ortak sınır) aynı dosyalarla tekrar oynatılır: 32/32 aynı. Laravel'in `AppReleaseTest`'indeki 4 durum bunların içinde
+  - `AppReleaseControllerTest`, `PhpTest`
+  - Canlı karşılaştırma (`compare.py`): 2/2 aynı; Range ve Türkçe dosya adı elle de karşılaştırıldı
 
 ## Faz 4: Üretim Altyapısı ve Ana Veriler (catalog)
 

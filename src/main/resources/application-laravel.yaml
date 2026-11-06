@@ -18,3 +18,7 @@ spring:
       # baglantiyi Laravel yerine ona kurardi
       profiles:
         active: laravel-mode
+
+olive:
+  # Laravel'in surum klasoru (compose: ./docker-data -> /data, APP_RELEASES_PATH=/data/app)
+  releases-path: ${LARAVEL_RELEASES_PATH:../Olive_Production_Tracking_App_Back/olive_oil_back/docker-data/app}

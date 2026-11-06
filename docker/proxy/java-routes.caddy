@@ -2,15 +2,6 @@
 # (bkz. docs/MIGRATION_ROADMAP.md). Sira onemli degil: Caddy yol eslesmelerini
 # ozgulluge gore siralar, eslesmeyen her istek Caddyfile'daki Laravel bloguna duser.
 #
-# Ornek (Faz 3, app-release):
-#
-#   @java_app_release path /api/app/version /api/app/download
-#   handle @java_app_release {
-#   	reverse_proxy {$JAVA_UPSTREAM} {
-#   		header_down X-Served-By java
-#   	}
-#   }
-
 # Java'nin saglik kontrolu, proxy uzerinden dogrulama icin
 @java_actuator path /java/actuator/*
 handle @java_actuator {
@@ -23,6 +14,14 @@ handle @java_actuator {
 # Faz 2: identity (auth, kullanicilar, roller, izinler)
 @java_identity path /api/auth/* /api/user /api/users /api/users/* /api/roles /api/roles/* /api/permissions
 handle @java_identity {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}
+
+# Faz 3: app-release (mobil uygulama guncellemesi)
+@java_app_release path /api/app/version /api/app/download
+handle @java_app_release {
 	reverse_proxy {$JAVA_UPSTREAM} {
 		header_down X-Served-By java
 	}

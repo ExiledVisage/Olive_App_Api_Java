@@ -15,6 +15,7 @@ Bunlar `reference/compare.py` tarafından fark sayılmaz, çünkü JSON düzeyin
 | `/` kaçışı | `"http:\/\/localhost"` | `"http://localhost"` |
 | Unicode | `"Çankaya"` | `"Çankaya"` |
 | Hata gövdesi biçimi | 403/404/405 cevapları girintili (pretty print) | Tek satır |
+| JSON `Content-Length` | Yok (önündeki nginx JSON'u chunked gönderiyor) | Var. APK indirmelerinde iki tarafta da var ve aynı |
 
 ## Laravel hataları (Java'da düzeltildi)
 

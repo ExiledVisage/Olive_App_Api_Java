@@ -54,6 +54,13 @@ public class WebConfig implements WebMvcConfigurer {
 		return registration;
 	}
 
+	@Bean
+	FilterRegistrationBean<DefaultHeadersFilter> defaultHeadersFilter() {
+		FilterRegistrationBean<DefaultHeadersFilter> registration = new FilterRegistrationBean<>(new DefaultHeadersFilter());
+		registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 11);
+		return registration;
+	}
+
 	/** Tek ornek: interceptor ve testler ayni sayaclari gorur. */
 	@Bean
 	RateLimiter rateLimiter() {

@@ -54,3 +54,7 @@ management:
     distribution:
       percentiles-histogram:
         http.server.requests: true
+
+olive:
+  # Mobil uygulama surumleri (version.json + APK); frontend'in yayinlama betigi buraya koyar
+  releases-path: ${APP_RELEASES_PATH:releases}

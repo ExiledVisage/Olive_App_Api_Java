@@ -85,10 +85,11 @@ public class ThrottleInterceptor implements HandlerInterceptor {
 			}
 			return limiter.limits(request);
 		}
-		// throttle:N,M -> resolveRequestSignature: kullanici varsa kimligi, yoksa adres
+		// throttle:N,M -> resolveRequestSignature: kullanici varsa kimligi, yoksa adres. Anahtar route'a
+		// bagli DEGIL: ayni istemcinin throttle:N,M'li butun endpoint'leri ayni sayaci paylasir
+		// (orn. /api/app/version ve /api/app/download dakikada toplam 30).
 		String user = userKey.apply(request);
-		String signature = user != null ? "user:" + user : "ip:" + request.getRemoteAddr();
-		String key = "throttle:" + request.getRequestURI() + ":" + signature;
+		String key = "throttle:" + (user != null ? "user:" + user : "ip:" + request.getRemoteAddr());
 		return List.of(new Limit(key, throttle.maxAttempts(), throttle.decayMinutes() * 60));
 	}
 
