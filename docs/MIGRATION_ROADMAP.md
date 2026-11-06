@@ -75,7 +75,7 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 ## Faz 1: İskelet ve Ortak Altyapı
 
 Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
-- [ ] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti
+- [x] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti (Spring Boot 4.1.2, Modulith 2.1.1, paket `com.olivamore.api`)
 - [ ] Docker Compose: Java uygulaması, Laravel, Postgres, Mailpit, reverse proxy
 - [ ] **Flyway baseline:** Faz 0'daki temiz DB'den şema `pg_dump --schema-only` ile `V1__baseline.sql` olarak alınır, `baselineOnMigrate` açılır. Hazır döküm: `reference/schema.sql` (pg_dump 17'nin eklediği `\restrict` / `\unrestrict` satırları Flyway'e verilmeden önce silinmeli). Geçiş bitene kadar şema değişiklikleri **sadece Laravel migration'larıyla** yapılır, Java tarafı okuyup uyum sağlar
 - [ ] Jackson: snake_case, Laravel ile aynı tarih formatı

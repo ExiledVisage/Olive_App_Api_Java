@@ -1,0 +1,12 @@
+# Gelistirme ortami. spring-boot-docker-compose uygulama acilirken bunu otomatik baslatir.
+# Faz 1'in sonraki adiminda Laravel, ortak veritabani ve reverse proxy buraya eklenecek.
+services:
+  postgres:
+    # Laravel ve canli sistemle ayni surum
+    image: 'postgres:17-alpine'
+    environment:
+      - 'POSTGRES_DB=olivamore'
+      - 'POSTGRES_USER=olivamore'
+      - 'POSTGRES_PASSWORD=olivamore'
+    ports:
+      - '5432'
