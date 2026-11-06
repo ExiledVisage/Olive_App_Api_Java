@@ -80,6 +80,10 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Java:** `404 {"message": "The route / could not be found."}`
 - **Neden:** API dışı; `/api` altında olmayan yollar frontend tarafından kullanılmıyor.
 
+### 13. Stok hareketlerinde tank kilidi (Faz 5c)
+- **Laravel:** Kapasite ve tank uyumu kontrolü transaction içinde ama kilitsiz. Aynı tanka eşzamanlı iki giriş, ikisi de kapasiteyi boş görüp tankı taşırabiliyor.
+- **Java:** İşlemdeki tank(lar) transaction başında `SELECT ... FOR UPDATE` ile kilitleniyor (transferde iki tank, id sırasıyla). Girişler sırayla işleniyor, tank taşmıyor. Tek istekli cevaplar aynı. `StorageMovementConcurrencyIT` dört eşzamanlı 60 L girişini 100 L'lik tanka gönderiyor: biri 201, gerisi 422. Kilitsiz sürümde bu test düşüyor.
+
 ## Kopyalanan ama bilinmesi gereken Laravel davranışları
 
 Farklı değil, birebir aynı; ama kapatılması düşünülebilecek davranışlar (karar Laravel kapandıktan sonra).

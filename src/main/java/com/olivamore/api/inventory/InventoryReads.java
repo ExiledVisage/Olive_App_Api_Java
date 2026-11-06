@@ -338,6 +338,11 @@ class InventoryReads {
 	 * counterpartyStorageUnit. storageUnit yuklu degil (anahtar yok).
 	 */
 	List<Map<String, Object>> movements(List<Row> movements) {
+		return movements(movements, false);
+	}
+
+	/** @param withStorageUnit loadMovementRelations (yazma cevaplari): storageUnit de yuklu */
+	List<Map<String, Object>> movements(List<Row> movements, boolean withStorageUnit) {
 		List<Row> materialRows = db.whereIn("materials", "id", Relations.column(movements, "material_id"), null);
 		List<Map<String, Object>> materialResources = materials(materialRows, MaterialLoad.TYPE_AND_ATTRIBUTES);
 		Map<Long, Map<String, Object>> materials = new LinkedHashMap<>();
@@ -347,6 +352,9 @@ class InventoryReads {
 		Map<Long, Row> processes = Relations.byId(db.whereIn("batch_processes", "id", Relations.column(movements, "batch_process_id"), null));
 		Map<Long, Row> counterparties = Relations.byId(db.whereIn("storage_units", "id",
 			Relations.column(movements, "counterparty_storage_unit_id"), null));
+		Map<Long, Row> units = withStorageUnit
+			? Relations.byId(db.whereIn("storage_units", "id", Relations.column(movements, "storage_unit_id"), null))
+			: Map.of();
 
 		List<Map<String, Object>> out = new ArrayList<>();
 		for (Row m : movements) {
@@ -364,6 +372,10 @@ class InventoryReads {
 			r.put("unit", m.get("unit"));
 			r.put("note", m.get("note"));
 			r.put("moved_at", m.get("moved_at"));
+			if (withStorageUnit) {
+				Row unit = units.get(Relations.key(m.get("storage_unit_id")));
+				r.put("storage_unit", unit == null ? null : unitSummary(unit));
+			}
 			r.put("material", materials.get(Relations.key(m.get("material_id"))));
 			Row p = processes.get(Relations.key(m.get("batch_process_id")));
 			r.put("batch_process", p == null ? null : batchProcess(p));

@@ -47,6 +47,7 @@ public final class LaravelReplay {
 	private final Map<String, Object[]> deviations = new LinkedHashMap<>();
 	private final Map<String, String> burned = new LinkedHashMap<>();
 	private final Map<String, List<String>> unordered = new LinkedHashMap<>();
+	private final List<Pattern> masks = new ArrayList<>();
 
 	public LaravelReplay(String fixture, int port, JdbcTemplate jdbc) {
 		this.fixture = fixture;
@@ -85,6 +86,12 @@ public final class LaravelReplay {
 	 */
 	public LaravelReplay unordered(String caseName, String path) {
 		unordered.computeIfAbsent(caseName, k -> new ArrayList<>()).add(path);
+		return this;
+	}
+
+	/** Rastgele degerler (ornek: transfer referansi): bu desene uyan metinler karsilastirmada esit sayilir. */
+	public LaravelReplay mask(String regex) {
+		masks.add(Pattern.compile(regex));
 		return this;
 	}
 
@@ -189,6 +196,9 @@ public final class LaravelReplay {
 		}
 		if (value instanceof String s && TIMESTAMP.matcher(s).matches() && s.compareTo(seededUntil) > 0) {
 			return "<yeni zaman>";
+		}
+		if (value instanceof String s && masks.stream().anyMatch(m -> m.matcher(s).matches())) {
+			return "<maske>";
 		}
 		if (value instanceof String s && BASE_URL.matcher(s).find()) {
 			return BASE_URL.matcher(s).replaceFirst("<sunucu>/");

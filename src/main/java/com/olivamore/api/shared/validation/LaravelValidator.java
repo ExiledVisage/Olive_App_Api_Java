@@ -204,6 +204,13 @@ public class LaravelValidator {
 			case "required" -> required(value);
 			// validateRequiredWith: parametrelerden biri doluysa bu alan zorunlu
 			case "required_with" -> p.stream().allMatch(k -> !required(RequestInput.Paths.value(data, k))) || required(value);
+			// validateRequiredWithout: parametrelerden biri bossa bu alan zorunlu
+			case "required_without" -> p.stream().noneMatch(k -> !required(RequestInput.Paths.value(data, k))) || required(value);
+			// validateProhibits: bu alan doluysa parametrelerin hepsi bos olmali
+			case "prohibits" -> !required(value) || p.stream().noneMatch(k -> required(RequestInput.Paths.value(data, k)));
+			// validateDifferent: istekte olan parametrelerle === degil
+			case "different" -> p.stream().noneMatch(k -> RequestInput.Paths.exists(data, k)
+				&& phpIdentical(value, RequestInput.Paths.value(data, k)));
 			case "distinct" -> distinct(attribute, value, patterns.getOrDefault(attribute, attribute), data);
 			case "present" -> true; // validatable zaten varligi kontrol etti
 			case "filled" -> !RequestInput.Paths.exists(data, attribute) || required(value);
@@ -454,6 +461,11 @@ public class LaravelValidator {
 			case "required" -> LaravelMessages.REQUIRED;
 			case "required_with" -> "The :attribute field is required when " + String.join(" / ",
 				p.stream().map(LaravelMessages::attribute).toList()) + " is present.";
+			case "required_without" -> "The :attribute field is required when " + String.join(" / ",
+				p.stream().map(LaravelMessages::attribute).toList()) + " is not present.";
+			case "prohibits" -> "The :attribute field prohibits " + String.join(" / ",
+				p.stream().map(LaravelMessages::attribute).toList()) + " from being present.";
+			case "different" -> "The :attribute field and " + LaravelMessages.attribute(p.getFirst()) + " must be different.";
 			case "distinct" -> "The :attribute field has a duplicate value.";
 			case "present" -> "The :attribute field must be present.";
 			case "filled" -> "The :attribute field must have a value.";

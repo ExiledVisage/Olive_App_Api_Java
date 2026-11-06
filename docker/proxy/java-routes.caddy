@@ -43,11 +43,8 @@ handle @java_suppliers {
 	}
 }
 
-# Faz 5a: tanklar (hareket gecmisi /movement-history Faz 5c'de, stok hareketleriyle birlikte)
-@java_storage_units {
-	path /api/storage-units /api/storage-units/*
-	not path /api/storage-units/*/movement-history
-}
+# Faz 5a + 5c: tanklar (hareket gecmisi dahil) ve stok hareketleri
+@java_storage_units path /api/storage-units /api/storage-units/* /api/storage-movements/*
 handle @java_storage_units {
 	reverse_proxy {$JAVA_UPSTREAM} {
 		header_down X-Served-By java

@@ -160,7 +160,7 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
   - Canlı karşılaştırma: her tedarikçi, teslimatları, `is_active` ve arama varyasyonları 67/67 aynı
   - Ortak test yardımcısı `LaravelReplay`: fixture'ı tekrar oynatma, yer tutucular, SQL adımları, Laravel hatası düzeltmeleri, sequence uyumu (sonraki fazlar da kullanır)
 
-## Faz 5: Depo ve Malzeme (inventory)
+## Faz 5: Depo ve Malzeme (inventory) (tamamlandı)
 
 **En kritik faz.** Stok defteri buradan yönetiliyor, en büyük servis (StorageMovement) de burada.
 Üç adımda: 5a tanklar, 5b malzemeler, 5c stok hareketleri.
@@ -185,10 +185,17 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
   - Canlı karşılaştırma: **bütün** malzemelerin (2091) detayı ve soy grafı 4182/4182, liste varyasyonları 24/24 aynı
   - `LaravelReplay` fixture yollarını yeniden kodlamıyor (Türkçe arama `%C3...` çift kodlanıyordu)
 
-**5c: Stok hareketleri**
-- [ ] Storage movement (giriş, transfer, düzeltme) ve storage unit balance
-- [ ] Eşzamanlılık: bakiye güncellemelerinde `SELECT ... FOR UPDATE` ya da `@Version`
-- Testler: `StorageUnitTest`, `MaterialStorageTest`, `InboundMovementTest`, `MaterialListTest`, `MaterialDetailTest`, `MaterialLineageTest`
+**5c: Stok hareketleri (tamamlandı)**
+- [x] Açılış, giriş (var olan materyal: parça ya da tamamı; yeni materyal: partiden, tipin biriminde), çıkış (consumed), transfer (iki hareket, `TRF-…` referansı), düzeltme (artış yeni materyal, azalış discarded), tankın hareket geçmişi (tarih aralığı, `per_page`)
+- [x] Tank kuralları Laravel'deki sırayla: miktar, birim, izinli ürün/tip, kapasite, farklı ürün/tip, attribute kuralları (gelen değer ve ağırlıklı ortalama); materyal bölme (epsilon 0.00005, attribute değerleri kopyalanır), bakiye yeniden hesabı (`decimal:2` değişmediyse dokunulmaz)
+- [x] PHP float: hesaplar double, veritabanına 14 basamak (`Php.floatString`)
+- [x] Validator'a `required_without`, `prohibits`, `different` eklendi; `Rule::requiredIf` (`$request->boolean`) Java'da kural metnine çevriliyor
+- [x] **Eşzamanlılık:** işlemdeki tanklar `SELECT ... FOR UPDATE` ile kilitleniyor (Laravel'de yok, DEVIATIONS 13)
+- [x] Proxy: `/api/storage-movements` ve `/movement-history` Java'da
+- Testler:
+  - `StorageMovementParityIT`: Laravel'den yakalanan 56 durum (`reference/capture_movement.py`): 56/56 aynı (transfer referansı maskeli)
+  - `StorageMovementConcurrencyIT`: 4 eşzamanlı giriş, tank taşmıyor
+  - Canlı karşılaştırma: 15 tankın hareket geçmişi (sayfalı, tarihli, hata durumları) 63/63 aynı
 
 ## Faz 6: Üretim Partileri (production)
 
