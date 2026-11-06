@@ -175,9 +175,18 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
   - `StorageUnitParityIT`: Laravel'den yakalanan 41 durum (`reference/capture_inventory.py`): 41/41 aynı. Sıralamasız ilişkide (attribute kuralları) bir durumda liste id'ye göre karşılaştırılıyor (DEVIATIONS 11)
   - Canlı karşılaştırma: bütün tank GET'leri (her tankın detayı, bakiyeleri, hareketleri, sayfalı hareketler, hata durumları) 63/63 aynı
 
-- [ ] Material, material attribute value
+**5b: Malzemeler (tamamlandı)**
+- [x] Liste: durum (`active` varsayılan, boşsa da), soy süzgeci (`root`, `root_raw`, `root_opening`, `derived`), arama (materyal no `#12`, not, ürün tipi, parti kodu, tank adı/kodu; `ilike`), en yeni 200
+- [x] Detay (`MaterialDetailResource`): miktar dökümü (giren/ayrılan/kapanan/kalan, PHP float), ebeveyn ve çocuklar, attribute değerleri (tanım sırasıyla), son 20 hareket, bu malzemeden çekilen dolum koşuları
+- [x] Soy grafı (`MaterialLineageService`): köke çıkış, kökten genişlik öncelikli iniş (400 düğüm sınırı), dolum koşusu, depo yerleştirmesi ve (tek koşudan beslenen depolarda) sipariş düğümleri, en uzun yol derinliği; alt yazı `number_format` ile ("1.234 L", "12,5 kg"). Bitmiş ürün ve sipariş tablolarını (Faz 8, 9) yalnızca okuyor
+- [x] Proxy: `/api/materials` Java'da
+- Testler:
+  - `MaterialParityIT`: Laravel'den yakalanan 30 cevap (`reference/capture_material.py`): 30/30 aynı
+  - Canlı karşılaştırma: **bütün** malzemelerin (2091) detayı ve soy grafı 4182/4182, liste varyasyonları 24/24 aynı
+  - `LaravelReplay` fixture yollarını yeniden kodlamıyor (Türkçe arama `%C3...` çift kodlanıyordu)
+
+**5c: Stok hareketleri**
 - [ ] Storage movement (giriş, transfer, düzeltme) ve storage unit balance
-- [ ] Material lineage (malzeme soy ağacı)
 - [ ] Eşzamanlılık: bakiye güncellemelerinde `SELECT ... FOR UPDATE` ya da `@Version`
 - Testler: `StorageUnitTest`, `MaterialStorageTest`, `InboundMovementTest`, `MaterialListTest`, `MaterialDetailTest`, `MaterialLineageTest`
 

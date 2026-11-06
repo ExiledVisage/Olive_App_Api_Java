@@ -53,3 +53,11 @@ handle @java_storage_units {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 5b: materyaller (liste, detay, soy grafi)
+@java_materials path /api/materials /api/materials/*
+handle @java_materials {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

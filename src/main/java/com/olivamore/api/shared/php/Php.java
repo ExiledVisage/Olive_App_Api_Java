@@ -112,6 +112,29 @@ public final class Php {
 		return new BigDecimal(Double.toString(value)).setScale(places, java.math.RoundingMode.HALF_UP).doubleValue();
 	}
 
+	/**
+	 * {@code number_format($value, $decimals, $decimalPoint, $thousands)}: once {@link #round}, sonra
+	 * binlik gruplama. Sonuc sifirsa isaret yazilmaz.
+	 */
+	public static String numberFormat(double value, int decimals, String decimalPoint, String thousands) {
+		double rounded = round(value, decimals);
+		BigDecimal abs = new BigDecimal(Double.toString(Math.abs(rounded))).setScale(decimals, java.math.RoundingMode.HALF_UP);
+		String plain = abs.toPlainString();
+		int dot = plain.indexOf('.');
+		String integer = dot < 0 ? plain : plain.substring(0, dot);
+		StringBuilder grouped = new StringBuilder();
+		for (int i = 0; i < integer.length(); i++) {
+			if (i > 0 && (integer.length() - i) % 3 == 0) {
+				grouped.append(thousands);
+			}
+			grouped.append(integer.charAt(i));
+		}
+		if (dot >= 0) {
+			grouped.append(decimalPoint).append(plain.substring(dot + 1));
+		}
+		return (rounded < 0 && abs.signum() != 0 ? "-" : "") + grouped;
+	}
+
 	/** PHP json_encode float'u (serialize_precision=-1): en kisa gosterim, tam sayiya esitse ".0" yok. */
 	public static Number jsonFloat(double value) {
 		if (value == Math.rint(value) && Math.abs(value) < 1e15) {

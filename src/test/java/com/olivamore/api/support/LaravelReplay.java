@@ -93,7 +93,7 @@ public final class LaravelReplay {
 		try (InputStream in = getClass().getResourceAsStream(fixture)) {
 			root = JSON.readTree(in);
 		}
-		RestClient http = RestClient.create("http://localhost:" + port);
+		RestClient http = client(port);
 		String token = JSON.readTree(call(http, "POST", "/api/auth/login", null,
 			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body).get("token").asString();
 		Map<String, Long> ids = new HashMap<>();
@@ -219,6 +219,13 @@ public final class LaravelReplay {
 
 	private static String cut(String s) {
 		return s.length() > 1500 ? s.substring(0, 1500) + "..." : s;
+	}
+
+	/** Fixture yollari zaten URL-kodlu (Python yakaladi): tekrar kodlanmasin ("%C3" -> "%25C3" olmasin). */
+	public static RestClient client(int port) {
+		org.springframework.web.util.DefaultUriBuilderFactory uris = new org.springframework.web.util.DefaultUriBuilderFactory("http://localhost:" + port);
+		uris.setEncodingMode(org.springframework.web.util.DefaultUriBuilderFactory.EncodingMode.NONE);
+		return RestClient.builder().uriBuilderFactory(uris).build();
 	}
 
 	public record Response(int status, String body) {

@@ -19,6 +19,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | `capture_catalog.py` | Faz 4: katalogun yazma davranışını (77 durum) yakalar → `src/test/resources/laravel/catalog.json`. Laravel'de API ile yapılamayan hazırlıklar `sql` adımı olarak (Java testinde de çalışır). Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
 | `laravel_capture.py` | Yakalama betiklerinin ortak parçaları (`Capture`: case, sql, yer tutucular, fixture yazma). Yeni modüllerin `capture_*.py`'leri bunu kullanır | Evet |
 | `capture_inventory.py` | Faz 5a: tank yazma davranışı (41 durum) → `src/test/resources/laravel/storage-unit.json` | Evet |
+| `capture_material.py` | Faz 5b: materyal listesi, detay ve soy grafı cevapları (30 durum, veri değiştirmez) → `src/test/resources/laravel/material.json` | Evet |
 | `capture_supplier.py` | Faz 4: tedarikçi ve tarla yazma davranışı (28 durum) → `src/test/resources/laravel/supplier.json` | Evet |
 | `compare.py` | Aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON cevapları karşılaştırır | Evet |
 | `responses/` | Yakalanan cevaplar (84 istek, ~21 MB) | Hayır, yeniden üretilir |

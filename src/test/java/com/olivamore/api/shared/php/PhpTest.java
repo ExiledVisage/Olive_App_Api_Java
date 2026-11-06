@@ -71,6 +71,17 @@ class PhpTest {
 	}
 
 	@Test
+	void numberFormat() {
+		// PHP 8.4: number_format(1234.5, 2, ',', '.'), (1234567, 0), (0.285, 2), (-1234.567, 2), (-0.001, 2)
+		assertThat(Php.numberFormat(1234.5, 2, ",", ".")).isEqualTo("1.234,50");
+		assertThat(Php.numberFormat(1234567, 0, ",", ".")).isEqualTo("1.234.567");
+		assertThat(Php.numberFormat(0.285, 2, ",", ".")).isEqualTo("0,29");
+		assertThat(Php.numberFormat(-1234.567, 2, ",", ".")).isEqualTo("-1.234,57");
+		assertThat(Php.numberFormat(-0.001, 2, ",", ".")).isEqualTo("0,00"); // PHP 8: -0 yazilmaz
+		assertThat(Php.numberFormat(999.999, 2, ",", ".")).isEqualTo("1.000,00");
+	}
+
+	@Test
 	void basename() {
 		assertThat(Php.basename("../../../.env")).isEqualTo(".env");
 		assertThat(Php.basename("sub/olivamore.apk")).isEqualTo("olivamore.apk");
