@@ -163,7 +163,18 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
 ## Faz 5: Depo ve Malzeme (inventory)
 
 **En kritik faz.** Stok defteri buradan yönetiliyor, en büyük servis (StorageMovement) de burada.
-- [ ] Storage unit, izinli ürün/tip kuralları, attribute kuralları
+Üç adımda: 5a tanklar, 5b malzemeler, 5c stok hareketleri.
+
+**5a: Tanklar (tamamlandı)**
+- [x] Storage unit CRUD: kapasite metrikleri (doluluk yalnızca kapasite birimindeki bakiyelerden, PHP float + `round(…, 2)`), silme korumaları (aktif malzeme, hareket kaydı), 204 silme
+- [x] İzinli ürün ve tip senkronu, attribute kuralları (yalnızca decimal attribute, min ≤ max; sonraki kuralda hata olursa hepsi geri alınır)
+- [x] Bakiyeler, hareket listesi (`per_page` ile sayfalı); `MaterialResource`, `StorageMovementResource` (5b ve 5c de kullanacak)
+- [x] Validator'a `gt:N` eklendi; `Php.round` (PHP 8.4 yuvarlaması)
+- [x] Proxy: `/api/storage-units` Java'da (`/movement-history` hariç, o 5c'de)
+- Testler:
+  - `StorageUnitParityIT`: Laravel'den yakalanan 41 durum (`reference/capture_inventory.py`): 41/41 aynı. Sıralamasız ilişkide (attribute kuralları) bir durumda liste id'ye göre karşılaştırılıyor (DEVIATIONS 11)
+  - Canlı karşılaştırma: bütün tank GET'leri (her tankın detayı, bakiyeleri, hareketleri, sayfalı hareketler, hata durumları) 63/63 aynı
+
 - [ ] Material, material attribute value
 - [ ] Storage movement (giriş, transfer, düzeltme) ve storage unit balance
 - [ ] Material lineage (malzeme soy ağacı)

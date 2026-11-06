@@ -81,6 +81,17 @@ class LaravelValidatorTest {
 	}
 
 	@Test
+	void greaterThanLiteral() {
+		// StoreStorageUnitRequest capacity: numeric|gt:0 (Laravel: sayisal olmayan deger gt'de de kalir)
+		Rules rules = Rules.of().field("capacity", "required|numeric|gt:0");
+		assertErrors(input("capacity", 0L), rules, "The capacity field must be greater than 0.",
+			Map.of("capacity", List.of("The capacity field must be greater than 0.")));
+		assertErrors(input("capacity", "abc"), rules, "The capacity field must be a number. (and 1 more error)",
+			Map.of("capacity", List.of("The capacity field must be a number.", "The capacity field must be greater than 0.")));
+		assertThat(validator.validate(input("capacity", "0.01"), rules).get("capacity")).isEqualTo("0.01");
+	}
+
+	@Test
 	void wildcardExpandsToElements() {
 		// exists yerine in (veritabani yok). Fark: onceki hata yalnizca unique/exists'i atlatir, in calisir.
 		// (exists ile Laravel'in "roles.0 tek hata" davranisi IdentityParityIT'de.)

@@ -46,11 +46,78 @@ public final class Php {
 		return switch (value) {
 			case null -> "";
 			case Boolean b -> b ? "1" : "";
+			case Double d -> floatString(d);
+			case Float f -> floatString(f.doubleValue());
 			case BigDecimal d -> d.stripTrailingZeros().scale() <= 0 ? d.toBigInteger().toString() : d.stripTrailingZeros().toPlainString();
 			case Collection<?> c -> "Array";
 			case Map<?, ?> m -> "Array";
 			default -> value.toString();
 		};
+	}
+
+	/** {@code (float) $value}: sayilar oldugu gibi, metinde bastaki sayisal kisim (" 3.5" -> 3.5, "1e3x" -> 1000). */
+	public static double floatval(Object value) {
+		return switch (value) {
+			case null -> 0;
+			case Number n -> n.doubleValue();
+			case Boolean b -> b ? 1 : 0;
+			case String s -> {
+				Matcher m = LEADING_NUMBER.matcher(s);
+				yield m.find() ? Double.parseDouble(m.group(1)) : 0;
+			}
+			case Collection<?> c -> c.isEmpty() ? 0 : 1;
+			case Map<?, ?> m -> m.isEmpty() ? 0 : 1;
+			default -> 0;
+		};
+	}
+
+	/**
+	 * PHP'nin float -> metin donusumu ({@code precision=14}, {@code %.14G}): veritabanina PDO ile
+	 * yazilan deger budur. {@code 3200 * 0.915 -> "2928"}, {@code 1/3 -> "0.33333333333333"},
+	 * {@code 1e25 -> "1.0E+25"}. (JSON ciktisi ise en kisa gosterim: {@link #jsonFloat}.)
+	 */
+	public static String floatString(double value) {
+		if (Double.isNaN(value)) {
+			return "NAN";
+		}
+		if (Double.isInfinite(value)) {
+			return value > 0 ? "INF" : "-INF";
+		}
+		if (value == 0) {
+			return (1 / value < 0) ? "-0" : "0";
+		}
+		BigDecimal rounded = new BigDecimal(value).round(new java.math.MathContext(14, java.math.RoundingMode.HALF_EVEN));
+		int exponent = rounded.precision() - rounded.scale() - 1;
+		if (exponent < -4 || exponent >= 14) {
+			BigDecimal mantissa = rounded.movePointLeft(exponent).stripTrailingZeros();
+			String digits = mantissa.toPlainString();
+			if (!digits.contains(".")) {
+				digits += ".0";
+			}
+			return digits + "E" + (exponent < 0 ? "-" : "+") + Math.abs(exponent);
+		}
+		String plain = rounded.stripTrailingZeros().toPlainString();
+		return plain;
+	}
+
+	/**
+	 * PHP 8.4 {@code round($value, $places)} (yarim deger sifirdan uzaga). PHP 8.4, ikili gosterimin
+	 * hatasini duzeltip ondalik gosterimi yuvarlar: {@code round(0.285, 2) = 0.29}. Esdegeri: en kisa
+	 * ondalik gosterim (Double.toString) uzerinden HALF_UP.
+	 */
+	public static double round(double value, int places) {
+		if (!Double.isFinite(value) || value == 0) {
+			return value;
+		}
+		return new BigDecimal(Double.toString(value)).setScale(places, java.math.RoundingMode.HALF_UP).doubleValue();
+	}
+
+	/** PHP json_encode float'u (serialize_precision=-1): en kisa gosterim, tam sayiya esitse ".0" yok. */
+	public static Number jsonFloat(double value) {
+		if (value == Math.rint(value) && Math.abs(value) < 1e15) {
+			return (long) value;
+		}
+		return value;
 	}
 
 	/** {@code basename()} (Linux PHP'si: yalnizca "/" ayirici; sondaki "/" atilir). */

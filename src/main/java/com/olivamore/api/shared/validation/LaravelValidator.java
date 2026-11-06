@@ -217,6 +217,8 @@ public class LaravelValidator {
 			case "min" -> size(value, rules) >= number(p.getFirst());
 			case "max" -> size(value, rules) <= number(p.getFirst());
 			case "size" -> size(value, rules) == number(p.getFirst());
+			// validateGt (yalnizca sabit sayi parametresi): deger sayisal degilse kalir
+			case "gt" -> numeric(value) && size(value, rules) > literal(p.getFirst());
 			case "between" -> {
 				double size = size(value, rules);
 				yield size >= number(p.get(0)) && size <= number(p.get(1));
@@ -337,6 +339,14 @@ public class LaravelValidator {
 			case String s -> PhpNumbers.numeric(s).isPresent();
 			case null, default -> false;
 		};
+	}
+
+	/** {@code gt:N}: alan adiyla karsilastirma (gt:other_field) desteklenmiyor. */
+	private static double literal(String parameter) {
+		if (PhpNumbers.numeric(parameter).isEmpty()) {
+			throw new IllegalArgumentException("gt kuralinda alan karsilastirmasi desteklenmiyor: " + parameter);
+		}
+		return number(parameter);
 	}
 
 	/** {@code getSize}: alan sayisal kurala sahipse ve deger sayiysa deger, dizi ise eleman sayisi, yoksa uzunluk. */
@@ -471,6 +481,11 @@ public class LaravelValidator {
 				case "numeric" -> "The :attribute field must be " + p.getFirst() + ".";
 				case "array" -> "The :attribute field must contain " + p.getFirst() + " items.";
 				default -> "The :attribute field must be " + p.getFirst() + " characters.";
+			};
+			case "gt" -> switch (sizeType(rules)) {
+				case "numeric" -> "The :attribute field must be greater than " + p.getFirst() + ".";
+				case "array" -> "The :attribute field must have more than " + p.getFirst() + " items.";
+				default -> "The :attribute field must be greater than " + p.getFirst() + " characters.";
 			};
 			case "between" -> switch (sizeType(rules)) {
 				case "numeric" -> "The :attribute field must be between " + p.get(0) + " and " + p.get(1) + ".";

@@ -36,6 +36,8 @@ public final class LaravelReplay {
 	private static final JsonMapper JSON = JsonMapper.builder().build();
 	private static final Pattern PLACEHOLDER = Pattern.compile("\\{(\\w+)}");
 	private static final Pattern BODY_PLACEHOLDER = Pattern.compile("\"\\{(\\w+)}\"");
+	/** Sayfalama linklerindeki sunucu adresi (Laravel localhost:8001, Java rastgele port). */
+	private static final Pattern BASE_URL = Pattern.compile("^http://localhost:\\d+/");
 	private static final Pattern TIMESTAMP = Pattern.compile("^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{6}Z$");
 
 	private final String fixture;
@@ -44,6 +46,7 @@ public final class LaravelReplay {
 	private String seededUntil = "2026-11-06T15:36:00.000000Z";
 	private final Map<String, Object[]> deviations = new LinkedHashMap<>();
 	private final Map<String, String> burned = new LinkedHashMap<>();
+	private final Map<String, List<String>> unordered = new LinkedHashMap<>();
 
 	public LaravelReplay(String fixture, int port, JdbcTemplate jdbc) {
 		this.fixture = fixture;
@@ -73,6 +76,16 @@ public final class LaravelReplay {
 			return failures.size() + " fark:\n  " + String.join("\n  ", failures);
 		}
 
+	}
+
+	/**
+	 * Siralamasiz iliski ({@code ORDER BY} yok): satirlarin fiziksel sirasi baglantiya gore degisebilir
+	 * (PHP her istekte yeni baglanti, Java havuz). Bu durumda listedeki elemanlar id'ye gore siralanip
+	 * karsilastirilir. {@code path}: noktali yol, ornek {@code data.attribute_rules}.
+	 */
+	public LaravelReplay unordered(String caseName, String path) {
+		unordered.computeIfAbsent(caseName, k -> new ArrayList<>()).add(path);
+		return this;
 	}
 
 	public Result run() throws IOException {
@@ -124,8 +137,8 @@ public final class LaravelReplay {
 				failures.add(name + ": status Laravel " + status + ", Java " + actual.status + " " + cut(actual.body));
 				continue;
 			}
-			Object expected = normalize(JSON.treeToValue(c.get("response"), Object.class));
-			Object got = normalize(actual.body.isEmpty() ? null : JSON.readValue(actual.body, Object.class));
+			Object expected = sortLists(normalize(JSON.treeToValue(c.get("response"), Object.class)), name);
+			Object got = sortLists(normalize(actual.body.isEmpty() ? null : JSON.readValue(actual.body, Object.class)), name);
 			if (!expected.equals(got)) {
 				failures.add(name + ":\n      laravel: " + cut(JSON.writeValueAsString(expected)) + "\n      java:    " + cut(JSON.writeValueAsString(got)));
 			}
@@ -177,9 +190,29 @@ public final class LaravelReplay {
 		if (value instanceof String s && TIMESTAMP.matcher(s).matches() && s.compareTo(seededUntil) > 0) {
 			return "<yeni zaman>";
 		}
+		if (value instanceof String s && BASE_URL.matcher(s).find()) {
+			return BASE_URL.matcher(s).replaceFirst("<sunucu>/");
+		}
 		// PHP json_encode 1.0'i 1 yazar; JSON'da sayilar degerce karsilastirilir
 		if (value instanceof Number n) {
 			return new java.math.BigDecimal(n.toString()).stripTrailingZeros().toPlainString();
+		}
+		return value;
+	}
+
+	@SuppressWarnings("unchecked")
+	private Object sortLists(Object value, String caseName) {
+		for (String path : unordered.getOrDefault(caseName, List.of())) {
+			Object node = value;
+			String[] parts = path.split("\\.");
+			for (int i = 0; i < parts.length - 1 && node instanceof Map<?, ?>; i++) {
+				node = ((Map<String, Object>) node).get(parts[i]);
+			}
+			if (node instanceof Map<?, ?> map && map.get(parts[parts.length - 1]) instanceof List<?> list) {
+				List<Object> sorted = new ArrayList<>(list);
+				sorted.sort(java.util.Comparator.comparing(e -> e instanceof Map<?, ?> m ? new java.math.BigDecimal(String.valueOf(m.get("id"))) : java.math.BigDecimal.ZERO));
+				((Map<String, Object>) map).put(parts[parts.length - 1], sorted);
+			}
 		}
 		return value;
 	}
