@@ -18,6 +18,18 @@ Hedef: bu repo (Spring Boot 4, Java 25, Spring Modulith). Teknolojiler için bkz
 
 ---
 
+## Nihai hedef: tek başına Java
+
+Laravel ve Java kalıcı olarak birlikte yaşamayacak. Hedef Laravel'in tamamen kalkması ve
+Java reposunun tek başına yeterli olması: yeni kurulmuş bir bilgisayarda repo klonlanır,
+PostgreSQL kurulur, boş veritabanı `--seed` ile doldurulur ve uygulama çalışır.
+
+Bu yüzden **Java her an Laravel olmadan da açılabilir, seed'lenebilir ve testlerini geçebilir.**
+Aşağıdaki birlikte çalışma düzeni (ortak veritabanı, proxy) sadece geçiş sırasında karşılaştırma
+ve kademeli canlıya alma içindir; `laravel` profili ve `compose.laravel.yaml` dosyasında durur,
+Faz 12'de silinir. Java tek başına her an çalışır ama **tam işlevli** olması geçişin sonunu
+bekler: taşınmamış modüllerin endpoint'leri o zamana kadar Laravel'dedir.
+
 ## Strateji: Parça parça geçiş (Strangler Fig)
 
 Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
@@ -40,6 +52,7 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 - [ ] Proxy'de yönlendirme yapıldı ve dev ortamında frontend ile elle denendi
 - [ ] Grafana'da o modülün hata oranı ve yanıt süreleri normal
 - [ ] İlgili `docs/workflow-*.md` dokümanına "Java'da şurada" notu eklendi
+- [ ] **Laravel olmadan:** Java tek başına açılıyor, `--seed` ile boş veritabanı kuruluyor, `./mvnw verify` geçiyor
 - [ ] Ancak bundan sonra bir sonraki modüle geçilir
 
 ---
@@ -76,13 +89,14 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 
 Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 - [x] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti (Spring Boot 4.1.2, Modulith 2.1.1, paket `com.olivamore.api`)
-- [x] **Docker Compose** (`compose.yaml`): reverse proxy (Caddy, `:8080`), Laravel'in veritabanına köprü (`127.0.0.1:5433`), Mailpit, Prometheus, Grafana. Java bilgisayarda çalışır, istenirse konteynerde (`--profile container`). Laravel'in compose'una dokunulmadı: Java servisleri onun Docker ağına katılıyor. Taşınan yollar `docker/proxy/java-routes.caddy`'ye eklenir, cevaplarda `X-Served-By` başlığı var
-- [x] **Flyway baseline:** `V1__baseline.sql` = `reference/schema.sql` (psql komutları ve oturum ayarları çıkarıldı). Mevcut Laravel veritabanında V1 çalışmaz, baseline kabul edilir; boş veritabanında çalışır. `BaselineSchemaIT` V1'in Laravel şemasıyla kolon, constraint ve index düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`)
+- [x] **Tek başına çalışma:** `compose.yaml` (isteğe bağlı Docker Postgres, Mailpit, Prometheus, Grafana) Laravel'e bağımlı değil. Veritabanı bilgisayardaki PostgreSQL ya da Docker'daki (`COMPOSE_PROFILES=docker-db`). `--seed`: boş veritabanına Flyway şemayı kurar, demo veri (`reference/seed-data.sql`) JDBC ile yüklenir, psql gerekmez. Yeni bilgisayar senaryosu temiz klonla denendi
+- [x] **Geçiş dönemi düzeni** (`compose.laravel.yaml`, `laravel` profili): reverse proxy (Caddy, `:8080`), Laravel'in veritabanına köprü (`127.0.0.1:5433`). Laravel'in compose'una dokunulmadı: köprü ve proxy onun Docker ağına katılıyor. Taşınan yollar `docker/proxy/java-routes.caddy`'ye eklenir, cevaplarda `X-Served-By` başlığı var
+- [x] **Flyway baseline:** `V1__baseline.sql` = `reference/schema.sql` (psql komutları ve oturum ayarları çıkarıldı). Mevcut Laravel veritabanında V1 çalışmaz, baseline kabul edilir; boş veritabanında çalışır. `BaselineSchemaIT` Flyway + seed ile kurulan veritabanının Laravel'inkiyle şema (kolon, constraint, index), satır sayıları ve sequence'ler düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`)
 - [x] **Jackson:** snake_case; `Instant`/`LocalDateTime` → `2026-11-06T15:35:14.000000Z` (UTC, mikrosaniye); gelen metinler Laravel gibi kırpılır, boş metin null olur (`TrimStrings` + `ConvertEmptyStringsToNull`, şifre alanları hariç). Query parametreleri için aynısı `InputNormalizationFilter`'da
 - [x] **Ortak pagination** (`Listing`, `LaravelPaginator`): `per_page` yoksa sayfasız `{"data": [...]}`, varsa Laravel'in `data / links / meta` formatı. "..." penceresi, link URL'leri, `per_page` validation'ı ve geçersiz `page` davranışı Laravel'den yakalanan 11 fixture ile birebir test edildi
 - [x] **Global hata yönetimi** (`ApiExceptionHandler`): 422 validation (`(and N more errors)` özeti, alan sırası, tip hataları), `BusinessRuleException` (boş `errors` → `{}`), 404 model (`No query results for model [App\Models\Order] 1`), 404 route, 405, 500. Gövdeler Laravel'den yakalanan cevaplarla test edildi. **403 ve 401 Faz 2'de** (Spring Security ile)
 - [x] **Silme koruması** (`DeletionGuard`): `"X silinemez; kullanıldığı yerler: 3 ürün, 2 parti."`
-- [x] **Test altyapısı:** Testcontainers Postgres 17, referans veri yüklü açılır (canlıdaki gibi dolu veritabanı). `reference/compare.py`: aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON'u karşılaştırır (adres normalizasyonu, sırasız diziler). Laravel'i kendisiyle (doğrudan ve proxy üzerinden) karşılaştırarak doğrulandı: 84/84 aynı. `OliveApiApplicationIT` gerçek Tomcat'te çalışır
+- [x] **Test altyapısı:** Testcontainers Postgres 17, `--seed` ile aynı kurulum (boş veritabanı + Flyway + demo veri). `reference/compare.py`: aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON'u karşılaştırır (adres normalizasyonu, sırasız diziler). Laravel'i kendisiyle (doğrudan ve proxy üzerinden) karşılaştırarak doğrulandı: 84/84 aynı. `OliveApiApplicationIT` gerçek Tomcat'te çalışır
 - [x] **Gözlemlenebilirlik (en basit haliyle):** Actuator, Micrometer, Prometheus, Grafana ("Olive API" dashboard'u: istek/sn, 5xx oranı, p95, 4xx, DB havuzu, heap; Modulith insight sayesinde metriklerde modül adı da var). Her modül proxy'de Java'ya çevrildikten sonra hata oranı ve yanıt süresini izlemek için. Detaylı dashboard'lar Geçiş Sonrası'nda
 
 ## Faz 2: Kimlik ve Yetki (identity)
@@ -90,6 +104,7 @@ Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 Diğer bütün modüller buna bağlı olduğu için ilk taşınacak modül budur.
 - [ ] `users`, Spatie tabloları (`roles`, `permissions`, `model_has_roles`, `model_has_permissions`, `role_has_permissions`) için JPA entity'ler
 - [ ] **Sanctum uyumlu auth:** Java, Laravel'in Sanctum token'larını doğrular. Sanctum token'ı `personal_access_tokens` tablosunda SHA-256 hash olarak durur, Java aynı tabloya bakar. Böylece kullanıcı hangi sistemden giriş yaptıysa diğerinde de geçerli olur
+- [ ] **Java token'ı kendisi de üretir:** login, Laravel'le aynı formatta (`<id>|<40 karakter>`, tabloda SHA-256) token yazar. Sadece doğrulamak yetmez: Java tek başına çalışırken de giriş yapılabilmeli
 - [ ] **Token doğrulaması tek bir yerden değiştirilebilir olmalı.** Geçiş Sonrası'nda Sanctum yerine JWT konulacağı için doğrulama mantığı bir arayüzün arkasında durur
 - [ ] Spatie izinlerinin Spring Security authority'lerine eşlenmesi (`permission:x` → `hasAuthority("x")`, `role:admin` → `hasRole("admin")`)
 - [ ] Login/register throttle (`AuthThrottleTest`)
@@ -181,6 +196,7 @@ Canlıya geçiş modül modül de yapılabilir (her modül dev'de bitince canlı
 - [ ] Canlıda proxy yönlendirmeleri açılır, Grafana'dan izlenir
 - [ ] Tüm trafik Java'da, Laravel'e giden istek yok (proxy log'larıyla doğrulanır)
 - [ ] Laravel konteyneri kapatılır, repo arşivlenir
+- [ ] Birlikte çalışma düzeni silinir: `compose.laravel.yaml`, `application-laravel.yaml`, `docker/proxy/`, `.env.example`'daki geçiş bölümü, README'deki "Geçiş dönemi" bölümü
 
 **Bölüm A bu noktada biter: API tamamen Java'da, davranış Laravel ile birebir aynı.**
 
@@ -207,8 +223,9 @@ Laravel kapandıktan sonra yapılır. Bu işlerin hepsi ortak olan bir şeyi (ş
 - [ ] API cevapları değişmemeli: sadece iç yapı değişir
 
 ## B4: Demo Seeder'lar
-- [ ] `OliveOilProductionFlowSeeder` ve demo fabrika akışının Java karşılığı
-- [ ] `seed-demo.sh` karşılığı (sadece dev ortamında çalışacak koruma ile)
+Şu an `--seed`, Laravel'in seeder'larının ürettiği verinin dökümünü (`reference/seed-data.sql`) yüklüyor. Tarihler o günde (2026-11-06) sabit.
+- [ ] `OliveOilProductionFlowSeeder` ve demo fabrika akışının Java karşılığı: veriyi bugünün tarihine göre üretir
+- [ ] `--seed` dökümü değil Java seeder'larını çalıştırır; `reference/seed-data.sql` kaldırılır
 
 ## B5: Gözlemlenebilirlik
 - [ ] Detaylı Grafana dashboard'ları ve alarm kuralları
@@ -244,6 +261,7 @@ Bölüm B: Geçiş Sonrası
 
 ## Genel kurallar
 - **Aynı anda tek modül.** Bir modül tamamlanma kriterini geçmeden bir sonrakine başlanmaz.
+- **Java hiçbir zaman Laravel'e bağımlı olmaz.** Varsayılan kurulum tek başına; Laravel'le ilgili her şey `laravel` profilinde ve geçiş dönemine ait dosyalarda durur.
 - **Geçiş süresince yeni özellik yok.** Laravel'e yeni özellik eklenirse Java'ya da eklenmesi gerekir. Zorunlu bir değişiklik olursa önce taşınmış tarafta yapılır.
 - **Şemanın sahibi geçiş boyunca Laravel'dir.** Laravel'in tablolarına Java migration yazmaz. Java yalnızca kendi altyapı tablolarını (Laravel'in kullanmadığı, örn. `event_publication`) ekleyebilir.
 - **Laravel'den her fark ya düzeltilir ya da [DEVIATIONS.md](laravel-reference/DEVIATIONS.md)'ye yazılır.**

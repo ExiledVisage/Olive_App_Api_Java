@@ -1,0 +1,47 @@
+# GECIS DONEMI: Laravel ile yan yana calisma (Strangler Fig).
+# Laravel kapatildiginda (Faz 12) bu dosya ve application-laravel.yaml silinir.
+#
+# Kullanim: ./mvnw spring-boot:run -Dspring-boot.run.profiles=laravel
+# (laravel profili bu dosyayi compose.yaml ile birlikte baslatir ve Laravel'in veritabanina baglanir)
+#
+# On kosul: Laravel ayakta olmali, bu servisler onun Docker agina katilir:
+#   cd ../Olive_Production_Tracking_App_Back/olive_oil_back && docker compose up -d
+#
+#   http://localhost:8080   reverse proxy: frontend buraya baglanir
+#   http://localhost:8001   Laravel (dogrudan, kendi compose'u)
+#   localhost:5433          Laravel'in PostgreSQL'i (yalnizca bu bilgisayardan)
+
+services:
+  # Laravel'in Postgres'ine kopru. Laravel compose'u veritabani portunu bilerek
+  # disari acmiyor; Laravel reposuna dokunmamak icin port burada, yalnizca bu
+  # bilgisayara (127.0.0.1) acilir. Java ve Laravel ayni veritabanini kullanir.
+  db-bridge:
+    image: alpine/socat:1.8.0.3
+    command: TCP-LISTEN:5432,fork,reuseaddr TCP:db:5432
+    networks: [laravel]
+    ports:
+      - "127.0.0.1:${LARAVEL_DB_BRIDGE_PORT:-5433}:5432"
+    restart: unless-stopped
+
+  # Frontend'in bagladigi tek adres. Tasinan modullerin yollari Java'ya,
+  # geri kalan her sey Laravel'e gider. Yonlendirmeler: docker/proxy/java-routes.caddy
+  proxy:
+    image: caddy:2.10-alpine
+    ports:
+      - "${PROXY_PORT:-8080}:80"
+    environment:
+      LARAVEL_UPSTREAM: ${LARAVEL_UPSTREAM:-olivamore-dev-api:8080}
+      JAVA_UPSTREAM: ${JAVA_UPSTREAM:-host.docker.internal:8081}
+    volumes:
+      - ./docker/proxy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./docker/proxy/java-routes.caddy:/etc/caddy/java-routes.caddy:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks: [laravel, default]
+    restart: unless-stopped
+
+networks:
+  # Laravel'in compose'unun agi (COMPOSE_PROJECT_NAME=olivamore-dev)
+  laravel:
+    name: ${LARAVEL_NETWORK:-olivamore-dev_default}
+    external: true

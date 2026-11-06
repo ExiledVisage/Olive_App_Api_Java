@@ -1,50 +1,37 @@
-# Gelistirme ortami: Laravel ile yan yana calisma (Strangler Fig).
-#
-# On kosul: Laravel ayakta olmali, cunku bu servisler onun Docker agina katilir:
-#   cd ../Olive_Production_Tracking_App_Back/olive_oil_back && docker compose up -d
+# Gelistirme ortami (tek basina, Laravel gerekmez).
 #
 # Java uygulamasi bilgisayarda calisir (./mvnw spring-boot:run ya da IDE). Acilirken
 # spring-boot-docker-compose bu dosyayi otomatik baslatir (start-only: kapaninca durdurmaz).
 #
-#   http://localhost:8080   reverse proxy: frontend buraya baglanir
-#   http://localhost:8081   Java uygulamasi (dogrudan)
-#   http://localhost:8001   Laravel (dogrudan, kendi compose'u)
+# Veritabani iki sekilde olabilir (.env.example'a bakin):
+#   - Bilgisayara kurulu PostgreSQL (varsayilan): .env'deki DB_* ile baglanilir
+#   - Docker'daki PostgreSQL: .env'de COMPOSE_PROFILES=docker-db. Spring Boot konteyneri
+#     bulup baglantiyi kendisi kurar, DB_* ayarlarina gerek kalmaz
+#
+#   http://localhost:8081   Java uygulamasi
 #   http://localhost:8025   Mailpit (gelen mailler)
 #   http://localhost:9090   Prometheus
 #   http://localhost:3000   Grafana (admin / admin)
 #
-# Java'yi da konteynerde calistirmak icin:  docker compose --profile container up -d --build
-# (proxy'nin Java hedefi .env'de JAVA_UPSTREAM=api:8081 yapilmali)
+# Gecis doneminde Laravel ile birlikte calisma: compose.laravel.yaml
 
 name: olive-java
 
 services:
-  # Laravel'in Postgres'ine kopru. Laravel compose'u veritabani portunu bilerek
-  # disari acmiyor; Laravel reposuna dokunmamak icin port burada, yalnizca bu
-  # bilgisayara (127.0.0.1) acilir. Java ve Laravel ayni veritabanini kullanir.
-  db-bridge:
-    image: alpine/socat:1.8.0.3
-    command: TCP-LISTEN:5432,fork,reuseaddr TCP:db:5432
-    networks: [laravel]
-    ports:
-      - "127.0.0.1:${DB_BRIDGE_PORT:-5433}:5432"
-    restart: unless-stopped
-
-  # Frontend'in bagladigi tek adres. Tasinan modullerin yollari Java'ya,
-  # geri kalan her sey Laravel'e gider. Yonlendirmeler: docker/proxy/java-routes.caddy
-  proxy:
-    image: caddy:2.10-alpine
-    ports:
-      - "${PROXY_PORT:-8080}:80"
+  postgres:
+    profiles: [docker-db]
+    # Canli sistemle ayni surum
+    image: postgres:17-alpine
     environment:
-      LARAVEL_UPSTREAM: ${LARAVEL_UPSTREAM:-olivamore-dev-api:8080}
-      JAVA_UPSTREAM: ${JAVA_UPSTREAM:-host.docker.internal:8081}
+      POSTGRES_DB: ${DB_DATABASE:-olivamore}
+      POSTGRES_USER: ${DB_USERNAME:-olivamore}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-olivamore}
+    # Rastgele port: bilgisayarda kurulu bir PostgreSQL 5432'yi kullaniyor olabilir.
+    # Spring Boot gercek portu kendisi bulur.
+    ports:
+      - "5432"
     volumes:
-      - ./docker/proxy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./docker/proxy/java-routes.caddy:/etc/caddy/java-routes.caddy:ro
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks: [laravel, default]
+      - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
   mailpit:
@@ -83,27 +70,24 @@ services:
     depends_on: [prometheus]
     restart: unless-stopped
 
-  # Java uygulamasi konteynerde (istege bagli). Varsayilan gelistirmede kullanilmaz.
+  # Java uygulamasi konteynerde (istege bagli):  docker compose --profile container up -d --build
+  # Veritabani: bilgisayardaki PostgreSQL (host.docker.internal) ya da DB_HOST=postgres (docker-db)
   api:
     profiles: [container]
     build: .
     environment:
-      DB_HOST: db
-      DB_PORT: 5432
+      DB_HOST: ${DB_HOST_FROM_CONTAINER:-host.docker.internal}
+      DB_PORT: ${DB_PORT_FROM_CONTAINER:-5432}
       DB_DATABASE: ${DB_DATABASE:-olivamore}
       DB_USERNAME: ${DB_USERNAME:-olivamore}
-      DB_PASSWORD: ${DB_PASSWORD:?.env icinde DB_PASSWORD tanimli olmali}
+      DB_PASSWORD: ${DB_PASSWORD:-olivamore}
       SPRING_DOCKER_COMPOSE_ENABLED: "false"
     ports:
       - "8081:8081"
-    networks: [laravel, default]
-
-networks:
-  # Laravel'in compose'unun agi (COMPOSE_PROJECT_NAME=olivamore-dev)
-  laravel:
-    name: ${LARAVEL_NETWORK:-olivamore-dev_default}
-    external: true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
+  postgres-data:
   prometheus-data:
   grafana-data:
