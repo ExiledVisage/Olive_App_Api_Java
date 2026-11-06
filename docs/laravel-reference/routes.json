@@ -1,0 +1,2309 @@
+[
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "/",
+  "name": "generated::eeHIaZmlFzdCJ0jK",
+  "action": "Closure",
+  "middleware": [
+   "web"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/catalog",
+  "name": "generated::hIukXRnQm4FHDvzf",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@catalog",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/customers",
+  "name": "generated::CcUL2t9dhOsBxT66",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@customers",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/customers/{customer}",
+  "name": "generated::QcdxyxFsCz8RsWHx",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@customer",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/query",
+  "name": "generated::Hf4EaGZPVBp9mEnh",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@query",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/reports",
+  "name": "generated::kDabNqw6fkILyuRc",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@reports",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/analytics/reports",
+  "name": "generated::0gUtvtZyVBRnHnmF",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@storeReport",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/analytics/reports/{report}",
+  "name": "generated::nXGo27L1fGHMNU6R",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@updateReport",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/analytics/reports/{report}",
+  "name": "generated::rhIxl1OYcAVf2SdU",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@destroyReport",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/suppliers",
+  "name": "generated::kG2T2ip51yGR2eJY",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@suppliers",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/analytics/yield",
+  "name": "generated::Jgxu4ONO2sd0kIkH",
+  "action": "App\\Http\\Controllers\\Api\\AnalyticsController@yield",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:analytics.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/app/download",
+  "name": "generated::wgRwUDKJ86bPiBCf",
+  "action": "App\\Http\\Controllers\\Api\\AppReleaseController@download",
+  "middleware": [
+   "api",
+   "Illuminate\\Routing\\Middleware\\ThrottleRequests:30,1"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/app/version",
+  "name": "generated::ehmpZ21z0Qiwpe1D",
+  "action": "App\\Http\\Controllers\\Api\\AppReleaseController@version",
+  "middleware": [
+   "api",
+   "Illuminate\\Routing\\Middleware\\ThrottleRequests:30,1"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/attribute-definitions",
+  "name": "generated::M7FanghL7Yrk2nMQ",
+  "action": "App\\Http\\Controllers\\Api\\AttributeDefinitionController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:attribute_definition.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/auth/login",
+  "name": "generated::HQwmoGq14jOtbdrw",
+  "action": "App\\Http\\Controllers\\Api\\AuthController@login",
+  "middleware": [
+   "api",
+   "Illuminate\\Routing\\Middleware\\ThrottleRequests:login"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/auth/logout",
+  "name": "generated::QUJEppkNDcFJWzwW",
+  "action": "App\\Http\\Controllers\\Api\\AuthController@logout",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/auth/me",
+  "name": "generated::yk2rFAiGEcBomPhJ",
+  "action": "App\\Http\\Controllers\\Api\\AuthController@me",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/auth/register",
+  "name": "generated::aTMM0sWz8giB3Itf",
+  "action": "App\\Http\\Controllers\\Api\\AuthController@register",
+  "middleware": [
+   "api",
+   "Illuminate\\Routing\\Middleware\\ThrottleRequests:register"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/batch-processes/{batchProcess}",
+  "name": "generated::Ip2rStrepZPGHyZD",
+  "action": "App\\Http\\Controllers\\Api\\BatchProcessController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:batch_process.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/batch-processes/{batchProcess}",
+  "name": "generated::f1PiMRl0MoTOSSvE",
+  "action": "App\\Http\\Controllers\\Api\\BatchProcessController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:batch_process.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/batch-processes/{batchProcess}/approve",
+  "name": "generated::avcxpl0sSfcT4lgp",
+  "action": "App\\Http\\Controllers\\Api\\BatchProcessController@approve",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:batch_process.approve"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/batch-processes/{batchProcess}/reject",
+  "name": "generated::6Ly6ze5b610hMaVq",
+  "action": "App\\Http\\Controllers\\Api\\BatchProcessController@reject",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:batch_process.approve"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/batch-processes/{batchProcess}/sync-field-values",
+  "name": "generated::GE6sDukbGOgSXtZT",
+  "action": "App\\Http\\Controllers\\Api\\BatchProcessController@syncFieldValues",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:batch_process.fill"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/customers",
+  "name": "generated::iEzU4d1UQ7CYkrfh",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/customers",
+  "name": "generated::gbqy7o8M7GKajTTE",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/customers/{customer}",
+  "name": "generated::MfGszNVte09itMD9",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/customers/{customer}",
+  "name": "generated::WT82B7P3bgoUz9w6",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/customers/{customer}",
+  "name": "generated::5lOlmfsVJZ6s5k8F",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/customers/{customer}",
+  "name": "generated::kwvrSaUaAoQujGiK",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/customers/{customer}/addresses",
+  "name": "generated::kPSvXwgP04CrDDcE",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@addresses",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/customers/{customer}/addresses",
+  "name": "generated::29EOs6qMz0tWexVb",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@storeAddress",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/customers/{customer}/addresses/{address}",
+  "name": "generated::KlDY8mwQeke6IZZA",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@updateAddress",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/customers/{customer}/addresses/{address}",
+  "name": "generated::qSxZRYbEko2UDqow",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@destroyAddress",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/customers/{customer}/preferred-recipes",
+  "name": "generated::5lNbSjJWjipzGR5w",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@storePreferredRecipe",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/customers/{customer}/preferred-recipes/{recipe}",
+  "name": "generated::jS8m7y3wlFmvbBIH",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@destroyPreferredRecipe",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/customers/{customer}/recipes",
+  "name": "generated::cjguFBGOArW6BywO",
+  "action": "App\\Http\\Controllers\\Api\\CustomerController@recipes",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:customer.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/daily-summary",
+  "name": "generated::ggukv2VGpNejm19y",
+  "action": "App\\Http\\Controllers\\Api\\DailySummaryController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-recipes",
+  "name": "generated::qtYuar48YGBGrn8s",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_recipe.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-recipes",
+  "name": "generated::uY4ekhLNKnHD00tJ",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_recipe.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-recipes/{finishedProductRecipe}/versions",
+  "name": "generated::6AbO1lz5BC3NkQod",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@versions",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-recipes/{finished_product_recipe}",
+  "name": "generated::ZPyj8F5kNZqcS6H3",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_recipe.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/finished-product-recipes/{finished_product_recipe}",
+  "name": "generated::r0oKPTOvLxwmvXb6",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_recipe.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/finished-product-recipes/{finished_product_recipe}",
+  "name": "generated::sxCIjvPLVPrHPllc",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_recipe.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/finished-product-recipes/{finished_product_recipe}",
+  "name": "generated::qkYBTeYleneXcpH0",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRecipeController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_recipe.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-runs",
+  "name": "generated::q0hrxDYJ5iKYbFPc",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-runs",
+  "name": "generated::1NYcdeZkHje7xo5o",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-runs/{finishedProductRun}",
+  "name": "generated::5ui2Sd0voLBiE1P7",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/finished-product-runs/{finishedProductRun}",
+  "name": "generated::gkFP0TzhfhyEZcMU",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/finished-product-runs/{finishedProductRun}/attribute-values/{attributeValue}",
+  "name": "generated::PSQFtBx846aDiSF9",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@updateAttributeValue",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.complete"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/finished-product-runs/{finishedProductRun}/packagings",
+  "name": "generated::AhfJvi7bxc7RelRf",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@syncPackagings",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/finished-product-runs/{finishedProductRun}/status",
+  "name": "generated::ogB1scoKnqicOCdZ",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductRunController@updateStatus",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_run.complete"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-storages",
+  "name": "generated::hh97HyrZKnko3BzL",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-storages",
+  "name": "generated::Sv0fmRUIdQpt6GXt",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/movements",
+  "name": "generated::hrJCEU6HtENgek1L",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@movements",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/slots",
+  "name": "generated::ul421UZU09DjrATB",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@storeSlot",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/slots/{slot}",
+  "name": "generated::QAdY9vXeJsvjL1WP",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@updateSlot",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/slots/{slot}",
+  "name": "generated::iqdWmUP2WVOvO2H7",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@destroySlot",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/stock-in",
+  "name": "generated::lnhvyxL6a6YDKDSF",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@stockIn",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.stock_in"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/stock-out",
+  "name": "generated::MhmTuMWmh6DSRNmz",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@stockOut",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.stock_out"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-product-storages/{finishedProductStorage}/transfer",
+  "name": "generated::3uZKQAnsjmrZn2C1",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@transfer",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.stock_in"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-product-storages/{finished_product_storage}",
+  "name": "generated::NyabBddVOreI8JuV",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/finished-product-storages/{finished_product_storage}",
+  "name": "generated::nqJE8xClGNVvZHBa",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/finished-product-storages/{finished_product_storage}",
+  "name": "generated::G3uHaKJlEimMMi3v",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/finished-product-storages/{finished_product_storage}",
+  "name": "generated::Y3ONpFTANgfCeRZ6",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductStorageController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product_storage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-products",
+  "name": "generated::SZc4qjOMMvs0vskl",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/finished-products",
+  "name": "generated::m4XeyoQurqfO8gzt",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/finished-products/{finished_product}",
+  "name": "generated::NQDeaO7kzjr4SR0Z",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/finished-products/{finished_product}",
+  "name": "generated::FbKERqZfmHsIHW6O",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/finished-products/{finished_product}",
+  "name": "generated::9HFj7KzGligXOgyp",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/finished-products/{finished_product}",
+  "name": "generated::Ad6WYnAG9WrPbFKs",
+  "action": "App\\Http\\Controllers\\Api\\FinishedProductController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:finished_product.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/materials",
+  "name": "generated::BQP5JraZCZkjQDOu",
+  "action": "App\\Http\\Controllers\\Api\\MaterialController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/materials/{material}",
+  "name": "generated::8eO6FZY7k5UIGC4J",
+  "action": "App\\Http\\Controllers\\Api\\MaterialController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/materials/{material}/lineage",
+  "name": "generated::ZK40zGA4QVaJvKyB",
+  "action": "App\\Http\\Controllers\\Api\\MaterialController@lineage",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/notifications",
+  "name": "generated::iEWiAubR1Uudx8Lg",
+  "action": "App\\Http\\Controllers\\Api\\NotificationController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/notifications/read-all",
+  "name": "generated::ld6ecnpUEmiZXKz8",
+  "action": "App\\Http\\Controllers\\Api\\NotificationController@markAllRead",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/notifications/unread-count",
+  "name": "generated::ZZR7yp3I0FtHqpmI",
+  "action": "App\\Http\\Controllers\\Api\\NotificationController@unreadCount",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/notifications/{notification}/read",
+  "name": "generated::Q43ncR8qw29kQbXC",
+  "action": "App\\Http\\Controllers\\Api\\NotificationController@markRead",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/nudges",
+  "name": "generated::iTAcV4C219X655ih",
+  "action": "App\\Http\\Controllers\\Api\\NotificationController@nudge",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:notification.send"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/nudges/targets",
+  "name": "generated::rVKJLwwBktnaj1L2",
+  "action": "App\\Http\\Controllers\\Api\\NotificationController@nudgeTargets",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:notification.send"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/orders",
+  "name": "generated::flKUhXsPOGZWX5DU",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/orders",
+  "name": "generated::TxeHcXEzN1Lt5eT0",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/orders/{order}",
+  "name": "generated::Qi95fxB18mRYQG1B",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/orders/{order}",
+  "name": "generated::0Uyn3kay4J6o4nog",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.update"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/orders/{order}",
+  "name": "generated::S56EmH4GpFUAEPy6",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.update"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/orders/{order}/status",
+  "name": "generated::JpI4Y2I2aaOiePCW",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@updateStatus",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.update_status"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/orders/{order}/stock-check",
+  "name": "generated::vNe2lYTPluuUHX2B",
+  "action": "App\\Http\\Controllers\\Api\\OrderController@stockCheck",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:order.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/packaging-items",
+  "name": "generated::OF694sy68SkC2U9J",
+  "action": "App\\Http\\Controllers\\Api\\PackagingItemController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_item.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/packaging-items",
+  "name": "generated::lypyBJYFO7ANso27",
+  "action": "App\\Http\\Controllers\\Api\\PackagingItemController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_item.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/packaging-items/{packaging_item}",
+  "name": "generated::p59SZ0rMWKKek6ho",
+  "action": "App\\Http\\Controllers\\Api\\PackagingItemController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_item.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/packaging-items/{packaging_item}",
+  "name": "generated::nOXDCRmuWk3LoVfu",
+  "action": "App\\Http\\Controllers\\Api\\PackagingItemController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_item.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/packaging-items/{packaging_item}",
+  "name": "generated::ZhwjJYWX1MwC05v9",
+  "action": "App\\Http\\Controllers\\Api\\PackagingItemController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_item.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/packaging-items/{packaging_item}",
+  "name": "generated::lFN3i5p84gFN0oFI",
+  "action": "App\\Http\\Controllers\\Api\\PackagingItemController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_item.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/packaging-items/{packaging_item}/lots",
+  "name": "generated::kZkg9ES5Rll321OD",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@indexForItem",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/packaging-items/{packaging_item}/lots",
+  "name": "generated::DhMWIApEVPwG7HpV",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.receive"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/packaging-lots",
+  "name": "generated::dtrmrcyFXEtMuoZf",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/packaging-lots/{packaging_lot}",
+  "name": "generated::XeNn5bpVaPIpqRbM",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/packaging-lots/{packaging_lot}",
+  "name": "generated::wX07UAorT9Uw2X56",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.receive"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/packaging-lots/{packaging_lot}",
+  "name": "generated::wN57tCzkh0ZrhGLo",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.receive"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/packaging-lots/{packaging_lot}/adjustment",
+  "name": "generated::A6UJdeRNhk5cTaZA",
+  "action": "App\\Http\\Controllers\\Api\\PackagingLotController@adjust",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:packaging_lot.adjustment"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/permissions",
+  "name": "generated::zrSd8tWCswW1TMGs",
+  "action": "App\\Http\\Controllers\\Api\\PermissionController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/process-types",
+  "name": "process-types.index",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/process-types",
+  "name": "process-types.store",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/process-types/{process_type}",
+  "name": "process-types.show",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT|PATCH",
+  "uri": "api/process-types/{process_type}",
+  "name": "process-types.update",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/process-types/{process_type}",
+  "name": "process-types.destroy",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/process-types/{process_type}/fields",
+  "name": "process-types.fields.index",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeFieldController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type_field.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/process-types/{process_type}/fields",
+  "name": "process-types.fields.store",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeFieldController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type_field.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/process-types/{process_type}/fields/{field}",
+  "name": "process-types.fields.show",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeFieldController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type_field.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT|PATCH",
+  "uri": "api/process-types/{process_type}/fields/{field}",
+  "name": "process-types.fields.update",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeFieldController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type_field.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/process-types/{process_type}/fields/{field}",
+  "name": "process-types.fields.destroy",
+  "action": "App\\Http\\Controllers\\Api\\ProcessTypeFieldController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:process_type_field.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/product-suppliers",
+  "name": "generated::3ObY8mJSRNVz1zxq",
+  "action": "App\\Http\\Controllers\\Api\\ProductSupplierController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:product_supplier.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/product-suppliers",
+  "name": "generated::RKPlkzISEq8yCBsW",
+  "action": "App\\Http\\Controllers\\Api\\ProductSupplierController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:product_supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/product-suppliers/{product_supplier}",
+  "name": "generated::GNkqkoftoRU9AQi6",
+  "action": "App\\Http\\Controllers\\Api\\ProductSupplierController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:product_supplier.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/product-suppliers/{product_supplier}",
+  "name": "generated::fTCiBVIh6V4rtNZU",
+  "action": "App\\Http\\Controllers\\Api\\ProductSupplierController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:product_supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/product-suppliers/{product_supplier}",
+  "name": "generated::vuhHjFIqC4zY7Ml2",
+  "action": "App\\Http\\Controllers\\Api\\ProductSupplierController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:product_supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-batches",
+  "name": "generated::pomVgNlfzpffRlmX",
+  "action": "App\\Http\\Controllers\\Api\\ProductionBatchController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_batch.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/production-batches",
+  "name": "generated::hGmqewyIbfoqxT4d",
+  "action": "App\\Http\\Controllers\\Api\\ProductionBatchController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_batch.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-batches/calendar",
+  "name": "generated::DTcB428jW83nBpTM",
+  "action": "App\\Http\\Controllers\\Api\\ProductionBatchController@calendar",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_batch.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-batches/{production_batch}",
+  "name": "generated::ipzeG25xBtUm55Tp",
+  "action": "App\\Http\\Controllers\\Api\\ProductionBatchController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_batch.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/production-batches/{production_batch}",
+  "name": "generated::z3KOMoxtTGWWaeRJ",
+  "action": "App\\Http\\Controllers\\Api\\ProductionBatchController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_batch.update"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/production-batches/{production_batch}",
+  "name": "generated::SPg5098qEklXMYew",
+  "action": "App\\Http\\Controllers\\Api\\ProductionBatchController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_batch.delete"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-lines",
+  "name": "generated::LcfaKDWqaPg8erA5",
+  "action": "App\\Http\\Controllers\\Api\\ProductionLineController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_line.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/production-lines",
+  "name": "generated::aUl9T0RWtQgMroh0",
+  "action": "App\\Http\\Controllers\\Api\\ProductionLineController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_line.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/production-lines/{productionLine}/stages/{stage}/extensions",
+  "name": "generated::dpi0YUDujlBY4UAH",
+  "action": "App\\Http\\Controllers\\Api\\ProductionStageExtensionController@sync",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-lines/{production_line}",
+  "name": "generated::9y70ztnwZvvxrz8D",
+  "action": "App\\Http\\Controllers\\Api\\ProductionLineController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_line.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/production-lines/{production_line}",
+  "name": "generated::rKqZb6yLoZ2l6Fla",
+  "action": "App\\Http\\Controllers\\Api\\ProductionLineController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_line.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/production-lines/{production_line}",
+  "name": "generated::MrHhdaMnVq2DxPd2",
+  "action": "App\\Http\\Controllers\\Api\\ProductionLineController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_line.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/production-lines/{production_line}",
+  "name": "generated::2bk9b93MuqhrYMzU",
+  "action": "App\\Http\\Controllers\\Api\\ProductionLineController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_line.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-lines/{production_line}/stages",
+  "name": "production-lines.stages.index",
+  "action": "App\\Http\\Controllers\\Api\\ProductionStageController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/production-lines/{production_line}/stages",
+  "name": "production-lines.stages.store",
+  "action": "App\\Http\\Controllers\\Api\\ProductionStageController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-lines/{production_line}/stages/{stage}",
+  "name": "production-lines.stages.show",
+  "action": "App\\Http\\Controllers\\Api\\ProductionStageController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT|PATCH",
+  "uri": "api/production-lines/{production_line}/stages/{stage}",
+  "name": "production-lines.stages.update",
+  "action": "App\\Http\\Controllers\\Api\\ProductionStageController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/production-lines/{production_line}/stages/{stage}",
+  "name": "production-lines.stages.destroy",
+  "action": "App\\Http\\Controllers\\Api\\ProductionStageController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-product-types",
+  "name": "generated::AMKmU9fIYmeZbRBu",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/production-product-types",
+  "name": "generated::n751hYFRljkbCqZE",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-product-types/{productionProductType}",
+  "name": "generated::2VZHGMUs9njytepX",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/production-product-types/{productionProductType}",
+  "name": "generated::9NZTNRlio9Lk9RVX",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/production-product-types/{productionProductType}",
+  "name": "generated::C5sVTl2zprrZcSH4",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/production-product-types/{productionProductType}",
+  "name": "generated::JducLBGMpWkYjexB",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-product-types/{productionProductType}/flow",
+  "name": "generated::9Ol26yeco6GWuwdz",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@flow",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-product-types/{productionProductType}/production-lines",
+  "name": "generated::7BAGB0vgu8R7W1Mk",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductTypeController@productionLines",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-products",
+  "name": "generated::g9U6pqMnhgV6Likr",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/production-products",
+  "name": "generated::Ga3xkmUstDxODUy7",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-products/{productionProduct}",
+  "name": "generated::wCMhs8MAc1abHp6m",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/production-products/{productionProduct}",
+  "name": "generated::5FjYtJDMenLvvOj0",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/production-products/{productionProduct}",
+  "name": "generated::6o9o0bHd1fNgnT7i",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/production-products/{productionProduct}",
+  "name": "generated::whdl73kXAblERxU6",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_product_type.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-products/{productionProduct}/attribute-definitions",
+  "name": "generated::lJYhejnIy9RthATO",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductAttributeDefinitionController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/production-products/{productionProduct}/attribute-definitions",
+  "name": "generated::Jckxl4baM0yjnuY0",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductAttributeDefinitionController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/production-products/{productionProduct}/attribute-definitions/{attributeDefinition}",
+  "name": "generated::4cw5XYbF9zZL7QZy",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductAttributeDefinitionController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/production-products/{productionProduct}/attribute-definitions/{attributeDefinition}",
+  "name": "generated::FhqH26JOxoO00FWi",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductAttributeDefinitionController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/production-products/{productionProduct}/attribute-definitions/{attributeDefinition}",
+  "name": "generated::5H92XrY4Svtdqgdz",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductAttributeDefinitionController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/production-products/{productionProduct}/attribute-definitions/{attributeDefinition}",
+  "name": "generated::5J5bqSMjajxx9hgE",
+  "action": "App\\Http\\Controllers\\Api\\ProductionProductAttributeDefinitionController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/roles",
+  "name": "roles.index",
+  "action": "App\\Http\\Controllers\\Api\\RoleController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/roles",
+  "name": "roles.store",
+  "action": "App\\Http\\Controllers\\Api\\RoleController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/roles/{role}",
+  "name": "roles.show",
+  "action": "App\\Http\\Controllers\\Api\\RoleController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT|PATCH",
+  "uri": "api/roles/{role}",
+  "name": "roles.update",
+  "action": "App\\Http\\Controllers\\Api\\RoleController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/roles/{role}",
+  "name": "roles.destroy",
+  "action": "App\\Http\\Controllers\\Api\\RoleController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/stage-extension-types",
+  "name": "generated::c9ieo51wPmeyWUDC",
+  "action": "App\\Http\\Controllers\\Api\\StageExtensionTypeController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:production_stage.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/storage-movements/adjustment",
+  "name": "generated::d4k7yoIvZApxR5Cz",
+  "action": "App\\Http\\Controllers\\Api\\StorageMovementController@storeAdjustment",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_movement.adjustment"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/storage-movements/inbound",
+  "name": "generated::n8XH6TAtIG8qssYx",
+  "action": "App\\Http\\Controllers\\Api\\StorageMovementController@storeInbound",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_movement.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/storage-movements/opening",
+  "name": "generated::jldtpymtXaRzHVJD",
+  "action": "App\\Http\\Controllers\\Api\\StorageMovementController@storeOpening",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_movement.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/storage-movements/outbound",
+  "name": "generated::f0UNSh6EXRZtUwaw",
+  "action": "App\\Http\\Controllers\\Api\\StorageMovementController@storeOutbound",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_movement.create"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/storage-movements/transfer",
+  "name": "generated::bAZnL5s8pQLNWvZJ",
+  "action": "App\\Http\\Controllers\\Api\\StorageMovementController@storeTransfer",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_movement.transfer"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/storage-units",
+  "name": "generated::0FOd5X3HiVKunsOD",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/storage-units",
+  "name": "generated::uEs2GkH3KvJv8Jct",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/storage-units/{storageUnit}/allowed-production-product-types",
+  "name": "generated::gCJZVPaVsp4URMq2",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@syncAllowedProductionProductTypes",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/storage-units/{storageUnit}/allowed-production-products",
+  "name": "generated::rQkgWDuy0iTTXHP2",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@syncAllowedProductionProducts",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/storage-units/{storageUnit}/attribute-rules",
+  "name": "generated::UuF62WgGDdmqxz1K",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@syncAttributeRules",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/storage-units/{storageUnit}/balances",
+  "name": "generated::h1jSdGFqfbM9QFfW",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@balances",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/storage-units/{storageUnit}/movement-history",
+  "name": "generated::FbWvm1H9q5bmf6Ct",
+  "action": "App\\Http\\Controllers\\Api\\StorageMovementController@history",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_movement.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/storage-units/{storageUnit}/movements",
+  "name": "generated::uupbR8Ov2NQJcpa0",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@movements",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/storage-units/{storage_unit}",
+  "name": "generated::GK05jk3vFrTpzm86",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "api/storage-units/{storage_unit}",
+  "name": "generated::3CYXu83sdDyEHQEt",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/storage-units/{storage_unit}",
+  "name": "generated::NGb9ZvHp5Z8WRhqf",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/storage-units/{storage_unit}",
+  "name": "generated::ly6oFLofD4d8mLWY",
+  "action": "App\\Http\\Controllers\\Api\\StorageUnitController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:storage_unit.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/suppliers",
+  "name": "generated::1n3j7DUUrDVPVuxs",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/suppliers",
+  "name": "generated::sI2mytqAbgddc3ei",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/suppliers/{supplier}",
+  "name": "generated::sd5vhQhnOUwLmYdM",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/suppliers/{supplier}",
+  "name": "generated::6bNdDkLFFFxniLa0",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/suppliers/{supplier}",
+  "name": "generated::vmcR6P8eb7gSLCIj",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/suppliers/{supplier}/deliveries",
+  "name": "generated::r0aqvfw3CzXnGV7u",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@deliveries",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.view"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/suppliers/{supplier}/fields",
+  "name": "generated::DIcXG3P5VzrCcxKD",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@storeField",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/suppliers/{supplier}/fields/{field}",
+  "name": "generated::B6DZhRiACEGst8K7",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@updateField",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/suppliers/{supplier}/fields/{field}",
+  "name": "generated::srwKT6XXSAsWKWED",
+  "action": "App\\Http\\Controllers\\Api\\SupplierController@destroyField",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\PermissionMiddleware:supplier.manage"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/user",
+  "name": "generated::CSDWdVWJ2HzLwEtk",
+  "action": "Closure",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/users",
+  "name": "users.index",
+  "action": "App\\Http\\Controllers\\Api\\UserController@index",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "POST",
+  "uri": "api/users",
+  "name": "users.store",
+  "action": "App\\Http\\Controllers\\Api\\UserController@store",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "api/users/{user}",
+  "name": "users.show",
+  "action": "App\\Http\\Controllers\\Api\\UserController@show",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PUT|PATCH",
+  "uri": "api/users/{user}",
+  "name": "users.update",
+  "action": "App\\Http\\Controllers\\Api\\UserController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "DELETE",
+  "uri": "api/users/{user}",
+  "name": "users.destroy",
+  "action": "App\\Http\\Controllers\\Api\\UserController@destroy",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "PATCH",
+  "uri": "api/users/{user}/roles",
+  "name": "generated::CJIp9m6SehyKVw9c",
+  "action": "App\\Http\\Controllers\\Api\\UserRoleController@update",
+  "middleware": [
+   "api",
+   "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+   "Spatie\\Permission\\Middleware\\RoleMiddleware:admin"
+  ]
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "storage/{path}",
+  "name": "storage.local",
+  "action": "Closure",
+  "middleware": []
+ },
+ {
+  "domain": null,
+  "method": "PUT",
+  "uri": "storage/{path}",
+  "name": "storage.local.upload",
+  "action": "Closure",
+  "middleware": []
+ },
+ {
+  "domain": null,
+  "method": "GET|HEAD",
+  "uri": "up",
+  "name": "generated::RPMP2iWkNLxx5XAK",
+  "action": "Closure",
+  "middleware": []
+ }
+]

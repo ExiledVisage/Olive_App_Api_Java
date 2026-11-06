@@ -49,35 +49,37 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 ## Faz 0: Yerel Ortam, Kararlar ve Hazırlık
 
 ### 0.1 Bu bilgisayarın kurulumu
-- [ ] Docker Desktop'ın çalıştığı doğrulanır (`docker info`)
-- [ ] JDK 25 kurulur
-- [ ] Laravel reposunun `dev` branch'inde olduğu ve güncel olduğu doğrulanır
+- [x] Docker Desktop'ın çalıştığı doğrulanır (`docker info`)
+- [x] JDK 25 kurulur
+- [x] Laravel reposunun `dev` branch'inde olduğu ve güncel olduğu doğrulanır
 
 ### 0.2 Laravel'i yerelde ayağa kaldırmak (referans sistem)
-- [ ] `olive_oil_back/.env`, `.env.example`'dan oluşturulur. `COMPOSE_PROJECT_NAME` içinde `dev` geçmeli, yoksa `seed-demo.sh` çalışmaz
-- [ ] `docker compose up` ile Laravel ve Postgres başlatılır
-- [ ] Migration'lar çalıştırılır (69 migration, boş DB'ye)
-- [ ] `seed-demo.sh` ile demo fabrika verisi yüklenir (zeytinden siparişe tüm akış)
-- [ ] Laravel feature testlerinin konteynerde geçtiği doğrulanır. Başlangıçta kırık test varsa not edilir, Java tarafına "kırık" olarak taşınmaz
+- [x] `olive_oil_back/.env`, `.env.example`'dan oluşturulur. `COMPOSE_PROJECT_NAME` içinde `dev` geçmeli, yoksa `seed-demo.sh` çalışmaz
+- [x] `docker compose up` ile Laravel ve Postgres başlatılır
+- [x] Migration'lar çalıştırılır (69 migration, boş DB'ye)
+- [x] `seed-demo.sh` ile demo fabrika verisi yüklenir (zeytinden siparişe tüm akış)
+- [x] Laravel feature testlerinin konteynerde geçtiği doğrulanır. Başlangıçta kırık test varsa not edilir, Java tarafına "kırık" olarak taşınmaz
 
 ### 0.3 Referans veriyi dondurmak
-- [ ] Seed'den sonra veritabanının tam bir `pg_dump`'ı alınır (`reference-data.sql`)
-- [ ] Demo seeder'lar Faker ile rastgele veri üretebileceği için karşılaştırma testlerinden önce **her seferinde bu dump geri yüklenir**. Böylece Laravel ve Java hep aynı veri üzerinde karşılaştırılır
+- [x] Seed'den sonra veritabanının tam bir `pg_dump`'ı alınır (`reference-data.sql`)
+- [x] Demo seeder'lar Faker ile rastgele veri üretebileceği için karşılaştırma testlerinden önce **her seferinde bu dump geri yüklenir**. Böylece Laravel ve Java hep aynı veri üzerinde karşılaştırılır
 
 ### 0.4 Kararlar ve envanter
-- [ ] **API sözleşmesi:** Laravel formatı birebir korunacak (snake_case JSON, `data / links / meta` pagination, `{message, errors}` validation hataları)
-- [ ] **Laravel API'sinin envanteri:** tüm endpoint'ler (`php artisan route:list --json`, konteynerde), her birinin izni ve kullanılan Resource sınıfı
-- [ ] **Modül sınırları:** aşağıdaki faz listesi Modulith paketlerine karşılık gelir
-- [ ] **Referans cevaplar:** dondurulmuş veri üzerinde her endpoint'in Laravel cevabı kaydedilir. Java cevapları bunlarla karşılaştırılacak
+- [x] **API sözleşmesi:** Laravel formatı birebir korunacak (snake_case JSON, `data / links / meta` pagination, `{message, errors}` validation hataları)
+- [x] **Laravel API'sinin envanteri:** tüm endpoint'ler (`php artisan route:list --json`, konteynerde), her birinin izni ve kullanılan Resource sınıfı
+- [x] **Modül sınırları:** aşağıdaki faz listesi Modulith paketlerine karşılık gelir
+- [x] **Referans cevaplar:** dondurulmuş veri üzerinde her GET endpoint'inin Laravel cevabı kaydedilir. Veri değiştiren endpoint'lerin referansları her modülün kendi fazında, veri geri yüklenerek alınır
+
+> Faz 0 çıktıları ve bulgular: [reference/README.md](../reference/README.md), endpoint envanteri (191 endpoint): [laravel-reference/ENDPOINTS.md](laravel-reference/ENDPOINTS.md)
 
 ## Faz 1: İskelet ve Ortak Altyapı
 
 Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 - [ ] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti
 - [ ] Docker Compose: Java uygulaması, Laravel, Postgres, Mailpit, reverse proxy
-- [ ] **Flyway baseline:** Faz 0'daki temiz DB'den şema `pg_dump --schema-only` ile `V1__baseline.sql` olarak alınır, `baselineOnMigrate` açılır. Geçiş bitene kadar şema değişiklikleri **sadece Laravel migration'larıyla** yapılır, Java tarafı okuyup uyum sağlar
+- [ ] **Flyway baseline:** Faz 0'daki temiz DB'den şema `pg_dump --schema-only` ile `V1__baseline.sql` olarak alınır, `baselineOnMigrate` açılır. Hazır döküm: `reference/schema.sql` (pg_dump 17'nin eklediği `\restrict` / `\unrestrict` satırları Flyway'e verilmeden önce silinmeli). Geçiş bitene kadar şema değişiklikleri **sadece Laravel migration'larıyla** yapılır, Java tarafı okuyup uyum sağlar
 - [ ] Jackson: snake_case, Laravel ile aynı tarih formatı
-- [ ] Ortak pagination cevabı (Laravel `paginate()` çıktısının birebir aynısı, `per_page` desteği)
+- [ ] Ortak pagination cevabı: `per_page` yoksa sayfasız `{"data": [...]}`, `per_page` (1–200) varsa Laravel `paginate()` çıktısının birebir aynısı (`data`, `links`, `meta`)
 - [ ] Global hata yönetimi: `BusinessRuleException`, validation (422), 404, 403 cevapları Laravel formatında
 - [ ] Silme koruması (`GuardsDeletion` karşılığı)
 - [ ] **Test altyapısı:** Testcontainers, dondurulmuş referans verinin test DB'sine yüklenmesi, Laravel/Java cevap karşılaştırma aracı, ilk `*IT` testi
