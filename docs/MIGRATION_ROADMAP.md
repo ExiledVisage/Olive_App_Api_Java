@@ -102,20 +102,27 @@ Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 ## Faz 2: Kimlik ve Yetki (identity)
 
 Diğer bütün modüller buna bağlı olduğu için ilk taşınacak modül budur.
-- [ ] `users`, Spatie tabloları (`roles`, `permissions`, `model_has_roles`, `model_has_permissions`, `role_has_permissions`) için JPA entity'ler
-- [ ] **Sanctum uyumlu auth:** Java, Laravel'in Sanctum token'larını doğrular. Sanctum token'ı `personal_access_tokens` tablosunda SHA-256 hash olarak durur, Java aynı tabloya bakar. Böylece kullanıcı hangi sistemden giriş yaptıysa diğerinde de geçerli olur
-- [ ] **Java token'ı kendisi de üretir:** login, Laravel'le aynı formatta (`<id>|<40 karakter>`, tabloda SHA-256) token yazar. Sadece doğrulamak yetmez: Java tek başına çalışırken de giriş yapılabilmeli
-- [ ] **Token doğrulaması tek bir yerden değiştirilebilir olmalı.** Geçiş Sonrası'nda Sanctum yerine JWT konulacağı için doğrulama mantığı bir arayüzün arkasında durur
-- [ ] Spatie izinlerinin Spring Security authority'lerine eşlenmesi (`permission:x` → `hasAuthority("x")`, `role:admin` → `hasRole("admin")`)
-- [ ] Login/register throttle (`AuthThrottleTest`)
-- [ ] User, Role, Permission, UserRole endpoint'leri
-- Testler: `PermissionTest`, `AuthThrottleTest`
+- [x] `users`, Spatie tabloları (`roles`, `permissions`, `model_has_roles`, `model_has_permissions`, `role_has_permissions`) ve `personal_access_tokens`: entity'ler JPA, morph kolonlu pivot tablolar SQL ile (`Assignments`)
+- [x] **Sanctum uyumlu auth:** Java, Laravel'in token'larını doğrular (`id|token` ya da yalnız token, SHA-256, sabit süreli karşılaştırma, `last_used_at` güncellemesi). Laravel'in ürettiği bir token Java'da, Java'nınki Laravel'de geçerli; birinde çıkış yapılan token diğerinde de geçersiz (canlı denendi)
+- [x] **Java token'ı kendisi de üretir:** Laravel'le aynı format (`<id>|<40 harf/rakam><8 hex crc32>`); Laravel'in ürettiği gerçek bir token'la doğrulandı
+- [x] **Token doğrulaması tek noktada:** `TokenService.authenticate()`. Geçiş Sonrası'nda (B2) JWT buraya konulur
+- [x] **Yetki:** Spring Security authority'leri yerine kendi anotasyonlarımız: `@Public`, `@RequiresRole`, `@RequiresPermission` (`identity` modülünün API'si). `/api/**` varsayılan olarak giriş ister. Laravel'deki sıra korunur: 401 (interceptor) → 404 (model binding, `@Bound`) → 403 (controller metodunun hemen önünde, AOP). Admin her izne sahip (`Gate::before`), 403 mesajları Spatie'ninkiyle aynı
+- [x] Login/register throttle: iki katmanlı login limiti (hesap+adres 5/dk, adres 20/dk, e-posta küçük harfe çevrilip kırpılır), register 5/dk; `X-RateLimit-*`, `Retry-After` başlıkları Laravel'le aynı
+- [x] User, Role, Permission, UserRole endpoint'leri ve `/api/auth/*`, `/api/user` (17 endpoint)
+- [x] **Ortak altyapıya eklenenler** (sonraki fazların hepsi kullanacak): `LaravelValidator` (FormRequest kuralları aynı metinle, Laravel'in Validator mantığı birebir), `RequestInput` (`$request->all()`), `@Bound` model binding, `@Throttle` rate limiting, `HttpStatusException` (`abort()`), `DataResponse` (201 dahil), `Timestamps` (UTC, saniye)
+- [x] **Laravel'de bulunan hatalar** Java'da düzeltildi: izinli rol oluşturma ve rol silme 500 (yanlış guard), login'e dizi 500, admin'i `roles: null` ile güncelleme 500 (bkz. DEVIATIONS.md)
+- [x] Proxy: identity yolları Java'ya yönlendirildi (`docker/proxy/java-routes.caddy`), geri kalanı Laravel'de
+- Testler:
+  - `IdentityParityIT`: Laravel'den yakalanan 53 durum (`reference/capture_identity.py`) aynı sırayla Java'ya tekrar oynatılır, status + gövde + rate limit başlıkları karşılaştırılır: 51 aynı, Laravel hatası olan 3 durum düzeltilmiş haliyle, 2 durum `/api/customers`'ı beklediği için Faz 9'a kadar atlanıyor
+  - `IdentityAccessIT`: `AuthThrottleTest`'in 6 testi, `PermissionTest`'in identity kısmı (admin bütün izinler, fabrika hesapları, izinsiz kullanıcı), Laravel/Java token uyumluluğu
+  - `LaravelValidatorTest`, `TokenServiceTest`
+  - Canlı karşılaştırma (`compare.py`): 7 GET endpoint'i 7/7 aynı
 
 ## Faz 3: Bağımsız Küçük Uç (app-release)
 
 Pipeline'ı uçtan uca denemek için en risksiz modül: DB'ye dokunmuyor, auth gerektirmiyor.
 - [ ] `/api/app/version`, `/api/app/download`
-- [ ] Proxy'de ilk yönlendirme bununla denenir
+- [ ] Proxy'de yönlendirme (ilk yönlendirme Faz 2'de identity ile yapıldı)
 - Test: `AppReleaseTest`
 
 ## Faz 4: Üretim Altyapısı ve Ana Veriler (catalog)

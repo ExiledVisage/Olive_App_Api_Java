@@ -82,19 +82,46 @@ veritabanıyla (şema, her tablonun satır sayısı, sequence'ler) aynı olduğu
 
 ```
 com.olivamore.api
-├── shared/        Ortak altyapı (OPEN modül): Laravel uyumlu hatalar, sayfalama, JSON, silme koruması
+├── shared/        Ortak altyapı (OPEN modül): Laravel uyumlu hatalar, validator, sayfalama, JSON,
+│                  model binding, rate limiting, silme koruması
+├── identity/      Kullanıcılar, roller, izinler, Sanctum uyumlu token'lar (Faz 2)
 ├── devdata/       Demo veri yükleme (--seed)
-└── <modül>/       Faz 2'den itibaren: identity, catalog, inventory, production, ...
+└── <modül>/       Sonraki fazlar: catalog, inventory, production, ...
+```
+
+Bir Laravel controller'ını taşırken:
+
+```java
+@RestController
+@RequiresPermission("order.view")                // Laravel: ->middleware('permission:order.view')
+class OrderController {
+
+    @GetMapping("/api/orders/{order}")
+    DataResponse<OrderResource> show(@Bound Order order) { ... }      // route model binding, yoksa 404
+
+    @PostMapping("/api/orders")
+    @RequiresPermission("order.create")
+    ResponseEntity<DataResponse<OrderResource>> store(RequestInput input, CurrentUser user) {
+        ValidatedInput v = validator.validate(input, Rules.of()        // FormRequest::rules(), aynı sırayla
+            .field("customer_id", "required|integer|exists:customers,id")
+            .field("items", "required|array|min:1")
+            .field("items.*.quantity", "required|integer|min:1"));
+        return DataResponse.created(...);                              // yeni model -> 201
+    }
+}
 ```
 
 Laravel uyumluluğu için kurallar:
-- **Hatalar:** `BusinessRuleException` (422), `ModelNotFoundException("Order", id)` (404), `LaravelValidationException` (422). Diğer her şey `ApiExceptionHandler`'da Laravel formatına çevrilir.
-- **Validation mesajları:** `LaravelMessages` sabitleri, örneğin `@NotBlank(message = LaravelMessages.REQUIRED)`. DTO alanları Laravel'deki kuralların sırasıyla yazılır.
-- **Query parametreleri:** Zorunlu olanlar `@Valid @ModelAttribute` bir record'da toplanır, snake_case adlar `@BindParam` ile bağlanır.
-- **Listeler:** `Listing.of(...)`. `per_page` yoksa sayfasız, varsa Laravel'in sayfalı formatı.
-- **Tarihler:** `Instant` / `LocalDateTime` otomatik olarak `2026-11-06T15:35:14.000000Z` formatında yazılır.
+- **Giriş:** `/api/**` altındaki her endpoint varsayılan olarak giriş ister; giriş istemeyenler `@Public`. Rol/izin: `@RequiresRole`, `@RequiresPermission` (sınıf ve metot birlikte kullanılabilir, admin her izne sahip). Sıra Laravel'deki gibi 401 → 404 → 403.
+- **Validation:** `LaravelValidator` + `Rules`, kurallar Laravel'deki metnin aynısı ve aynı sırada (hata sırası buna bağlı). Desteklenmeyen bir kural ilk kullanımda hata verir; Laravel'in `ValidatesAttributes` kodundan birebir eklenir. Bean Validation (`@Valid`) kullanılmaz.
+- **Girdi:** `RequestInput` (JSON gövdesi + query, kırpılmış, boş metin null). `@RequestBody` kullanılmaz.
+- **Hatalar:** `BusinessRuleException` (422 + `errors`), `HttpStatusException.unprocessable(...)` (`abort(422, ...)`, sadece `message`), `ModelNotFoundException` (404), `LaravelValidationException` (422).
+- **Cevaplar:** tek kayıt `DataResponse.of(...)` / yeni kayıt `DataResponse.created(...)`, liste `Listing.of(...)` (`per_page` yoksa sayfasız).
+- **Entity'ler:** `@LaravelModel("Order")` (404 mesajındaki sınıf adı). Zaman damgaları `Timestamps.now()` (UTC, saniyeye kırpılmış).
+- **Rate limit:** `@Throttle("login")` (adlandırılmış, `NamedLimiter` bean'i) ya da `@Throttle(maxAttempts = 30, decayMinutes = 1)`.
 - **Silme:** `DeletionGuard.of("...").usedBy("...", n).check()`
 - **Şema:** Geçiş boyunca Laravel'in tablolarına Java migration yazmaz. Java sadece kendi altyapı tabloları için migration ekleyebilir (V2: `event_publication`).
+- **Doğrulama:** Her modül için Laravel'in davranışı `reference/capture_*.py` ile yakalanır, Java'ya `*ParityIT` ile tekrar oynatılır (örnek: `IdentityParityIT`). Farklar ya düzeltilir ya [DEVIATIONS.md](docs/laravel-reference/DEVIATIONS.md)'ye yazılır.
 
 ---
 

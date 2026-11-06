@@ -4,9 +4,9 @@
 # Laravel'e gider. Her cevaba X-Served-By basligi eklenir: hangi sistemin
 # cevap verdigi tarayicidan ve loglardan gorulebilir.
 #
-# Bir yonlendirmeyi geri almak: java-routes.caddy'deki blogu silip
-#   docker compose exec proxy caddy reload --config /etc/caddy/Caddyfile
-
+# Yonlendirme eklemek / geri almak: java-routes.caddy'yi degistirip
+#   docker compose -f compose.yaml -f compose.laravel.yaml exec proxy caddy reload --config /etc/caddy/Caddyfile
+# (Git Bash'te basina MSYS_NO_PATHCONV=1 yazin, yoksa /etc/... yolu Windows yoluna cevrilir)
 {
 	admin localhost:2019
 }

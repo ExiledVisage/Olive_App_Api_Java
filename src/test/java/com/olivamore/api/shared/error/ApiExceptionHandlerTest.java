@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -40,7 +42,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Hata cevaplarini Laravel'den yakalanan gercek govdelerle karsilastirir
  * (strict JSON esitligi: fazla ya da eksik alan da hatadir).
  */
-@WebMvcTest(controllers = ApiExceptionHandlerTest.TestController.class)
+// Yalnizca shared modulu: diger modullerin WebMvcConfigurer'lari (orn. identity) slice'a alinmaz
+@WebMvcTest(controllers = ApiExceptionHandlerTest.TestController.class,
+	excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com\\.olivamore\\.api\\.(?!shared\\.).*"))
 @Import({ApiExceptionHandler.class, JacksonConfig.class, WebConfig.class,
 	ApiExceptionHandlerTest.TestController.class})
 class ApiExceptionHandlerTest {

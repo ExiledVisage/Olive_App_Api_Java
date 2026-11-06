@@ -127,6 +127,16 @@ public class ApiExceptionHandler {
 		return body(HttpStatus.BAD_REQUEST, "message", "Malformed JSON.");
 	}
 
+	/** {@code abort($status, $message)}, 401, 403, 429: yalnizca mesaj (+ varsa basliklar). */
+	@ExceptionHandler(HttpStatusException.class)
+	ResponseEntity<Map<String, Object>> httpStatus(HttpStatusException e) {
+		ResponseEntity.BodyBuilder builder = ResponseEntity.status(e.status());
+		e.headers().forEach(builder::header);
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("message", e.getMessage());
+		return builder.body(body);
+	}
+
 	// ---- 404 / 405 ---------------------------------------------------------
 
 	@ExceptionHandler(ModelNotFoundException.class)

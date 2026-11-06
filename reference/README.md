@@ -14,6 +14,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | `seed-data.sql` | Sadece veri (`pg_dump --data-only`, `cache` / `cache_locks` hariç). Java'nın `--seed` komutu ve integration testleri bunu yükler | Evet |
 | `restore.sh` | Laravel'in dev veritabanını `reference-data.sql`'e geri döndürür | Evet |
 | `capture_responses.py` | Tüm GET endpoint'lerini admin olarak çağırıp cevapları `responses/`'a yazar | Evet |
+| `capture_identity.py` | Faz 2: Laravel'in kimlik/yetki davranışını (validation, 401/403/404, 422, 201, 429) yakalar → `src/test/resources/laravel/identity.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
 | `compare.py` | Aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON cevapları karşılaştırır | Evet |
 | `responses/` | Yakalanan cevaplar (84 istek, ~21 MB) | Hayır, yeniden üretilir |
 

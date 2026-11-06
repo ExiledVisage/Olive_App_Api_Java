@@ -9,11 +9,16 @@ package com.olivamore.api.shared.error;
 public class ModelNotFoundException extends RuntimeException {
 
 	/**
-	 * @param laravelModel Laravel model adi, ornegin {@code "Order"} ya da {@code "ProductionBatch"}
+	 * @param laravelModel Laravel model adi: kisa ad ({@code "Order"} -> {@code App\Models\Order})
+	 *                     ya da ters bolu iceren tam ad ({@code "Spatie\\Permission\\Models\\Role"})
 	 * @param id istekte gelen deger, oldugu gibi
 	 */
 	public ModelNotFoundException(String laravelModel, Object id) {
-		super("No query results for model [App\\Models\\" + laravelModel + "] " + id);
+		super("No query results for model [" + laravelClass(laravelModel) + "] " + id);
+	}
+
+	public static String laravelClass(String laravelModel) {
+		return laravelModel.contains("\\") ? laravelModel : "App\\Models\\" + laravelModel;
 	}
 
 }

@@ -1,0 +1,1157 @@
+{
+ "source": "Laravel http://localhost:8001, dondurulmus referans veri",
+ "cases": [
+  {
+   "name": "token yok",
+   "as": null,
+   "method": "GET",
+   "path": "/api/auth/me",
+   "body": null,
+   "status": 401,
+   "headers": {},
+   "response": {
+    "message": "Unauthenticated."
+   }
+  },
+  {
+   "name": "bozuk token",
+   "as": null,
+   "method": "GET",
+   "path": "/api/auth/me",
+   "body": null,
+   "status": 401,
+   "headers": {},
+   "response": {
+    "message": "Unauthenticated."
+   }
+  },
+  {
+   "name": "id'li bozuk token",
+   "as": null,
+   "method": "GET",
+   "path": "/api/auth/me",
+   "body": null,
+   "status": 401,
+   "headers": {},
+   "response": {
+    "message": "Unauthenticated."
+   }
+  },
+  {
+   "name": "me",
+   "as": "operator1",
+   "method": "GET",
+   "path": "/api/auth/me",
+   "body": null,
+   "status": 200,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 2,
+     "name": "Operator One",
+     "email": "operator1@olivamore.com",
+     "roles": [
+      "operator"
+     ],
+     "permissions": [
+      "supplier.view",
+      "product_supplier.view",
+      "packaging_lot.view",
+      "packaging_lot.receive",
+      "production_product_type.view",
+      "production_line.view",
+      "attribute_definition.view",
+      "packaging_item.view",
+      "production_batch.view",
+      "batch_process.view",
+      "batch_process.fill",
+      "batch_process.complete",
+      "batch_process.skip",
+      "calendar.view",
+      "storage_unit.view",
+      "storage_movement.view",
+      "storage_movement.create",
+      "storage_movement.transfer",
+      "finished_product_recipe.view",
+      "finished_product.view",
+      "finished_product_run.view",
+      "finished_product_run.create",
+      "finished_product_run.complete",
+      "finished_product_storage.view",
+      "finished_product_storage.stock_in",
+      "finished_product_storage.stock_out",
+      "order.view"
+     ],
+     "created_at": "2026-11-06T15:35:11.000000Z"
+    }
+   }
+  },
+  {
+   "name": "api/user",
+   "as": "operator1",
+   "method": "GET",
+   "path": "/api/user",
+   "body": null,
+   "status": 200,
+   "headers": {},
+   "response": {
+    "id": 2,
+    "name": "Operator One",
+    "email": "operator1@olivamore.com",
+    "email_verified_at": null,
+    "created_at": "2026-11-06T15:35:11.000000Z",
+    "updated_at": "2026-11-06T15:35:11.000000Z"
+   }
+  },
+  {
+   "name": "operator users listesi",
+   "as": "operator1",
+   "method": "GET",
+   "path": "/api/users",
+   "body": null,
+   "status": 403,
+   "headers": {},
+   "response": {
+    "message": "User does not have the right roles."
+   }
+  },
+  {
+   "name": "operator olmayan kullanici",
+   "as": "operator1",
+   "method": "GET",
+   "path": "/api/users/999999",
+   "body": null,
+   "status": 404,
+   "headers": {},
+   "response": {
+    "message": "No query results for model [App\\Models\\User] 999999"
+   }
+  },
+  {
+   "name": "admin olmayan kullanici",
+   "as": "admin",
+   "method": "GET",
+   "path": "/api/users/999999",
+   "body": null,
+   "status": 404,
+   "headers": {},
+   "response": {
+    "message": "No query results for model [App\\Models\\User] 999999"
+   }
+  },
+  {
+   "name": "operator izin gerektiren uc",
+   "as": "operator1",
+   "method": "GET",
+   "path": "/api/customers",
+   "body": null,
+   "status": 403,
+   "headers": {},
+   "response": {
+    "message": "User does not have the right permissions."
+   }
+  },
+  {
+   "name": "tokensiz izin gerektiren uc",
+   "as": null,
+   "method": "GET",
+   "path": "/api/customers",
+   "body": null,
+   "status": 401,
+   "headers": {},
+   "response": {
+    "message": "Unauthenticated."
+   }
+  },
+  {
+   "name": "login bos",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {},
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The email field is required. (and 1 more error)",
+    "errors": {
+     "email": [
+      "The email field is required."
+     ],
+     "password": [
+      "The password field is required."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login email sayi",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": 5,
+    "password": 5
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The email field must be a string. (and 2 more errors)",
+    "errors": {
+     "email": [
+      "The email field must be a string.",
+      "The email field must be a valid email address."
+     ],
+     "password": [
+      "The password field must be a string."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login email gecersiz",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "abc",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The email field must be a valid email address.",
+    "errors": {
+     "email": [
+      "The email field must be a valid email address."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login email null",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": null,
+    "password": null
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "3"
+   },
+   "response": {
+    "message": "The email field is required. (and 1 more error)",
+    "errors": {
+     "email": [
+      "The email field is required."
+     ],
+     "password": [
+      "The password field is required."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login email dizi",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": [
+     "a@b.c"
+    ],
+    "password": "x"
+   },
+   "status": 500,
+   "headers": {},
+   "response": {
+    "message": "Server Error"
+   }
+  },
+  {
+   "name": "login yanlis sifre",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "admin@olivamore.com",
+    "password": "yanlis"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "3"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login olmayan kullanici",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "yok@olivamore.com",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "register bos",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/register",
+   "body": {},
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The name field is required. (and 2 more errors)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "email": [
+      "The email field is required."
+     ],
+     "password": [
+      "The password field is required."
+     ]
+    }
+   }
+  },
+  {
+   "name": "register hatali",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/register",
+   "body": {
+    "name": 5,
+    "email": "admin@olivamore.com",
+    "password": "kisa",
+    "password_confirmation": "farkli"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "3"
+   },
+   "response": {
+    "message": "The name field must be a string. (and 3 more errors)",
+    "errors": {
+     "name": [
+      "The name field must be a string."
+     ],
+     "email": [
+      "The email has already been taken."
+     ],
+     "password": [
+      "The password field must be at least 8 characters.",
+      "The password field confirmation does not match."
+     ]
+    }
+   }
+  },
+  {
+   "name": "register uzun",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/register",
+   "body": {
+    "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "email": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@b.co",
+    "password": "uzun-sifre-1",
+    "password_confirmation": "uzun-sifre-1"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "2"
+   },
+   "response": {
+    "message": "The name field must not be greater than 255 characters.",
+    "errors": {
+     "name": [
+      "The name field must not be greater than 255 characters."
+     ]
+    }
+   }
+  },
+  {
+   "name": "register basarili",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/register",
+   "body": {
+    "name": "  Yeni Kullanici  ",
+    "email": "yeni@olivamore.com",
+    "password": " bosluklu-sifre ",
+    "password_confirmation": " bosluklu-sifre "
+   },
+   "status": 201,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "1"
+   },
+   "response": {
+    "message": "User registered successfully.",
+    "token": "3|6JXWArlL8RU1a8Pxkhyj7BwNjtGTijlFMxBUN3rDcebddd93",
+    "user": {
+     "id": 8,
+     "name": "Yeni Kullanici",
+     "email": "yeni@olivamore.com",
+     "roles": [],
+     "permissions": [],
+     "created_at": "2026-11-06T17:41:34.000000Z"
+    }
+   }
+  },
+  {
+   "name": "register sonrasi bosluklu sifreyle login",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "yeni@olivamore.com",
+    "password": " bosluklu-sifre "
+   },
+   "status": 200,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "Login successful.",
+    "token": "4|TGp7zt1AJk9EiW0OJVzXDIuKZPG0dgfQy7aI9CBWc6e1eb0c",
+    "user": {
+     "id": 8,
+     "name": "Yeni Kullanici",
+     "email": "yeni@olivamore.com",
+     "roles": [],
+     "permissions": [],
+     "created_at": "2026-11-06T17:41:34.000000Z"
+    }
+   }
+  },
+  {
+   "name": "users store bos",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/users",
+   "body": {},
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The name field is required. (and 2 more errors)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "email": [
+      "The email field is required."
+     ],
+     "password": [
+      "The password field is required."
+     ]
+    }
+   }
+  },
+  {
+   "name": "users store hatali roller",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/users",
+   "body": {
+    "name": "A",
+    "email": "a@b.co",
+    "password": "12345678",
+    "roles": [
+     5,
+     "yok",
+     "planner"
+    ]
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The roles.0 field must be a string. (and 1 more error)",
+    "errors": {
+     "roles.0": [
+      "The roles.0 field must be a string."
+     ],
+     "roles.1": [
+      "The selected roles.1 is invalid."
+     ]
+    }
+   }
+  },
+  {
+   "name": "users store roller dizi degil",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/users",
+   "body": {
+    "name": "A",
+    "email": "a@b.co",
+    "password": "12345678",
+    "roles": "planner"
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The roles field must be an array.",
+    "errors": {
+     "roles": [
+      "The roles field must be an array."
+     ]
+    }
+   }
+  },
+  {
+   "name": "users store",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/users",
+   "body": {
+    "name": "Test Kullanici",
+    "email": "test@olivamore.com",
+    "password": "12345678",
+    "roles": [
+     "planner",
+     "operator"
+    ]
+   },
+   "status": 201,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Kullanici",
+     "email": "test@olivamore.com",
+     "roles": [
+      "operator",
+      "planner"
+     ],
+     "permissions": [
+      "supplier.view",
+      "supplier.manage",
+      "analytics.view",
+      "product_supplier.view",
+      "product_supplier.manage",
+      "packaging_lot.view",
+      "packaging_lot.receive",
+      "production_product_type.view",
+      "production_line.view",
+      "attribute_definition.view",
+      "packaging_item.view",
+      "production_batch.view",
+      "production_batch.create",
+      "production_batch.update",
+      "batch_process.view",
+      "batch_process.fill",
+      "batch_process.complete",
+      "batch_process.skip",
+      "calendar.view",
+      "storage_unit.view",
+      "storage_movement.view",
+      "storage_movement.create",
+      "storage_movement.transfer",
+      "finished_product_recipe.view",
+      "finished_product.view",
+      "finished_product_run.view",
+      "finished_product_run.create",
+      "finished_product_run.complete",
+      "finished_product_storage.view",
+      "finished_product_storage.stock_in",
+      "finished_product_storage.stock_out",
+      "customer.view",
+      "customer.manage",
+      "order.view",
+      "order.create",
+      "order.update",
+      "order.update_status"
+     ],
+     "created_at": "2026-11-06T17:41:34.000000Z"
+    }
+   }
+  },
+  {
+   "name": "users update rolsuz",
+   "as": "admin",
+   "method": "PUT",
+   "path": "/api/users/9",
+   "body": {
+    "name": "Test Kullanici 2",
+    "email": "test@olivamore.com"
+   },
+   "status": 200,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Kullanici 2",
+     "email": "test@olivamore.com",
+     "roles": [
+      "operator",
+      "planner"
+     ],
+     "permissions": [
+      "supplier.view",
+      "supplier.manage",
+      "analytics.view",
+      "product_supplier.view",
+      "product_supplier.manage",
+      "packaging_lot.view",
+      "packaging_lot.receive",
+      "production_product_type.view",
+      "production_line.view",
+      "attribute_definition.view",
+      "packaging_item.view",
+      "production_batch.view",
+      "production_batch.create",
+      "production_batch.update",
+      "batch_process.view",
+      "batch_process.fill",
+      "batch_process.complete",
+      "batch_process.skip",
+      "calendar.view",
+      "storage_unit.view",
+      "storage_movement.view",
+      "storage_movement.create",
+      "storage_movement.transfer",
+      "finished_product_recipe.view",
+      "finished_product.view",
+      "finished_product_run.view",
+      "finished_product_run.create",
+      "finished_product_run.complete",
+      "finished_product_storage.view",
+      "finished_product_storage.stock_in",
+      "finished_product_storage.stock_out",
+      "customer.view",
+      "customer.manage",
+      "order.view",
+      "order.create",
+      "order.update",
+      "order.update_status"
+     ],
+     "created_at": "2026-11-06T17:41:34.000000Z"
+    }
+   }
+  },
+  {
+   "name": "users update roller null",
+   "as": "admin",
+   "method": "PUT",
+   "path": "/api/users/9",
+   "body": {
+    "name": "Test Kullanici 2",
+    "email": "test@olivamore.com",
+    "roles": null
+   },
+   "status": 200,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Kullanici 2",
+     "email": "test@olivamore.com",
+     "roles": [],
+     "permissions": [],
+     "created_at": "2026-11-06T17:41:34.000000Z"
+    }
+   }
+  },
+  {
+   "name": "users update email baskasinin",
+   "as": "admin",
+   "method": "PUT",
+   "path": "/api/users/9",
+   "body": {
+    "name": "X",
+    "email": "admin@olivamore.com"
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The email has already been taken.",
+    "errors": {
+     "email": [
+      "The email has already been taken."
+     ]
+    }
+   }
+  },
+  {
+   "name": "users update kisa sifre",
+   "as": "admin",
+   "method": "PATCH",
+   "path": "/api/users/9",
+   "body": {
+    "name": "X",
+    "email": "test@olivamore.com",
+    "password": "kisa"
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The password field must be at least 8 characters.",
+    "errors": {
+     "password": [
+      "The password field must be at least 8 characters."
+     ]
+    }
+   }
+  },
+  {
+   "name": "user roles bos",
+   "as": "admin",
+   "method": "PATCH",
+   "path": "/api/users/9/roles",
+   "body": {
+    "roles": []
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The roles field is required.",
+    "errors": {
+     "roles": [
+      "The roles field is required."
+     ]
+    }
+   }
+  },
+  {
+   "name": "user roles",
+   "as": "admin",
+   "method": "PATCH",
+   "path": "/api/users/9/roles",
+   "body": {
+    "roles": [
+     "food_engineer"
+    ]
+   },
+   "status": 200,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Kullanici 2",
+     "email": "test@olivamore.com",
+     "roles": [
+      "food_engineer"
+     ],
+     "permissions": [
+      "analytics.view",
+      "production_product_type.view",
+      "attribute_definition.view",
+      "notification.send",
+      "storage_unit.view",
+      "storage_movement.view",
+      "finished_product_recipe.view",
+      "finished_product_recipe.manage",
+      "finished_product.view",
+      "finished_product.manage",
+      "finished_product_storage.view",
+      "customer.view"
+     ],
+     "created_at": "2026-11-06T17:41:34.000000Z"
+    }
+   }
+  },
+  {
+   "name": "admin'den admin rolu kaldirma",
+   "as": "admin",
+   "method": "PATCH",
+   "path": "/api/users/1/roles",
+   "body": {
+    "roles": [
+     "planner"
+    ]
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "Admin kullanicisindan admin rolu kaldirilamaz."
+   }
+  },
+  {
+   "name": "admin update admin rolsuz",
+   "as": "admin",
+   "method": "PUT",
+   "path": "/api/users/1",
+   "body": {
+    "name": "Olivamore Admin",
+    "email": "admin@olivamore.com",
+    "roles": [
+     "planner"
+    ]
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "Admin kullanicisindan admin rolu kaldirilamaz."
+   }
+  },
+  {
+   "name": "admin silme",
+   "as": "admin",
+   "method": "DELETE",
+   "path": "/api/users/1",
+   "body": null,
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "Admin kullanicisi silinemez."
+   }
+  },
+  {
+   "name": "users delete",
+   "as": "admin",
+   "method": "DELETE",
+   "path": "/api/users/9",
+   "body": null,
+   "status": 200,
+   "headers": {},
+   "response": {
+    "message": "User deleted successfully."
+   }
+  },
+  {
+   "name": "users delete tekrar",
+   "as": "admin",
+   "method": "DELETE",
+   "path": "/api/users/9",
+   "body": null,
+   "status": 404,
+   "headers": {},
+   "response": {
+    "message": "No query results for model [App\\Models\\User] 9"
+   }
+  },
+  {
+   "name": "roles store bos",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/roles",
+   "body": {},
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The name field is required.",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ]
+    }
+   }
+  },
+  {
+   "name": "roles store var olan",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/roles",
+   "body": {
+    "name": "planner",
+    "permissions": [
+     "yok.izin"
+    ]
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The name has already been taken. (and 1 more error)",
+    "errors": {
+     "name": [
+      "The name has already been taken."
+     ],
+     "permissions.0": [
+      "The selected permissions.0 is invalid."
+     ]
+    }
+   }
+  },
+  {
+   "name": "roles store izinli (Laravel 500)",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/roles",
+   "body": {
+    "name": "deneme_izinli",
+    "permissions": [
+     "customer.view",
+     "order.view"
+    ]
+   },
+   "status": 500,
+   "headers": {},
+   "response": {
+    "message": "Server Error"
+   }
+  },
+  {
+   "name": "roles store",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/roles",
+   "body": {
+    "name": "deneme_rolu"
+   },
+   "status": 201,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 8,
+     "name": "deneme_rolu",
+     "permissions": []
+    }
+   }
+  },
+  {
+   "name": "roles update izinsiz",
+   "as": "admin",
+   "method": "PUT",
+   "path": "/api/roles/8",
+   "body": {
+    "name": "deneme_rolu_2"
+   },
+   "status": 200,
+   "headers": {},
+   "response": {
+    "data": {
+     "id": 8,
+     "name": "deneme_rolu_2",
+     "permissions": []
+    }
+   }
+  },
+  {
+   "name": "admin rolu yeniden adlandirma",
+   "as": "admin",
+   "method": "PUT",
+   "path": "/api/roles/1",
+   "body": {
+    "name": "yonetici"
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "Admin rolu yeniden adlandirilamaz."
+   }
+  },
+  {
+   "name": "admin rolu silme",
+   "as": "admin",
+   "method": "DELETE",
+   "path": "/api/roles/1",
+   "body": null,
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "Admin rolu silinemez."
+   }
+  },
+  {
+   "name": "roles delete",
+   "as": "admin",
+   "method": "DELETE",
+   "path": "/api/roles/8",
+   "body": null,
+   "status": 500,
+   "headers": {},
+   "response": {
+    "message": "Server Error"
+   }
+  },
+  {
+   "name": "logout",
+   "as": "operator1",
+   "method": "POST",
+   "path": "/api/auth/logout",
+   "body": null,
+   "status": 200,
+   "headers": {},
+   "response": {
+    "message": "Logged out successfully."
+   }
+  },
+  {
+   "name": "logout sonrasi ayni token",
+   "as": "operator1",
+   "method": "GET",
+   "path": "/api/auth/me",
+   "body": null,
+   "status": 401,
+   "headers": {},
+   "response": {
+    "message": "Unauthenticated."
+   }
+  },
+  {
+   "name": "login sinir 1",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "sinir@olivamore.com",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login sinir 2",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "sinir@olivamore.com",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "3"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login sinir 3",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "sinir@olivamore.com",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "2"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login sinir 4",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "sinir@olivamore.com",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "1"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login sinir 5",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "sinir@olivamore.com",
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "0"
+   },
+   "response": {
+    "message": "The provided credentials are incorrect.",
+    "errors": {
+     "email": [
+      "The provided credentials are incorrect."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login sinir asildi",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "Sinir@olivamore.com",
+    "password": "x"
+   },
+   "status": 429,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "0",
+    "Retry-After": "60",
+    "X-RateLimit-Reset": "1793986954"
+   },
+   "response": {
+    "message": "Too Many Attempts."
+   }
+  }
+ ]
+}
