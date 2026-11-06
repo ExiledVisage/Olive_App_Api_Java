@@ -1,0 +1,767 @@
+{
+ "source": "Laravel http://localhost:8001, dondurulmus referans veri",
+ "cases": [
+  {
+   "name": "tedarikci bos",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 1 more error)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "code": [
+      "The code field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci tekrar kod",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {
+    "name": "X",
+    "code": "TED-108"
+   },
+   "status": 422,
+   "response": {
+    "message": "The code has already been taken.",
+    "errors": {
+     "code": [
+      "The code has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci hatali",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {
+    "name": 5,
+    "code": "T-1",
+    "email": "abc",
+    "is_active": "evet",
+    "fields": [
+     {
+      "code": "TR-1"
+     },
+     {
+      "code": "TR-1"
+     },
+     {
+      "code": "BRH-1250"
+     },
+     {
+      "location": "x"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The name field must be a string. (and 6 more errors)",
+    "errors": {
+     "name": [
+      "The name field must be a string."
+     ],
+     "email": [
+      "The email field must be a valid email address."
+     ],
+     "is_active": [
+      "The is active field must be true or false."
+     ],
+     "fields.0.code": [
+      "The fields.0.code field has a duplicate value."
+     ],
+     "fields.1.code": [
+      "The fields.1.code field has a duplicate value."
+     ],
+     "fields.2.code": [
+      "The fields.2.code has already been taken."
+     ],
+     "fields.3.code": [
+      "The fields.3.code field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci ekle",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {
+    "name": "  Test Tedarikci  ",
+    "code": "TED-TEST",
+    "phone": "0555",
+    "email": "t@o.co",
+    "note": "",
+    "fields": [
+     {
+      "code": "TR-TEST-1",
+      "location": "Ayvalik",
+      "area_decare": 12.345
+     },
+     {
+      "code": "TR-TEST-2",
+      "area_decare": "7"
+     }
+    ]
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 28,
+     "name": "Test Tedarikci",
+     "code": "TED-TEST",
+     "phone": "0555",
+     "email": "t@o.co",
+     "address": null,
+     "note": null,
+     "is_active": null,
+     "delivery_count": 0,
+     "fields": [
+      {
+       "id": 49,
+       "supplier_id": 28,
+       "code": "TR-TEST-1",
+       "location": "Ayvalik",
+       "area_decare": "12.35",
+       "note": null,
+       "is_active": true
+      },
+      {
+       "id": 50,
+       "supplier_id": 28,
+       "code": "TR-TEST-2",
+       "location": null,
+       "area_decare": "7.00",
+       "note": null,
+       "is_active": true
+      }
+     ],
+     "created_at": "2026-11-06T19:01:34.000000Z",
+     "updated_at": "2026-11-06T19:01:34.000000Z"
+    }
+   },
+   "save": [
+    "S",
+    "data.id"
+   ]
+  },
+  {
+   "name": "tedarikci ekle aktif",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {
+    "name": "Aktif",
+    "code": "TED-AKTIF",
+    "is_active": false
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 29,
+     "name": "Aktif",
+     "code": "TED-AKTIF",
+     "phone": null,
+     "email": null,
+     "address": null,
+     "note": null,
+     "is_active": false,
+     "delivery_count": 0,
+     "fields": [],
+     "created_at": "2026-11-06T19:01:34.000000Z",
+     "updated_at": "2026-11-06T19:01:34.000000Z"
+    }
+   },
+   "save": [
+    "S2",
+    "data.id"
+   ]
+  },
+  {
+   "name": "tedarikci goster",
+   "method": "GET",
+   "path": "/api/suppliers/{S}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 28,
+     "name": "Test Tedarikci",
+     "code": "TED-TEST",
+     "phone": "0555",
+     "email": "t@o.co",
+     "address": null,
+     "note": null,
+     "is_active": true,
+     "delivery_count": 0,
+     "fields": [
+      {
+       "id": 49,
+       "supplier_id": 28,
+       "code": "TR-TEST-1",
+       "location": "Ayvalik",
+       "area_decare": "12.35",
+       "note": null,
+       "is_active": true
+      },
+      {
+       "id": 50,
+       "supplier_id": 28,
+       "code": "TR-TEST-2",
+       "location": null,
+       "area_decare": "7.00",
+       "note": null,
+       "is_active": true
+      }
+     ],
+     "created_at": "2026-11-06T19:01:34.000000Z",
+     "updated_at": "2026-11-06T19:01:34.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci guncelle",
+   "method": "PATCH",
+   "path": "/api/suppliers/{S}",
+   "body": {
+    "name": "Test Tedarikci 2",
+    "is_active": "0"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 28,
+     "name": "Test Tedarikci 2",
+     "code": "TED-TEST",
+     "phone": "0555",
+     "email": "t@o.co",
+     "address": null,
+     "note": null,
+     "is_active": false,
+     "delivery_count": 0,
+     "fields": [
+      {
+       "id": 49,
+       "supplier_id": 28,
+       "code": "TR-TEST-1",
+       "location": "Ayvalik",
+       "area_decare": "12.35",
+       "note": null,
+       "is_active": true
+      },
+      {
+       "id": 50,
+       "supplier_id": 28,
+       "code": "TR-TEST-2",
+       "location": null,
+       "area_decare": "7.00",
+       "note": null,
+       "is_active": true
+      }
+     ],
+     "created_at": "2026-11-06T19:01:34.000000Z",
+     "updated_at": "2026-11-06T19:01:34.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci guncelle tekrar kod",
+   "method": "PATCH",
+   "path": "/api/suppliers/{S}",
+   "body": {
+    "code": "TED-108"
+   },
+   "status": 422,
+   "response": {
+    "message": "The code has already been taken.",
+    "errors": {
+     "code": [
+      "The code has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci guncelle kendi kodu",
+   "method": "PATCH",
+   "path": "/api/suppliers/{S}",
+   "body": {
+    "code": "TED-TEST"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 28,
+     "name": "Test Tedarikci 2",
+     "code": "TED-TEST",
+     "phone": "0555",
+     "email": "t@o.co",
+     "address": null,
+     "note": null,
+     "is_active": false,
+     "delivery_count": 0,
+     "fields": [
+      {
+       "id": 49,
+       "supplier_id": 28,
+       "code": "TR-TEST-1",
+       "location": "Ayvalik",
+       "area_decare": "12.35",
+       "note": null,
+       "is_active": true
+      },
+      {
+       "id": 50,
+       "supplier_id": 28,
+       "code": "TR-TEST-2",
+       "location": null,
+       "area_decare": "7.00",
+       "note": null,
+       "is_active": true
+      }
+     ],
+     "created_at": "2026-11-06T19:01:34.000000Z",
+     "updated_at": "2026-11-06T19:01:34.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci put",
+   "method": "PUT",
+   "path": "/api/suppliers/{S}",
+   "body": {
+    "name": "X"
+   },
+   "status": 405,
+   "response": {
+    "message": "The PUT method is not supported for route api/suppliers/28. Supported methods: GET, HEAD, PATCH, DELETE."
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci arama",
+   "method": "GET",
+   "path": "/api/suppliers?search=test",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 28,
+      "name": "Test Tedarikci 2",
+      "code": "TED-TEST",
+      "phone": "0555",
+      "email": "t@o.co",
+      "address": null,
+      "note": null,
+      "is_active": false,
+      "delivery_count": 0,
+      "fields": [
+       {
+        "id": 49,
+        "supplier_id": 28,
+        "code": "TR-TEST-1",
+        "location": "Ayvalik",
+        "area_decare": "12.35",
+        "note": null,
+        "is_active": true
+       },
+       {
+        "id": 50,
+        "supplier_id": 28,
+        "code": "TR-TEST-2",
+        "location": null,
+        "area_decare": "7.00",
+        "note": null,
+        "is_active": true
+       }
+      ],
+      "created_at": "2026-11-06T19:01:34.000000Z",
+      "updated_at": "2026-11-06T19:01:34.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci pasifler",
+   "method": "GET",
+   "path": "/api/suppliers?is_active=false",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 29,
+      "name": "Aktif",
+      "code": "TED-AKTIF",
+      "phone": null,
+      "email": null,
+      "address": null,
+      "note": null,
+      "is_active": false,
+      "delivery_count": 0,
+      "fields": [],
+      "created_at": "2026-11-06T19:01:34.000000Z",
+      "updated_at": "2026-11-06T19:01:34.000000Z"
+     },
+     {
+      "id": 9,
+      "name": "Hatice Özdemir",
+      "code": "TED-107",
+      "phone": "0542 754 18 38",
+      "email": null,
+      "address": "Sarımsaklı, Ayvalık",
+      "note": null,
+      "is_active": false,
+      "delivery_count": 0,
+      "fields": [
+       {
+        "id": 15,
+        "supplier_id": 9,
+        "code": "GML-1242",
+        "location": "Karacaali, Gemlik",
+        "area_decare": "114.00",
+        "note": null,
+        "is_active": true
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13.000000Z",
+      "updated_at": "2026-11-06T15:35:13.000000Z"
+     },
+     {
+      "id": 28,
+      "name": "Test Tedarikci 2",
+      "code": "TED-TEST",
+      "phone": "0555",
+      "email": "t@o.co",
+      "address": null,
+      "note": null,
+      "is_active": false,
+      "delivery_count": 0,
+      "fields": [
+       {
+        "id": 49,
+        "supplier_id": 28,
+        "code": "TR-TEST-1",
+        "location": "Ayvalik",
+        "area_decare": "12.35",
+        "note": null,
+        "is_active": true
+       },
+       {
+        "id": 50,
+        "supplier_id": 28,
+        "code": "TR-TEST-2",
+        "location": null,
+        "area_decare": "7.00",
+        "note": null,
+        "is_active": true
+       }
+      ],
+      "created_at": "2026-11-06T19:01:34.000000Z",
+      "updated_at": "2026-11-06T19:01:34.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci teslimat yok",
+   "method": "GET",
+   "path": "/api/suppliers/{S}/deliveries",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [],
+    "summary": {
+     "delivery_count": 0,
+     "total_weighed_kg": 0,
+     "last_received_at": null
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan tedarikciyi sil",
+   "method": "DELETE",
+   "path": "/api/suppliers/10",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Ahmet Kaya' tedarikçisi silinemez; kullanıldığı yerler: 4 üretim partisi. Pasife alabilirsiniz.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "tarla bos",
+   "method": "POST",
+   "path": "/api/suppliers/{S}/fields",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The code field is required.",
+    "errors": {
+     "code": [
+      "The code field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tarla ekle",
+   "method": "POST",
+   "path": "/api/suppliers/{S}/fields",
+   "body": {
+    "code": "TR-TEST-3",
+    "area_decare": 1.5,
+    "is_active": true
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 51,
+     "supplier_id": 28,
+     "code": "TR-TEST-3",
+     "location": null,
+     "area_decare": "1.50",
+     "note": null,
+     "is_active": true
+    }
+   },
+   "save": [
+    "F",
+    "data.id"
+   ]
+  },
+  {
+   "name": "tarla ekle varsayilan",
+   "method": "POST",
+   "path": "/api/suppliers/{S}/fields",
+   "body": {
+    "code": "TR-TEST-4"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 52,
+     "supplier_id": 28,
+     "code": "TR-TEST-4",
+     "location": null,
+     "area_decare": null,
+     "note": null,
+     "is_active": null
+    }
+   },
+   "save": [
+    "F2",
+    "data.id"
+   ]
+  },
+  {
+   "name": "tarla tekrar kod",
+   "method": "POST",
+   "path": "/api/suppliers/{S}/fields",
+   "body": {
+    "code": "BRH-1250"
+   },
+   "status": 422,
+   "response": {
+    "message": "The code has already been taken.",
+    "errors": {
+     "code": [
+      "The code has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tarla baska tedarikci (validation once)",
+   "method": "PATCH",
+   "path": "/api/suppliers/10/fields/{F}",
+   "body": {
+    "area_decare": -1
+   },
+   "status": 422,
+   "response": {
+    "message": "The area decare field must be at least 0.",
+    "errors": {
+     "area_decare": [
+      "The area decare field must be at least 0."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tarla baska tedarikci",
+   "method": "PATCH",
+   "path": "/api/suppliers/10/fields/{F}",
+   "body": {
+    "note": "x"
+   },
+   "status": 404,
+   "response": {
+    "message": "Bu tarla bu tedarikçiye ait değil."
+   },
+   "save": null
+  },
+  {
+   "name": "tarla guncelle",
+   "method": "PATCH",
+   "path": "/api/suppliers/{S}/fields/{F}",
+   "body": {
+    "note": "Not",
+    "area_decare": null,
+    "code": "TR-TEST-3"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 51,
+     "supplier_id": 28,
+     "code": "TR-TEST-3",
+     "location": null,
+     "area_decare": null,
+     "note": "Not",
+     "is_active": true
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan tarlayi sil",
+   "method": "DELETE",
+   "path": "/api/suppliers/10/fields/16",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Tarla silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "baska tedarikcinin tarlasini sil",
+   "method": "DELETE",
+   "path": "/api/suppliers/{S}/fields/16",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\SupplierField] 16"
+   },
+   "save": null
+  },
+  {
+   "name": "tarla sil",
+   "method": "DELETE",
+   "path": "/api/suppliers/{S}/fields/{F2}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Tarla silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci goster tarlalarla",
+   "method": "GET",
+   "path": "/api/suppliers/{S}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 28,
+     "name": "Test Tedarikci 2",
+     "code": "TED-TEST",
+     "phone": "0555",
+     "email": "t@o.co",
+     "address": null,
+     "note": null,
+     "is_active": false,
+     "delivery_count": 0,
+     "fields": [
+      {
+       "id": 49,
+       "supplier_id": 28,
+       "code": "TR-TEST-1",
+       "location": "Ayvalik",
+       "area_decare": "12.35",
+       "note": null,
+       "is_active": true
+      },
+      {
+       "id": 50,
+       "supplier_id": 28,
+       "code": "TR-TEST-2",
+       "location": null,
+       "area_decare": "7.00",
+       "note": null,
+       "is_active": true
+      },
+      {
+       "id": 51,
+       "supplier_id": 28,
+       "code": "TR-TEST-3",
+       "location": null,
+       "area_decare": null,
+       "note": "Not",
+       "is_active": true
+      }
+     ],
+     "created_at": "2026-11-06T19:01:34.000000Z",
+     "updated_at": "2026-11-06T19:01:34.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tarlali tedarikciyi sil",
+   "method": "DELETE",
+   "path": "/api/suppliers/{S}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Tedarikçi silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci sil",
+   "method": "DELETE",
+   "path": "/api/suppliers/{S2}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Tedarikçi silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "silinen tedarikci",
+   "method": "GET",
+   "path": "/api/suppliers/{S2}",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\Supplier] 29"
+   },
+   "save": null
+  }
+ ]
+}

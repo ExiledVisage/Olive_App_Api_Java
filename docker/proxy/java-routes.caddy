@@ -34,3 +34,11 @@ handle @java_catalog {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 4: zeytin tedarikcileri ve tarlalari (ambalaj tedarikcileri /api/product-suppliers Faz 7'de)
+@java_suppliers path /api/suppliers /api/suppliers/*
+handle @java_suppliers {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

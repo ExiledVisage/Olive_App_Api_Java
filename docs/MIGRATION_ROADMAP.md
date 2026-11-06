@@ -150,9 +150,15 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
   - `CatalogParityIT`: Laravel'den yakalanan 77 durum (`reference/capture_catalog.py`; ekleme/güncelleme/silme, silme korumaları, aşama sırası, uzantı senkronizasyonu, validation) tekrar oynatılır: 73 aynı, Laravel hatası olan 4 durum düzeltilmiş haliyle
   - Canlı karşılaştırma (`compare.py`): veritabanındaki **bütün** katalog kayıtları (her ürün, tip, hat, aşama, proses tipi, alan ve hata durumları) 120/120 aynı
 
-**Tedarikçiler (sırada)**
-- [ ] Supplier, supplier field, product supplier
-- Testler: `SupplierTest`
+**Tedarikçiler (tamamlandı)**
+- [x] Supplier (zeytin tedarikçisi) ve supplier field (tarla): liste (`is_active` filtresi PHP `filter_var` ile, boş değer de filtreler; arama ad/kod/tarla kodunda `ilike`), ekleme (tarlalarla birlikte), güncelleme (yalnızca PATCH), silme korumaları
+- [x] `GET /api/suppliers/{id}/deliveries`: tedarikçinin partileri ve kantar tartımları. Üretim tablolarını (Faz 6) yalnızca okuyor; Faz 6'da üretim modülünün okuma API'sine dönüşebilir
+- [x] **Product supplier (ambalaj tedarikçisi) Faz 7'ye taşındı:** cevapları ambalaj lotlarını (`PackagingLotResource`) iç içe döndürüyor
+- [x] Proxy: `/api/suppliers` Java'da
+- Testler:
+  - `SupplierParityIT`: Laravel'den yakalanan 28 durum (`reference/capture_supplier.py`; Laravel'in `SupplierTest`'indeki ekleme, kod tekrarı, tarla sahipliği, silme koruması dahil): 28/28 aynı
+  - Canlı karşılaştırma: her tedarikçi, teslimatları, `is_active` ve arama varyasyonları 67/67 aynı
+  - Ortak test yardımcısı `LaravelReplay`: fixture'ı tekrar oynatma, yer tutucular, SQL adımları, Laravel hatası düzeltmeleri, sequence uyumu (sonraki fazlar da kullanır)
 
 ## Faz 5: Depo ve Malzeme (inventory)
 
@@ -175,6 +181,7 @@ Faz 4 ve 5'e bağlı: prosesler malzeme üretir ve depoya hareket yazar.
 
 ## Faz 7: Ambalaj (packaging)
 
+- [ ] Product supplier (ambalaj tedarikçisi; Faz 4'ten taşındı, cevapları lotları içeriyor)
 - [ ] Packaging item
 - [ ] Packaging lot, lot movement (kabul, düzeltme)
 - Test: `PackagingLotTest`

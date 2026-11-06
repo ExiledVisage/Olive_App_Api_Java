@@ -17,6 +17,8 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | `capture_identity.py` | Faz 2: Laravel'in kimlik/yetki davranışını (validation, 401/403/404, 422, 201, 429) yakalar → `src/test/resources/laravel/identity.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
 | `capture_app_release.py` | Faz 3: Laravel'in sürüm klasörüne senaryo dosyaları yazıp `/api/app/*` cevaplarını (başlıklar ve APK baytları dahil) yakalar → `src/test/resources/laravel/app-release.json`. Rate limit ortak 30/dk: önceki 60 sn içinde bu uçlara istek atılmamış olmalı | Evet |
 | `capture_catalog.py` | Faz 4: katalogun yazma davranışını (77 durum) yakalar → `src/test/resources/laravel/catalog.json`. Laravel'de API ile yapılamayan hazırlıklar `sql` adımı olarak (Java testinde de çalışır). Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
+| `laravel_capture.py` | Yakalama betiklerinin ortak parçaları (`Capture`: case, sql, yer tutucular, fixture yazma). Yeni modüllerin `capture_*.py`'leri bunu kullanır | Evet |
+| `capture_supplier.py` | Faz 4: tedarikçi ve tarla yazma davranışı (28 durum) → `src/test/resources/laravel/supplier.json` | Evet |
 | `compare.py` | Aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON cevapları karşılaştırır | Evet |
 | `responses/` | Yakalanan cevaplar (84 istek, ~21 MB) | Hayır, yeniden üretilir |
 
