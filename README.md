@@ -117,7 +117,8 @@ Laravel uyumluluğu için kurallar:
 - **Girdi:** `RequestInput` (JSON gövdesi + query, kırpılmış, boş metin null). `@RequestBody` kullanılmaz.
 - **Hatalar:** `BusinessRuleException` (422 + `errors`), `HttpStatusException.unprocessable(...)` (`abort(422, ...)`, sadece `message`), `ModelNotFoundException` (404), `LaravelValidationException` (422).
 - **Cevaplar:** tek kayıt `DataResponse.of(...)` / yeni kayıt `DataResponse.created(...)`, liste `Listing.of(...)` (`per_page` yoksa sayfasız).
-- **Entity'ler:** `@LaravelModel("Order")` (404 mesajındaki sınıf adı). Zaman damgaları `Timestamps.now()` (UTC, saniyeye kırpılmış).
+- **Veritabanı:** Laravel tablolarına yazan modüller `Db` kullanır (JDBC, Eloquent davranışı: `create`, `update`, `whereIn` ile ilişki yükleme). Route model binding: `@Bound(table = "process_types", model = "ProcessType") Row processType`. JPA entity'leri (`@LaravelModel`) sadece identity'de. Zaman damgaları `Timestamps.now()` (UTC, saniyeye kırpılmış).
+- **Resource'lar:** `Map` (LinkedHashMap) olarak kurulur; Laravel'de `whenLoaded` ile yüklenmemiş ilişkinin anahtarı yazılmaz. Cast'ler resource'ta (`decimal:4` → `"0.9150"`).
 - **Rate limit:** `@Throttle("login")` (adlandırılmış, `NamedLimiter` bean'i) ya da `@Throttle(maxAttempts = 30, decayMinutes = 1)`.
 - **Silme:** `DeletionGuard.of("...").usedBy("...", n).check()`
 - **Şema:** Geçiş boyunca Laravel'in tablolarına Java migration yazmaz. Java sadece kendi altyapı tabloları için migration ekleyebilir (V2: `event_publication`).

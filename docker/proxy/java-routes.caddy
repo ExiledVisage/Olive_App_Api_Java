@@ -26,3 +26,11 @@ handle @java_app_release {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 4: catalog (urun kategorileri ve tipleri, attribute tanimlari, proses tipleri, hatlar, asamalar)
+@java_catalog path /api/production-products /api/production-products/* /api/production-product-types /api/production-product-types/* /api/production-lines /api/production-lines/* /api/process-types /api/process-types/* /api/stage-extension-types /api/attribute-definitions
+handle @java_catalog {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

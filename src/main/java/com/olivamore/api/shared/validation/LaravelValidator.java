@@ -68,7 +68,8 @@ public class LaravelValidator {
 	public ValidatedInput validate(RequestInput input, Rules rules) {
 		Map<String, Object> data = input.all();
 		Map<String, List<String>> errors = new LinkedHashMap<>();
-		Map<String, List<ParsedRule>> expanded = expand(rules.fields(), data);
+		Map<String, String> patterns = new LinkedHashMap<>();
+		Map<String, List<ParsedRule>> expanded = expand(rules.fields(), data, patterns);
 
 		for (Map.Entry<String, List<ParsedRule>> entry : expanded.entrySet()) {
 			String attribute = entry.getKey();
@@ -80,10 +81,10 @@ public class LaravelValidator {
 				}
 				Object value = RequestInput.Paths.value(data, attribute);
 				if (validatable(rule, attribute, attributeRules, value, data, errors)
-					&& !passes(rule, attribute, attributeRules, value, data)) {
+					&& !passes(rule, attribute, attributeRules, value, data, patterns)) {
 					failed.add(rule.name());
 					errors.computeIfAbsent(attribute, k -> new ArrayList<>())
-						.add(message(rule, attribute, attributeRules));
+						.add(message(rule, attribute, attributeRules, patterns.containsKey(attribute)));
 				}
 				if (stopValidating(attributeRules, failed, errors.containsKey(attribute))) {
 					break;
@@ -197,10 +198,13 @@ public class LaravelValidator {
 	// ---- kurallar (Concerns\ValidatesAttributes) ---------------------------
 
 	private boolean passes(ParsedRule rule, String attribute, List<ParsedRule> rules, Object value,
-		Map<String, Object> data) {
+		Map<String, Object> data, Map<String, String> patterns) {
 		List<String> p = rule.parameters();
 		return switch (rule.name()) {
 			case "required" -> required(value);
+			// validateRequiredWith: parametrelerden biri doluysa bu alan zorunlu
+			case "required_with" -> p.stream().allMatch(k -> !required(RequestInput.Paths.value(data, k))) || required(value);
+			case "distinct" -> distinct(attribute, value, patterns.getOrDefault(attribute, attribute), data);
 			case "present" -> true; // validatable zaten varligi kontrol etti
 			case "filled" -> !RequestInput.Paths.exists(data, attribute) || required(value);
 			case "string" -> value instanceof String;
@@ -226,6 +230,72 @@ public class LaravelValidator {
 			case "exists" -> exists(value, p);
 			default -> throw new IllegalArgumentException("Desteklenmeyen Laravel kurali: " + rule.name()
 				+ " (LaravelValidator'a Laravel'in davranisiyla eklenmeli)");
+		};
+	}
+
+	/**
+	 * {@code validateDistinct}: ayni desene uyan diger degerlerde (kendisi haric) PHP {@code ==} ile esit
+	 * olan yoksa gecer. Tekrar eden elemanlarin her biri hata alir.
+	 */
+	private static boolean distinct(String attribute, Object value, String pattern, Map<String, Object> data) {
+		// Desen parcalari tirnaklanir, "*" bir anahtar parcasina ([^.]+) karsilik gelir
+		StringBuilder regexText = new StringBuilder("^");
+		String[] parts = pattern.split("\\.", -1);
+		for (int i = 0; i < parts.length; i++) {
+			regexText.append(i == 0 ? "" : "[.]").append(parts[i].equals("*") ? "[^.]+" : Pattern.quote(parts[i]));
+		}
+		Pattern regex = Pattern.compile(regexText.append("$").toString());
+		List<Object> others = new ArrayList<>();
+		dot("", data, (key, v) -> {
+			if (!key.equals(attribute) && regex.matcher(key).matches()) {
+				others.add(v);
+			}
+		});
+		return others.stream().noneMatch(o -> phpLooseEquals(value, o));
+	}
+
+	/** {@code Arr::dot} */
+	private static void dot(String prefix, Object node, java.util.function.BiConsumer<String, Object> out) {
+		if (node instanceof Map<?, ?> map && !map.isEmpty()) {
+			map.forEach((k, v) -> dot(join(prefix, String.valueOf(k)), v, out));
+		}
+		else if (node instanceof List<?> list && !list.isEmpty()) {
+			for (int i = 0; i < list.size(); i++) {
+				dot(join(prefix, String.valueOf(i)), list.get(i), out);
+			}
+		}
+		else if (!prefix.isEmpty()) {
+			out.accept(prefix, node);
+		}
+	}
+
+	/** PHP 8 {@code ==} (skaler degerler icin). */
+	static boolean phpLooseEquals(Object a, Object b) {
+		if (a == null || b == null) {
+			Object other = a == null ? b : a;
+			return other == null || Boolean.FALSE.equals(other) || "".equals(other) || isZero(other);
+		}
+		if (a instanceof Boolean || b instanceof Boolean) {
+			return truthy(a) == truthy(b);
+		}
+		if (numeric(a) && numeric(b)) {
+			return new BigDecimal(phpString(a).strip()).compareTo(new BigDecimal(phpString(b).strip())) == 0;
+		}
+		return phpString(a).equals(phpString(b));
+	}
+
+	private static boolean isZero(Object v) {
+		return v instanceof Number n && new BigDecimal(n.toString()).signum() == 0;
+	}
+
+	private static boolean truthy(Object v) {
+		return switch (v) {
+			case null -> false;
+			case Boolean b -> b;
+			case String s -> !s.isEmpty() && !s.equals("0");
+			case Collection<?> c -> !c.isEmpty();
+			case Map<?, ?> m -> !m.isEmpty();
+			default -> !isZero(v);
 		};
 	}
 
@@ -299,8 +369,23 @@ public class LaravelValidator {
 		StringBuilder sql = new StringBuilder("select count(*) from ").append(table).append(" where ").append(column).append(" = ?");
 		List<Object> args = new ArrayList<>(List.of(value));
 		if (p.size() > 2 && !p.get(2).isEmpty() && !"NULL".equalsIgnoreCase(p.get(2))) {
-			sql.append(" and ").append(identifier(p.size() > 3 ? p.get(3) : "id")).append(" <> ?");
+			sql.append(" and ").append(identifier(p.size() > 3 && !p.get(3).isEmpty() ? p.get(3) : "id")).append(" <> ?");
 			args.add(p.get(2));
+		}
+		// Rule::unique(...)->where(kolon, deger): unique:tablo,kolon,haric,id,kolon2,deger2,...
+		for (int i = 4; i + 1 < p.size(); i += 2) {
+			String column2 = identifier(p.get(i));
+			String expected = p.get(i + 1);
+			if ("NULL".equals(expected)) {
+				sql.append(" and ").append(column2).append(" is null");
+			}
+			else if ("NOT_NULL".equals(expected)) {
+				sql.append(" and ").append(column2).append(" is not null");
+			}
+			else {
+				sql.append(" and ").append(column2).append(" = ?");
+				args.add(expected);
+			}
 		}
 		return count(sql.toString(), args) == 0;
 	}
@@ -349,10 +434,17 @@ public class LaravelValidator {
 
 	// ---- mesajlar ----------------------------------------------------------
 
-	private static String message(ParsedRule rule, String attribute, List<ParsedRule> rules) {
+	/**
+	 * {@code getDisplayableAttribute}: normal alanda alt cizgi bosluga cevrilir ("per page"); bir
+	 * {@code *} kuralindan genisleyen alan (implicit attribute) oldugu gibi yazilir ("items.0.product_id").
+	 */
+	private static String message(ParsedRule rule, String attribute, List<ParsedRule> rules, boolean implicit) {
 		List<String> p = rule.parameters();
 		String template = switch (rule.name()) {
 			case "required" -> LaravelMessages.REQUIRED;
+			case "required_with" -> "The :attribute field is required when " + String.join(" / ",
+				p.stream().map(LaravelMessages::attribute).toList()) + " is present.";
+			case "distinct" -> "The :attribute field has a duplicate value.";
 			case "present" -> "The :attribute field must be present.";
 			case "filled" -> "The :attribute field must have a value.";
 			case "string" -> LaravelMessages.STRING;
@@ -387,7 +479,7 @@ public class LaravelValidator {
 			};
 			default -> throw new IllegalArgumentException("Mesaji tanimsiz kural: " + rule.name());
 		};
-		return LaravelMessages.format(template, attribute);
+		return implicit ? template.replace(":attribute", attribute) : LaravelMessages.format(template, attribute);
 	}
 
 	/** {@code getAttributeType}: kurallara gore, degere gore degil. */
@@ -404,7 +496,8 @@ public class LaravelValidator {
 	// ---- genisletme ve yardimcilar -----------------------------------------
 
 	/** {@code roles.*} -> istekteki her eleman icin {@code roles.0}, {@code roles.1}... (kural sirasinda). */
-	private static Map<String, List<ParsedRule>> expand(Map<String, List<ParsedRule>> fields, Map<String, Object> data) {
+	private static Map<String, List<ParsedRule>> expand(Map<String, List<ParsedRule>> fields, Map<String, Object> data,
+		Map<String, String> patterns) {
 		Map<String, List<ParsedRule>> out = new LinkedHashMap<>();
 		fields.forEach((attribute, rules) -> {
 			if (!attribute.contains("*")) {
@@ -413,6 +506,7 @@ public class LaravelValidator {
 			}
 			for (String concrete : concreteKeys(attribute, data)) {
 				out.put(concrete, rules);
+				patterns.put(concrete, attribute);
 			}
 		});
 		return out;

@@ -1,5 +1,6 @@
 package com.olivamore.api.shared.web;
 
+import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.web.binding.BoundModelResolver;
 import com.olivamore.api.shared.web.throttle.NamedLimiter;
 import com.olivamore.api.shared.web.throttle.RateLimiter;
@@ -31,13 +32,15 @@ public class WebConfig implements WebMvcConfigurer {
 	public static final int ORDER_THROTTLE = 10;
 
 	private final ObjectProvider<EntityManager> entityManager;
+	private final ObjectProvider<Db> db;
 	private final ObjectProvider<NamedLimiter> limiters;
 	private final ObjectProvider<ThrottleInterceptor.UserKey> userKey;
 	private final RateLimiter rateLimiter = new RateLimiter(Clock.systemUTC());
 
-	public WebConfig(ObjectProvider<EntityManager> entityManager, ObjectProvider<NamedLimiter> limiters,
+	public WebConfig(ObjectProvider<EntityManager> entityManager, ObjectProvider<Db> db, ObjectProvider<NamedLimiter> limiters,
 		ObjectProvider<ThrottleInterceptor.UserKey> userKey) {
 		this.entityManager = entityManager;
+		this.db = db;
 		this.limiters = limiters;
 		this.userKey = userKey;
 	}
@@ -79,7 +82,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 		EntityManager em = entityManager.getIfAvailable();
 		if (em != null) {
-			resolvers.add(new BoundModelResolver(em));
+			resolvers.add(new BoundModelResolver(em, db.getIfAvailable()));
 		}
 		resolvers.add(new RequestInputResolver());
 	}

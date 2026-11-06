@@ -15,6 +15,9 @@ import java.lang.annotation.Target;
  * </pre>
  * Laravel'deki sira korunur: once kimlik (401), sonra binding (404), sonra yetki (403).
  * Entity'nin Laravel model adi {@link LaravelModel} ile verilir.
+ * <p>
+ * JDBC ile calisan moduller icin parametre tipi {@link com.olivamore.api.shared.persistence.Row} olabilir:
+ * <pre>&#64;Bound(value = "processType", table = "process_types", model = "ProcessType") Row processType</pre>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
@@ -23,5 +26,11 @@ public @interface Bound {
 
 	/** Path degiskeninin adi; bossa parametre adi. */
 	String value() default "";
+
+	/** Parametre {@code Row} ise: tablo. */
+	String table() default "";
+
+	/** Parametre {@code Row} ise: Laravel model adi (404 mesaji). */
+	String model() default "";
 
 }

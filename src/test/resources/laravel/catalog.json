@@ -1,0 +1,2533 @@
+{
+ "source": "Laravel http://localhost:8001, dondurulmus referans veri",
+ "cases": [
+  {
+   "name": "kategori bos",
+   "method": "POST",
+   "path": "/api/production-products",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The key field is required. (and 1 more error)",
+    "errors": {
+     "key": [
+      "The key field is required."
+     ],
+     "name": [
+      "The name field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori tekrar",
+   "method": "POST",
+   "path": "/api/production-products",
+   "body": {
+    "key": "olive",
+    "name": "Zeytin"
+   },
+   "status": 422,
+   "response": {
+    "message": "The key has already been taken. (and 1 more error)",
+    "errors": {
+     "key": [
+      "The key has already been taken."
+     ],
+     "name": [
+      "The name has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori yogunluk hatali",
+   "method": "POST",
+   "path": "/api/production-products",
+   "body": {
+    "key": "k1",
+    "name": "K1",
+    "default_density_kg_per_litre": 30
+   },
+   "status": 422,
+   "response": {
+    "message": "The default density kg per litre field must not be greater than 25.",
+    "errors": {
+     "default_density_kg_per_litre": [
+      "The default density kg per litre field must not be greater than 25."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori yogunluk metin",
+   "method": "POST",
+   "path": "/api/production-products",
+   "body": {
+    "key": "k1",
+    "name": "K1",
+    "default_density_kg_per_litre": "abc"
+   },
+   "status": 422,
+   "response": {
+    "message": "The default density kg per litre field must be a number.",
+    "errors": {
+     "default_density_kg_per_litre": [
+      "The default density kg per litre field must be a number."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori ekle",
+   "method": "POST",
+   "path": "/api/production-products",
+   "body": {
+    "key": "test_kategori",
+    "name": "  Test Kategori  ",
+    "description": "Deneme",
+    "default_density_kg_per_litre": 0.92
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 5,
+     "key": "test_kategori",
+     "name": "Test Kategori",
+     "description": "Deneme",
+     "default_density_kg_per_litre": "0.9200",
+     "production_lines": []
+    }
+   },
+   "save": [
+    "P",
+    "data.id"
+   ]
+  },
+  {
+   "name": "kategori guncelle",
+   "method": "PATCH",
+   "path": "/api/production-products/{P}",
+   "body": {
+    "name": "Test Kategori 2"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 5,
+     "key": "test_kategori",
+     "name": "Test Kategori 2",
+     "description": "Deneme",
+     "default_density_kg_per_litre": "0.9200",
+     "production_lines": []
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori guncelle degisiklik yok",
+   "method": "PUT",
+   "path": "/api/production-products/{P}",
+   "body": {
+    "name": "Test Kategori 2"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 5,
+     "key": "test_kategori",
+     "name": "Test Kategori 2",
+     "description": "Deneme",
+     "default_density_kg_per_litre": "0.9200",
+     "production_lines": []
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori guncelle tekrar anahtar",
+   "method": "PUT",
+   "path": "/api/production-products/{P}",
+   "body": {
+    "key": "olive"
+   },
+   "status": 422,
+   "response": {
+    "message": "The key has already been taken.",
+    "errors": {
+     "key": [
+      "The key has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori yogunluk temizle",
+   "method": "PATCH",
+   "path": "/api/production-products/{P}",
+   "body": {
+    "default_density_kg_per_litre": null
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 5,
+     "key": "test_kategori",
+     "name": "Test Kategori 2",
+     "description": "Deneme",
+     "default_density_kg_per_litre": null,
+     "production_lines": []
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan kategoriyi sil",
+   "method": "DELETE",
+   "path": "/api/production-products/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Zeytin' ürün kategorisi silinemez; kullanıldığı yerler: 2 ürün tipi, 3 hat girdisi, 9 aşama extension girdisi.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "tip bos",
+   "method": "POST",
+   "path": "/api/production-product-types",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 4 more errors)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "code": [
+      "The code field is required."
+     ],
+     "type": [
+      "The type field is required."
+     ],
+     "unit": [
+      "The unit field is required."
+     ],
+     "production_product_id": [
+      "The production product id field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tip ekle",
+   "method": "POST",
+   "path": "/api/production-product-types",
+   "body": {
+    "name": "Test Tip",
+    "code": "TEST_TIP",
+    "type": "deneme",
+    "unit": "KG",
+    "production_product_id": "{P}",
+    "density_kg_per_litre": 0.9
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Tip",
+     "code": "TEST_TIP",
+     "type": "deneme",
+     "unit": "KG",
+     "density_kg_per_litre": "0.9000",
+     "effective_density_kg_per_litre": 0.9,
+     "default_density_kg_per_litre": null,
+     "production_product_id": 5,
+     "production_product": {
+      "id": 5,
+      "key": "test_kategori",
+      "name": "Test Kategori 2",
+      "description": "Deneme"
+     },
+     "created_at": "2026-11-06T18:45:14.000000Z",
+     "updated_at": "2026-11-06T18:45:14.000000Z"
+    }
+   },
+   "save": [
+    "T",
+    "data.id"
+   ]
+  },
+  {
+   "name": "tip kucuk harf birim (veritabani kisiti)",
+   "method": "POST",
+   "path": "/api/production-product-types",
+   "body": {
+    "name": "X",
+    "code": "TEST_X",
+    "type": "x",
+    "unit": "kg",
+    "production_product_id": 1
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "tip tekrar kod",
+   "method": "POST",
+   "path": "/api/production-product-types",
+   "body": {
+    "name": "X",
+    "code": "TEST_TIP",
+    "type": "x",
+    "unit": "KG",
+    "production_product_id": 1
+   },
+   "status": 422,
+   "response": {
+    "message": "The code has already been taken.",
+    "errors": {
+     "code": [
+      "The code has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tip olmayan kategori",
+   "method": "PATCH",
+   "path": "/api/production-product-types/{T}",
+   "body": {
+    "production_product_id": 999999
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected production product id is invalid.",
+    "errors": {
+     "production_product_id": [
+      "The selected production product id is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tip yogunluk temizle",
+   "method": "PATCH",
+   "path": "/api/production-product-types/{T}",
+   "body": {
+    "density_kg_per_litre": null
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Tip",
+     "code": "TEST_TIP",
+     "type": "deneme",
+     "unit": "KG",
+     "density_kg_per_litre": null,
+     "effective_density_kg_per_litre": null,
+     "default_density_kg_per_litre": null,
+     "production_product_id": 5,
+     "production_product": {
+      "id": 5,
+      "key": "test_kategori",
+      "name": "Test Kategori 2",
+      "description": "Deneme"
+     },
+     "created_at": "2026-11-06T18:45:14.000000Z",
+     "updated_at": "2026-11-06T18:45:14.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tip goster",
+   "method": "GET",
+   "path": "/api/production-product-types/{T}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 9,
+     "name": "Test Tip",
+     "code": "TEST_TIP",
+     "type": "deneme",
+     "unit": "KG",
+     "density_kg_per_litre": null,
+     "effective_density_kg_per_litre": null,
+     "default_density_kg_per_litre": null,
+     "production_product_id": 5,
+     "production_product": {
+      "id": 5,
+      "key": "test_kategori",
+      "name": "Test Kategori 2",
+      "description": "Deneme"
+     },
+     "created_at": "2026-11-06T18:45:14.000000Z",
+     "updated_at": "2026-11-06T18:45:14.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kategori goster",
+   "method": "GET",
+   "path": "/api/production-products/{P}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 5,
+     "key": "test_kategori",
+     "name": "Test Kategori 2",
+     "description": "Deneme",
+     "default_density_kg_per_litre": null,
+     "products_count": 1,
+     "attribute_definitions": [],
+     "production_product_types": [
+      {
+       "id": 9,
+       "name": "Test Tip",
+       "code": "TEST_TIP",
+       "type": "deneme",
+       "unit": "KG",
+       "density_kg_per_litre": null,
+       "effective_density_kg_per_litre": null,
+       "default_density_kg_per_litre": null,
+       "production_product_id": 5,
+       "production_product": {
+        "id": 5,
+        "key": "test_kategori",
+        "name": "Test Kategori 2",
+        "description": "Deneme"
+       },
+       "created_at": "2026-11-06T18:45:14.000000Z",
+       "updated_at": "2026-11-06T18:45:14.000000Z"
+      }
+     ],
+     "production_lines": []
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan tipi sil",
+   "method": "DELETE",
+   "path": "/api/production-product-types/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Gemlik Zeytini' ürün tipi silinemez; kullanıldığı yerler: 180 materyal, 181 parti girdisi.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "esleme bos",
+   "method": "POST",
+   "path": "/api/production-products/{P}/attribute-definitions",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The attribute key field is required. (and 2 more errors)",
+    "errors": {
+     "attribute_key": [
+      "The attribute key field is required."
+     ],
+     "label": [
+      "The label field is required."
+     ],
+     "data_type": [
+      "The data type field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "esleme ekle",
+   "method": "POST",
+   "path": "/api/production-products/{P}/attribute-definitions",
+   "body": {
+    "attribute_key": "test_attr",
+    "label": "Test",
+    "data_type": "decimal",
+    "unit": "%",
+    "is_required": true,
+    "sort_order": 5
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": [
+    "M",
+    "data.id"
+   ]
+  },
+  {
+   "name": "esleme mevcut global anahtar",
+   "method": "POST",
+   "path": "/api/production-products/{P}/attribute-definitions",
+   "body": {
+    "attribute_key": "acidity",
+    "label": "Baska Etiket",
+    "data_type": "text"
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": [
+    "M2",
+    "data.id"
+   ]
+  },
+  {
+   "name": "esleme hazirla",
+   "sql": "with d as (insert into attribute_definitions (attribute_key, label, data_type, unit, created_at, updated_at) values ('test_attr', 'Test', 'decimal', '%', '2026-11-06 16:00:00', '2026-11-06 16:00:00') returning id) insert into production_product_attribute_definitions (production_product_id, attribute_definition_id, is_required, sort_order, created_at, updated_at) select {P}, d.id, true, 5, '2026-11-06 16:00:00', '2026-11-06 16:00:00' from d returning id",
+   "save": "M"
+  },
+  {
+   "name": "esleme hazirla 2",
+   "sql": "insert into production_product_attribute_definitions (production_product_id, attribute_definition_id, is_required, sort_order, created_at, updated_at) select {P}, id, false, 0, '2026-11-06 16:00:00', '2026-11-06 16:00:00' from attribute_definitions where attribute_key = 'acidity' returning id",
+   "save": "M2"
+  },
+  {
+   "name": "esleme guncelle",
+   "method": "PATCH",
+   "path": "/api/production-products/{P}/attribute-definitions/{M}",
+   "body": {
+    "label": "Yeni Etiket",
+    "is_required": false,
+    "unit": null
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 9,
+     "production_product_id": 5,
+     "is_required": false,
+     "sort_order": 5,
+     "definition": {
+      "id": 7,
+      "attribute_key": "test_attr",
+      "label": "Yeni Etiket",
+      "data_type": "decimal",
+      "unit": "%",
+      "description": null
+     },
+     "attribute_key": "test_attr",
+     "label": "Yeni Etiket",
+     "data_type": "decimal",
+     "unit": "%",
+     "created_at": "2026-11-06T16:00:00.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "esleme guncelle anahtar",
+   "method": "PATCH",
+   "path": "/api/production-products/{P}/attribute-definitions/{M}",
+   "body": {
+    "attribute_key": "baska"
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "esleme baska kategori",
+   "method": "GET",
+   "path": "/api/production-products/1/attribute-definitions/{M}",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "Seçilen attribute definition bu ürün kategorisine ait değil.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "esleme listesi",
+   "method": "GET",
+   "path": "/api/production-products/{P}/attribute-definitions",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 10,
+      "production_product_id": 5,
+      "is_required": false,
+      "sort_order": 0,
+      "definition": {
+       "id": 1,
+       "attribute_key": "acidity",
+       "label": "Asitlik",
+       "data_type": "decimal",
+       "unit": "%",
+       "description": "Asitlik oranı"
+      },
+      "attribute_key": "acidity",
+      "label": "Asitlik",
+      "data_type": "decimal",
+      "unit": "%",
+      "created_at": "2026-11-06T16:00:00.000000Z",
+      "updated_at": "2026-11-06T16:00:00.000000Z"
+     },
+     {
+      "id": 9,
+      "production_product_id": 5,
+      "is_required": false,
+      "sort_order": 5,
+      "definition": {
+       "id": 7,
+       "attribute_key": "test_attr",
+       "label": "Yeni Etiket",
+       "data_type": "decimal",
+       "unit": "%",
+       "description": null
+      },
+      "attribute_key": "test_attr",
+      "label": "Yeni Etiket",
+      "data_type": "decimal",
+      "unit": "%",
+      "created_at": "2026-11-06T16:00:00.000000Z",
+      "updated_at": "2026-11-06T18:45:15.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "esleme sil",
+   "method": "DELETE",
+   "path": "/api/production-products/{P}/attribute-definitions/{M2}",
+   "body": null,
+   "status": 204,
+   "response": null,
+   "save": null
+  },
+  {
+   "name": "kullanilan eslemeyi sil",
+   "method": "DELETE",
+   "path": "/api/production-products/1/attribute-definitions/1",
+   "body": null,
+   "status": 204,
+   "response": null,
+   "save": null
+  },
+  {
+   "name": "proses bos",
+   "method": "POST",
+   "path": "/api/process-types",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 1 more error)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "category": [
+      "The category field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "proses kategori hatali",
+   "method": "POST",
+   "path": "/api/process-types",
+   "body": {
+    "name": "X",
+    "category": "yok"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected category is invalid.",
+    "errors": {
+     "category": [
+      "The selected category is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "proses ekle",
+   "method": "POST",
+   "path": "/api/process-types",
+   "body": {
+    "name": "Test Proses",
+    "category": "quality",
+    "is_active": false
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 13,
+     "name": "Test Proses",
+     "description": null,
+     "category": "quality",
+     "is_active": false,
+     "fields": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "PT",
+    "data.id"
+   ]
+  },
+  {
+   "name": "proses tekrar ad",
+   "method": "PATCH",
+   "path": "/api/process-types/{PT}",
+   "body": {
+    "name": "Kantarda Tartım"
+   },
+   "status": 422,
+   "response": {
+    "message": "The name has already been taken.",
+    "errors": {
+     "name": [
+      "The name has already been taken."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "proses aktif metin",
+   "method": "PATCH",
+   "path": "/api/process-types/{PT}",
+   "body": {
+    "is_active": "1",
+    "description": "Aciklama"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 13,
+     "name": "Test Proses",
+     "description": "Aciklama",
+     "category": "quality",
+     "is_active": true,
+     "fields": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan prosesi sil",
+   "method": "DELETE",
+   "path": "/api/process-types/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Kantarda Tartım' proses tipi silinemez; kullanıldığı yerler: 3 üretim aşaması, 542 girilmiş ölçüm.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "alan bos",
+   "method": "POST",
+   "path": "/api/process-types/{PT}/fields",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The field key field is required. (and 2 more errors)",
+    "errors": {
+     "field_key": [
+      "The field key field is required."
+     ],
+     "label": [
+      "The label field is required."
+     ],
+     "data_type": [
+      "The data type field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "alan ekle",
+   "method": "POST",
+   "path": "/api/process-types/{PT}/fields",
+   "body": {
+    "field_key": "f1",
+    "label": "F1",
+    "data_type": "json",
+    "options": {
+     "a": [
+      1,
+      2
+     ]
+    },
+    "default_value": "x",
+    "sort_order": 3
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 9,
+     "process_type_id": 13,
+     "field_key": "f1",
+     "label": "F1",
+     "data_type": "json",
+     "is_required": null,
+     "unit": null,
+     "sort_order": 3,
+     "is_active": null,
+     "options": {
+      "a": [
+       1,
+       2
+      ]
+     },
+     "default_value": "x",
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "F",
+    "data.id"
+   ]
+  },
+  {
+   "name": "alan ekle 2",
+   "method": "POST",
+   "path": "/api/process-types/{PT}/fields",
+   "body": {
+    "field_key": "f2",
+    "label": "F2",
+    "data_type": "decimal",
+    "unit": "kg"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 10,
+     "process_type_id": 13,
+     "field_key": "f2",
+     "label": "F2",
+     "data_type": "decimal",
+     "is_required": null,
+     "unit": "kg",
+     "sort_order": null,
+     "is_active": null,
+     "options": null,
+     "default_value": null,
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "F2",
+    "data.id"
+   ]
+  },
+  {
+   "name": "alan tekrar anahtar",
+   "method": "POST",
+   "path": "/api/process-types/{PT}/fields",
+   "body": {
+    "field_key": "f1",
+    "label": "X",
+    "data_type": "text"
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "alan baska proseste ayni anahtar",
+   "method": "POST",
+   "path": "/api/process-types/1/fields",
+   "body": {
+    "field_key": "f1",
+    "label": "X",
+    "data_type": "text"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 12,
+     "process_type_id": 1,
+     "field_key": "f1",
+     "label": "X",
+     "data_type": "text",
+     "is_required": null,
+     "unit": null,
+     "sort_order": null,
+     "is_active": null,
+     "options": null,
+     "default_value": null,
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "F3",
+    "data.id"
+   ]
+  },
+  {
+   "name": "alan yanlis proses (validation once)",
+   "method": "PATCH",
+   "path": "/api/process-types/1/fields/{F}",
+   "body": {
+    "data_type": "yok"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected data type is invalid.",
+    "errors": {
+     "data_type": [
+      "The selected data type is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "alan yanlis proses",
+   "method": "PATCH",
+   "path": "/api/process-types/1/fields/{F}",
+   "body": {
+    "label": "X"
+   },
+   "status": 404,
+   "response": {
+    "message": "Field not found for this process type."
+   },
+   "save": null
+  },
+  {
+   "name": "alan guncelle",
+   "method": "PATCH",
+   "path": "/api/process-types/{PT}/fields/{F}",
+   "body": {
+    "label": "F1b",
+    "options": null,
+    "is_required": true
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 9,
+     "process_type_id": 13,
+     "field_key": "f1",
+     "label": "F1b",
+     "data_type": "json",
+     "is_required": true,
+     "unit": null,
+     "sort_order": 3,
+     "is_active": true,
+     "options": null,
+     "default_value": "x",
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "alan listesi",
+   "method": "GET",
+   "path": "/api/process-types/{PT}/fields",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 10,
+      "process_type_id": 13,
+      "field_key": "f2",
+      "label": "F2",
+      "data_type": "decimal",
+      "is_required": false,
+      "unit": "kg",
+      "sort_order": 0,
+      "is_active": true,
+      "options": null,
+      "default_value": null,
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:15.000000Z"
+     },
+     {
+      "id": 9,
+      "process_type_id": 13,
+      "field_key": "f1",
+      "label": "F1b",
+      "data_type": "json",
+      "is_required": true,
+      "unit": null,
+      "sort_order": 3,
+      "is_active": true,
+      "options": null,
+      "default_value": "x",
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:15.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "proses goster",
+   "method": "GET",
+   "path": "/api/process-types/{PT}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 13,
+     "name": "Test Proses",
+     "description": "Aciklama",
+     "category": "quality",
+     "is_active": true,
+     "fields": [
+      {
+       "id": 10,
+       "process_type_id": 13,
+       "field_key": "f2",
+       "label": "F2",
+       "data_type": "decimal",
+       "is_required": false,
+       "unit": "kg",
+       "sort_order": 0,
+       "is_active": true,
+       "options": null,
+       "default_value": null,
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:15.000000Z"
+      },
+      {
+       "id": 9,
+       "process_type_id": 13,
+       "field_key": "f1",
+       "label": "F1b",
+       "data_type": "json",
+       "is_required": true,
+       "unit": null,
+       "sort_order": 3,
+       "is_active": true,
+       "options": null,
+       "default_value": "x",
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:15.000000Z"
+      }
+     ],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "alan sil",
+   "method": "DELETE",
+   "path": "/api/process-types/{PT}/fields/{F2}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Process type field deleted successfully."
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan alani sil",
+   "method": "DELETE",
+   "path": "/api/process-types/1/fields/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Kamyon Plakası' alanı silinemez; kullanıldığı yerler: 271 girilmiş ölçüm. Artık kullanılmayacaksa is_active alanını false yapın.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "baska proses alanini sil",
+   "method": "DELETE",
+   "path": "/api/process-types/1/fields/{F3}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Process type field deleted successfully."
+   },
+   "save": null
+  },
+  {
+   "name": "hat bos",
+   "method": "POST",
+   "path": "/api/production-lines",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 2 more errors)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "input_production_products": [
+      "The input production products field is required."
+     ],
+     "output_production_products": [
+      "The output production products field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "hat tekrar urun",
+   "method": "POST",
+   "path": "/api/production-lines",
+   "body": {
+    "name": "X",
+    "input_production_products": [
+     {
+      "production_product_id": 1
+     },
+     {
+      "production_product_id": "1"
+     }
+    ],
+    "output_production_products": [
+     {
+      "production_product_id": 2
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The input_production_products.0.production_product_id field has a duplicate value. (and 1 more error)",
+    "errors": {
+     "input_production_products.0.production_product_id": [
+      "The input_production_products.0.production_product_id field has a duplicate value."
+     ],
+     "input_production_products.1.production_product_id": [
+      "The input_production_products.1.production_product_id field has a duplicate value."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "hat ekle",
+   "method": "POST",
+   "path": "/api/production-lines",
+   "body": {
+    "name": "Test Hat",
+    "description": "Deneme hatti",
+    "input_production_products": [
+     {
+      "production_product_id": 1
+     },
+     {
+      "production_product_id": "{P}",
+      "production_product_type_id": "{T}",
+      "sort_order": 5
+     }
+    ],
+    "output_production_products": [
+     {
+      "production_product_id": 2
+     }
+    ]
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 4,
+     "name": "Test Hat",
+     "description": "Deneme hatti",
+     "input_production_products": [
+      {
+       "id": 4,
+       "production_line_id": 4,
+       "production_product_id": 1,
+       "production_product_type_id": null,
+       "sort_order": 1,
+       "production_product": {
+        "id": 1,
+        "key": "olive",
+        "name": "Zeytin"
+       },
+       "production_product_type": null
+      },
+      {
+       "id": 5,
+       "production_line_id": 4,
+       "production_product_id": 5,
+       "production_product_type_id": 9,
+       "sort_order": 5,
+       "production_product": {
+        "id": 5,
+        "key": "test_kategori",
+        "name": "Test Kategori 2"
+       },
+       "production_product_type": {
+        "id": 9,
+        "name": "Test Tip",
+        "code": "TEST_TIP",
+        "type": "deneme",
+        "unit": "KG"
+       }
+      }
+     ],
+     "output_production_products": [
+      {
+       "id": 7,
+       "production_line_id": 4,
+       "production_product_id": 2,
+       "production_product_type_id": null,
+       "sort_order": 1,
+       "production_product": {
+        "id": 2,
+        "key": "olive_oil",
+        "name": "Zeytinyağı"
+       },
+       "production_product_type": null
+      }
+     ],
+     "stages": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "L",
+    "data.id"
+   ]
+  },
+  {
+   "name": "hat guncelle",
+   "method": "PATCH",
+   "path": "/api/production-lines/{L}",
+   "body": {
+    "description": null,
+    "output_production_products": [
+     {
+      "production_product_id": 3
+     }
+    ]
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 4,
+     "name": "Test Hat",
+     "description": null,
+     "input_production_products": [
+      {
+       "id": 4,
+       "production_line_id": 4,
+       "production_product_id": 1,
+       "production_product_type_id": null,
+       "sort_order": 1,
+       "production_product": {
+        "id": 1,
+        "key": "olive",
+        "name": "Zeytin"
+       },
+       "production_product_type": null
+      },
+      {
+       "id": 5,
+       "production_line_id": 4,
+       "production_product_id": 5,
+       "production_product_type_id": 9,
+       "sort_order": 5,
+       "production_product": {
+        "id": 5,
+        "key": "test_kategori",
+        "name": "Test Kategori 2"
+       },
+       "production_product_type": {
+        "id": 9,
+        "name": "Test Tip",
+        "code": "TEST_TIP",
+        "type": "deneme",
+        "unit": "KG"
+       }
+      }
+     ],
+     "output_production_products": [
+      {
+       "id": 8,
+       "production_line_id": 4,
+       "production_product_id": 3,
+       "production_product_type_id": null,
+       "sort_order": 1,
+       "production_product": {
+        "id": 3,
+        "key": "pomace",
+        "name": "Pirina"
+       },
+       "production_product_type": null
+      }
+     ],
+     "stages": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "hat girdi eksik urun",
+   "method": "PATCH",
+   "path": "/api/production-lines/{L}",
+   "body": {
+    "input_production_products": [
+     {
+      "sort_order": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The input_production_products.0.production_product_id field is required when input production products is present.",
+    "errors": {
+     "input_production_products.0.production_product_id": [
+      "The input_production_products.0.production_product_id field is required when input production products is present."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kullanilan hatti sil",
+   "method": "DELETE",
+   "path": "/api/production-lines/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Zeytinyağı Üretim Hattı' hattı silinemez; kullanıldığı yerler: 273 üretim partisi.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "asama bos",
+   "method": "POST",
+   "path": "/api/production-lines/{L}/stages",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 1 more error)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "stage_order": [
+      "The stage order field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "asama A",
+   "method": "POST",
+   "path": "/api/production-lines/{L}/stages",
+   "body": {
+    "name": "A",
+    "stage_order": 1
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 37,
+     "production_line_id": 4,
+     "process_type_id": null,
+     "name": "A",
+     "stage_order": 1,
+     "is_required": null,
+     "requires_approval": null,
+     "process_type": null,
+     "extensions": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "SA",
+    "data.id"
+   ]
+  },
+  {
+   "name": "asama B basa",
+   "method": "POST",
+   "path": "/api/production-lines/{L}/stages",
+   "body": {
+    "name": "B",
+    "stage_order": 1,
+    "process_type_id": "{PT}"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 38,
+     "production_line_id": 4,
+     "process_type_id": 13,
+     "name": "B",
+     "stage_order": 1,
+     "is_required": null,
+     "requires_approval": null,
+     "process_type": {
+      "id": 13,
+      "name": "Test Proses",
+      "description": "Aciklama",
+      "category": "quality",
+      "is_active": true,
+      "fields": [
+       {
+        "id": 9,
+        "process_type_id": 13,
+        "field_key": "f1",
+        "label": "F1b",
+        "data_type": "json",
+        "is_required": true,
+        "unit": null,
+        "sort_order": 3,
+        "is_active": true,
+        "options": null,
+        "default_value": "x",
+        "created_at": "2026-11-06T18:45:15.000000Z",
+        "updated_at": "2026-11-06T18:45:15.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:15.000000Z"
+     },
+     "extensions": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "SB",
+    "data.id"
+   ]
+  },
+  {
+   "name": "asama C sona (sinir)",
+   "method": "POST",
+   "path": "/api/production-lines/{L}/stages",
+   "body": {
+    "name": "C",
+    "stage_order": 99,
+    "requires_approval": true
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 39,
+     "production_line_id": 4,
+     "process_type_id": null,
+     "name": "C",
+     "stage_order": 3,
+     "is_required": null,
+     "requires_approval": true,
+     "process_type": null,
+     "extensions": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": [
+    "SC",
+    "data.id"
+   ]
+  },
+  {
+   "name": "asama B sona tasi",
+   "method": "PATCH",
+   "path": "/api/production-lines/{L}/stages/{SB}",
+   "body": {
+    "stage_order": 3
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 38,
+     "production_line_id": 4,
+     "process_type_id": 13,
+     "name": "B",
+     "stage_order": 3,
+     "is_required": true,
+     "requires_approval": false,
+     "process_type": {
+      "id": 13,
+      "name": "Test Proses",
+      "description": "Aciklama",
+      "category": "quality",
+      "is_active": true,
+      "fields": [
+       {
+        "id": 9,
+        "process_type_id": 13,
+        "field_key": "f1",
+        "label": "F1b",
+        "data_type": "json",
+        "is_required": true,
+        "unit": null,
+        "sort_order": 3,
+        "is_active": true,
+        "options": null,
+        "default_value": "x",
+        "created_at": "2026-11-06T18:45:15.000000Z",
+        "updated_at": "2026-11-06T18:45:15.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:15.000000Z"
+     },
+     "extensions": [],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:16.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "asama yanlis hat",
+   "method": "PATCH",
+   "path": "/api/production-lines/1/stages/{SA}",
+   "body": {
+    "name": "X"
+   },
+   "status": 404,
+   "response": {
+    "message": "Stage not found for this production line."
+   },
+   "save": null
+  },
+  {
+   "name": "asama null zorunlu (veritabani)",
+   "method": "POST",
+   "path": "/api/production-lines/{L}/stages",
+   "body": {
+    "name": "D",
+    "stage_order": 1,
+    "is_required": null
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "asama listesi",
+   "method": "GET",
+   "path": "/api/production-lines/{L}/stages",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 37,
+      "production_line_id": 4,
+      "process_type_id": null,
+      "name": "A",
+      "stage_order": 1,
+      "is_required": true,
+      "requires_approval": false,
+      "process_type": null,
+      "extensions": [],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:16.000000Z"
+     },
+     {
+      "id": 39,
+      "production_line_id": 4,
+      "process_type_id": null,
+      "name": "C",
+      "stage_order": 2,
+      "is_required": true,
+      "requires_approval": true,
+      "process_type": null,
+      "extensions": [],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:16.000000Z"
+     },
+     {
+      "id": 38,
+      "production_line_id": 4,
+      "process_type_id": 13,
+      "name": "B",
+      "stage_order": 3,
+      "is_required": true,
+      "requires_approval": false,
+      "process_type": {
+       "id": 13,
+       "name": "Test Proses",
+       "description": "Aciklama",
+       "category": "quality",
+       "is_active": true,
+       "fields": [
+        {
+         "id": 9,
+         "process_type_id": 13,
+         "field_key": "f1",
+         "label": "F1b",
+         "data_type": "json",
+         "is_required": true,
+         "unit": null,
+         "sort_order": 3,
+         "is_active": true,
+         "options": null,
+         "default_value": "x",
+         "created_at": "2026-11-06T18:45:15.000000Z",
+         "updated_at": "2026-11-06T18:45:15.000000Z"
+        }
+       ],
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:15.000000Z"
+      },
+      "extensions": [],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:16.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "asama A sil",
+   "method": "DELETE",
+   "path": "/api/production-lines/{L}/stages/{SA}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Production stage deleted successfully."
+   },
+   "save": null
+  },
+  {
+   "name": "asama listesi sildikten sonra",
+   "method": "GET",
+   "path": "/api/production-lines/{L}/stages",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 39,
+      "production_line_id": 4,
+      "process_type_id": null,
+      "name": "C",
+      "stage_order": 1,
+      "is_required": true,
+      "requires_approval": true,
+      "process_type": null,
+      "extensions": [],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:16.000000Z"
+     },
+     {
+      "id": 38,
+      "production_line_id": 4,
+      "process_type_id": 13,
+      "name": "B",
+      "stage_order": 2,
+      "is_required": true,
+      "requires_approval": false,
+      "process_type": {
+       "id": 13,
+       "name": "Test Proses",
+       "description": "Aciklama",
+       "category": "quality",
+       "is_active": true,
+       "fields": [
+        {
+         "id": 9,
+         "process_type_id": 13,
+         "field_key": "f1",
+         "label": "F1b",
+         "data_type": "json",
+         "is_required": true,
+         "unit": null,
+         "sort_order": 3,
+         "is_active": true,
+         "options": null,
+         "default_value": "x",
+         "created_at": "2026-11-06T18:45:15.000000Z",
+         "updated_at": "2026-11-06T18:45:15.000000Z"
+        }
+       ],
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:15.000000Z"
+      },
+      "extensions": [],
+      "created_at": "2026-11-06T18:45:15.000000Z",
+      "updated_at": "2026-11-06T18:45:16.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "uzanti bos",
+   "method": "PUT",
+   "path": "/api/production-lines/{L}/stages/{SC}/extensions",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The extensions field is required.",
+    "errors": {
+     "extensions": [
+      "The extensions field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "uzanti bos dizi",
+   "method": "PUT",
+   "path": "/api/production-lines/{L}/stages/{SC}/extensions",
+   "body": {
+    "extensions": []
+   },
+   "status": 422,
+   "response": {
+    "message": "The extensions field is required.",
+    "errors": {
+     "extensions": [
+      "The extensions field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "uzanti tekrar tip",
+   "method": "PUT",
+   "path": "/api/production-lines/{L}/stages/{SC}/extensions",
+   "body": {
+    "extensions": [
+     {
+      "stage_extension_type_id": 1
+     },
+     {
+      "stage_extension_type_id": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The extensions.0.stage_extension_type_id field has a duplicate value. (and 1 more error)",
+    "errors": {
+     "extensions.0.stage_extension_type_id": [
+      "The extensions.0.stage_extension_type_id field has a duplicate value."
+     ],
+     "extensions.1.stage_extension_type_id": [
+      "The extensions.1.stage_extension_type_id field has a duplicate value."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "uzanti gecersiz alan",
+   "method": "PUT",
+   "path": "/api/production-lines/{L}/stages/{SC}/extensions",
+   "body": {
+    "extensions": [
+     {
+      "stage_extension_type_id": 1,
+      "values": [
+       {
+        "field_key": "yok",
+        "value_text": "x"
+       }
+      ]
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "Geçersiz stage extension field gönderildi.",
+    "errors": {
+     "extensions.values": [
+      "Geçersiz stage extension field gönderildi."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "uzanti ekle",
+   "method": "PUT",
+   "path": "/api/production-lines/{L}/stages/{SC}/extensions",
+   "body": {
+    "extensions": [
+     {
+      "stage_extension_type_id": 2,
+      "is_required": true,
+      "input_production_product_ids": [
+       1,
+       "{P}"
+      ]
+     },
+     {
+      "stage_extension_type_id": 1,
+      "sort_order": 7,
+      "output_production_product_ids": [
+       3
+      ]
+     }
+    ]
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 39,
+     "production_line_id": 4,
+     "process_type_id": null,
+     "name": "C",
+     "stage_order": 1,
+     "is_required": true,
+     "requires_approval": true,
+     "process_type": null,
+     "extensions": [
+      {
+       "id": 32,
+       "production_stage_id": 39,
+       "stage_extension_type_id": 2,
+       "is_required": true,
+       "is_enabled": true,
+       "sort_order": 1,
+       "stage_extension_type": {
+        "id": 2,
+        "key": "storage_movement",
+        "name": "Storage Movement",
+        "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
+        "fields": [
+         {
+          "id": 1,
+          "stage_extension_type_id": 2,
+          "field_key": "action",
+          "label": "Hareket turu",
+          "data_type": "text",
+          "is_required": false,
+          "sort_order": 1,
+          "default_value_boolean": null,
+          "default_value_integer": null,
+          "default_value_decimal": null,
+          "default_value_text": null,
+          "default_value_json": null,
+          "options_json": [
+           "inbound",
+           "outbound",
+           "transfer"
+          ],
+          "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
+         }
+        ]
+       },
+       "values": [],
+       "input_production_products": [
+        {
+         "id": 31,
+         "production_stage_extension_id": 32,
+         "production_product_id": 1,
+         "sort_order": 1,
+         "is_required": true,
+         "production_product": {
+          "id": 1,
+          "key": "olive",
+          "name": "Zeytin",
+          "description": "Ham zeytin ürünü"
+         }
+        },
+        {
+         "id": 32,
+         "production_stage_extension_id": 32,
+         "production_product_id": 5,
+         "sort_order": 2,
+         "is_required": true,
+         "production_product": {
+          "id": 5,
+          "key": "test_kategori",
+          "name": "Test Kategori 2",
+          "description": "Deneme"
+         }
+        }
+       ],
+       "output_production_products": []
+      },
+      {
+       "id": 33,
+       "production_stage_id": 39,
+       "stage_extension_type_id": 1,
+       "is_required": false,
+       "is_enabled": true,
+       "sort_order": 7,
+       "stage_extension_type": {
+        "id": 1,
+        "key": "weighing",
+        "name": "Weighing",
+        "description": "Bu asamada secilen urun tipi tartilir.",
+        "fields": []
+       },
+       "values": [],
+       "input_production_products": [],
+       "output_production_products": [
+        {
+         "id": 10,
+         "production_stage_extension_id": 33,
+         "production_product_id": 3,
+         "sort_order": 1,
+         "is_required": true,
+         "production_product": {
+          "id": 3,
+          "key": "pomace",
+          "name": "Pirina",
+          "description": "Zeytin işleme sonrası oluşan yan ürün"
+         }
+        }
+       ]
+      }
+     ],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:16.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "uzanti baska hattin asamasi",
+   "method": "PUT",
+   "path": "/api/production-lines/{L}/stages/1/extensions",
+   "body": {
+    "extensions": [
+     {
+      "stage_extension_type_id": 1,
+      "input_production_product_ids": [
+       1
+      ]
+     }
+    ]
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 1,
+     "production_line_id": 1,
+     "process_type_id": 1,
+     "name": "Kantarda Tartım",
+     "stage_order": 1,
+     "is_required": true,
+     "requires_approval": false,
+     "process_type": {
+      "id": 1,
+      "name": "Kantarda Tartım",
+      "description": "Gelen zeytinin ilk kantar tartımı",
+      "category": "weighing",
+      "is_active": true,
+      "fields": [
+       {
+        "id": 1,
+        "process_type_id": 1,
+        "field_key": "kamyon_plakasi",
+        "label": "Kamyon Plakası",
+        "data_type": "text",
+        "is_required": true,
+        "unit": null,
+        "sort_order": 1,
+        "is_active": true,
+        "options": null,
+        "default_value": null,
+        "created_at": "2026-11-06T15:35:12.000000Z",
+        "updated_at": "2026-11-06T15:35:12.000000Z"
+       },
+       {
+        "id": 2,
+        "process_type_id": 1,
+        "field_key": "tartim_fisi_no",
+        "label": "Tartım Fişi No",
+        "data_type": "text",
+        "is_required": false,
+        "unit": null,
+        "sort_order": 2,
+        "is_active": true,
+        "options": null,
+        "default_value": null,
+        "created_at": "2026-11-06T15:35:12.000000Z",
+        "updated_at": "2026-11-06T15:35:12.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:11.000000Z",
+      "updated_at": "2026-11-06T15:35:11.000000Z"
+     },
+     "extensions": [
+      {
+       "id": 34,
+       "production_stage_id": 1,
+       "stage_extension_type_id": 1,
+       "is_required": false,
+       "is_enabled": true,
+       "sort_order": 1,
+       "stage_extension_type": {
+        "id": 1,
+        "key": "weighing",
+        "name": "Weighing",
+        "description": "Bu asamada secilen urun tipi tartilir.",
+        "fields": []
+       },
+       "values": [],
+       "input_production_products": [
+        {
+         "id": 33,
+         "production_stage_extension_id": 34,
+         "production_product_id": 1,
+         "sort_order": 1,
+         "is_required": true,
+         "production_product": {
+          "id": 1,
+          "key": "olive",
+          "name": "Zeytin",
+          "description": "Ham zeytin ürünü"
+         }
+        }
+       ],
+       "output_production_products": []
+      }
+     ],
+     "created_at": "2026-11-06T15:35:11.000000Z",
+     "updated_at": "2026-11-06T15:35:11.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "hat goster",
+   "method": "GET",
+   "path": "/api/production-lines/{L}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 4,
+     "name": "Test Hat",
+     "description": null,
+     "input_production_products": [
+      {
+       "id": 4,
+       "production_line_id": 4,
+       "production_product_id": 1,
+       "production_product_type_id": null,
+       "sort_order": 1,
+       "production_product": {
+        "id": 1,
+        "key": "olive",
+        "name": "Zeytin"
+       },
+       "production_product_type": null
+      },
+      {
+       "id": 5,
+       "production_line_id": 4,
+       "production_product_id": 5,
+       "production_product_type_id": 9,
+       "sort_order": 5,
+       "production_product": {
+        "id": 5,
+        "key": "test_kategori",
+        "name": "Test Kategori 2"
+       },
+       "production_product_type": {
+        "id": 9,
+        "name": "Test Tip",
+        "code": "TEST_TIP",
+        "type": "deneme",
+        "unit": "KG"
+       }
+      }
+     ],
+     "output_production_products": [
+      {
+       "id": 8,
+       "production_line_id": 4,
+       "production_product_id": 3,
+       "production_product_type_id": null,
+       "sort_order": 1,
+       "production_product": {
+        "id": 3,
+        "key": "pomace",
+        "name": "Pirina"
+       },
+       "production_product_type": null
+      }
+     ],
+     "stages": [
+      {
+       "id": 39,
+       "production_line_id": 4,
+       "process_type_id": null,
+       "name": "C",
+       "stage_order": 1,
+       "is_required": true,
+       "requires_approval": true,
+       "process_type": null,
+       "extensions": [
+        {
+         "id": 32,
+         "production_stage_id": 39,
+         "stage_extension_type_id": 2,
+         "is_required": true,
+         "is_enabled": true,
+         "sort_order": 1,
+         "stage_extension_type": {
+          "id": 2,
+          "key": "storage_movement",
+          "name": "Storage Movement",
+          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
+          "fields": [
+           {
+            "id": 1,
+            "stage_extension_type_id": 2,
+            "field_key": "action",
+            "label": "Hareket turu",
+            "data_type": "text",
+            "is_required": false,
+            "sort_order": 1,
+            "default_value_boolean": null,
+            "default_value_integer": null,
+            "default_value_decimal": null,
+            "default_value_text": null,
+            "default_value_json": null,
+            "options_json": [
+             "inbound",
+             "outbound",
+             "transfer"
+            ],
+            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
+           }
+          ]
+         },
+         "values": [],
+         "input_production_products": [
+          {
+           "id": 31,
+           "production_stage_extension_id": 32,
+           "production_product_id": 1,
+           "sort_order": 1,
+           "is_required": true,
+           "production_product": {
+            "id": 1,
+            "key": "olive",
+            "name": "Zeytin",
+            "description": "Ham zeytin ürünü"
+           }
+          },
+          {
+           "id": 32,
+           "production_stage_extension_id": 32,
+           "production_product_id": 5,
+           "sort_order": 2,
+           "is_required": true,
+           "production_product": {
+            "id": 5,
+            "key": "test_kategori",
+            "name": "Test Kategori 2",
+            "description": "Deneme"
+           }
+          }
+         ],
+         "output_production_products": []
+        },
+        {
+         "id": 33,
+         "production_stage_id": 39,
+         "stage_extension_type_id": 1,
+         "is_required": false,
+         "is_enabled": true,
+         "sort_order": 7,
+         "stage_extension_type": {
+          "id": 1,
+          "key": "weighing",
+          "name": "Weighing",
+          "description": "Bu asamada secilen urun tipi tartilir.",
+          "fields": []
+         },
+         "values": [],
+         "input_production_products": [],
+         "output_production_products": [
+          {
+           "id": 10,
+           "production_stage_extension_id": 33,
+           "production_product_id": 3,
+           "sort_order": 1,
+           "is_required": true,
+           "production_product": {
+            "id": 3,
+            "key": "pomace",
+            "name": "Pirina",
+            "description": "Zeytin işleme sonrası oluşan yan ürün"
+           }
+          }
+         ]
+        }
+       ],
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:16.000000Z"
+      },
+      {
+       "id": 38,
+       "production_line_id": 4,
+       "process_type_id": 13,
+       "name": "B",
+       "stage_order": 2,
+       "is_required": true,
+       "requires_approval": false,
+       "process_type": {
+        "id": 13,
+        "name": "Test Proses",
+        "description": "Aciklama",
+        "category": "quality",
+        "is_active": true,
+        "fields": [
+         {
+          "id": 9,
+          "process_type_id": 13,
+          "field_key": "f1",
+          "label": "F1b",
+          "data_type": "json",
+          "is_required": true,
+          "unit": null,
+          "sort_order": 3,
+          "is_active": true,
+          "options": null,
+          "default_value": "x",
+          "created_at": "2026-11-06T18:45:15.000000Z",
+          "updated_at": "2026-11-06T18:45:15.000000Z"
+         }
+        ],
+        "created_at": "2026-11-06T18:45:15.000000Z",
+        "updated_at": "2026-11-06T18:45:15.000000Z"
+       },
+       "extensions": [],
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:16.000000Z"
+      }
+     ],
+     "created_at": "2026-11-06T18:45:15.000000Z",
+     "updated_at": "2026-11-06T18:45:15.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tip akisi",
+   "method": "GET",
+   "path": "/api/production-product-types/{T}/flow",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "production_product_type": {
+      "id": 9,
+      "name": "Test Tip",
+      "code": "TEST_TIP",
+      "type": "deneme",
+      "unit": "KG",
+      "density_kg_per_litre": null,
+      "effective_density_kg_per_litre": null,
+      "default_density_kg_per_litre": null,
+      "production_product_id": 5,
+      "production_product": {
+       "id": 5,
+       "key": "test_kategori",
+       "name": "Test Kategori 2",
+       "description": "Deneme"
+      },
+      "created_at": "2026-11-06T18:45:14.000000Z",
+      "updated_at": "2026-11-06T18:45:14.000000Z"
+     },
+     "input_production_lines": [
+      {
+       "id": 4,
+       "name": "Test Hat",
+       "description": null,
+       "input_production_products": [
+        {
+         "id": 4,
+         "production_line_id": 4,
+         "production_product_id": 1,
+         "production_product_type_id": null,
+         "sort_order": 1,
+         "production_product": {
+          "id": 1,
+          "key": "olive",
+          "name": "Zeytin"
+         }
+        },
+        {
+         "id": 5,
+         "production_line_id": 4,
+         "production_product_id": 5,
+         "production_product_type_id": 9,
+         "sort_order": 5,
+         "production_product": {
+          "id": 5,
+          "key": "test_kategori",
+          "name": "Test Kategori 2"
+         }
+        }
+       ],
+       "output_production_products": [
+        {
+         "id": 8,
+         "production_line_id": 4,
+         "production_product_id": 3,
+         "production_product_type_id": null,
+         "sort_order": 1,
+         "production_product": {
+          "id": 3,
+          "key": "pomace",
+          "name": "Pirina"
+         }
+        }
+       ],
+       "stages": [
+        {
+         "id": 39,
+         "production_line_id": 4,
+         "process_type_id": null,
+         "name": "C",
+         "stage_order": 1,
+         "is_required": true,
+         "requires_approval": true,
+         "process_type": null,
+         "created_at": "2026-11-06T18:45:15.000000Z",
+         "updated_at": "2026-11-06T18:45:16.000000Z"
+        },
+        {
+         "id": 38,
+         "production_line_id": 4,
+         "process_type_id": 13,
+         "name": "B",
+         "stage_order": 2,
+         "is_required": true,
+         "requires_approval": false,
+         "process_type": {
+          "id": 13,
+          "name": "Test Proses",
+          "description": "Aciklama",
+          "category": "quality",
+          "is_active": true,
+          "fields": [
+           {
+            "id": 9,
+            "process_type_id": 13,
+            "field_key": "f1",
+            "label": "F1b",
+            "data_type": "json",
+            "is_required": true,
+            "unit": null,
+            "sort_order": 3,
+            "is_active": true,
+            "options": null,
+            "default_value": "x",
+            "created_at": "2026-11-06T18:45:15.000000Z",
+            "updated_at": "2026-11-06T18:45:15.000000Z"
+           }
+          ],
+          "created_at": "2026-11-06T18:45:15.000000Z",
+          "updated_at": "2026-11-06T18:45:15.000000Z"
+         },
+         "created_at": "2026-11-06T18:45:15.000000Z",
+         "updated_at": "2026-11-06T18:45:16.000000Z"
+        }
+       ],
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:15.000000Z"
+      }
+     ],
+     "output_production_lines": [],
+     "production_lines": [
+      {
+       "id": 4,
+       "name": "Test Hat",
+       "description": null,
+       "input_production_products": [
+        {
+         "id": 4,
+         "production_line_id": 4,
+         "production_product_id": 1,
+         "production_product_type_id": null,
+         "sort_order": 1,
+         "production_product": {
+          "id": 1,
+          "key": "olive",
+          "name": "Zeytin"
+         }
+        },
+        {
+         "id": 5,
+         "production_line_id": 4,
+         "production_product_id": 5,
+         "production_product_type_id": 9,
+         "sort_order": 5,
+         "production_product": {
+          "id": 5,
+          "key": "test_kategori",
+          "name": "Test Kategori 2"
+         }
+        }
+       ],
+       "output_production_products": [
+        {
+         "id": 8,
+         "production_line_id": 4,
+         "production_product_id": 3,
+         "production_product_type_id": null,
+         "sort_order": 1,
+         "production_product": {
+          "id": 3,
+          "key": "pomace",
+          "name": "Pirina"
+         }
+        }
+       ],
+       "stages": [
+        {
+         "id": 39,
+         "production_line_id": 4,
+         "process_type_id": null,
+         "name": "C",
+         "stage_order": 1,
+         "is_required": true,
+         "requires_approval": true,
+         "process_type": null,
+         "created_at": "2026-11-06T18:45:15.000000Z",
+         "updated_at": "2026-11-06T18:45:16.000000Z"
+        },
+        {
+         "id": 38,
+         "production_line_id": 4,
+         "process_type_id": 13,
+         "name": "B",
+         "stage_order": 2,
+         "is_required": true,
+         "requires_approval": false,
+         "process_type": {
+          "id": 13,
+          "name": "Test Proses",
+          "description": "Aciklama",
+          "category": "quality",
+          "is_active": true,
+          "fields": [
+           {
+            "id": 9,
+            "process_type_id": 13,
+            "field_key": "f1",
+            "label": "F1b",
+            "data_type": "json",
+            "is_required": true,
+            "unit": null,
+            "sort_order": 3,
+            "is_active": true,
+            "options": null,
+            "default_value": "x",
+            "created_at": "2026-11-06T18:45:15.000000Z",
+            "updated_at": "2026-11-06T18:45:15.000000Z"
+           }
+          ],
+          "created_at": "2026-11-06T18:45:15.000000Z",
+          "updated_at": "2026-11-06T18:45:15.000000Z"
+         },
+         "created_at": "2026-11-06T18:45:15.000000Z",
+         "updated_at": "2026-11-06T18:45:16.000000Z"
+        }
+       ],
+       "created_at": "2026-11-06T18:45:15.000000Z",
+       "updated_at": "2026-11-06T18:45:15.000000Z"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "asamali hatti sil",
+   "method": "DELETE",
+   "path": "/api/production-lines/{L}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Production line deleted successfully."
+   },
+   "save": null
+  },
+  {
+   "name": "tipi sil",
+   "method": "DELETE",
+   "path": "/api/production-product-types/{T}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "ProductionProductType deleted successfully."
+   },
+   "save": null
+  },
+  {
+   "name": "kategori sil",
+   "method": "DELETE",
+   "path": "/api/production-products/{P}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "ProductionProductType type deleted successfully."
+   },
+   "save": null
+  },
+  {
+   "name": "prosesi sil",
+   "method": "DELETE",
+   "path": "/api/process-types/{PT}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Process type deleted successfully."
+   },
+   "save": null
+  }
+ ]
+}

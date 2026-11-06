@@ -134,14 +134,25 @@ Veritabanına dokunmayan, giriş gerektirmeyen iki endpoint: mobil uygulamanın 
 
 ## Faz 4: Üretim Altyapısı ve Ana Veriler (catalog)
 
-Henüz hareket yok, sadece tanımlar var. Sonraki her modül buna bağlı.
-- [ ] Production product type, production product, attribute definitions. Dinamik alan tabloları **mevcut yapısıyla birebir** taşınır (JSONB'ye geçiş Geçiş Sonrası'nda)
-- [ ] `UnitConverter` (birim dönüşümleri, yoğunluk)
-- [ ] Process type, process type field
-- [ ] Stage extension type ve alanları
-- [ ] Production line (giriş/çıkış ürün tipleri), production stage, stage extension
+Henüz hareket yok, sadece tanımlar var. Sonraki her modül buna bağlı. Resource'lar birbirine sıkı bağlı
+olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada yapıldı: katalog ve tedarikçiler.
+
+**Katalog (tamamlandı)**
+- [x] Production product (kategori), production product type, attribute definitions ve kategori eşlemeleri. Dinamik alan tabloları mevcut yapısıyla birebir (JSONB Geçiş Sonrası'nda)
+- [x] Process type, process type field, stage extension type ve alanları
+- [x] Production line (girdi/çıktı ürünleri), production stage (sıra kaydırma birebir: `(hat, sıra)` unique olduğu için geçici 100000 kaydırma), stage extension senkronizasyonu (değerler, girdi/çıktı ürünleri)
+- [x] **JPA yerine `Db` (JDBC):** Eloquent davranışı birebir: değerler PDO gibi tipsiz, booleanlar `t`/`f`; `create()` yalnızca verilen kolonları yazar ve cevabı veritabanından değil verilen değerlerden kurar (DB varsayılanları görünmez); `update()` yalnızca değişeni yazar; ilişkiler Laravel'in `where x in (1, 2, 3)` sorgularıyla aynı biçimde ve aynı `ORDER BY` ile (sıralanmayan / eşit sıralı satırlar Laravel'deki sırada)
+- [x] Resource'lar `whenLoaded` davranışıyla: hangi ilişki yüklendiyse o anahtar var (örn. ürün üzerinden gelen hatlarda `extensions` yok); `decimal:4`, `boolean`, `integer`, `array` cast'leri
+- [x] Validator'a eklenenler: `distinct`, `required_with`, `unique`'te `where` koşulları; `*` kuralından genişleyen alanların mesajdaki adı Laravel'deki gibi ham (`items.0.product_id`)
+- [x] Laravel'de bulunan hatalar Java'da düzeltildi: attribute eşlemesi ekleme (her zaman 500), eşleme güncellemede `attribute_key` (500), proses alanında tekrar eden anahtar (500), proses tipini kendi adıyla güncelleme (422). Bkz. DEVIATIONS.md
+- [x] Proxy: katalog yolları Java'da
+- Testler:
+  - `CatalogParityIT`: Laravel'den yakalanan 77 durum (`reference/capture_catalog.py`; ekleme/güncelleme/silme, silme korumaları, aşama sırası, uzantı senkronizasyonu, validation) tekrar oynatılır: 73 aynı, Laravel hatası olan 4 durum düzeltilmiş haliyle
+  - Canlı karşılaştırma (`compare.py`): veritabanındaki **bütün** katalog kayıtları (her ürün, tip, hat, aşama, proses tipi, alan ve hata durumları) 120/120 aynı
+
+**Tedarikçiler (sırada)**
 - [ ] Supplier, supplier field, product supplier
-- Testler: `UnitConversionTest`, `ProductionLineProductTypeTest`, `StageExtensionTest`, `SupplierTest`, `DeletionGuardTest`
+- Testler: `SupplierTest`
 
 ## Faz 5: Depo ve Malzeme (inventory)
 

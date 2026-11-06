@@ -1,6 +1,8 @@
 package com.olivamore.api.shared.web.binding;
 
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.shared.persistence.Row;
 import jakarta.persistence.EntityManager;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -16,9 +18,11 @@ import java.util.Map;
 public class BoundModelResolver implements HandlerMethodArgumentResolver {
 
 	private final EntityManager entityManager;
+	private final Db db;
 
-	public BoundModelResolver(EntityManager entityManager) {
+	public BoundModelResolver(EntityManager entityManager, Db db) {
 		this.entityManager = entityManager;
+		this.db = db;
 	}
 
 	@Override
@@ -39,6 +43,12 @@ public class BoundModelResolver implements HandlerMethodArgumentResolver {
 			throw new IllegalStateException("Path degiskeni yok: {" + name + "}");
 		}
 		Class<?> type = parameter.getParameterType();
+		if (type == Row.class) {
+			if (bound == null || bound.table().isEmpty() || bound.model().isEmpty()) {
+				throw new IllegalStateException("Row parametresi icin @Bound(table, model) gerekli: " + name);
+			}
+			return db.find(bound.table(), id(raw)).orElseThrow(() -> new ModelNotFoundException(bound.model(), raw));
+		}
 		Object entity = entityManager.find(type, id(raw));
 		if (entity == null) {
 			throw new ModelNotFoundException(laravelName(type), raw);
