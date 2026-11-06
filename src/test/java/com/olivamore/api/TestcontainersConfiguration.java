@@ -29,7 +29,7 @@ public class TestcontainersConfiguration {
 	@Bean
 	@ServiceConnection
 	PostgreSQLContainer postgresContainer() {
-		return new PostgreSQLContainer(DockerImageName.parse(IMAGE)).withDatabaseName("olivamore");
+		return new PostgreSQLContainer(DockerImageName.parse(IMAGE)).withDatabaseName("oliveapp");
 	}
 
 	/** Flyway'den hemen sonra, Hibernate ve testlerden once demo veri. */

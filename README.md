@@ -30,8 +30,8 @@ cp .env.example .env
 
 - **(A) Bilgisayara kurulu PostgreSQL:** bir kez rol ve veritabanını oluşturun, `.env`'deki `DB_*` değerleriyle aynı olmalı:
   ```bash
-  psql -U postgres -c "CREATE ROLE olivamore LOGIN PASSWORD 'olivamore'"
-  psql -U postgres -c "CREATE DATABASE olivamore OWNER olivamore"
+  psql -U postgres -c "CREATE ROLE oliveapp LOGIN PASSWORD 'oliveapp'"
+  psql -U postgres -c "CREATE DATABASE oliveapp OWNER oliveapp"
   ```
 - **(B) Docker'daki PostgreSQL:** `.env`'de `COMPOSE_PROFILES=docker-db` satırını açın. Başka bir şey gerekmez.
 

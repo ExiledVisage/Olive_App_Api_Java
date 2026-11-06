@@ -23,9 +23,9 @@ services:
     # Canli sistemle ayni surum
     image: postgres:17-alpine
     environment:
-      POSTGRES_DB: ${DB_DATABASE:-olivamore}
-      POSTGRES_USER: ${DB_USERNAME:-olivamore}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-olivamore}
+      POSTGRES_DB: ${DB_DATABASE:-oliveapp}
+      POSTGRES_USER: ${DB_USERNAME:-oliveapp}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-oliveapp}
     # Rastgele port, yalnizca bu bilgisayardan (127.0.0.1): bilgisayarda kurulu bir
     # PostgreSQL 5432'yi kullaniyor olabilir. Spring Boot gercek portu kendisi bulur.
     ports:
@@ -78,9 +78,9 @@ services:
     environment:
       DB_HOST: ${DB_HOST_FROM_CONTAINER:-host.docker.internal}
       DB_PORT: ${DB_PORT_FROM_CONTAINER:-5432}
-      DB_DATABASE: ${DB_DATABASE:-olivamore}
-      DB_USERNAME: ${DB_USERNAME:-olivamore}
-      DB_PASSWORD: ${DB_PASSWORD:-olivamore}
+      DB_DATABASE: ${DB_DATABASE:-oliveapp}
+      DB_USERNAME: ${DB_USERNAME:-oliveapp}
+      DB_PASSWORD: ${DB_PASSWORD:-oliveapp}
       SPRING_DOCKER_COMPOSE_ENABLED: "false"
     ports:
       - "8081:8081"

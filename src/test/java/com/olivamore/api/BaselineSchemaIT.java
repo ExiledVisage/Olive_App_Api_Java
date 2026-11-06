@@ -83,7 +83,7 @@ class BaselineSchemaIT {
 			"-U", postgres.getUsername(), "-d", "laravel", "-f", "/tmp/reference-data.sql");
 		assertThat(result.getExitCode()).as(result.getStderr()).isZero();
 		laravel = new JdbcTemplate(new DriverManagerDataSource(
-			postgres.getJdbcUrl().replace("/olivamore", "/laravel"), postgres.getUsername(), postgres.getPassword()));
+			postgres.getJdbcUrl().replace("/oliveapp", "/laravel"), postgres.getUsername(), postgres.getPassword()));
 	}
 
 	@Test

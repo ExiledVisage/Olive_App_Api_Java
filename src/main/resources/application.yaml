@@ -12,8 +12,8 @@ spring:
   # (COMPOSE_PROFILES=docker-db) Spring Boot baglantiyi kendisi kurar ve bunu ezer.
   # Laravel ile ortak veritabani: application-laravel.yaml. Testlerde Testcontainers ezer.
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:olivamore}
-    username: ${DB_USERNAME:olivamore}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:oliveapp}
+    username: ${DB_USERNAME:oliveapp}
     password: ${DB_PASSWORD:}
 
   jpa:
