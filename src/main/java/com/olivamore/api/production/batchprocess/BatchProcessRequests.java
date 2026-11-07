@@ -1,8 +1,8 @@
-package com.olivamore.api.production;
+package com.olivamore.api.production.batchprocess;
 
+import com.olivamore.api.production.batchprocess.stage.StageExtensions;
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Row;
@@ -10,15 +10,8 @@ import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.php.PhpDates;
 import com.olivamore.api.shared.validation.LaravelValidator;
 import com.olivamore.api.shared.validation.Rules;
-import com.olivamore.api.shared.validation.ValidatedInput;
-import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -26,79 +19,37 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Laravel {@code BatchProcessController}: asama detayi, alan degerleri, durum guncellemesi (tamamlama, atlama,
- * geri acma, basarisizlik) ve onay/red. Cevaplar BatchProcessResource (detay iliskileriyle), 200.
+ * Laravel {@code Http/Requests/BatchProcess}: UpdateBatchProcessRequest (yetki ve asamanin uzantilarina gore
+ * {@code operation_data}), SyncFieldValuesRequest (alanin veri tipi), onay/red. Kurallar veritabanina baktigi icin
+ * (alan tipi, asamanin uzantilari) bilesen.
  */
-@RestController
-class BatchProcessController {
+@Component
+class BatchProcessRequests {
 
-	private static final String TABLE = "batch_processes";
-	private static final String MODEL = "BatchProcess";
 	private static final String FORBIDDEN = "This action is unauthorized.";
 
 	private final Db db;
-	private final LaravelValidator validator;
-	private final BatchReads reads;
-	private final BatchProcessFlow flow;
-	private final StageHandlers handlers;
+	private final StageExtensions handlers;
 	private final Permissions permissions;
 
-	BatchProcessController(Db db, LaravelValidator validator, BatchReads reads, BatchProcessFlow flow, StageHandlers handlers,
-		Permissions permissions) {
+	BatchProcessRequests(Db db, StageExtensions handlers, Permissions permissions) {
 		this.db = db;
-		this.validator = validator;
-		this.reads = reads;
-		this.flow = flow;
 		this.handlers = handlers;
 		this.permissions = permissions;
 	}
 
-	@GetMapping("/api/batch-processes/{batchProcess}")
-	@RequiresPermission("batch_process.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "batchProcess", table = TABLE, model = MODEL) Row process) {
-		return detail(process.id());
-	}
-
 	// ---- alan degerleri ----------------------------------------------------
 
-	/** Degerler alanin veri tipine gore dogrulanir ve ilgili value_* kolonuna yazilir. */
-	@PostMapping("/api/batch-processes/{batchProcess}/sync-field-values")
-	@RequiresPermission("batch_process.fill")
-	@Transactional
-	DataResponse<Map<String, Object>> syncFieldValues(@Bound(value = "batchProcess", table = TABLE, model = MODEL) Row process,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
+	static Rules syncFieldValues() {
+		return Rules.of()
 			.field("fields", "required|array|min:1")
 			.field("fields.*.process_type_field_id", "required|integer|exists:process_type_fields,id")
-			.field("fields.*.value", "nullable"), this::checkFieldValues);
-		List<Map<String, Object>> normalized = new ArrayList<>();
-		for (Object item : list(v.get("fields"))) {
-			Map<String, Object> field = BatchProcessFlow.asMap(item);
-			Row definition = db.first("select * from process_type_fields where process_type_fields.id = ? limit 1",
-				field.get("process_type_field_id")).orElse(null);
-			Object value = field.get("value");
-			Map<String, Object> payload = new LinkedHashMap<>();
-			payload.put("process_type_field_id", Php.intval(field.get("process_type_field_id")));
-			payload.put("value_text", null);
-			payload.put("value_decimal", null);
-			payload.put("value_integer", null);
-			payload.put("value_boolean", null);
-			payload.put("value_datetime", null);
-			payload.put("value_json", null);
-			if (definition != null && value != null) {
-				switch (Php.strval(definition.get("data_type"))) {
-					case "decimal" -> payload.put("value_decimal", Php.floatval(value));
-					case "integer" -> payload.put("value_integer", Php.intval(value));
-					case "boolean" -> payload.put("value_boolean", filterBoolean(value));
-					case "datetime" -> payload.put("value_datetime", PhpDates.parse(Php.strval(value)).orElse(null));
-					case "json" -> payload.put("value_json", value);
-					default -> payload.put("value_text", Php.strval(value));
-				}
-			}
-			normalized.add(payload);
-		}
-		flow.syncFieldValues(process, normalized);
-		return detail(process.id());
+			.field("fields.*.value", "nullable");
+	}
+
+	/** {@code withValidator}: deger alanin veri tipine uymali (null serbest). */
+	LaravelValidator.After fieldValueTypes() {
+		return this::checkFieldValues;
 	}
 
 	/** {@code withValidator}: deger alanin veri tipine uymali (null serbest). */
@@ -156,27 +107,23 @@ class BatchProcessController {
 
 	// ---- durum -------------------------------------------------------------
 
-	/**
-	 * Tamamlama, atlama ve kapanmis asamayi geri acma ayri yetkiler; dogrulamadan once bakilir (403).
-	 * Tamamlanirken {@code operation_data}'nin sekli asamanin uzantilarina gore dogrulanir.
-	 */
-	@PatchMapping("/api/batch-processes/{batchProcess}")
-	@RequiresPermission("batch_process.view")
-	@Transactional
-	DataResponse<Map<String, Object>> update(@Bound(value = "batchProcess", table = TABLE, model = MODEL) Row process,
-		RequestInput input, CurrentUser user) {
+	/** {@code authorize()}: tamamlama, atlama ve kapanmis asamayi geri acma ayri yetkiler; dogrulamadan once (403). */
+	void authorizeUpdate(Row process, RequestInput input, CurrentUser user) {
 		Object status = input.get("status");
 		String required = !(status instanceof String s) ? null : switch (s) {
-			case "completed" -> BatchProcessFlow.COMPLETE_PERMISSION;
-			case "skipped" -> BatchProcessFlow.SKIP_PERMISSION;
+			case "completed" -> BatchProcessService.COMPLETE_PERMISSION;
+			case "skipped" -> BatchProcessService.SKIP_PERMISSION;
 			case "waiting" -> List.of("waiting", "in_progress").contains(Php.strval(process.get("status"))) ? null
-				: BatchProcessFlow.REOPEN_PERMISSION;
+				: BatchProcessService.REOPEN_PERMISSION;
 			default -> null;
 		};
 		if (required != null && !permissions.can(user, required)) {
 			throw HttpStatusException.forbidden(FORBIDDEN);
 		}
+	}
 
+	/** Tamamlanirken {@code operation_data}'nin sekli asamanin uzantilarina gore. */
+	Rules update(Row process, RequestInput input) {
 		Rules rules = Rules.of()
 			.field("status", "sometimes|string|in:waiting,in_progress,completed,failed,skipped")
 			.field("operator_id", "nullable|integer|exists:users,id")
@@ -186,9 +133,7 @@ class BatchProcessController {
 		Map<String, String> operationRules = operationDataRules(process, input);
 		rules.field("operation_data", operationRules.isEmpty() ? "nullable|array" : "required|array");
 		operationRules.forEach((field, fieldRules) -> rules.field("operation_data." + field, fieldRules));
-
-		flow.update(process, validator.validate(input, rules), user);
-		return detail(process.id());
+		return rules;
 	}
 
 	/**
@@ -197,12 +142,12 @@ class BatchProcessController {
 	 */
 	private Map<String, String> operationDataRules(Row process, RequestInput input) {
 		Map<String, String> rules = new LinkedHashMap<>();
-		if (!"completed".equals(input.get("status")) || List.of("completed", BatchProcessFlow.AWAITING_APPROVAL)
+		if (!"completed".equals(input.get("status")) || List.of("completed", BatchProcessService.AWAITING_APPROVAL)
 			.contains(Php.strval(process.get("status")))) {
 			return rules;
 		}
-		List<StageHandlers.Extension> extensions = handlers.extensions(Php.intval(process.get("production_stage_id")));
-		for (String key : StageHandlers.keys(extensions)) {
+		List<StageExtensions.Extension> extensions = handlers.extensions(Php.intval(process.get("production_stage_id")));
+		for (String key : StageExtensions.keys(extensions)) {
 			Map<String, String> extensionRules = switch (key) {
 				case "weighing" -> weighingRules();
 				case "material_transformation" -> transformationRules();
@@ -259,10 +204,10 @@ class BatchProcessController {
 	}
 
 	/** Hareket turu: gonderilen, yoksa asamada sabitlenen, o da yoksa inbound. Transferde tanklar from/to. */
-	private static Map<String, String> storageMovementRules(List<StageHandlers.Extension> extensions, RequestInput input) {
+	private static Map<String, String> storageMovementRules(List<StageExtensions.Extension> extensions, RequestInput input) {
 		Object action = input.get("operation_data.action");
 		if (action == null) {
-			action = StageHandlers.pinnedAction(extensions);
+			action = StageExtensions.pinnedAction(extensions);
 		}
 		boolean transfer = "transfer".equals(action == null ? "inbound" : action);
 		Map<String, String> r = new LinkedHashMap<>();
@@ -279,47 +224,12 @@ class BatchProcessController {
 
 	// ---- onay --------------------------------------------------------------
 
-	/** Etki (materyal, tank hareketi) simdi islenir; gonderimden beri kural bozulduysa 422, asama bekler. */
-	@PostMapping("/api/batch-processes/{batchProcess}/approve")
-	@RequiresPermission("batch_process.approve")
-	@Transactional
-	DataResponse<Map<String, Object>> approve(@Bound(value = "batchProcess", table = TABLE, model = MODEL) Row process,
-		RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, Rules.of().field("note", "nullable|string|max:2000"));
-		flow.approve(process, user, v.get("note"));
-		return detail(process.id());
+	static Rules approve() {
+		return Rules.of().field("note", "nullable|string|max:2000");
 	}
 
-	/** Gerekce zorunlu; asama gonderilen veriyle isciye (in_progress) doner. */
-	@PostMapping("/api/batch-processes/{batchProcess}/reject")
-	@RequiresPermission("batch_process.approve")
-	@Transactional
-	DataResponse<Map<String, Object>> reject(@Bound(value = "batchProcess", table = TABLE, model = MODEL) Row process,
-		RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, Rules.of().field("note", "required|string|max:2000"));
-		flow.reject(process, user, v.get("note"));
-		return detail(process.id());
-	}
-
-	// ---- yardimcilar -------------------------------------------------------
-
-	private DataResponse<Map<String, Object>> detail(long id) {
-		Row process = db.find(TABLE, id).orElseThrow();
-		return DataResponse.of(reads.process(process, flow.requiresApproval(process)));
-	}
-
-	/** {@code filter_var(FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)} (deger dogrulanmis: 0/1/true/false). */
-	private static Boolean filterBoolean(Object value) {
-		return switch (value) {
-			case Boolean b -> b;
-			case Long l -> l == 1 ? Boolean.TRUE : l == 0 ? Boolean.FALSE : null;
-			case String s -> s.equals("1") ? Boolean.TRUE : s.equals("0") ? Boolean.FALSE : null;
-			default -> null;
-		};
-	}
-
-	private static List<?> list(Object value) {
-		return value instanceof List<?> l ? l : value instanceof Map<?, ?> m ? new ArrayList<>(m.values()) : List.of();
+	static Rules reject() {
+		return Rules.of().field("note", "required|string|max:2000");
 	}
 
 }

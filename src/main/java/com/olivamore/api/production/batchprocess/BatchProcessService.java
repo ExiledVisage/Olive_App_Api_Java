@@ -1,7 +1,8 @@
-package com.olivamore.api.production;
+package com.olivamore.api.production.batchprocess;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
+import com.olivamore.api.production.batchprocess.stage.StageExtensions;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.LaravelValidationException;
@@ -12,7 +13,7 @@ import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.php.PhpDates;
 import com.olivamore.api.shared.time.Timestamps;
 import com.olivamore.api.shared.validation.ValidatedInput;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -35,8 +36,8 @@ import java.util.stream.Collectors;
  * Onay gerektiren asamada tamamlama "onay bekliyor"a gecer: isleyiciler gonderim aninda bir savepoint icinde
  * denenip geri alinir (kural hatasi isciye hemen doner), etki onayda islenir.
  */
-@Component
-class BatchProcessFlow {
+@Service
+class BatchProcessService {
 
 	static final String AWAITING_APPROVAL = "awaiting_approval";
 	static final String APPROVE_PERMISSION = "batch_process.approve";
@@ -47,11 +48,11 @@ class BatchProcessFlow {
 	private static final String TABLE = "batch_processes";
 
 	private final Db db;
-	private final StageHandlers handlers;
+	private final StageExtensions handlers;
 	private final Permissions permissions;
 	private final DataSource dataSource;
 
-	BatchProcessFlow(Db db, StageHandlers handlers, Permissions permissions, DataSource dataSource) {
+	BatchProcessService(Db db, StageExtensions handlers, Permissions permissions, DataSource dataSource) {
 		this.db = db;
 		this.handlers = handlers;
 		this.permissions = permissions;
@@ -153,8 +154,8 @@ class BatchProcessFlow {
 		}
 		p.setIfNull("started_at", Timestamps.now());
 		assertRequiredFieldsFilled(p.row());
-		handlers.dispatch(p.row(), handlers.extensions(p.stageId()), asMap(operationData));
-		p.set("operation_data", Db.json(phpJson(empty(operationData) ? null : operationData)));
+		handlers.dispatch(p.row(), handlers.extensions(p.stageId()), StageExtensions.asMap(operationData));
+		p.set("operation_data", Db.json(StageExtensions.phpJson(empty(operationData) ? null : operationData)));
 		p.set("status", "completed");
 		p.setIfNull("completed_at", Timestamps.now());
 		p.save();
@@ -182,7 +183,7 @@ class BatchProcessFlow {
 		p.setIfNull("started_at", Timestamps.now());
 		assertRequiredFieldsFilled(p.row());
 		dryRun(p.row(), p.stageId(), operationData);
-		p.set("operation_data", Db.json(phpJson(empty(operationData) ? null : operationData)));
+		p.set("operation_data", Db.json(StageExtensions.phpJson(empty(operationData) ? null : operationData)));
 		p.set("status", AWAITING_APPROVAL);
 		p.set("submitted_by_user_id", actor == null ? null : actor.id());
 		p.set("submitted_at", Timestamps.now());
@@ -203,7 +204,7 @@ class BatchProcessFlow {
 			throw new IllegalStateException("Savepoint acilamadi", e);
 		}
 		try {
-			handlers.dispatch(process, handlers.extensions(stageId), asMap(operationData));
+			handlers.dispatch(process, handlers.extensions(stageId), StageExtensions.asMap(operationData));
 		}
 		finally {
 			try {
@@ -220,7 +221,7 @@ class BatchProcessFlow {
 		assertPreviousStagesDone(process);
 		Object operationData = process.get("operation_data");
 		handlers.dispatch(process, handlers.extensions(Php.intval(process.get("production_stage_id"))),
-			asMap(operationData == null ? List.of() : operationData));
+			StageExtensions.asMap(operationData == null ? List.of() : operationData));
 		recordReview(process, "approved", reviewer, note);
 		Map<String, Object> values = new LinkedHashMap<>();
 		values.put("status", "completed");
@@ -248,7 +249,7 @@ class BatchProcessFlow {
 		values.put("decision", decision);
 		values.put("reviewed_by_user_id", reviewer.id());
 		values.put("submitted_by_user_id", process.get("submitted_by_user_id"));
-		values.put("operation_data", Db.json(phpJson(process.get("operation_data"))));
+		values.put("operation_data", Db.json(StageExtensions.phpJson(process.get("operation_data"))));
 		values.put("note", note);
 		values.put("reviewed_at", Timestamps.now());
 		values.put("batch_process_id", process.id());
@@ -285,7 +286,7 @@ class BatchProcessFlow {
 		List<Long> incoming = new ArrayList<>();
 		for (Map<String, Object> value : fieldValues) {
 			Object id = value.get("process_type_field_id");
-			if (StageHandlers.truthy(id)) {
+			if (StageExtensions.truthy(id)) {
 				incoming.add(Php.intval(id));
 			}
 		}
@@ -304,7 +305,7 @@ class BatchProcessFlow {
 			values.put("value_integer", value.get("value_integer"));
 			values.put("value_boolean", value.get("value_boolean"));
 			values.put("value_datetime", value.get("value_datetime"));
-			values.put("value_json", Db.json(phpJson(value.get("value_json"))));
+			values.put("value_json", Db.json(StageExtensions.phpJson(value.get("value_json"))));
 			Row existing = db.first("select * from batch_process_field_values where batch_process_field_values.batch_process_id = ?"
 				+ " and batch_process_field_values.batch_process_id is not null and process_type_field_id = ? limit 1",
 				process.id(), fieldId).orElse(null);
@@ -542,38 +543,53 @@ class BatchProcessFlow {
 
 	/** PHP {@code $x ?: null}: bos dizi ve null bos. */
 	private static boolean empty(Object value) {
-		return !StageHandlers.truthy(value);
+		return !StageExtensions.truthy(value);
 	}
 
-	/** Istek dizisi uzerinde {@code $data['x']} erisimi: liste indisli dizi, skaler bos dizi gibi. */
-	@SuppressWarnings("unchecked")
-	static Map<String, Object> asMap(Object value) {
-		if (value instanceof Map<?, ?> m) {
-			return (Map<String, Object>) m;
-		}
-		Map<String, Object> out = new LinkedHashMap<>();
-		if (value instanceof List<?> list) {
-			for (int i = 0; i < list.size(); i++) {
-				out.put(String.valueOf(i), list.get(i));
+
+	/** Alan degerleri: alanin veri tipine gore ilgili {@code value_*} kolonu; gonderilmeyenler silinir. */
+	void syncFieldValues(Row process, Object fields) {
+		List<Map<String, Object>> normalized = new ArrayList<>();
+		for (Object item : list(fields)) {
+			Map<String, Object> field = StageExtensions.asMap(item);
+			Row definition = db.first("select * from process_type_fields where process_type_fields.id = ? limit 1",
+				field.get("process_type_field_id")).orElse(null);
+			Object value = field.get("value");
+			Map<String, Object> payload = new LinkedHashMap<>();
+			payload.put("process_type_field_id", Php.intval(field.get("process_type_field_id")));
+			payload.put("value_text", null);
+			payload.put("value_decimal", null);
+			payload.put("value_integer", null);
+			payload.put("value_boolean", null);
+			payload.put("value_datetime", null);
+			payload.put("value_json", null);
+			if (definition != null && value != null) {
+				switch (Php.strval(definition.get("data_type"))) {
+					case "decimal" -> payload.put("value_decimal", Php.floatval(value));
+					case "integer" -> payload.put("value_integer", Php.intval(value));
+					case "boolean" -> payload.put("value_boolean", filterBoolean(value));
+					case "datetime" -> payload.put("value_datetime", PhpDates.parse(Php.strval(value)).orElse(null));
+					case "json" -> payload.put("value_json", value);
+					default -> payload.put("value_text", Php.strval(value));
+				}
 			}
+			normalized.add(payload);
 		}
-		return out;
+		syncFieldValues(process, normalized);
 	}
 
-	/**
-	 * json_encode'a girecek deger PHP'deki gibi: istekteki ondalik sayilar PHP float'i ({@code 1.10 -> 1.1}).
-	 */
-	static Object phpJson(Object value) {
+	/** {@code filter_var(FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)} (deger dogrulanmis: 0/1/true/false). */
+	private static Boolean filterBoolean(Object value) {
 		return switch (value) {
-			case BigDecimal d -> d.doubleValue();
-			case Map<?, ?> m -> {
-				Map<Object, Object> out = new LinkedHashMap<>();
-				m.forEach((k, v) -> out.put(k, phpJson(v)));
-				yield out;
-			}
-			case List<?> l -> l.stream().map(BatchProcessFlow::phpJson).toList();
-			case null, default -> value;
+			case Boolean b -> b;
+			case Long l -> l == 1 ? Boolean.TRUE : l == 0 ? Boolean.FALSE : null;
+			case String s -> s.equals("1") ? Boolean.TRUE : s.equals("0") ? Boolean.FALSE : null;
+			default -> null;
 		};
+	}
+
+	private static List<?> list(Object value) {
+		return value instanceof List<?> l ? l : value instanceof Map<?, ?> m ? new ArrayList<>(m.values()) : List.of();
 	}
 
 }

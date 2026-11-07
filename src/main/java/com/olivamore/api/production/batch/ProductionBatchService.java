@@ -1,4 +1,4 @@
-package com.olivamore.api.production;
+package com.olivamore.api.production.batch;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.RequiresPermission;
@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -38,41 +37,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 /**
- * Laravel {@code ProductionBatchController} + {@code ProductionBatchService}: partiler (giris/cikis urun
- * tipleri, hattin asamalarindan prosesler), takvim ve silme korumasi.
+ * Laravel {@code ProductionBatchService}: partiler. Girdiler hattin kabul ettigi kategori/cesitlerden, ayni "type"ta
+ * olmali; ciktilar hattin cikti urunlerinden girdinin cesidine gore cozulur; hattin her asamasi icin bekleyen bir
+ * proses acilir.
  */
-@RestController
-class ProductionBatchController {
+@Service
+class ProductionBatchService {
 
 	private static final String TABLE = "production_batches";
-	private static final String MODEL = "ProductionBatch";
+
 	private static final String STATUSES = "in:pending,in_progress,completed,cancelled";
 
 	private final Db db;
-	private final LaravelValidator validator;
-	private final BatchReads reads;
 
-	ProductionBatchController(Db db, LaravelValidator validator, BatchReads reads) {
+	ProductionBatchService(Db db) {
 		this.db = db;
-		this.validator = validator;
-		this.reads = reads;
 	}
 
-	// ---- okuma (production_batch.view) -------------------------------------
+	/** Varis gunu suzgeci (Y-m-d, dahil): where kosulu ve parametreleri. */
+	record Filter(String where, List<Object> args) {
+	}
 
-	/** {@code ?received_from}, {@code ?received_to} (Y-m-d, varis gunu, dahil); en yeni once; per_page ile sayfali. */
-	@GetMapping("/api/production-batches")
-	@RequiresPermission("production_batch.view")
-	ListResponse<Map<String, Object>> index(HttpServletRequest request, RequestInput input) {
-		ValidatedInput filters = validator.validate(input, Rules.of()
-			.field("received_from", "nullable|date_format:Y-m-d")
-			.field("received_to", "nullable|date_format:Y-m-d"));
-		Optional<Integer> perPage = Listing.perPage(request);
-		StringBuilder where = new StringBuilder();
+	Filter filter(ValidatedInput filters) {
 		List<Object> args = new ArrayList<>();
 		List<String> conditions = new ArrayList<>();
+		StringBuilder where = new StringBuilder();
 		if (filters.get("received_from") != null) {
 			conditions.add("received_at::date >= ?");
 			args.add(filters.get("received_from"));
@@ -84,64 +76,40 @@ class ProductionBatchController {
 		if (!conditions.isEmpty()) {
 			where.append(" where ").append(String.join(" and ", conditions));
 		}
-		String order = " order by created_at desc";
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(reads.batches(db.select("select * from production_batches" + where + order, args.toArray())));
-		}
-		int page = Listing.currentPage(request);
-		long total = db.count("select count(*) as aggregate from production_batches" + where, args.toArray());
-		List<Row> rows = total == 0 ? List.of() : db.select("select * from production_batches" + where + order
-			+ " limit " + perPage.get() + " offset " + (long) (page - 1) * perPage.get(), args.toArray());
-		return LaravelPaginator.paginate(reads.batches(rows), total, page, perPage.get(), request);
+		return new Filter(where.toString(), args);
 	}
 
-	/** Gun -> parti sayisi (varis gunu); bos aralikta {@code {}}. */
-	@GetMapping("/api/production-batches/calendar")
-	@RequiresPermission("production_batch.view")
-	Map<String, Object> calendar(RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("from", "required|date_format:Y-m-d")
-			.field("to", "required|date_format:Y-m-d|after_or_equal:from"));
+	/** En yeni once. */
+	List<Row> all(Filter f) {
+		return db.select("select * from production_batches" + f.where() + " order by created_at desc", f.args().toArray());
+	}
+
+	long count(Filter f) {
+		return db.count("select count(*) as aggregate from production_batches" + f.where(), f.args().toArray());
+	}
+
+	List<Row> page(Filter f, int page, int perPage) {
+		return db.select("select * from production_batches" + f.where() + " order by created_at desc"
+			+ " limit " + perPage + " offset " + (long) (page - 1) * perPage, f.args().toArray());
+	}
+
+	/** Gun -> parti sayisi (varis gunu). */
+	Map<String, Object> calendar(Object from, Object to) {
 		Map<String, Object> days = new LinkedHashMap<>();
 		for (Row r : db.select("select DATE(received_at) as day, COUNT(*) as total from production_batches"
 			+ " where received_at is not null and received_at::date >= ? and received_at::date <= ? group by day order by day asc",
-			v.get("from"), v.get("to"))) {
+			from, to)) {
 			days.put(r.get("day").toString(), Php.intval(r.get("total")));
 		}
-		return Map.of("data", days);
+		return days;
 	}
 
-	@GetMapping("/api/production-batches/{production_batch}")
-	@RequiresPermission("production_batch.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "production_batch", table = TABLE, model = MODEL) Row batch) {
-		return DataResponse.of(reads.batch(batch));
+	Row byId(long id) {
+		return db.find(TABLE, id).orElseThrow();
 	}
 
-	// ---- yazma -------------------------------------------------------------
-
-	/**
-	 * Girdiler hattin kabul ettigi kategori/cesitlerden, ayni "type"ta olmali; ciktilar hattin cikti
-	 * urunlerinden girdinin cesidine gore cozulur; hattin her asamasi icin bekleyen bir proses acilir.
-	 * Cevap 200 (Laravel fresh() ile yeni bir model doner).
-	 */
-	@PostMapping("/api/production-batches")
-	@RequiresPermission("production_batch.create")
-	@Transactional
-	DataResponse<Map<String, Object>> store(RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("batch_code", "required|string|max:255|unique:production_batches,batch_code")
-			.field("input_production_product_type_ids", "required|array|min:1")
-			.field("input_production_product_type_ids.*", "required|integer|distinct|exists:production_product_types,id")
-			.field("production_line_id", "required|integer|exists:production_lines,id")
-			.field("status", "nullable|string|" + STATUSES)
-			.field("quantity_kg", "nullable|numeric|min:0")
-			.field("supplier_id", "nullable|integer|exists:suppliers,id")
-			.field("supplier_field_id", "nullable|integer|exists:supplier_fields,id")
-			.field("received_at", "nullable|date")
-			.field("started_at", "nullable|date")
-			.field("completed_at", "nullable|date")
-			.field("note", "nullable|string"));
-
+	/** @return yeni parti id */
+	long create(ValidatedInput v, CurrentUser user) {
 		// collect(...)->filter()->map(int): bos (0) degerler atilir
 		List<Long> inputIds = new ArrayList<>();
 		for (Object id : list(v.get("input_production_product_type_ids"))) {
@@ -202,25 +170,11 @@ class ProductionBatchController {
 			process.put("production_batch_id", id);
 			db.insert("batch_processes", process);
 		}
-		return DataResponse.of(reads.batch(db.find(TABLE, id).orElseThrow()));
+		return id;
 	}
 
 	/** Tedarikci degisip tarla verilmediyse eski tarla duser. Yalnizca gonderilen alanlar. */
-	@PatchMapping("/api/production-batches/{production_batch}")
-	@RequiresPermission("production_batch.update")
-	@Transactional
-	DataResponse<Map<String, Object>> update(@Bound(value = "production_batch", table = TABLE, model = MODEL) Row batch,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("batch_code", "sometimes|string|max:255|unique:production_batches,batch_code," + batch.id())
-			.field("status", "sometimes|string|" + STATUSES)
-			.field("quantity_kg", "nullable|numeric|min:0")
-			.field("supplier_id", "nullable|integer|exists:suppliers,id")
-			.field("supplier_field_id", "nullable|integer|exists:supplier_fields,id")
-			.field("received_at", "nullable|date")
-			.field("started_at", "nullable|date")
-			.field("completed_at", "nullable|date")
-			.field("note", "nullable|string"));
+	void update(Row batch, ValidatedInput v) {
 		Map<String, Object> payload = new LinkedHashMap<>();
 		if (v.has("supplier_id") || v.has("supplier_field_id")) {
 			Long current = Relations.key(batch.get("supplier_id"));
@@ -240,14 +194,10 @@ class ProductionBatchController {
 		if (!payload.isEmpty()) {
 			db.update(TABLE, batch.id(), payload);
 		}
-		return DataResponse.of(reads.batch(db.find(TABLE, batch.id()).orElseThrow()));
 	}
 
-	/** Yalnizca hic baslamamis parti silinir (proses, materyal ya da stok hareketi varsa 422). Cevap 204. */
-	@DeleteMapping("/api/production-batches/{production_batch}")
-	@RequiresPermission("production_batch.delete")
-	@Transactional
-	ResponseEntity<Void> destroy(@Bound(value = "production_batch", table = TABLE, model = MODEL) Row batch) {
+	/** Yalnizca hic baslamamis parti silinir (proses, materyal ya da stok hareketi varsa 422). */
+	void delete(Row batch) {
 		List<Long> processIds = db.select("select id from batch_processes where batch_processes.production_batch_id = ?"
 			+ " and batch_processes.production_batch_id is not null", batch.id()).stream().map(Row::id).toList();
 		DeletionGuard.of("'" + Php.strval(batch.get("batch_code")) + "' partisi")
@@ -258,7 +208,6 @@ class ProductionBatchController {
 				: db.count("select count(*) as aggregate from storage_movements where batch_process_id in (" + Relations.inList(processIds) + ")"))
 			.check("Başlamış bir parti silinmez; iptal etmek için durumunu cancelled yapın.");
 		db.delete(TABLE, batch.id());
-		return ResponseEntity.noContent().build();
 	}
 
 	// ---- kurallar ----------------------------------------------------------
@@ -350,8 +299,6 @@ class ProductionBatchController {
 			throw new BusinessRuleException("Seçilen tarla bu tedarikçiye ait değil.");
 		}
 	}
-
-	// ---- yardimcilar -------------------------------------------------------
 
 	/** datetime cast'inin yazdigi deger (dogrulanmis {@code date}). */
 	private static LocalDateTime date(Object value) {
