@@ -91,7 +91,7 @@ Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 - [x] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti (Spring Boot 4.1.2, Modulith 2.1.1, paket `com.olivamore.api`)
 - [x] **Tek başına çalışma:** `compose.yaml` (isteğe bağlı Docker Postgres, Mailpit, Prometheus, Grafana) Laravel'e bağımlı değil. Veritabanı bilgisayardaki PostgreSQL ya da Docker'daki (`COMPOSE_PROFILES=docker-db`). `--seed`: boş veritabanına Flyway şemayı kurar, demo veri (`reference/seed-data.sql`) JDBC ile yüklenir, psql gerekmez. Yeni bilgisayar senaryosu temiz klonla denendi
 - [x] **Geçiş dönemi düzeni** (`compose.laravel.yaml`, `laravel` profili): reverse proxy (Caddy, `:8080`), Laravel'in veritabanına köprü (`127.0.0.1:5433`). Laravel'in compose'una dokunulmadı: köprü ve proxy onun Docker ağına katılıyor. Taşınan yollar `docker/proxy/java-routes.caddy`'ye eklenir, cevaplarda `X-Served-By` başlığı var
-- [x] **Flyway baseline:** `V1__baseline.sql` = `reference/schema.sql` (psql komutları ve oturum ayarları çıkarıldı). Mevcut Laravel veritabanında V1 çalışmaz, baseline kabul edilir; boş veritabanında çalışır. `BaselineSchemaIT` Flyway + seed ile kurulan veritabanının Laravel'inkiyle şema (kolon, constraint, index), satır sayıları ve sequence'ler düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`)
+- [x] **Flyway baseline:** Her migration ayrı bir dosya, Laravel'deki gibi tablo tablo: `db/migration/V0.01__create_users_table.sql` ... `V0.69__add_order_to_finished_product_stock_movements.sql` (+ `V0.00__create_migrations_table.sql`). SQL Laravel'in kendisine üretildi (`migrate --pretend`), yalnızca şema komutları alındı. Mevcut Laravel veritabanında şema sürüm 1 olarak kabul edilir (baseline), V0.xx'ler çalışmaz; boş veritabanında hepsi sırayla çalışır. (İlk hâli tek dosyaydı, `V1__baseline.sql`; okunabilirlik için bölündü.) `BaselineSchemaIT` Flyway + seed ile kurulan veritabanının Laravel'inkiyle şema (kolon, constraint, index), satır sayıları ve sequence'ler düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`)
 - [x] **Jackson:** snake_case; `Instant`/`LocalDateTime` → `2026-11-06T15:35:14.000000Z` (UTC, mikrosaniye); gelen metinler Laravel gibi kırpılır, boş metin null olur (`TrimStrings` + `ConvertEmptyStringsToNull`, şifre alanları hariç). Query parametreleri için aynısı `InputNormalizationFilter`'da
 - [x] **Ortak pagination** (`Listing`, `LaravelPaginator`): `per_page` yoksa sayfasız `{"data": [...]}`, varsa Laravel'in `data / links / meta` formatı. "..." penceresi, link URL'leri, `per_page` validation'ı ve geçersiz `page` davranışı Laravel'den yakalanan 11 fixture ile birebir test edildi
 - [x] **Global hata yönetimi** (`ApiExceptionHandler`): 422 validation (`(and N more errors)` özeti, alan sırası, tip hataları), `BusinessRuleException` (boş `errors` → `{}`), 404 model (`No query results for model [App\Models\Order] 1`), 404 route, 405, 500. Gövdeler Laravel'den yakalanan cevaplarla test edildi. **403 ve 401 Faz 2'de** (Spring Security ile)
@@ -355,13 +355,21 @@ Davranış değişmeden kod konu klasörlerine ayrıldı. Her klasörde Laravel 
 
 ## Faz 12: Canlıya Geçiş ve Laravel'in Kapatılması
 
-Canlıya geçiş modül modül de yapılabilir (her modül dev'de bitince canlıda da açılır) ya da tüm modüller dev'de bitince bir kerede. Her iki durumda da:
-- [ ] **Şema kontrolü:** Sunucudaki canlı şema (`pg_dump --schema-only`) `V1__baseline.sql` ile karşılaştırılır. Elle yapılmış bir değişiklik ya da çalıştırılmamış bir migration varsa önce o giderilir. Bunun için veriye değil, sadece şemaya bakılır
+Tüm modüller dev'de bittiği için geçiş bir kerede yapılır. Adım adım komutlar: [GO_LIVE.md](GO_LIVE.md).
+
+**12a: Hazırlık (tamamlandı)**
+- [x] Route karşılaştırması: Laravel'in 196 API route'unun hepsi Java'da; API dışındakiler (`/`, `/up`, `/sanctum/csrf-cookie`, `/storage/{path}`) uygulamada kullanılmıyor
+- [x] Yerel proxy'de her `/api` yolu Java'da
+- [x] Sunucu kurulumu: `deploy/compose.server.yaml` (Laravel'in `db` konteynerine bağlanır, aynı port), `deploy/deploy.sh`, `deploy/.env.server.example`
+- [x] Şema karşılaştırma betiği: `deploy/compare-schema.sh` (yerel Laravel veritabanında "aynı", eklenen kolonda fark raporu)
+- [x] Prova: sunucu compose'u yerelde Laravel'in veritabanıyla ayağa kalktı, 15 ekran Laravel'le aynı
+
+**12b: Sunucuda geçiş**
+- [ ] **Şema kontrolü:** Sunucudaki canlı şema (`pg_dump --schema-only`) Java'nın migration'larıyla kurulan şemayla karşılaştırılır (`deploy/compare-schema.sh`). Elle yapılmış bir değişiklik ya da çalıştırılmamış bir migration varsa önce o giderilir. Bunun için veriye değil, sadece şemaya bakılır
 - [ ] **Her geçişten önce canlı veritabanının yedeği alınır**
-- [ ] Java canlı veritabanına bağlanır. Flyway `baselineOnMigrate` ile mevcut şemayı kabul eder, hiçbir tabloya dokunmaz
-- [ ] Canlıda proxy yönlendirmeleri açılır, Grafana'dan izlenir
-- [ ] Tüm trafik Java'da, Laravel'e giden istek yok (proxy log'larıyla doğrulanır)
-- [ ] Laravel konteyneri kapatılır, repo arşivlenir
+- [ ] Laravel'in `app` konteyneri durdurulur (veritabanı çalışmaya devam eder), Java aynı portta açılır. Flyway `baselineOnMigrate` ile mevcut şemayı kabul eder, Laravel'in tablolarına dokunmaz. Canlıda proxy yok: bütün modüller hazır olduğu için port doğrudan Java'ya geçer, geri dönüş tek komut
+- [ ] Telefondaki uygulamayla elle kontrol, birkaç gün log takibi
+- [ ] Laravel konteyneri silinir, repo arşivlenir
 - [ ] Birlikte çalışma düzeni silinir: `compose.laravel.yaml`, `application-laravel.yaml`, `docker/proxy/`, `.env.example`'daki geçiş bölümü, README'deki "Geçiş dönemi" bölümü
 
 **Bölüm A bu noktada biter: API tamamen Java'da, davranış Laravel ile birebir aynı.**

@@ -44,7 +44,7 @@ scp root@161.35.54.96:/root/canli-sema.sql .
 deploy/compare-schema.sh canli-sema.sql
 ```
 
-Fark varsa geçiş durur: sunucudaki Laravel kodu ile Java'nın `V1__baseline.sql`'i arasında
+Fark varsa geçiş durur: sunucudaki Laravel kodu ile Java'nın migration'ları (`db/migration/`) arasında
 çalıştırılmamış ya da elle yapılmış bir şema değişikliği vardır, önce o giderilir.
 
 ### 3. Yedek
