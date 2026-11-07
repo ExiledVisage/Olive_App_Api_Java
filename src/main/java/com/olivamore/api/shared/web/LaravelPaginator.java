@@ -33,7 +33,16 @@ public final class LaravelPaginator {
 	 */
 	public static <T> ListResponse.Paginated<T> paginate(List<T> items, long total, int currentPage, int perPage,
 		HttpServletRequest request) {
-		Urls urls = Urls.of(request);
+		return paginate(items, total, currentPage, perPage, Urls.of(request));
+	}
+
+	/** {@code withQueryString()} olmadan {@code paginate()}: link URL'lerinde yalnizca {@code page}. */
+	public static <T> ListResponse.Paginated<T> paginateWithoutQueryString(List<T> items, long total, int currentPage, int perPage,
+		HttpServletRequest request) {
+		return paginate(items, total, currentPage, perPage, new Urls(Urls.of(request).path(), Map.of()));
+	}
+
+	private static <T> ListResponse.Paginated<T> paginate(List<T> items, long total, int currentPage, int perPage, Urls urls) {
 		int lastPage = (int) Math.max(Math.ceil((double) total / perPage), 1);
 		boolean hasMore = currentPage < lastPage;
 

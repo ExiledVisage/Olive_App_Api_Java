@@ -309,12 +309,17 @@ Faz 8'e bağlı: sipariş hazırlanırken şişeler raftan düşüyor. Yeni `sal
   - `OrderParityIT`: Laravel'den yakalanan 91 durum (`reference/capture_order.py`): 91/91 aynı
   - Canlı karşılaştırma: 335 siparişin detayı ve stok kontrolü, liste varyasyonları, hata durumları 679/679 aynı
 
-## Faz 10: Bildirim (notification)
+## Faz 10: Bildirim (notification) (tamamlandı)
 
-- [ ] User notifications, bildirim gönderme endpoint'leri
-- [ ] Diğer modüllerin olaylarına Modulith event listener'ları (`@ApplicationModuleListener`)
-- [ ] Mail: Spring Mail + Thymeleaf
-- Test: `NotificationTest`
+Yeni `notification` modülü. Laravel'de bildirim yalnızca uygulama içi ve elle "dürtme" ile üretiliyor; push ve mail yok, hiçbir modül olayla bildirim üretmiyor. Planlanan event listener'lar ve Spring Mail bu yüzden taşınmadı (Laravel'de karşılıkları olmadığı için); push eklendiğinde kanal kolonu (`in_app`) hazır.
+
+- [x] Kullanıcının bildirimleri: liste (her zaman sayfalı, `per_page` varsayılan 30, en fazla 100; `?unread`; bağlantılarda query string yok, Laravel `paginate()` `withQueryString`'siz: `LaravelPaginator.paginateWithoutQueryString`), okunmamış sayısı, okundu işaretleme (başkasının bildirimi 422), hepsini okundu işaretleme
+- [x] Dürtme (`notification.send`): beş iş türü (dolum koşusu, sipariş, bitmiş ürün, parti, proses), varsayılan olarak işin sorumlu rolündeki herkese (dürten hariç) ya da tek kişiye; kendini uyarma yok; aynı iş için aynı kişiye 3 dakika içinde ikinci uyarı yok; gövde kaydın okunur adı ve not (201)
+- [x] Dürtülecek kişiler: sorumlu rollerdeki kullanıcılar, ada göre, rolleriyle
+- [x] Proxy: `/api/notifications`, `/api/nudges` Java'da
+- Testler:
+  - `NotificationParityIT`: Laravel'den yakalanan 38 durum (`reference/capture_notification.py`): 38/38 aynı
+  - Canlı karşılaştırma: 7 kullanıcının listesi (okunmamış, sayfalı), okunmamış sayısı, dürtülecek kişiler, hata durumu 42/42 aynı. Seed'de bildirim kaydı yok; dolu listeler parity testinde
 
 ## Faz 11: Analitik ve Günlük Özet (analytics)
 

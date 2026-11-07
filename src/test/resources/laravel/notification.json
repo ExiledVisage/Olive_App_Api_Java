@@ -1,0 +1,1006 @@
+{
+ "source": "Laravel http://localhost:8001, dondurulmus referans veri",
+ "cases": [
+  {
+   "name": "depo kullanicisi",
+   "sql": "select id from users where email = 'depo@olivamore.com'",
+   "save": "DEPO"
+  },
+  {
+   "name": "admin kullanicisi",
+   "sql": "select id from users where email = 'admin@olivamore.com'",
+   "save": "ADMIN"
+  },
+  {
+   "name": "bekleyen kosu",
+   "sql": "select id from finished_product_runs where status = 'planned' order by id limit 1",
+   "save": "RUN"
+  },
+  {
+   "name": "hazir siparis",
+   "sql": "select id from orders where status = 'ready' order by id limit 1",
+   "save": "ORD"
+  },
+  {
+   "name": "onay bekleyen proses",
+   "sql": "select id from batch_processes order by id desc limit 1",
+   "save": "BP"
+  },
+  {
+   "name": "liste bos",
+   "method": "GET",
+   "path": "/api/notifications",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [],
+    "links": {
+     "first": "http://localhost:8001/api/notifications?page=1",
+     "last": "http://localhost:8001/api/notifications?page=1",
+     "prev": null,
+     "next": null
+    },
+    "meta": {
+     "current_page": 1,
+     "from": null,
+     "last_page": 1,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": null,
+       "label": "Next &raquo;",
+       "page": null,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/notifications",
+     "per_page": 30,
+     "to": null,
+     "total": 0
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "okunmamis bos",
+   "method": "GET",
+   "path": "/api/notifications/unread-count",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "unread": 0
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "durtulecekler",
+   "method": "GET",
+   "path": "/api/nudges/targets",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 6,
+      "name": "Depo ve Sipariş",
+      "email": "depo@olivamore.com",
+      "roles": [
+       "warehouse_operator"
+      ]
+     },
+     {
+      "id": 5,
+      "name": "Üretim İşçisi",
+      "email": "uretim@olivamore.com",
+      "roles": [
+       "production_operator"
+      ]
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "durtulecekler muhendis",
+   "method": "GET",
+   "path": "/api/nudges/targets",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 6,
+      "name": "Depo ve Sipariş",
+      "email": "depo@olivamore.com",
+      "roles": [
+       "warehouse_operator"
+      ]
+     },
+     {
+      "id": 1,
+      "name": "Olivamore Admin",
+      "email": "admin@olivamore.com",
+      "roles": [
+       "admin"
+      ]
+     },
+     {
+      "id": 5,
+      "name": "Üretim İşçisi",
+      "email": "uretim@olivamore.com",
+      "roles": [
+       "production_operator"
+      ]
+     }
+    ]
+   },
+   "save": null,
+   "as": "muhendis@olivamore.com"
+  },
+  {
+   "name": "durtulecekler yetkisiz",
+   "method": "GET",
+   "path": "/api/nudges/targets",
+   "body": null,
+   "status": 403,
+   "response": {
+    "message": "User does not have the right permissions."
+   },
+   "save": null,
+   "as": "operator1@olivamore.com"
+  },
+  {
+   "name": "durt bos",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The subject type field is required. (and 1 more error)",
+    "errors": {
+     "subject_type": [
+      "The subject type field is required."
+     ],
+     "subject_id": [
+      "The subject id field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durt hatali",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "musteri",
+    "subject_id": 0,
+    "user_id": 999999,
+    "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected subject type is invalid. (and 3 more errors)",
+    "errors": {
+     "subject_type": [
+      "The selected subject type is invalid."
+     ],
+     "subject_id": [
+      "The subject id field must be at least 1."
+     ],
+     "user_id": [
+      "The selected user id is invalid."
+     ],
+     "note": [
+      "The note field must not be greater than 500 characters."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durt olmayan kayit",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
+    "subject_id": 999999
+   },
+   "status": 422,
+   "response": {
+    "message": "Uyarı gönderilecek kayıt bulunamadı.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "durt kendini",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
+    "subject_id": "{ORD}",
+    "user_id": "{ADMIN}"
+   },
+   "status": 422,
+   "response": {
+    "message": "Kendinizi uyaramazsınız.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "durt siparis rol",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
+    "subject_id": "{ORD}",
+    "note": "  musteri bekliyor  "
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "sent_to": 1,
+     "notifications": [
+      {
+       "id": 1,
+       "type": "nudge",
+       "title": "Sipariş hazırlanmayı bekliyor",
+       "body": "Sipariş #2 - Fatma Kaya • musteri bekliyor",
+       "subject_type": "order",
+       "subject_id": 2,
+       "is_read": false,
+       "read_at": null,
+       "created_at": "2026-11-07T13:09:21.000000Z"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durt siparis tekrar",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
+    "subject_id": "{ORD}"
+   },
+   "status": 422,
+   "response": {
+    "message": "Bu iş için az önce uyarı gönderildi. 3 dakika sonra tekrar deneyebilirsiniz.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "durt kosu kisi",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "finished_product_run",
+    "subject_id": "{RUN}",
+    "user_id": "{DEPO}",
+    "note": ""
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "sent_to": 1,
+     "notifications": [
+      {
+       "id": 2,
+       "type": "nudge",
+       "title": "Dolum koşusu bekliyor",
+       "body": "Naturel Sızma Gemlik 0.3 750ml - 100 adet",
+       "subject_type": "finished_product_run",
+       "subject_id": 4,
+       "is_read": false,
+       "read_at": null,
+       "created_at": "2026-11-07T13:09:21.000000Z"
+      }
+     ]
+    }
+   },
+   "save": null,
+   "as": "muhendis@olivamore.com"
+  },
+  {
+   "name": "durt urun",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "finished_product",
+    "subject_id": 1,
+    "note": "0"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "sent_to": 1,
+     "notifications": [
+      {
+       "id": 3,
+       "type": "nudge",
+       "title": "Ürün depoya konmayı bekliyor",
+       "body": "Naturel Sızma Gemlik 0.3 250ml",
+       "subject_type": "finished_product",
+       "subject_id": 1,
+       "is_read": false,
+       "read_at": null,
+       "created_at": "2026-11-07T13:09:21.000000Z"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durt parti",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "production_batch",
+    "subject_id": 1
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "sent_to": 1,
+     "notifications": [
+      {
+       "id": 4,
+       "type": "nudge",
+       "title": "Parti üretimde bekliyor",
+       "body": "SIM-AYV-001",
+       "subject_type": "production_batch",
+       "subject_id": 1,
+       "is_read": false,
+       "read_at": null,
+       "created_at": "2026-11-07T13:09:21.000000Z"
+      }
+     ]
+    }
+   },
+   "save": null,
+   "as": "muhendis@olivamore.com"
+  },
+  {
+   "name": "durt proses admin rolu",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "batch_process",
+    "subject_id": "{BP}"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "sent_to": 1,
+     "notifications": [
+      {
+       "id": 5,
+       "type": "nudge",
+       "title": "Aşama onay bekliyor",
+       "body": "P-261105-02 - Randıman Tespiti",
+       "subject_type": "batch_process",
+       "subject_id": 3276,
+       "is_read": false,
+       "read_at": null,
+       "created_at": "2026-11-07T13:09:22.000000Z"
+      }
+     ]
+    }
+   },
+   "save": null,
+   "as": "muhendis@olivamore.com"
+  },
+  {
+   "name": "durt proses admin kendini haric",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "batch_process",
+    "subject_id": "{BP}"
+   },
+   "status": 422,
+   "response": {
+    "message": "Bu iş 'admin' rolüne gidiyor ama o rolde uyarılacak kullanıcı yok.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "durt operator",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
+    "subject_id": "{ORD}"
+   },
+   "status": 403,
+   "response": {
+    "message": "User does not have the right permissions."
+   },
+   "save": null,
+   "as": "operator1@olivamore.com"
+  },
+  {
+   "name": "liste depo",
+   "method": "GET",
+   "path": "/api/notifications",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 3,
+      "type": "nudge",
+      "title": "Ürün depoya konmayı bekliyor",
+      "body": "Naturel Sızma Gemlik 0.3 250ml",
+      "subject_type": "finished_product",
+      "subject_id": 1,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 1,
+       "name": "Olivamore Admin"
+      }
+     },
+     {
+      "id": 2,
+      "type": "nudge",
+      "title": "Dolum koşusu bekliyor",
+      "body": "Naturel Sızma Gemlik 0.3 750ml - 100 adet",
+      "subject_type": "finished_product_run",
+      "subject_id": 4,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 7,
+       "name": "Gıda Mühendisi"
+      }
+     },
+     {
+      "id": 1,
+      "type": "nudge",
+      "title": "Sipariş hazırlanmayı bekliyor",
+      "body": "Sipariş #2 - Fatma Kaya • musteri bekliyor",
+      "subject_type": "order",
+      "subject_id": 2,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 1,
+       "name": "Olivamore Admin"
+      }
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/notifications?page=1",
+     "last": "http://localhost:8001/api/notifications?page=1",
+     "prev": null,
+     "next": null
+    },
+    "meta": {
+     "current_page": 1,
+     "from": 1,
+     "last_page": 1,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": null,
+       "label": "Next &raquo;",
+       "page": null,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/notifications",
+     "per_page": 30,
+     "to": 3,
+     "total": 3
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "liste depo okunmamis",
+   "method": "GET",
+   "path": "/api/notifications?unread=1",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 3,
+      "type": "nudge",
+      "title": "Ürün depoya konmayı bekliyor",
+      "body": "Naturel Sızma Gemlik 0.3 250ml",
+      "subject_type": "finished_product",
+      "subject_id": 1,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 1,
+       "name": "Olivamore Admin"
+      }
+     },
+     {
+      "id": 2,
+      "type": "nudge",
+      "title": "Dolum koşusu bekliyor",
+      "body": "Naturel Sızma Gemlik 0.3 750ml - 100 adet",
+      "subject_type": "finished_product_run",
+      "subject_id": 4,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 7,
+       "name": "Gıda Mühendisi"
+      }
+     },
+     {
+      "id": 1,
+      "type": "nudge",
+      "title": "Sipariş hazırlanmayı bekliyor",
+      "body": "Sipariş #2 - Fatma Kaya • musteri bekliyor",
+      "subject_type": "order",
+      "subject_id": 2,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 1,
+       "name": "Olivamore Admin"
+      }
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/notifications?page=1",
+     "last": "http://localhost:8001/api/notifications?page=1",
+     "prev": null,
+     "next": null
+    },
+    "meta": {
+     "current_page": 1,
+     "from": 1,
+     "last_page": 1,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": null,
+       "label": "Next &raquo;",
+       "page": null,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/notifications",
+     "per_page": 30,
+     "to": 3,
+     "total": 3
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "liste depo sayfali",
+   "method": "GET",
+   "path": "/api/notifications?per_page=1&page=2",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 2,
+      "type": "nudge",
+      "title": "Dolum koşusu bekliyor",
+      "body": "Naturel Sızma Gemlik 0.3 750ml - 100 adet",
+      "subject_type": "finished_product_run",
+      "subject_id": 4,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 7,
+       "name": "Gıda Mühendisi"
+      }
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/notifications?page=1",
+     "last": "http://localhost:8001/api/notifications?page=3",
+     "prev": "http://localhost:8001/api/notifications?page=1",
+     "next": "http://localhost:8001/api/notifications?page=3"
+    },
+    "meta": {
+     "current_page": 2,
+     "from": 2,
+     "last_page": 3,
+     "links": [
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "&laquo; Previous",
+       "page": 1,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "1",
+       "page": 1,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=2",
+       "label": "2",
+       "page": 2,
+       "active": true
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=3",
+       "label": "3",
+       "page": 3,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=3",
+       "label": "Next &raquo;",
+       "page": 3,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/notifications",
+     "per_page": 1,
+     "to": 2,
+     "total": 3
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "liste hatali",
+   "method": "GET",
+   "path": "/api/notifications?unread=evet&per_page=101",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "The unread field must be true or false. (and 1 more error)",
+    "errors": {
+     "unread": [
+      "The unread field must be true or false."
+     ],
+     "per_page": [
+      "The per page field must not be greater than 100."
+     ]
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "okunmamis depo",
+   "method": "GET",
+   "path": "/api/notifications/unread-count",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "unread": 3
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "depo bildirimi",
+   "sql": "select id from user_notifications where user_id = {DEPO} order by id limit 1",
+   "save": "N1"
+  },
+  {
+   "name": "okundu baskasinin",
+   "method": "POST",
+   "path": "/api/notifications/{N1}/read",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "Bu bildirim size ait değil.",
+    "errors": {}
+   },
+   "save": null,
+   "as": "uretim@olivamore.com"
+  },
+  {
+   "name": "okundu",
+   "method": "POST",
+   "path": "/api/notifications/{N1}/read",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 1,
+     "type": "nudge",
+     "title": "Sipariş hazırlanmayı bekliyor",
+     "body": "Sipariş #2 - Fatma Kaya • musteri bekliyor",
+     "subject_type": "order",
+     "subject_id": 2,
+     "is_read": true,
+     "read_at": "2026-11-07T13:09:22.000000Z",
+     "created_at": "2026-11-07T13:09:21.000000Z",
+     "sent_by": {
+      "id": 1,
+      "name": "Olivamore Admin"
+     }
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "okundu tekrar",
+   "method": "POST",
+   "path": "/api/notifications/{N1}/read",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 1,
+     "type": "nudge",
+     "title": "Sipariş hazırlanmayı bekliyor",
+     "body": "Sipariş #2 - Fatma Kaya • musteri bekliyor",
+     "subject_type": "order",
+     "subject_id": 2,
+     "is_read": true,
+     "read_at": "2026-11-07T13:09:22.000000Z",
+     "created_at": "2026-11-07T13:09:21.000000Z",
+     "sent_by": {
+      "id": 1,
+      "name": "Olivamore Admin"
+     }
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "okundu olmayan",
+   "method": "POST",
+   "path": "/api/notifications/999999/read",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\UserNotification] 999999"
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "liste depo okunmamis sonra",
+   "method": "GET",
+   "path": "/api/notifications?unread=true",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "The unread field must be true or false.",
+    "errors": {
+     "unread": [
+      "The unread field must be true or false."
+     ]
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "hepsi okundu",
+   "method": "POST",
+   "path": "/api/notifications/read-all",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "marked": 2
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "hepsi okundu tekrar",
+   "method": "POST",
+   "path": "/api/notifications/read-all",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "marked": 0
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "okunmamis depo sonra",
+   "method": "GET",
+   "path": "/api/notifications/unread-count",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "unread": 0
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "liste uretim",
+   "method": "GET",
+   "path": "/api/notifications",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 4,
+      "type": "nudge",
+      "title": "Parti üretimde bekliyor",
+      "body": "SIM-AYV-001",
+      "subject_type": "production_batch",
+      "subject_id": 1,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:21.000000Z",
+      "sent_by": {
+       "id": 7,
+       "name": "Gıda Mühendisi"
+      }
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/notifications?page=1",
+     "last": "http://localhost:8001/api/notifications?page=1",
+     "prev": null,
+     "next": null
+    },
+    "meta": {
+     "current_page": 1,
+     "from": 1,
+     "last_page": 1,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": null,
+       "label": "Next &raquo;",
+       "page": null,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/notifications",
+     "per_page": 30,
+     "to": 1,
+     "total": 1
+    }
+   },
+   "save": null,
+   "as": "uretim@olivamore.com"
+  },
+  {
+   "name": "liste admin",
+   "method": "GET",
+   "path": "/api/notifications?unread=0",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 5,
+      "type": "nudge",
+      "title": "Aşama onay bekliyor",
+      "body": "P-261105-02 - Randıman Tespiti",
+      "subject_type": "batch_process",
+      "subject_id": 3276,
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-11-07T13:09:22.000000Z",
+      "sent_by": {
+       "id": 7,
+       "name": "Gıda Mühendisi"
+      }
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/notifications?page=1",
+     "last": "http://localhost:8001/api/notifications?page=1",
+     "prev": null,
+     "next": null
+    },
+    "meta": {
+     "current_page": 1,
+     "from": 1,
+     "last_page": 1,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/notifications?page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": null,
+       "label": "Next &raquo;",
+       "page": null,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/notifications",
+     "per_page": 30,
+     "to": 1,
+     "total": 1
+    }
+   },
+   "save": null
+  }
+ ]
+}

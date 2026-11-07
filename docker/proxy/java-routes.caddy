@@ -122,3 +122,11 @@ handle @java_orders {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 10: bildirimler ve durtme
+@java_notifications path /api/notifications /api/notifications/* /api/nudges /api/nudges/*
+handle @java_notifications {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}
