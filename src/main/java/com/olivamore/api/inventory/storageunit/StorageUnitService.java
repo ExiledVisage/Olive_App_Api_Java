@@ -1,4 +1,4 @@
-package com.olivamore.api.inventory;
+package com.olivamore.api.inventory.storageunit;
 
 import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.error.BusinessRuleException;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -33,88 +32,58 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import org.springframework.stereotype.Service;
 
 /**
- * Laravel {@code StorageUnitController} + {@code StorageUnitService}: tanklar, izinli urunler/tipler,
- * attribute kurallari, bakiyeler ve hareket listesi.
+ * Laravel {@code StorageUnitService}: tanklar, izinli urun ve tipler, attribute kurallari (yalnizca decimal attribute,
+ * min <= max; sonraki kuralda hata olursa hepsi geri alinir), silme korumalari.
  */
-@RestController
-class StorageUnitController {
+@Service
+class StorageUnitService {
 
 	private static final String TABLE = "storage_units";
-	private static final String MODEL = "StorageUnit";
+
 	private static final List<String> APPLY_MODES = List.of("incoming_only", "tank_average_only", "incoming_and_average");
+
 	private static final List<String> FLAGS = List.of("is_blend_tank", "allow_multiple_production_product_types",
 		"allow_multiple_production_products");
 
 	private final Db db;
-	private final LaravelValidator validator;
-	private final InventoryReads reads;
 
-	StorageUnitController(Db db, LaravelValidator validator, InventoryReads reads) {
+	StorageUnitService(Db db) {
 		this.db = db;
-		this.validator = validator;
-		this.reads = reads;
 	}
 
-	// ---- okuma (storage_unit.view) -----------------------------------------
-
-	/** {@code latest()}: created_at desc. */
-	@GetMapping("/api/storage-units")
-	@RequiresPermission("storage_unit.view")
-	ListResponse<Map<String, Object>> index() {
-		return new ListResponse.Plain<>(reads.storageUnits(db.select("select * from storage_units order by created_at desc")));
+	List<Row> all() {
+		return db.select("select * from storage_units order by created_at desc");
 	}
 
-	@GetMapping("/api/storage-units/{storage_unit}")
-	@RequiresPermission("storage_unit.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "storage_unit", table = TABLE, model = MODEL) Row unit) {
-		return DataResponse.of(reads.storageUnit(unit));
+	Row byId(long id) {
+		return db.find(TABLE, id).orElseThrow();
 	}
 
-	/** {@code movements()} en yeni once (moved_at desc, id desc); {@code per_page} varsa sayfali. */
-	@GetMapping("/api/storage-units/{storageUnit}/movements")
-	@RequiresPermission("storage_unit.view")
-	ListResponse<Map<String, Object>> movements(@Bound(value = "storageUnit", table = TABLE, model = MODEL) Row unit,
-		HttpServletRequest request) {
-		String where = " from storage_movements where storage_movements.storage_unit_id = ?"
-			+ " and storage_movements.storage_unit_id is not null";
-		String order = " order by moved_at desc, id desc";
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(reads.movements(db.select("select *" + where + order, unit.id())));
+	/** Tankin hareketleri, en yeni once; {@code perPage} null ise hepsi. */
+	List<Row> movements(long unitId, Integer page, Integer perPage) {
+		String sql = "select * from storage_movements where storage_movements.storage_unit_id = ?"
+			+ " and storage_movements.storage_unit_id is not null order by moved_at desc, id desc";
+		if (perPage != null) {
+			sql += " limit " + perPage + " offset " + (long) (page - 1) * perPage;
 		}
-		int page = Listing.currentPage(request);
-		long total = db.count("select count(*) as aggregate" + where, unit.id());
-		List<Row> rows = total == 0 ? List.of()
-			: db.select("select *" + where + order + " limit " + perPage.get() + " offset " + (long) (page - 1) * perPage.get(), unit.id());
-		return LaravelPaginator.paginate(reads.movements(rows), total, page, perPage.get(), request);
+		return db.select(sql, unitId);
 	}
 
-	@GetMapping("/api/storage-units/{storageUnit}/balances")
-	@RequiresPermission("storage_unit.view")
-	ListResponse<Map<String, Object>> balances(@Bound(value = "storageUnit", table = TABLE, model = MODEL) Row unit) {
-		return new ListResponse.Plain<>(reads.balances(db.select("select * from storage_unit_balances"
-			+ " where storage_unit_balances.storage_unit_id = ? and storage_unit_balances.storage_unit_id is not null", unit.id())));
+	long movementCount(long unitId) {
+		return db.count("select count(*) as aggregate from storage_movements where storage_movements.storage_unit_id = ?"
+			+ " and storage_movements.storage_unit_id is not null", unitId);
 	}
 
-	// ---- yazma (storage_unit.manage) ---------------------------------------
+	List<Row> balances(long unitId) {
+		return db.select("select * from storage_unit_balances"
+			+ " where storage_unit_balances.storage_unit_id = ? and storage_unit_balances.storage_unit_id is not null", unitId);
+	}
 
-	/** Bayraklar verilmediyse (ya da null) false, is_active true. Cevap 201. */
-	@PostMapping("/api/storage-units")
-	@RequiresPermission("storage_unit.manage")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("name", "required|string|max:255")
-			.field("code", "required|string|max:255|unique:storage_units,code")
-			.field("capacity", "required|numeric|gt:0")
-			.field("capacity_unit", "required|string|in:KG,LITRE")
-			.field("is_blend_tank", "nullable|boolean")
-			.field("allow_multiple_production_product_types", "nullable|boolean")
-			.field("allow_multiple_production_products", "nullable|boolean")
-			.field("description", "nullable|string")
-			.field("is_active", "nullable|boolean"));
+	/** Bayraklar verilmediyse (ya da null) false, is_active true. @return olusan model (verilen alanlar) */
+	Row create(ValidatedInput v) {
 		Map<String, Object> values = new LinkedHashMap<>();
 		values.put("name", v.get("name"));
 		values.put("code", v.get("code"));
@@ -125,36 +94,18 @@ class StorageUnitController {
 		}
 		values.put("description", v.get("description"));
 		values.put("is_active", v.get("is_active") == null ? Boolean.TRUE : v.get("is_active"));
-		return DataResponse.created(reads.storageUnit(db.create(TABLE, values)));
+		return db.create(TABLE, values);
 	}
 
 	/** Yalnizca gonderilen alanlar (null dahil: NOT NULL kolonda Laravel'deki gibi veritabani hatasi). */
-	@RequestMapping(path = "/api/storage-units/{storage_unit}", method = {RequestMethod.PATCH, RequestMethod.PUT})
-	@RequiresPermission("storage_unit.manage")
-	@Transactional
-	DataResponse<Map<String, Object>> update(@Bound(value = "storage_unit", table = TABLE, model = MODEL) Row unit,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("name", "sometimes|string|max:255")
-			.field("code", "sometimes|string|max:255|unique:storage_units,code," + unit.id())
-			.field("capacity", "sometimes|numeric|gt:0")
-			.field("capacity_unit", "sometimes|string|in:KG,LITRE")
-			.field("is_blend_tank", "nullable|boolean")
-			.field("allow_multiple_production_product_types", "nullable|boolean")
-			.field("allow_multiple_production_products", "nullable|boolean")
-			.field("description", "nullable|string")
-			.field("is_active", "sometimes|boolean"));
+	void update(Row unit, ValidatedInput v) {
 		if (!v.all().isEmpty()) {
 			db.update(TABLE, unit.id(), v.all());
 		}
-		return DataResponse.of(reads.storageUnit(db.find(TABLE, unit.id()).orElseThrow()));
 	}
 
-	/** Icinde aktif materyal ya da hareket kaydi olan tank silinmez (pasife alinir). Cevap 204. */
-	@DeleteMapping("/api/storage-units/{storage_unit}")
-	@RequiresPermission("storage_unit.manage")
-	@Transactional
-	ResponseEntity<Void> destroy(@Bound(value = "storage_unit", table = TABLE, model = MODEL) Row unit) {
+	/** Icinde aktif materyal ya da hareket kaydi olan tank silinmez (pasife alinir). */
+	void delete(Row unit) {
 		long movementCount = db.count("select count(*) as aggregate from storage_movements"
 			+ " where storage_movements.storage_unit_id = ? and storage_movements.storage_unit_id is not null", unit.id());
 		long materialCount = db.count("select count(*) as aggregate from materials where current_location_type = ?"
@@ -168,52 +119,18 @@ class StorageUnitController {
 				+ "silinemez. Tankı kullanımdan kaldırmak için is_active alanını false yapın.");
 		}
 		db.delete(TABLE, unit.id());
-		return ResponseEntity.noContent().build();
 	}
 
-	@PutMapping("/api/storage-units/{storageUnit}/allowed-production-products")
-	@RequiresPermission("storage_unit.manage")
-	@Transactional
-	DataResponse<Map<String, Object>> syncAllowedProducts(@Bound(value = "storageUnit", table = TABLE, model = MODEL) Row unit,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("production_product_ids", "required|array")
-			.field("production_product_ids.*", "integer|exists:production_products,id"));
-		sync(unit, "storage_unit_allowed_production_products", "production_product_id", v.get("production_product_ids"));
-		return DataResponse.of(reads.storageUnit(unit));
+	void syncAllowedProducts(Row unit, Object ids) {
+		sync(unit, "storage_unit_allowed_production_products", "production_product_id", ids);
 	}
 
-	@PutMapping("/api/storage-units/{storageUnit}/allowed-production-product-types")
-	@RequiresPermission("storage_unit.manage")
-	@Transactional
-	DataResponse<Map<String, Object>> syncAllowedTypes(@Bound(value = "storageUnit", table = TABLE, model = MODEL) Row unit,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("production_product_type_ids", "required|array")
-			.field("production_product_type_ids.*", "integer|exists:production_product_types,id"));
-		sync(unit, "storage_unit_allowed_production_product_types", "production_product_type_id", v.get("production_product_type_ids"));
-		return DataResponse.of(reads.storageUnit(unit));
+	void syncAllowedTypes(Row unit, Object ids) {
+		sync(unit, "storage_unit_allowed_production_product_types", "production_product_type_id", ids);
 	}
 
-	/**
-	 * Listede olmayan kurallar silinir, digerleri updateOrCreate. Kural sadece decimal attribute icin;
-	 * min > max olamaz. Hata olursa (sonraki kuralda bile) hepsi geri alinir.
-	 */
-	@PutMapping("/api/storage-units/{storageUnit}/attribute-rules")
-	@RequiresPermission("storage_unit.manage")
-	@Transactional
-	DataResponse<Map<String, Object>> syncAttributeRules(@Bound(value = "storageUnit", table = TABLE, model = MODEL) Row unit,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("rules", "required|array")
-			.field("rules.*.production_product_attribute_definition_id",
-				"required|integer|exists:production_product_attribute_definitions,id")
-			.field("rules.*.min_value_decimal", "nullable|numeric")
-			.field("rules.*.max_value_decimal", "nullable|numeric")
-			.field("rules.*.apply_mode", "nullable|string|in:incoming_only,tank_average_only,incoming_and_average")
-			.field("rules.*.is_active", "nullable|boolean")
-			.field("rules.*.note", "nullable|string"));
-
+	/** Listede olmayan kurallar silinir, digerleri updateOrCreate. */
+	void syncAttributeRules(Row unit, ValidatedInput v) {
 		List<Map<String, Object>> rules = new ArrayList<>();
 		for (Object item : list(v.get("rules"))) {
 			@SuppressWarnings("unchecked")
@@ -278,7 +195,6 @@ class StorageUnitController {
 				db.insert("storage_unit_attribute_rules", created);
 			}
 		}
-		return DataResponse.of(reads.storageUnit(unit));
 	}
 
 	// ---- yardimcilar -------------------------------------------------------

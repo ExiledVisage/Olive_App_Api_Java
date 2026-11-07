@@ -1,4 +1,4 @@
-package com.olivamore.api.inventory;
+package com.olivamore.api.inventory.storagemovement;
 
 import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.error.ModelNotFoundException;
@@ -39,10 +39,10 @@ class StorageMovementController {
 
 	private final Db db;
 	private final LaravelValidator validator;
-	private final StorageMovements movements;
-	private final InventoryReads reads;
+	private final StorageMovementService movements;
+	private final StorageMovementResource reads;
 
-	StorageMovementController(Db db, LaravelValidator validator, StorageMovements movements, InventoryReads reads) {
+	StorageMovementController(Db db, LaravelValidator validator, StorageMovementService movements, StorageMovementResource reads) {
 		this.db = db;
 		this.validator = validator;
 		this.movements = movements;
@@ -52,13 +52,7 @@ class StorageMovementController {
 	@PostMapping("/api/storage-movements/opening")
 	@RequiresPermission("storage_movement.create")
 	ResponseEntity<DataResponse<Map<String, Object>>> opening(RequestInput input) {
-		ValidatedInput v = validator.validate(input, attributeValueRules(Rules.of()
-			.field("storage_unit_id", "required|integer|exists:storage_units,id")
-			.field("production_product_type_id", "required|integer|exists:production_product_types,id")
-			.field("quantity", "required|numeric|gt:0")
-			.field("unit", "required|string|in:KG,LITRE")
-			.field("attribute_values", "nullable|array"))
-			.field("note", "nullable|string"));
+		ValidatedInput v = validator.validate(input, StorageMovementRequests.opening());
 		Row unit = find("storage_units", "StorageUnit", v.get("storage_unit_id"));
 		Row type = find("production_product_types", "ProductionProductType", v.get("production_product_type_id"));
 		return created(movements.opening(unit, type, Php.floatval(v.get("quantity")), v.string("unit"),
@@ -69,16 +63,7 @@ class StorageMovementController {
 	@PostMapping("/api/storage-movements/inbound")
 	@RequiresPermission("storage_movement.create")
 	ResponseEntity<DataResponse<Map<String, Object>>> inbound(RequestInput input) {
-		ValidatedInput v = validator.validate(input, attributeValueRules(Rules.of()
-			.field("storage_unit_id", "required|integer|exists:storage_units,id")
-			.field("material_id", "required_without:production_product_type_id|nullable|integer|exists:materials,id")
-			.field("production_product_type_id",
-				"required_without:material_id|nullable|integer|exists:production_product_types,id|prohibits:material_id")
-			.field("unit", "nullable|string|in:KG,LITRE|prohibits:material_id")
-			.field("attribute_values", "nullable|array|prohibits:material_id"))
-			.field("batch_process_id", "nullable|integer|exists:batch_processes,id")
-			.field("quantity", "required|numeric|gt:0")
-			.field("note", "nullable|string"));
+		ValidatedInput v = validator.validate(input, StorageMovementRequests.inbound());
 		Row unit = find("storage_units", "StorageUnit", v.get("storage_unit_id"));
 		Row batchProcess = batchProcess(v.get("batch_process_id"));
 		double quantity = Php.floatval(v.get("quantity"));
@@ -94,12 +79,7 @@ class StorageMovementController {
 	@PostMapping("/api/storage-movements/outbound")
 	@RequiresPermission("storage_movement.create")
 	ResponseEntity<DataResponse<Map<String, Object>>> outbound(RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("storage_unit_id", "required|integer|exists:storage_units,id")
-			.field("material_id", "required|integer|exists:materials,id")
-			.field("batch_process_id", "nullable|integer|exists:batch_processes,id")
-			.field("quantity", "required|numeric|gt:0")
-			.field("note", "nullable|string"));
+		ValidatedInput v = validator.validate(input, StorageMovementRequests.outbound());
 		Row unit = find("storage_units", "StorageUnit", v.get("storage_unit_id"));
 		Row material = find("materials", "Material", v.get("material_id"));
 		Row batchProcess = batchProcess(v.get("batch_process_id"));
@@ -109,18 +89,12 @@ class StorageMovementController {
 	@PostMapping("/api/storage-movements/transfer")
 	@RequiresPermission("storage_movement.transfer")
 	DataResponse<Map<String, Object>> transfer(RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("from_storage_unit_id", "required|integer|exists:storage_units,id")
-			.field("to_storage_unit_id", "required|integer|exists:storage_units,id|different:from_storage_unit_id")
-			.field("material_id", "required|integer|exists:materials,id")
-			.field("batch_process_id", "nullable|integer|exists:batch_processes,id")
-			.field("quantity", "required|numeric|gt:0")
-			.field("note", "nullable|string"));
+		ValidatedInput v = validator.validate(input, StorageMovementRequests.transfer());
 		Row from = find("storage_units", "StorageUnit", v.get("from_storage_unit_id"));
 		Row to = find("storage_units", "StorageUnit", v.get("to_storage_unit_id"));
 		Row material = find("materials", "Material", v.get("material_id"));
 		Row batchProcess = batchProcess(v.get("batch_process_id"));
-		StorageMovements.Transfer t = movements.transfer(from, to, material, Php.floatval(v.get("quantity")), batchProcess,
+		StorageMovementService.Transfer t = movements.transfer(from, to, material, Php.floatval(v.get("quantity")), batchProcess,
 			v.string("note"));
 		List<Map<String, Object>> both = reads.movements(List.of(t.out(), t.in()), true);
 		Map<String, Object> r = new LinkedHashMap<>();
@@ -136,16 +110,7 @@ class StorageMovementController {
 	ResponseEntity<DataResponse<Map<String, Object>>> adjustment(RequestInput input) {
 		// Rule::requiredIf($this->boolean('is_increase')): ham girdi filter_var(BOOLEAN) ile
 		boolean increase = filterBoolean(input.get("is_increase"));
-		ValidatedInput v = validator.validate(input, attributeValueRules(Rules.of()
-			.field("storage_unit_id", "required|integer|exists:storage_units,id")
-			.field("batch_process_id", "nullable|integer|exists:batch_processes,id")
-			.field("quantity", "required|numeric|gt:0")
-			.field("is_increase", "required|boolean")
-			.field("production_product_type_id", (increase ? "required|" : "") + "nullable|integer|exists:production_product_types,id")
-			.field("unit", (increase ? "required|" : "") + "nullable|string|in:KG,LITRE")
-			.field("material_id", (increase ? "" : "required|") + "nullable|integer|exists:materials,id")
-			.field("attribute_values", "nullable|array"))
-			.field("note", "nullable|string"));
+		ValidatedInput v = validator.validate(input, StorageMovementRequests.adjustment(increase));
 		Row unit = find("storage_units", "StorageUnit", v.get("storage_unit_id"));
 		Row batchProcess = batchProcess(v.get("batch_process_id"));
 		double quantity = Php.floatval(v.get("quantity"));
@@ -163,43 +128,18 @@ class StorageMovementController {
 	@RequiresPermission("storage_movement.view")
 	ListResponse<Map<String, Object>> history(@Bound(value = "storageUnit", table = "storage_units", model = "StorageUnit") Row unit,
 		HttpServletRequest request) {
-		StringBuilder where = new StringBuilder(" from storage_movements where storage_unit_id = ?");
-		List<Object> args = new ArrayList<>(List.of(unit.id()));
-		String from = request.getParameter("date_from");
-		String to = request.getParameter("date_to");
-		// when($dateFrom): PHP'de "0" de false
-		if (from != null && !from.equals("0")) {
-			where.append(" and moved_at::date >= ?");
-			args.add(from);
-		}
-		if (to != null && !to.equals("0")) {
-			where.append(" and moved_at::date <= ?");
-			args.add(to);
-		}
-		String order = " order by moved_at desc, id desc";
+		StorageMovementService.History h = movements.history(unit.id(), request.getParameter("date_from"), request.getParameter("date_to"));
 		Optional<Integer> perPage = Listing.perPage(request);
 		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(reads.movements(db.select("select *" + where + order, args.toArray())));
+			return new ListResponse.Plain<>(reads.movements(movements.history(h, null, null)));
 		}
 		int page = Listing.currentPage(request);
-		long total = db.count("select count(*) as aggregate" + where, args.toArray());
-		List<Row> rows = total == 0 ? List.of()
-			: db.select("select *" + where + order + " limit " + perPage.get() + " offset " + (long) (page - 1) * perPage.get(), args.toArray());
+		long total = movements.historyCount(h);
+		List<Row> rows = total == 0 ? List.of() : movements.history(h, page, perPage.get());
 		return LaravelPaginator.paginate(reads.movements(rows), total, page, perPage.get(), request);
 	}
 
 	// ---- yardimcilar -------------------------------------------------------
-
-	private static Rules attributeValueRules(Rules rules) {
-		return rules
-			.field("attribute_values.*.production_product_attribute_definition_id",
-				"required|integer|exists:production_product_attribute_definitions,id")
-			.field("attribute_values.*.value_boolean", "nullable|boolean")
-			.field("attribute_values.*.value_integer", "nullable|integer")
-			.field("attribute_values.*.value_decimal", "nullable|numeric")
-			.field("attribute_values.*.value_text", "nullable|string")
-			.field("attribute_values.*.value_json", "nullable|array");
-	}
 
 	private ResponseEntity<DataResponse<Map<String, Object>>> created(Row movement) {
 		return DataResponse.created(reads.movements(List.of(movement), true).getFirst());

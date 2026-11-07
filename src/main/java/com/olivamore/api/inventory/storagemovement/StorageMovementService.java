@@ -1,4 +1,4 @@
-package com.olivamore.api.inventory;
+package com.olivamore.api.inventory.storagemovement;
 
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.LaravelValidationException;
@@ -8,7 +8,7 @@ import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.time.Timestamps;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
@@ -31,8 +31,8 @@ import java.util.Objects;
  * Laravel'den fark (DEVIATIONS): islemdeki tanklar transaction basinda {@code FOR UPDATE} ile kilitlenir;
  * ayni tanka eszamanli iki giris kapasiteyi birlikte asamaz. Cevaplar degismez.
  */
-@Component
-class StorageMovements {
+@Service
+public class StorageMovementService {
 
 	static final String SOURCE_BATCH_PROCESS = "BATCH_PROCESS";
 	static final String SOURCE_OPENING = "STORAGE_OPENING";
@@ -57,12 +57,12 @@ class StorageMovements {
 
 	private final Db db;
 
-	StorageMovements(Db db) {
+	StorageMovementService(Db db) {
 		this.db = db;
 	}
 
 	/** Transfer sonucu: iki hareket ve ortak referans. */
-	record Transfer(String reference, Row out, Row in) {
+	public record Transfer(String reference, Row out, Row in) {
 	}
 
 	// ======================================================================
@@ -87,7 +87,7 @@ class StorageMovements {
 
 	/** Var olan bir materyalin (ya da bir kisminin) tanka alinmasi. */
 	@Transactional
-	Row inbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
+	public Row inbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
 		assertPositiveQuantity(quantity);
 		lock(unit.id());
 		unit = reload(unit);
@@ -106,13 +106,13 @@ class StorageMovements {
 
 	/** Tanktan cikan miktar tuketilmis sayilir (consumed). */
 	@Transactional
-	Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
+	public Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
 		return outbound(unit, material, quantity, batchProcess, note, null);
 	}
 
 	/** @param runId dolum kosusu ({@code finished_product_run_id}); yoksa null */
 	@Transactional
-	Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note, Long runId) {
+	public Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note, Long runId) {
 		assertPositiveQuantity(quantity);
 		lock(unit.id());
 		assertMaterialInsideStorage(unit, material);
@@ -125,7 +125,7 @@ class StorageMovements {
 	}
 
 	@Transactional
-	Transfer transfer(Row from, Row to, Row material, double quantity, Row batchProcess, String note) {
+	public Transfer transfer(Row from, Row to, Row material, double quantity, Row batchProcess, String note) {
 		assertPositiveQuantity(quantity);
 		if (from.id() == to.id()) {
 			throw new BusinessRuleException("Aynı tanktan aynı tanka transfer yapılamaz.");
@@ -585,6 +585,41 @@ class StorageMovements {
 			out.append(ALPHANUMERIC.charAt(RANDOM.nextInt(ALPHANUMERIC.length())));
 		}
 		return out.toString();
+	}
+
+
+	// ---- hareket gecmisi ----------------------------------------------------
+
+	/** Tankin hareketleri: {@code dateFrom}/{@code dateTo} moved_at::date araligi ("0" verilmemis sayilir). */
+	record History(String where, List<Object> args) {
+	}
+
+	History history(long unitId, String from, String to) {
+		StringBuilder where = new StringBuilder(" from storage_movements where storage_unit_id = ?");
+		List<Object> args = new ArrayList<>(List.of(unitId));
+		// when($dateFrom): PHP'de "0" de false
+		if (from != null && !from.equals("0")) {
+			where.append(" and moved_at::date >= ?");
+			args.add(from);
+		}
+		if (to != null && !to.equals("0")) {
+			where.append(" and moved_at::date <= ?");
+			args.add(to);
+		}
+		return new History(where.toString(), args);
+	}
+
+	/** En yeni once (moved_at desc, id desc); {@code perPage} null ise hepsi. */
+	List<Row> history(History h, Integer page, Integer perPage) {
+		String sql = "select *" + h.where() + " order by moved_at desc, id desc";
+		if (perPage != null) {
+			sql += " limit " + perPage + " offset " + (long) (page - 1) * perPage;
+		}
+		return db.select(sql, h.args().toArray());
+	}
+
+	long historyCount(History h) {
+		return db.count("select count(*) as aggregate" + h.where(), h.args().toArray());
 	}
 
 }

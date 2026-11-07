@@ -1,20 +1,21 @@
 package com.olivamore.api.inventory;
 
+import com.olivamore.api.inventory.storagemovement.StorageMovementService;
 import com.olivamore.api.shared.persistence.Row;
 import org.springframework.stereotype.Component;
 
 /**
  * Stok hareketlerinin diger modullere acik kismi: uretim asamasinin (depo hareketi uzantisi) yaptigi tank
- * girisi, cikisi ve transferi. Kurallar ve bakiye {@code StorageMovements}'ta, tank sayfasindakiyle ayni.
+ * girisi, cikisi ve transferi. Kurallar ve bakiye {@code StorageMovementService}'te, tank sayfasindakiyle ayni.
  * Proses hareketleri {@code BATCH_PROCESS} kaynakli yazilir, bolunen materyal prosese baglanir; dolum kosusunun
  * cikisi {@code MANUAL} kaynakli ve kosuya bagli.
  */
 @Component
 public class StockOperations {
 
-	private final StorageMovements movements;
+	private final StorageMovementService movements;
 
-	StockOperations(StorageMovements movements) {
+	StockOperations(StorageMovementService movements) {
 		this.movements = movements;
 	}
 

@@ -1,11 +1,11 @@
-package com.olivamore.api.inventory;
+package com.olivamore.api.inventory.material;
 
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,14 +20,14 @@ import java.util.Set;
  * torunlara inilir (en fazla 400 dugum), sonra dolum kosulari, depo yerlestirmeleri ve (tek kosudan
  * beslenen depolarda) siparisler eklenir. Dugumlere kokten en uzun yol derinligi verilir.
  */
-@Component
-class MaterialLineage {
+@Service
+class MaterialLineageService {
 
 	static final int MAX_NODES = 400;
 
 	private final Db db;
 
-	MaterialLineage(Db db) {
+	MaterialLineageService(Db db) {
 		this.db = db;
 	}
 
@@ -210,7 +210,7 @@ class MaterialLineage {
 		r.put("quantity", Php.jsonFloat(quantity(m)));
 		r.put("unit", m.get("unit"));
 		r.put("status", m.get("status"));
-		r.put("lineage_role", MaterialController.lineageRole(m));
+		r.put("lineage_role", MaterialDetailResource.lineageRole(m));
 		r.put("origin_type", m.get("origin_type"));
 		r.put("batch_code", batch == null ? null : batch.get("batch_code"));
 		r.put("stage_name", stage == null ? null : stage.get("name"));

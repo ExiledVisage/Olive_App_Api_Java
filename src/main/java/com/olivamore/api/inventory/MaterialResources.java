@@ -1,5 +1,6 @@
 package com.olivamore.api.inventory;
 
+import com.olivamore.api.inventory.material.MaterialResource;
 import com.olivamore.api.shared.persistence.Row;
 import org.springframework.stereotype.Component;
 
@@ -17,22 +18,22 @@ public class MaterialResources {
 	public enum Load {
 
 		/** productionProductType.productionProduct + attributeValues.definition */
-		TYPE_AND_ATTRIBUTES(InventoryReads.MaterialLoad.TYPE_AND_ATTRIBUTES),
+		TYPE_AND_ATTRIBUTES(MaterialResource.MaterialLoad.TYPE_AND_ATTRIBUTES),
 
 		/** + productionBatch, parentMaterial, createdByBatchProcess, closedByBatchProcess */
-		FULL(InventoryReads.MaterialLoad.FULL);
+		FULL(MaterialResource.MaterialLoad.FULL);
 
-		private final InventoryReads.MaterialLoad load;
+		private final MaterialResource.MaterialLoad load;
 
-		Load(InventoryReads.MaterialLoad load) {
+		Load(MaterialResource.MaterialLoad load) {
 			this.load = load;
 		}
 
 	}
 
-	private final InventoryReads reads;
+	private final MaterialResource reads;
 
-	MaterialResources(InventoryReads reads) {
+	MaterialResources(MaterialResource reads) {
 		this.reads = reads;
 	}
 
