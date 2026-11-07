@@ -114,3 +114,11 @@ handle @java_customers {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 9b: siparisler (durum gecisleri, stok kontrolu, raftan alma, sevkiyat)
+@java_orders path /api/orders /api/orders/*
+handle @java_orders {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

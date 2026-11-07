@@ -128,7 +128,7 @@ class StorageFlow {
 			assertSlotBelongsToStorage(slot, storage);
 			assertSlotAccepts(slot, product, p[1]);
 			addToSlot(slot, product, p[1]);
-			recordMovement(storage.id(), slot.id(), product.id(), "stock_in", p[1], actorId, data.get("note"), null, null, runId);
+			recordMovement(storage.id(), slot.id(), product.id(), "stock_in", p[1], actorId, data.get("note"), null, null, runId, null);
 		}
 	}
 
@@ -157,8 +157,8 @@ class StorageFlow {
 		removeFromSlot(sourceSlot, product, qty);
 		addToSlot(targetSlot, product, qty);
 		String reference = UUID.randomUUID().toString();
-		recordMovement(sourceStorage.id(), sourceSlot.id(), product.id(), "transfer_out", qty, actorId, null, targetSlot.id(), reference, null);
-		recordMovement(targetStorage.id(), targetSlot.id(), product.id(), "transfer_in", qty, actorId, null, sourceSlot.id(), reference, null);
+		recordMovement(sourceStorage.id(), sourceSlot.id(), product.id(), "transfer_out", qty, actorId, null, targetSlot.id(), reference, null, null);
+		recordMovement(targetStorage.id(), targetSlot.id(), product.id(), "transfer_in", qty, actorId, null, sourceSlot.id(), reference, null, null);
 		return targetStorage.id();
 	}
 
@@ -174,7 +174,54 @@ class StorageFlow {
 				+ ") depodaki stoktan az; kayıtlar tutarsız. Çıkış yapılamadı.");
 		}
 		db.execute("update finished_products set total_stock = total_stock - ?, updated_at = ? where id = ?", qty, Timestamps.now(), product.id());
-		recordMovement(storage.id(), slot.id(), product.id(), "stock_out", qty, actorId, null, null, null, null);
+		recordMovement(storage.id(), slot.id(), product.id(), "stock_out", qty, actorId, null, null, null, null, null);
+	}
+
+	// ---- siparis (Faz 9) ---------------------------------------------------------------
+
+	/** Siparis icin raftan alinan: raf, urun, adet. */
+	record Pick(long slotId, long productId, long quantity) {
+	}
+
+	/**
+	 * {@code pickForOrder}: sise raftan cikar ama fabrikadan cikmaz ({@code total_stock} sevkiyatta duser).
+	 * Rafta o kadar yoksa hata.
+	 */
+	void pickForOrder(long orderId, List<Pick> picks, Long actorId) {
+		for (Pick pick : picks) {
+			Row slot = lockSlot(pick.slotId());
+			Row product = lockProduct(pick.productId());
+			removeFromSlot(slot, product, pick.quantity());
+			recordMovement(slot.longValue("finished_product_storage_id"), slot.id(), product.id(), "order_pick", pick.quantity(), actorId,
+				"Siparis #" + orderId + " icin raftan alindi.", null, null, null, orderId);
+		}
+	}
+
+	/**
+	 * {@code returnOrderPicks}: iptal edilen hazir siparisin siseleri alindiklari raflara; daha once geri konan
+	 * dusulur, raf kapasitesi yeniden kontrol edilir.
+	 */
+	void returnOrderPicks(long orderId, Long actorId) {
+		List<Row> picks = db.select("select * from finished_product_stock_movements where order_id = ? and movement_type = ?",
+			orderId, "order_pick");
+		Map<String, Long> returned = new LinkedHashMap<>();
+		for (Row r : db.select("select * from finished_product_stock_movements where order_id = ? and movement_type = ?",
+			orderId, "order_return")) {
+			returned.merge(r.get("finished_product_storage_slot_id") + ":" + r.get("finished_product_id"), Php.intval(r.get("quantity")), Long::sum);
+		}
+		for (Row pick : picks) {
+			String key = pick.get("finished_product_storage_slot_id") + ":" + pick.get("finished_product_id");
+			long remaining = Php.intval(pick.get("quantity")) - returned.getOrDefault(key, 0L);
+			if (remaining <= 0) {
+				continue;
+			}
+			Row slot = lockSlot(pick.longValue("finished_product_storage_slot_id"));
+			Row product = lockProduct(pick.longValue("finished_product_id"));
+			assertSlotAccepts(slot, product, remaining);
+			addToSlot(slot, product, remaining);
+			recordMovement(slot.longValue("finished_product_storage_id"), slot.id(), product.id(), "order_return", remaining, actorId,
+				"Siparis #" + orderId + " iptal edildi, rafa geri konuldu.", null, null, null, orderId);
+		}
 	}
 
 	// ---- sayim yardimcilari ----------------------------------------------------------
@@ -228,14 +275,14 @@ class StorageFlow {
 			});
 	}
 
-	private void recordMovement(long storageId, long slotId, long productId, String type, long quantity, long actorId, Object note,
-		Long counterpartySlotId, String reference, Long runId) {
+	private void recordMovement(long storageId, long slotId, long productId, String type, long quantity, Long actorId, Object note,
+		Long counterpartySlotId, String reference, Long runId, Long orderId) {
 		Map<String, Object> values = new LinkedHashMap<>();
 		values.put("finished_product_storage_id", storageId);
 		values.put("finished_product_storage_slot_id", slotId);
 		values.put("finished_product_id", productId);
 		values.put("finished_product_run_id", runId);
-		values.put("order_id", null);
+		values.put("order_id", orderId);
 		values.put("movement_type", type);
 		values.put("quantity", quantity);
 		values.put("counterparty_slot_id", counterpartySlotId);

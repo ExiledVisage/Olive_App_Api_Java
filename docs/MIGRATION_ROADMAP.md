@@ -278,13 +278,13 @@ Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor
 - [x] Transfer (raftan rafa, aynı ya da başka depo; raflar id sırasıyla kilitli; iki hareket aynı UUID referansla), çıkış (raftan ve `total_stock`'tan düşer), hareket geçmişi
 - [x] Dört sayım birlikte: `total_stock`, depo × ürün, raf × ürün, raf toplamı
 - [x] Laravel'in 500 verdiği iki durum 422 (DEVIATIONS 15): hareket geçmişi olan raf ya da depoyu silme
-- [ ] Siparişe toplama ve iade (`pickForOrder`, `returnOrderPicks`): çağıranı sipariş, Faz 9'da
+- [x] Siparişe toplama ve iade (`pickForOrder`, `returnOrderPicks`): Faz 9b'de, `ShelfOperations` ile
 - [x] Proxy: `/api/finished-product-storages` Java'da
 - Testler:
   - `FinishedProductStorageParityIT`: Laravel'den yakalanan 86 durum (`reference/capture_finished_product_storage.py`): 86/86 aynı (2'si sapma, Java cevabı sabit). Raflar, raf içeriği ve depo stoğu `ORDER BY`'siz; `LaravelReplay.unorderedEverywhere` bu anahtarlardaki listeleri her derinlikte id'ye göre karşılaştırıyor
   - Canlı karşılaştırma: 3 deponun detayı, hareket geçmişleri (2782 hareket), liste, hata durumları 9/9 aynı
 
-## Faz 9: Müşteri ve Sipariş (sales)
+## Faz 9: Müşteri ve Sipariş (sales) (tamamlandı)
 
 Faz 8'e bağlı: sipariş hazırlanırken şişeler raftan düşüyor. Yeni `sales` modülü, iki adımda: 9a müşteriler, 9b siparişler.
 
@@ -298,11 +298,16 @@ Faz 8'e bağlı: sipariş hazırlanırken şişeler raftan düşüyor. Yeni `sal
   - `CustomerParityIT`: Laravel'den yakalanan 70 durum (`reference/capture_customer.py`): 70/70 aynı (3'ü sapma, yalnızca durum kodu)
   - Canlı karşılaştırma: 16 müşterinin detayı, adresleri, formül profili, liste varyasyonları, hata durumları 56/56 aynı
 
-**9b: Siparişler**
-- [ ] Order, order item, status history
-- [ ] Sipariş hazırlama (pick): raftan stok düşümü **aynı transaction'da ve senkron**
-- [ ] Sevkiyat bekleyen adet hesabı (defterden türetilir)
-- Testler: `CustomerRecipeTest`, `OrderTest`, `OrderPickTest`
+**9b: Siparişler (tamamlandı)**
+- [x] Sipariş: liste (`status`, `customer_id`, sipariş günü ve oluşma zamanı, `per_page`), detay (müşteri, teslimat adresi, kalemler, oluşturan, durum geçmişi), taslak oluşturma (teslimat adresi müşterinin olmalı, aynı ürün iki kez olmaz; 201), güncelleme (yalnızca taslak/onaylı; kalemler yenilenir), silme (yalnızca taslak)
+- [x] Durum geçişleri (taslak → onaylı → stok kontrol → hazır / üretimde → hazır → sevk; iptal), her geçiş geçmişe notuyla
+- [x] Sipariş hazırlama: raftan düşüm durumla **aynı transaction'da ve senkron**; raf seçimi verilmezse FIFO (ürünün rafa ilk giriş zamanı), verilirse kalem başına tam adet. `total_stock` düşmez; sevkiyatta düşer. Hazır sipariş iptalinde şişeler alındıkları raflara geri konur (kapasite yeniden kontrol). `finishedproduct` modülüne `ShelfOperations`
+- [x] Stok kontrolü: kalem başına fabrikada, depolarda, açıkta, diğer hazır siparişlere bağlı, kullanılabilir, eksik; raf konumları
+- [x] Sevkiyat bekleyen adet defterden (`order_pick` + hazır sipariş), Faz 8a'da
+- [x] Proxy: `/api/orders` Java'da
+- Testler:
+  - `OrderParityIT`: Laravel'den yakalanan 91 durum (`reference/capture_order.py`): 91/91 aynı
+  - Canlı karşılaştırma: 335 siparişin detayı ve stok kontrolü, liste varyasyonları, hata durumları 679/679 aynı
 
 ## Faz 10: Bildirim (notification)
 
