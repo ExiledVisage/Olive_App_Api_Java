@@ -130,3 +130,11 @@ handle @java_notifications {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 11: analitik (rapor olusturucu, kayitli raporlar) ve gunluk ozet
+@java_analytics path /api/analytics/* /api/daily-summary
+handle @java_analytics {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

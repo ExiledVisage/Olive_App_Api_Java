@@ -32,6 +32,9 @@ class CustomerParityIT {
 	void replaysLaravelBehaviour() throws Exception {
 		LaravelReplay.Result result = new LaravelReplay("/laravel/customer.json", port, jdbc)
 			.capturedAt("2026-11-07T12:00:00Z")
+			// adresler latest(): ayni saniyede eklenenlerde sira zamanlamaya bagli (DEVIATIONS 11)
+			.unordered("adresler sonra", "data")
+			.unordered("adresler son", "data")
 			.deviation("guncelle aktif null", 200, null)
 			.deviation("adres ekle varsayilan null", 201, null)
 			.deviation("adres guncelle ulke null", 200, null)

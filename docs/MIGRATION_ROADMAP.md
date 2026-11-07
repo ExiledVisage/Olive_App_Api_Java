@@ -321,13 +321,24 @@ Yeni `notification` modülü. Laravel'de bildirim yalnızca uygulama içi ve ell
   - `NotificationParityIT`: Laravel'den yakalanan 38 durum (`reference/capture_notification.py`): 38/38 aynı
   - Canlı karşılaştırma: 7 kullanıcının listesi (okunmamış, sayfalı), okunmamış sayısı, dürtülecek kişiler, hata durumu 42/42 aynı. Seed'de bildirim kaydı yok; dolu listeler parity testinde
 
-## Faz 11: Analitik ve Günlük Özet (analytics)
+## Faz 11: Analitik ve Günlük Özet (analytics) (tamamlandı)
 
-Bütün modüllerin verisini okuduğu için en son taşınır. Hiçbir modül buna bağlı değil.
-- [ ] jOOQ kod üretimi (mevcut şemadan)
-- [ ] Analytics service, kayıtlı raporlar (analytics reports)
-- [ ] Daily summary
-- Testler: `AnalyticsTest`, `AnalyticsReportTest`, `DailySummaryTest`
+Bütün modüllerin verisini okuduğu için en son taşınır. Hiçbir modül buna bağlı değil. Yeni `analytics` modülü. jOOQ eklenmedi: diğer modüller gibi `Db` ile Laravel'in Query Builder sorgularının aynısı çalışıyor (birebir uyum için en güvenli yol).
+
+**11a: Analitik ve rapor oluşturucu (tamamlandı)**
+- [x] Randıman (dönemlere göre, çeşide göre), tedarikçiler, müşteriler, tek müşteri (önceki dönemle); aşamalar adından değil görevinden (ilk zeytin tartımı, dönüşüm, yağ/pirina tartımı, yağ analizi)
+- [x] Carbon 3 birebir: `diffInDays` ondalık (gün gün yalnızca ≤ 30 gün, hafta ≤ 119 gün; 731 gün farkı iki yılın sınırı), önceki dönem `subDays(gün + 0.99…)` yüzünden bir gün uzun, hafta pazartesi başlıyor (yerel ayar `tr`); PHP 8.4 `round`, float toplama sırası
+- [x] Rapor oluşturucu: katalog, sorgu (10 ölçü × 6 gruplama, filtreler, tutarsız seçim 422), kayıtlı raporlar (kişiye özel; başkasının raporu 404)
+- [x] Proxy: `/api/analytics/*` Java'da
+- Testler:
+  - `AnalyticsParityIT`: Laravel'den yakalanan 125 durum (`reference/capture_analytics.py`): 125/125 aynı
+
+**11b: Günlük özet (tamamlandı)**
+- [x] Açılış ekranı: üretim (giren, üretimde ve şu anki aşaması, biten), aşamalar (bugün kapanan, onay bekleyen), dolum koşuları, siparişler (bugün sevk edilen, açık, bugüne planlanan), stok (tükenen, depoya yerleşmemiş); her bölüm kullanıcının iznine göre
+- [x] Proxy: `/api/daily-summary` Java'da
+- Testler:
+  - `DailySummaryParityIT`: Laravel'den yakalanan 17 durum (`reference/capture_daily_summary.py`): 17/17 aynı
+  - Canlı karşılaştırma (11a + 11b): 26 aralık × randıman/tedarikçi/müşteri, 16 müşteri, rapor sorguları, 373 günün günlük özeti, beş rol: 674 istek; 659 birebir, 15'i yalnızca sıra farkı (bugün sevk edilen siparişler `order_date desc`, aynı günlü siparişlerde sıra tanımsız: DEVIATIONS 11)
 
 ## Faz 12: Canlıya Geçiş ve Laravel'in Kapatılması
 
