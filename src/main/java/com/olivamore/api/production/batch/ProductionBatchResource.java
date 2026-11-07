@@ -1,6 +1,5 @@
 package com.olivamore.api.production.batch;
 
-import com.olivamore.api.catalog.CatalogResources;
 import com.olivamore.api.inventory.MaterialResources;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
@@ -21,13 +20,11 @@ import com.olivamore.api.production.batchprocess.BatchProcessResource;
 class ProductionBatchResource {
 
 	private final Db db;
-	private final CatalogResources catalog;
 	private final MaterialResources materials;
 	private final BatchProcessResource processResource;
 
-	ProductionBatchResource(Db db, CatalogResources catalog, MaterialResources materials, BatchProcessResource processResource) {
+	ProductionBatchResource(Db db, MaterialResources materials, BatchProcessResource processResource) {
 		this.db = db;
-		this.catalog = catalog;
 		this.materials = materials;
 		this.processResource = processResource;
 	}

@@ -1,26 +1,44 @@
-package com.olivamore.api.catalog;
+package com.olivamore.api.productionline.stage;
 
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.persistence.Row;
-import org.springframework.stereotype.Component;
+import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.shared.time.Timestamps;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * ProductionStageService'in sira mantigi, birebir. {@code (production_line_id, stage_order)} unique
- * oldugu icin kaydirma iki adimda: once 100000 ileri, sonra geri (+1 ya da -1 net).
+ * Laravel {@code ProductionStageService}, sira mantigi birebir. {@code (production_line_id, stage_order)}
+ * unique oldugu icin kaydirma iki adimda: once 100000 ileri, sonra geri (+1 ya da -1 net).
  */
-@Component
-class StageOrder {
+@Service
+class ProductionStageService {
 
+	static final String STAGE_NOT_IN_LINE = "Stage not found for this production line.";
 	private static final int TEMP_OFFSET = 100000;
 
 	private final Db db;
 
-	StageOrder(Db db) {
+	ProductionStageService(Db db) {
 		this.db = db;
+	}
+
+	List<Row> forLine(Row line) {
+		return db.select("""
+			select * from production_stages
+			where production_stages.production_line_id = ? and production_stages.production_line_id is not null
+			order by stage_order asc, stage_order asc""", line.id());
+	}
+
+	static void ensureBelongs(Row line, Row stage) {
+		if (stage.longValue("production_line_id") != line.id()) {
+			throw new HttpStatusException(404, STAGE_NOT_IN_LINE);
+		}
 	}
 
 	/** Istenen sira 1..(son+1) araligina cekilir, o siradan sonrakiler bir ileri kayar. */
@@ -35,7 +53,7 @@ class StageOrder {
 		return db.create("production_stages", values);
 	}
 
-	void update(long lineId, Row stage, Map<String, Object> validated) {
+	Row update(long lineId, Row stage, Map<String, Object> validated) {
 		Map<String, Object> values = new LinkedHashMap<>(validated);
 		int oldOrder = stage.intValue("stage_order");
 		if (values.containsKey("stage_order") && values.get("stage_order") != null) {
@@ -57,9 +75,14 @@ class StageOrder {
 			}
 		}
 		db.update("production_stages", stage.id(), values);
+		return db.find("production_stages", stage.id()).orElseThrow();
 	}
 
 	void delete(long lineId, Row stage) {
+		String name = stage.string("name") != null ? stage.string("name") : "#" + stage.id();
+		DeletionGuard.of("'" + name + "' aşaması")
+			.usedBy("parti prosesi", db.count("select count(*) from batch_processes where production_stage_id = ?", stage.id()))
+			.check();
 		int deleted = stage.intValue("stage_order");
 		int maxOrder = max(lineId);
 		db.delete("production_stages", stage.id());
@@ -83,7 +106,7 @@ class StageOrder {
 		if (start > end) {
 			return;
 		}
-		String now = "'" + com.olivamore.api.shared.time.Timestamps.now().toString().replace('T', ' ') + "'";
+		String now = "'" + Timestamps.now().toString().replace('T', ' ') + "'";
 		db.execute("update production_stages set stage_order = stage_order + " + TEMP_OFFSET + ", updated_at = " + now
 			+ " where production_line_id = ? and stage_order between ? and ?", lineId, start, end);
 		db.execute("update production_stages set stage_order = stage_order - " + back + ", updated_at = " + now

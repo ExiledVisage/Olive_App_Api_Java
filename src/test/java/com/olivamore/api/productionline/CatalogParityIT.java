@@ -1,4 +1,4 @@
-package com.olivamore.api.catalog;
+package com.olivamore.api.productionline;
 
 import com.olivamore.api.TestcontainersConfiguration;
 import com.olivamore.api.support.LaravelReplay;

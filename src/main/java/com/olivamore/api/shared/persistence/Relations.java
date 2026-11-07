@@ -51,6 +51,15 @@ public final class Relations {
 		return out;
 	}
 
+	/** Kurulmus resource'lar (Map) bir anahtara gore, sira korunarak (hasMany'nin resource hali). */
+	public static Map<Long, List<Map<String, Object>>> groupItems(List<Map<String, Object>> items, String key) {
+		Map<Long, List<Map<String, Object>>> out = new LinkedHashMap<>();
+		for (Map<String, Object> item : items) {
+			out.computeIfAbsent(((Number) item.get(key)).longValue(), k -> new ArrayList<>()).add(item);
+		}
+		return out;
+	}
+
 	/** Laravel'in whereIn bicimi: {@code 1, 2, 3} (tamsayi anahtarlar sorguya yazilir). */
 	public static String inList(Collection<Long> keys) {
 		return keys.stream().filter(Objects::nonNull).distinct().map(String::valueOf).collect(Collectors.joining(", "));

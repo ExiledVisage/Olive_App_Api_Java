@@ -1,6 +1,7 @@
 package com.olivamore.api.production.batchprocess;
 
-import com.olivamore.api.catalog.CatalogResources;
+import com.olivamore.api.process.ProcessResources;
+import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.inventory.MaterialResources;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
@@ -20,12 +21,14 @@ import java.util.Map;
 public class BatchProcessResource {
 
 	private final Db db;
-	private final CatalogResources catalog;
+	private final ProcessResources process;
+	private final ProductionLineResources lines;
 	private final MaterialResources materials;
 
-	BatchProcessResource(Db db, CatalogResources catalog, MaterialResources materials) {
+	BatchProcessResource(Db db, ProcessResources process, ProductionLineResources lines, MaterialResources materials) {
 		this.db = db;
-		this.catalog = catalog;
+		this.process = process;
+		this.lines = lines;
 		this.materials = materials;
 	}
 
@@ -57,8 +60,8 @@ public class BatchProcessResource {
 		Map<Long, Row> operators = byId("users", processes, "operator_id");
 		Map<Long, Row> stages = byId("production_stages", processes, "production_stage_id");
 		Map<Long, Row> types = byId("process_types", stages.values(), "process_type_id");
-		Map<Long, List<Map<String, Object>>> typeFields = catalog.processTypeFields(new ArrayList<>(types.keySet()));
-		Map<Long, List<Map<String, Object>>> extensions = catalog.stageExtensions(new ArrayList<>(stages.keySet()), detail);
+		Map<Long, List<Map<String, Object>>> typeFields = process.processTypeFields(new ArrayList<>(types.keySet()));
+		Map<Long, List<Map<String, Object>>> extensions = lines.stageExtensions(new ArrayList<>(stages.keySet()), detail);
 		Map<Long, List<Map<String, Object>>> fieldValues = fieldValues(ids);
 		Map<Long, List<Map<String, Object>>> reviews = detail ? reviews(ids) : Map.of();
 		Map<Long, Row> users = detail ? byId("users", processes, "submitted_by_user_id", "approved_by_user_id") : Map.of();

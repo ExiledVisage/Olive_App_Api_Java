@@ -84,10 +84,27 @@ veritabanıyla (şema, her tablonun satır sayısı, sequence'ler) aynı olduğu
 com.olivamore.api
 ├── shared/        Ortak altyapı (OPEN modül): Laravel uyumlu hatalar, validator, sayfalama, JSON,
 │                  model binding, rate limiting, silme koruması
-├── identity/      Kullanıcılar, roller, izinler, Sanctum uyumlu token'lar (Faz 2)
-├── devdata/       Demo veri yükleme (--seed)
-└── <modül>/       Sonraki fazlar: catalog, inventory, production, ...
+├── identity/        auth, user, role, permission, security (Sanctum uyumlu token'lar, izin kontrolü)
+├── product/         productionproduct, productiontype, attribute, productattribute
+├── process/         processtype, processtypefield, stageextensiontype
+├── productionline/  line, stage, stageextension
+├── supplier/        Zeytin tedarikçileri, tarlaları ve teslimatları
+├── inventory/       storageunit, storagemovement, material
+├── production/      batch, batchprocess (+ stage: tartım, dönüşüm, depo hareketi, analiz)
+├── packaging/       item, lot, supplier (ambalaj tedarikçileri)
+├── finishedproduct/ recipe, product, run, storage
+├── sales/           customer, order
+├── notification/    Bildirimler
+├── analytics/       analytics, report, dailysummary
+├── apprelease/      Mobil uygulama sürümleri
+└── devdata/         Demo veri yükleme (--seed)
 ```
+
+Her konu klasöründe Laravel adlarıyla `XxxController`, `XxxService`, `XxxResource` ve `XxxRequests`
+(FormRequest kuralları) bulunur. Alt klasörler modülün içidir; başka bir modülün kullanabildiği sınıflar
+yalnızca modül kökündedir (ör. `productionline.ProductionLineResources`, `process.ProcessResources`,
+`inventory.MaterialResources`). Spring Modulith bunu ve modüller arası döngü olmamasını `ModularityTests`
+ile doğrular.
 
 Bir Laravel controller'ını taşırken:
 

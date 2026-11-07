@@ -340,6 +340,19 @@ Bütün modüllerin verisini okuduğu için en son taşınır. Hiçbir modül bu
   - `DailySummaryParityIT`: Laravel'den yakalanan 17 durum (`reference/capture_daily_summary.py`): 17/17 aynı
   - Canlı karşılaştırma (11a + 11b): 26 aralık × randıman/tedarikçi/müşteri, 16 müşteri, rapor sorguları, 373 günün günlük özeti, beş rol: 674 istek; 659 birebir, 15'i yalnızca sıra farkı (bugün sevk edilen siparişler `order_date desc`, aynı günlü siparişlerde sıra tanımsız: DEVIATIONS 11)
 
+## Yapı düzenlemesi (Faz 11 sonrası, tamamlandı)
+
+Davranış değişmeden kod konu klasörlerine ayrıldı. Her klasörde Laravel adlarıyla `XxxController`,
+`XxxService`, `XxxResource` ve `XxxRequests` bulunur; modüller arası erişim yalnızca modül kökündeki sınıflarla.
+- [x] `catalog` dört modüle bölündü (bağımlılık yönü product → productionline → process):
+  - `product`: productionproduct, productiontype, attribute, productattribute
+  - `process`: processtype, processtypefield, stageextensiontype (dışa açık: `ProcessResources`)
+  - `productionline`: line, stage, stageextension (dışa açık: `ProductionLineResources`)
+  - `supplier`: zeytin tedarikçileri
+- [x] `CatalogResources` → `ProcessResources` (proses alanları) + `ProductionLineResources` (aşama uzantıları); `ExtensionSync` → `ProductionStageExtensionService`; `StageOrder` → `ProductionStageService`
+- [x] identity (auth, user, role, permission, security), inventory (storageunit, storagemovement, material), production (batch, batchprocess, batchprocess/stage), packaging (item, lot, supplier), finishedproduct (recipe, product, run, storage), sales (customer, order), analytics (analytics, report, dailysummary)
+- Testler: tüm parity testleri ve `ModularityTests` her modülden sonra yeşil
+
 ## Faz 12: Canlıya Geçiş ve Laravel'in Kapatılması
 
 Canlıya geçiş modül modül de yapılabilir (her modül dev'de bitince canlıda da açılır) ya da tüm modüller dev'de bitince bir kerede. Her iki durumda da:

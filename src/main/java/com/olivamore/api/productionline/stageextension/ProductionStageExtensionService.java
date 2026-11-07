@@ -1,22 +1,24 @@
-package com.olivamore.api.catalog;
+package com.olivamore.api.productionline.stageextension;
 
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** ProductionStageExtensionService::sync, birebir: asamanin uzantilari silinip yeniden olusturulur. */
-final class ExtensionSync {
+/** Laravel {@code ProductionStageExtensionService::sync}, birebir: asamanin uzantilari silinip yeniden olusturulur. */
+@Service
+class ProductionStageExtensionService {
 
 	static final String INVALID_FIELD = "Geçersiz stage extension field gönderildi.";
 
 	private final Db db;
 
-	ExtensionSync(Db db) {
+	ProductionStageExtensionService(Db db) {
 		this.db = db;
 	}
 
@@ -32,7 +34,7 @@ final class ExtensionSync {
 			values.put("sort_order", data.get("sort_order") != null ? data.get("sort_order") : i + 1);
 			values.put("production_stage_id", stageId);
 			long extensionId = db.insert("production_stage_extensions", values);
-			storeValues(extensionId, typeId, CatalogWriteController.items(data.get("values")));
+			storeValues(extensionId, typeId, items(data.get("values")));
 			storeProducts("production_stage_extension_input_production_products", extensionId, list(data.get("input_production_product_ids")));
 			storeProducts("production_stage_extension_output_production_products", extensionId, list(data.get("output_production_product_ids")));
 		}
@@ -96,6 +98,18 @@ final class ExtensionSync {
 		}
 		if (v instanceof Map<?, ?> m) {
 			return List.copyOf(((Map<String, Object>) m).values());
+		}
+		return List.of();
+	}
+
+	@SuppressWarnings("unchecked")
+	static List<Map<String, Object>> items(Object value) {
+		if (value instanceof List<?> list) {
+			return list.stream().map(i -> i instanceof Map<?, ?> m ? (Map<String, Object>) m : Map.<String, Object>of()).toList();
+		}
+		if (value instanceof Map<?, ?> map) {
+			return ((Map<String, Object>) map).values().stream()
+				.map(i -> i instanceof Map<?, ?> m ? (Map<String, Object>) m : Map.<String, Object>of()).toList();
 		}
 		return List.of();
 	}

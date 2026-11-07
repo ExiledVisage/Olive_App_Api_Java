@@ -1,7 +1,10 @@
-package com.olivamore.api.catalog;
+package com.olivamore.api.supplier;
 
+import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,31 +15,31 @@ import java.util.Map;
 /**
  * {@code SupplierService::getDeliveries}: tedarikcinin uretim partileri ve kantar tartimlari.
  * <p>
- * Uretim modulunun (Faz 6) tablolarini yalnizca okur. Uretim modulu tasininca bu sorgu orada bir
- * okuma API'sine donusebilir.
+ * Uretim modulunun (Faz 6) tablolarini yalnizca okur (SQL; production modulune bagimlilik yok).
  */
-final class SupplierDeliveries {
+@Service
+class SupplierDeliveryService {
 
 	private final Db db;
 
-	SupplierDeliveries(Db db) {
+	SupplierDeliveryService(Db db) {
 		this.db = db;
 	}
 
 	List<Map<String, Object>> forSupplier(long supplierId) {
 		List<Row> batches = db.select("select * from production_batches where supplier_id = ? order by received_at desc, id desc", supplierId);
-		List<Long> batchIds = CatalogReads.ids(batches);
-		Map<Long, Row> fields = CatalogReads.byId(db.whereIn("supplier_fields", "id", CatalogReads.column(batches, "supplier_field_id"), null));
+		List<Long> batchIds = Relations.ids(batches);
+		Map<Long, Row> fields = Relations.byId(db.whereIn("supplier_fields", "id", Relations.column(batches, "supplier_field_id"), null));
 
 		List<Row> inputs = db.whereIn("production_batch_input_production_product_types", "production_batch_id", batchIds, "sort_order asc");
-		Map<Long, Row> types = CatalogReads.byId(db.whereIn("production_product_types", "id", CatalogReads.column(inputs, "production_product_type_id"), null));
+		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id", Relations.column(inputs, "production_product_type_id"), null));
 
 		List<Row> processes = db.whereIn("batch_processes", "production_batch_id", batchIds, null);
-		Map<Long, Row> stages = CatalogReads.byId(db.whereIn("production_stages", "id", CatalogReads.column(processes, "production_stage_id"), null));
-		Map<Long, Row> processTypes = CatalogReads.byId(db.whereIn("process_types", "id",
-			CatalogReads.column(new ArrayList<>(stages.values()), "process_type_id"), null));
-		List<Row> values = db.whereIn("batch_process_field_values", "batch_process_id", CatalogReads.ids(processes), null);
-		Map<Long, Row> processFields = CatalogReads.byId(db.whereIn("process_type_fields", "id", CatalogReads.column(values, "process_type_field_id"), null));
+		Map<Long, Row> stages = Relations.byId(db.whereIn("production_stages", "id", Relations.column(processes, "production_stage_id"), null));
+		Map<Long, Row> processTypes = Relations.byId(db.whereIn("process_types", "id",
+			Relations.column(new ArrayList<>(stages.values()), "process_type_id"), null));
+		List<Row> values = db.whereIn("batch_process_field_values", "batch_process_id", Relations.ids(processes), null);
+		Map<Long, Row> processFields = Relations.byId(db.whereIn("process_type_fields", "id", Relations.column(values, "process_type_field_id"), null));
 
 		List<Map<String, Object>> out = new ArrayList<>();
 		for (Row batch : batches) {
@@ -58,7 +61,7 @@ final class SupplierDeliveries {
 				}
 			}
 			d.put("product_type_names", names);
-			d.put("declared_quantity_kg", CatalogReads.decimal4(batch.get("quantity_kg")));
+			d.put("declared_quantity_kg", Casts.decimal(batch.get("quantity_kg"), 4));
 			Object quantity = null;
 			if (weighIn != null && weighIn.get("operation_data") instanceof Map<?, ?> data) {
 				quantity = data.get("quantity");
@@ -74,7 +77,7 @@ final class SupplierDeliveries {
 					Row pf = processFields.get(v.longValue("process_type_field_id"));
 					// value_text ?? value_decimal (decimal:4) ?? value_integer
 					Object value = v.get("value_text") != null ? v.get("value_text")
-						: v.get("value_decimal") != null ? CatalogReads.decimal4(v.get("value_decimal")) : v.get("value_integer");
+						: v.get("value_decimal") != null ? Casts.decimal(v.get("value_decimal"), 4) : v.get("value_integer");
 					if (value == null) {
 						continue;
 					}
