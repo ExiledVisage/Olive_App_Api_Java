@@ -109,6 +109,10 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Laravel:** Stoğu boşalmış raf ya da depo silinebilir görünüyor, ama `finished_product_stock_movements` rafa ve depoya restrict FK ile bağlı. Bir kez giriş/çıkış görmüş raf ya da depo silinirken FK hatası → 500.
 - **Java:** Kullanım yerleri sayılıyor (422): `Bu slot silinemez; kullanıldığı yerler: 2 stok hareketi.`, `Bu depo silinemez; kullanıldığı yerler: 14 stok hareketi. Pasife alabilirsiniz.`
 
+### 16. Müşteri ve adreste `NOT NULL` kolona gelen `null` 500 veriyor (Faz 9a)
+- **Laravel:** Kurallar `nullable|boolean` / `nullable|string`, ama kolonlar `NOT NULL`: müşteri güncellemesinde `"is_active": null`, adres eklemede `"is_default": null`, adres güncellemesinde `"is_default": null` ya da `"country": null` → SQL hatası → 500. (Müşteri ve adres eklemede `is_active`/`country` için `??=` var, orada sorun yok.)
+- **Java:** Bu kolonlara gelen `null` "değiştirme" sayılıyor: güncellemede alan yazılmıyor, adres eklemede kolon varsayılanı (`is_default = false`) kalıyor; cevap 200/201.
+
 ## Kopyalanan ama bilinmesi gereken Laravel davranışları
 
 Farklı değil, birebir aynı; ama kapatılması düşünülebilecek davranışlar (karar Laravel kapandıktan sonra).

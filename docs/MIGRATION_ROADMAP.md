@@ -286,8 +286,19 @@ Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor
 
 ## Faz 9: Müşteri ve Sipariş (sales)
 
-Faz 8'e bağlı: sipariş hazırlanırken şişeler raftan düşüyor.
-- [ ] Customer, customer address, preferred recipes
+Faz 8'e bağlı: sipariş hazırlanırken şişeler raftan düşüyor. Yeni `sales` modülü, iki adımda: 9a müşteriler, 9b siparişler.
+
+**9a: Müşteriler (tamamlandı)**
+- [x] Müşteri: liste (`is_active`, `per_page`), detay (adresleriyle), ekleme (adresleriyle birlikte; cevap yalnızca verilen alanlarla, 201), güncelleme, silme (siparişi olan silinmez)
+- [x] Adres: liste, ekleme (varsayılan verilirse diğerleri varsayılan olmaktan çıkar; ülke verilmezse TR), güncelleme (başka müşterinin adresi 404), silme (siparişe bağlı adres silinmez; varsayılan silinirse en son eklenen varsayılan olur)
+- [x] Formül tercihleri (ekleme, tekrar eklemede not güncellenir; çıkarma) ve profil: tercihler + iptal edilmemiş siparişlerden türetilen formüller (sipariş sayısı, toplam adet, son sipariş günü). Tarif resource'u `finishedproduct`'tan (`RecipeResources`)
+- [x] Laravel'in 500 verdiği üç durum (DEVIATIONS 16): `NOT NULL` kolona gelen `null` (`is_active`, adreste `is_default`, `country`) alan yokmuş gibi
+- [x] Proxy: `/api/customers` Java'da
+- Testler:
+  - `CustomerParityIT`: Laravel'den yakalanan 70 durum (`reference/capture_customer.py`): 70/70 aynı (3'ü sapma, yalnızca durum kodu)
+  - Canlı karşılaştırma: 16 müşterinin detayı, adresleri, formül profili, liste varyasyonları, hata durumları 56/56 aynı
+
+**9b: Siparişler**
 - [ ] Order, order item, status history
 - [ ] Sipariş hazırlama (pick): raftan stok düşümü **aynı transaction'da ve senkron**
 - [ ] Sevkiyat bekleyen adet hesabı (defterden türetilir)

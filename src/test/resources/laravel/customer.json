@@ -1,0 +1,4541 @@
+{
+ "source": "Laravel http://localhost:8001, dondurulmus referans veri",
+ "cases": [
+  {
+   "name": "liste varsayilan",
+   "method": "GET",
+   "path": "/api/customers",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 4,
+      "name": "Zeynep Arslan",
+      "company_name": null,
+      "phone": "+90 505 777 66 55",
+      "email": "zeynep.arslan@gmail.com",
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 5,
+        "customer_id": 4,
+        "label": "Ev Adresi",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": "Kavaklıdere Mahallesi",
+        "street": "Tunalı Hilmi Caddesi",
+        "building_no": "88",
+        "apartment_no": "3",
+        "postal_code": "06680",
+        "full_address": "Kavaklıdere Mah. Tunalı Hilmi Cad. No:88 D:3 Çankaya/Ankara",
+        "latitude": 39.905,
+        "longitude": 32.8597,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 2,
+      "name": "Fatma Kaya",
+      "company_name": "Ege Lezzet Market",
+      "phone": "+90 232 444 88 55",
+      "email": "fatma@egelezzet.com",
+      "notes": "Küçük market zinciri, 3 şube. 250ml ve 500ml tercih eder.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 3,
+        "customer_id": 2,
+        "label": "Merkez Mağaza",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Konak",
+        "neighborhood": "Alsancak Mahallesi",
+        "street": "Kıbrıs Şehitleri Caddesi",
+        "building_no": "67",
+        "apartment_no": null,
+        "postal_code": "35220",
+        "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+        "latitude": 38.4381,
+        "longitude": 27.1431,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 3,
+      "name": "Mehmet Demir",
+      "company_name": "Demir Otelcilik",
+      "phone": "+90 242 311 22 33",
+      "email": "mehmet@demirotel.com",
+      "notes": "Otel mutfağı için büyük boy (1L, 5L) sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 4,
+        "customer_id": 3,
+        "label": "Otel Teslimat Kapısı",
+        "country": "TR",
+        "city": "Antalya",
+        "district": "Muratpaşa",
+        "neighborhood": "Yenigün Mahallesi",
+        "street": "Atatürk Bulvarı",
+        "building_no": "12",
+        "apartment_no": null,
+        "postal_code": "07040",
+        "full_address": "Yenigün Mah. Atatürk Bulvarı No:12 Muratpaşa/Antalya",
+        "latitude": 36.8841,
+        "longitude": 30.7056,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 1,
+      "name": "Ahmet Yılmaz",
+      "company_name": "Yılmaz Gıda A.Ş.",
+      "phone": "+90 212 555 10 20",
+      "email": "ahmet@yilmazgida.com",
+      "notes": "Toplu alım müşterisi, aylık düzenli sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 1,
+        "customer_id": 1,
+        "label": "Merkez Depo",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Bağcılar",
+        "neighborhood": "Mahmutbey Mahallesi",
+        "street": "Taşocağı Yolu Caddesi",
+        "building_no": "42",
+        "apartment_no": null,
+        "postal_code": "34218",
+        "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+        "latitude": 41.0532,
+        "longitude": 28.8103,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       },
+       {
+        "id": 2,
+        "customer_id": 1,
+        "label": "Şube Ofis",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Şişli",
+        "neighborhood": "Mecidiyeköy Mahallesi",
+        "street": "Büyükdere Caddesi",
+        "building_no": "185",
+        "apartment_no": "7",
+        "postal_code": "34394",
+        "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+        "latitude": 41.0703,
+        "longitude": 28.9917,
+        "is_default": false,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 13,
+      "name": "Hakan Güneş",
+      "company_name": "Güneş Otelcilik",
+      "phone": "0533 835 50 86",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 14,
+        "customer_id": 13,
+        "label": "Güneş Otelcilik",
+        "country": "TR",
+        "city": "Muğla",
+        "district": "Bodrum",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T20:56:00.000000Z",
+        "updated_at": "2026-11-05T20:56:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T20:56:00.000000Z",
+      "updated_at": "2026-11-05T20:56:00.000000Z"
+     },
+     {
+      "id": 8,
+      "name": "Deniz Çelik",
+      "company_name": "Kuşadası Resort Otel",
+      "phone": "0544 175 82 76",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 9,
+        "customer_id": 8,
+        "label": "Kuşadası Resort Otel",
+        "country": "TR",
+        "city": "Aydın",
+        "district": "Kuşadası",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T10:02:00.000000Z",
+        "updated_at": "2026-11-05T10:02:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T10:02:00.000000Z",
+      "updated_at": "2026-11-05T10:02:00.000000Z"
+     },
+     {
+      "id": 7,
+      "name": "Burak Öztürk",
+      "company_name": "Öztürk Toptan Gıda",
+      "phone": "0540 732 74 63",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 8,
+        "customer_id": 7,
+        "label": "Öztürk Toptan Gıda",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Osmangazi",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-04T23:52:00.000000Z",
+        "updated_at": "2026-11-04T23:52:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-04T23:52:00.000000Z",
+      "updated_at": "2026-11-04T23:52:00.000000Z"
+     },
+     {
+      "id": 12,
+      "name": "Ayşe Karaca",
+      "company_name": "Organik Sepet",
+      "phone": "0539 895 26 17",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 13,
+        "customer_id": 12,
+        "label": "Organik Sepet",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Kadıköy",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-27T12:03:00.000000Z",
+        "updated_at": "2026-10-27T12:03:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-27T12:03:00.000000Z",
+      "updated_at": "2026-10-27T12:03:00.000000Z"
+     },
+     {
+      "id": 6,
+      "name": "Selin Aydın",
+      "company_name": "Aydın Şarküteri",
+      "phone": "0544 601 76 73",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 7,
+        "customer_id": 6,
+        "label": "Aydın Şarküteri",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Karşıyaka",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-23T17:40:00.000000Z",
+        "updated_at": "2026-10-23T17:40:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-23T17:40:00.000000Z",
+      "updated_at": "2026-10-23T17:40:00.000000Z"
+     },
+     {
+      "id": 5,
+      "name": "Ali Koç",
+      "company_name": "Koç Restoran Grubu",
+      "phone": "0533 664 77 52",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 6,
+        "customer_id": 5,
+        "label": "Koç Restoran Grubu",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Beşiktaş",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T05:25:00.000000Z",
+        "updated_at": "2026-10-19T05:25:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T05:25:00.000000Z",
+      "updated_at": "2026-10-19T05:25:00.000000Z"
+     },
+     {
+      "id": 16,
+      "name": "Seda Kurt",
+      "company_name": null,
+      "phone": "0547 822 89 40",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 17,
+        "customer_id": 16,
+        "label": "Ev",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T03:07:00.000000Z",
+        "updated_at": "2026-10-19T03:07:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T03:07:00.000000Z",
+      "updated_at": "2026-10-19T03:07:00.000000Z"
+     },
+     {
+      "id": 15,
+      "name": "Oğuz Erdoğan",
+      "company_name": "Ege Catering",
+      "phone": "0534 305 96 29",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 16,
+        "customer_id": 15,
+        "label": "Ege Catering",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Bornova",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-11T00:39:00.000000Z",
+        "updated_at": "2026-10-11T00:39:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-11T00:39:00.000000Z",
+      "updated_at": "2026-10-11T00:39:00.000000Z"
+     },
+     {
+      "id": 11,
+      "name": "Can Polat",
+      "company_name": "Polat Pide & Kebap",
+      "phone": "0550 437 37 38",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 12,
+        "customer_id": 11,
+        "label": "Polat Pide & Kebap",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Nilüfer",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-03T13:13:00.000000Z",
+        "updated_at": "2026-10-03T13:13:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-03T13:13:00.000000Z",
+      "updated_at": "2026-10-03T13:13:00.000000Z"
+     },
+     {
+      "id": 14,
+      "name": "Elif Doğan",
+      "company_name": "Doğan Gurme",
+      "phone": "0547 106 95 44",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 15,
+        "customer_id": 14,
+        "label": "Doğan Gurme",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Alsancak",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-09-06T10:19:00.000000Z",
+        "updated_at": "2026-09-06T10:19:00.000000Z"
+       }
+      ],
+      "created_at": "2026-09-06T10:19:00.000000Z",
+      "updated_at": "2026-09-06T10:19:00.000000Z"
+     },
+     {
+      "id": 9,
+      "name": "Merve Şahin",
+      "company_name": "Şahin Kurumsal Hediye",
+      "phone": "0538 734 79 84",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 10,
+        "customer_id": 9,
+        "label": "Şahin Kurumsal Hediye",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Ataşehir",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-08-04T08:28:00.000000Z",
+        "updated_at": "2026-08-04T08:28:00.000000Z"
+       }
+      ],
+      "created_at": "2026-08-04T08:28:00.000000Z",
+      "updated_at": "2026-08-04T08:28:00.000000Z"
+     },
+     {
+      "id": 10,
+      "name": "Emre Yıldız",
+      "company_name": "Yıldız Market Zinciri",
+      "phone": "0547 327 91 67",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 11,
+        "customer_id": 10,
+        "label": "Yıldız Market Zinciri",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Etimesgut",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-02-19T23:05:00.000000Z",
+        "updated_at": "2026-02-19T23:05:00.000000Z"
+       }
+      ],
+      "created_at": "2026-02-19T23:05:00.000000Z",
+      "updated_at": "2026-02-19T23:05:00.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "liste ?is_active=1",
+   "method": "GET",
+   "path": "/api/customers?is_active=1",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 4,
+      "name": "Zeynep Arslan",
+      "company_name": null,
+      "phone": "+90 505 777 66 55",
+      "email": "zeynep.arslan@gmail.com",
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 5,
+        "customer_id": 4,
+        "label": "Ev Adresi",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": "Kavaklıdere Mahallesi",
+        "street": "Tunalı Hilmi Caddesi",
+        "building_no": "88",
+        "apartment_no": "3",
+        "postal_code": "06680",
+        "full_address": "Kavaklıdere Mah. Tunalı Hilmi Cad. No:88 D:3 Çankaya/Ankara",
+        "latitude": 39.905,
+        "longitude": 32.8597,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 2,
+      "name": "Fatma Kaya",
+      "company_name": "Ege Lezzet Market",
+      "phone": "+90 232 444 88 55",
+      "email": "fatma@egelezzet.com",
+      "notes": "Küçük market zinciri, 3 şube. 250ml ve 500ml tercih eder.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 3,
+        "customer_id": 2,
+        "label": "Merkez Mağaza",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Konak",
+        "neighborhood": "Alsancak Mahallesi",
+        "street": "Kıbrıs Şehitleri Caddesi",
+        "building_no": "67",
+        "apartment_no": null,
+        "postal_code": "35220",
+        "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+        "latitude": 38.4381,
+        "longitude": 27.1431,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 3,
+      "name": "Mehmet Demir",
+      "company_name": "Demir Otelcilik",
+      "phone": "+90 242 311 22 33",
+      "email": "mehmet@demirotel.com",
+      "notes": "Otel mutfağı için büyük boy (1L, 5L) sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 4,
+        "customer_id": 3,
+        "label": "Otel Teslimat Kapısı",
+        "country": "TR",
+        "city": "Antalya",
+        "district": "Muratpaşa",
+        "neighborhood": "Yenigün Mahallesi",
+        "street": "Atatürk Bulvarı",
+        "building_no": "12",
+        "apartment_no": null,
+        "postal_code": "07040",
+        "full_address": "Yenigün Mah. Atatürk Bulvarı No:12 Muratpaşa/Antalya",
+        "latitude": 36.8841,
+        "longitude": 30.7056,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 1,
+      "name": "Ahmet Yılmaz",
+      "company_name": "Yılmaz Gıda A.Ş.",
+      "phone": "+90 212 555 10 20",
+      "email": "ahmet@yilmazgida.com",
+      "notes": "Toplu alım müşterisi, aylık düzenli sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 1,
+        "customer_id": 1,
+        "label": "Merkez Depo",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Bağcılar",
+        "neighborhood": "Mahmutbey Mahallesi",
+        "street": "Taşocağı Yolu Caddesi",
+        "building_no": "42",
+        "apartment_no": null,
+        "postal_code": "34218",
+        "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+        "latitude": 41.0532,
+        "longitude": 28.8103,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       },
+       {
+        "id": 2,
+        "customer_id": 1,
+        "label": "Şube Ofis",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Şişli",
+        "neighborhood": "Mecidiyeköy Mahallesi",
+        "street": "Büyükdere Caddesi",
+        "building_no": "185",
+        "apartment_no": "7",
+        "postal_code": "34394",
+        "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+        "latitude": 41.0703,
+        "longitude": 28.9917,
+        "is_default": false,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 13,
+      "name": "Hakan Güneş",
+      "company_name": "Güneş Otelcilik",
+      "phone": "0533 835 50 86",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 14,
+        "customer_id": 13,
+        "label": "Güneş Otelcilik",
+        "country": "TR",
+        "city": "Muğla",
+        "district": "Bodrum",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T20:56:00.000000Z",
+        "updated_at": "2026-11-05T20:56:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T20:56:00.000000Z",
+      "updated_at": "2026-11-05T20:56:00.000000Z"
+     },
+     {
+      "id": 8,
+      "name": "Deniz Çelik",
+      "company_name": "Kuşadası Resort Otel",
+      "phone": "0544 175 82 76",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 9,
+        "customer_id": 8,
+        "label": "Kuşadası Resort Otel",
+        "country": "TR",
+        "city": "Aydın",
+        "district": "Kuşadası",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T10:02:00.000000Z",
+        "updated_at": "2026-11-05T10:02:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T10:02:00.000000Z",
+      "updated_at": "2026-11-05T10:02:00.000000Z"
+     },
+     {
+      "id": 7,
+      "name": "Burak Öztürk",
+      "company_name": "Öztürk Toptan Gıda",
+      "phone": "0540 732 74 63",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 8,
+        "customer_id": 7,
+        "label": "Öztürk Toptan Gıda",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Osmangazi",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-04T23:52:00.000000Z",
+        "updated_at": "2026-11-04T23:52:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-04T23:52:00.000000Z",
+      "updated_at": "2026-11-04T23:52:00.000000Z"
+     },
+     {
+      "id": 12,
+      "name": "Ayşe Karaca",
+      "company_name": "Organik Sepet",
+      "phone": "0539 895 26 17",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 13,
+        "customer_id": 12,
+        "label": "Organik Sepet",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Kadıköy",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-27T12:03:00.000000Z",
+        "updated_at": "2026-10-27T12:03:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-27T12:03:00.000000Z",
+      "updated_at": "2026-10-27T12:03:00.000000Z"
+     },
+     {
+      "id": 6,
+      "name": "Selin Aydın",
+      "company_name": "Aydın Şarküteri",
+      "phone": "0544 601 76 73",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 7,
+        "customer_id": 6,
+        "label": "Aydın Şarküteri",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Karşıyaka",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-23T17:40:00.000000Z",
+        "updated_at": "2026-10-23T17:40:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-23T17:40:00.000000Z",
+      "updated_at": "2026-10-23T17:40:00.000000Z"
+     },
+     {
+      "id": 5,
+      "name": "Ali Koç",
+      "company_name": "Koç Restoran Grubu",
+      "phone": "0533 664 77 52",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 6,
+        "customer_id": 5,
+        "label": "Koç Restoran Grubu",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Beşiktaş",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T05:25:00.000000Z",
+        "updated_at": "2026-10-19T05:25:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T05:25:00.000000Z",
+      "updated_at": "2026-10-19T05:25:00.000000Z"
+     },
+     {
+      "id": 16,
+      "name": "Seda Kurt",
+      "company_name": null,
+      "phone": "0547 822 89 40",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 17,
+        "customer_id": 16,
+        "label": "Ev",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T03:07:00.000000Z",
+        "updated_at": "2026-10-19T03:07:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T03:07:00.000000Z",
+      "updated_at": "2026-10-19T03:07:00.000000Z"
+     },
+     {
+      "id": 15,
+      "name": "Oğuz Erdoğan",
+      "company_name": "Ege Catering",
+      "phone": "0534 305 96 29",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 16,
+        "customer_id": 15,
+        "label": "Ege Catering",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Bornova",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-11T00:39:00.000000Z",
+        "updated_at": "2026-10-11T00:39:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-11T00:39:00.000000Z",
+      "updated_at": "2026-10-11T00:39:00.000000Z"
+     },
+     {
+      "id": 11,
+      "name": "Can Polat",
+      "company_name": "Polat Pide & Kebap",
+      "phone": "0550 437 37 38",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 12,
+        "customer_id": 11,
+        "label": "Polat Pide & Kebap",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Nilüfer",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-03T13:13:00.000000Z",
+        "updated_at": "2026-10-03T13:13:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-03T13:13:00.000000Z",
+      "updated_at": "2026-10-03T13:13:00.000000Z"
+     },
+     {
+      "id": 14,
+      "name": "Elif Doğan",
+      "company_name": "Doğan Gurme",
+      "phone": "0547 106 95 44",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 15,
+        "customer_id": 14,
+        "label": "Doğan Gurme",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Alsancak",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-09-06T10:19:00.000000Z",
+        "updated_at": "2026-09-06T10:19:00.000000Z"
+       }
+      ],
+      "created_at": "2026-09-06T10:19:00.000000Z",
+      "updated_at": "2026-09-06T10:19:00.000000Z"
+     },
+     {
+      "id": 9,
+      "name": "Merve Şahin",
+      "company_name": "Şahin Kurumsal Hediye",
+      "phone": "0538 734 79 84",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 10,
+        "customer_id": 9,
+        "label": "Şahin Kurumsal Hediye",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Ataşehir",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-08-04T08:28:00.000000Z",
+        "updated_at": "2026-08-04T08:28:00.000000Z"
+       }
+      ],
+      "created_at": "2026-08-04T08:28:00.000000Z",
+      "updated_at": "2026-08-04T08:28:00.000000Z"
+     },
+     {
+      "id": 10,
+      "name": "Emre Yıldız",
+      "company_name": "Yıldız Market Zinciri",
+      "phone": "0547 327 91 67",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 11,
+        "customer_id": 10,
+        "label": "Yıldız Market Zinciri",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Etimesgut",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-02-19T23:05:00.000000Z",
+        "updated_at": "2026-02-19T23:05:00.000000Z"
+       }
+      ],
+      "created_at": "2026-02-19T23:05:00.000000Z",
+      "updated_at": "2026-02-19T23:05:00.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "liste ?is_active=0",
+   "method": "GET",
+   "path": "/api/customers?is_active=0",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": []
+   },
+   "save": null
+  },
+  {
+   "name": "liste ?per_page=5",
+   "method": "GET",
+   "path": "/api/customers?per_page=5",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 1,
+      "name": "Ahmet Yılmaz",
+      "company_name": "Yılmaz Gıda A.Ş.",
+      "phone": "+90 212 555 10 20",
+      "email": "ahmet@yilmazgida.com",
+      "notes": "Toplu alım müşterisi, aylık düzenli sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 1,
+        "customer_id": 1,
+        "label": "Merkez Depo",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Bağcılar",
+        "neighborhood": "Mahmutbey Mahallesi",
+        "street": "Taşocağı Yolu Caddesi",
+        "building_no": "42",
+        "apartment_no": null,
+        "postal_code": "34218",
+        "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+        "latitude": 41.0532,
+        "longitude": 28.8103,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       },
+       {
+        "id": 2,
+        "customer_id": 1,
+        "label": "Şube Ofis",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Şişli",
+        "neighborhood": "Mecidiyeköy Mahallesi",
+        "street": "Büyükdere Caddesi",
+        "building_no": "185",
+        "apartment_no": "7",
+        "postal_code": "34394",
+        "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+        "latitude": 41.0703,
+        "longitude": 28.9917,
+        "is_default": false,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 3,
+      "name": "Mehmet Demir",
+      "company_name": "Demir Otelcilik",
+      "phone": "+90 242 311 22 33",
+      "email": "mehmet@demirotel.com",
+      "notes": "Otel mutfağı için büyük boy (1L, 5L) sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 4,
+        "customer_id": 3,
+        "label": "Otel Teslimat Kapısı",
+        "country": "TR",
+        "city": "Antalya",
+        "district": "Muratpaşa",
+        "neighborhood": "Yenigün Mahallesi",
+        "street": "Atatürk Bulvarı",
+        "building_no": "12",
+        "apartment_no": null,
+        "postal_code": "07040",
+        "full_address": "Yenigün Mah. Atatürk Bulvarı No:12 Muratpaşa/Antalya",
+        "latitude": 36.8841,
+        "longitude": 30.7056,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 4,
+      "name": "Zeynep Arslan",
+      "company_name": null,
+      "phone": "+90 505 777 66 55",
+      "email": "zeynep.arslan@gmail.com",
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 5,
+        "customer_id": 4,
+        "label": "Ev Adresi",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": "Kavaklıdere Mahallesi",
+        "street": "Tunalı Hilmi Caddesi",
+        "building_no": "88",
+        "apartment_no": "3",
+        "postal_code": "06680",
+        "full_address": "Kavaklıdere Mah. Tunalı Hilmi Cad. No:88 D:3 Çankaya/Ankara",
+        "latitude": 39.905,
+        "longitude": 32.8597,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 2,
+      "name": "Fatma Kaya",
+      "company_name": "Ege Lezzet Market",
+      "phone": "+90 232 444 88 55",
+      "email": "fatma@egelezzet.com",
+      "notes": "Küçük market zinciri, 3 şube. 250ml ve 500ml tercih eder.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 3,
+        "customer_id": 2,
+        "label": "Merkez Mağaza",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Konak",
+        "neighborhood": "Alsancak Mahallesi",
+        "street": "Kıbrıs Şehitleri Caddesi",
+        "building_no": "67",
+        "apartment_no": null,
+        "postal_code": "35220",
+        "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+        "latitude": 38.4381,
+        "longitude": 27.1431,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 13,
+      "name": "Hakan Güneş",
+      "company_name": "Güneş Otelcilik",
+      "phone": "0533 835 50 86",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 14,
+        "customer_id": 13,
+        "label": "Güneş Otelcilik",
+        "country": "TR",
+        "city": "Muğla",
+        "district": "Bodrum",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T20:56:00.000000Z",
+        "updated_at": "2026-11-05T20:56:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T20:56:00.000000Z",
+      "updated_at": "2026-11-05T20:56:00.000000Z"
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/customers?per_page=5&page=1",
+     "last": "http://localhost:8001/api/customers?per_page=5&page=4",
+     "prev": null,
+     "next": "http://localhost:8001/api/customers?per_page=5&page=2"
+    },
+    "meta": {
+     "current_page": 1,
+     "from": 1,
+     "last_page": 4,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=2",
+       "label": "2",
+       "page": 2,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=3",
+       "label": "3",
+       "page": 3,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=4",
+       "label": "4",
+       "page": 4,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=2",
+       "label": "Next &raquo;",
+       "page": 2,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/customers",
+     "per_page": 5,
+     "to": 5,
+     "total": 16
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "liste ?per_page=5&page=2",
+   "method": "GET",
+   "path": "/api/customers?per_page=5&page=2",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 8,
+      "name": "Deniz Çelik",
+      "company_name": "Kuşadası Resort Otel",
+      "phone": "0544 175 82 76",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 9,
+        "customer_id": 8,
+        "label": "Kuşadası Resort Otel",
+        "country": "TR",
+        "city": "Aydın",
+        "district": "Kuşadası",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T10:02:00.000000Z",
+        "updated_at": "2026-11-05T10:02:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T10:02:00.000000Z",
+      "updated_at": "2026-11-05T10:02:00.000000Z"
+     },
+     {
+      "id": 7,
+      "name": "Burak Öztürk",
+      "company_name": "Öztürk Toptan Gıda",
+      "phone": "0540 732 74 63",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 8,
+        "customer_id": 7,
+        "label": "Öztürk Toptan Gıda",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Osmangazi",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-04T23:52:00.000000Z",
+        "updated_at": "2026-11-04T23:52:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-04T23:52:00.000000Z",
+      "updated_at": "2026-11-04T23:52:00.000000Z"
+     },
+     {
+      "id": 12,
+      "name": "Ayşe Karaca",
+      "company_name": "Organik Sepet",
+      "phone": "0539 895 26 17",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 13,
+        "customer_id": 12,
+        "label": "Organik Sepet",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Kadıköy",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-27T12:03:00.000000Z",
+        "updated_at": "2026-10-27T12:03:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-27T12:03:00.000000Z",
+      "updated_at": "2026-10-27T12:03:00.000000Z"
+     },
+     {
+      "id": 6,
+      "name": "Selin Aydın",
+      "company_name": "Aydın Şarküteri",
+      "phone": "0544 601 76 73",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 7,
+        "customer_id": 6,
+        "label": "Aydın Şarküteri",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Karşıyaka",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-23T17:40:00.000000Z",
+        "updated_at": "2026-10-23T17:40:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-23T17:40:00.000000Z",
+      "updated_at": "2026-10-23T17:40:00.000000Z"
+     },
+     {
+      "id": 5,
+      "name": "Ali Koç",
+      "company_name": "Koç Restoran Grubu",
+      "phone": "0533 664 77 52",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 6,
+        "customer_id": 5,
+        "label": "Koç Restoran Grubu",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Beşiktaş",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T05:25:00.000000Z",
+        "updated_at": "2026-10-19T05:25:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T05:25:00.000000Z",
+      "updated_at": "2026-10-19T05:25:00.000000Z"
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/customers?per_page=5&page=1",
+     "last": "http://localhost:8001/api/customers?per_page=5&page=4",
+     "prev": "http://localhost:8001/api/customers?per_page=5&page=1",
+     "next": "http://localhost:8001/api/customers?per_page=5&page=3"
+    },
+    "meta": {
+     "current_page": 2,
+     "from": 6,
+     "last_page": 4,
+     "links": [
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=1",
+       "label": "&laquo; Previous",
+       "page": 1,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=1",
+       "label": "1",
+       "page": 1,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=2",
+       "label": "2",
+       "page": 2,
+       "active": true
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=3",
+       "label": "3",
+       "page": 3,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=4",
+       "label": "4",
+       "page": 4,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=5&page=3",
+       "label": "Next &raquo;",
+       "page": 3,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/customers",
+     "per_page": 5,
+     "to": 10,
+     "total": 16
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "liste ?per_page=0",
+   "method": "GET",
+   "path": "/api/customers?per_page=0",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "The per page field must be at least 1.",
+    "errors": {
+     "per_page": [
+      "The per page field must be at least 1."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "detay 1",
+   "method": "GET",
+   "path": "/api/customers/1",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 1,
+     "name": "Ahmet Yılmaz",
+     "company_name": "Yılmaz Gıda A.Ş.",
+     "phone": "+90 212 555 10 20",
+     "email": "ahmet@yilmazgida.com",
+     "notes": "Toplu alım müşterisi, aylık düzenli sipariş verir.",
+     "is_active": true,
+     "addresses": [
+      {
+       "id": 1,
+       "customer_id": 1,
+       "label": "Merkez Depo",
+       "country": "TR",
+       "city": "İstanbul",
+       "district": "Bağcılar",
+       "neighborhood": "Mahmutbey Mahallesi",
+       "street": "Taşocağı Yolu Caddesi",
+       "building_no": "42",
+       "apartment_no": null,
+       "postal_code": "34218",
+       "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+       "latitude": 41.0532,
+       "longitude": 28.8103,
+       "is_default": true,
+       "created_at": "2026-11-06T15:35:14.000000Z",
+       "updated_at": "2026-11-06T15:35:14.000000Z"
+      },
+      {
+       "id": 2,
+       "customer_id": 1,
+       "label": "Şube Ofis",
+       "country": "TR",
+       "city": "İstanbul",
+       "district": "Şişli",
+       "neighborhood": "Mecidiyeköy Mahallesi",
+       "street": "Büyükdere Caddesi",
+       "building_no": "185",
+       "apartment_no": "7",
+       "postal_code": "34394",
+       "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+       "latitude": 41.0703,
+       "longitude": 28.9917,
+       "is_default": false,
+       "created_at": "2026-11-06T15:35:14.000000Z",
+       "updated_at": "2026-11-06T15:35:14.000000Z"
+      }
+     ],
+     "created_at": "2026-11-06T15:35:14.000000Z",
+     "updated_at": "2026-11-06T15:35:14.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adresler 1",
+   "method": "GET",
+   "path": "/api/customers/1/addresses",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 1,
+      "customer_id": 1,
+      "label": "Merkez Depo",
+      "country": "TR",
+      "city": "İstanbul",
+      "district": "Bağcılar",
+      "neighborhood": "Mahmutbey Mahallesi",
+      "street": "Taşocağı Yolu Caddesi",
+      "building_no": "42",
+      "apartment_no": null,
+      "postal_code": "34218",
+      "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+      "latitude": 41.0532,
+      "longitude": 28.8103,
+      "is_default": true,
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 2,
+      "customer_id": 1,
+      "label": "Şube Ofis",
+      "country": "TR",
+      "city": "İstanbul",
+      "district": "Şişli",
+      "neighborhood": "Mecidiyeköy Mahallesi",
+      "street": "Büyükdere Caddesi",
+      "building_no": "185",
+      "apartment_no": "7",
+      "postal_code": "34394",
+      "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+      "latitude": 41.0703,
+      "longitude": 28.9917,
+      "is_default": false,
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili 1",
+   "method": "GET",
+   "path": "/api/customers/1/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [],
+     "history": [
+      {
+       "recipe": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+        "contents": [
+         {
+          "id": 1,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 35,
+       "total_quantity": 35817,
+       "last_order_date": "2026-11-03"
+      },
+      {
+       "recipe": {
+        "id": 2,
+        "name": "Naturel Sızma Gemlik 0.8",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+        "contents": [
+         {
+          "id": 2,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 11,
+       "total_quantity": 21966,
+       "last_order_date": "2026-10-05"
+      },
+      {
+       "recipe": {
+        "id": 3,
+        "name": "Naturel Sızma Ayvalık 0.4",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+        "contents": [
+         {
+          "id": 3,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 17,
+       "total_quantity": 17472,
+       "last_order_date": "2026-10-30"
+      },
+      {
+       "recipe": {
+        "id": 4,
+        "name": "Naturel Sızma Ayvalık 0.9",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+        "contents": [
+         {
+          "id": 4,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 8,
+       "total_quantity": 10062,
+       "last_order_date": "2026-10-05"
+      },
+      {
+       "recipe": {
+        "id": 5,
+        "name": "Klasik Blend 0.5",
+        "version": 1,
+        "is_active": true,
+        "description": "%70 Gemlik, %30 Ayvalık karışımı",
+        "contents": [
+         {
+          "id": 5,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.7000"
+         },
+         {
+          "id": 6,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "0.3000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 11,
+       "total_quantity": 4878,
+       "last_order_date": "2026-11-03"
+      },
+      {
+       "recipe": {
+        "id": 6,
+        "name": "Portakallı Zeytinyağı",
+        "version": 1,
+        "is_active": true,
+        "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
+        "contents": [
+         {
+          "id": 7,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.8000"
+         },
+         {
+          "id": 8,
+          "production_product_type_id": 6,
+          "production_product_type_name": "Portakal Aroması",
+          "ratio": "0.2000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 1,
+       "total_quantity": 24,
+       "last_order_date": "2025-11-09"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "detay 2",
+   "method": "GET",
+   "path": "/api/customers/2",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 2,
+     "name": "Fatma Kaya",
+     "company_name": "Ege Lezzet Market",
+     "phone": "+90 232 444 88 55",
+     "email": "fatma@egelezzet.com",
+     "notes": "Küçük market zinciri, 3 şube. 250ml ve 500ml tercih eder.",
+     "is_active": true,
+     "addresses": [
+      {
+       "id": 3,
+       "customer_id": 2,
+       "label": "Merkez Mağaza",
+       "country": "TR",
+       "city": "İzmir",
+       "district": "Konak",
+       "neighborhood": "Alsancak Mahallesi",
+       "street": "Kıbrıs Şehitleri Caddesi",
+       "building_no": "67",
+       "apartment_no": null,
+       "postal_code": "35220",
+       "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+       "latitude": 38.4381,
+       "longitude": 27.1431,
+       "is_default": true,
+       "created_at": "2026-11-06T15:35:14.000000Z",
+       "updated_at": "2026-11-06T15:35:14.000000Z"
+      }
+     ],
+     "created_at": "2026-11-06T15:35:14.000000Z",
+     "updated_at": "2026-11-06T15:35:14.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adresler 2",
+   "method": "GET",
+   "path": "/api/customers/2/addresses",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 3,
+      "customer_id": 2,
+      "label": "Merkez Mağaza",
+      "country": "TR",
+      "city": "İzmir",
+      "district": "Konak",
+      "neighborhood": "Alsancak Mahallesi",
+      "street": "Kıbrıs Şehitleri Caddesi",
+      "building_no": "67",
+      "apartment_no": null,
+      "postal_code": "35220",
+      "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+      "latitude": 38.4381,
+      "longitude": 27.1431,
+      "is_default": true,
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili 2",
+   "method": "GET",
+   "path": "/api/customers/2/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [],
+     "history": [
+      {
+       "recipe": {
+        "id": 3,
+        "name": "Naturel Sızma Ayvalık 0.4",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+        "contents": [
+         {
+          "id": 3,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 27,
+       "total_quantity": 44952,
+       "last_order_date": "2026-11-05"
+      },
+      {
+       "recipe": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+        "contents": [
+         {
+          "id": 1,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 37,
+       "total_quantity": 44272,
+       "last_order_date": "2026-11-05"
+      },
+      {
+       "recipe": {
+        "id": 2,
+        "name": "Naturel Sızma Gemlik 0.8",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+        "contents": [
+         {
+          "id": 2,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 21,
+       "total_quantity": 36834,
+       "last_order_date": "2026-10-06"
+      },
+      {
+       "recipe": {
+        "id": 4,
+        "name": "Naturel Sızma Ayvalık 0.9",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+        "contents": [
+         {
+          "id": 4,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 11,
+       "total_quantity": 9612,
+       "last_order_date": "2026-10-06"
+      },
+      {
+       "recipe": {
+        "id": 5,
+        "name": "Klasik Blend 0.5",
+        "version": 1,
+        "is_active": true,
+        "description": "%70 Gemlik, %30 Ayvalık karışımı",
+        "contents": [
+         {
+          "id": 5,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.7000"
+         },
+         {
+          "id": 6,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "0.3000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 7,
+       "total_quantity": 1416,
+       "last_order_date": "2026-10-21"
+      },
+      {
+       "recipe": {
+        "id": 6,
+        "name": "Portakallı Zeytinyağı",
+        "version": 1,
+        "is_active": true,
+        "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
+        "contents": [
+         {
+          "id": 7,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.8000"
+         },
+         {
+          "id": 8,
+          "production_product_type_id": 6,
+          "production_product_type_name": "Portakal Aroması",
+          "ratio": "0.2000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 7,
+       "total_quantity": 228,
+       "last_order_date": "2026-10-21"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "detay 5",
+   "method": "GET",
+   "path": "/api/customers/5",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 5,
+     "name": "Ali Koç",
+     "company_name": "Koç Restoran Grubu",
+     "phone": "0533 664 77 52",
+     "email": null,
+     "notes": null,
+     "is_active": true,
+     "addresses": [
+      {
+       "id": 6,
+       "customer_id": 5,
+       "label": "Koç Restoran Grubu",
+       "country": "TR",
+       "city": "İstanbul",
+       "district": "Beşiktaş",
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": null,
+       "longitude": null,
+       "is_default": true,
+       "created_at": "2026-10-19T05:25:00.000000Z",
+       "updated_at": "2026-10-19T05:25:00.000000Z"
+      }
+     ],
+     "created_at": "2026-10-19T05:25:00.000000Z",
+     "updated_at": "2026-10-19T05:25:00.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adresler 5",
+   "method": "GET",
+   "path": "/api/customers/5/addresses",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 6,
+      "customer_id": 5,
+      "label": "Koç Restoran Grubu",
+      "country": "TR",
+      "city": "İstanbul",
+      "district": "Beşiktaş",
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": true,
+      "created_at": "2026-10-19T05:25:00.000000Z",
+      "updated_at": "2026-10-19T05:25:00.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili 5",
+   "method": "GET",
+   "path": "/api/customers/5/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [],
+     "history": [
+      {
+       "recipe": {
+        "id": 2,
+        "name": "Naturel Sızma Gemlik 0.8",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+        "contents": [
+         {
+          "id": 2,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 13,
+       "total_quantity": 264,
+       "last_order_date": "2026-09-24"
+      },
+      {
+       "recipe": {
+        "id": 5,
+        "name": "Klasik Blend 0.5",
+        "version": 1,
+        "is_active": true,
+        "description": "%70 Gemlik, %30 Ayvalık karışımı",
+        "contents": [
+         {
+          "id": 5,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.7000"
+         },
+         {
+          "id": 6,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "0.3000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 6,
+       "total_quantity": 102,
+       "last_order_date": "2026-10-20"
+      },
+      {
+       "recipe": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+        "contents": [
+         {
+          "id": 1,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 9,
+       "total_quantity": 29,
+       "last_order_date": "2026-09-23"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "detay 16",
+   "method": "GET",
+   "path": "/api/customers/16",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 16,
+     "name": "Seda Kurt",
+     "company_name": null,
+     "phone": "0547 822 89 40",
+     "email": null,
+     "notes": null,
+     "is_active": true,
+     "addresses": [
+      {
+       "id": 17,
+       "customer_id": 16,
+       "label": "Ev",
+       "country": "TR",
+       "city": "Ankara",
+       "district": "Çankaya",
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": null,
+       "longitude": null,
+       "is_default": true,
+       "created_at": "2026-10-19T03:07:00.000000Z",
+       "updated_at": "2026-10-19T03:07:00.000000Z"
+      }
+     ],
+     "created_at": "2026-10-19T03:07:00.000000Z",
+     "updated_at": "2026-10-19T03:07:00.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adresler 16",
+   "method": "GET",
+   "path": "/api/customers/16/addresses",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 17,
+      "customer_id": 16,
+      "label": "Ev",
+      "country": "TR",
+      "city": "Ankara",
+      "district": "Çankaya",
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": true,
+      "created_at": "2026-10-19T03:07:00.000000Z",
+      "updated_at": "2026-10-19T03:07:00.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili 16",
+   "method": "GET",
+   "path": "/api/customers/16/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [],
+     "history": [
+      {
+       "recipe": {
+        "id": 3,
+        "name": "Naturel Sızma Ayvalık 0.4",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+        "contents": [
+         {
+          "id": 3,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 2,
+       "total_quantity": 24,
+       "last_order_date": "2026-04-02"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "olmayan",
+   "method": "GET",
+   "path": "/api/customers/999999",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\Customer] 999999"
+   },
+   "save": null
+  },
+  {
+   "name": "liste muhendis",
+   "method": "GET",
+   "path": "/api/customers",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 4,
+      "name": "Zeynep Arslan",
+      "company_name": null,
+      "phone": "+90 505 777 66 55",
+      "email": "zeynep.arslan@gmail.com",
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 5,
+        "customer_id": 4,
+        "label": "Ev Adresi",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": "Kavaklıdere Mahallesi",
+        "street": "Tunalı Hilmi Caddesi",
+        "building_no": "88",
+        "apartment_no": "3",
+        "postal_code": "06680",
+        "full_address": "Kavaklıdere Mah. Tunalı Hilmi Cad. No:88 D:3 Çankaya/Ankara",
+        "latitude": 39.905,
+        "longitude": 32.8597,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 2,
+      "name": "Fatma Kaya",
+      "company_name": "Ege Lezzet Market",
+      "phone": "+90 232 444 88 55",
+      "email": "fatma@egelezzet.com",
+      "notes": "Küçük market zinciri, 3 şube. 250ml ve 500ml tercih eder.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 3,
+        "customer_id": 2,
+        "label": "Merkez Mağaza",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Konak",
+        "neighborhood": "Alsancak Mahallesi",
+        "street": "Kıbrıs Şehitleri Caddesi",
+        "building_no": "67",
+        "apartment_no": null,
+        "postal_code": "35220",
+        "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+        "latitude": 38.4381,
+        "longitude": 27.1431,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 3,
+      "name": "Mehmet Demir",
+      "company_name": "Demir Otelcilik",
+      "phone": "+90 242 311 22 33",
+      "email": "mehmet@demirotel.com",
+      "notes": "Otel mutfağı için büyük boy (1L, 5L) sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 4,
+        "customer_id": 3,
+        "label": "Otel Teslimat Kapısı",
+        "country": "TR",
+        "city": "Antalya",
+        "district": "Muratpaşa",
+        "neighborhood": "Yenigün Mahallesi",
+        "street": "Atatürk Bulvarı",
+        "building_no": "12",
+        "apartment_no": null,
+        "postal_code": "07040",
+        "full_address": "Yenigün Mah. Atatürk Bulvarı No:12 Muratpaşa/Antalya",
+        "latitude": 36.8841,
+        "longitude": 30.7056,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 1,
+      "name": "Ahmet Yılmaz",
+      "company_name": "Yılmaz Gıda A.Ş.",
+      "phone": "+90 212 555 10 20",
+      "email": "ahmet@yilmazgida.com",
+      "notes": "Toplu alım müşterisi, aylık düzenli sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 1,
+        "customer_id": 1,
+        "label": "Merkez Depo",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Bağcılar",
+        "neighborhood": "Mahmutbey Mahallesi",
+        "street": "Taşocağı Yolu Caddesi",
+        "building_no": "42",
+        "apartment_no": null,
+        "postal_code": "34218",
+        "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+        "latitude": 41.0532,
+        "longitude": 28.8103,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       },
+       {
+        "id": 2,
+        "customer_id": 1,
+        "label": "Şube Ofis",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Şişli",
+        "neighborhood": "Mecidiyeköy Mahallesi",
+        "street": "Büyükdere Caddesi",
+        "building_no": "185",
+        "apartment_no": "7",
+        "postal_code": "34394",
+        "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+        "latitude": 41.0703,
+        "longitude": 28.9917,
+        "is_default": false,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 13,
+      "name": "Hakan Güneş",
+      "company_name": "Güneş Otelcilik",
+      "phone": "0533 835 50 86",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 14,
+        "customer_id": 13,
+        "label": "Güneş Otelcilik",
+        "country": "TR",
+        "city": "Muğla",
+        "district": "Bodrum",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T20:56:00.000000Z",
+        "updated_at": "2026-11-05T20:56:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T20:56:00.000000Z",
+      "updated_at": "2026-11-05T20:56:00.000000Z"
+     },
+     {
+      "id": 8,
+      "name": "Deniz Çelik",
+      "company_name": "Kuşadası Resort Otel",
+      "phone": "0544 175 82 76",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 9,
+        "customer_id": 8,
+        "label": "Kuşadası Resort Otel",
+        "country": "TR",
+        "city": "Aydın",
+        "district": "Kuşadası",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-05T10:02:00.000000Z",
+        "updated_at": "2026-11-05T10:02:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-05T10:02:00.000000Z",
+      "updated_at": "2026-11-05T10:02:00.000000Z"
+     },
+     {
+      "id": 7,
+      "name": "Burak Öztürk",
+      "company_name": "Öztürk Toptan Gıda",
+      "phone": "0540 732 74 63",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 8,
+        "customer_id": 7,
+        "label": "Öztürk Toptan Gıda",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Osmangazi",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-11-04T23:52:00.000000Z",
+        "updated_at": "2026-11-04T23:52:00.000000Z"
+       }
+      ],
+      "created_at": "2026-11-04T23:52:00.000000Z",
+      "updated_at": "2026-11-04T23:52:00.000000Z"
+     },
+     {
+      "id": 12,
+      "name": "Ayşe Karaca",
+      "company_name": "Organik Sepet",
+      "phone": "0539 895 26 17",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 13,
+        "customer_id": 12,
+        "label": "Organik Sepet",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Kadıköy",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-27T12:03:00.000000Z",
+        "updated_at": "2026-10-27T12:03:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-27T12:03:00.000000Z",
+      "updated_at": "2026-10-27T12:03:00.000000Z"
+     },
+     {
+      "id": 6,
+      "name": "Selin Aydın",
+      "company_name": "Aydın Şarküteri",
+      "phone": "0544 601 76 73",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 7,
+        "customer_id": 6,
+        "label": "Aydın Şarküteri",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Karşıyaka",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-23T17:40:00.000000Z",
+        "updated_at": "2026-10-23T17:40:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-23T17:40:00.000000Z",
+      "updated_at": "2026-10-23T17:40:00.000000Z"
+     },
+     {
+      "id": 5,
+      "name": "Ali Koç",
+      "company_name": "Koç Restoran Grubu",
+      "phone": "0533 664 77 52",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 6,
+        "customer_id": 5,
+        "label": "Koç Restoran Grubu",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Beşiktaş",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T05:25:00.000000Z",
+        "updated_at": "2026-10-19T05:25:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T05:25:00.000000Z",
+      "updated_at": "2026-10-19T05:25:00.000000Z"
+     },
+     {
+      "id": 16,
+      "name": "Seda Kurt",
+      "company_name": null,
+      "phone": "0547 822 89 40",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 17,
+        "customer_id": 16,
+        "label": "Ev",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-19T03:07:00.000000Z",
+        "updated_at": "2026-10-19T03:07:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-19T03:07:00.000000Z",
+      "updated_at": "2026-10-19T03:07:00.000000Z"
+     },
+     {
+      "id": 15,
+      "name": "Oğuz Erdoğan",
+      "company_name": "Ege Catering",
+      "phone": "0534 305 96 29",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 16,
+        "customer_id": 15,
+        "label": "Ege Catering",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Bornova",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-11T00:39:00.000000Z",
+        "updated_at": "2026-10-11T00:39:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-11T00:39:00.000000Z",
+      "updated_at": "2026-10-11T00:39:00.000000Z"
+     },
+     {
+      "id": 11,
+      "name": "Can Polat",
+      "company_name": "Polat Pide & Kebap",
+      "phone": "0550 437 37 38",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 12,
+        "customer_id": 11,
+        "label": "Polat Pide & Kebap",
+        "country": "TR",
+        "city": "Bursa",
+        "district": "Nilüfer",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-10-03T13:13:00.000000Z",
+        "updated_at": "2026-10-03T13:13:00.000000Z"
+       }
+      ],
+      "created_at": "2026-10-03T13:13:00.000000Z",
+      "updated_at": "2026-10-03T13:13:00.000000Z"
+     },
+     {
+      "id": 14,
+      "name": "Elif Doğan",
+      "company_name": "Doğan Gurme",
+      "phone": "0547 106 95 44",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 15,
+        "customer_id": 14,
+        "label": "Doğan Gurme",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Alsancak",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-09-06T10:19:00.000000Z",
+        "updated_at": "2026-09-06T10:19:00.000000Z"
+       }
+      ],
+      "created_at": "2026-09-06T10:19:00.000000Z",
+      "updated_at": "2026-09-06T10:19:00.000000Z"
+     },
+     {
+      "id": 9,
+      "name": "Merve Şahin",
+      "company_name": "Şahin Kurumsal Hediye",
+      "phone": "0538 734 79 84",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 10,
+        "customer_id": 9,
+        "label": "Şahin Kurumsal Hediye",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Ataşehir",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-08-04T08:28:00.000000Z",
+        "updated_at": "2026-08-04T08:28:00.000000Z"
+       }
+      ],
+      "created_at": "2026-08-04T08:28:00.000000Z",
+      "updated_at": "2026-08-04T08:28:00.000000Z"
+     },
+     {
+      "id": 10,
+      "name": "Emre Yıldız",
+      "company_name": "Yıldız Market Zinciri",
+      "phone": "0547 327 91 67",
+      "email": null,
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 11,
+        "customer_id": 10,
+        "label": "Yıldız Market Zinciri",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Etimesgut",
+        "neighborhood": null,
+        "street": null,
+        "building_no": null,
+        "apartment_no": null,
+        "postal_code": null,
+        "full_address": null,
+        "latitude": null,
+        "longitude": null,
+        "is_default": true,
+        "created_at": "2026-02-19T23:05:00.000000Z",
+        "updated_at": "2026-02-19T23:05:00.000000Z"
+       }
+      ],
+      "created_at": "2026-02-19T23:05:00.000000Z",
+      "updated_at": "2026-02-19T23:05:00.000000Z"
+     }
+    ]
+   },
+   "save": null,
+   "as": "muhendis@olivamore.com"
+  },
+  {
+   "name": "liste yetkisiz",
+   "method": "GET",
+   "path": "/api/customers",
+   "body": null,
+   "status": 403,
+   "response": {
+    "message": "User does not have the right permissions."
+   },
+   "save": null,
+   "as": "operator1@olivamore.com"
+  },
+  {
+   "name": "ekle bos",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The name field is required.",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "ekle hatali",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {
+    "name": "",
+    "email": "x",
+    "phone": "1111111111111111111111111111111",
+    "is_active": "evet",
+    "addresses": [
+     {
+      "label": "",
+      "latitude": 95,
+      "longitude": "abc",
+      "is_default": "x"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 8 more errors)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "phone": [
+      "The phone field must not be greater than 30 characters."
+     ],
+     "email": [
+      "The email field must be a valid email address."
+     ],
+     "is_active": [
+      "The is active field must be true or false."
+     ],
+     "addresses.0.label": [
+      "The addresses.0.label field is required."
+     ],
+     "addresses.0.city": [
+      "The addresses.0.city field is required."
+     ],
+     "addresses.0.latitude": [
+      "The addresses.0.latitude field must be between -90 and 90."
+     ],
+     "addresses.0.longitude": [
+      "The addresses.0.longitude field must be a number."
+     ],
+     "addresses.0.is_default": [
+      "The addresses.0.is_default field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "ekle",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {
+    "name": "Test Musteri"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 17,
+     "name": "Test Musteri",
+     "company_name": null,
+     "phone": null,
+     "email": null,
+     "notes": null,
+     "is_active": true,
+     "addresses": [],
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": [
+    "C1",
+    "data.id"
+   ]
+  },
+  {
+   "name": "ekle adresli",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {
+    "name": "Adresli Musteri",
+    "company_name": "Adresli A.S.",
+    "email": "a@b.test",
+    "is_active": null,
+    "addresses": [
+     {
+      "label": "Merkez",
+      "city": "Izmir",
+      "latitude": 38.4237,
+      "longitude": "27.1428",
+      "is_default": true
+     },
+     {
+      "label": "Depo",
+      "city": "Manisa",
+      "country": null,
+      "is_default": "1"
+     },
+     {
+      "label": "Sube",
+      "city": "Aydin",
+      "country": "GR"
+     }
+    ]
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 18,
+     "name": "Adresli Musteri",
+     "company_name": "Adresli A.S.",
+     "phone": null,
+     "email": "a@b.test",
+     "notes": null,
+     "is_active": true,
+     "addresses": [
+      {
+       "id": 18,
+       "customer_id": 18,
+       "label": "Merkez",
+       "country": "TR",
+       "city": "Izmir",
+       "district": null,
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": 38.4237,
+       "longitude": 27.1428,
+       "is_default": false,
+       "created_at": "2026-11-07T04:45:10.000000Z",
+       "updated_at": "2026-11-07T04:45:10.000000Z"
+      },
+      {
+       "id": 19,
+       "customer_id": 18,
+       "label": "Depo",
+       "country": "TR",
+       "city": "Manisa",
+       "district": null,
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": null,
+       "longitude": null,
+       "is_default": true,
+       "created_at": "2026-11-07T04:45:10.000000Z",
+       "updated_at": "2026-11-07T04:45:10.000000Z"
+      },
+      {
+       "id": 20,
+       "customer_id": 18,
+       "label": "Sube",
+       "country": "GR",
+       "city": "Aydin",
+       "district": null,
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": null,
+       "longitude": null,
+       "is_default": false,
+       "created_at": "2026-11-07T04:45:10.000000Z",
+       "updated_at": "2026-11-07T04:45:10.000000Z"
+      }
+     ],
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": [
+    "C2",
+    "data.id"
+   ]
+  },
+  {
+   "name": "ekle planlamaci",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {
+    "name": "Planlamaci Musterisi",
+    "is_active": false
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 19,
+     "name": "Planlamaci Musterisi",
+     "company_name": null,
+     "phone": null,
+     "email": null,
+     "notes": null,
+     "is_active": false,
+     "addresses": [],
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": [
+    "C3",
+    "data.id"
+   ],
+   "as": "planner@olivamore.com"
+  },
+  {
+   "name": "ekle muhendis",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {
+    "name": "x"
+   },
+   "status": 403,
+   "response": {
+    "message": "User does not have the right permissions."
+   },
+   "save": null,
+   "as": "muhendis@olivamore.com"
+  },
+  {
+   "name": "guncelle",
+   "method": "PATCH",
+   "path": "/api/customers/{C1}",
+   "body": {
+    "name": "Test Musteri 2",
+    "notes": "not",
+    "is_active": "0"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 17,
+     "name": "Test Musteri 2",
+     "company_name": null,
+     "phone": null,
+     "email": null,
+     "notes": "not",
+     "is_active": false,
+     "addresses": [],
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "guncelle put",
+   "method": "PUT",
+   "path": "/api/customers/{C1}",
+   "body": {
+    "phone": "0555"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 17,
+     "name": "Test Musteri 2",
+     "company_name": null,
+     "phone": "0555",
+     "email": null,
+     "notes": "not",
+     "is_active": false,
+     "addresses": [],
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "guncelle hatali",
+   "method": "PATCH",
+   "path": "/api/customers/{C1}",
+   "body": {
+    "name": null,
+    "email": "x"
+   },
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 1 more error)",
+    "errors": {
+     "name": [
+      "The name field is required."
+     ],
+     "email": [
+      "The email field must be a valid email address."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "detay yeni",
+   "method": "GET",
+   "path": "/api/customers/{C2}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 18,
+     "name": "Adresli Musteri",
+     "company_name": "Adresli A.S.",
+     "phone": null,
+     "email": "a@b.test",
+     "notes": null,
+     "is_active": true,
+     "addresses": [
+      {
+       "id": 18,
+       "customer_id": 18,
+       "label": "Merkez",
+       "country": "TR",
+       "city": "Izmir",
+       "district": null,
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": 38.4237,
+       "longitude": 27.1428,
+       "is_default": false,
+       "created_at": "2026-11-07T04:45:10.000000Z",
+       "updated_at": "2026-11-07T04:45:10.000000Z"
+      },
+      {
+       "id": 19,
+       "customer_id": 18,
+       "label": "Depo",
+       "country": "TR",
+       "city": "Manisa",
+       "district": null,
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": null,
+       "longitude": null,
+       "is_default": true,
+       "created_at": "2026-11-07T04:45:10.000000Z",
+       "updated_at": "2026-11-07T04:45:10.000000Z"
+      },
+      {
+       "id": 20,
+       "customer_id": 18,
+       "label": "Sube",
+       "country": "GR",
+       "city": "Aydin",
+       "district": null,
+       "neighborhood": null,
+       "street": null,
+       "building_no": null,
+       "apartment_no": null,
+       "postal_code": null,
+       "full_address": null,
+       "latitude": null,
+       "longitude": null,
+       "is_default": false,
+       "created_at": "2026-11-07T04:45:10.000000Z",
+       "updated_at": "2026-11-07T04:45:10.000000Z"
+      }
+     ],
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adres ekle bos",
+   "method": "POST",
+   "path": "/api/customers/{C2}/addresses",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The label field is required. (and 1 more error)",
+    "errors": {
+     "label": [
+      "The label field is required."
+     ],
+     "city": [
+      "The city field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adres ekle",
+   "method": "POST",
+   "path": "/api/customers/{C2}/addresses",
+   "body": {
+    "label": "Yeni",
+    "city": "Bursa",
+    "latitude": 40,
+    "longitude": "29.06"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 21,
+     "customer_id": 18,
+     "label": "Yeni",
+     "country": "TR",
+     "city": "Bursa",
+     "district": null,
+     "neighborhood": null,
+     "street": null,
+     "building_no": null,
+     "apartment_no": null,
+     "postal_code": null,
+     "full_address": null,
+     "latitude": 40,
+     "longitude": 29.06,
+     "is_default": null,
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": [
+    "A1",
+    "data.id"
+   ]
+  },
+  {
+   "name": "adres ekle varsayilan",
+   "method": "POST",
+   "path": "/api/customers/{C2}/addresses",
+   "body": {
+    "label": "Varsayilan",
+    "city": "Ankara",
+    "is_default": 1,
+    "country": "TR"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 22,
+     "customer_id": 18,
+     "label": "Varsayilan",
+     "country": "TR",
+     "city": "Ankara",
+     "district": null,
+     "neighborhood": null,
+     "street": null,
+     "building_no": null,
+     "apartment_no": null,
+     "postal_code": null,
+     "full_address": null,
+     "latitude": null,
+     "longitude": null,
+     "is_default": true,
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": [
+    "A2",
+    "data.id"
+   ]
+  },
+  {
+   "name": "adres ekle hassas",
+   "method": "POST",
+   "path": "/api/customers/{C2}/addresses",
+   "body": {
+    "label": "Hassas",
+    "city": "Van",
+    "latitude": "38.123456789",
+    "is_default": false
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "id": 23,
+     "customer_id": 18,
+     "label": "Hassas",
+     "country": "TR",
+     "city": "Van",
+     "district": null,
+     "neighborhood": null,
+     "street": null,
+     "building_no": null,
+     "apartment_no": null,
+     "postal_code": null,
+     "full_address": null,
+     "latitude": 38.123456789,
+     "longitude": null,
+     "is_default": false,
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adresler sonra",
+   "method": "GET",
+   "path": "/api/customers/{C2}/addresses",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 18,
+      "customer_id": 18,
+      "label": "Merkez",
+      "country": "TR",
+      "city": "Izmir",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": 38.4237,
+      "longitude": 27.1428,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 19,
+      "customer_id": 18,
+      "label": "Depo",
+      "country": "TR",
+      "city": "Manisa",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 20,
+      "customer_id": 18,
+      "label": "Sube",
+      "country": "GR",
+      "city": "Aydin",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 21,
+      "customer_id": 18,
+      "label": "Yeni",
+      "country": "TR",
+      "city": "Bursa",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": 40,
+      "longitude": 29.06,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 22,
+      "customer_id": 18,
+      "label": "Varsayilan",
+      "country": "TR",
+      "city": "Ankara",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": true,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 23,
+      "customer_id": 18,
+      "label": "Hassas",
+      "country": "TR",
+      "city": "Van",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": 38.1234568,
+      "longitude": null,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "adres guncelle",
+   "method": "PATCH",
+   "path": "/api/customers/{C2}/addresses/{A1}",
+   "body": {
+    "label": "Yeni 2",
+    "is_default": "1",
+    "latitude": null
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "id": 21,
+     "customer_id": 18,
+     "label": "Yeni 2",
+     "country": "TR",
+     "city": "Bursa",
+     "district": null,
+     "neighborhood": null,
+     "street": null,
+     "building_no": null,
+     "apartment_no": null,
+     "postal_code": null,
+     "full_address": null,
+     "latitude": null,
+     "longitude": 29.06,
+     "is_default": true,
+     "created_at": "2026-11-07T04:45:10.000000Z",
+     "updated_at": "2026-11-07T04:45:10.000000Z"
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adres guncelle hatali",
+   "method": "PATCH",
+   "path": "/api/customers/{C2}/addresses/{A1}",
+   "body": {
+    "label": null,
+    "city": "",
+    "longitude": 200
+   },
+   "status": 422,
+   "response": {
+    "message": "The label field is required. (and 2 more errors)",
+    "errors": {
+     "label": [
+      "The label field is required."
+     ],
+     "city": [
+      "The city field is required."
+     ],
+     "longitude": [
+      "The longitude field must be between -180 and 180."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adres guncelle baska musteri",
+   "method": "PATCH",
+   "path": "/api/customers/1/addresses/{A1}",
+   "body": {
+    "label": "x"
+   },
+   "status": 404,
+   "response": {
+    "message": "Bu adres bu müşteriye ait değil."
+   },
+   "save": null
+  },
+  {
+   "name": "adres guncelle baska musteri hatali",
+   "method": "PATCH",
+   "path": "/api/customers/1/addresses/{A1}",
+   "body": {
+    "label": null
+   },
+   "status": 422,
+   "response": {
+    "message": "The label field is required.",
+    "errors": {
+     "label": [
+      "The label field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "adres guncelle olmayan",
+   "method": "PATCH",
+   "path": "/api/customers/{C2}/addresses/999999",
+   "body": {
+    "label": "x"
+   },
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\CustomerAddress] 999999"
+   },
+   "save": null
+  },
+  {
+   "name": "adres sil baska musteri",
+   "method": "DELETE",
+   "path": "/api/customers/1/addresses/{A1}",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "Bu adres bu müşteriye ait değil."
+   },
+   "save": null
+  },
+  {
+   "name": "adres sil varsayilan",
+   "method": "DELETE",
+   "path": "/api/customers/{C2}/addresses/{A1}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Adres başarıyla silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "adres sil",
+   "method": "DELETE",
+   "path": "/api/customers/{C2}/addresses/{A2}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Adres başarıyla silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "adresler son",
+   "method": "GET",
+   "path": "/api/customers/{C2}/addresses",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 18,
+      "customer_id": 18,
+      "label": "Merkez",
+      "country": "TR",
+      "city": "Izmir",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": 38.4237,
+      "longitude": 27.1428,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 19,
+      "customer_id": 18,
+      "label": "Depo",
+      "country": "TR",
+      "city": "Manisa",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 20,
+      "customer_id": 18,
+      "label": "Sube",
+      "country": "GR",
+      "city": "Aydin",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": null,
+      "longitude": null,
+      "is_default": false,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     },
+     {
+      "id": 23,
+      "customer_id": 18,
+      "label": "Hassas",
+      "country": "TR",
+      "city": "Van",
+      "district": null,
+      "neighborhood": null,
+      "street": null,
+      "building_no": null,
+      "apartment_no": null,
+      "postal_code": null,
+      "full_address": null,
+      "latitude": 38.1234568,
+      "longitude": null,
+      "is_default": true,
+      "created_at": "2026-11-07T04:45:10.000000Z",
+      "updated_at": "2026-11-07T04:45:10.000000Z"
+     }
+    ]
+   },
+   "save": null
+  },
+  {
+   "name": "siparisli adres",
+   "sql": "select delivery_address_id as id from orders where delivery_address_id is not null order by id limit 1",
+   "save": "OA"
+  },
+  {
+   "name": "siparisli adresin musterisi",
+   "sql": "select customer_id as id from customer_addresses where id = {OA}",
+   "save": "OC"
+  },
+  {
+   "name": "adres sil siparisli",
+   "method": "DELETE",
+   "path": "/api/customers/{OC}/addresses/{OA}",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Merkez Depo' adresi silinemez; kullanıldığı yerler: 54 sipariş.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle bos",
+   "method": "POST",
+   "path": "/api/customers/{C2}/preferred-recipes",
+   "body": {},
+   "status": 422,
+   "response": {
+    "message": "The finished product recipe id field is required.",
+    "errors": {
+     "finished_product_recipe_id": [
+      "The finished product recipe id field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle hatali",
+   "method": "POST",
+   "path": "/api/customers/{C2}/preferred-recipes",
+   "body": {
+    "finished_product_recipe_id": 999,
+    "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product recipe id is invalid. (and 1 more error)",
+    "errors": {
+     "finished_product_recipe_id": [
+      "The selected finished product recipe id is invalid."
+     ],
+     "note": [
+      "The note field must not be greater than 255 characters."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle",
+   "method": "POST",
+   "path": "/api/customers/{C2}/preferred-recipes",
+   "body": {
+    "finished_product_recipe_id": 5,
+    "note": "blend sever"
+   },
+   "status": 201,
+   "response": {
+    "message": "Formül müşterinin tercihlerine eklendi."
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle ikinci",
+   "method": "POST",
+   "path": "/api/customers/{C2}/preferred-recipes",
+   "body": {
+    "finished_product_recipe_id": 1
+   },
+   "status": 201,
+   "response": {
+    "message": "Formül müşterinin tercihlerine eklendi."
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle tekrar",
+   "method": "POST",
+   "path": "/api/customers/{C2}/preferred-recipes",
+   "body": {
+    "finished_product_recipe_id": 5,
+    "note": "not degisti"
+   },
+   "status": 201,
+   "response": {
+    "message": "Formül müşterinin tercihlerine eklendi."
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle mevcut musteri",
+   "method": "POST",
+   "path": "/api/customers/2/preferred-recipes",
+   "body": {
+    "finished_product_recipe_id": 3,
+    "note": null
+   },
+   "status": 201,
+   "response": {
+    "message": "Formül müşterinin tercihlerine eklendi."
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili tercihli",
+   "method": "GET",
+   "path": "/api/customers/{C2}/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [
+      {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1,
+       "is_active": true,
+       "description": "%70 Gemlik, %30 Ayvalık karışımı",
+       "contents": [
+        {
+         "id": 5,
+         "production_product_type_id": 3,
+         "production_product_type_name": "Gemlik Zeytinyağı",
+         "ratio": "0.7000"
+        },
+        {
+         "id": 6,
+         "production_product_type_id": 4,
+         "production_product_type_name": "Ayvalık Zeytinyağı",
+         "ratio": "0.3000"
+        }
+       ],
+       "created_at": "2026-11-06T15:35:13.000000Z",
+       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "note": "not degisti"
+      },
+      {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1,
+       "is_active": true,
+       "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+       "contents": [
+        {
+         "id": 1,
+         "production_product_type_id": 3,
+         "production_product_type_name": "Gemlik Zeytinyağı",
+         "ratio": "1.0000"
+        }
+       ],
+       "created_at": "2026-11-06T15:35:13.000000Z",
+       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "note": null
+      }
+     ],
+     "history": []
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili siparisli tercihli",
+   "method": "GET",
+   "path": "/api/customers/2/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [
+      {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1,
+       "is_active": true,
+       "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+       "contents": [
+        {
+         "id": 3,
+         "production_product_type_id": 4,
+         "production_product_type_name": "Ayvalık Zeytinyağı",
+         "ratio": "1.0000"
+        }
+       ],
+       "created_at": "2026-11-06T15:35:13.000000Z",
+       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "note": null
+      }
+     ],
+     "history": [
+      {
+       "recipe": {
+        "id": 3,
+        "name": "Naturel Sızma Ayvalık 0.4",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+        "contents": [
+         {
+          "id": 3,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 27,
+       "total_quantity": 44952,
+       "last_order_date": "2026-11-05"
+      },
+      {
+       "recipe": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+        "contents": [
+         {
+          "id": 1,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 37,
+       "total_quantity": 44272,
+       "last_order_date": "2026-11-05"
+      },
+      {
+       "recipe": {
+        "id": 2,
+        "name": "Naturel Sızma Gemlik 0.8",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+        "contents": [
+         {
+          "id": 2,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 21,
+       "total_quantity": 36834,
+       "last_order_date": "2026-10-06"
+      },
+      {
+       "recipe": {
+        "id": 4,
+        "name": "Naturel Sızma Ayvalık 0.9",
+        "version": 1,
+        "is_active": true,
+        "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+        "contents": [
+         {
+          "id": 4,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "1.0000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 11,
+       "total_quantity": 9612,
+       "last_order_date": "2026-10-06"
+      },
+      {
+       "recipe": {
+        "id": 5,
+        "name": "Klasik Blend 0.5",
+        "version": 1,
+        "is_active": true,
+        "description": "%70 Gemlik, %30 Ayvalık karışımı",
+        "contents": [
+         {
+          "id": 5,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.7000"
+         },
+         {
+          "id": 6,
+          "production_product_type_id": 4,
+          "production_product_type_name": "Ayvalık Zeytinyağı",
+          "ratio": "0.3000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 7,
+       "total_quantity": 1416,
+       "last_order_date": "2026-10-21"
+      },
+      {
+       "recipe": {
+        "id": 6,
+        "name": "Portakallı Zeytinyağı",
+        "version": 1,
+        "is_active": true,
+        "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
+        "contents": [
+         {
+          "id": 7,
+          "production_product_type_id": 3,
+          "production_product_type_name": "Gemlik Zeytinyağı",
+          "ratio": "0.8000"
+         },
+         {
+          "id": 8,
+          "production_product_type_id": 6,
+          "production_product_type_name": "Portakal Aroması",
+          "ratio": "0.2000"
+         }
+        ],
+        "created_at": "2026-11-06T15:35:13.000000Z",
+        "updated_at": "2026-11-06T15:35:13.000000Z"
+       },
+       "order_count": 7,
+       "total_quantity": 228,
+       "last_order_date": "2026-10-21"
+      }
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tercih sil",
+   "method": "DELETE",
+   "path": "/api/customers/{C2}/preferred-recipes/1",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Formül müşterinin tercihlerinden çıkarıldı."
+   },
+   "save": null
+  },
+  {
+   "name": "tercih sil olmayan",
+   "method": "DELETE",
+   "path": "/api/customers/{C2}/preferred-recipes/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "'Naturel Sızma Gemlik 0.3' bu müşterinin tercihlerinde değil.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "tercih sil olmayan formul",
+   "method": "DELETE",
+   "path": "/api/customers/{C2}/preferred-recipes/999999",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\FinishedProductRecipe] 999999"
+   },
+   "save": null
+  },
+  {
+   "name": "formul profili sonra",
+   "method": "GET",
+   "path": "/api/customers/{C2}/recipes",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": {
+     "preferred": [
+      {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1,
+       "is_active": true,
+       "description": "%70 Gemlik, %30 Ayvalık karışımı",
+       "contents": [
+        {
+         "id": 5,
+         "production_product_type_id": 3,
+         "production_product_type_name": "Gemlik Zeytinyağı",
+         "ratio": "0.7000"
+        },
+        {
+         "id": 6,
+         "production_product_type_id": 4,
+         "production_product_type_name": "Ayvalık Zeytinyağı",
+         "ratio": "0.3000"
+        }
+       ],
+       "created_at": "2026-11-06T15:35:13.000000Z",
+       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "note": "not degisti"
+      }
+     ],
+     "history": []
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "sil siparisli",
+   "method": "DELETE",
+   "path": "/api/customers/1",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "Bu müşteriye ait siparişler bulunduğu için silinemez.",
+    "errors": {}
+   },
+   "save": null
+  },
+  {
+   "name": "sil adresli",
+   "method": "DELETE",
+   "path": "/api/customers/{C2}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Müşteri başarıyla silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "sil",
+   "method": "DELETE",
+   "path": "/api/customers/{C1}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Müşteri başarıyla silindi."
+   },
+   "save": null
+  },
+  {
+   "name": "sil olmayan",
+   "method": "DELETE",
+   "path": "/api/customers/{C1}",
+   "body": null,
+   "status": 404,
+   "response": {
+    "message": "No query results for model [App\\Models\\Customer] 17"
+   },
+   "save": null
+  },
+  {
+   "name": "sil planlamaci",
+   "method": "DELETE",
+   "path": "/api/customers/{C3}",
+   "body": null,
+   "status": 200,
+   "response": {
+    "message": "Müşteri başarıyla silindi."
+   },
+   "save": null,
+   "as": "planner@olivamore.com"
+  },
+  {
+   "name": "liste sonra",
+   "method": "GET",
+   "path": "/api/customers?per_page=4",
+   "body": null,
+   "status": 200,
+   "response": {
+    "data": [
+     {
+      "id": 2,
+      "name": "Fatma Kaya",
+      "company_name": "Ege Lezzet Market",
+      "phone": "+90 232 444 88 55",
+      "email": "fatma@egelezzet.com",
+      "notes": "Küçük market zinciri, 3 şube. 250ml ve 500ml tercih eder.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 3,
+        "customer_id": 2,
+        "label": "Merkez Mağaza",
+        "country": "TR",
+        "city": "İzmir",
+        "district": "Konak",
+        "neighborhood": "Alsancak Mahallesi",
+        "street": "Kıbrıs Şehitleri Caddesi",
+        "building_no": "67",
+        "apartment_no": null,
+        "postal_code": "35220",
+        "full_address": "Alsancak Mah. Kıbrıs Şehitleri Cad. No:67 Konak/İzmir",
+        "latitude": 38.4381,
+        "longitude": 27.1431,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 3,
+      "name": "Mehmet Demir",
+      "company_name": "Demir Otelcilik",
+      "phone": "+90 242 311 22 33",
+      "email": "mehmet@demirotel.com",
+      "notes": "Otel mutfağı için büyük boy (1L, 5L) sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 4,
+        "customer_id": 3,
+        "label": "Otel Teslimat Kapısı",
+        "country": "TR",
+        "city": "Antalya",
+        "district": "Muratpaşa",
+        "neighborhood": "Yenigün Mahallesi",
+        "street": "Atatürk Bulvarı",
+        "building_no": "12",
+        "apartment_no": null,
+        "postal_code": "07040",
+        "full_address": "Yenigün Mah. Atatürk Bulvarı No:12 Muratpaşa/Antalya",
+        "latitude": 36.8841,
+        "longitude": 30.7056,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 4,
+      "name": "Zeynep Arslan",
+      "company_name": null,
+      "phone": "+90 505 777 66 55",
+      "email": "zeynep.arslan@gmail.com",
+      "notes": null,
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 5,
+        "customer_id": 4,
+        "label": "Ev Adresi",
+        "country": "TR",
+        "city": "Ankara",
+        "district": "Çankaya",
+        "neighborhood": "Kavaklıdere Mahallesi",
+        "street": "Tunalı Hilmi Caddesi",
+        "building_no": "88",
+        "apartment_no": "3",
+        "postal_code": "06680",
+        "full_address": "Kavaklıdere Mah. Tunalı Hilmi Cad. No:88 D:3 Çankaya/Ankara",
+        "latitude": 39.905,
+        "longitude": 32.8597,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     },
+     {
+      "id": 1,
+      "name": "Ahmet Yılmaz",
+      "company_name": "Yılmaz Gıda A.Ş.",
+      "phone": "+90 212 555 10 20",
+      "email": "ahmet@yilmazgida.com",
+      "notes": "Toplu alım müşterisi, aylık düzenli sipariş verir.",
+      "is_active": true,
+      "addresses": [
+       {
+        "id": 1,
+        "customer_id": 1,
+        "label": "Merkez Depo",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Bağcılar",
+        "neighborhood": "Mahmutbey Mahallesi",
+        "street": "Taşocağı Yolu Caddesi",
+        "building_no": "42",
+        "apartment_no": null,
+        "postal_code": "34218",
+        "full_address": "Mahmutbey Mah. Taşocağı Yolu Cad. No:42 Bağcılar/İstanbul",
+        "latitude": 41.0532,
+        "longitude": 28.8103,
+        "is_default": true,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       },
+       {
+        "id": 2,
+        "customer_id": 1,
+        "label": "Şube Ofis",
+        "country": "TR",
+        "city": "İstanbul",
+        "district": "Şişli",
+        "neighborhood": "Mecidiyeköy Mahallesi",
+        "street": "Büyükdere Caddesi",
+        "building_no": "185",
+        "apartment_no": "7",
+        "postal_code": "34394",
+        "full_address": "Mecidiyeköy Mah. Büyükdere Cad. No:185 D:7 Şişli/İstanbul",
+        "latitude": 41.0703,
+        "longitude": 28.9917,
+        "is_default": false,
+        "created_at": "2026-11-06T15:35:14.000000Z",
+        "updated_at": "2026-11-06T15:35:14.000000Z"
+       }
+      ],
+      "created_at": "2026-11-06T15:35:14.000000Z",
+      "updated_at": "2026-11-06T15:35:14.000000Z"
+     }
+    ],
+    "links": {
+     "first": "http://localhost:8001/api/customers?per_page=4&page=1",
+     "last": "http://localhost:8001/api/customers?per_page=4&page=4",
+     "prev": null,
+     "next": "http://localhost:8001/api/customers?per_page=4&page=2"
+    },
+    "meta": {
+     "current_page": 1,
+     "from": 1,
+     "last_page": 4,
+     "links": [
+      {
+       "url": null,
+       "label": "&laquo; Previous",
+       "page": null,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=4&page=1",
+       "label": "1",
+       "page": 1,
+       "active": true
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=4&page=2",
+       "label": "2",
+       "page": 2,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=4&page=3",
+       "label": "3",
+       "page": 3,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=4&page=4",
+       "label": "4",
+       "page": 4,
+       "active": false
+      },
+      {
+       "url": "http://localhost:8001/api/customers?per_page=4&page=2",
+       "label": "Next &raquo;",
+       "page": 2,
+       "active": false
+      }
+     ],
+     "path": "http://localhost:8001/api/customers",
+     "per_page": 4,
+     "to": 4,
+     "total": 16
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "musteri 2 adresi",
+   "sql": "select id from customer_addresses where customer_id = 2 order by id limit 1",
+   "save": "OA2"
+  },
+  {
+   "name": "guncelle aktif null",
+   "method": "PATCH",
+   "path": "/api/customers/2",
+   "body": {
+    "is_active": null
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "adres ekle varsayilan null",
+   "method": "POST",
+   "path": "/api/customers/2/addresses",
+   "body": {
+    "label": "Null",
+    "city": "Izmir",
+    "is_default": null
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "adres guncelle ulke null",
+   "method": "PATCH",
+   "path": "/api/customers/2/addresses/{OA2}",
+   "body": {
+    "country": null,
+    "is_default": null
+   },
+   "status": 500,
+   "response": {
+    "message": "Server Error"
+   },
+   "save": null
+  }
+ ]
+}
