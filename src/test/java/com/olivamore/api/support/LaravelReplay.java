@@ -49,6 +49,7 @@ public final class LaravelReplay {
 	private final Map<String, String> burned = new LinkedHashMap<>();
 	private final Map<String, List<String>> unordered = new LinkedHashMap<>();
 	private final List<Pattern> masks = new ArrayList<>();
+	private final java.util.Set<String> unorderedKeys = new java.util.HashSet<>();
 	private java.time.Instant capturedAt;
 
 	public LaravelReplay(String fixture, int port, JdbcTemplate jdbc) {
@@ -97,6 +98,16 @@ public final class LaravelReplay {
 	 */
 	public LaravelReplay unordered(String caseName, String path) {
 		unordered.computeIfAbsent(caseName, k -> new ArrayList<>()).add(path);
+		return this;
+	}
+
+	/**
+	 * ORDER BY'siz iliskiler: butun durumlarda, her derinlikte bu anahtarlardaki listeler id'ye (yoksa
+	 * {@code finished_product.id}'ye) gore karsilastirilir. Guncellenen satirin fiziksel yeri degistigi icin
+	 * Laravel ile Java'nin sirasi farkli olabilir (DEVIATIONS 11).
+	 */
+	public LaravelReplay unorderedEverywhere(String... keys) {
+		unorderedKeys.addAll(List.of(keys));
 		return this;
 	}
 
@@ -256,7 +267,45 @@ public final class LaravelReplay {
 				((Map<String, Object>) map).put(parts[parts.length - 1], sorted);
 			}
 		}
+		if (!unorderedKeys.isEmpty()) {
+			sortKeyedLists(value);
+		}
 		return value;
+	}
+
+	/** {@link #unorderedEverywhere}: bu anahtarlardaki listeler her derinlikte id'ye gore. */
+	@SuppressWarnings("unchecked")
+	private void sortKeyedLists(Object value) {
+		if (value instanceof Map<?, ?> map) {
+			for (Map.Entry<String, Object> e : ((Map<String, Object>) map).entrySet()) {
+				sortKeyedLists(e.getValue());
+				if (unorderedKeys.contains(e.getKey()) && e.getValue() instanceof List<?> list) {
+					List<Object> sorted = new ArrayList<>(list);
+					sorted.sort(java.util.Comparator.comparing(LaravelReplay::sortKey));
+					e.setValue(sorted);
+				}
+			}
+		}
+		else if (value instanceof List<?> list) {
+			list.forEach(this::sortKeyedLists);
+		}
+	}
+
+	/** Elemanin id'si; yoksa {@code finished_product.id} (raf icerigi gibi id'siz satirlar). */
+	private static java.math.BigDecimal sortKey(Object element) {
+		Object id = null;
+		if (element instanceof Map<?, ?> m) {
+			id = m.get("id");
+			if (id == null && m.get("finished_product") instanceof Map<?, ?> product) {
+				id = product.get("id");
+			}
+		}
+		try {
+			return new java.math.BigDecimal(String.valueOf(id));
+		}
+		catch (NumberFormatException e) {
+			return java.math.BigDecimal.ZERO;
+		}
 	}
 
 	/** Ilk birkac farkli yol: {@code data.processes.3.status: laravel=... java=...} */

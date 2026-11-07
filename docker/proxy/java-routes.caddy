@@ -98,3 +98,11 @@ handle @java_finished_product_runs {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 8c: bitmis urun depolari (raflar, yerlestirme, transfer, cikis, hareketler)
+@java_finished_product_storages path /api/finished-product-storages /api/finished-product-storages/*
+handle @java_finished_product_storages {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

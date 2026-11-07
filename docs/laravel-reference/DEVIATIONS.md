@@ -79,7 +79,7 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Laravel:** Kullanıcının rolleri ve bir rolün izinleri `ORDER BY` olmadan geliyor (sıra rastgele olabilir).
 - **Java:** id sırası. `compare.py` bu listeleri sırasız karşılaştırır. (Kullanıcının **bütün izinleri** Laravel'de de id sırasında: Spatie `getAllPermissions()` sıralıyor; Java aynı.)
 - Diğer sıralamasız ilişkilerde (örn. tankın attribute kuralları, izinli ürünleri) Java Laravel'le aynı SQL'i çalıştırır, sıra genelde aynı çıkar. Ama geri alınan bir insert'ten sonra yeni satırların fiziksel yeri bağlantıya bağlı: PHP her istekte yeni bağlantı açar, Java havuzdaki bağlantıyı kullanır. `StorageUnitParityIT`'de bu yüzden bir durumda liste id'ye göre karşılaştırılıyor.
-- `latest()` (yalnızca `created_at`) aynı saniyede oluşan kayıtlarda sırasız; güncellenen satır tablonun sonuna taşındığı için eşitlikte sıra değişebiliyor. Parity testlerinde bu listeler (aynı saniyede oluşan tarifler, dolum koşuları; bir lotun koşuları) sırasız karşılaştırılıyor.
+- `latest()` (yalnızca `created_at`) aynı saniyede oluşan kayıtlarda sırasız; güncellenen satır tablonun sonuna taşındığı için eşitlikte sıra değişebiliyor. Parity testlerinde bu listeler (aynı saniyede oluşan tarifler, dolum koşuları; bir lotun koşuları; deponun rafları, raf içerikleri, depo stoğu) sırasız karşılaştırılıyor.
 
 ### 12. Nginx'in kendi cevapları
 - **Laravel:** Kök yola (`/`) desteklenmeyen metotla gelen istek Laravel'e ulaşmadan nginx tarafından `405` HTML ile cevaplanıyor.
@@ -105,6 +105,10 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
   - Bu alanlara `distinct` kuralı eklendi: `The contents.1.production_product_type_id field has a duplicate value.` (422).
   - Silmede kullanım yerleri sayılıyor: `Bu son ürün silinemez; kullanıldığı yerler: 4 sipariş kalemi.` (422).
 
+### 15. Hareket geçmişi olan bitmiş ürün rafı ya da deposu silinirken 500 (Faz 8c)
+- **Laravel:** Stoğu boşalmış raf ya da depo silinebilir görünüyor, ama `finished_product_stock_movements` rafa ve depoya restrict FK ile bağlı. Bir kez giriş/çıkış görmüş raf ya da depo silinirken FK hatası → 500.
+- **Java:** Kullanım yerleri sayılıyor (422): `Bu slot silinemez; kullanıldığı yerler: 2 stok hareketi.`, `Bu depo silinemez; kullanıldığı yerler: 14 stok hareketi. Pasife alabilirsiniz.`
+
 ## Kopyalanan ama bilinmesi gereken Laravel davranışları
 
 Farklı değil, birebir aynı; ama kapatılması düşünülebilecek davranışlar (karar Laravel kapandıktan sonra).
@@ -113,3 +117,4 @@ Farklı değil, birebir aynı; ama kapatılması düşünülebilecek davranışl
 - **Uzantı senkronizasyonu aşamanın hattını kontrol etmiyor (Faz 4):** `PUT production-lines/{line}/stages/{stage}/extensions` başka bir hattın aşamasını da kabul ediyor.
 - **Veritabanı kısıtına takılan istekler 500 (Faz 4):** ürün tipinde `unit` için yalnızca `KG`/`LITRE` geçerli ama validation bunu denetlemiyor; `NOT NULL` kolona açıkça `null` (örn. aşamada `"is_required": null`) 500.
 - **Tanktaki materyali azaltan aşamalar tank bakiyesini güncellemiyor (Faz 6b):** "Ön Dinlenme"de yağ önce tanka girer, aynı aşamanın dönüşümü (çökelme) tanktaki bu materyalin miktarını düşürür. "Filtreleme" tartımı da tanktaki yağın miktarını düşürür. İkisi de `storage_unit_balances`'ı yeniden hesaplamıyor ve stok hareketi yazmıyor. Sonuçta tank bakiyesi (ör. 899,75 L) tanktaki materyallerin toplamından (879,75 L) büyük kalıyor ve fark hareket geçmişinde görünmüyor. Java birebir kopyalıyor; geçiş döneminde iki uygulama aynı veritabanını kullandığı için farklı davranamaz.
+- **Raf güncellemesi rafın deposunu kontrol etmiyor (Faz 8c):** `PATCH finished-product-storages/{depo}/slots/{raf}` başka bir deponun rafını da güncelliyor (route binding kapsamsız). Silmede de aynı.

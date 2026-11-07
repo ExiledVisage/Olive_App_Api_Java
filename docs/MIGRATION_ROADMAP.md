@@ -244,7 +244,7 @@ Yeni `packaging` modülü. Tek gerçek kaynak lotların kalanı; `packaging_item
   - `PackagingParityIT`: Laravel'den yakalanan 113 durum (`reference/capture_packaging.py`), dört kullanıcıyla: 113/113 aynı
   - Canlı karşılaştırma: 337 lotun, 17 kalemin (detay ve lotları), 3 tedarikçinin hepsi, liste varyasyonları ve hata durumları 395/395 aynı
 
-## Faz 8: Bitmiş Ürün (finished-product)
+## Faz 8: Bitmiş Ürün (finished-product) (tamamlandı)
 
 Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor. Yeni `finishedproduct` modülü, üç adımda: 8a tarifler ve ürünler, 8b dolum koşuları, 8c bitmiş ürün depoları.
 
@@ -271,8 +271,18 @@ Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor
   - Canlı karşılaştırma: 389 koşunun hepsinin detayı, tam liste, sayfalı varyasyonlar, hata durumları 399/399 aynı
   - Seed'deki tanklar LITRE; KG tank ve yoğunluk çevrimi parity testinde yok
 
-**8c: Bitmiş ürün depoları**
-- [ ] Depo, raf, raf stoğu, stok giriş/çıkış/transfer, hareketler (siparişe toplama ve iade Faz 9'da çağrılıyor)
+**8c: Bitmiş ürün depoları (tamamlandı)**
+- [x] Depo: liste ve detay (raflar ürün kilidi ve içeriğiyle, depo × ürün stoğu), ekleme (201, ilişkisiz), güncelleme, silme (stoklu depo silinmez)
+- [x] Raf: ekleme (kilitli ürünün hacmi rafınkiyle aynı olmalı), güncelleme (kapasite kullanımın altına inmez, dolu rafın hacmi değişmez, başka ürün varken tek ürüne kilitlenemez, `null` ile kilit kalkar), silme (dolu raf silinmez)
+- [x] Depoya yerleştirme: tek raf ya da `placements` ile çok raf, tek işlemde; açıktaki şişe (fabrikada − depolarda − sevkiyat bekleyen) toplam üzerinden, raf deposu, pasif depo, hacim, kilit, kapasite kontrolleri; dolum koşusuna bağlanabiliyor
+- [x] Transfer (raftan rafa, aynı ya da başka depo; raflar id sırasıyla kilitli; iki hareket aynı UUID referansla), çıkış (raftan ve `total_stock`'tan düşer), hareket geçmişi
+- [x] Dört sayım birlikte: `total_stock`, depo × ürün, raf × ürün, raf toplamı
+- [x] Laravel'in 500 verdiği iki durum 422 (DEVIATIONS 15): hareket geçmişi olan raf ya da depoyu silme
+- [ ] Siparişe toplama ve iade (`pickForOrder`, `returnOrderPicks`): çağıranı sipariş, Faz 9'da
+- [x] Proxy: `/api/finished-product-storages` Java'da
+- Testler:
+  - `FinishedProductStorageParityIT`: Laravel'den yakalanan 86 durum (`reference/capture_finished_product_storage.py`): 86/86 aynı (2'si sapma, Java cevabı sabit). Raflar, raf içeriği ve depo stoğu `ORDER BY`'siz; `LaravelReplay.unorderedEverywhere` bu anahtarlardaki listeleri her derinlikte id'ye göre karşılaştırıyor
+  - Canlı karşılaştırma: 3 deponun detayı, hareket geçmişleri (2782 hareket), liste, hata durumları 9/9 aynı
 
 ## Faz 9: Müşteri ve Sipariş (sales)
 
