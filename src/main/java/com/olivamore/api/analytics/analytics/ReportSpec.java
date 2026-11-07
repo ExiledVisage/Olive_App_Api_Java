@@ -1,7 +1,7 @@
-package com.olivamore.api.analytics;
+package com.olivamore.api.analytics.analytics;
 
-import com.olivamore.api.analytics.Analytics.BatchRow;
-import com.olivamore.api.analytics.Analytics.ItemRow;
+import com.olivamore.api.analytics.analytics.AnalyticsService.BatchRow;
+import com.olivamore.api.analytics.analytics.AnalyticsService.ItemRow;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -10,14 +10,14 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * Laravel {@code AnalyticsService}'in rapor olusturucusu: olcu x gruplama x filtre x donem. Olculer, gruplamalar,
+ * Laravel {@code AnalyticsService}'in rapor olusturucusu (kayitli raporlar da kullanir): olcu x gruplama x filtre x donem. Olculer, gruplamalar,
  * grafik turleri ve kurallari Laravel'deki sabitlerin aynisi (sirasi da).
  */
-final class ReportSpec {
+public final class ReportSpec {
 
-	static final Map<String, Map<String, Object>> METRICS = new LinkedHashMap<>();
-	static final Map<String, Map<String, Object>> GROUPS = new LinkedHashMap<>();
-	static final Map<String, Map<String, Object>> CHARTS = new LinkedHashMap<>();
+	public static final Map<String, Map<String, Object>> METRICS = new LinkedHashMap<>();
+	public static final Map<String, Map<String, Object>> GROUPS = new LinkedHashMap<>();
+	public static final Map<String, Map<String, Object>> CHARTS = new LinkedHashMap<>();
 	static final Map<String, List<String>> FILTERS = new LinkedHashMap<>();
 
 	static {
@@ -101,7 +101,7 @@ final class ReportSpec {
 
 	/** Secimin tutarliligi; tutarsizsa neden, tutarliysa null. */
 	@SuppressWarnings("unchecked")
-	static String specError(String metric, String group, String chart) {
+	public static String specError(String metric, String group, String chart) {
 		Map<String, Object> m = METRICS.get(metric);
 		Map<String, Object> g = GROUPS.get(group);
 		if (m == null) {
@@ -130,7 +130,7 @@ final class ReportSpec {
 	}
 
 	/** Olcu degeri, zaman diliminde ya da kategoride; toplam tum satirlarin birlikte degeri. */
-	static Map<String, Object> query(Analytics analytics, String metric, String group, Analytics.Range range, Map<String, Object> filters) {
+	static Map<String, Object> query(AnalyticsService analytics, String metric, String group, AnalyticsService.Range range, Map<String, Object> filters) {
 		Map<String, Object> m = METRICS.get(metric);
 		Map<String, Object> g = GROUPS.get(group);
 		String source = (String) m.get("source");
@@ -150,22 +150,22 @@ final class ReportSpec {
 		String bucket = null;
 		List<Map<String, Object>> rows = new ArrayList<>();
 		if ("time".equals(g.get("kind"))) {
-			bucket = Analytics.bucketFor(range);
-			for (Map<String, Object> slot : Analytics.emptyBuckets(range, bucket)) {
+			bucket = AnalyticsService.bucketFor(range);
+			for (Map<String, Object> slot : AnalyticsService.emptyBuckets(range, bucket)) {
 				String b = bucket;
 				Map<String, Object> row = new LinkedHashMap<>();
 				row.put("key", slot.get("key"));
 				row.put("label", slot.get("start"));
 				if (production) {
-					List<BatchRow> subset = batches.stream().filter(r -> Analytics.bucketKey(r.receivedAt().toLocalDate(), b).equals(slot.get("key"))).toList();
+					List<BatchRow> subset = batches.stream().filter(r -> AnalyticsService.bucketKey(r.receivedAt().toLocalDate(), b).equals(slot.get("key"))).toList();
 					row.put("value", productionValue(metric, subset));
 					row.put("count", subset.size());
 				}
 				else {
 					List<ItemRow> subset = items.stream().filter(i -> i.orderDate() != null
-						&& Analytics.bucketKey(i.orderDate(), b).equals(slot.get("key"))).toList();
+						&& AnalyticsService.bucketKey(i.orderDate(), b).equals(slot.get("key"))).toList();
 					row.put("value", salesValue(metric, subset));
-					row.put("count", Analytics.orderCount(subset));
+					row.put("count", AnalyticsService.orderCount(subset));
 				}
 				rows.add(row);
 			}
@@ -181,7 +181,7 @@ final class ReportSpec {
 				case "field" -> r -> str(r.fieldCode()) + " • " + str(r.supplierName());
 				default -> BatchRow::productTypeName;
 			};
-			Analytics.groupBy(batches.stream().filter(r -> keyOf.apply(r) != null).toList(), keyOf).forEach((key, subset) -> {
+			AnalyticsService.groupBy(batches.stream().filter(r -> keyOf.apply(r) != null).toList(), keyOf).forEach((key, subset) -> {
 				Map<String, Object> row = new LinkedHashMap<>();
 				row.put("key", String.valueOf(key));
 				row.put("label", labelOf.apply(subset.getFirst()));
@@ -189,21 +189,21 @@ final class ReportSpec {
 				row.put("count", subset.size());
 				rows.add(row);
 			});
-			Analytics.sortByDesc(rows, "value");
+			AnalyticsService.sortByDesc(rows, "value");
 		}
 		else {
 			Function<ItemRow, Object> keyOf = group.equals("customer") ? ItemRow::customerId : ItemRow::finishedProductId;
-			Function<ItemRow, Object> labelOf = group.equals("customer") ? i -> Analytics.customerName(i.customer())
+			Function<ItemRow, Object> labelOf = group.equals("customer") ? i -> AnalyticsService.customerName(i.customer())
 				: i -> i.product() == null ? null : i.product().get("name");
-			Analytics.groupBy(items.stream().filter(i -> keyOf.apply(i) != null).toList(), keyOf).forEach((key, subset) -> {
+			AnalyticsService.groupBy(items.stream().filter(i -> keyOf.apply(i) != null).toList(), keyOf).forEach((key, subset) -> {
 				Map<String, Object> row = new LinkedHashMap<>();
 				row.put("key", String.valueOf(key));
 				row.put("label", labelOf.apply(subset.getFirst()));
 				row.put("value", salesValue(metric, subset));
-				row.put("count", Analytics.orderCount(subset));
+				row.put("count", AnalyticsService.orderCount(subset));
 				rows.add(row);
 			});
-			Analytics.sortByDesc(rows, "value");
+			AnalyticsService.sortByDesc(rows, "value");
 		}
 		Map<String, Object> out = new LinkedHashMap<>();
 		out.put("metric", withKey(metric, m));
@@ -216,13 +216,13 @@ final class ReportSpec {
 	}
 
 	private static Double productionValue(String metric, List<BatchRow> subset) {
-		Object value = Analytics.totals(subset).get(metric);
+		Object value = AnalyticsService.totals(subset).get(metric);
 		return value == null ? null : ((Number) value).doubleValue();
 	}
 
 	private static Double salesValue(String metric, List<ItemRow> subset) {
-		Map<String, Object> totals = new LinkedHashMap<>(Analytics.orderTotals(subset));
-		totals.put("order_count", Analytics.orderCount(subset));
+		Map<String, Object> totals = new LinkedHashMap<>(AnalyticsService.orderTotals(subset));
+		totals.put("order_count", AnalyticsService.orderCount(subset));
 		Object value = totals.get(metric);
 		return value == null ? null : ((Number) value).doubleValue();
 	}

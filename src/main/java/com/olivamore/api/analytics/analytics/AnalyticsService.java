@@ -1,11 +1,11 @@
-package com.olivamore.api.analytics;
+package com.olivamore.api.analytics.analytics;
 
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -29,8 +29,8 @@ import java.util.function.Function;
  * (donusumun {@code input_quantity}'si), yag ve pirina (tartim), asitlik (yag analizi). Toplamlar uzerinden
  * hesaplanir; PHP float (double) toplama sirasi korunur.
  */
-@Component
-class Analytics {
+@Service
+class AnalyticsService {
 
 	static final String DAY = "day";
 	static final String WEEK = "week";
@@ -48,7 +48,7 @@ class Analytics {
 
 	private final Db db;
 
-	Analytics(Db db) {
+	AnalyticsService(Db db) {
 		this.db = db;
 	}
 

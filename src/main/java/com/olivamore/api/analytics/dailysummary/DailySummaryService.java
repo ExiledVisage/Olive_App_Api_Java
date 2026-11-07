@@ -1,22 +1,14 @@
-package com.olivamore.api.analytics;
+package com.olivamore.api.analytics.dailysummary;
 
-import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.Permissions;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.php.PhpDates;
-import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.Rules;
-import com.olivamore.api.shared.validation.ValidatedInput;
-import com.olivamore.api.shared.web.RequestInput;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -25,55 +17,24 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Laravel {@code DailySummaryController} + {@code DailySummaryService}: acilis ekrani. Ayri izin istemez; her
- * bolum kullanicinin iznine bakar, izin yoksa govdede hic yer almaz.
+ * Laravel {@code DailySummaryService}: "bugun ne oldu" ekraninin bolumleri. Her bolum yalnizca ekranda gorunen
+ * alanlari verir; hangi bolumun gonderilecegine controller kullanicinin iznine gore karar verir.
  */
-@RestController
-class DailySummaryController {
+@Service
+class DailySummaryService {
 
 	private static final Set<String> OPEN_STATUSES = Set.of("in_progress", "awaiting_approval", "failed");
+
 	private static final Set<String> DONE_STATUSES = Set.of("completed", "skipped");
 
 	private final Db db;
-	private final LaravelValidator validator;
-	private final Permissions permissions;
 
-	DailySummaryController(Db db, LaravelValidator validator, Permissions permissions) {
+	DailySummaryService(Db db) {
 		this.db = db;
-		this.validator = validator;
-		this.permissions = permissions;
 	}
-
-	/** {@code ?date=} (verilmezse bugun). */
-	@GetMapping("/api/daily-summary")
-	Map<String, Object> show(RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, Rules.of().field("date", "nullable|date"));
-		LocalDate date = v.get("date") == null ? Timestamps.now().toLocalDate()
-			: PhpDates.parse(Php.strval(v.get("date"))).orElseThrow().toLocalDate();
-		Map<String, Object> summary = new LinkedHashMap<>();
-		summary.put("date", date.toString());
-		if (permissions.can(user, "production_batch.view")) {
-			summary.put("production", production(date));
-		}
-		if (permissions.can(user, "batch_process.view")) {
-			summary.put("stages", stages(date));
-		}
-		if (permissions.can(user, "finished_product_run.view")) {
-			summary.put("filling_runs", fillingRuns(date));
-		}
-		if (permissions.can(user, "order.view")) {
-			summary.put("orders", orders(date));
-		}
-		if (permissions.can(user, "finished_product.view")) {
-			summary.put("stock", stock());
-		}
-		return Map.of("data", summary);
-	}
-
-	// ---- uretim -------------------------------------------------------------------------
 
 	/** Giren ve biten o gunun; uretimdeki partiler tarihe bakmaz. */
-	private Map<String, Object> production(LocalDate date) {
+	Map<String, Object> production(LocalDate date) {
 		List<Row> entered = db.select("select * from production_batches where received_at::date = ? order by received_at desc", date.toString());
 		List<Row> active = db.select("select * from production_batches where status = ? order by received_at asc", "in_progress");
 		List<Row> completed = db.select("select * from production_batches where completed_at::date = ? order by completed_at desc", date.toString());
@@ -139,10 +100,8 @@ class DailySummaryController {
 		return out;
 	}
 
-	// ---- asamalar -------------------------------------------------------------------------
-
 	/** Onay bekleyenler tarihten bagimsiz. */
-	private Map<String, Object> stages(LocalDate date) {
+	Map<String, Object> stages(LocalDate date) {
 		long completedToday = db.count("select count(*) from batch_processes where status in (?, ?) and completed_at::date = ?",
 			"completed", "skipped", date.toString());
 		List<Row> awaiting = db.select("select * from batch_processes where status = ? order by submitted_at asc", "awaiting_approval");
@@ -166,9 +125,7 @@ class DailySummaryController {
 		return out;
 	}
 
-	// ---- dolum ------------------------------------------------------------------------------
-
-	private Map<String, Object> fillingRuns(LocalDate date) {
+	Map<String, Object> fillingRuns(LocalDate date) {
 		Map<String, Object> out = new LinkedHashMap<>();
 		out.put("completed_today", runRows(db.select("select * from finished_product_runs where status = ? and completed_at::date = ?"
 			+ " order by completed_at desc", "completed", date.toString())));
@@ -200,10 +157,8 @@ class DailySummaryController {
 		return out;
 	}
 
-	// ---- siparisler ---------------------------------------------------------------------------
-
 	/** Bugun sevk edilenler durum gecmisinden; acik siparisler tarihten bagimsiz; bugune planlananlar. */
-	private Map<String, Object> orders(LocalDate date) {
+	Map<String, Object> orders(LocalDate date) {
 		String select = "select orders.*, (select count(*) from order_items where orders.id = order_items.order_id) as items_count from orders";
 		Map<String, Object> out = new LinkedHashMap<>();
 		out.put("completed_today", orderRows(db.select(select + " where exists (select * from order_status_histories"
@@ -223,7 +178,7 @@ class DailySummaryController {
 			m.put("id", o.get("id"));
 			m.put("status", o.get("status"));
 			m.put("customer", customer == null ? null : customer.get("name"));
-			LocalDate orderDate = Analytics.date(o.get("order_date"));
+			LocalDate orderDate = date(o.get("order_date"));
 			m.put("order_date", orderDate == null ? null : orderDate.toString());
 			m.put("item_count", Php.intval(o.get("items_count")));
 			out.add(m);
@@ -231,10 +186,8 @@ class DailySummaryController {
 		return out;
 	}
 
-	// ---- stok -----------------------------------------------------------------------------------
-
 	/** Stokta olmayan ve depoya yerlestirilmemis aktif urunler (ada gore). */
-	private Map<String, Object> stock() {
+	Map<String, Object> stock() {
 		List<Row> products = db.select("select finished_products.*, (select sum(finished_product_storage_stocks.quantity)"
 			+ " from finished_product_storage_stocks where finished_products.id = finished_product_storage_stocks.finished_product_id)"
 			+ " as stored_stock, (select sum(finished_product_stock_movements.quantity) from finished_product_stock_movements"
@@ -266,6 +219,16 @@ class DailySummaryController {
 		out.put("out_of_stock", outOfStock);
 		out.put("unplaced", unplaced);
 		return out;
+	}
+
+	private static LocalDate date(Object value) {
+		return switch (value) {
+			case null -> null;
+			case LocalDate d -> d;
+			case LocalDateTime t -> t.toLocalDate();
+			case java.sql.Date d -> d.toLocalDate();
+			default -> LocalDate.parse(Php.strval(value).substring(0, 10));
+		};
 	}
 
 }
