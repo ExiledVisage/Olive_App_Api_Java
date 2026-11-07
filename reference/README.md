@@ -10,7 +10,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | Dosya | Ne işe yarar | Git'te |
 |---|---|---|
 | `reference-data.sql` | Dondurulmuş demo verinin tam dökümü (şema + veri). Karşılaştırmalar hep bunun üzerinde yapılır | Evet |
-| `schema.sql` | Sadece şema (73 tablo). Flyway `V1__baseline.sql` buradan çıkarıldı | Evet |
+| `schema.sql` | Sadece şema (73 tablo). Flyway migration'larının (`db/migration/`) kurduğu şemayla aynı (`deploy/compare-schema.sh`) | Evet |
 | `seed-data.sql` | Sadece veri (`pg_dump --data-only`, `cache` / `cache_locks` hariç). Java'nın `--seed` komutu ve integration testleri bunu yükler | Evet |
 | `restore.sh` | Laravel'in dev veritabanını `reference-data.sql`'e geri döndürür | Evet |
 | `capture_responses.py` | Tüm GET endpoint'lerini admin olarak çağırıp cevapları `responses/`'a yazar | Evet |

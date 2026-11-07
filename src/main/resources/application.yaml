@@ -23,8 +23,9 @@ spring:
       ddl-auto: validate
 
   flyway:
-    # Bos veritabaninda V1 (Laravel semasi) ve V2 calisir. Laravel'in olusturdugu mevcut
-    # bir veritabaninda (laravel profili) V1 calismaz, sema V1 olarak kabul edilir.
+    # Bos veritabaninda Laravel'in migration'lari (db/migration, V0.00-V0.69) ve V2
+    # calisir. Laravel'in olusturdugu mevcut bir veritabaninda (laravel profili, sunucu) sema
+    # surum 1 olarak kabul edilir; V0.xx'ler bunun altinda kaldigi icin calismaz.
     baseline-on-migrate: true
     baseline-version: 1
 

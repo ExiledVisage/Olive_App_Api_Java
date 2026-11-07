@@ -21,12 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Tek basina kurulan veritabani, Laravel'in olusturdugu veritabaniyla ayni mi?
  * <ul>
- *   <li><b>uygulama</b>: bos Postgres + Flyway (V1, V2) + seed ({@link TestcontainersConfiguration})</li>
+ *   <li><b>uygulama</b>: bos Postgres + Flyway (V0.00-V0.69 tablo migration'lari, V2) + seed ({@link TestcontainersConfiguration})</li>
  *   <li><b>laravel</b>: ayni konteynerde ayri bir veritabani, Laravel'in tam dokumu
  *       ({@code reference/reference-data.sql}) psql ile yuklu</li>
  * </ul>
  * Sema (kolon, constraint, index), her tablonun satir sayisi ve sequence degerleri
- * karsilastirilir. Kirilirsa V1, seed ya da Laravel semasi birbirinden kopmus demektir.
+ * karsilastirilir. Kirilirsa migration'lar, seed ya da Laravel semasi birbirinden kopmus demektir.
  */
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -88,16 +88,20 @@ class BaselineSchemaIT {
 
 	@Test
 	void flywayBuiltTheSchemaFromScratch() {
-		// Tek basina kurulum: V1 calisti (baseline degil), sonra V2
-		assertThat(app.queryForList("select version || ' ' || type || ' ' || success from flyway_schema_history order by installed_rank",
-			String.class)).containsExactly("1 SQL true", "2 SQL true");
+		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2
+		List<String> history = app.queryForList(
+			"select version || ' ' || type || ' ' || success from flyway_schema_history order by installed_rank", String.class);
+		assertThat(history).hasSize(71).allMatch(h -> h.endsWith(" SQL true"));
+		assertThat(history.getFirst()).isEqualTo("0.00 SQL true");
+		assertThat(history.get(69)).isEqualTo("0.69 SQL true");
+		assertThat(history.getLast()).isEqualTo("2 SQL true");
 	}
 
 	@Test
 	void schemaMatchesLaravel() {
 		for (String query : List.of(COLUMNS, CONSTRAINTS, INDEXES)) {
-			Set<String> expected = new TreeSet<>(laravel.queryForList(query, String.class));
-			Set<String> actual = new TreeSet<>(app.queryForList(query, String.class));
+			Set<String> expected = normalized(laravel.queryForList(query, String.class));
+			Set<String> actual = normalized(app.queryForList(query, String.class));
 			assertThat(actual).as(query).isNotEmpty().containsExactlyElementsOf(expected);
 		}
 		assertThat(app.queryForList(TABLES, String.class)).hasSize(73);
@@ -119,6 +123,20 @@ class BaselineSchemaIT {
 		String query = "select sequencename || '=' || coalesce(last_value, 0) from pg_sequences where schemaname = 'public'";
 		assertThat(new TreeSet<>(app.queryForList(query, String.class)))
 			.containsExactlyElementsOf(new TreeSet<>(laravel.queryForList(query, String.class)));
+	}
+
+	/**
+	 * Laravel'in {@code check ("unit" in ('KG', 'LITRE'))} kisiti Postgres'te iki yazilisla saklanabiliyor:
+	 * migration'la kurulunca {@code ANY ((ARRAY['KG'::character varying, ...])::text[])}, pg_dump'tan
+	 * yuklenince {@code ANY (ARRAY[('KG'::character varying)::text, ...])}. Anlam ayni; ikincisi birinciye cevrilir.
+	 */
+	static Set<String> normalized(List<String> definitions) {
+		Set<String> out = new TreeSet<>();
+		for (String d : definitions) {
+			out.add(d.replaceAll("\\('([^']*)'::character varying\\)::text", "'$1'::character varying")
+				.replaceAll("ANY \\(ARRAY\\[([^\\]]*)\\]\\)", "ANY ((ARRAY[$1])::text[])"));
+		}
+		return out;
 	}
 
 	private static long count(JdbcTemplate jdbc, String table) {

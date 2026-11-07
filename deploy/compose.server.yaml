@@ -1,0 +1,47 @@
+# Sunucu: Java API, Laravel'in yerine (Faz 12). Ayni veritabani, ayni port.
+#
+# Veritabani Laravel'in compose'undaki 'db' konteyneri: Java onun agina katilir, veriyi
+# tasimak gerekmez. Laravel'in 'app' konteyneri durdurulur ama silinmez; geri donus
+# tek komut (docs/GO_LIVE.md).
+#
+#   cd /srv/olivamore/dev/olive_api_java/deploy
+#   cp .env.server.example .env      # bir kez; degerleri doldur
+#   ./deploy.sh                      # cek + derle + baslat + saglik kontrolu
+#
+# DIKKAT: Laravel klasorunde 'docker compose down' calistirmayin; veritabani da durur.
+# Yalnizca 'docker compose stop app' / 'start app'.
+name: ${COMPOSE_PROJECT_NAME:?.env icinde COMPOSE_PROJECT_NAME tanimli olmali}
+
+services:
+  api:
+    build: ..
+    image: ${COMPOSE_PROJECT_NAME}-api
+    container_name: ${COMPOSE_PROJECT_NAME}-api
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8001}:8081"
+    env_file: .env
+    environment:
+      # Laravel'in agindaki veritabani konteyneri
+      DB_HOST: db
+      DB_PORT: 5432
+      # Konteynerde compose dosyasi yok: Spring Boot'un docker compose destegi kapali
+      SPRING_DOCKER_COMPOSE_ENABLED: "false"
+      # On yuzun yayinlama betigi APK'yi Laravel'in docker-data/app klasorune koyar
+      APP_RELEASES_PATH: /data/app
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--XX:MaxRAMPercentage=60}
+    volumes:
+      - ${LARAVEL_DIR:?.env icinde LARAVEL_DIR tanimli olmali}/docker-data/app:/data/app:ro
+    networks: [laravel]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8081/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+
+networks:
+  # Laravel compose'unun agi (<COMPOSE_PROJECT_NAME>_default)
+  laravel:
+    name: ${LARAVEL_NETWORK:?.env icinde LARAVEL_NETWORK tanimli olmali}
+    external: true
