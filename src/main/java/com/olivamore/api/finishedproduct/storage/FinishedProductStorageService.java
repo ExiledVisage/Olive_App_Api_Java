@@ -1,15 +1,17 @@
-package com.olivamore.api.finishedproduct;
+package com.olivamore.api.finishedproduct.storage;
 
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.Casts;
+import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.time.Timestamps;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,18 +21,73 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Laravel {@code FinishedProductStorageService}: raf kurallari, depoya yerlestirme, raftan rafa transfer, cikis.
+ * Laravel {@code FinishedProductStorageService}: depo ve raf kurallari, depoya yerlestirme, raftan rafa transfer, cikis.
  * Dort sayim birlikte guncellenir: urunun {@code total_stock}'u, depo x urun, raf x urun, raf toplami.
  */
-@Component
-class StorageFlow {
+@Service
+public class FinishedProductStorageService {
 
 	private static final double VOLUME_EPSILON = 0.0001;
+	private static final String STORAGE = "finished_product_storages";
 
 	private final Db db;
 
-	StorageFlow(Db db) {
+	FinishedProductStorageService(Db db) {
 		this.db = db;
+	}
+
+
+	// ---- depo ------------------------------------------------------------------
+
+	List<Row> all() {
+		return db.select("select * from " + STORAGE);
+	}
+
+	/** {@code is_active} verilmezse true. @return olusan model (yalnizca verilen alanlar) */
+	Row create(Map<String, Object> validated) {
+		Map<String, Object> values = new LinkedHashMap<>();
+		values.put("name", validated.get("name"));
+		values.put("description", validated.get("description"));
+		values.put("is_active", validated.get("is_active") == null ? true : validated.get("is_active"));
+		return db.create(STORAGE, values);
+	}
+
+	void update(Row storage, Map<String, Object> validated) {
+		if (!validated.isEmpty()) {
+			db.update(STORAGE, storage.id(), validated);
+		}
+	}
+
+	/**
+	 * Stoklu depo silinmez (Laravel mesaji). Stogu bosalmis ama hareket gecmisi olan depo Laravel'de restrict FK
+	 * yuzunden 500 veriyordu; burada 422 (DEVIATIONS 15).
+	 */
+	void delete(Row storage) {
+		if (db.count("select count(*) from finished_product_storage_stocks where finished_product_storage_id = ? and quantity > ?",
+			storage.id(), 0) > 0) {
+			throw new BusinessRuleException("Bu depoda stok bulunduğu için silinemez.");
+		}
+		DeletionGuard.of("Bu depo")
+			.usedBy("stok hareketi", db.count("select count(*) from finished_product_stock_movements where finished_product_storage_id = ?",
+				storage.id()))
+			.check("Pasife alabilirsiniz.");
+		db.delete(STORAGE, storage.id());
+	}
+
+	/** Dolu raf silinmez (Laravel mesaji); hareket gecmisi olan raf Laravel'de 500, burada 422 (DEVIATIONS 15). */
+	void deleteSlot(Row slot) {
+		if (Php.intval(slot.get("current_quantity")) > 0) {
+			throw new BusinessRuleException("Bu slotta ürün bulunduğu için silinemez.");
+		}
+		DeletionGuard.of("Bu slot")
+			.usedBy("stok hareketi", db.count("select count(*) from finished_product_stock_movements where finished_product_storage_slot_id = ?",
+				slot.id()))
+			.check();
+		db.delete("finished_product_storage_slots", slot.id());
+	}
+
+	Row slot(long id) {
+		return db.find("finished_product_storage_slots", id).orElseThrow();
 	}
 
 	// ---- raf -------------------------------------------------------------------
@@ -106,7 +163,7 @@ class StorageFlow {
 		Row product = lockProduct(Php.intval(data.get("finished_product_id")));
 		List<long[]> placements = new ArrayList<>();
 		if (data.get("placements") != null) {
-			for (Map<String, Object> p : RecipeController.items(data.get("placements"))) {
+			for (Map<String, Object> p : items(data.get("placements"))) {
 				placements.add(new long[] {Php.intval(p.get("finished_product_storage_slot_id")), Php.intval(p.get("quantity"))});
 			}
 		}
@@ -180,14 +237,14 @@ class StorageFlow {
 	// ---- siparis (Faz 9) ---------------------------------------------------------------
 
 	/** Siparis icin raftan alinan: raf, urun, adet. */
-	record Pick(long slotId, long productId, long quantity) {
+	public record Pick(long slotId, long productId, long quantity) {
 	}
 
 	/**
 	 * {@code pickForOrder}: sise raftan cikar ama fabrikadan cikmaz ({@code total_stock} sevkiyatta duser).
 	 * Rafta o kadar yoksa hata.
 	 */
-	void pickForOrder(long orderId, List<Pick> picks, Long actorId) {
+	public void pickForOrder(long orderId, List<Pick> picks, Long actorId) {
 		for (Pick pick : picks) {
 			Row slot = lockSlot(pick.slotId());
 			Row product = lockProduct(pick.productId());
@@ -201,7 +258,7 @@ class StorageFlow {
 	 * {@code returnOrderPicks}: iptal edilen hazir siparisin siseleri alindiklari raflara; daha once geri konan
 	 * dusulur, raf kapasitesi yeniden kontrol edilir.
 	 */
-	void returnOrderPicks(long orderId, Long actorId) {
+	public void returnOrderPicks(long orderId, Long actorId) {
 		List<Row> picks = db.select("select * from finished_product_stock_movements where order_id = ? and movement_type = ?",
 			orderId, "order_pick");
 		Map<String, Long> returned = new LinkedHashMap<>();
@@ -365,6 +422,15 @@ class StorageFlow {
 				throw new BusinessRuleException("Ürün hacmi (" + productVolume + "L) slot hacmiyle (" + Php.floatString(volume) + "L) eşleşmiyor.");
 			}
 		});
+	}
+
+
+	@SuppressWarnings("unchecked")
+	private static List<Map<String, Object>> items(Object value) {
+		if (value instanceof Map<?, ?> m) {
+			return new ArrayList<>((Collection<Map<String, Object>>) m.values());
+		}
+		return value instanceof List<?> l ? (List<Map<String, Object>>) l : List.of();
 	}
 
 }

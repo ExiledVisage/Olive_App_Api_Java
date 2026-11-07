@@ -1,4 +1,4 @@
-package com.olivamore.api.finishedproduct;
+package com.olivamore.api.finishedproduct.storage;
 
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
@@ -19,14 +19,14 @@ import java.util.Set;
  * Iliskiler Laravel'in eager loading sorgulariyla (siralamasiz, fiziksel sira).
  */
 @Component
-class StorageReads {
+class FinishedProductStorageResource {
 
 	/** {@code signedQuantity}: rafa giren hareketler +. */
 	private static final Set<String> INCOMING = Set.of("stock_in", "transfer_in", "order_return");
 
 	private final Db db;
 
-	StorageReads(Db db) {
+	FinishedProductStorageResource(Db db) {
 		this.db = db;
 	}
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Laravel {@code FinishedProductRecipeResource}. Musteri modulu de kullanir (musterinin formul profili:
+ * Laravel {@code FinishedProductRecipeResource}. Tarif, urun ve kosu cevaplari ile musteri modulu kullanir (musterinin formul profili:
  * icerik yuklu, attribute kurallari yuklu degil).
  */
 @Component
@@ -70,7 +70,7 @@ public class RecipeResources {
 	}
 
 	/** Tarif icerigi ({@code ratio}: decimal:4). */
-	static List<Map<String, Object>> contents(List<Row> rows, Map<Long, Row> types) {
+	public static List<Map<String, Object>> contents(List<Row> rows, Map<Long, Row> types) {
 		List<Map<String, Object>> out = new ArrayList<>();
 		for (Row c : rows) {
 			Row type = types.get(c.longValue("production_product_type_id"));

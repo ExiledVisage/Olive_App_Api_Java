@@ -1,19 +1,20 @@
 package com.olivamore.api.finishedproduct;
 
+import com.olivamore.api.finishedproduct.storage.FinishedProductStorageService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Bitmis urun raflarinin diger modullere acik kismi: siparis hazirlanirken raftan alma ve hazir siparis
- * iptalinde rafa geri koyma. Dort sayim ({@code StorageFlow}) depo ekranindakiyle ayni yoldan guncellenir.
+ * iptalinde rafa geri koyma. Dort sayim ({@code FinishedProductStorageService}) depo ekranindakiyle ayni yoldan guncellenir.
  */
 @Component
 public class ShelfOperations {
 
-	private final StorageFlow flow;
+	private final FinishedProductStorageService flow;
 
-	ShelfOperations(StorageFlow flow) {
+	ShelfOperations(FinishedProductStorageService flow) {
 		this.flow = flow;
 	}
 
@@ -23,7 +24,7 @@ public class ShelfOperations {
 
 	/** {@code FinishedProductStorageService::pickForOrder} */
 	public void pickForOrder(long orderId, List<Pick> picks, Long actorId) {
-		flow.pickForOrder(orderId, picks.stream().map(p -> new StorageFlow.Pick(p.slotId(), p.productId(), p.quantity())).toList(), actorId);
+		flow.pickForOrder(orderId, picks.stream().map(p -> new FinishedProductStorageService.Pick(p.slotId(), p.productId(), p.quantity())).toList(), actorId);
 	}
 
 	/** {@code FinishedProductStorageService::returnOrderPicks} */

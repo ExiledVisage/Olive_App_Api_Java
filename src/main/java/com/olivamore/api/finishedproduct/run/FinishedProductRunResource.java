@@ -1,5 +1,6 @@
-package com.olivamore.api.finishedproduct;
+package com.olivamore.api.finishedproduct.run;
 
+import com.olivamore.api.finishedproduct.RecipeResources;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 /** Laravel {@code FinishedProductRunResource}: hangi iliskiler yukluyse o alanlar. */
 @Component
-class RunReads {
+class FinishedProductRunResource {
 
 	/** {@code FinishedProductRunService::TRANSITIONS} */
 	static final Map<String, List<String>> TRANSITIONS = Map.of(
@@ -39,7 +40,7 @@ class RunReads {
 
 	private final Db db;
 
-	RunReads(Db db) {
+	FinishedProductRunResource(Db db) {
 		this.db = db;
 	}
 
@@ -118,7 +119,7 @@ class RunReads {
 			rec.put("name", recipe.get("name"));
 			rec.put("version", recipe.get("version"));
 			if (set.recipeContents()) {
-				rec.put("contents", RecipeController.contents(contents.getOrDefault(recipe.id(), List.of()), contentTypes));
+				rec.put("contents", RecipeResources.contents(contents.getOrDefault(recipe.id(), List.of()), contentTypes));
 			}
 			r.put("recipe", rec);
 

@@ -1,9 +1,10 @@
-package com.olivamore.api.finishedproduct;
+package com.olivamore.api.finishedproduct.run;
 
 import com.olivamore.api.inventory.StockOperations;
 import com.olivamore.api.packaging.PackagingAllocations;
 import com.olivamore.api.packaging.PackagingAllocations.Need;
 import com.olivamore.api.shared.error.BusinessRuleException;
+import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
@@ -11,7 +12,7 @@ import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.time.Timestamps;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -26,8 +27,8 @@ import java.util.Set;
  * payi, tahmini attribute degerleri, ambalaj tahsisi), durum gecisleri ve tamamlama (ambalaj ve yag tuketimi).
  * Hesaplar PHP float (double); veritabanina 14 basamak.
  */
-@Component
-class RunFlow {
+@Service
+class FinishedProductRunService {
 
 	private static final double RATIO_TOLERANCE = 0.02;
 	/** Dolumda cekilen yagin sise icerigini en fazla bu oranda gecmesine izin verilir (hat ici fire). */
@@ -38,7 +39,7 @@ class RunFlow {
 	private final PackagingAllocations packaging;
 	private final StockOperations stock;
 
-	RunFlow(Db db, PackagingAllocations packaging, StockOperations stock) {
+	FinishedProductRunService(Db db, PackagingAllocations packaging, StockOperations stock) {
 		this.db = db;
 		this.packaging = packaging;
 		this.stock = stock;
@@ -189,7 +190,7 @@ class RunFlow {
 		if (Objects.equals(from, to)) {
 			return quantity;
 		}
-		Double density = type == null ? null : RunReads.effectiveDensity(type, product);
+		Double density = type == null ? null : FinishedProductRunResource.effectiveDensity(type, product);
 		if (density == null) {
 			String name = type != null && type.get("name") != null ? type.string("name") : "Bu ürün tipi";
 			throw new BusinessRuleException(name + " için yoğunluk tanımlı değil; " + from + " ile " + to
@@ -316,7 +317,7 @@ class RunFlow {
 
 	void updateStatus(Row run, String status, long userId) {
 		String current = run.string("status");
-		if (!RunReads.TRANSITIONS.getOrDefault(current, List.of()).contains(status)) {
+		if (!FinishedProductRunResource.TRANSITIONS.getOrDefault(current, List.of()).contains(status)) {
 			throw new BusinessRuleException("'" + current + "' durumundan '" + status + "' durumuna geçiş yapılamaz.");
 		}
 		Map<String, Object> changes = new LinkedHashMap<>();
@@ -411,6 +412,57 @@ class RunFlow {
 			throw new BusinessRuleException("Koşu planlandıktan sonra tank içeriği değişmiş, tamamlanamıyor: "
 				+ String.join("; ", problems) + ". Koşuyu iptal edip yeniden planlayın.");
 		}
+	}
+
+
+	// ---- liste, attribute degeri, silme ---------------------------------------------
+
+	/** En yeni once; {@code perPage} verilirse sayfa. */
+	List<Row> all() {
+		return db.select("select * from finished_product_runs order by created_at desc");
+	}
+
+	long count() {
+		return db.count("select count(*) as aggregate from finished_product_runs");
+	}
+
+	List<Row> page(int page, int perPage) {
+		return db.select("select * from finished_product_runs order by created_at desc"
+			+ " limit " + perPage + " offset " + (long) (page - 1) * perPage);
+	}
+
+	Row byId(long id) {
+		return db.find("finished_product_runs", id).orElseThrow();
+	}
+
+	/**
+	 * Gercek attribute degeri; deger baska kosununsa 404. decimal:4 cast'i: 4 basamakta esit deger degisiklik
+	 * sayilmaz. @return {@code id}, tahmini ve gercek deger
+	 */
+	Map<String, Object> updateAttributeValue(Row run, Row value, Object actualValue) {
+		if (Php.intval(value.get("finished_product_run_id")) != run.id()) {
+			throw new HttpStatusException(404, "Bu attribute değeri bu run'a ait değil.");
+		}
+		db.update("finished_product_run_attribute_values", value.id(), Map.of("actual_value", Casts.decimal(actualValue, 4)));
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("id", value.get("id"));
+		body.put("estimated_value", Casts.decimal(value.get("estimated_value"), 4));
+		body.put("actual_value", Casts.decimal(db.find("finished_product_run_attribute_values", value.id()).orElseThrow().get("actual_value"), 4));
+		return body;
+	}
+
+	/** Ambalaj lotu tahsisinin elle degistirilmesi; liste tahsisin tamami. */
+	void syncPackagings(Row run, List<Map<String, Object>> rows) {
+		packaging.syncRunAllocation(run.id(), run.string("status"),
+			needs(run.longValue("finished_product_id"), Php.intval(run.get("quantity"))), rows);
+	}
+
+	/** Yalnizca planli kosu silinir. */
+	void delete(Row run) {
+		if (!"planned".equals(run.string("status"))) {
+			throw new BusinessRuleException("Sadece planlanmış (planned) durumdaki run silinebilir.");
+		}
+		db.delete("finished_product_runs", run.id());
 	}
 
 }
