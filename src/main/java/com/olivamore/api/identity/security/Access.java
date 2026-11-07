@@ -1,4 +1,4 @@
-package com.olivamore.api.identity.auth;
+package com.olivamore.api.identity.security;
 
 import com.olivamore.api.identity.CurrentUser;
 import jakarta.servlet.http.HttpServletRequest;

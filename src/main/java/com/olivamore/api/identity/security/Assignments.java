@@ -1,4 +1,6 @@
-package com.olivamore.api.identity.domain;
+package com.olivamore.api.identity.security;
+
+import com.olivamore.api.identity.user.User;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;

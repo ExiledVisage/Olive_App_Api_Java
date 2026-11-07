@@ -1,7 +1,7 @@
 package com.olivamore.api.identity;
 
-import com.olivamore.api.identity.domain.Assignments;
-import com.olivamore.api.identity.domain.Role;
+import com.olivamore.api.identity.security.Assignments;
+import com.olivamore.api.identity.role.Role;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

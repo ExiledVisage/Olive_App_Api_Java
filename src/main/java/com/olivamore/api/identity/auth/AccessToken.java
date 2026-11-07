@@ -1,4 +1,4 @@
-package com.olivamore.api.identity.domain;
+package com.olivamore.api.identity.auth;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

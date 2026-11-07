@@ -1,4 +1,4 @@
-package com.olivamore.api.identity.domain;
+package com.olivamore.api.identity.permission;
 
 import com.olivamore.api.shared.web.binding.LaravelModel;
 import jakarta.persistence.Column;

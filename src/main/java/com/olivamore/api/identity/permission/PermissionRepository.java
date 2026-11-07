@@ -1,4 +1,4 @@
-package com.olivamore.api.identity.domain;
+package com.olivamore.api.identity.permission;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

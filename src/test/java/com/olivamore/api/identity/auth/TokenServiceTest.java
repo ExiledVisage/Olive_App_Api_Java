@@ -1,5 +1,7 @@
 package com.olivamore.api.identity.auth;
 
+import com.olivamore.api.identity.security.IdentityWebConfig;
+
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;

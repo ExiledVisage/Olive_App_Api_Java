@@ -1,10 +1,10 @@
-package com.olivamore.api.identity.web;
+package com.olivamore.api.identity.auth;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Public;
-import com.olivamore.api.identity.auth.AuthService;
-import com.olivamore.api.identity.domain.User;
-import com.olivamore.api.identity.domain.UserRepository;
+import com.olivamore.api.identity.user.User;
+import com.olivamore.api.identity.user.UserRepository;
+import com.olivamore.api.identity.user.UserResource;
 import com.olivamore.api.shared.validation.LaravelValidator;
 import com.olivamore.api.shared.validation.Rules;
 import com.olivamore.api.shared.validation.ValidatedInput;
@@ -26,10 +26,10 @@ class AuthController {
 
 	private final AuthService auth;
 	private final UserRepository users;
-	private final Resources resources;
+	private final UserResource resources;
 	private final LaravelValidator validator;
 
-	AuthController(AuthService auth, UserRepository users, Resources resources, LaravelValidator validator) {
+	AuthController(AuthService auth, UserRepository users, UserResource resources, LaravelValidator validator) {
 		this.auth = auth;
 		this.users = users;
 		this.resources = resources;
@@ -41,10 +41,7 @@ class AuthController {
 	@Throttle("register")
 	@PostMapping("/api/auth/register")
 	ResponseEntity<Map<String, Object>> register(RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("name", "required|string|max:255")
-			.field("email", "required|string|email|max:255|unique:users,email")
-			.field("password", "required|string|min:8|confirmed"));
+		ValidatedInput v = validator.validate(input, AuthRequests.register());
 		AuthService.Result result = auth.register(v.string("name"), v.string("email"), v.string("password"));
 		return ResponseEntity.status(HttpStatus.CREATED).body(tokenResponse("User registered successfully.", result));
 	}
@@ -54,9 +51,7 @@ class AuthController {
 	@Throttle("login")
 	@PostMapping("/api/auth/login")
 	Map<String, Object> login(RequestInput input) {
-		ValidatedInput v = validator.validate(input, Rules.of()
-			.field("email", "required|string|email")
-			.field("password", "required|string"));
+		ValidatedInput v = validator.validate(input, AuthRequests.login());
 		return tokenResponse("Login successful.", auth.login(v.string("email"), v.string("password")));
 	}
 
@@ -67,13 +62,13 @@ class AuthController {
 	}
 
 	@GetMapping("/api/auth/me")
-	DataResponse<Resources.UserResource> me(CurrentUser user) {
-		return DataResponse.of(resources.user(load(user)));
+	DataResponse<UserResource.Data> me(CurrentUser user) {
+		return DataResponse.of(resources.of(load(user)));
 	}
 
 	/** Laravel'de closure: {@code return $request->user();} (Resource degil, model). */
 	@GetMapping("/api/user")
-	Resources.RawUser user(CurrentUser user) {
+	UserResource.Raw user(CurrentUser user) {
 		return resources.raw(load(user));
 	}
 
@@ -85,7 +80,7 @@ class AuthController {
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("message", message);
 		body.put("token", result.token());
-		body.put("user", resources.user(result.user()));
+		body.put("user", resources.of(result.user()));
 		return body;
 	}
 

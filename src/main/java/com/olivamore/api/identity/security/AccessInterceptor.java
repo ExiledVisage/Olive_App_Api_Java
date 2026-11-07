@@ -1,5 +1,6 @@
-package com.olivamore.api.identity.auth;
+package com.olivamore.api.identity.security;
 
+import com.olivamore.api.identity.auth.TokenService;
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Public;
 import com.olivamore.api.shared.error.HttpStatusException;

@@ -1,5 +1,6 @@
-package com.olivamore.api.identity.auth;
+package com.olivamore.api.identity.security;
 
+import com.olivamore.api.identity.auth.TokenService;
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.shared.web.RequestInput;
 import com.olivamore.api.shared.web.WebConfig;
@@ -23,10 +24,10 @@ import java.util.Locale;
 
 /** Kimlik dogrulama, rate limit'ler ve {@link CurrentUser} parametresi. */
 @Configuration(proxyBeanMethods = false)
-class IdentityWebConfig implements WebMvcConfigurer {
+public class IdentityWebConfig implements WebMvcConfigurer {
 
 	/** Laravel {@code BCRYPT_ROUNDS=12}, {@code $2y$}: Laravel ve Java birbirinin hash'ini dogrular. */
-	static final BCryptPasswordEncoder PASSWORDS = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12);
+	public static final BCryptPasswordEncoder PASSWORDS = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12);
 
 	private final TokenService tokens;
 

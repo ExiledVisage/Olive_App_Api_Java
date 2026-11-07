@@ -1,10 +1,10 @@
-package com.olivamore.api.identity.auth;
+package com.olivamore.api.identity.security;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.identity.RequiresRole;
-import com.olivamore.api.identity.domain.Assignments;
-import com.olivamore.api.identity.domain.Role;
+import com.olivamore.api.identity.security.Assignments;
+import com.olivamore.api.identity.role.Role;
 import com.olivamore.api.shared.error.HttpStatusException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

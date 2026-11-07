@@ -1,7 +1,8 @@
 package com.olivamore.api.identity.auth;
 
-import com.olivamore.api.identity.domain.User;
-import com.olivamore.api.identity.domain.UserRepository;
+import com.olivamore.api.identity.security.IdentityWebConfig;
+import com.olivamore.api.identity.user.User;
+import com.olivamore.api.identity.user.UserRepository;
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.time.Timestamps;
 import org.springframework.stereotype.Service;

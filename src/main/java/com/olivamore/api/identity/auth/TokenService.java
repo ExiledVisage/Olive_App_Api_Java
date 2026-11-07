@@ -1,10 +1,10 @@
 package com.olivamore.api.identity.auth;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.domain.AccessToken;
-import com.olivamore.api.identity.domain.AccessTokenRepository;
-import com.olivamore.api.identity.domain.User;
-import com.olivamore.api.identity.domain.UserRepository;
+import com.olivamore.api.identity.auth.AccessToken;
+import com.olivamore.api.identity.auth.AccessTokenRepository;
+import com.olivamore.api.identity.user.User;
+import com.olivamore.api.identity.user.UserRepository;
 import com.olivamore.api.shared.time.Timestamps;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
