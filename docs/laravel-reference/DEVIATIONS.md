@@ -79,6 +79,7 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Laravel:** Kullanıcının rolleri ve bir rolün izinleri `ORDER BY` olmadan geliyor (sıra rastgele olabilir).
 - **Java:** id sırası. `compare.py` bu listeleri sırasız karşılaştırır. (Kullanıcının **bütün izinleri** Laravel'de de id sırasında: Spatie `getAllPermissions()` sıralıyor; Java aynı.)
 - Diğer sıralamasız ilişkilerde (örn. tankın attribute kuralları, izinli ürünleri) Java Laravel'le aynı SQL'i çalıştırır, sıra genelde aynı çıkar. Ama geri alınan bir insert'ten sonra yeni satırların fiziksel yeri bağlantıya bağlı: PHP her istekte yeni bağlantı açar, Java havuzdaki bağlantıyı kullanır. `StorageUnitParityIT`'de bu yüzden bir durumda liste id'ye göre karşılaştırılıyor.
+- `latest()` (yalnızca `created_at`) aynı saniyede oluşan kayıtlarda sırasız; güncellenen satır tablonun sonuna taşındığı için eşitlikte sıra değişebiliyor. Parity testlerinde bu listeler (aynı saniyede oluşan tarifler, dolum koşuları; bir lotun koşuları) sırasız karşılaştırılıyor.
 
 ### 12. Nginx'in kendi cevapları
 - **Laravel:** Kök yola (`/`) desteklenmeyen metotla gelen istek Laravel'e ulaşmadan nginx tarafından `405` HTML ile cevaplanıyor.

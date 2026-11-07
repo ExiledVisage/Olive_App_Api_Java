@@ -205,7 +205,7 @@ class PackagingLots {
 		values.put("status", "active");
 		values.put("note", note);
 		long lotId = db.insert("packaging_lots", values);
-		recordMovement(lotId, itemId, "IN", "SUPPLIER_DELIVERY", quantity, note, at, userId);
+		recordMovement(lotId, itemId, "IN", "SUPPLIER_DELIVERY", quantity, note, at, userId, null);
 		recalculateItemStock(itemId);
 		return lotId;
 	}
@@ -240,7 +240,7 @@ class PackagingLots {
 		changes.put("status", left == 0 ? "depleted" : "active");
 		db.update("packaging_lots", lotId, changes);
 		long itemId = lot.longValue("packaging_item_id");
-		recordMovement(lotId, itemId, type, "MANUAL_ADJUSTMENT", Math.abs(delta), note, Timestamps.now(), userId);
+		recordMovement(lotId, itemId, type, "MANUAL_ADJUSTMENT", Math.abs(delta), note, Timestamps.now(), userId, null);
 		recalculateItemStock(itemId);
 	}
 
@@ -265,12 +265,12 @@ class PackagingLots {
 		db.update("packaging_items", itemId, Map.of("current_stock", total));
 	}
 
-	private void recordMovement(long lotId, long itemId, String type, String source, long quantity, Object note,
-		LocalDateTime movedAt, long userId) {
+	void recordMovement(long lotId, long itemId, String type, String source, long quantity, Object note,
+		LocalDateTime movedAt, long userId, Long runId) {
 		Map<String, Object> values = new LinkedHashMap<>();
 		values.put("packaging_lot_id", lotId);
 		values.put("packaging_item_id", itemId);
-		values.put("finished_product_run_id", null);
+		values.put("finished_product_run_id", runId);
 		values.put("user_id", userId);
 		values.put("source_type", source);
 		values.put("movement_type", type);

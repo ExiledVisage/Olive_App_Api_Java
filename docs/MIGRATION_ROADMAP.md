@@ -258,8 +258,18 @@ Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor
   - `FinishedProductParityIT`: Laravel'den yakalanan 74 durum (`reference/capture_finished_product.py`): 74/74 aynı (7'si sapma, Java cevabı sabit)
   - Canlı karşılaştırma: bütün tarifler (detay, versiyonlar), 22 ürünün detayı, liste varyasyonları, hata durumları 48/48 aynı
 
-**8b: Dolum koşuları**
-- [ ] Koşu: tanktan malzeme seçimi, tarif uyumu, tahmini attribute değerleri, ambalaj tahsisi (FIFO, Faz 7'deki `PackagingLotService`), durum geçişleri, tamamlamada yağ ve ambalaj tüketimi, attribute değeri güncelleme, silme
+**8b: Dolum koşuları (tamamlandı)**
+- [x] Liste (`per_page` ile sayfalı), detay (tarif içeriği, tank, materyal payları ve yoğunluk, ambalaj tahsisi lot ve tedarikçiyle, attribute değerleri, izinli durum geçişleri)
+- [x] Planlama: tarif ve tank kontrolleri (boş tank, tarifte olmayan ürün, blend oranı ±%2), şişe adedi × hacim ile tanktan çekilecek yağ (birimi tankın; KG tankta yoğunlukla çevrim), fire payı (%2), tahmini attribute değeri ve kabul aralığı, materyal payları; cevap 201 (adet istekteki haliyle)
+- [x] Ambalaj: planlamada FIFO tahsis, elle tahsis (kalem başına tam adet), tamamlamada tahsis yeniden doğrulanıp lotlardan düşülüyor, lot hareketleri koşuya bağlı. `packaging` modülüne `PackagingAllocations`
+- [x] Durum geçişleri (planlı → devam → tamamlandı, iptal); tamamlama önce doğrular (ambalaj stoğu, tahsis, tanktaki materyal hâlâ yerinde mi), sonra ürün stoğu, ambalaj, tanktan çıkış (`StockOperations.outboundForRun`: `MANUAL` kaynaklı, `finished_product_run_id` dolu)
+- [x] Gerçek attribute değeri (başka koşunun değeri 404), silme (yalnızca planlı)
+- [x] Proxy: `/api/finished-product-runs` Java'da
+- Testler:
+  - `FinishedProductRunParityIT`: Laravel'den yakalanan 91 durum (`reference/capture_finished_product_run.py`): 91/91 aynı. İki listede sıra garantisi yok, sırasız karşılaştırılıyor (DEVIATIONS 11)
+  - HTTP üzerinden yazan parity testleri (`packaging`, `finishedproduct`) `@DirtiesContext`: alfabetik sırada diğer modüllerden önce çalışıyorlar, sonraki sınıf temiz veritabanıyla başlıyor
+  - Canlı karşılaştırma: 389 koşunun hepsinin detayı, tam liste, sayfalı varyasyonlar, hata durumları 399/399 aynı
+  - Seed'deki tanklar LITRE; KG tank ve yoğunluk çevrimi parity testinde yok
 
 **8c: Bitmiş ürün depoları**
 - [ ] Depo, raf, raf stoğu, stok giriş/çıkış/transfer, hareketler (siparişe toplama ve iade Faz 9'da çağrılıyor)

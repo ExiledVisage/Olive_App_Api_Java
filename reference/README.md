@@ -20,6 +20,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | `laravel_capture.py` | Yakalama betiklerinin ortak parçaları (`Capture`: case, sql, yer tutucular, fixture yazma). Yeni modüllerin `capture_*.py`'leri bunu kullanır | Evet |
 | `capture_inventory.py` | Faz 5a: tank yazma davranışı (41 durum) → `src/test/resources/laravel/storage-unit.json` | Evet |
 | `capture_finished_product.py` | Faz 8a: tarifler ve bitmiş ürünler (74 durum; versiyonlama, oran toplamı, depo dökümü, silme korumaları, Laravel'in 500'leri) → `src/test/resources/laravel/finished-product.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
+| `capture_finished_product_run.py` | Faz 8b: dolum koşuları (91 durum; planlama kuralları, ambalaj tahsisi, durum geçişleri, tamamlamada tüketim, değişen tank/lot) → `src/test/resources/laravel/finished-product-run.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
 | `capture_material.py` | Faz 5b: materyal listesi, detay ve soy grafı cevapları (30 durum, veri değiştirmez) → `src/test/resources/laravel/material.json` | Evet |
 | `capture_movement.py` | Faz 5c: stok hareketleri (56 durum) → `src/test/resources/laravel/storage-movement.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
 | `capture_production_batch.py` | Faz 6a: üretim partileri (36 durum) → `src/test/resources/laravel/production-batch.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |

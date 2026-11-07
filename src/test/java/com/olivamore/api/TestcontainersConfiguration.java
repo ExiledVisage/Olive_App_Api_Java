@@ -18,7 +18,9 @@ import java.nio.file.Path;
  * <p>
  * Konteyner Spring context'iyle birlikte onbellekte tutulur; ayni context'i kullanan
  * test siniflari ayni veritabanini paylasir. Veri degistiren testler kendi
- * transaction'larinda calisip geri almali ({@code @Transactional}).
+ * transaction'larinda calisip geri almali ({@code @Transactional}); HTTP uzerinden yazan parity
+ * testleri ise {@code @DirtiesContext} ile isaretlenir: bitince context (ve konteyner) kapanir,
+ * sonraki sinif temiz seed'li yeni bir veritabaniyla baslar.
  */
 @TestConfiguration(proxyBeanMethods = false)
 public class TestcontainersConfiguration {

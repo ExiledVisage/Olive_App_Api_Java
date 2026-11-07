@@ -99,7 +99,7 @@ class StorageMovements {
 		Row moving = extractPortion(material, quantity, batchProcess);
 		db.update("materials", moving.id(), location("storage_unit", unit.id()));
 		Row movement = createMovement(unit.id(), moving, batchProcess, null,
-			batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_IN, null, quantity, note, false);
+			batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_IN, null, quantity, note, false, null);
 		recalculate(unit, moving);
 		return movement;
 	}
@@ -107,13 +107,19 @@ class StorageMovements {
 	/** Tanktan cikan miktar tuketilmis sayilir (consumed). */
 	@Transactional
 	Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
+		return outbound(unit, material, quantity, batchProcess, note, null);
+	}
+
+	/** @param runId dolum kosusu ({@code finished_product_run_id}); yoksa null */
+	@Transactional
+	Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note, Long runId) {
 		assertPositiveQuantity(quantity);
 		lock(unit.id());
 		assertMaterialInsideStorage(unit, material);
 		Row moving = extractPortion(material, quantity, batchProcess);
 		db.update("materials", moving.id(), closed(moving, "consumed", batchProcess));
 		Row movement = createMovement(unit.id(), moving, batchProcess, null,
-			batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_OUT, null, quantity, note, true);
+			batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_OUT, null, quantity, note, true, runId);
 		recalculate(unit, moving);
 		return movement;
 	}
@@ -135,10 +141,10 @@ class StorageMovements {
 		Row moving = extractPortion(material, quantity, batchProcess);
 		String reference = "TRF-" + REFERENCE_TIME.format(Timestamps.now()) + "-" + random(6).toUpperCase(java.util.Locale.ROOT);
 		Row out = createMovement(from.id(), moving, batchProcess, to.id(), SOURCE_INTERNAL_TRANSFER, TYPE_TRANSFER_OUT,
-			reference, quantity, note, false);
+			reference, quantity, note, false, null);
 		db.update("materials", moving.id(), location("storage_unit", to.id()));
 		Row in = createMovement(to.id(), moving, batchProcess, from.id(), SOURCE_INTERNAL_TRANSFER, TYPE_TRANSFER_IN,
-			reference, quantity, note, false);
+			reference, quantity, note, false, null);
 		recalculate(from, moving);
 		recalculate(to, moving);
 		return new Transfer(reference, out, in);
@@ -160,7 +166,7 @@ class StorageMovements {
 		Row moving = extractPortion(material, quantity, batchProcess);
 		db.update("materials", moving.id(), closed(moving, "discarded", batchProcess));
 		Row movement = createMovement(unit.id(), moving, batchProcess, null, SOURCE_ADJUSTMENT, TYPE_ADJUSTMENT_OUT, null,
-			quantity, note, false);
+			quantity, note, false, null);
 		recalculate(unit, moving);
 		return movement;
 	}
@@ -201,7 +207,7 @@ class StorageMovements {
 		// Uyum kontrolu icin materyal veritabanindan (attribute degerleriyle); miktar verilen float
 		assertCompatibleWithTank(unit, db.find("materials", material.id()).orElseThrow(), quantity);
 		db.update("materials", material.id(), location("storage_unit", unit.id()));
-		Row movement = createMovement(unit.id(), material, batchProcess, null, sourceType, movementType, null, quantity, note, false);
+		Row movement = createMovement(unit.id(), material, batchProcess, null, sourceType, movementType, null, quantity, note, false, null);
 		recalculate(unit, db.find("materials", material.id()).orElseThrow());
 		return movement;
 	}
@@ -503,13 +509,13 @@ class StorageMovements {
 	}
 
 	private Row createMovement(long unitId, Row material, Row batchProcess, Long counterpartyId, String sourceType,
-		String movementType, String reference, double quantity, String note, boolean withRun) {
+		String movementType, String reference, double quantity, String note, boolean withRun, Long runId) {
 		Map<String, Object> values = new LinkedHashMap<>();
 		values.put("storage_unit_id", unitId);
 		values.put("material_id", material.id());
 		values.put("batch_process_id", batchProcess == null ? null : batchProcess.id());
 		if (withRun) {
-			values.put("finished_product_run_id", null);
+			values.put("finished_product_run_id", runId);
 		}
 		values.put("counterparty_storage_unit_id", counterpartyId);
 		values.put("source_type", sourceType);

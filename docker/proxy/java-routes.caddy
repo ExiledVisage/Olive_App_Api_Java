@@ -90,3 +90,11 @@ handle @java_finished_products {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 8b: dolum kosulari (planlama, ambalaj tahsisi, durum, attribute degerleri)
+@java_finished_product_runs path /api/finished-product-runs /api/finished-product-runs/*
+handle @java_finished_product_runs {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

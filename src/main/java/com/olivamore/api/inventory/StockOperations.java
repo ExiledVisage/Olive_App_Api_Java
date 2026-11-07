@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 /**
  * Stok hareketlerinin diger modullere acik kismi: uretim asamasinin (depo hareketi uzantisi) yaptigi tank
  * girisi, cikisi ve transferi. Kurallar ve bakiye {@code StorageMovements}'ta, tank sayfasindakiyle ayni.
- * Hareketler {@code BATCH_PROCESS} kaynakli yazilir; bolunen materyal prosese baglanir.
+ * Proses hareketleri {@code BATCH_PROCESS} kaynakli yazilir, bolunen materyal prosese baglanir; dolum kosusunun
+ * cikisi {@code MANUAL} kaynakli ve kosuya bagli.
  */
 @Component
 public class StockOperations {
@@ -25,6 +26,11 @@ public class StockOperations {
 	/** {@code createOutboundMovement}: tanktan cikan miktar tuketilir. */
 	public void outbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
 		movements.outbound(unit, material, quantity, batchProcess, note);
+	}
+
+	/** {@code createOutboundMovement(..., $finishedProductRunId)}: dolum kosusunun tanktan cektigi yag (MANUAL kaynakli). */
+	public void outboundForRun(Row unit, Row material, double quantity, String note, long runId) {
+		movements.outbound(unit, material, quantity, null, note, runId);
 	}
 
 	/** {@code transferBetweenUnits} */

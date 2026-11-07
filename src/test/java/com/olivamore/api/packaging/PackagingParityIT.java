@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +20,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// veri degistiriyor ve alfabetik sirada diger modullerin testlerinden once calisiyor: sonraki sinif temiz seed'li
+// yeni bir veritabaniyla baslasin
+@DirtiesContext
 class PackagingParityIT {
 
 	@LocalServerPort
