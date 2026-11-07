@@ -94,6 +94,16 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Laravel:** Kapasite ve tank uyumu kontrolü transaction içinde ama kilitsiz. Aynı tanka eşzamanlı iki giriş, ikisi de kapasiteyi boş görüp tankı taşırabiliyor.
 - **Java:** İşlemdeki tank(lar) transaction başında `SELECT ... FOR UPDATE` ile kilitleniyor (transferde iki tank, id sırasıyla). Girişler sırayla işleniyor, tank taşmıyor. Tek istekli cevaplar aynı. `StorageMovementConcurrencyIT` dört eşzamanlı 60 L girişini 100 L'lik tanka gönderiyor: biri 201, gerisi 422. Kilitsiz sürümde bu test düşüyor.
 
+### 14. Tarif ve bitmiş üründe 500 veren istekler (Faz 8a)
+- **Laravel:**
+  - Tarifte sayı olmayan oran (`"ratio": "abc"`, `"ratio": [1]`): oran toplamını hesaplayan `withValidator` kancası kurallar düşse de çalışıyor, PHP toplamada `TypeError` → 500.
+  - Tarifte aynı ürün tipi ya da aynı attribute iki kez, üründe aynı ambalaj kalemi iki kez: validation geçiyor, unique kısıtı (`fpr_content_unique`, `fpr_attr_rule_unique`, `fp_component_unique`) → 500.
+  - Dolum koşusu olmayan ama sipariş kalemi, raf/depo stoğu ya da depo hareketi olan ürünü silmek: restrict FK → 500.
+- **Java:**
+  - Kanca sayı olmayan oranı 0 sayıyor; alanın kendi hatası (`The contents.0.ratio field must be a number.`) ve toplam mesajı 422 dönüyor.
+  - Bu alanlara `distinct` kuralı eklendi: `The contents.1.production_product_type_id field has a duplicate value.` (422).
+  - Silmede kullanım yerleri sayılıyor: `Bu son ürün silinemez; kullanıldığı yerler: 4 sipariş kalemi.` (422).
+
 ## Kopyalanan ama bilinmesi gereken Laravel davranışları
 
 Farklı değil, birebir aynı; ama kapatılması düşünülebilecek davranışlar (karar Laravel kapandıktan sonra).

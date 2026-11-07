@@ -82,3 +82,11 @@ handle @java_packaging {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 8a: dolum tarifleri (versiyonlar dahil) ve bitmis urunler
+@java_finished_products path /api/finished-product-recipes /api/finished-product-recipes/* /api/finished-products /api/finished-products/*
+handle @java_finished_products {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

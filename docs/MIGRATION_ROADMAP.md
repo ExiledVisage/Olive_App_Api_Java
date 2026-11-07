@@ -246,12 +246,23 @@ Yeni `packaging` modülü. Tek gerçek kaynak lotların kalanı; `packaging_item
 
 ## Faz 8: Bitmiş Ürün (finished-product)
 
-Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor.
-- [ ] Finished product recipe (içerik, attribute kuralları)
-- [ ] Finished product, components
-- [ ] Finished product run (malzeme tüketimi, ambalaj tüketimi, attribute values)
-- [ ] Finished product storage, slot, slot stock, stock movements
-- Testler: `FinishedProductRunTest`, `FinishedProductStorageTest`
+Faz 5, 6 ve 7'ye bağlı: dolum koşusu tanktan yağ, depodan ambalaj tüketiyor. Yeni `finishedproduct` modülü, üç adımda: 8a tarifler ve ürünler, 8b dolum koşuları, 8c bitmiş ürün depoları.
+
+**8a: Tarifler ve bitmiş ürünler (tamamlandı)**
+- [x] Tarif: aktif tarifler (`?name=`), detay, versiyonlar (Laravel'de izin grubunun dışında: yalnızca giriş), ekleme (içerik oranları toplamı 1, attribute kuralları)
+- [x] Tarif güncellemesi yeni versiyon: eskisi pasif, verilmeyen içerik ve kurallar kopyalanır, ürünler yeni versiyona taşınır; cevap 201. Yalnızca aktif versiyon güncellenir. Silme korumaları (koşu, ürün)
+- [x] Ürün: liste ve detay (tarif, ambalaj bileşenleri, raf konumları, rafta/sevkiyat bekleyen/açıkta adet), ekleme, güncelleme (fabrikada şişesi olan ürünün hacmi değişmez, bileşenler yenilenir), silme (dolum kaydı olan silinmez)
+- [x] Laravel'in 500 verdiği yedi durum 422 (DEVIATIONS 14): sayı olmayan oran, aynı içerik/attribute/ambalaj kalemi iki kez (`distinct`), siparişi ya da stoğu olan ürünü silme
+- [x] Proxy: `/api/finished-product-recipes`, `/api/finished-products` Java'da
+- Testler:
+  - `FinishedProductParityIT`: Laravel'den yakalanan 74 durum (`reference/capture_finished_product.py`): 74/74 aynı (7'si sapma, Java cevabı sabit)
+  - Canlı karşılaştırma: bütün tarifler (detay, versiyonlar), 22 ürünün detayı, liste varyasyonları, hata durumları 48/48 aynı
+
+**8b: Dolum koşuları**
+- [ ] Koşu: tanktan malzeme seçimi, tarif uyumu, tahmini attribute değerleri, ambalaj tahsisi (FIFO, Faz 7'deki `PackagingLotService`), durum geçişleri, tamamlamada yağ ve ambalaj tüketimi, attribute değeri güncelleme, silme
+
+**8c: Bitmiş ürün depoları**
+- [ ] Depo, raf, raf stoğu, stok giriş/çıkış/transfer, hareketler (siparişe toplama ve iade Faz 9'da çağrılıyor)
 
 ## Faz 9: Müşteri ve Sipariş (sales)
 
