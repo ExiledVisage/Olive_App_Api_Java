@@ -199,8 +199,21 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
 
 ## Faz 6: Üretim Partileri (production)
 
-Faz 4 ve 5'e bağlı: prosesler malzeme üretir ve depoya hareket yazar.
-- [ ] Production batch (giriş/çıkış ürün tipleri, takvim)
+Faz 4 ve 5'e bağlı: prosesler malzeme üretir ve depoya hareket yazar. İki adımda: 6a partiler, 6b prosesler.
+
+**6a: Üretim partileri (tamamlandı)**
+- [x] Liste (varış günü süzgeci, `per_page`), takvim (gün → parti sayısı), detay; `ProductionBatchService::relations()` ağacının tamamı (hat, giriş/çıkış tipleri, prosesler, alan değerleri, aşama uzantıları, malzemeler)
+- [x] Ekleme: hattın kategori/çeşit kuralları, ortak "type", çıktı tiplerinin çözülmesi, hattın her aşaması için bekleyen proses; cevap 200 (Laravel `fresh()`)
+- [x] Güncelleme (tedarikçi değişip tarla verilmezse tarla düşer), silme koruması (başlamış proses, malzeme, stok hareketi)
+- [x] Validator'a `date`, `date_format`, `after_or_equal` eklendi; `PhpDates` (Eloquent `datetime` cast'inin yazdığı değer: saat dilimi çevrilmez)
+- [x] Modüller arası: `CatalogResources` (aşama uzantıları, proses alanları), `MaterialResources` (MaterialResource)
+- [x] Proxy: `/api/production-batches` Java'da
+- Testler:
+  - `ProductionBatchParityIT`: Laravel'den yakalanan 36 durum (`reference/capture_production_batch.py`): 36/36 aynı
+  - Canlı karşılaştırma: 273 partinin hepsi, tam liste (12 MB), sayfalı liste, takvim: 277/277 aynı. Tam liste Java'da 0,3 sn, Laravel'de 2,4 sn
+  - `LaravelReplay` farkı JSON yoluyla gösteriyor (`data.processes.0.extensions.0.values: laravel=… java=…`)
+
+**6b: Prosesler**
 - [ ] Batch process ve alt tipleri: tartım (Weighing), dönüşüm (MaterialTransformation), depo hareketi (StorageMovement), analiz (Analysis)
 - [ ] Batch process field values, reviews (onay akışı)
 - [ ] Stage extension values

@@ -211,6 +211,10 @@ public class LaravelValidator {
 			// validateDifferent: istekte olan parametrelerle === degil
 			case "different" -> p.stream().noneMatch(k -> RequestInput.Paths.exists(data, k)
 				&& phpIdentical(value, RequestInput.Paths.value(data, k)));
+			// validateDate: strtotime yerine ISO bicimleri (PhpDates)
+			case "date" -> value instanceof String str && com.olivamore.api.shared.php.PhpDates.parse(str).isPresent();
+			case "date_format" -> value instanceof String str && com.olivamore.api.shared.php.PhpDates.matchesFormat(str, p.getFirst());
+			case "after_or_equal" -> afterOrEqual(value, p.getFirst(), rules, data);
 			case "distinct" -> distinct(attribute, value, patterns.getOrDefault(attribute, attribute), data);
 			case "present" -> true; // validatable zaten varligi kontrol etti
 			case "filled" -> !RequestInput.Paths.exists(data, attribute) || required(value);
@@ -348,6 +352,28 @@ public class LaravelValidator {
 		};
 	}
 
+	/**
+	 * {@code after_or_equal:other} (yalnizca alanda date_format varken): once parametre tarih olarak, olmazsa
+	 * diger alanin degeri; diger alan bossa gecer, okunamiyorsa kalir.
+	 */
+	private static boolean afterOrEqual(Object value, String other, List<ParsedRule> rules, Map<String, Object> data) {
+		String format = rules.stream().filter(r -> r.name().equals("date_format")).map(r -> r.parameters().getFirst())
+			.findFirst().orElseThrow(() -> new IllegalArgumentException("after_or_equal yalnizca date_format ile destekleniyor"));
+		if (!(value instanceof String first)) {
+			return false;
+		}
+		var firstDate = com.olivamore.api.shared.php.PhpDates.fromFormat(first, format);
+		var secondDate = com.olivamore.api.shared.php.PhpDates.fromFormat(other, format);
+		if (secondDate.isEmpty()) {
+			Object otherValue = RequestInput.Paths.value(data, other);
+			if (otherValue == null) {
+				return true;
+			}
+			secondDate = otherValue instanceof String s ? com.olivamore.api.shared.php.PhpDates.fromFormat(s, format) : java.util.Optional.empty();
+		}
+		return firstDate.isPresent() && secondDate.isPresent() && !firstDate.get().isBefore(secondDate.get());
+	}
+
 	/** {@code gt:N}: alan adiyla karsilastirma (gt:other_field) desteklenmiyor. */
 	private static double literal(String parameter) {
 		if (PhpNumbers.numeric(parameter).isEmpty()) {
@@ -461,6 +487,9 @@ public class LaravelValidator {
 			case "required" -> LaravelMessages.REQUIRED;
 			case "required_with" -> "The :attribute field is required when " + String.join(" / ",
 				p.stream().map(LaravelMessages::attribute).toList()) + " is present.";
+			case "date" -> LaravelMessages.DATE;
+			case "date_format" -> LaravelMessages.dateFormat(p.getFirst());
+			case "after_or_equal" -> "The :attribute field must be a date after or equal to " + LaravelMessages.attribute(p.getFirst()) + ".";
 			case "required_without" -> "The :attribute field is required when " + String.join(" / ",
 				p.stream().map(LaravelMessages::attribute).toList()) + " is not present.";
 			case "prohibits" -> "The :attribute field prohibits " + String.join(" / ",

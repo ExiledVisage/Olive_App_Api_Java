@@ -21,6 +21,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 | `capture_inventory.py` | Faz 5a: tank yazma davranışı (41 durum) → `src/test/resources/laravel/storage-unit.json` | Evet |
 | `capture_material.py` | Faz 5b: materyal listesi, detay ve soy grafı cevapları (30 durum, veri değiştirmez) → `src/test/resources/laravel/material.json` | Evet |
 | `capture_movement.py` | Faz 5c: stok hareketleri (56 durum) → `src/test/resources/laravel/storage-movement.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
+| `capture_production_batch.py` | Faz 6a: üretim partileri (36 durum) → `src/test/resources/laravel/production-batch.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
 | `capture_supplier.py` | Faz 4: tedarikçi ve tarla yazma davranışı (28 durum) → `src/test/resources/laravel/supplier.json` | Evet |
 | `compare.py` | Aynı isteği Laravel'e ve Java'ya aynı anda atıp JSON cevapları karşılaştırır | Evet |
 | `responses/` | Yakalanan cevaplar (84 istek, ~21 MB) | Hayır, yeniden üretilir |

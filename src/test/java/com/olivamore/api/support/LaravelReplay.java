@@ -147,7 +147,7 @@ public final class LaravelReplay {
 			Object expected = sortLists(normalize(JSON.treeToValue(c.get("response"), Object.class)), name);
 			Object got = sortLists(normalize(actual.body.isEmpty() ? null : JSON.readValue(actual.body, Object.class)), name);
 			if (!expected.equals(got)) {
-				failures.add(name + ":\n      laravel: " + cut(JSON.writeValueAsString(expected)) + "\n      java:    " + cut(JSON.writeValueAsString(got)));
+				failures.add(name + ": " + String.join("; ", differences(expected, got, "", new ArrayList<>())));
 			}
 		}
 		return new Result(steps, failures);
@@ -225,6 +225,40 @@ public final class LaravelReplay {
 			}
 		}
 		return value;
+	}
+
+	/** Ilk birkac farkli yol: {@code data.processes.3.status: laravel=... java=...} */
+	@SuppressWarnings("unchecked")
+	private static List<String> differences(Object expected, Object got, String path, List<String> out) {
+		if (out.size() >= 5 || java.util.Objects.equals(expected, got)) {
+			return out;
+		}
+		if (expected instanceof Map<?, ?> a && got instanceof Map<?, ?> b) {
+			java.util.Set<Object> keys = new java.util.TreeSet<>();
+			keys.addAll(a.keySet());
+			keys.addAll(b.keySet());
+			for (Object k : keys) {
+				Object x = a.containsKey(k) ? a.get(k) : "<yok>";
+				Object y = b.containsKey(k) ? b.get(k) : "<yok>";
+				differences(x, y, path.isEmpty() ? k.toString() : path + "." + k, out);
+			}
+			return out;
+		}
+		if (expected instanceof List<?> a && got instanceof List<?> b) {
+			if (a.size() != b.size()) {
+				out.add(path + ": eleman sayisi laravel=" + a.size() + " java=" + b.size());
+			}
+			for (int i = 0; i < Math.min(a.size(), b.size()); i++) {
+				differences(a.get(i), b.get(i), path + "." + i, out);
+			}
+			return out;
+		}
+		out.add(path + ": laravel=" + cut(JSON.writeValueAsString(expected), 200) + " java=" + cut(JSON.writeValueAsString(got), 200));
+		return out;
+	}
+
+	private static String cut(String s, int max) {
+		return s.length() > max ? s.substring(0, max) + "..." : s;
 	}
 
 	private static String cut(String s) {

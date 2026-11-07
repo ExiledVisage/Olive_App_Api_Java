@@ -207,10 +207,14 @@ class InventoryReads {
 	// ======================================================================
 
 	/** MaterialResource'ta hangi iliskiler yuklu. */
-	record MaterialLoad(boolean type, boolean attributeValues) {
+	record MaterialLoad(boolean type, boolean attributeValues, boolean batch, boolean parent, boolean createdBy,
+		boolean closedBy) {
 
 		/** productionProductType.productionProduct + attributeValues.definition */
-		static final MaterialLoad TYPE_AND_ATTRIBUTES = new MaterialLoad(true, true);
+		static final MaterialLoad TYPE_AND_ATTRIBUTES = new MaterialLoad(true, true, false, false, false, false);
+
+		/** + productionBatch, parentMaterial, createdByBatchProcess, closedByBatchProcess (ProductionBatchService) */
+		static final MaterialLoad FULL = new MaterialLoad(true, true, true, true, true, true);
 
 	}
 
@@ -225,6 +229,14 @@ class InventoryReads {
 		if (load.attributeValues()) {
 			values = attributeValues(Relations.ids(materials));
 		}
+		Map<Long, Row> batches = load.batch()
+			? Relations.byId(db.whereIn("production_batches", "id", Relations.column(materials, "production_batch_id"), null)) : Map.of();
+		Map<Long, Row> parents = load.parent()
+			? Relations.byId(db.whereIn("materials", "id", Relations.column(materials, "parent_material_id"), null)) : Map.of();
+		Map<Long, Row> creators = load.createdBy()
+			? Relations.byId(db.whereIn("batch_processes", "id", Relations.column(materials, "created_by_batch_process_id"), null)) : Map.of();
+		Map<Long, Row> closers = load.closedBy()
+			? Relations.byId(db.whereIn("batch_processes", "id", Relations.column(materials, "closed_by_batch_process_id"), null)) : Map.of();
 		List<Map<String, Object>> out = new ArrayList<>();
 		for (Row m : materials) {
 			Map<String, Object> r = new LinkedHashMap<>();
@@ -246,8 +258,40 @@ class InventoryReads {
 				Row t = types.get(Relations.key(m.get("production_product_type_id")));
 				r.put("production_product_type", t == null ? null : materialType(t, products.get(Relations.key(t.get("production_product_id")))));
 			}
+			if (load.batch()) {
+				Row b = batches.get(Relations.key(m.get("production_batch_id")));
+				Map<String, Object> batch = null;
+				if (b != null) {
+					batch = new LinkedHashMap<>();
+					batch.put("id", b.get("id"));
+					batch.put("batch_code", b.get("batch_code"));
+					batch.put("status", b.get("status"));
+				}
+				r.put("production_batch", batch);
+			}
+			if (load.parent()) {
+				Row p = parents.get(Relations.key(m.get("parent_material_id")));
+				Map<String, Object> parent = null;
+				if (p != null) {
+					parent = new LinkedHashMap<>();
+					parent.put("id", p.get("id"));
+					parent.put("production_product_type_id", p.get("production_product_type_id"));
+					parent.put("quantity", Casts.decimal(p.get("quantity"), 4));
+					parent.put("unit", p.get("unit"));
+					parent.put("status", p.get("status"));
+				}
+				r.put("parent_material", parent);
+			}
 			if (load.attributeValues()) {
 				r.put("attribute_values", values.getOrDefault(m.id(), List.of()));
+			}
+			if (load.createdBy()) {
+				Row p = creators.get(Relations.key(m.get("created_by_batch_process_id")));
+				r.put("created_by_batch_process", p == null ? null : batchProcess(p));
+			}
+			if (load.closedBy()) {
+				Row p = closers.get(Relations.key(m.get("closed_by_batch_process_id")));
+				r.put("closed_by_batch_process", p == null ? null : batchProcess(p));
 			}
 			r.put("created_at", m.get("created_at"));
 			r.put("updated_at", m.get("updated_at"));

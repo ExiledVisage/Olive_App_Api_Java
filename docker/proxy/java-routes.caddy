@@ -58,3 +58,11 @@ handle @java_materials {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 6a: uretim partileri (liste, takvim, ekleme, guncelleme, silme)
+@java_production_batches path /api/production-batches /api/production-batches/*
+handle @java_production_batches {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

@@ -70,6 +70,10 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Laravel:** `egulias/email-validator` RFCValidation.
 - **Java:** `EmailRule`: Laravel'de gözlenen davranışlarla aynı (`abc` geçersiz, `a@b` geçerli, uzunluk sınırı yok). Tırnaklı yerel kısım (`"a b"@c.d`), yorum (`a(x)@b`) gibi nadir RFC biçimleri desteklenmez.
 
+### 10b. Tarih doğrulaması (yakınsama, Faz 6)
+- **Laravel:** `date` kuralı PHP'nin `strtotime`'ını kullanır: "next monday", "tomorrow", "1 week ago" de geçerli tarih sayılır.
+- **Java:** Yalnızca ISO biçimleri (`2026-11-06`, `2026-11-06 10:00[:00]`, `2026-11-06T10:00:00[.ffffff][Z|+03:00]`). Uygulama ve arayüz bu biçimleri gönderiyor; serbest metin 422 alır. Değer, Eloquent'in `datetime` cast'i gibi yazılır: saat dilimi verilmişse çevrilmez, o dilimdeki saat yazılır.
+
 ### 11. Sıra garantisi olmayan listeler
 - **Laravel:** Kullanıcının rolleri ve bir rolün izinleri `ORDER BY` olmadan geliyor (sıra rastgele olabilir).
 - **Java:** id sırası. `compare.py` bu listeleri sırasız karşılaştırır. (Kullanıcının **bütün izinleri** Laravel'de de id sırasında: Spatie `getAllPermissions()` sıralıyor; Java aynı.)

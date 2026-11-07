@@ -156,7 +156,7 @@ class CatalogReads {
 	}
 
 	/** ProductionStageExtensionResource */
-	private List<Map<String, Object>> extensions(List<Row> extensions, boolean typeFieldsLoaded) {
+	List<Map<String, Object>> extensions(List<Row> extensions, boolean typeFieldsLoaded) {
 		List<Long> ids = ids(extensions);
 		Map<Long, Row> types = byId(db.whereIn("stage_extension_types", "id", column(extensions, "stage_extension_type_id"), null));
 		Map<Long, List<Map<String, Object>>> typeFields = group(extensionTypeFields(db.whereIn("stage_extension_type_fields",
