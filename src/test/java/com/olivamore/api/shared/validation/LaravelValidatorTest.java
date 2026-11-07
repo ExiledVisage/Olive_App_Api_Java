@@ -107,6 +107,19 @@ class LaravelValidatorTest {
 	}
 
 	@Test
+	void customMessagesReplaceRuleMessages() {
+		// FormRequest messages(): "alan.kural"; "*"'li alanlarda desen adiyla
+		Rules rules = Rules.of()
+			.field("delta", "required|integer|not_in:0")
+			.field("rows.*.q", "required")
+			.message("delta.not_in", "Düzeltme miktarı sıfır olamaz.")
+			.message("rows.*.q.required", "Miktar gerekli.");
+		assertThatThrownBy(() -> validator.validate(input("delta", "0", "rows", List.of(Map.of())), rules))
+			.isInstanceOfSatisfying(LaravelValidationException.class, e -> assertThat(e.errors()).isEqualTo(Map.of(
+				"delta", List.of("Düzeltme miktarı sıfır olamaz."), "rows.0.q", List.of("Miktar gerekli."))));
+	}
+
+	@Test
 	void afterHookAddsErrorsBehindRuleErrors() {
 		Rules rules = Rules.of().field("a", "required").field("b", "nullable");
 		assertThatThrownBy(() -> validator.validate(input("b", "x"), rules, (data, add) -> add.accept("b", "b gecersiz.")))

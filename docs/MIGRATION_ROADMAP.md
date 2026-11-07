@@ -229,12 +229,20 @@ Faz 4 ve 5'e bağlı: prosesler malzeme üretir ve depoya hareket yazar. İki ad
   - `LaravelReplay`: başka kullanıcıyla istek (`as`), yakalama anına kaydırılmış saat (`capturedAt`; 6a'nın takvim durumu güne bağlıydı)
   - Canlı karşılaştırma: veritabanındaki 3276 prosesin hepsinin detayı (tamamlanmış, bekleyen; malzemeli, inceleme geçmişli) 3276/3276 aynı
 
-## Faz 7: Ambalaj (packaging)
+## Faz 7: Ambalaj (packaging) (tamamlandı)
 
-- [ ] Product supplier (ambalaj tedarikçisi; Faz 4'ten taşındı, cevapları lotları içeriyor)
-- [ ] Packaging item
-- [ ] Packaging lot, lot movement (kabul, düzeltme)
-- Test: `PackagingLotTest`
+Yeni `packaging` modülü. Tek gerçek kaynak lotların kalanı; `packaging_items.current_stock` her değişiklikten sonra yeniden hesaplanan önbellek.
+
+- [x] Ürün tedarikçisi (ambalaj tedarikçisi; Faz 4'ten taşındı): liste (ad/kod araması, `is_active`), detay (lotları kalemiyle, yeniden eskiye), ekleme/güncelleme, silme koruması (lotu olan silinmez)
+- [x] Ambalaj kalemi: liste (`latest()`, lot sayıları), ekleme (`current_stock` verilirse `DEVIR-2026-0018` devir lotu), güncelleme (PUT/PATCH; `current_stock` doğrulanır ama yazılmaz), silme korumaları (ürün bileşeni, lot)
+- [x] Lot: liste (kalem, tedarikçi, durum, arama: lot no, kalem adı, tedarikçi adı/kodu), kalemin lotları, detay (hareketler dolum koşusu ve ürünüyle, bu lottan çeken koşular)
+- [x] Mal girişi (lot numarası kalem içinde tekil, giriş hareketi), künye düzeltmesi (miktar hariç), sayım düzeltmesi/fire/iade (lot kilitlenir, kalanın altına inilmez, fire ve iade yalnızca düşüş, sıfırda `depleted`), silme (yalnızca hiç kullanılmamış lot, hareketleriyle)
+- [x] Validator: FormRequest `messages()` karşılığı `Rules.message("lot_code.unique", …)`
+- [ ] Dolum koşusu tahsisi (FIFO), elle tahsis, tüketim: `PackagingLotService` içinde ama çağıranı bitmiş ürün, Faz 8'de
+- [x] Proxy: `/api/product-suppliers`, `/api/packaging-items`, `/api/packaging-lots` Java'da
+- Testler:
+  - `PackagingParityIT`: Laravel'den yakalanan 113 durum (`reference/capture_packaging.py`), dört kullanıcıyla: 113/113 aynı
+  - Canlı karşılaştırma: 337 lotun, 17 kalemin (detay ve lotları), 3 tedarikçinin hepsi, liste varyasyonları ve hata durumları 395/395 aynı
 
 ## Faz 8: Bitmiş Ürün (finished-product)
 

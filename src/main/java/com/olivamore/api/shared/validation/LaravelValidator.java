@@ -96,8 +96,9 @@ public class LaravelValidator {
 				if (validatable(rule, attribute, attributeRules, value, data, errors)
 					&& !passes(rule, attribute, attributeRules, value, data, patterns)) {
 					failed.add(rule.name());
+					String custom = rules.messages().get(patterns.getOrDefault(attribute, attribute) + "." + rule.name());
 					errors.computeIfAbsent(attribute, k -> new ArrayList<>())
-						.add(message(rule, attribute, attributeRules, patterns));
+						.add(custom != null ? custom : message(rule, attribute, attributeRules, patterns));
 				}
 				if (stopValidating(attributeRules, failed, errors.containsKey(attribute))) {
 					break;

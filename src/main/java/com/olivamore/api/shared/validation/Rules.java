@@ -16,6 +16,7 @@ import java.util.Map;
 public final class Rules {
 
 	private final Map<String, List<LaravelValidator.ParsedRule>> fields = new LinkedHashMap<>();
+	private final Map<String, String> messages = new LinkedHashMap<>();
 
 	private Rules() {
 	}
@@ -27,6 +28,16 @@ public final class Rules {
 	public Rules field(String attribute, String rules) {
 		fields.put(attribute, LaravelValidator.ParsedRule.parse(rules));
 		return this;
+	}
+
+	/** FormRequest {@code messages()}: {@code "lot_code.unique" => "..."}; {@code *}'li alanlar desen adiyla. */
+	public Rules message(String attributeAndRule, String message) {
+		messages.put(attributeAndRule, message);
+		return this;
+	}
+
+	Map<String, String> messages() {
+		return Collections.unmodifiableMap(messages);
 	}
 
 	Map<String, List<LaravelValidator.ParsedRule>> fields() {

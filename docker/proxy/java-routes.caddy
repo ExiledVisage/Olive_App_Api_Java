@@ -35,7 +35,7 @@ handle @java_catalog {
 	}
 }
 
-# Faz 4: zeytin tedarikcileri ve tarlalari (ambalaj tedarikcileri /api/product-suppliers Faz 7'de)
+# Faz 4: zeytin tedarikcileri ve tarlalari (ambalaj tedarikcileri asagida, Faz 7)
 @java_suppliers path /api/suppliers /api/suppliers/*
 handle @java_suppliers {
 	reverse_proxy {$JAVA_UPSTREAM} {
@@ -70,6 +70,14 @@ handle @java_production_batches {
 # Faz 6b: prosesler (detay, alan degerleri, durum, onay/red)
 @java_batch_processes path /api/batch-processes/*
 handle @java_batch_processes {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}
+
+# Faz 7: ambalaj (urun tedarikcileri, ambalaj kalemleri, lotlar, mal girisi, sayim duzeltmesi)
+@java_packaging path /api/product-suppliers /api/product-suppliers/* /api/packaging-items /api/packaging-items/* /api/packaging-lots /api/packaging-lots/*
+handle @java_packaging {
 	reverse_proxy {$JAVA_UPSTREAM} {
 		header_down X-Served-By java
 	}

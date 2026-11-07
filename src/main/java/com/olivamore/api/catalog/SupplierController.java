@@ -34,7 +34,7 @@ import java.util.Set;
 
 /**
  * Laravel {@code SupplierController} + {@code SupplierService}: zeytin tedarikcileri ve tarlalari.
- * (Ambalaj tedarikcileri, {@code product-suppliers}, lotlari ic ice dondurdugu icin Faz 7'de.)
+ * (Ambalaj tedarikcileri, {@code product-suppliers}, packaging modulunde.)
  */
 @RestController
 class SupplierController {
