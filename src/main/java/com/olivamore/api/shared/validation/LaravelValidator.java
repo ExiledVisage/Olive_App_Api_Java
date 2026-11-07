@@ -52,6 +52,11 @@ public class LaravelValidator {
 		"required_if_declined", "required_unless", "required_with", "required_with_all", "required_without",
 		"required_without_all");
 
+	/** Validator::$dependentRules: parametreleri diger alanlara isaret eden kurallar. */
+	private static final Set<String> DEPENDENT = Set.of("after", "after_or_equal", "before", "before_or_equal", "confirmed",
+		"different", "gt", "gte", "lt", "lte", "required_if", "required_unless", "required_with", "required_with_all",
+		"required_without", "required_without_all", "prohibits", "same", "unique");
+
 	private static final Set<String> NUMERIC_RULES = Set.of("numeric", "integer", "decimal");
 	private static final Set<String> MARKERS = Set.of("nullable", "sometimes", "bail");
 	private static final Pattern SQL_IDENTIFIER = Pattern.compile("[A-Za-z_][A-Za-z0-9_]*");
@@ -66,6 +71,14 @@ public class LaravelValidator {
 
 	/** Hata varsa {@link LaravelValidationException} (422). */
 	public ValidatedInput validate(RequestInput input, Rules rules) {
+		return validate(input, rules, null);
+	}
+
+	/**
+	 * {@code withValidator(fn ($v) => $v->after(...))}: kurallardan sonra (kurallar dusse de) calisir; ekledigi
+	 * hatalar kural hatalarinin arkasina gelir.
+	 */
+	public ValidatedInput validate(RequestInput input, Rules rules, After after) {
 		Map<String, Object> data = input.all();
 		Map<String, List<String>> errors = new LinkedHashMap<>();
 		Map<String, String> patterns = new LinkedHashMap<>();
@@ -84,17 +97,28 @@ public class LaravelValidator {
 					&& !passes(rule, attribute, attributeRules, value, data, patterns)) {
 					failed.add(rule.name());
 					errors.computeIfAbsent(attribute, k -> new ArrayList<>())
-						.add(message(rule, attribute, attributeRules, patterns.containsKey(attribute)));
+						.add(message(rule, attribute, attributeRules, patterns));
 				}
 				if (stopValidating(attributeRules, failed, errors.containsKey(attribute))) {
 					break;
 				}
 			}
 		}
+		if (after != null) {
+			after.validate(data, (key, message) -> errors.computeIfAbsent(key, k -> new ArrayList<>()).add(message));
+		}
 		if (!errors.isEmpty()) {
 			throw new LaravelValidationException(errors);
 		}
 		return new ValidatedInput(validated(expanded, data), json);
+	}
+
+	/** {@code $validator->after(...)} kancasi. */
+	@FunctionalInterface
+	public interface After {
+
+		void validate(Map<String, Object> data, java.util.function.BiConsumer<String, String> addError);
+
 	}
 
 	// ---- Validator::passes() yardimcilari ----------------------------------
@@ -206,6 +230,8 @@ public class LaravelValidator {
 			case "required_with" -> p.stream().allMatch(k -> !required(RequestInput.Paths.value(data, k))) || required(value);
 			// validateRequiredWithout: parametrelerden biri bossa bu alan zorunlu
 			case "required_without" -> p.stream().noneMatch(k -> !required(RequestInput.Paths.value(data, k))) || required(value);
+			// validateRequiredWithoutAll: parametrelerin hepsi bossa bu alan zorunlu
+			case "required_without_all" -> p.stream().anyMatch(k -> required(RequestInput.Paths.value(data, k))) || required(value);
 			// validateProhibits: bu alan doluysa parametrelerin hepsi bos olmali
 			case "prohibits" -> !required(value) || p.stream().noneMatch(k -> required(RequestInput.Paths.value(data, k)));
 			// validateDifferent: istekte olan parametrelerle === degil
@@ -330,7 +356,7 @@ public class LaravelValidator {
 	}
 
 	/** {@code filter_var($value, FILTER_VALIDATE_INT) !== false} */
-	static boolean integer(Object value) {
+	public static boolean integer(Object value) {
 		return switch (value) {
 			case Long l -> true;
 			case BigInteger b -> false; // PHP int sinirini asar
@@ -342,7 +368,7 @@ public class LaravelValidator {
 	}
 
 	/** {@code is_numeric} */
-	static boolean numeric(Object value) {
+	public static boolean numeric(Object value) {
 		return switch (value) {
 			case Long l -> true;
 			case BigInteger b -> true;
@@ -481,7 +507,8 @@ public class LaravelValidator {
 	 * {@code getDisplayableAttribute}: normal alanda alt cizgi bosluga cevrilir ("per page"); bir
 	 * {@code *} kuralindan genisleyen alan (implicit attribute) oldugu gibi yazilir ("items.0.product_id").
 	 */
-	private static String message(ParsedRule rule, String attribute, List<ParsedRule> rules, boolean implicit) {
+	private static String message(ParsedRule rule, String attribute, List<ParsedRule> rules, Map<String, String> patterns) {
+		boolean implicit = patterns.containsKey(attribute);
 		List<String> p = rule.parameters();
 		String template = switch (rule.name()) {
 			case "required" -> LaravelMessages.REQUIRED;
@@ -491,7 +518,9 @@ public class LaravelValidator {
 			case "date_format" -> LaravelMessages.dateFormat(p.getFirst());
 			case "after_or_equal" -> "The :attribute field must be a date after or equal to " + LaravelMessages.attribute(p.getFirst()) + ".";
 			case "required_without" -> "The :attribute field is required when " + String.join(" / ",
-				p.stream().map(LaravelMessages::attribute).toList()) + " is not present.";
+				p.stream().map(k -> displayable(k, patterns)).toList()) + " is not present.";
+			case "required_without_all" -> "The :attribute field is required when none of " + String.join(" / ",
+				p.stream().map(k -> displayable(k, patterns)).toList()) + " are present.";
 			case "prohibits" -> "The :attribute field prohibits " + String.join(" / ",
 				p.stream().map(LaravelMessages::attribute).toList()) + " from being present.";
 			case "different" -> "The :attribute field and " + LaravelMessages.attribute(p.getFirst()) + " must be different.";
@@ -538,6 +567,11 @@ public class LaravelValidator {
 		return implicit ? template.replace(":attribute", attribute) : LaravelMessages.format(template, attribute);
 	}
 
+	/** Parametredeki alan adi: genislemis bir {@code *} alaniysa oldugu gibi, degilse alt cizgi bosluk. */
+	private static String displayable(String field, Map<String, String> patterns) {
+		return patterns.containsKey(field) ? field : LaravelMessages.attribute(field);
+	}
+
 	/** {@code getAttributeType}: kurallara gore, degere gore degil. */
 	private static String sizeType(List<ParsedRule> rules) {
 		if (rules.stream().anyMatch(r -> NUMERIC_RULES.contains(r.name()))) {
@@ -561,10 +595,48 @@ public class LaravelValidator {
 				return;
 			}
 			for (String concrete : concreteKeys(attribute, data)) {
-				out.put(concrete, rules);
+				out.put(concrete, replaceAsterisks(rules, attribute, concrete));
 				patterns.put(concrete, attribute);
 			}
 		});
+		return out;
+	}
+
+	/**
+	 * {@code replaceAsterisksInParameters}: bagimli kurallarin parametrelerindeki {@code *} genisleyen alanin
+	 * indisleriyle doldurulur ({@code required_without_all:items.*.b} -> {@code items.0.b}).
+	 */
+	private static List<ParsedRule> replaceAsterisks(List<ParsedRule> rules, String pattern, String concrete) {
+		String[] patternParts = pattern.split("\\.");
+		String[] concreteParts = concrete.split("\\.");
+		List<String> indices = new ArrayList<>();
+		for (int i = 0; i < patternParts.length && i < concreteParts.length; i++) {
+			if (patternParts[i].equals("*")) {
+				indices.add(concreteParts[i]);
+			}
+		}
+		List<ParsedRule> out = new ArrayList<>();
+		for (ParsedRule rule : rules) {
+			if (!DEPENDENT.contains(rule.name()) || rule.parameters().stream().noneMatch(x -> x.contains("*"))) {
+				out.add(rule);
+				continue;
+			}
+			List<String> params = new ArrayList<>();
+			for (String parameter : rule.parameters()) {
+				StringBuilder replaced = new StringBuilder();
+				int next = 0;
+				for (char c : parameter.toCharArray()) {
+					if (c == '*' && next < indices.size()) {
+						replaced.append(indices.get(next++));
+					}
+					else {
+						replaced.append(c);
+					}
+				}
+				params.add(replaced.toString());
+			}
+			out.add(new ParsedRule(rule.name(), params));
+		}
 		return out;
 	}
 

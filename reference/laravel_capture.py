@@ -4,6 +4,7 @@ Kullanim:
     cap = Capture(compose_dir, base_url)
     cap.case("ad", "POST", "/api/x", {"a": 1}, save=("X", "data.id"))
     cap.case("ad", "GET", "/api/x/{X}")            # yol ve govdede {X} -> kayitli id
+    cap.case("ad", "GET", "/api/x", as_user="planner@olivamore.com")  # baska kullanici
     cap.sql("ad", "insert ... returning id", save="Y")
     cap.write(out_path)
 
@@ -24,7 +25,13 @@ class Capture:
         self.base = base
         self.ids = {}
         self.cases = []
-        self.token = self._call("POST", "/api/auth/login", None, {"email": email, "password": "123"})[1]["token"]
+        self.tokens = {}
+        self.token = self._login(email)
+
+    def _login(self, email):
+        if email not in self.tokens:
+            self.tokens[email] = self._call("POST", "/api/auth/login", None, {"email": email, "password": "123"})[1]["token"]
+        return self.tokens[email]
 
     def _call(self, method, path, token, body):
         data = json.dumps(body).encode() if body is not None else None
@@ -56,10 +63,15 @@ class Capture:
             return {k: self._fill(v) for k, v in value.items()}
         return value
 
-    def case(self, name, method, path, body=None, save=None):
-        status, parsed = self._call(method, self._path(path), self.token, self._fill(body))
-        self.cases.append({"name": name, "method": method, "path": path, "body": body, "status": status,
-                           "response": parsed, "save": list(save) if save else None})
+    def case(self, name, method, path, body=None, save=None, as_user=None):
+        """as_user: istegi bu kullanici (e-posta, sifre 123) yapar; yoksa admin."""
+        token = self._login(as_user) if as_user else self.token
+        status, parsed = self._call(method, self._path(path), token, self._fill(body))
+        entry = {"name": name, "method": method, "path": path, "body": body, "status": status,
+                 "response": parsed, "save": list(save) if save else None}
+        if as_user:
+            entry["as"] = as_user
+        self.cases.append(entry)
         if save and status < 300:
             node = parsed
             for part in save[1].split("."):

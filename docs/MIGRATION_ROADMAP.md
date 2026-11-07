@@ -197,7 +197,7 @@ olduğu için (ürün → hat → aşama → proses tipi → alan) iki parçada 
   - `StorageMovementConcurrencyIT`: 4 eşzamanlı giriş, tank taşmıyor
   - Canlı karşılaştırma: 15 tankın hareket geçmişi (sayfalı, tarihli, hata durumları) 63/63 aynı
 
-## Faz 6: Üretim Partileri (production)
+## Faz 6: Üretim Partileri (production) (tamamlandı)
 
 Faz 4 ve 5'e bağlı: prosesler malzeme üretir ve depoya hareket yazar. İki adımda: 6a partiler, 6b prosesler.
 
@@ -213,11 +213,21 @@ Faz 4 ve 5'e bağlı: prosesler malzeme üretir ve depoya hareket yazar. İki ad
   - Canlı karşılaştırma: 273 partinin hepsi, tam liste (12 MB), sayfalı liste, takvim: 277/277 aynı. Tam liste Java'da 0,3 sn, Laravel'de 2,4 sn
   - `LaravelReplay` farkı JSON yoluyla gösteriyor (`data.processes.0.extensions.0.values: laravel=… java=…`)
 
-**6b: Prosesler**
-- [ ] Batch process ve alt tipleri: tartım (Weighing), dönüşüm (MaterialTransformation), depo hareketi (StorageMovement), analiz (Analysis)
-- [ ] Batch process field values, reviews (onay akışı)
-- [ ] Stage extension values
-- Testler: `ProductionTest`, `ProductionFlowTest`, `ProductionBatchCalendarTest`
+**6b: Prosesler (tamamlandı)**
+- [x] Proses detayı (`BatchProcessService::relations()`: onaylayan/gönderen, inceleme geçmişi, uzantı değerleri, materyaller tüm ilişkileriyle; `requires_approval` hesaplanmış)
+- [x] Durum akışı: katı sıra, başlatma/bırakma, tamamlama, atlama (yalnızca zorunlu olmayan aşama), başarısızlık, geri açma (yan etkisi olan ya da sonraki aşaması başlamış aşama geri alınamaz); parti durumu proseslerden türetiliyor
+- [x] Yetkiler: tamamlama, atlama, kapanmış aşamayı geri açma ayrı izinler (doğrulamadan önce 403); identity'ye `Permissions` (`$user->can()`)
+- [x] Uzantı işleyicileri (`StageHandlers`): tartım, dönüşüm (kütle dengesi), analiz (attribute değerleri), depo hareketi (sabitlenmiş tür; inventory'ye `StockOperations`)
+- [x] `operation_data` doğrulaması aşamanın uzantılarına göre; yalnızca doğrulanan alanlar saklanıyor (Laravel `validated()`)
+- [x] Onay akışı: onay gereken aşamada (işaretli, depo hareketi yapan ya da son aşama) gönderim işleyicileri bir savepoint'te deneyip geri alıyor, onayda işliyor; red gerekçeli, inceleme kaydı
+- [x] Alan değerleri: veri tipine göre doğrulama (`after` kancası) ve `value_*` kolonları; gönderilmeyenler silinir
+- [x] Validator: `required_without_all`, bağımlı kuralların parametrelerinde `*` genişletme, `after` kancası
+- [x] Aşama uzantı değerleri Faz 4'te taşınmıştı (`ExtensionSync`)
+- [x] Proxy: `/api/batch-processes` Java'da
+- Testler:
+  - `BatchProcessParityIT`: Laravel'den yakalanan 108 durum (`reference/capture_batch_process.py`): yeni bir partinin 12 aşaması uçtan uca, dört kullanıcıyla: 108/108 aynı
+  - `LaravelReplay`: başka kullanıcıyla istek (`as`), yakalama anına kaydırılmış saat (`capturedAt`; 6a'nın takvim durumu güne bağlıydı)
+  - Canlı karşılaştırma: veritabanındaki 3276 prosesin hepsinin detayı (tamamlanmış, bekleyen; malzemeli, inceleme geçmişli) 3276/3276 aynı
 
 ## Faz 7: Ambalaj (packaging)
 

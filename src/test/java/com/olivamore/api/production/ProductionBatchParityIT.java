@@ -28,7 +28,10 @@ class ProductionBatchParityIT {
 
 	@Test
 	void replaysLaravelBehaviour() throws Exception {
-		LaravelReplay.Result result = new LaravelReplay("/laravel/production-batch.json", port, jdbc).run();
+		LaravelReplay.Result result = new LaravelReplay("/laravel/production-batch.json", port, jdbc)
+			// varsayilan received_at "simdi": takvim sayimi yakalandigi gune bagli
+			.capturedAt("2026-11-06T21:39:00Z")
+			.run();
 		assertThat(result.steps()).isEqualTo(36);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}

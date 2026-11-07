@@ -1,5 +1,6 @@
 package com.olivamore.api.support;
 
+import com.olivamore.api.shared.time.Timestamps;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -48,6 +49,7 @@ public final class LaravelReplay {
 	private final Map<String, String> burned = new LinkedHashMap<>();
 	private final Map<String, List<String>> unordered = new LinkedHashMap<>();
 	private final List<Pattern> masks = new ArrayList<>();
+	private java.time.Instant capturedAt;
 
 	public LaravelReplay(String fixture, int port, JdbcTemplate jdbc) {
 		this.fixture = fixture;
@@ -57,6 +59,15 @@ public final class LaravelReplay {
 
 	public LaravelReplay seededUntil(String timestamp) {
 		this.seededUntil = timestamp;
+		return this;
+	}
+
+	/**
+	 * Fixture'in yakalandigi an: replay suresince uygulamanin saati ({@link Timestamps}) bu ana kaydirilir (akmaya
+	 * devam eder). "Bugun"e bagli sonuclar (varsayilan tarih, gune gore sayim) yakalandigi gundeki gibi olur.
+	 */
+	public LaravelReplay capturedAt(String instant) {
+		this.capturedAt = java.time.Instant.parse(instant);
 		return this;
 	}
 
@@ -96,13 +107,27 @@ public final class LaravelReplay {
 	}
 
 	public Result run() throws IOException {
+		if (capturedAt == null) {
+			return replay();
+		}
+		java.time.Clock system = java.time.Clock.systemUTC();
+		Timestamps.useClock(java.time.Clock.offset(system, java.time.Duration.between(system.instant(), capturedAt)));
+		try {
+			return replay();
+		}
+		finally {
+			Timestamps.useClock(system);
+		}
+	}
+
+	private Result replay() throws IOException {
 		JsonNode root;
 		try (InputStream in = getClass().getResourceAsStream(fixture)) {
 			root = JSON.readTree(in);
 		}
 		RestClient http = client(port);
-		String token = JSON.readTree(call(http, "POST", "/api/auth/login", null,
-			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body).get("token").asString();
+		Map<String, String> tokens = new HashMap<>();
+		String token = login(http, "admin@olivamore.com", tokens);
 		Map<String, Long> ids = new HashMap<>();
 		List<String> failures = new ArrayList<>();
 		int steps = 0;
@@ -123,7 +148,8 @@ public final class LaravelReplay {
 			}
 			String path = fill(c.get("path").asString(), ids);
 			JsonNode body = c.get("body") == null || c.get("body").isNull() ? null : fillBody(c.get("body"), ids);
-			Response actual = call(http, c.get("method").asString(), path, token, body);
+			String as = c.has("as") ? c.get("as").asString() : null;
+			Response actual = call(http, c.get("method").asString(), path, as == null ? token : login(http, as, tokens), body);
 			save(c, actual, ids);
 			if (burned.containsKey(name)) {
 				jdbc.queryForObject("select nextval('" + burned.get(name) + "')", Long.class);
@@ -151,6 +177,12 @@ public final class LaravelReplay {
 			}
 		}
 		return new Result(steps, failures);
+	}
+
+	/** Kullanici basina bir kez giris (sifre seed'deki 123). */
+	private static String login(RestClient http, String email, Map<String, String> tokens) {
+		return tokens.computeIfAbsent(email, e -> JSON.readTree(call(http, "POST", "/api/auth/login", null,
+			JSON.createObjectNode().put("email", e).put("password", "123")).body).get("token").asString());
 	}
 
 	private static void save(JsonNode c, Response actual, Map<String, Long> ids) {

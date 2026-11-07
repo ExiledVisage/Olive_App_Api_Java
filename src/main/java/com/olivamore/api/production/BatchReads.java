@@ -163,6 +163,21 @@ class BatchReads {
 	 * @param batches prosesin partisi zaten elimizdeyse (yoksa yuklenir)
 	 */
 	List<Map<String, Object>> processes(List<Row> processes, Map<Long, Row> batches) {
+		return processes(processes, batches, null);
+	}
+
+	/**
+	 * Proses detayi ({@code BatchProcessService::relations()}): parti baglamina ek olarak submittedBy, approvedBy,
+	 * reviews, uzanti degerleri; materyaller tum iliskileriyle. {@code requires_approval} hesaplanmis deger.
+	 */
+	Map<String, Object> process(Row process, boolean requiresApproval) {
+		return processes(List.of(process), Map.of(), requiresApproval).getFirst();
+	}
+
+	/** @param requiresApproval null: parti baglami; degilse detay */
+	private List<Map<String, Object>> processes(List<Row> processes, Map<Long, Row> batches, Boolean requiresApproval) {
+		boolean detail = requiresApproval != null;
+		MaterialResources.Load materialLoad = detail ? MaterialResources.Load.FULL : MaterialResources.Load.TYPE_AND_ATTRIBUTES;
 		List<Long> ids = Relations.ids(processes);
 		Map<Long, Row> batchById = new LinkedHashMap<>(batches);
 		List<Long> missing = Relations.column(processes, "production_batch_id").stream().filter(id -> !batchById.containsKey(id)).toList();
@@ -171,13 +186,15 @@ class BatchReads {
 		Map<Long, Row> stages = byId("production_stages", processes, "production_stage_id");
 		Map<Long, Row> types = byId("process_types", stages.values(), "process_type_id");
 		Map<Long, List<Map<String, Object>>> typeFields = catalog.processTypeFields(new ArrayList<>(types.keySet()));
-		Map<Long, List<Map<String, Object>>> extensions = catalog.stageExtensions(new ArrayList<>(stages.keySet()));
+		Map<Long, List<Map<String, Object>>> extensions = catalog.stageExtensions(new ArrayList<>(stages.keySet()), detail);
 		Map<Long, List<Map<String, Object>>> fieldValues = fieldValues(ids);
+		Map<Long, List<Map<String, Object>>> reviews = detail ? reviews(ids) : Map.of();
+		Map<Long, Row> users = detail ? byId("users", processes, "submitted_by_user_id", "approved_by_user_id") : Map.of();
 		List<Row> createdRows = db.whereIn("materials", "created_by_batch_process_id", ids, null);
-		Map<Long, List<Map<String, Object>>> created = group(materials.materials(createdRows, MaterialResources.Load.TYPE_AND_ATTRIBUTES),
+		Map<Long, List<Map<String, Object>>> created = group(materials.materials(createdRows, materialLoad),
 			createdRows, "created_by_batch_process_id");
 		List<Row> closedRows = db.whereIn("materials", "closed_by_batch_process_id", ids, null);
-		Map<Long, List<Map<String, Object>>> closed = group(materials.materials(closedRows, MaterialResources.Load.TYPE_AND_ATTRIBUTES),
+		Map<Long, List<Map<String, Object>>> closed = group(materials.materials(closedRows, materialLoad),
 			closedRows, "closed_by_batch_process_id");
 
 		List<Map<String, Object>> out = new ArrayList<>();
@@ -196,9 +213,16 @@ class BatchReads {
 			r.put("completed_at", p.get("completed_at"));
 			r.put("note", p.get("note"));
 			r.put("operation_data", p.get("operation_data"));
-			r.put("requires_approval", null);
+			r.put("requires_approval", requiresApproval);
 			r.put("submitted_at", p.get("submitted_at"));
+			if (detail) {
+				r.put("submitted_by", nameOf(users.get(Relations.key(p.get("submitted_by_user_id")))));
+			}
 			r.put("approved_at", p.get("approved_at"));
+			if (detail) {
+				r.put("approved_by", nameOf(users.get(Relations.key(p.get("approved_by_user_id")))));
+				r.put("reviews", reviews.getOrDefault(p.id(), List.of()));
+			}
 			Map<String, Object> b = new LinkedHashMap<>();
 			b.put("id", batch == null ? null : batch.get("id"));
 			b.put("batch_code", batch == null ? null : batch.get("batch_code"));
@@ -222,6 +246,29 @@ class BatchReads {
 			out.add(r);
 		}
 		return out;
+	}
+
+	/** reviews.reviewedBy, reviews.submittedBy (reviewed_at, id sirasiyla). */
+	private Map<Long, List<Map<String, Object>>> reviews(List<Long> processIds) {
+		List<Row> rows = db.whereIn("batch_process_reviews", "batch_process_id", processIds, "reviewed_at asc, id asc");
+		Map<Long, Row> users = byId("users", rows, "reviewed_by_user_id", "submitted_by_user_id");
+		Map<Long, List<Map<String, Object>>> out = new LinkedHashMap<>();
+		for (Row v : rows) {
+			Map<String, Object> r = new LinkedHashMap<>();
+			r.put("id", v.get("id"));
+			r.put("decision", v.get("decision"));
+			r.put("note", v.get("note"));
+			r.put("operation_data", v.get("operation_data"));
+			r.put("reviewed_at", v.get("reviewed_at"));
+			r.put("reviewed_by", nameOf(users.get(Relations.key(v.get("reviewed_by_user_id")))));
+			r.put("submitted_by", nameOf(users.get(Relations.key(v.get("submitted_by_user_id")))));
+			out.computeIfAbsent(v.longValue("batch_process_id"), k -> new ArrayList<>()).add(r);
+		}
+		return out;
+	}
+
+	private static Map<String, Object> nameOf(Row user) {
+		return user == null ? null : pick(user, "id", "name");
 	}
 
 	/** BatchProcessFieldValueResource (processTypeField yuklu), prosese gore. */
@@ -268,8 +315,12 @@ class BatchReads {
 
 	// ---- yardimcilar -------------------------------------------------------
 
-	private Map<Long, Row> byId(String table, java.util.Collection<Row> rows, String column) {
-		return Relations.byId(db.whereIn(table, "id", Relations.column(rows, column), null));
+	private Map<Long, Row> byId(String table, java.util.Collection<Row> rows, String... columns) {
+		List<Long> keys = new ArrayList<>();
+		for (String column : columns) {
+			keys.addAll(Relations.column(rows, column));
+		}
+		return Relations.byId(db.whereIn(table, "id", keys, null));
 	}
 
 	/** Resource'lar ile satirlari ayni sirada eslestirip yabanci anahtara gore gruplar. */

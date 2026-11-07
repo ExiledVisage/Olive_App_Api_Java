@@ -66,3 +66,11 @@ handle @java_production_batches {
 		header_down X-Served-By java
 	}
 }
+
+# Faz 6b: prosesler (detay, alan degerleri, durum, onay/red)
+@java_batch_processes path /api/batch-processes/*
+handle @java_batch_processes {
+	reverse_proxy {$JAVA_UPSTREAM} {
+		header_down X-Served-By java
+	}
+}

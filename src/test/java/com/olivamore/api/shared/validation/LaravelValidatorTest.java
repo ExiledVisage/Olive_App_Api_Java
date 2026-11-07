@@ -92,6 +92,30 @@ class LaravelValidatorTest {
 	}
 
 	@Test
+	void requiredWithoutAllReplacesAsterisksInParameters() {
+		// UpdateBatchProcessRequest: her cikti icin urun uc yoldan biriyle; "*" elemanin indisiyle dolar ve
+		// genisleyen alan adlari mesajda oldugu gibi yazilir
+		String o = "outputs.*.";
+		Rules rules = Rules.of()
+			.field("outputs.*.type_id", "required_without_all:" + o + "product_id," + o + "key|nullable|integer")
+			.field("outputs.*.product_id", "nullable|integer")
+			.field("outputs.*.key", "nullable|string");
+		assertErrors(input("outputs", List.of(Map.of("q", 1L), Map.of("key", "olive_oil"))), rules,
+			"The outputs.0.type_id field is required when none of outputs.0.product_id / outputs.0.key are present.",
+			Map.of("outputs.0.type_id", List.of(
+				"The outputs.0.type_id field is required when none of outputs.0.product_id / outputs.0.key are present.")));
+	}
+
+	@Test
+	void afterHookAddsErrorsBehindRuleErrors() {
+		Rules rules = Rules.of().field("a", "required").field("b", "nullable");
+		assertThatThrownBy(() -> validator.validate(input("b", "x"), rules, (data, add) -> add.accept("b", "b gecersiz.")))
+			.isInstanceOfSatisfying(com.olivamore.api.shared.error.LaravelValidationException.class, e ->
+				assertThat(e.errors().keySet()).containsExactly("a", "b"));
+		assertThat(validator.validate(input("a", 1L), rules, (data, add) -> { }).get("a")).isEqualTo(1L);
+	}
+
+	@Test
 	void wildcardExpandsToElements() {
 		// exists yerine in (veritabani yok). Fark: onceki hata yalnizca unique/exists'i atlatir, in calisir.
 		// (exists ile Laravel'in "roles.0 tek hata" davranisi IdentityParityIT'de.)

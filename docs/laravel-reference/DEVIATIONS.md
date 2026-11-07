@@ -73,6 +73,7 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 ### 10b. Tarih doğrulaması (yakınsama, Faz 6)
 - **Laravel:** `date` kuralı PHP'nin `strtotime`'ını kullanır: "next monday", "tomorrow", "1 week ago" de geçerli tarih sayılır.
 - **Java:** Yalnızca ISO biçimleri (`2026-11-06`, `2026-11-06 10:00[:00]`, `2026-11-06T10:00:00[.ffffff][Z|+03:00]`). Uygulama ve arayüz bu biçimleri gönderiyor; serbest metin 422 alır. Değer, Eloquent'in `datetime` cast'i gibi yazılır: saat dilimi verilmişse çevrilmez, o dilimdeki saat yazılır.
+- Aynısı aşama alan değerlerinde (`datetime` tipli proses alanı, Faz 6b): "The value must be a valid datetime." yalnızca ISO dışı metinde.
 
 ### 11. Sıra garantisi olmayan listeler
 - **Laravel:** Kullanıcının rolleri ve bir rolün izinleri `ORDER BY` olmadan geliyor (sıra rastgele olabilir).
@@ -83,6 +84,11 @@ Laravel'de 500 veren ya da veriyi bozan davranışlar. Kopyalanmadı; Java'nın 
 - **Laravel:** Kök yola (`/`) desteklenmeyen metotla gelen istek Laravel'e ulaşmadan nginx tarafından `405` HTML ile cevaplanıyor.
 - **Java:** `404 {"message": "The route / could not be found."}`
 - **Neden:** API dışı; `/api` altında olmayan yollar frontend tarafından kullanılmıyor.
+### 7b. Aşama alan değerlerinde dizi olmayan `fields` ve sayı olmayan alan id'si 500 veriyor (Faz 6b)
+- **Laravel:** `POST /api/batch-processes/{id}/sync-field-values` isteğinin `withValidator` kancası kurallar düşse de çalışıyor:
+  - `"fields": "abc"` → `foreach` uyarısı → 500.
+  - `"process_type_field_id": "abc"` → `ProcessTypeField::find('abc')` SQL hatası → 500.
+- **Java:** Kanca bu elemanları atlıyor; kural hataları `422` dönüyor ("The fields field must be an array.", "The fields.0.process_type_field_id field must be an integer.").
 
 ### 13. Stok hareketlerinde tank kilidi (Faz 5c)
 - **Laravel:** Kapasite ve tank uyumu kontrolü transaction içinde ama kilitsiz. Aynı tanka eşzamanlı iki giriş, ikisi de kapasiteyi boş görüp tankı taşırabiliyor.
@@ -95,3 +101,4 @@ Farklı değil, birebir aynı; ama kapatılması düşünülebilecek davranışl
 - **Attribute eşleme route'ları izin istemiyor (Faz 4):** `production-products/{id}/attribute-definitions` altındaki listeleme, ekleme, güncelleme ve silme yalnızca giriş istiyor; giriş yapan her kullanıcı bir kategorinin attribute tanımlarını değiştirebilir/silebilir.
 - **Uzantı senkronizasyonu aşamanın hattını kontrol etmiyor (Faz 4):** `PUT production-lines/{line}/stages/{stage}/extensions` başka bir hattın aşamasını da kabul ediyor.
 - **Veritabanı kısıtına takılan istekler 500 (Faz 4):** ürün tipinde `unit` için yalnızca `KG`/`LITRE` geçerli ama validation bunu denetlemiyor; `NOT NULL` kolona açıkça `null` (örn. aşamada `"is_required": null`) 500.
+- **Tanktaki materyali azaltan aşamalar tank bakiyesini güncellemiyor (Faz 6b):** "Ön Dinlenme"de yağ önce tanka girer, aynı aşamanın dönüşümü (çökelme) tanktaki bu materyalin miktarını düşürür. "Filtreleme" tartımı da tanktaki yağın miktarını düşürür. İkisi de `storage_unit_balances`'ı yeniden hesaplamıyor ve stok hareketi yazmıyor. Sonuçta tank bakiyesi (ör. 899,75 L) tanktaki materyallerin toplamından (879,75 L) büyük kalıyor ve fark hareket geçmişinde görünmüyor. Java birebir kopyalıyor; geçiş döneminde iki uygulama aynı veritabanını kullandığı için farklı davranamaz.

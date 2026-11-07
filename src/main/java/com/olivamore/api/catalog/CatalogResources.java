@@ -26,11 +26,21 @@ public class CatalogResources {
 	 * cikti urunleri yuklu; {@code values} yuklu degil (anahtar yok), uzanti tipinin alanlari lazy.
 	 */
 	public Map<Long, List<Map<String, Object>>> stageExtensions(List<Long> stageIds) {
+		return stageExtensions(stageIds, false);
+	}
+
+	/**
+	 * @param withValues {@code values.stageExtensionTypeField} yuklu mu (proses detayinda evet, parti
+	 *        baglaminda hayir: anahtar hic yazilmaz)
+	 */
+	public Map<Long, List<Map<String, Object>>> stageExtensions(List<Long> stageIds, boolean withValues) {
 		List<Map<String, Object>> extensions = new java.util.ArrayList<>();
 		for (Map<String, Object> e : reads.extensions(db.whereIn("production_stage_extensions", "production_stage_id", stageIds,
 			"sort_order asc"), false)) {
 			Map<String, Object> copy = new java.util.LinkedHashMap<>(e);
-			copy.remove("values");
+			if (!withValues) {
+				copy.remove("values");
+			}
 			extensions.add(copy);
 		}
 		return CatalogReads.group(extensions, "production_stage_id");
