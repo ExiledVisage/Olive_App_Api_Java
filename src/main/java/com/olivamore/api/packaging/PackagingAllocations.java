@@ -1,5 +1,6 @@
 package com.olivamore.api.packaging;
 
+import com.olivamore.api.packaging.lot.PackagingLotService;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
@@ -26,9 +27,9 @@ public class PackagingAllocations {
 	private static final Set<String> EDITABLE_RUN_STATUSES = Set.of("planned", "in_progress");
 
 	private final Db db;
-	private final PackagingLots lots;
+	private final PackagingLotService lots;
 
-	PackagingAllocations(Db db, PackagingLots lots) {
+	PackagingAllocations(Db db, PackagingLotService lots) {
 		this.db = db;
 		this.lots = lots;
 	}
