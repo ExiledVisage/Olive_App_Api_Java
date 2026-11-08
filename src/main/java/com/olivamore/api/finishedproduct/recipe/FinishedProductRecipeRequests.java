@@ -62,7 +62,12 @@ final class FinishedProductRecipeRequests {
 	 * oran (metin, dizi) toplamada 500 veriyor; burada 0 sayilir, alanin kendi hatasi zaten {@code numeric}.
 	 */
 	static void ratioTotal(Object contents, java.util.function.BiConsumer<String, String> add) {
-		Collection<?> list = contents instanceof Map<?, ?> m ? m.values() : contents instanceof List<?> l ? l : List.of(contents);
+		Collection<?> list = switch (contents) {
+			case null -> List.of();
+			case Map<?, ?> m -> m.values();
+			case List<?> l -> l;
+			default -> List.of(contents);
+		};
 		double total = 0;
 		for (Object item : list) {
 			Object ratio = item instanceof Map<?, ?> m ? m.get("ratio") : null;

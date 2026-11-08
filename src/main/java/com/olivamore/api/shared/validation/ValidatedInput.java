@@ -2,6 +2,7 @@ package com.olivamore.api.shared.validation;
 
 import tools.jackson.databind.json.JsonMapper;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -37,13 +38,14 @@ public final class ValidatedInput {
 		return value == null ? null : LaravelValidator.phpString(value);
 	}
 
-	@SuppressWarnings("unchecked")
+	/** PHP dizisi gibi: JSON nesnesi gelirse degerleri alinir. */
 	public List<String> strings(String key) {
 		Object value = data.get(key);
 		if (value == null) {
 			return null;
 		}
-		return ((List<Object>) value).stream().map(LaravelValidator::phpString).toList();
+		Collection<?> items = value instanceof Map<?, ?> map ? map.values() : (Collection<?>) value;
+		return items.stream().map(LaravelValidator::phpString).toList();
 	}
 
 	/** Dogrulanmis veriyi bir record'a cevirir (snake_case alan adlari). */

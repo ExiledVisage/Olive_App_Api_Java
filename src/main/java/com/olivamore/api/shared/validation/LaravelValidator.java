@@ -436,8 +436,16 @@ public class LaravelValidator {
 	private boolean unique(Object value, List<String> p) {
 		String table = identifier(p.get(0));
 		String column = identifier(p.size() > 1 ? p.get(1) : "id");
-		StringBuilder sql = new StringBuilder("select count(*) from ").append(table).append(" where ").append(column).append(" = ?");
-		List<Object> args = new ArrayList<>(List.of(value));
+		StringBuilder sql = new StringBuilder("select count(*) from ").append(table).append(" where ").append(column);
+		List<Object> args = new ArrayList<>();
+		// Query Builder where(kolon, '=', null): "is null"
+		if (value == null) {
+			sql.append(" is null");
+		}
+		else {
+			sql.append(" = ?");
+			args.add(value);
+		}
 		if (p.size() > 2 && !p.get(2).isEmpty() && !"NULL".equalsIgnoreCase(p.get(2))) {
 			sql.append(" and ").append(identifier(p.size() > 3 && !p.get(3).isEmpty() ? p.get(3) : "id")).append(" <> ?");
 			args.add(p.get(2));
@@ -472,6 +480,9 @@ public class LaravelValidator {
 			String marks = String.join(",", java.util.Collections.nCopies(distinct.size(), "?"));
 			return count("select count(distinct " + column + ") from " + table + " where " + column + " in (" + marks + ")",
 				distinct) >= distinct.size();
+		}
+		if (value == null) {
+			return count("select count(*) from " + table + " where " + column + " is null", List.of()) >= 1;
 		}
 		return count("select count(*) from " + table + " where " + column + " = ?", List.of(value)) >= 1;
 	}

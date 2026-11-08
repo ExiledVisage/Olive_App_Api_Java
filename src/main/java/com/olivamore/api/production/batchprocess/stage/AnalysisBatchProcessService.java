@@ -9,6 +9,7 @@ import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,7 +106,7 @@ class AnalysisBatchProcessService extends StageBatchProcessService {
 				case "boolean" -> payload.put("value_boolean", truthy(value));
 				case "integer" -> payload.put("value_integer", Php.intval(value));
 				case "decimal" -> payload.put("value_decimal", decimal4(Php.floatval(value)));
-				case "string", "text" -> payload.put("value_text", Php.strval(value));
+				case "string", "text" -> payload.put("value_text", Php.strval(scalarText(value)));
 				case "json" -> payload.put("value_json", Db.json(StageExtensions.phpJson(value)));
 				default -> throw new BusinessRuleException("Desteklenmeyen attribute data_type değeri: '" + (dataType == null ? "" : dataType) + "'.");
 			}
@@ -114,9 +115,17 @@ class AnalysisBatchProcessService extends StageBatchProcessService {
 		payload.put("value_boolean", attribute.get("value_boolean"));
 		payload.put("value_integer", attribute.get("value_integer"));
 		payload.put("value_decimal", attribute.get("value_decimal"));
-		payload.put("value_text", attribute.get("value_text"));
+		payload.put("value_text", scalarText(attribute.get("value_text")));
 		payload.put("value_json", Db.json(StageExtensions.phpJson(attribute.get("value_json"))));
 		return payload;
+	}
+
+	/** Laravel'de dizi metne cevrilemeyip 500 veriyor; Java'da "Array" yazilmasin diye 422 (DEVIATIONS). */
+	static Object scalarText(Object value) {
+		if (value instanceof Collection<?> || value instanceof Map<?, ?>) {
+			throw new BusinessRuleException("Attribute metin değeri dizi olamaz.");
+		}
+		return value;
 	}
 
 }

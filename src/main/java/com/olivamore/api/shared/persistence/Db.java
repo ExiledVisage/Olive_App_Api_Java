@@ -221,8 +221,11 @@ public class Db {
 		};
 	}
 
-	/** Eloquent {@code originalIsEquivalent}: sayilar sayisal, JSON cozulmus, digerleri metin olarak. */
-	private static boolean equivalent(Object current, Object next) {
+	/**
+	 * Eloquent {@code originalIsEquivalent}: sayi kolonlari sayisal, JSON cozulmus, digerleri metin olarak.
+	 * Metin kolonunda sayiya benzeyen degerler metin kalir: "05" ile "5" farklidir.
+	 */
+	static boolean equivalent(Object current, Object next) {
 		Object value = next instanceof Json j ? j.value() : next;
 		if (current == null || value == null) {
 			return current == null && value == null;
@@ -230,7 +233,7 @@ public class Db {
 		if (current instanceof Boolean b) {
 			return b == truthy(value);
 		}
-		if (isNumber(current) && isNumber(value)) {
+		if (current instanceof Number && isNumber(value)) {
 			return new BigDecimal(Php.strval(current)).compareTo(new BigDecimal(Php.strval(value).strip())) == 0;
 		}
 		if (next instanceof Json) {

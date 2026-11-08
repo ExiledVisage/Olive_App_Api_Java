@@ -5,14 +5,20 @@ import com.olivamore.api.identity.user.User;
 import com.olivamore.api.identity.user.UserRepository;
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.time.Timestamps;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 /** Laravel {@code App\Services\Auth\AuthService}. */
 @Service
 public class AuthService {
 
 	static final String WRONG_CREDENTIALS = "The provided credentials are incorrect.";
+
+	private static final int BCRYPT_MAX_BYTES = 72;
 
 	private final UserRepository users;
 	private final TokenService tokens;
@@ -52,9 +58,13 @@ public class AuthService {
 		tokens.revoke(tokenId);
 	}
 
-	/** {@code Hash::make} */
+	/** {@code Hash::make}. PHP gibi 72 bayttan sonrasi yok sayilir; Spring uzun sifrede hata atiyor. */
 	public static String hash(String password) {
-		return IdentityWebConfig.PASSWORDS.encode(password);
+		byte[] bytes = password.getBytes(StandardCharsets.UTF_8);
+		if (bytes.length <= BCRYPT_MAX_BYTES) {
+			return IdentityWebConfig.PASSWORDS.encode(password);
+		}
+		return BCrypt.hashpw(Arrays.copyOf(bytes, BCRYPT_MAX_BYTES), BCrypt.gensalt("$2y", 12));
 	}
 
 }
