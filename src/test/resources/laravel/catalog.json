@@ -723,7 +723,7 @@
    "method": "PATCH",
    "path": "/api/process-types/{PT}",
    "body": {
-    "is_active": "1",
+    "is_active": true,
     "description": "Aciklama"
    },
    "status": 200,

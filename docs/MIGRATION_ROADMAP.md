@@ -396,12 +396,21 @@ Kurallar:
 
 ## B1: Pilot modül (`process/processtype`)
 Yeni kalıp en küçük modülde baştan sona kurulur, diğer modüller bu örneğe göre taşınır.
-- [ ] JPA entity ve repository (`Row`/`Db` yerine)
-- [ ] Request `record` + Bean Validation (`@Valid`, `RequestInput` ve kural metinleri yerine)
-- [ ] Response `record` + `from(entity)` (`r.put` yerine)
-- [ ] Kategori `enum` + `AttributeConverter`
-- [ ] `@PathVariable long id` + serviste `find` (`@Bound` yerine)
-- [ ] `@Transactional` servis katmanında
+- [x] JPA entity ve repository (`Row`/`Db` yerine), ortak `AuditedEntity`
+- [x] Request `record` + Bean Validation (`@Valid`, `RequestInput` ve kural metinleri yerine)
+- [x] Response `record` (`r.put` yerine); diğer modüllere açık tipler modül kökünde
+- [x] Kategori `enum` + `AttributeConverter`
+- [x] `@PathVariable long id` + serviste `find` (`@Bound` yerine)
+- [x] `@Transactional` servis katmanında
+- [x] Temizlenebilen alanlar için `Patch<T>`
+
+Bu kalıpla gelen davranışlar:
+- Yetki (403) kayıt aramasından (404) önce çalışır
+- Tip dönüşümleri katıdır: `is_active` için `"1"` kabul edilmez, `true`/`false` gönderilir
+- Bean Validation controller'a girmeden çalışır: izinsiz kullanıcı geçersiz gövdeyle 403 yerine 422 alır
+  (B3'te Spring Security ile yetki öne alınır)
+- Enum, veritabanındaki bütün değerleri içermeli: `machine_process` yalnızca eski kayıtlarda var, okunur
+  ama yeni kayda yazılamaz. Taşımadan önce her enum için tablodaki gerçek değerlere bakılır
 
 ## B2: Modül modül taşıma
 Her modülde B1'in kalıbı uygulanır. Bunlara ek olarak:

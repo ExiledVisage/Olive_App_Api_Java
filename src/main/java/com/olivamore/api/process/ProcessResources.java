@@ -1,13 +1,11 @@
 package com.olivamore.api.process;
 
-import com.olivamore.api.process.processtype.ProcessTypeResource;
+import com.olivamore.api.process.processtype.ProcessTypeResponses;
 import com.olivamore.api.process.processtypefield.ProcessTypeFieldResource;
 import com.olivamore.api.process.stageextensiontype.StageExtensionTypeResource;
-import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Row;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,28 +17,20 @@ import java.util.Map;
 @Component
 public class ProcessResources {
 
-	private final Db db;
-	private final ProcessTypeResource typeResource;
+	private final ProcessTypeResponses typeResponses;
 	private final ProcessTypeFieldResource fieldResource;
 	private final StageExtensionTypeResource extensionTypeResource;
 
-	ProcessResources(Db db, ProcessTypeResource typeResource, ProcessTypeFieldResource fieldResource,
+	ProcessResources(ProcessTypeResponses typeResponses, ProcessTypeFieldResource fieldResource,
 		StageExtensionTypeResource extensionTypeResource) {
-		this.db = db;
-		this.typeResource = typeResource;
+		this.typeResponses = typeResponses;
 		this.fieldResource = fieldResource;
 		this.extensionTypeResource = extensionTypeResource;
 	}
 
-	/** ProcessTypeResource'lar (alanlari yuklu), id'ye gore; bulunamayan id'ler haritada yok. */
-	public Map<Long, Map<String, Object>> processTypesById(List<Long> ids) {
-		Map<Long, Map<String, Object>> out = new LinkedHashMap<>();
-		List<Row> types = db.whereIn("process_types", "id", ids, null);
-		List<Map<String, Object>> resources = typeResource.processTypes(types);
-		for (int i = 0; i < types.size(); i++) {
-			out.put(types.get(i).id(), resources.get(i));
-		}
-		return out;
+	/** Proses tipleri (alanlari yuklu), id'ye gore; bulunamayan id'ler haritada yok. */
+	public Map<Long, ProcessTypeResponse> processTypesById(List<Long> ids) {
+		return typeResponses.byIds(ids);
 	}
 
 	/** ProcessTypeFieldResource'lar, proses tipine gore (sort_order sirasinda). */

@@ -1,6 +1,7 @@
 package com.olivamore.api.productionline.stage;
 
 import com.olivamore.api.process.ProcessResources;
+import com.olivamore.api.process.ProcessTypeResponse;
 import com.olivamore.api.productionline.stageextension.ProductionStageExtensionResource;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
@@ -38,7 +39,7 @@ public class ProductionStageResource {
 	 * (degilse Laravel resource'ta tip basina lazy load eder, sonuc ayni).
 	 */
 	public List<Map<String, Object>> stages(List<Row> stages, boolean extensions, boolean typeFieldsLoaded) {
-		Map<Long, Map<String, Object>> processTypes = process.processTypesById(
+		Map<Long, ProcessTypeResponse> processTypes = process.processTypesById(
 			stages.stream().map(st -> Relations.key(st.get("process_type_id"))).toList());
 		Map<Long, List<Map<String, Object>>> stageExtensions = extensions
 			? extensionResource.byStage(Relations.ids(stages), typeFieldsLoaded)

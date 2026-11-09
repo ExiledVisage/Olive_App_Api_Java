@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -164,6 +165,11 @@ public class ApiExceptionHandler {
 			.toList();
 		return body(HttpStatus.METHOD_NOT_ALLOWED, "message", "The " + e.getMethod() + " method is not supported for route "
 			+ laravelRoutePath(request) + ". Supported methods: " + String.join(", ", methods) + ".");
+	}
+
+	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+	ResponseEntity<Map<String, Object>> unsupportedMediaType() {
+		return body(HttpStatus.UNSUPPORTED_MEDIA_TYPE, "message", "Unsupported Media Type.");
 	}
 
 	// ---- 500 ---------------------------------------------------------------
