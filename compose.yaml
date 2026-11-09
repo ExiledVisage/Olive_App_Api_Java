@@ -12,8 +12,6 @@
 #   http://localhost:8025   Mailpit (gelen mailler)
 #   http://localhost:9090   Prometheus
 #   http://localhost:3000   Grafana (admin / admin)
-#
-# Gecis doneminde Laravel ile birlikte calisma: compose.laravel.yaml
 
 name: olive-java
 

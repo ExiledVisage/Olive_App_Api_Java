@@ -1,10 +1,6 @@
 # Olive API (Java)
 
-Olive Production Tracking backend'i. Laravel'den Java'ya taşınıyor; hedef Laravel'in
-tamamen kalkması. Bu repo **tek başına** çalışır: Laravel gerekmez.
-
-Geçiş sırasında Laravel'le aynı veritabanını kullanan ikinci bir çalışma modu da var
-(aşağıda "Geçiş dönemi"). Laravel kapatılınca o mod silinir.
+Olive Production Tracking backend'i. Bu repo **tek başına** çalışır: Laravel gerekmez.
 
 - Yol haritası: [docs/MIGRATION_ROADMAP.md](docs/MIGRATION_ROADMAP.md)
 - Teknolojiler: [docs/TECH_STACK.md](docs/TECH_STACK.md)
@@ -140,37 +136,3 @@ Laravel uyumluluğu için kurallar:
 - **Silme:** `DeletionGuard.of("...").usedBy("...", n).check()`
 - **Şema:** Geçiş boyunca Laravel'in tablolarına Java migration yazmaz. Java sadece kendi altyapı tabloları için migration ekleyebilir (V2: `event_publication`).
 - **Doğrulama:** Her modül için Laravel'in davranışı `reference/capture_*.py` ile yakalanır, Java'ya `*ParityIT` ile tekrar oynatılır (örnek: `IdentityParityIT`). Farklar ya düzeltilir ya [DEVIATIONS.md](docs/laravel-reference/DEVIATIONS.md)'ye yazılır.
-
----
-
-## Geçiş dönemi: Laravel ile birlikte çalışma
-
-> Laravel kapatılınca (Faz 12) bu bölüm, `compose.laravel.yaml` ve `application-laravel.yaml` silinir.
-
-Java, Laravel'in veritabanına bağlanır; önlerindeki reverse proxy taşınan endpoint'leri
-Java'ya, geri kalanı Laravel'e yönlendirir. Karşılaştırma ve test için kullanılır.
-
-```bash
-# 1. Laravel ayakta olmalı
-cd ../Olive_Production_Tracking_App_Back/olive_oil_back && docker compose up -d && cd -
-
-# 2. .env'e Laravel'in DB şifresini yazın: LARAVEL_DB_PASSWORD (olive_oil_back/.env içindeki DB_PASSWORD)
-
-# 3. Java, laravel profiliyle
-./mvnw spring-boot:run -Dspring-boot.run.profiles=laravel
-```
-
-| Adres | Ne |
-|---|---|
-| http://localhost:8080 | Reverse proxy. Frontend buraya bağlanır. `X-Served-By` başlığı hangi sistemin cevap verdiğini gösterir |
-| http://localhost:8001 | Laravel (doğrudan) |
-| localhost:5433 | Laravel'in Postgres'i (yalnızca bu bilgisayardan) |
-
-`--seed` bu modda çalışmaz; Laravel'in veritabanı `reference/restore.sh` ile dondurulmuş
-veriye döndürülür. Taşınan yollar `docker/proxy/java-routes.caddy`'ye eklenir.
-
-```bash
-# Laravel'i dondurulmuş veriye döndür, iki sistemi aynı anda karşılaştır
-reference/restore.sh ../Olive_Production_Tracking_App_Back/olive_oil_back
-python -I reference/compare.py ../Olive_Production_Tracking_App_Back/olive_oil_back --only api/app
-```

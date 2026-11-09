@@ -10,7 +10,7 @@ spring:
 
   # Bilgisayardaki PostgreSQL (.env'deki DB_*). Docker'daki PostgreSQL kullaniliyorsa
   # (COMPOSE_PROFILES=docker-db) Spring Boot baglantiyi kendisi kurar ve bunu ezer.
-  # Laravel ile ortak veritabani: application-laravel.yaml. Testlerde Testcontainers ezer.
+  # Testlerde Testcontainers ezer.
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:oliveapp}
     username: ${DB_USERNAME:oliveapp}
@@ -24,7 +24,7 @@ spring:
 
   flyway:
     # Bos veritabaninda Laravel'in migration'lari (db/migration, V0.00-V0.69) ve V2
-    # calisir. Laravel'in olusturdugu mevcut bir veritabaninda (laravel profili, sunucu) sema
+    # calisir. Laravel'in olusturdugu mevcut bir veritabaninda sema
     # surum 1 olarak kabul edilir; V0.xx'ler bunun altinda kaldigi icin calismaz.
     baseline-on-migrate: true
     baseline-version: 1

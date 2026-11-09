@@ -364,76 +364,141 @@ Tüm modüller dev'de bittiği için geçiş bir kerede yapılır. Adım adım k
 - [x] Şema karşılaştırma betiği: `deploy/compare-schema.sh` (yerel Laravel veritabanında "aynı", eklenen kolonda fark raporu)
 - [x] Prova: sunucu compose'u yerelde Laravel'in veritabanıyla ayağa kalktı, 15 ekran Laravel'le aynı
 
-**12b: Sunucuda geçiş**
-- [ ] **Şema kontrolü:** Sunucudaki canlı şema (`pg_dump --schema-only`) Java'nın migration'larıyla kurulan şemayla karşılaştırılır (`deploy/compare-schema.sh`). Elle yapılmış bir değişiklik ya da çalıştırılmamış bir migration varsa önce o giderilir. Bunun için veriye değil, sadece şemaya bakılır
-- [ ] **Her geçişten önce canlı veritabanının yedeği alınır**
-- [ ] Laravel'in `app` konteyneri durdurulur (veritabanı çalışmaya devam eder), Java aynı portta açılır. Flyway `baselineOnMigrate` ile mevcut şemayı kabul eder, Laravel'in tablolarına dokunmaz. Canlıda proxy yok: bütün modüller hazır olduğu için port doğrudan Java'ya geçer, geri dönüş tek komut
-- [ ] Telefondaki uygulamayla elle kontrol, birkaç gün log takibi
-- [ ] Laravel konteyneri silinir, repo arşivlenir
-- [ ] Birlikte çalışma düzeni silinir: `compose.laravel.yaml`, `application-laravel.yaml`, `docker/proxy/`, `.env.example`'daki geçiş bölümü, README'deki "Geçiş dönemi" bölümü
+**12b: Sunucuda geçiş (yapılmadı, 2026-11-09'da kapatıldı)**
+
+Sunucudaki Laravel -> Java değişimi bu yol haritasının parçası olmaktan çıktı. Kod geçişi tamamlanmış
+sayılır; hedef artık aşağıdaki Bölüm B.
 
 **Bölüm A bu noktada biter: API tamamen Java'da, davranış Laravel ile birebir aynı.**
 
 ---
 
-# Bölüm B: Geçiş Sonrası
+# Bölüm B: Tamamen Java Mimarisi
 
-Laravel kapandıktan sonra yapılır. Bu işlerin hepsi ortak olan bir şeyi (şema, API sözleşmesi ya da auth) değiştirdiği için geçiş sırasında yapılamaz. Her biri ayrı ayrı ve kendi testleriyle yapılır.
+Bölüm A, Laravel'i Java'da birebir taklit etti: tipsiz `Row`/`Map`, `"required|string"` kural metinleri,
+PHP tip dönüşümleri, Laravel'in cevap biçimleri. Bölüm B bunların hepsini Java'nın ve Spring'in kendi
+yöntemleriyle değiştirir.
 
-## B1: Şema Sahipliği
-- [ ] Şemanın sahibi artık Java: yeni migration'lar Flyway ile yazılır
-- [ ] Laravel'e ait tablolar temizlenir (`cache`, `jobs`, `sessions`, `migrations` vb.)
+Kurallar:
+- **API sözleşmesi korunmak zorunda değil.** Flutter uygulaması yeni Java API'sine göre ayrıca yeniden
+  düzenlenecek; bu yol haritasındaki kararlar Flutter'a göre verilmez.
+- **Aynı anda tek modül.** Bir modül bitmeden sonrakine geçilmez, her adımda `./mvnw verify` geçer.
+- **Parity testleri güvenlik ağıdır.** B7'ye kadar kalırlar. Bilinçli bir davranış değişikliği olursa
+  ilgili fixture aynı commit'te güncellenir.
+- **İş kuralları değişmez.** Yalnızca teknik yapı değişir; yeni özellik eklenmez.
+- **PATCH'te `null`:** varsayılan olarak "değiştirme" demektir. Gerçekten temizlenebilen alanlarda
+  (örn. `description`) "gelmedi" ile "`null` geldi" ayrımı bir sarmalayıcı tipiyle korunur.
 
-## B2: Auth: JWT + Refresh Token Rotation
+## B0: Geçiş kalıntılarının temizliği
+- [x] `compose.laravel.yaml`, `application-laravel.yaml`, `docker/proxy/` silindi
+- [x] `laravel` profili kontrolü (`SeedCommand`), `.env.example`'daki geçiş bölümü, README'deki
+  "Geçiş dönemi" bölümü kaldırıldı
+
+## B1: Pilot modül (`process/processtype`)
+Yeni kalıp en küçük modülde baştan sona kurulur, diğer modüller bu örneğe göre taşınır.
+- [ ] JPA entity ve repository (`Row`/`Db` yerine)
+- [ ] Request `record` + Bean Validation (`@Valid`, `RequestInput` ve kural metinleri yerine)
+- [ ] Response `record` + `from(entity)` (`r.put` yerine)
+- [ ] Kategori `enum` + `AttributeConverter`
+- [ ] `@PathVariable long id` + serviste `find` (`@Bound` yerine)
+- [ ] `@Transactional` servis katmanında
+
+## B2: Modül modül taşıma
+Her modülde B1'in kalıbı uygulanır. Bunlara ek olarak:
+- Durum metinleri ve geçiş `Map`'leri `enum`'a taşınır
+- Kg, litre, oran gibi miktarlar `double` + `Php.round` yerine `BigDecimal` olur
+- `Php.*` ve `Casts.*` kullanımları tiplerle birlikte kalkar
+- `Relations` ile elle ilişki yükleme yerine JPA ilişkileri, `@EntityGraph` ya da join
+- `@OneToMany` yalnızca modül içinde kurulur; modüller arasında id ve public API kullanılır
+
+Sıra:
+- [ ] `process` (kalan: `processtypefield`, `stageextensiontype`)
+- [ ] `productionline`
+- [ ] `product`
+- [ ] `supplier`
+- [ ] `notification`
+- [ ] `packaging`
+- [ ] `sales`
+- [ ] `finishedproduct`
+- [ ] `inventory`
+- [ ] `production`
+- [ ] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
+- [ ] `identity` (JPA'da; request/response ve `Row` kalıntıları)
+- [ ] `Db`, `Row`, `Relations`, `Casts`, `Php`, `PhpDates`, `RequestInput`, `ValidatedInput`, `Rules`,
+  `LaravelValidator`, `EmailRule`, `@Bound`, `@LaravelModel` silinir
+
+## B3: Güvenlik
+- [ ] Spring Security: filtre zinciri ve `@PreAuthorize` (`AccessInterceptor`, `AccessAspect`,
+  `@RequiresPermission`, `@RequiresRole` yerine)
 - [ ] OAuth2 Resource Server, NimbusJwtEncoder, RSA (`kid` ile)
 - [ ] Refresh token rotation (DB'de hash'li) ve reuse detection
-- [ ] Faz 2'deki doğrulama arayüzünün arkasına JWT konulur, Sanctum doğrulaması kaldırılır
-- [ ] Frontend'de login ve token yenileme akışı güncellenir (frontend ile birlikte yayınlanır)
-- [ ] `personal_access_tokens` tablosu kaldırılır
+- [ ] Sanctum token doğrulaması kaldırılır
+- [ ] Rate limit: elle yazılmış `RateLimiter` ve `ThrottleInterceptor` yerine Bucket4j
 
-## B3: Dinamik Alanların JSONB'ye Geçişi
-- [ ] Attribute definition, process type field, stage extension value vb. yapıların Postgres JSONB + Hibernate JSON mapping'e taşınması
-- [ ] Mevcut verinin Flyway migration'ı ile dönüştürülmesi
-- [ ] API cevapları değişmemeli: sadece iç yapı değişir
+## B4: Şema
+- [ ] Şemanın sahibi Java: yeni migration'lar Flyway ile yazılır, `baseline-on-migrate` kaldırılır
+- [ ] Laravel tabloları kaldırılır: `migrations`, `cache`, `cache_locks`, `jobs`, `sessions` vb.
+- [ ] Spatie tabloları (`model_has_roles`, `model_has_permissions`, `role_has_permissions`) ve
+  `App\Models\...` metinleri Java'ya göre yeniden tasarlanır
+- [ ] `personal_access_tokens` kaldırılır (B3'ten sonra)
+- [ ] V0.xx dosyaları Java'nın temiz başlangıç migration'larıyla değiştirilir
 
-## B4: Demo Seeder'lar
-Şu an `--seed`, Laravel'in seeder'larının ürettiği verinin dökümünü (`reference/seed-data.sql`) yüklüyor. Tarihler o günde (2026-11-06) sabit.
-- [ ] `OliveOilProductionFlowSeeder` ve demo fabrika akışının Java karşılığı: veriyi bugünün tarihine göre üretir
-- [ ] `--seed` dökümü değil Java seeder'larını çalıştırır; `reference/seed-data.sql` kaldırılır
+## B5: Dinamik alanların JSONB'ye geçişi
+- [ ] Attribute definition, process type field, stage extension value vb. yapılar Postgres JSONB +
+  Hibernate JSON mapping'e taşınır
+- [ ] Mevcut veri Flyway migration'ı ile dönüştürülür
 
-## B5: Gözlemlenebilirlik
+## B6: API sözleşmesi
+- [ ] Sayfalama: Spring `Pageable` / `Page` (`LaravelPaginator`, `Listing` yerine)
+- [ ] Hatalar: `ProblemDetail` (RFC 9457), `ApiExceptionHandler` sadeleşir, PHP sınıf adları kalkar
+- [ ] Mesajlar: `messages.properties` (`LaravelMessages` yerine)
+- [ ] Standart Jackson ve ISO tarih (`LaravelDateTimeSerializer`, `LaravelStringDeserializer`,
+  `InputNormalizationFilter`, `PhpNumbers` kalkar)
+
+## B7: Testler
+- [ ] Laravel'den yakalanmış fixture'lara bağlı `*ParityIT`'ler, uygulamanın kendi davranışını
+  tanımlayan normal testlere çevrilir
+- [ ] `src/test/resources/laravel/`, `reference/capture_*.py`, `reference/compare.py` kaldırılır
+
+## B8: Demo veri
+- [ ] Demo fabrika akışının Java seeder'ları: veri bugünün tarihine göre üretilir
+- [ ] `--seed` dökümü değil seeder'ları çalıştırır; `reference/` kaldırılır
+
+## B9: Gözlemlenebilirlik
 - [ ] Detaylı Grafana dashboard'ları ve alarm kuralları
 
-## B6: Dokümantasyon
-- [ ] `docs/` dokümanlarının Java projesine taşınması ve güncellenmesi (`project-overview.md` dahil)
+## B10: Dokümantasyon
 - [ ] springdoc-openapi ile API dokümantasyonu
+- [ ] `docs/` güncellenir; `docs/laravel-reference/` kaldırılır, koddaki Laravel açıklamaları temizlenir
+
+## B11: Kabul kriteri
+- [ ] ArchUnit testi: `Php`, `Db`, `Row`, `RequestInput`, `LaravelValidator` ya da adında `Laravel`
+  geçen bir sınıf kullanılırsa build düşer
+
+**Bölüm B bu noktada biter: API'de Laravel'den kalan yapı yoktur ve bunu build doğrular.**
 
 ---
 
 ## Bağımlılık sırası (özet)
 
 ```
-Bölüm A: Kod Geçişi
-  Faz 0  Yerel ortam + Laravel referans sistem + dondurulmuş veri + kararlar
-  Faz 1  İskelet + ortak altyapı + test altyapısı + gözlemlenebilirlik
-  Faz 2  identity ─────────────┐ (her şey buna bağlı)
-  Faz 3  app-release           │
-  Faz 4  catalog ◄─────────────┤
-  Faz 5  inventory ◄─ catalog  │
-  Faz 6  production ◄─ catalog, inventory
-  Faz 7  packaging ◄─ catalog (supplier)
-  Faz 8  finished-product ◄─ inventory, production, packaging
-  Faz 9  sales ◄─ finished-product
-  Faz 10 notification ◄─ (event'lerle herkesi dinler)
-  Faz 11 analytics ◄─ (herkesi okur)
-  Faz 12 Canlıya geçiş + Laravel'in kapatılması
+Bölüm A: Kod Geçişi (tamamlandı)
+  Faz 0-11  Altyapı ve bütün modüller
+  Faz 12    Hazırlık yapıldı; sunucu geçişi kapatıldı
 
-Bölüm B: Geçiş Sonrası
-  B1 Şema sahipliği ◄─ (B2 ve B3 bunu gerektirir)
-  B2 JWT        B3 JSONB        B4 Seeder'lar        B5 Dashboard'lar        B6 Doküman
+Bölüm B: Tamamen Java Mimarisi
+  B0 Temizlik
+  B1 Pilot ─► B2 Modül modül taşıma
+  B3 Güvenlik ─► B4 Şema ─► B5 JSONB
+  B6 API sözleşmesi ◄─ B2
+  B7 Testler ◄─ B2, B6
+  B8 Demo veri ◄─ B4
+  B9 Dashboard'lar    B10 Doküman
+  B11 Kabul kriteri ◄─ hepsi
 ```
 
-## Genel kurallar
+## Genel kurallar (Bölüm A)
+Bölüm B'nin kuralları kendi başlığında.
 - **Aynı anda tek modül.** Bir modül tamamlanma kriterini geçmeden bir sonrakine başlanmaz.
 - **Java hiçbir zaman Laravel'e bağımlı olmaz.** Varsayılan kurulum tek başına; Laravel'le ilgili her şey `laravel` profilinde ve geçiş dönemine ait dosyalarda durur.
 - **Geçiş süresince yeni özellik yok.** Laravel'e yeni özellik eklenirse Java'ya da eklenmesi gerekir. Zorunlu bir değişiklik olursa önce taşınmış tarafta yapılır.

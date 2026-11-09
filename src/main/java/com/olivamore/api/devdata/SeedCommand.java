@@ -8,8 +8,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.Profiles;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +26,6 @@ import java.util.Set;
  * </pre>
  * Sema uygulama acilirken Flyway ile kurulmus olur (V1, V2); bu komut yalnizca veriyi yukler.
  * Dolu veritabanina yuklemeyi reddeder. {@code --fresh} yalnizca yerel adreslerde calisir.
- * {@code laravel} profilinde hic calismaz: o veritabani Laravel'in (kopru de localhost'ta
- * oldugu icin adres kontrolu yetmez); onu seed-demo.sh ve reference/restore.sh yonetir.
  */
 @Slf4j
 @Component
@@ -41,7 +37,6 @@ class SeedCommand implements ApplicationRunner {
 	private final DataSource dataSource;
 	private final Flyway flyway;
 	private final ConfigurableApplicationContext context;
-	private final Environment environment;
 
 	@Value("${olive.seed.file:reference/seed-data.sql}")
 	private Path seedFile;
@@ -62,10 +57,6 @@ class SeedCommand implements ApplicationRunner {
 	}
 
 	private int seed(boolean fresh) throws Exception {
-		if (environment.acceptsProfiles(Profiles.of("laravel"))) {
-			log.error("laravel profilinde seed calismaz: veritabani Laravel'in. Laravel tarafinda: reference/restore.sh");
-			return 1;
-		}
 		String url = jdbcUrl();
 		if (!Files.isRegularFile(seedFile)) {
 			log.error("Seed dosyasi bulunamadi: {} (calisma klasoru: {})", seedFile.toAbsolutePath(), Path.of("").toAbsolutePath());
