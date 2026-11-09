@@ -491,6 +491,76 @@ Sıra:
 
 ---
 
+# Bölüm C: Tank Materyal Modeli
+
+**Sorun:** Tanktaki materyaller tank %100 bitene kadar kapanmıyor. Her kısmi dolum, tankta kaç materyal
+varsa o kadar çocuk materyal, koşu satırı ve hareket üretiyor. 500 dolumdan sonra bile hiçbir girdi bitmiş
+sayılmıyor.
+
+**Hedef akış:** ham ürün → üretim aşamaları → ön dinlendirme tankı → son tank → dolum → depo → satış
+
+**Zamanlama:** Davranışı bilerek değiştirdiği için B2'deki `production` taşınmasından sonra, ayrı bir özellik
+olarak yapılır.
+
+## C1: Tank türleri
+- [ ] Tankın türü düzenlenebilir bir alan olur: normal (son tank) ya da ön dinlendirme
+- [ ] Tür iki yönde de değişebilir, ama yalnızca tank boşken; doluysa işlem reddedilir
+- [ ] Son tanktan ön dinlendirme tankına aktarım yapılamaz
+
+## C2: Son tank
+- [ ] Tank ve ürün tipi başına tek aktif tank materyali olur
+- [ ] Tanka giren materyal, giren miktar kadar o anda kapanır; kısmi girişte kalan kısım üretimde aktif kalır
+- [ ] Aynı tip yeniden girerse miktar aynı satıra eklenir, farklı tip yeni tank materyali açar
+- [ ] Sayısal özellikler ağırlıklı ortalamayla güncellenir; diğerleri aynıysa kalır, farklıysa boşalır
+- [ ] Tank materyali sıfırlanınca kapanır, sonraki giriş yeni bir tane açar
+- [ ] Tanktan çıkışta çocuk materyal açılmaz, tank materyali doğrudan azalır
+- [ ] Dolum, elle çıkış, tanktan tanka transfer ve sayım azalışı tipler arasında oransal düşer;
+  yuvarlama farkı son tipe yazılır
+- [ ] Transferde hedef tank karışımdaki her tipi kabul etmeli, biri reddedilirse transferin tamamı reddedilir
+- [ ] Tank sayfasındaki giriş, çıkış, transfer ve sayım hareketleri normal tanklar için kalır
+- [ ] Üretim içinden son tanktaki karışım materyali üzerinde çıkış ya da transfer yapılamaz (tek partisi yok)
+
+## C3: Ön dinlendirme tankı
+- [ ] Materyaller birleşmez, parti başına satırlar korunur ve tank ekranında tek tek görünür
+- [ ] Tek ürün tipiyle çalışır: farklı partiler girebilir, farklı tip giremez; çoklu tip ayarı bu türde geçersizdir
+- [ ] Giriş özel "ön dinlendirme tankına aktarma" üretim aşamasıyla yapılır, aşama boşaltılana kadar açık bekler
+- [ ] Boşaltmadan önce üstüne yeni parti eklenebilir
+- [ ] Partiye işlenen analizler bu tankta çalışmaya devam eder
+
+## C4: Boşaltma
+- [ ] Tek işlemlik "Boşalt": hedef bir ya da birden çok son tank ve her biri için çekilen miktar girilir
+- [ ] Girdi materyalleri %100 kapanır (materyal dönüşümü), tanka bağlı bütün aşamalar birlikte kapanır
+- [ ] Çekilen miktar hedef tankların tip materyaline eklenir
+- [ ] İşlem tek parçadır: bir hedef kabul etmezse hiçbir şey kapanmaz
+
+## C5: Tortu
+- [ ] Giren ile çekilen arasındaki fark kütle üzerinden hesaplanır, elle girilmez
+- [ ] Fark gerçek bir aktif çıktı materyali olur, ne yapılacağına fabrika karar verir
+- [ ] Tortunun hangi ürün olacağı aşama ayarındaki çıktı ürünlerinden belirlenir, kodda sabit olmaz
+
+## C6: Birimler
+- [ ] Litre tanka kg ürün girebilir (ve tersi); birim farkı yoğunlukla çevrilir, ton birimi yoktur
+- [ ] Tankın sabit bir temel birimi olmaz, tank materyali ürün tipinin kendi biriminde kalır
+- [ ] Kapasite ve içerik hem kg hem litre gösterilir, kapasite kontrolü çevrilmiş miktarla yapılır
+- [ ] Çevrim gerekip yoğunluk tanımlı değilse işlem reddedilir
+- [ ] Boş tankta diğer birimdeki karşılık kabul edilen ürünün yoğunluğundan hesaplanır; ürün listesi boşsa ya da
+  yoğunluk tanımsızsa yalnızca girilen birim gösterilir
+
+## C7: İzlenebilirlik ve eski veri
+- [ ] Tanka giriş hareketi, karıştığı tank materyalini gösterir; soy grafiği parti → tank materyali → dolum →
+  depo → sipariş şeklinde yürür
+- [ ] Tanklardaki mevcut aktif materyaller tank ve tip bazında birleştirilir, ortalamalar hesaplanır, eskiler kapanır
+- [ ] Üretim aşamalarında sabitlenmiş eski `outbound` ve `transfer` ayarları geçişten önce canlı veride kontrol edilir
+
+## C8: Geliştirme başlarken konuşulacaklar
+- [ ] Laboratuvar ölçümü son tanktaki hesaplanan ortalamanın yerine geçecek mi
+- [ ] Önerildi, netleşecek: tank materyali `materials` tablosunda tutulur
+- [ ] Önerildi, netleşecek: birden çok partinin tortusu parti başına ayrı materyal olarak oransal açılır
+- [ ] Önerildi, netleşecek: ön dinlendirme tankına tank sayfasından elle hareket yapılamaz
+- [ ] Önerildi, netleşecek: yanlış aktarımda aşama boşaltmadan önce iptal edilir, materyal partiye döner
+
+---
+
 ## Bağımlılık sırası (özet)
 
 ```
@@ -507,6 +577,10 @@ Bölüm B: Tamamen Java Mimarisi
   B8 Demo veri ◄─ B4
   B9 Dashboard'lar    B10 Doküman
   B11 Kabul kriteri ◄─ hepsi
+
+Bölüm C: Tank Materyal Modeli ◄─ B2 (production)
+  C1 Tank türleri ─► C2 Son tank ─► C3 Ön dinlendirme ─► C4 Boşaltma ─► C5 Tortu
+  C6 Birimler    C7 İzlenebilirlik ve eski veri    C8 Konuşulacaklar
 ```
 
 ## Genel kurallar (Bölüm A)
