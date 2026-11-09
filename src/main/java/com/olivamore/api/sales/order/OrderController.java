@@ -2,122 +2,90 @@ package com.olivamore.api.sales.order;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.LaravelPaginator;
 import com.olivamore.api.shared.web.ListResponse;
 import com.olivamore.api.shared.web.Listing;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/** Laravel {@code OrderController}: siparisler, kalemler, durum gecisleri, stok kontrolu. */
+/** Siparisler, kalemler, durum gecisleri, stok kontrolu. */
 @RestController
+@RequestMapping("/api/orders")
 class OrderController {
 
-	private final Db db;
-	private final LaravelValidator validator;
-	private final OrderService orders;
-	private final OrderResource resource;
+	private final OrderService service;
+	private final OrderResponses responses;
 
-	OrderController(Db db, LaravelValidator validator, OrderService orders, OrderResource resource) {
-		this.db = db;
-		this.validator = validator;
-		this.orders = orders;
-		this.resource = resource;
+	OrderController(OrderService service, OrderResponses responses) {
+		this.service = service;
+		this.responses = responses;
 	}
 
-	// ---- okuma (order.view) ------------------------------------------------------------
-
-	/** {@code ?status}, {@code ?customer_id}; siparis gunu sonra olusma zamani, yeniden eskiye; {@code per_page}. */
-	@GetMapping("/api/orders")
+	@GetMapping
 	@RequiresPermission("order.view")
-	ListResponse<Map<String, Object>> index(HttpServletRequest request) {
+	ListResponse<OrderResponse> index(@RequestParam(required = false) String status,
+		@RequestParam(name = "customer_id", required = false) Long customerId, HttpServletRequest request) {
 		Optional<Integer> perPage = Listing.perPage(request);
-		List<String> where = new ArrayList<>();
-		List<Object> args = new ArrayList<>();
-		for (String key : List.of("status", "customer_id")) {
-			String value = request.getParameter(key);
-			if (value != null) {
-				where.add(key + " = ?");
-				args.add(value);
-			}
-		}
-		String filter = where.isEmpty() ? "" : " where " + String.join(" and ", where);
-		String order = " order by order_date desc, created_at desc";
 		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(resource.orders(db.select("select * from orders" + filter + order, args.toArray()), false));
+			return new ListResponse.Plain<>(responses.list(status, customerId));
 		}
 		int page = Listing.currentPage(request);
-		long total = db.count("select count(*) as aggregate from orders" + filter, args.toArray());
-		List<Row> rows = total == 0 ? List.of() : db.select("select * from orders" + filter + order
-			+ " limit " + perPage.get() + " offset " + (long) (page - 1) * perPage.get(), args.toArray());
-		return LaravelPaginator.paginate(resource.orders(rows, false), total, page, perPage.get(), request);
+		Page<OrderResponse> rows = responses.page(status, customerId, page, perPage.get());
+		return LaravelPaginator.paginate(rows.getContent(), rows.getTotalElements(), page, perPage.get(), request);
 	}
 
-	@GetMapping("/api/orders/{order}")
+	@GetMapping("/{id}")
 	@RequiresPermission("order.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "order", table = "orders", model = "Order") Row order) {
-		return DataResponse.of(resource.detail(order.id()));
+	DataResponse<OrderResponse> show(@PathVariable long id) {
+		return DataResponse.of(responses.detail(id));
 	}
 
-	@GetMapping("/api/orders/{order}/stock-check")
+	@GetMapping("/{id}/stock-check")
 	@RequiresPermission("order.view")
-	Map<String, Object> stockCheck(@Bound(value = "order", table = "orders", model = "Order") Row order) {
-		return Map.of("data", orders.stockCheck(order));
+	DataResponse<StockCheckResponse> stockCheck(@PathVariable long id) {
+		return DataResponse.of(service.stockCheck(id));
 	}
 
-	// ---- yazma -------------------------------------------------------------------------
-
-	/** Taslak siparis (201). */
-	@PostMapping("/api/orders")
+	@PostMapping
 	@RequiresPermission("order.create")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, OrderRequests.store());
-		return DataResponse.created(resource.detail(orders.create(v.all(), user.id())));
+	ResponseEntity<DataResponse<OrderResponse>> store(@Valid @RequestBody CreateOrderRequest request, CurrentUser user) {
+		return DataResponse.created(responses.detail(service.create(request, user.id())));
 	}
 
-	@PatchMapping("/api/orders/{order}")
+	@PatchMapping("/{id}")
 	@RequiresPermission("order.update")
-	@Transactional
-	DataResponse<Map<String, Object>> update(@Bound(value = "order", table = "orders", model = "Order") Row order, RequestInput input) {
-		ValidatedInput v = validator.validate(input, OrderRequests.update());
-		orders.update(order, v.all());
-		return DataResponse.of(resource.detail(order.id()));
+	DataResponse<OrderResponse> update(@PathVariable long id, @Valid @RequestBody UpdateOrderRequest request) {
+		service.update(id, request);
+		return DataResponse.of(responses.detail(id));
 	}
 
-	@PatchMapping("/api/orders/{order}/status")
+	@PatchMapping("/{id}/status")
 	@RequiresPermission("order.update_status")
-	@Transactional
-	DataResponse<Map<String, Object>> updateStatus(@Bound(value = "order", table = "orders", model = "Order") Row order,
-		RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, OrderRequests.updateStatus());
-		orders.updateStatus(order, Php.strval(v.get("status")), v.get("note"), v.get("picks"), user.id());
-		return DataResponse.of(resource.detail(order.id()));
+	DataResponse<OrderResponse> updateStatus(@PathVariable long id,
+		@Valid @RequestBody UpdateOrderStatusRequest request, CurrentUser user) {
+		service.updateStatus(id, request, user.id());
+		return DataResponse.of(responses.detail(id));
 	}
 
-	@DeleteMapping("/api/orders/{order}")
+	@DeleteMapping("/{id}")
 	@RequiresPermission("order.update")
-	@Transactional
-	Map<String, String> destroy(@Bound(value = "order", table = "orders", model = "Order") Row order) {
-		orders.delete(order);
+	Map<String, String> destroy(@PathVariable long id) {
+		service.delete(id);
 		return Map.of("message", "Sipariş başarıyla silindi.");
 	}
 

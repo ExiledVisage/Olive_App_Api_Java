@@ -2943,22 +2943,37 @@
    "method": "POST",
    "path": "/api/customers",
    "body": {
+    "name": "X",
+    "is_active": "evet"
+   },
+   "status": 422,
+   "response": {
+    "message": "The is active field must be true or false.",
+    "errors": {
+     "is_active": [
+      "The is active field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "ekle gecersiz alanlar",
+   "method": "POST",
+   "path": "/api/customers",
+   "body": {
     "name": "",
     "email": "x",
     "phone": "1111111111111111111111111111111",
-    "is_active": "evet",
     "addresses": [
      {
-      "label": "",
-      "latitude": 95,
-      "longitude": "abc",
-      "is_default": "x"
+      "latitude": 100
      }
     ]
    },
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 8 more errors)",
+    "message": "The name field is required. (and 5 more errors)",
     "errors": {
      "name": [
       "The name field is required."
@@ -2969,9 +2984,6 @@
      "email": [
       "The email field must be a valid email address."
      ],
-     "is_active": [
-      "The is active field must be true or false."
-     ],
      "addresses.0.label": [
       "The addresses.0.label field is required."
      ],
@@ -2980,12 +2992,6 @@
      ],
      "addresses.0.latitude": [
       "The addresses.0.latitude field must be between -90 and 90."
-     ],
-     "addresses.0.longitude": [
-      "The addresses.0.longitude field must be a number."
-     ],
-     "addresses.0.is_default": [
-      "The addresses.0.is_default field must be true or false."
      ]
     }
    },
@@ -3039,7 +3045,7 @@
       "label": "Depo",
       "city": "Manisa",
       "country": null,
-      "is_default": "1"
+      "is_default": true
      },
      {
       "label": "Sube",
@@ -3176,7 +3182,7 @@
    "body": {
     "name": "Test Musteri 2",
     "notes": "not",
-    "is_active": "0"
+    "is_active": false
    },
    "status": 200,
    "response": {
@@ -3229,11 +3235,8 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 1 more error)",
+    "message": "The email field must be a valid email address.",
     "errors": {
-     "name": [
-      "The name field is required."
-     ],
      "email": [
       "The email field must be a valid email address."
      ]
@@ -3367,7 +3370,7 @@
      "full_address": null,
      "latitude": 40,
      "longitude": 29.06,
-     "is_default": null,
+     "is_default": false,
      "created_at": "2026-11-07T04:45:10.000000Z",
      "updated_at": "2026-11-07T04:45:10.000000Z"
     }
@@ -3384,7 +3387,7 @@
    "body": {
     "label": "Varsayilan",
     "city": "Ankara",
-    "is_default": 1,
+    "is_default": true,
     "country": "TR"
    },
    "status": 201,
@@ -3439,7 +3442,7 @@
      "apartment_no": null,
      "postal_code": null,
      "full_address": null,
-     "latitude": 38.123456789,
+     "latitude": 38.1234568,
      "longitude": null,
      "is_default": false,
      "created_at": "2026-11-07T04:45:10.000000Z",
@@ -3580,7 +3583,7 @@
    "path": "/api/customers/{C2}/addresses/{A1}",
    "body": {
     "label": "Yeni 2",
-    "is_default": "1",
+    "is_default": true,
     "latitude": null
    },
    "status": 200,
@@ -3618,14 +3621,8 @@
    },
    "status": 422,
    "response": {
-    "message": "The label field is required. (and 2 more errors)",
+    "message": "The longitude field must be between -180 and 180.",
     "errors": {
-     "label": [
-      "The label field is required."
-     ],
-     "city": [
-      "The city field is required."
-     ],
      "longitude": [
       "The longitude field must be between -180 and 180."
      ]
@@ -3653,14 +3650,9 @@
    "body": {
     "label": null
    },
-   "status": 422,
+   "status": 404,
    "response": {
-    "message": "The label field is required.",
-    "errors": {
-     "label": [
-      "The label field is required."
-     ]
-    }
+    "message": "Bu adres bu müşteriye ait değil."
    },
    "save": null
   },
@@ -3846,13 +3838,28 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected finished product recipe id is invalid. (and 1 more error)",
+    "message": "The note field must not be greater than 255 characters.",
+    "errors": {
+     "note": [
+      "The note field must not be greater than 255 characters."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tercih ekle olmayan formul",
+   "method": "POST",
+   "path": "/api/customers/{C2}/preferred-recipes",
+   "body": {
+    "finished_product_recipe_id": 999
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product recipe id is invalid.",
     "errors": {
      "finished_product_recipe_id": [
       "The selected finished product recipe id is invalid."
-     ],
-     "note": [
-      "The note field must not be greater than 255 characters."
      ]
     }
    },

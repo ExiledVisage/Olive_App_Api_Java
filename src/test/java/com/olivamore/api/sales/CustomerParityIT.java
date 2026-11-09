@@ -39,7 +39,7 @@ class CustomerParityIT {
 			.deviation("adres ekle varsayilan null", 201, null)
 			.deviation("adres guncelle ulke null", 200, null)
 			.run();
-		assertThat(result.steps()).isEqualTo(70);
+		assertThat(result.steps()).isEqualTo(72);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

@@ -1,241 +1,192 @@
 package com.olivamore.api.sales.customer;
 
-import com.olivamore.api.finishedproduct.RecipeResources;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.persistence.Casts;
+import com.olivamore.api.shared.error.HttpStatusException;
+import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.stream.Collectors;
 
-/** Laravel {@code CustomerService}: musteriler, adresler, formul tercihleri ve profili. */
+/** Musteriler, adresler ve formul tercihleri. */
 @Service
 class CustomerService {
 
-	private final Db db;
-	private final RecipeResources recipes;
+	private static final Sort NEWEST_FIRST = Sort.by(Sort.Direction.DESC, "createdAt");
 
-	CustomerService(Db db, RecipeResources recipes) {
-		this.db = db;
-		this.recipes = recipes;
+	private final CustomerRepository customers;
+	private final CustomerAddressRepository addresses;
+	private final CustomerPreferredRecipeRepository preferred;
+	private final JdbcClient jdbc;
+
+	CustomerService(CustomerRepository customers, CustomerAddressRepository addresses,
+		CustomerPreferredRecipeRepository preferred, JdbcClient jdbc) {
+		this.customers = customers;
+		this.addresses = addresses;
+		this.preferred = preferred;
+		this.jdbc = jdbc;
 	}
 
-	// ---- musteri -----------------------------------------------------------------
+	@Transactional(readOnly = true)
+	List<CustomerResponse> all(Boolean isActive) {
+		return withAddresses(isActive == null ? customers.findAll(NEWEST_FIRST)
+			: customers.findByActive(isActive, NEWEST_FIRST));
+	}
 
-	/** {@code is_active} verilmezse true; adresler sirayla eklenir. @return olusan model (yalnizca verilen alanlar) */
-	Row create(Map<String, Object> validated) {
-		Map<String, Object> data = new LinkedHashMap<>(validated);
-		Object addresses = data.remove("addresses");
-		if (data.get("is_active") == null) {
-			data.put("is_active", true);
+	@Transactional(readOnly = true)
+	Page<CustomerResponse> page(Boolean isActive, int page, int size) {
+		PageRequest request = PageRequest.of(page - 1, size, NEWEST_FIRST);
+		Page<Customer> rows = isActive == null ? customers.findAll(request) : customers.findByActive(isActive, request);
+		Map<Long, CustomerResponse> responses = withAddresses(rows.getContent()).stream()
+			.collect(Collectors.toMap(CustomerResponse::id, response -> response));
+		return rows.map(customer -> responses.get(customer.getId()));
+	}
+
+	@Transactional(readOnly = true)
+	CustomerResponse get(long id) {
+		return withAddresses(List.of(find(id))).getFirst();
+	}
+
+	@Transactional
+	long create(CreateCustomerRequest request) {
+		Customer customer = customers.save(new Customer(request));
+		if (request.addresses() != null) {
+			request.addresses().forEach(address -> saveAddress(customer.getId(), address));
 		}
-		Row customer = db.create("customers", data);
-		for (Map<String, Object> address : items(addresses)) {
-			addAddress(customer.id(), address);
-		}
-		return customer;
+		return customer.getId();
 	}
 
-	/** Laravel NOT NULL kolona null yazip 500 veriyordu (DEVIATIONS 16): null "degistirme" demek. */
-	Row update(Row customer, Map<String, Object> validated) {
-		db.update("customers", customer.id(), withoutNull(validated, "is_active"));
-		return db.find("customers", customer.id()).orElseThrow();
+	@Transactional
+	void update(long id, UpdateCustomerRequest request) {
+		find(id).apply(request);
 	}
 
-	void delete(Row customer) {
-		if (db.count("select count(*) from orders where customer_id = ?", customer.id()) > 0) {
+	@Transactional
+	void delete(long id) {
+		Customer customer = find(id);
+		if (customers.countOrders(id) > 0) {
 			throw new BusinessRuleException("Bu müşteriye ait siparişler bulunduğu için silinemez.");
 		}
-		db.delete("customers", customer.id());
+		customers.delete(customer);
 	}
-
-	// ---- adres ---------------------------------------------------------------------
 
 	/** En yeni once. */
-	List<Row> addresses(Row customer) {
-		return db.select("select * from customer_addresses where customer_id = ? and customer_id is not null order by created_at desc",
-			customer.id());
+	@Transactional(readOnly = true)
+	List<CustomerAddressResponse> addresses(long customerId) {
+		find(customerId);
+		return addresses.findByCustomerIdOrderByCreatedAtDesc(customerId).stream()
+			.map(CustomerAddressResponse::of).toList();
 	}
 
-	/** Varsayilan verilirse digerleri varsayilan olmaktan cikar; ulke verilmezse TR. @return olusan model (verilen alanlar) */
-	Row addAddress(long customerId, Map<String, Object> data) {
-		if (!empty(data.get("is_default"))) {
-			db.execute("update customer_addresses set is_default = ?, updated_at = ? where customer_id = ? and customer_id is not null",
-				false, Timestamps.now(), customerId);
-		}
-		Map<String, Object> values = withoutNull(data, "is_default");
-		values.put("customer_id", customerId);
-		if (values.get("country") == null) {
-			values.put("country", "TR");
-		}
-		return db.create("customer_addresses", values);
+	@Transactional
+	CustomerAddressResponse addAddress(long customerId, CreateCustomerAddressRequest request) {
+		find(customerId);
+		return CustomerAddressResponse.of(saveAddress(customerId, request));
 	}
 
-	Row updateAddress(Row customer, Row address, Map<String, Object> validated) {
-		if (!empty(validated.get("is_default"))) {
-			db.execute("update customer_addresses set is_default = ?, updated_at = ? where customer_id = ? and customer_id is not null"
-				+ " and id != ?", false, Timestamps.now(), customer.id(), address.id());
+	@Transactional
+	CustomerAddressResponse updateAddress(long customerId, long addressId, UpdateCustomerAddressRequest request) {
+		CustomerAddress address = findAddress(customerId, addressId);
+		if (Boolean.TRUE.equals(request.isDefault())) {
+			addresses.clearDefault(customerId, addressId);
 		}
-		db.update("customer_addresses", address.id(), withoutNull(validated, "is_default", "country"));
-		return db.find("customer_addresses", address.id()).orElseThrow();
+		address.apply(request);
+		addresses.flush();
+		return CustomerAddressResponse.of(address);
 	}
 
 	/** Siparise bagli adres silinmez; varsayilan adres silinirse en son eklenen varsayilan olur. */
-	void deleteAddress(Row address) {
-		DeletionGuard.of("'" + Php.strval(address.get("label")) + "' adresi")
-			.usedBy("sipariş", db.count("select count(*) from orders where delivery_address_id = ?", address.id()))
+	@Transactional
+	void deleteAddress(long customerId, long addressId) {
+		CustomerAddress address = findAddress(customerId, addressId);
+		DeletionGuard.of("'" + address.getLabel() + "' adresi")
+			.usedBy("sipariş", addresses.countOrders(addressId))
 			.check();
-		boolean wasDefault = Boolean.TRUE.equals(Casts.bool(address.get("is_default")));
-		db.delete("customer_addresses", address.id());
+		boolean wasDefault = address.isDefaultAddress();
+		addresses.delete(address);
+		addresses.flush();
 		if (wasDefault) {
-			db.first("select id from customer_addresses where customer_id = ? order by id desc limit 1", address.get("customer_id"))
-				.ifPresent(latest -> db.execute("update customer_addresses set is_default = ?, updated_at = ? where id = ?",
-					true, Timestamps.now(), latest.id()));
+			addresses.findFirstByCustomerIdOrderByIdDesc(customerId).ifPresent(CustomerAddress::markDefault);
 		}
-	}
-
-	// ---- formul tercihleri ------------------------------------------------------------
-
-	/**
-	 * {@code getRecipeProfile}: elle atanmis tercihler (ada, sonra yeni versiyona gore) ve iptal edilmemis
-	 * siparislerden turetilen gecmis (toplam adede gore).
-	 */
-	Map<String, Object> recipeProfile(Row customer) {
-		List<Row> preferredRows = db.select("select finished_product_recipes.*, customer_preferred_recipes.customer_id as pivot_customer_id,"
-			+ " customer_preferred_recipes.finished_product_recipe_id as pivot_finished_product_recipe_id,"
-			+ " customer_preferred_recipes.note as pivot_note from finished_product_recipes inner join customer_preferred_recipes"
-			+ " on finished_product_recipes.id = customer_preferred_recipes.finished_product_recipe_id"
-			+ " where customer_preferred_recipes.customer_id = ? order by name asc, version desc", customer.id());
-		List<Map<String, Object>> preferredResources = recipes.recipes(preferredRows, false);
-		List<Map<String, Object>> preferred = new ArrayList<>();
-		for (int i = 0; i < preferredRows.size(); i++) {
-			Map<String, Object> r = new LinkedHashMap<>(preferredResources.get(i));
-			r.put("note", preferredRows.get(i).get("pivot_note"));
-			preferred.add(r);
-		}
-
-		List<Row> items = db.select("select * from order_items where exists (select * from orders where order_items.order_id = orders.id"
-			+ " and customer_id = ? and status != ?)", customer.id(), "cancelled");
-		Map<Long, Row> orders = Relations.byId(db.whereIn("orders", "id", Relations.column(items, "order_id"), null));
-		Map<Long, Row> products = Relations.byId(db.whereIn("finished_products", "id", Relations.column(items, "finished_product_id"), null));
-		Map<Long, Row> recipeRows = Relations.byId(db.whereIn("finished_product_recipes", "id",
-			Relations.column(List.copyOf(products.values()), "finished_product_recipe_id"), null));
-		Map<Long, List<Row>> groups = new LinkedHashMap<>();
-		for (Row item : items) {
-			Row product = item.longValue("finished_product_id") == null ? null : products.get(item.longValue("finished_product_id"));
-			Row recipe = product == null || product.longValue("finished_product_recipe_id") == null ? null
-				: recipeRows.get(product.longValue("finished_product_recipe_id"));
-			if (recipe != null) {
-				groups.computeIfAbsent(recipe.id(), k -> new ArrayList<>()).add(item);
-			}
-		}
-		Map<Long, Map<String, Object>> recipeResources = new LinkedHashMap<>();
-		List<Row> groupRecipes = groups.keySet().stream().map(recipeRows::get).toList();
-		List<Map<String, Object>> resolved = recipes.recipes(groupRecipes, false);
-		for (int i = 0; i < groupRecipes.size(); i++) {
-			recipeResources.put(groupRecipes.get(i).id(), resolved.get(i));
-		}
-		List<Map<String, Object>> history = new ArrayList<>();
-		groups.forEach((recipeId, group) -> {
-			Set<Object> orderIds = new LinkedHashSet<>();
-			long total = 0;
-			LocalDate last = null;
-			for (Row item : group) {
-				orderIds.add(item.get("order_id"));
-				total += Php.intval(item.get("quantity"));
-				Row order = item.longValue("order_id") == null ? null : orders.get(item.longValue("order_id"));
-				LocalDate date = order == null ? null : date(order.get("order_date"));
-				if (date != null && (last == null || date.isAfter(last))) {
-					last = date;
-				}
-			}
-			Map<String, Object> row = new LinkedHashMap<>();
-			row.put("recipe", recipeResources.get(recipeId));
-			row.put("order_count", orderIds.size());
-			row.put("total_quantity", total);
-			row.put("last_order_date", last == null ? null : last.toString());
-			history.add(row);
-		});
-		// sortByDesc: kararli
-		history.sort((a, b) -> Long.compare((Long) b.get("total_quantity"), (Long) a.get("total_quantity")));
-		Map<String, Object> data = new LinkedHashMap<>();
-		data.put("preferred", preferred);
-		data.put("history", history);
-		return data;
 	}
 
 	/** Ayni formul tekrar eklenirse yalnizca notu guncellenir. */
-	void addPreferredRecipe(Row customer, long recipeId, Object note) {
-		LocalDateTime now = Timestamps.now();
-		if (db.count("select count(*) from customer_preferred_recipes where customer_id = ? and finished_product_recipe_id = ?",
-			customer.id(), recipeId) > 0) {
-			db.execute("update customer_preferred_recipes set note = ?, updated_at = ? where customer_id = ? and finished_product_recipe_id = ?",
-				note, now, customer.id(), recipeId);
-			return;
+	@Transactional
+	void addPreferredRecipe(long customerId, PreferredRecipeRequest request) {
+		find(customerId);
+		long recipeId = request.finishedProductRecipeId();
+		if (recipeName(recipeId) == null) {
+			throw LaravelValidationException.of("finished_product_recipe_id",
+				LaravelMessages.format(LaravelMessages.EXISTS, "finished_product_recipe_id"));
 		}
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("customer_id", customer.id());
-		values.put("finished_product_recipe_id", recipeId);
-		values.put("note", note);
-		db.insert("customer_preferred_recipes", values);
+		preferred.findByCustomerIdAndFinishedProductRecipeId(customerId, recipeId).ifPresentOrElse(
+			existing -> existing.changeNote(request.note()),
+			() -> preferred.save(new CustomerPreferredRecipe(customerId, recipeId, request.note())));
 	}
 
-	void removePreferredRecipe(Row customer, Row recipe) {
-		int detached = db.execute("delete from customer_preferred_recipes where customer_id = ? and finished_product_recipe_id = ?",
-			customer.id(), recipe.id());
-		if (detached == 0) {
-			throw new BusinessRuleException("'" + recipe.string("name") + "' bu müşterinin tercihlerinde değil.");
+	@Transactional
+	void removePreferredRecipe(long customerId, long recipeId) {
+		find(customerId);
+		String name = recipeName(recipeId);
+		if (name == null) {
+			throw new ModelNotFoundException("FinishedProductRecipe", recipeId);
 		}
+		CustomerPreferredRecipe row = preferred.findByCustomerIdAndFinishedProductRecipeId(customerId, recipeId)
+			.orElseThrow(() -> new BusinessRuleException("'" + name + "' bu müşterinin tercihlerinde değil."));
+		preferred.delete(row);
 	}
 
-	// ---- yardimcilar ---------------------------------------------------------------------
+	@Transactional(readOnly = true)
+	void ensureExists(long id) {
+		find(id);
+	}
 
-	/** NOT NULL kolonlara gelen null: Laravel'de 500, burada alan yokmus gibi (DEVIATIONS 16). */
-	private static Map<String, Object> withoutNull(Map<String, Object> data, String... columns) {
-		Map<String, Object> out = new LinkedHashMap<>(data);
-		for (String column : columns) {
-			if (out.containsKey(column) && out.get(column) == null) {
-				out.remove(column);
-			}
+	private CustomerAddress saveAddress(long customerId, CreateCustomerAddressRequest request) {
+		if (Boolean.TRUE.equals(request.isDefault())) {
+			addresses.clearDefault(customerId, 0);
 		}
-		return out;
+		return addresses.save(new CustomerAddress(customerId, request));
 	}
 
-	/** PHP {@code empty()} */
-	private static boolean empty(Object value) {
-		return value == null || Boolean.FALSE.equals(value) || "".equals(value) || "0".equals(value)
-			|| value instanceof Number n && n.doubleValue() == 0;
+	private List<CustomerResponse> withAddresses(List<Customer> rows) {
+		Map<Long, List<CustomerAddressResponse>> byCustomer = addresses
+			.findByCustomerIdInOrderByIdAsc(rows.stream().map(Customer::getId).toList()).stream()
+			.map(CustomerAddressResponse::of)
+			.collect(Collectors.groupingBy(CustomerAddressResponse::customerId));
+		return rows.stream()
+			.map(customer -> CustomerResponse.of(customer, byCustomer.getOrDefault(customer.getId(), List.of())))
+			.toList();
 	}
 
-	@SuppressWarnings("unchecked")
-	private static List<Map<String, Object>> items(Object value) {
-		if (value instanceof Map<?, ?> m) {
-			return new ArrayList<>((Collection<Map<String, Object>>) m.values());
+	private Customer find(long id) {
+		return customers.findById(id).orElseThrow(() -> new ModelNotFoundException("Customer", id));
+	}
+
+	private CustomerAddress findAddress(long customerId, long addressId) {
+		find(customerId);
+		CustomerAddress address = addresses.findById(addressId)
+			.orElseThrow(() -> new ModelNotFoundException("CustomerAddress", addressId));
+		if (address.getCustomerId() != customerId) {
+			throw new HttpStatusException(404, "Bu adres bu müşteriye ait değil.");
 		}
-		return value instanceof List<?> l ? (List<Map<String, Object>>) l : List.of();
+		return address;
 	}
 
-	private static LocalDate date(Object value) {
-		return switch (value) {
-			case null -> null;
-			case LocalDate d -> d;
-			case LocalDateTime t -> t.toLocalDate();
-			case java.sql.Date d -> d.toLocalDate();
-			default -> LocalDate.parse(Php.strval(value).substring(0, 10));
-		};
+	private String recipeName(long recipeId) {
+		return jdbc.sql("select name from finished_product_recipes where id = ?")
+			.param(recipeId)
+			.query(String.class)
+			.optional()
+			.orElse(null);
 	}
 
 }

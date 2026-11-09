@@ -65159,28 +65159,40 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected customer id is invalid. (and 7 more errors)",
+    "message": "The delivery address id field must be an integer.",
     "errors": {
-     "customer_id": [
-      "The selected customer id is invalid."
-     ],
      "delivery_address_id": [
       "The delivery address id field must be an integer."
-     ],
-     "order_date": [
-      "The order date field must be a valid date."
-     ],
-     "note": [
-      "The note field must be a string."
-     ],
-     "items.0.finished_product_id": [
-      "The selected items.0.finished_product_id is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "ekle gecersiz kalem",
+   "method": "POST",
+   "path": "/api/orders",
+   "body": {
+    "customer_id": 1,
+    "delivery_address_id": "{A1}",
+    "order_date": "2026-11-07",
+    "items": [
+     {
+      "finished_product_id": 1,
+      "quantity": 0
+     },
+     {}
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The items.0.quantity field must be at least 1. (and 2 more errors)",
+    "errors": {
+     "items.0.quantity": [
+      "The items.0.quantity field must be at least 1."
      ],
      "items.1.finished_product_id": [
       "The items.1.finished_product_id field is required."
-     ],
-     "items.0.quantity": [
-      "The items.0.quantity field must be at least 1."
      ],
      "items.1.quantity": [
       "The items.1.quantity field is required."
@@ -65950,13 +65962,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The order date field must be a valid date. (and 1 more error)",
+    "message": "The order date field must be a valid date.",
     "errors": {
      "order_date": [
       "The order date field must be a valid date."
-     ],
-     "items.0.finished_product_id": [
-      "The items.0.finished_product_id field is required when items is present."
      ]
     }
    },
@@ -66088,13 +66097,28 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected status is invalid. (and 1 more error)",
+    "message": "The note field must not be greater than 1000 characters.",
+    "errors": {
+     "note": [
+      "The note field must not be greater than 1000 characters."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durum taslak",
+   "method": "PATCH",
+   "path": "/api/orders/{O1}/status",
+   "body": {
+    "status": "draft"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected status is invalid.",
     "errors": {
      "status": [
       "The selected status is invalid."
-     ],
-     "note": [
-      "The note field must not be greater than 1000 characters."
      ]
     }
    },
@@ -98947,16 +98971,35 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected picks.0.order_item_id is invalid. (and 2 more errors)",
+    "message": "The picks.0.slot_id field must be an integer.",
+    "errors": {
+     "picks.0.slot_id": [
+      "The picks.0.slot_id field must be an integer."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "O2 hazir olmayan kalem",
+   "method": "PATCH",
+   "path": "/api/orders/{O2}/status",
+   "body": {
+    "status": "ready",
+    "picks": [
+     {
+      "order_item_id": 999999,
+      "slot_id": 14,
+      "quantity": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected picks.0.order_item_id is invalid.",
     "errors": {
      "picks.0.order_item_id": [
       "The selected picks.0.order_item_id is invalid."
-     ],
-     "picks.0.slot_id": [
-      "The picks.0.slot_id field must be an integer."
-     ],
-     "picks.0.quantity": [
-      "The picks.0.quantity field must be at least 1."
      ]
     }
    },

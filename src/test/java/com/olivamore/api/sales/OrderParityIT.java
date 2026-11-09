@@ -34,8 +34,9 @@ class OrderParityIT {
 			.capturedAt("2026-11-07T12:00:00Z")
 			// depo cevaplarinda raflar, raf icerigi ve depo stogu ORDER BY'siz (DEVIATIONS 11)
 			.unorderedEverywhere("slots", "contents", "stock")
+			.burn("ekle baska musterinin adresi", "orders_id_seq")
 			.run();
-		assertThat(result.steps()).isEqualTo(91);
+		assertThat(result.steps()).isEqualTo(94);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

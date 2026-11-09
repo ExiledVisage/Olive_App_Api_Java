@@ -69,6 +69,15 @@ public class RecipeResources {
 		return out;
 	}
 
+	/** Icerikleriyle, attribute kurallari olmadan; bulunamayan id'ler haritada yok. */
+	public Map<Long, Map<String, Object>> byIds(List<Long> ids) {
+		Map<Long, Map<String, Object>> out = new LinkedHashMap<>();
+		for (Map<String, Object> recipe : recipes(db.whereIn("finished_product_recipes", "id", ids, null), false)) {
+			out.put(Relations.key(recipe.get("id")), recipe);
+		}
+		return out;
+	}
+
 	/** Tarif icerigi ({@code ratio}: decimal:4). */
 	public static List<Map<String, Object>> contents(List<Row> rows, Map<Long, Row> types) {
 		List<Map<String, Object>> out = new ArrayList<>();

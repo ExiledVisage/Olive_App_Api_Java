@@ -75,7 +75,8 @@ public class ApiExceptionHandler {
 		List<String> order = declaredOrder(e.getParameter().getNestedParameterType());
 
 		List<FieldError> fieldErrors = new ArrayList<>(e.getBindingResult().getFieldErrors());
-		fieldErrors.sort(Comparator.comparingInt(fe -> position(order, fe.getField())));
+		fieldErrors.sort(Comparator.<FieldError>comparingInt(fe -> position(order, fe.getField()))
+			.thenComparing(FieldError::getField));
 
 		Map<String, List<String>> errors = new LinkedHashMap<>();
 		for (FieldError fe : fieldErrors) {

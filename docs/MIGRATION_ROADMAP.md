@@ -427,7 +427,7 @@ Sıra:
 - [x] `supplier`
 - [x] `notification`
 - [x] `packaging`
-- [ ] `sales`
+- [x] `sales`
 - [ ] `finishedproduct`
 - [ ] `inventory`
 - [ ] `production`
