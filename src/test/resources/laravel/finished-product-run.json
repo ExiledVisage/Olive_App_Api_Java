@@ -11855,7 +11855,7 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The finished product id field is required. (and 3 more errors)",
+    "message": "The finished product id field is required. (and 2 more errors)",
     "errors": {
      "finished_product_id": [
       "The finished product id field is required."
@@ -11865,9 +11865,6 @@
      ],
      "source": [
       "The source field is required."
-     ],
-     "source.storage_unit_id": [
-      "The source.storage unit id field is required."
      ]
     }
    },
@@ -11889,25 +11886,65 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected finished product id is invalid. (and 5 more errors)",
+    "message": "The note field must be a string.",
+    "errors": {
+     "note": [
+      "The note field must be a string."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "planla hatali kurallar",
+   "method": "POST",
+   "path": "/api/finished-product-runs",
+   "body": {
+    "finished_product_id": 999,
+    "quantity": 0,
+    "source": {
+     "storage_unit_id": 999,
+     "quantity": 0,
+     "loss_percent": 5
+    }
+   },
+   "status": 422,
+   "response": {
+    "message": "The quantity field must be at least 1. (and 2 more errors)",
+    "errors": {
+     "quantity": [
+      "The quantity field must be at least 1."
+     ],
+     "source.loss_percent": [
+      "Fire payı en fazla %2 olabilir."
+     ],
+     "source.quantity": [
+      "The source.quantity field must be at least 0.001."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "planla hatali kayitlar",
+   "method": "POST",
+   "path": "/api/finished-product-runs",
+   "body": {
+    "finished_product_id": 999,
+    "quantity": 1,
+    "source": {
+     "storage_unit_id": 999
+    }
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product id is invalid. (and 1 more error)",
     "errors": {
      "finished_product_id": [
       "The selected finished product id is invalid."
      ],
-     "quantity": [
-      "The quantity field must be at least 1."
-     ],
-     "note": [
-      "The note field must be a string."
-     ],
      "source.storage_unit_id": [
       "The selected source.storage unit id is invalid."
-     ],
-     "source.quantity": [
-      "The source.quantity field must be at least 0.001."
-     ],
-     "source.loss_percent": [
-      "Fire payı en fazla %2 olabilir."
      ]
     }
    },
@@ -11924,13 +11961,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The source field must be an array. (and 1 more error)",
+    "message": "The source field must be an array.",
     "errors": {
      "source": [
       "The source field must be an array."
-     ],
-     "source.storage_unit_id": [
-      "The source.storage unit id field is required."
      ]
     }
    },
@@ -12942,19 +12976,62 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected packagings.0.packaging_lot_id is invalid. (and 3 more errors)",
+    "message": "The packagings.1.packaging_lot_id field must be an integer.",
     "errors": {
-     "packagings.0.packaging_lot_id": [
-      "The selected packagings.0.packaging_lot_id is invalid."
-     ],
      "packagings.1.packaging_lot_id": [
       "The packagings.1.packaging_lot_id field must be an integer."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tahsis hatali kurallar",
+   "method": "PUT",
+   "path": "/api/finished-product-runs/{R3}/packagings",
+   "body": {
+    "packagings": [
+     {
+      "packaging_lot_id": 999999,
+      "quantity": 0
+     },
+     {
+      "packaging_lot_id": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The packagings.0.quantity field must be at least 1. (and 1 more error)",
+    "errors": {
      "packagings.0.quantity": [
       "The packagings.0.quantity field must be at least 1."
      ],
      "packagings.1.quantity": [
       "The packagings.1.quantity field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tahsis hatali kayit",
+   "method": "PUT",
+   "path": "/api/finished-product-runs/{R3}/packagings",
+   "body": {
+    "packagings": [
+     {
+      "packaging_lot_id": 999999,
+      "quantity": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected packagings.0.packaging_lot_id is invalid.",
+    "errors": {
+     "packagings.0.packaging_lot_id": [
+      "The selected packagings.0.packaging_lot_id is invalid."
      ]
     }
    },

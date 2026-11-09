@@ -242,7 +242,7 @@ public class ApiExceptionHandler {
 		if (type == String.class) {
 			return LaravelMessages.STRING;
 		}
-		if (type.isArray() || Collection.class.isAssignableFrom(type) || Map.class.isAssignableFrom(type)) {
+		if (type.isArray() || Collection.class.isAssignableFrom(type) || Map.class.isAssignableFrom(type) || type.isRecord()) {
 			return LaravelMessages.ARRAY;
 		}
 		if (Temporal.class.isAssignableFrom(type)) {

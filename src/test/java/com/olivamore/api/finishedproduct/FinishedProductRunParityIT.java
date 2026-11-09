@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'den yakalanan 91 dolum kosusu durumu (src/test/resources/laravel/finished-product-run.json,
+ * Laravel'den yakalanan dolum kosusu durumu (src/test/resources/laravel/finished-product-run.json,
  * reference/capture_finished_product_run.py): tank ve tarif kontrolleri, sise/yag dengesi, tahmini attribute
  * araligi, FIFO ve elle ambalaj tahsisi, durum gecisleri, tamamlamada ambalaj ve yag tuketimi (tank bakiyesi,
  * lot hareketleri), planlamadan sonra degisen tank ve lot, silme.
@@ -40,7 +40,7 @@ class FinishedProductRunParityIT {
 			// ayni saniyede olusan kosular: latest() esitlikte sirasiz (guncellenen satir tablonun sonuna gider)
 			.unordered("liste sonra", "data")
 			.run();
-		assertThat(result.steps()).isEqualTo(91);
+		assertThat(result.steps()).isEqualTo(95);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

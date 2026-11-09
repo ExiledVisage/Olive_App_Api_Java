@@ -1,8 +1,12 @@
 package com.olivamore.api.inventory;
 
 import com.olivamore.api.inventory.storagemovement.StorageMovementService;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Row;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 /**
  * Stok hareketlerinin diger modullere acik kismi: uretim asamasinin (depo hareketi uzantisi) yaptigi tank
@@ -14,9 +18,11 @@ import org.springframework.stereotype.Component;
 public class StockOperations {
 
 	private final StorageMovementService movements;
+	private final Db db;
 
-	StockOperations(StorageMovementService movements) {
+	StockOperations(StorageMovementService movements, Db db) {
 		this.movements = movements;
+		this.db = db;
 	}
 
 	/** {@code createInboundMovement}: partideki materyalin (ya da bir kisminin) tanka alinmasi. */
@@ -30,8 +36,10 @@ public class StockOperations {
 	}
 
 	/** {@code createOutboundMovement(..., $finishedProductRunId)}: dolum kosusunun tanktan cektigi yag (MANUAL kaynakli). */
-	public void outboundForRun(Row unit, Row material, double quantity, String note, long runId) {
-		movements.outbound(unit, material, quantity, null, note, runId);
+	public void outboundForRun(long unitId, long materialId, BigDecimal quantity, String note, long runId) {
+		Row unit = db.find("storage_units", unitId).orElseThrow(() -> new ModelNotFoundException("StorageUnit", unitId));
+		Row material = db.find("materials", materialId).orElseThrow(() -> new ModelNotFoundException("Material", materialId));
+		movements.outbound(unit, material, quantity.doubleValue(), null, note, runId);
 	}
 
 	/** {@code transferBetweenUnits} */

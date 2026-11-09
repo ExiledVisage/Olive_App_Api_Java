@@ -45,6 +45,17 @@ public final class LaravelMessages {
 	public static final String MIN_1 = "The :attribute field must be at least 1.";
 	public static final String MIN_ITEMS_1 = "The :attribute field must have at least 1 items.";
 	public static final String DISTINCT = "The :attribute field has a duplicate value.";
+	public static final String MIN_RATIO = "The :attribute field must be at least 0.0001.";
+	public static final String MIN_VOLUME = "The :attribute field must be at least 0.001.";
+	public static final String MAX_1 = "The :attribute field must not be greater than 1.";
+	public static final String REQUIRED_WITH_CONTENTS = "The :attribute field is required when contents is present.";
+	public static final String REQUIRED_WITH_COMPONENTS = "The :attribute field is required when components is present.";
+	public static final String REQUIRED_WITH_PLACEMENTS = "The :attribute field is required when placements is present.";
+	public static final String REQUIRED_WITHOUT_PLACEMENTS =
+		"The :attribute field is required when placements is not present.";
+	public static final String REQUIRED_WITHOUT_SLOT =
+		"The :attribute field is required when finished product storage slot id is not present.";
+	public static final String DIFFERENT_SOURCE_SLOT = "The :attribute field and source slot id must be different.";
 
 	private LaravelMessages() {
 	}

@@ -1,9 +1,9 @@
 /**
- * Bitmis urun (Faz 8): dolum tarifleri (icerik oranlari, attribute kurallari, versiyonlar), bitmis urunler ve
- * ambalaj bilesenleri, dolum kosulari, bitmis urun depolari ve raflari.
+ * Bitmis urun: dolum tarifleri (icerik oranlari, attribute kurallari, versiyonlar), bitmis urunler ve ambalaj
+ * bilesenleri, dolum kosulari, bitmis urun depolari ve raflari.
  * <p>
- * Diger moduller gibi Laravel tablolarina {@link com.olivamore.api.shared.persistence.Db} ile yazar; ambalaj
- * kalemlerini, raf ve siparis tablolarini yalnizca okur.
+ * Tablolari JPA ile; ambalaj, stok, urun tipi ve kullanici bilgilerini yalnizca okur. Diger moduller tarif
+ * cevaplarini ve raf islemlerini {@code RecipeResources} ve {@code ShelfOperations} uzerinden kullanir.
  */
 @ApplicationModule(displayName = "Finished product")
 package com.olivamore.api.finishedproduct;

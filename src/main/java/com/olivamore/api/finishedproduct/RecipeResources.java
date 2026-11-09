@@ -1,96 +1,115 @@
 package com.olivamore.api.finishedproduct;
 
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.finishedproduct.recipe.FinishedProductRecipe;
+import com.olivamore.api.finishedproduct.recipe.FinishedProductRecipeRepository;
+import com.olivamore.api.finishedproduct.recipe.RecipeAttributeRule;
+import com.olivamore.api.finishedproduct.recipe.RecipeAttributeRuleRepository;
+import com.olivamore.api.finishedproduct.recipe.RecipeContent;
+import com.olivamore.api.finishedproduct.recipe.RecipeContentRepository;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-/**
- * Laravel {@code FinishedProductRecipeResource}. Tarif, urun ve kosu cevaplari ile musteri modulu kullanir (musterinin formul profili:
- * icerik yuklu, attribute kurallari yuklu degil).
- */
+/** Tarif cevaplari: tarif, urun ve kosu ekranlari ile musterinin formul profili. */
 @Component
 public class RecipeResources {
 
-	private final Db db;
-
-	RecipeResources(Db db) {
-		this.db = db;
+	private record NamedRow(Long id, String name) {
 	}
 
-	/**
-	 * @param withRules attribute kurallari yuklu mu ({@code attributeRules.attributeDefinition}); degilse
-	 *                  {@code attribute_rules} anahtari yok
-	 */
-	public List<Map<String, Object>> recipes(List<Row> recipes, boolean withRules) {
-		List<Long> ids = Relations.ids(recipes);
-		List<Row> contentRows = db.whereIn("finished_product_recipe_contents", "finished_product_recipe_id", ids, null);
-		List<Row> ruleRows = withRules ? db.whereIn("finished_product_recipe_attribute_rules", "finished_product_recipe_id", ids, null) : List.of();
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id",
-			Relations.column(contentRows, "production_product_type_id"), null));
-		Map<Long, Row> definitions = Relations.byId(db.whereIn("attribute_definitions", "id",
-			Relations.column(ruleRows, "attribute_definition_id"), null));
-		Map<Long, List<Row>> contents = Relations.groupBy(contentRows, "finished_product_recipe_id");
-		Map<Long, List<Row>> rules = Relations.groupBy(ruleRows, "finished_product_recipe_id");
-		List<Map<String, Object>> out = new ArrayList<>();
-		for (Row recipe : recipes) {
-			Map<String, Object> r = new LinkedHashMap<>();
-			r.put("id", recipe.get("id"));
-			r.put("name", recipe.get("name"));
-			r.put("version", recipe.get("version"));
-			r.put("is_active", Casts.bool(recipe.get("is_active")));
-			r.put("description", recipe.get("description"));
-			r.put("contents", contents(contents.getOrDefault(recipe.id(), List.of()), types));
-			if (withRules) {
-				List<Map<String, Object>> ruleList = new ArrayList<>();
-				for (Row rule : rules.getOrDefault(recipe.id(), List.of())) {
-					Row definition = definitions.get(rule.longValue("attribute_definition_id"));
-					Map<String, Object> m = new LinkedHashMap<>();
-					m.put("id", rule.get("id"));
-					m.put("attribute_definition_id", rule.get("attribute_definition_id"));
-					m.put("attribute_label", definition == null ? null : definition.get("label"));
-					m.put("value", Casts.decimal(rule.get("value"), 4));
-					m.put("min_deviation", Casts.decimal(rule.get("min_deviation"), 4));
-					m.put("max_deviation", Casts.decimal(rule.get("max_deviation"), 4));
-					ruleList.add(m);
-				}
-				r.put("attribute_rules", ruleList);
-			}
-			r.put("created_at", recipe.get("created_at"));
-			r.put("updated_at", recipe.get("updated_at"));
-			out.add(r);
-		}
-		return out;
+	private record LabelRow(Long id, String label) {
+	}
+
+	private final FinishedProductRecipeRepository recipes;
+	private final RecipeContentRepository contents;
+	private final RecipeAttributeRuleRepository rules;
+	private final JdbcClient jdbc;
+
+	RecipeResources(FinishedProductRecipeRepository recipes, RecipeContentRepository contents,
+		RecipeAttributeRuleRepository rules, JdbcClient jdbc) {
+		this.recipes = recipes;
+		this.contents = contents;
+		this.rules = rules;
+		this.jdbc = jdbc;
+	}
+
+	/** @param withRules attribute kurallari yuklu mu; degilse {@code attribute_rules} anahtari yok */
+	public List<RecipeResponse> responses(List<FinishedProductRecipe> rows, boolean withRules) {
+		List<Long> ids = rows.stream().map(FinishedProductRecipe::getId).toList();
+		Map<Long, List<RecipeResponse.Content>> contentsByRecipe = contentsOf(ids);
+		Map<Long, List<RecipeResponse.AttributeRule>> rulesByRecipe = withRules ? rulesOf(ids) : Map.of();
+		return rows.stream()
+			.map(recipe -> new RecipeResponse(recipe.getId(), recipe.getName(), recipe.getVersion(), recipe.isActive(),
+				recipe.getDescription(), contentsByRecipe.getOrDefault(recipe.getId(), List.of()),
+				withRules ? rulesByRecipe.getOrDefault(recipe.getId(), List.of()) : null,
+				recipe.getCreatedAt(), recipe.getUpdatedAt()))
+			.toList();
 	}
 
 	/** Icerikleriyle, attribute kurallari olmadan; bulunamayan id'ler haritada yok. */
-	public Map<Long, Map<String, Object>> byIds(List<Long> ids) {
-		Map<Long, Map<String, Object>> out = new LinkedHashMap<>();
-		for (Map<String, Object> recipe : recipes(db.whereIn("finished_product_recipes", "id", ids, null), false)) {
-			out.put(Relations.key(recipe.get("id")), recipe);
+	@Transactional(readOnly = true)
+	public Map<Long, RecipeResponse> byIds(List<Long> ids) {
+		List<Long> present = ValidationErrors.present(ids);
+		if (present.isEmpty()) {
+			return Map.of();
 		}
+		Map<Long, RecipeResponse> out = new LinkedHashMap<>();
+		responses(recipes.findAllById(present), false).forEach(recipe -> out.put(recipe.id(), recipe));
 		return out;
 	}
 
-	/** Tarif icerigi ({@code ratio}: decimal:4). */
-	public static List<Map<String, Object>> contents(List<Row> rows, Map<Long, Row> types) {
-		List<Map<String, Object>> out = new ArrayList<>();
-		for (Row c : rows) {
-			Row type = types.get(c.longValue("production_product_type_id"));
-			Map<String, Object> m = new LinkedHashMap<>();
-			m.put("id", c.get("id"));
-			m.put("production_product_type_id", c.get("production_product_type_id"));
-			m.put("production_product_type_name", type == null ? null : type.get("name"));
-			m.put("ratio", Casts.decimal(c.get("ratio"), 4));
-			out.add(m);
+	/** Tarif id'sine gore icerikler. */
+	public Map<Long, List<RecipeResponse.Content>> contentsOf(Collection<Long> recipeIds) {
+		List<Long> present = ValidationErrors.present(recipeIds);
+		if (present.isEmpty()) {
+			return Map.of();
 		}
-		return out;
+		List<RecipeContent> rows = contents.findByRecipeIdInOrderByIdAsc(present);
+		Map<Long, String> typeNames = names("production_product_types",
+			rows.stream().map(RecipeContent::getProductionProductTypeId).toList());
+		return rows.stream().collect(Collectors.groupingBy(RecipeContent::getRecipeId, Collectors.mapping(
+			row -> new RecipeResponse.Content(row.getId(), row.getProductionProductTypeId(),
+				typeNames.get(row.getProductionProductTypeId()), row.getRatio()),
+			Collectors.toList())));
+	}
+
+	private Map<Long, List<RecipeResponse.AttributeRule>> rulesOf(List<Long> recipeIds) {
+		if (recipeIds.isEmpty()) {
+			return Map.of();
+		}
+		List<RecipeAttributeRule> rows = rules.findByRecipeIdInOrderByIdAsc(recipeIds);
+		Map<Long, String> labels = labels(rows.stream().map(RecipeAttributeRule::getAttributeDefinitionId).toList());
+		return rows.stream().collect(Collectors.groupingBy(RecipeAttributeRule::getRecipeId, Collectors.mapping(
+			row -> new RecipeResponse.AttributeRule(row.getId(), row.getAttributeDefinitionId(),
+				labels.get(row.getAttributeDefinitionId()), row.getValue(), row.getMinDeviation(), row.getMaxDeviation()),
+			Collectors.toList())));
+	}
+
+	private Map<Long, String> names(String table, List<Long> ids) {
+		List<Long> present = ValidationErrors.present(ids);
+		if (present.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("select id, name from " + table + " where id in (:ids)").param("ids", present)
+			.query(NamedRow.class).list().stream()
+			.collect(Collectors.toMap(NamedRow::id, NamedRow::name, (a, b) -> a));
+	}
+
+	private Map<Long, String> labels(List<Long> ids) {
+		List<Long> present = ValidationErrors.present(ids);
+		if (present.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("select id, label from attribute_definitions where id in (:ids)").param("ids", present)
+			.query(LabelRow.class).list().stream()
+			.collect(Collectors.toMap(LabelRow::id, LabelRow::label, (a, b) -> a));
 	}
 
 }

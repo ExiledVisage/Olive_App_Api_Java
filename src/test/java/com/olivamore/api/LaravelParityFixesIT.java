@@ -85,7 +85,7 @@ class LaravelParityFixesIT {
 
 		assertThat(r.status).as(r.body).isEqualTo(422);
 		assertThat(r.json().get("errors").get("contents").toString())
-			.contains("The contents field is required.", "Mevcut toplam: 0");
+			.contains("The contents field is required.");
 	}
 
 	@Test

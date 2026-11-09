@@ -1,95 +1,80 @@
 package com.olivamore.api.finishedproduct.recipe;
 
-import com.olivamore.api.identity.CurrentUser;
+import com.olivamore.api.finishedproduct.RecipeResources;
+import com.olivamore.api.finishedproduct.RecipeResponse;
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import com.olivamore.api.finishedproduct.RecipeResources;
 
-/** Laravel {@code FinishedProductRecipeController}: dolum tarifleri ve versiyonlari. */
+/** Dolum tarifleri ve versiyonlari. */
 @RestController
 class FinishedProductRecipeController {
 
-	private final LaravelValidator validator;
 	private final FinishedProductRecipeService recipes;
 	private final RecipeResources resources;
 
-	FinishedProductRecipeController(LaravelValidator validator, FinishedProductRecipeService recipes, RecipeResources resources) {
-		this.validator = validator;
+	FinishedProductRecipeController(FinishedProductRecipeService recipes, RecipeResources resources) {
 		this.recipes = recipes;
 		this.resources = resources;
 	}
 
-	/** Aktif tarifler, en yeni once; {@code ?name=}. */
+	/** Aktif tarifler, en yeni once. */
 	@GetMapping("/api/finished-product-recipes")
 	@RequiresPermission("finished_product_recipe.view")
-	ListResponse<Map<String, Object>> index(HttpServletRequest request) {
-		return new ListResponse.Plain<>(resources.recipes(recipes.active(request.getParameter("name")), true));
+	ListResponse<RecipeResponse> index(@RequestParam(required = false) String name) {
+		return new ListResponse.Plain<>(resources.responses(recipes.active(name), true));
 	}
 
-	@GetMapping("/api/finished-product-recipes/{recipe}")
+	@GetMapping("/api/finished-product-recipes/{id}")
 	@RequiresPermission("finished_product_recipe.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "recipe", table = "finished_product_recipes", model = "FinishedProductRecipe") Row recipe) {
-		return DataResponse.of(detail(recipe.id()));
+	DataResponse<RecipeResponse> show(@PathVariable long id) {
+		return DataResponse.of(detail(id));
 	}
 
-	/** Ayni addaki butun versiyonlar. Laravel'de izin grubunun disinda: yalnizca giris. */
-	@GetMapping("/api/finished-product-recipes/{recipe}/versions")
-	ListResponse<Map<String, Object>> versions(@Bound(value = "recipe", table = "finished_product_recipes", model = "FinishedProductRecipe") Row recipe) {
-		return new ListResponse.Plain<>(resources.recipes(recipes.versions(recipe), true));
+	/** Ayni addaki butun versiyonlar; yalnizca giris ister. */
+	@GetMapping("/api/finished-product-recipes/{id}/versions")
+	ListResponse<RecipeResponse> versions(@PathVariable long id) {
+		return new ListResponse.Plain<>(resources.responses(recipes.versions(id), true));
 	}
 
-	/** 201: versiyon 1, aktif. */
 	@PostMapping("/api/finished-product-recipes")
 	@RequiresPermission("finished_product_recipe.manage")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(RequestInput input) {
-		ValidatedInput v = validator.validate(input, FinishedProductRecipeRequests.store(), FinishedProductRecipeRequests.storeAfter());
-		return DataResponse.created(detail(recipes.create(v)));
+	ResponseEntity<DataResponse<RecipeResponse>> store(@Valid @RequestBody CreateRecipeRequest request) {
+		return DataResponse.created(detail(recipes.create(request)));
 	}
 
-	/** Yeni versiyon (201; Laravel'de yeni olusan model). */
-	@RequestMapping(path = "/api/finished-product-recipes/{recipe}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	/** Yeni versiyon olusturur: 201. */
+	@RequestMapping(path = "/api/finished-product-recipes/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	@RequiresPermission("finished_product_recipe.manage")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> update(
-		@Bound(value = "recipe", table = "finished_product_recipes", model = "FinishedProductRecipe") Row recipe, RequestInput input) {
-		ValidatedInput v = validator.validate(input, FinishedProductRecipeRequests.update(), FinishedProductRecipeRequests.updateAfter());
-		return DataResponse.created(detail(recipes.update(recipe, v)));
+	ResponseEntity<DataResponse<RecipeResponse>> update(@PathVariable long id,
+		@Valid @RequestBody UpdateRecipeRequest request) {
+		return DataResponse.created(detail(recipes.update(id, request)));
 	}
 
-	@DeleteMapping("/api/finished-product-recipes/{recipe}")
+	@DeleteMapping("/api/finished-product-recipes/{id}")
 	@RequiresPermission("finished_product_recipe.manage")
-	@Transactional
-	Map<String, String> destroy(@Bound(value = "recipe", table = "finished_product_recipes", model = "FinishedProductRecipe") Row recipe) {
-		recipes.delete(recipe);
+	Map<String, String> destroy(@PathVariable long id) {
+		recipes.delete(id);
 		return Map.of("message", "Tarif başarıyla silindi.");
 	}
 
 	/** Icerik ve attribute kurallari yuklu. */
-	private Map<String, Object> detail(long id) {
-		return resources.recipes(List.of(recipes.byId(id)), true).getFirst();
+	private RecipeResponse detail(long id) {
+		return resources.responses(List.of(recipes.get(id)), true).getFirst();
 	}
 
 }

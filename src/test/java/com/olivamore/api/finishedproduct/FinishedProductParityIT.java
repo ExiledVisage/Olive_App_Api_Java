@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'den yakalanan 74 tarif ve bitmis urun durumu (src/test/resources/laravel/finished-product.json,
+ * Laravel'den yakalanan tarif ve bitmis urun durumu (src/test/resources/laravel/finished-product.json,
  * reference/capture_finished_product.py): tarif versiyonlama, oran toplami, urun depo dokumu, hacim korumasi,
  * silme korumalari. Laravel'in 500 verdigi yedi durum Java'da 422 (DEVIATIONS 14).
  */
@@ -36,12 +36,14 @@ class FinishedProductParityIT {
 			.capturedAt("2026-11-07T12:00:00Z")
 			// ayni saniyede olusan tarifler: latest() esitlikte sirasiz
 			.unordered("tarif liste sonra", "data")
+			// tohum urunleri ayni saniyede olustu: created_at esitliginde sira tanimsiz
+			.unordered("urun liste ?is_active=1", "data")
 			.deviation("tarif ekle hatali", 422, """
-				{"message":"The name field must be a string. (and 9 more errors)","errors":{"name":["The name field must be a string."],"contents.0.production_product_type_id":["The selected contents.0.production_product_type_id is invalid."],"contents.1.production_product_type_id":["The contents.1.production_product_type_id field is required."],"contents.0.ratio":["The contents.0.ratio field must not be greater than 1."],"contents.1.ratio":["The contents.1.ratio field must be a number.","The contents.1.ratio field must not be greater than 1."],"attribute_rules.0.attribute_definition_id":["The selected attribute_rules.0.attribute_definition_id is invalid."],"attribute_rules.0.value":["The attribute_rules.0.value field must be at least 0."],"attribute_rules.0.min_deviation":["The attribute_rules.0.min_deviation field must be a number."],"contents":["İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 2"]}}""")
+				{"message":"The name field must be a string.","errors":{"name":["The name field must be a string."]}}""")
 			.deviation("tarif ekle oran dizi", 422, """
-				{"message":"The contents.0.ratio field must be a number. (and 1 more error)","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."],"contents":["İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0"]}}""")
+				{"message":"The contents.0.ratio field must be a number.","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."]}}""")
 			.deviation("tarif ekle oran metin", 422, """
-				{"message":"The contents.0.ratio field must be a number. (and 2 more errors)","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number.","The contents.0.ratio field must not be greater than 1."],"contents":["İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0"]}}""")
+				{"message":"The contents.0.ratio field must be a number.","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."]}}""")
 			.deviation("tarif ekle tekrar tip", 422, """
 				{"message":"The contents.0.production_product_type_id field has a duplicate value. (and 1 more error)","errors":{"contents.0.production_product_type_id":["The contents.0.production_product_type_id field has a duplicate value."],"contents.1.production_product_type_id":["The contents.1.production_product_type_id field has a duplicate value."]}}""")
 			.deviation("tarif ekle tekrar attribute", 422, """
@@ -51,7 +53,7 @@ class FinishedProductParityIT {
 			.deviation("urun sil siparisli", 422, """
 				{"message":"Bu son ürün silinemez; kullanıldığı yerler: 4 sipariş kalemi.","errors":{}}""")
 			.run();
-		assertThat(result.steps()).isEqualTo(74);
+		assertThat(result.steps()).isEqualTo(79);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

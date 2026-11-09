@@ -1,150 +1,179 @@
 package com.olivamore.api.finishedproduct.recipe;
 
+import com.olivamore.api.finishedproduct.product.FinishedProductRepository;
+import com.olivamore.api.finishedproduct.run.FinishedProductRunRepository;
+import com.olivamore.api.finishedproduct.support.Quantities;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.ValidatedInput;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Laravel {@code FinishedProductRecipeService}: dolum tarifleri. Guncelleme yeni versiyon olusturur, eskisi pasife
- * alinir ve urunler yeni versiyona tasinir.
+ * Dolum tarifleri. Guncelleme yeni versiyon olusturur, eskisi pasife alinir ve urunler yeni versiyona tasinir.
  */
 @Service
 class FinishedProductRecipeService {
 
-	private final Db db;
+	private final FinishedProductRecipeRepository recipes;
+	private final RecipeContentRepository contents;
+	private final RecipeAttributeRuleRepository rules;
+	private final FinishedProductRepository products;
+	private final FinishedProductRunRepository runs;
+	private final JdbcClient jdbc;
 
-	FinishedProductRecipeService(Db db) {
-		this.db = db;
+	FinishedProductRecipeService(FinishedProductRecipeRepository recipes, RecipeContentRepository contents,
+		RecipeAttributeRuleRepository rules, FinishedProductRepository products, FinishedProductRunRepository runs,
+		JdbcClient jdbc) {
+		this.recipes = recipes;
+		this.contents = contents;
+		this.rules = rules;
+		this.products = products;
+		this.runs = runs;
+		this.jdbc = jdbc;
 	}
 
-	/** Aktif tarifler, en yeni once; {@code name} (bos ya da "0" degilse) ilike. */
-	List<Row> active(String name) {
+	/** Aktif tarifler, en yeni once; {@code name} (bos ya da "0" degilse) adinda gecenler. */
+	@Transactional(readOnly = true)
+	List<FinishedProductRecipe> active(String name) {
 		return name != null && !name.isEmpty() && !"0".equals(name)
-			? db.select("select * from finished_product_recipes where name::text ilike ? and is_active = true order by created_at desc",
-				"%" + name + "%")
-			: db.select("select * from finished_product_recipes where is_active = true order by created_at desc");
+			? recipes.search(name)
+			: recipes.findByActiveTrueOrderByCreatedAtDesc();
 	}
 
 	/** Ayni addaki butun versiyonlar, yeniden eskiye. */
-	List<Row> versions(Row recipe) {
-		return db.select("select * from finished_product_recipes where name = ? order by version desc", recipe.get("name"));
+	@Transactional(readOnly = true)
+	List<FinishedProductRecipe> versions(long id) {
+		return recipes.findByNameOrderByVersionDesc(find(id).getName());
 	}
 
-	Row byId(long id) {
-		return db.find("finished_product_recipes", id).orElseThrow();
+	@Transactional(readOnly = true)
+	FinishedProductRecipe get(long id) {
+		return find(id);
 	}
 
-	/** Versiyon 1, aktif. @return yeni tarif id */
-	long create(ValidatedInput v) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("name", v.get("name"));
-		values.put("description", v.get("description"));
-		values.put("version", 1);
-		values.put("is_active", true);
-		long id = db.insert("finished_product_recipes", values);
-		syncContents(id, items(v.get("contents")));
-		syncAttributeRules(id, items(v.get("attribute_rules")));
-		return id;
+	/** Versiyon 1, aktif. */
+	@Transactional
+	long create(CreateRecipeRequest request) {
+		validateLines(request.contents(), request.attributeRules(), true);
+		FinishedProductRecipe recipe = recipes.save(new FinishedProductRecipe(request.name(), request.description(), 1));
+		saveContents(recipe.getId(), request.contents());
+		saveRules(recipe.getId(), request.attributeRules());
+		return recipe.getId();
 	}
 
-	/** Yeni versiyon. Yalnizca aktif versiyon guncellenir; verilmeyen icerik ve kurallar eski versiyondan kopyalanir. @return yeni versiyonun id'si */
-	long update(Row recipe, ValidatedInput v) {
-		if (!Boolean.TRUE.equals(Casts.bool(recipe.get("is_active")))) {
-			Row latest = db.first("select * from finished_product_recipes where name = ? and is_active = true limit 1",
-				recipe.get("name")).orElse(null);
-			throw new BusinessRuleException("Sadece aktif tarif versiyonu güncellenebilir. '" + recipe.string("name") + "' v"
-				+ recipe.get("version") + " pasif"
-				+ (latest != null ? "; güncel versiyon v" + latest.get("version") + " (id " + latest.id() + ")." : "."));
+	/**
+	 * Yeni versiyon. Yalnizca aktif versiyon guncellenir; verilmeyen icerik ve kurallar eski versiyondan kopyalanir.
+	 * @return yeni versiyonun id'si
+	 */
+	@Transactional
+	long update(long id, UpdateRecipeRequest request) {
+		FinishedProductRecipe recipe = find(id);
+		validateLines(request.contents(), request.attributeRules(), request.contents() != null);
+		if (!recipe.isActive()) {
+			FinishedProductRecipe latest = recipes.findFirstByNameAndActiveTrue(recipe.getName()).orElse(null);
+			throw new BusinessRuleException("Sadece aktif tarif versiyonu güncellenebilir. '" + recipe.getName() + "' v"
+				+ recipe.getVersion() + " pasif"
+				+ (latest != null ? "; güncel versiyon v" + latest.getVersion() + " (id " + latest.getId() + ")." : "."));
 		}
-		db.update("finished_product_recipes", recipe.id(), Map.of("is_active", false));
-		Object name = v.has("name") && v.get("name") != null ? v.get("name") : recipe.get("name");
-		long next = db.count("select coalesce(max(version), 0) from finished_product_recipes where name = ?", name) + 1;
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("name", name);
-		values.put("description", v.all().containsKey("description") ? v.get("description") : recipe.get("description"));
-		values.put("version", Math.max(next, Php.intval(recipe.get("version")) + 1));
-		values.put("is_active", true);
-		long id = db.insert("finished_product_recipes", values);
-
-		List<Map<String, Object>> contents = v.get("contents") != null ? items(v.get("contents"))
-			: db.select("select * from finished_product_recipe_contents where finished_product_recipe_id = ?", recipe.id()).stream()
-				.map(c -> row("production_product_type_id", c.get("production_product_type_id"), "ratio", Casts.decimal(c.get("ratio"), 4)))
-				.toList();
-		List<Map<String, Object>> rules = v.get("attribute_rules") != null ? items(v.get("attribute_rules"))
-			: db.select("select * from finished_product_recipe_attribute_rules where finished_product_recipe_id = ?", recipe.id()).stream()
-				.map(r -> {
-					Map<String, Object> m = row("attribute_definition_id", r.get("attribute_definition_id"), "value", Casts.decimal(r.get("value"), 4));
-					m.put("min_deviation", Casts.decimal(r.get("min_deviation"), 4));
-					m.put("max_deviation", Casts.decimal(r.get("max_deviation"), 4));
-					return m;
-				})
-				.toList();
-		syncContents(id, contents);
-		syncAttributeRules(id, rules);
-		db.execute("update finished_products set finished_product_recipe_id = ?, updated_at = ? where finished_product_recipe_id = ?",
-			id, Timestamps.now(), recipe.id());
-		return id;
+		recipe.deactivate();
+		String name = request.name() != null ? request.name() : recipe.getName();
+		int next = recipes.maxVersion(name) + 1;
+		String description = request.description() != null ? request.description().value() : recipe.getDescription();
+		FinishedProductRecipe version = recipes.save(new FinishedProductRecipe(name, description,
+			Math.max(next, recipe.getVersion() + 1)));
+		if (request.contents() != null) {
+			saveContents(version.getId(), request.contents());
+		}
+		else {
+			contents.findByRecipeIdOrderByIdAsc(id).forEach(content -> contents.save(new RecipeContent(version.getId(),
+				content.getProductionProductTypeId(), content.getRatio())));
+		}
+		if (request.attributeRules() != null) {
+			saveRules(version.getId(), request.attributeRules());
+		}
+		else {
+			rules.findByRecipeIdOrderByIdAsc(id).forEach(rule -> rules.save(new RecipeAttributeRule(version.getId(),
+				rule.getAttributeDefinitionId(), rule.getValue(), rule.getMinDeviation(), rule.getMaxDeviation())));
+		}
+		products.moveToRecipe(id, version, Timestamps.now());
+		return version.getId();
 	}
 
-	void delete(Row recipe) {
-		if (db.count("select count(*) from finished_product_runs where finished_product_recipe_id = ?", recipe.id()) > 0) {
-			throw new BusinessRuleException("'" + recipe.string("name") + "' v" + recipe.get("version")
+	@Transactional
+	void delete(long id) {
+		FinishedProductRecipe recipe = find(id);
+		if (runs.existsByRecipeId(id)) {
+			throw new BusinessRuleException("'" + recipe.getName() + "' v" + recipe.getVersion()
 				+ " ile yapılmış dolum koşuları var; silinemez.");
 		}
-		if (db.count("select count(*) from finished_products where finished_product_recipe_id = ?", recipe.id()) > 0) {
+		if (products.existsByRecipeId(id)) {
 			throw new BusinessRuleException("Bu tarif bir son ürüne bağlı olduğu için silinemez.");
 		}
-		db.delete("finished_product_recipes", recipe.id());
+		recipes.delete(recipe);
 	}
 
-	// ---- yardimcilar ------------------------------------------------------
+	/** Tekrar eden ve bulunmayan tip ve attribute id'leri; icerik verildiyse oran toplami 1 olmali. */
+	private void validateLines(List<? extends RecipeLines.Content> lines, List<? extends RecipeLines.Rule> ruleLines,
+		boolean checkTotal) {
+		ValidationErrors errors = new ValidationErrors();
+		if (lines != null) {
+			List<Long> typeIds = lines.stream().map(RecipeLines.Content::productionProductTypeId).toList();
+			errors.distinct("contents", "production_product_type_id", typeIds);
+			errors.exists("contents", "production_product_type_id", typeIds, existingTypes(typeIds));
+		}
+		if (ruleLines != null) {
+			List<Long> definitionIds = ruleLines.stream().map(RecipeLines.Rule::attributeDefinitionId).toList();
+			errors.distinct("attribute_rules", "attribute_definition_id", definitionIds);
+			errors.exists("attribute_rules", "attribute_definition_id", definitionIds, existingDefinitions(definitionIds));
+		}
+		if (checkTotal) {
+			BigDecimal total = lines.stream().map(RecipeLines.Content::ratio).reduce(BigDecimal.ZERO, BigDecimal::add)
+				.setScale(Quantities.SCALE, RoundingMode.HALF_UP);
+			if (total.compareTo(BigDecimal.ONE) != 0) {
+				errors.add("contents", "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: " + Quantities.plain(total));
+			}
+		}
+		errors.throwIfAny();
+	}
 
-	private void syncContents(long recipeId, List<Map<String, Object>> contents) {
-		for (Map<String, Object> c : contents) {
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("production_product_type_id", c.get("production_product_type_id"));
-			values.put("ratio", c.get("ratio"));
-			values.put("finished_product_recipe_id", recipeId);
-			db.insert("finished_product_recipe_contents", values);
+	private List<Long> existingTypes(List<Long> ids) {
+		List<Long> present = ValidationErrors.present(ids);
+		if (present.isEmpty()) {
+			return List.of();
+		}
+		return jdbc.sql("select id from production_product_types where id in (:ids)").param("ids", present)
+			.query(Long.class).list();
+	}
+
+	private List<Long> existingDefinitions(List<Long> ids) {
+		List<Long> present = ValidationErrors.present(ids);
+		if (present.isEmpty()) {
+			return List.of();
+		}
+		return jdbc.sql("select id from attribute_definitions where id in (:ids)").param("ids", present)
+			.query(Long.class).list();
+	}
+
+	private void saveContents(long recipeId, List<? extends RecipeLines.Content> lines) {
+		lines.forEach(line -> contents.save(new RecipeContent(recipeId, line.productionProductTypeId(), line.ratio())));
+	}
+
+	private void saveRules(long recipeId, List<? extends RecipeLines.Rule> lines) {
+		if (lines != null) {
+			lines.forEach(line -> rules.save(new RecipeAttributeRule(recipeId, line.attributeDefinitionId(), line.value(),
+				line.minDeviation(), line.maxDeviation())));
 		}
 	}
 
-	private void syncAttributeRules(long recipeId, List<Map<String, Object>> rules) {
-		for (Map<String, Object> r : rules) {
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("attribute_definition_id", r.get("attribute_definition_id"));
-			values.put("value", r.get("value"));
-			values.put("min_deviation", r.get("min_deviation"));
-			values.put("max_deviation", r.get("max_deviation"));
-			values.put("finished_product_recipe_id", recipeId);
-			db.insert("finished_product_recipe_attribute_rules", values);
-		}
-	}
-
-	private static Map<String, Object> row(String k1, Object v1, String k2, Object v2) {
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put(k1, v1);
-		m.put(k2, v2);
-		return m;
-	}
-
-	@SuppressWarnings("unchecked")
-	static List<Map<String, Object>> items(Object value) {
-		if (value instanceof Map<?, ?> m) {
-			return new ArrayList<>((Collection<Map<String, Object>>) m.values());
-		}
-		return value instanceof List<?> l ? (List<Map<String, Object>>) l : List.of();
+	private FinishedProductRecipe find(long id) {
+		return recipes.findById(id).orElseThrow(() -> new ModelNotFoundException("FinishedProductRecipe", id));
 	}
 
 }

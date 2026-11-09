@@ -13,7 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'den yakalanan 86 bitmis urun deposu durumu (src/test/resources/laravel/finished-product-storage.json,
+ * Laravel'den yakalanan bitmis urun deposu durumu (src/test/resources/laravel/finished-product-storage.json,
  * reference/capture_finished_product_storage.py): depo ve raf kurallari, tek ve cok rafli yerlestirme (acikta
  * sise, hacim, kilit, kapasite, pasif depo), transfer, cikis, hareket gecmisi. Laravel'in 500 verdigi iki
  * silme durumu Java'da 422 (DEVIATIONS 15).
@@ -45,7 +45,7 @@ class FinishedProductStorageParityIT {
 			.deviation("depo sil hareketli", 422, """
 				{"message":"Bu depo silinemez; kullanıldığı yerler: 14 stok hareketi. Pasife alabilirsiniz.","errors":{}}""")
 			.run();
-		assertThat(result.steps()).isEqualTo(86);
+		assertThat(result.steps()).isEqualTo(93);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

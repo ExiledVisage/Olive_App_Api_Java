@@ -1,13 +1,13 @@
 package com.olivamore.api.sales.customer;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.olivamore.api.finishedproduct.RecipeResources;
+import com.olivamore.api.finishedproduct.RecipeResponse;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +15,14 @@ import java.util.Map;
 @Component
 class CustomerRecipeProfiles {
 
-	record Profile(List<Map<String, Object>> preferred, List<History> history) {
+	record Profile(List<PreferredRecipe> preferred, List<History> history) {
 	}
 
-	record History(Map<String, Object> recipe, long orderCount, long totalQuantity, String lastOrderDate) {
+	/** Tarif alanlari ve elle yazilan not ayni seviyede. */
+	record PreferredRecipe(@JsonUnwrapped RecipeResponse recipe, String note) {
+	}
+
+	record History(RecipeResponse recipe, long orderCount, long totalQuantity, String lastOrderDate) {
 	}
 
 	private record PreferredRow(Long id, String note) {
@@ -40,7 +44,7 @@ class CustomerRecipeProfiles {
 		return new Profile(preferred(customerId), history(customerId));
 	}
 
-	private List<Map<String, Object>> preferred(long customerId) {
+	private List<PreferredRecipe> preferred(long customerId) {
 		List<PreferredRow> rows = jdbc.sql("""
 			select r.id, p.note
 			from customer_preferred_recipes p
@@ -48,14 +52,8 @@ class CustomerRecipeProfiles {
 			where p.customer_id = ?
 			order by r.name, r.version desc
 			""").param(customerId).query(PreferredRow.class).list();
-		Map<Long, Map<String, Object>> byId = recipes.byIds(rows.stream().map(PreferredRow::id).toList());
-		List<Map<String, Object>> out = new ArrayList<>();
-		for (PreferredRow row : rows) {
-			Map<String, Object> recipe = new LinkedHashMap<>(byId.get(row.id()));
-			recipe.put("note", row.note());
-			out.add(recipe);
-		}
-		return out;
+		Map<Long, RecipeResponse> byId = recipes.byIds(rows.stream().map(PreferredRow::id).toList());
+		return rows.stream().map(row -> new PreferredRecipe(byId.get(row.id()), row.note())).toList();
 	}
 
 	private List<History> history(long customerId) {
@@ -69,7 +67,7 @@ class CustomerRecipeProfiles {
 			group by p.finished_product_recipe_id
 			order by total_quantity desc, min(i.id)
 			""").param(customerId).query(HistoryRow.class).list();
-		Map<Long, Map<String, Object>> byId = recipes.byIds(rows.stream().map(HistoryRow::recipeId).toList());
+		Map<Long, RecipeResponse> byId = recipes.byIds(rows.stream().map(HistoryRow::recipeId).toList());
 		return rows.stream()
 			.map(row -> new History(byId.get(row.recipeId()), row.orderCount(), row.totalQuantity(),
 				row.lastOrderDate() == null ? null : row.lastOrderDate().toString()))

@@ -1,5 +1,19 @@
 package com.olivamore.api.finishedproduct.run;
 
+import com.olivamore.api.finishedproduct.product.FinishedProduct;
+import com.olivamore.api.finishedproduct.product.FinishedProductComponent;
+import com.olivamore.api.finishedproduct.product.FinishedProductComponentRepository;
+import com.olivamore.api.finishedproduct.product.FinishedProductRepository;
+import com.olivamore.api.finishedproduct.recipe.FinishedProductRecipe;
+import com.olivamore.api.finishedproduct.recipe.RecipeAttributeRule;
+import com.olivamore.api.finishedproduct.recipe.RecipeAttributeRuleRepository;
+import com.olivamore.api.finishedproduct.recipe.RecipeContent;
+import com.olivamore.api.finishedproduct.recipe.RecipeContentRepository;
+import com.olivamore.api.finishedproduct.run.RunQueries.Material;
+import com.olivamore.api.finishedproduct.run.RunQueries.MaterialAttribute;
+import com.olivamore.api.finishedproduct.run.RunQueries.ProductType;
+import com.olivamore.api.finishedproduct.run.RunQueries.Unit;
+import com.olivamore.api.finishedproduct.support.Quantities;
 import com.olivamore.api.inventory.StockOperations;
 import com.olivamore.api.packaging.PackagingAllocations;
 import com.olivamore.api.packaging.PackagingAllocations.Need;
@@ -7,206 +21,212 @@ import com.olivamore.api.packaging.PackagingAllocations.Selection;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
- * Laravel {@code FinishedProductRunService}: dolum kosusunun planlanmasi (tank ve tarif kontrolleri, materyal
- * payi, tahmini attribute degerleri, ambalaj tahsisi), durum gecisleri ve tamamlama (ambalaj ve yag tuketimi).
- * Hesaplar PHP float (double); veritabanina 14 basamak.
+ * Dolum kosusunun planlanmasi (tank ve tarif kontrolleri, materyal payi, tahmini attribute degerleri, ambalaj
+ * tahsisi), durum gecisleri ve tamamlama (ambalaj ve yag tuketimi).
  */
 @Service
 class FinishedProductRunService {
 
-	private static final double RATIO_TOLERANCE = 0.02;
+	private static final BigDecimal RATIO_TOLERANCE = new BigDecimal("0.02");
 	/** Dolumda cekilen yagin sise icerigini en fazla bu oranda gecmesine izin verilir (hat ici fire). */
-	private static final double FILL_LOSS_TOLERANCE = 0.02;
-	private static final double EPSILON = 0.00005;
+	private static final BigDecimal FILL_LOSS_TOLERANCE = new BigDecimal("0.02");
+	private static final BigDecimal EPSILON = new BigDecimal("0.00005");
+	private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
+	private static final MathContext PRECISION = MathContext.DECIMAL128;
 
-	private final Db db;
+	private final FinishedProductRunRepository runs;
+	private final RunMaterialRepository runMaterials;
+	private final RunAttributeValueRepository attributeValues;
+	private final FinishedProductRepository products;
+	private final FinishedProductComponentRepository components;
+	private final RecipeContentRepository contents;
+	private final RecipeAttributeRuleRepository rules;
+	private final RunQueries queries;
 	private final PackagingAllocations packaging;
 	private final StockOperations stock;
 
-	FinishedProductRunService(Db db, PackagingAllocations packaging, StockOperations stock) {
-		this.db = db;
+	FinishedProductRunService(FinishedProductRunRepository runs, RunMaterialRepository runMaterials,
+		RunAttributeValueRepository attributeValues, FinishedProductRepository products,
+		FinishedProductComponentRepository components, RecipeContentRepository contents,
+			RecipeAttributeRuleRepository rules,
+		RunQueries queries, PackagingAllocations packaging, StockOperations stock) {
+		this.runs = runs;
+		this.runMaterials = runMaterials;
+		this.attributeValues = attributeValues;
+		this.products = products;
+		this.components = components;
+		this.contents = contents;
+		this.rules = rules;
+		this.queries = queries;
 		this.packaging = packaging;
 		this.stock = stock;
 	}
 
 	// ---- planlama --------------------------------------------------------------
 
-	/**
-	 * {@code create}. @return yeni kosu id
-	 * @param sourceQuantity {@code source.quantity} (verilmezse sise adedi x hacim, fire payiyla)
-	 */
-	long create(long productId, Object quantity, Object note, long storageUnitId, Object sourceQuantity, Object lossPercent) {
-		Row product = db.find("finished_products", productId).orElseThrow(() -> new ModelNotFoundException("FinishedProduct", productId));
-		Row recipe = db.find("finished_product_recipes", product.longValue("finished_product_recipe_id")).orElse(null);
-		List<Row> contents = recipe == null ? List.of()
-			: db.whereIn("finished_product_recipe_contents", "finished_product_recipe_id", List.of(recipe.id()), null);
-		if (recipe == null || contents.isEmpty()) {
-			throw new BusinessRuleException("'" + product.string("name") + "' ürününün geçerli bir formülü yok; formülsüz dolum yapılamaz.");
+	/** Tank ve tarif kontrolleri, materyal paylari, tahmini attribute degerleri, FIFO ambalaj tahsisi. */
+	@Transactional
+	long create(CreateRunRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		FinishedProduct product = products.findWithRecipeById(request.finishedProductId()).orElse(null);
+		if (product == null) {
+			errors.add("finished_product_id", LaravelMessages.EXISTS);
 		}
-		Row unit = db.find("storage_units", storageUnitId).orElseThrow(() -> new ModelNotFoundException("StorageUnit", storageUnitId));
-		Tank tank = loadTank(unit.id());
+		if (!queries.unitExists(request.source().storageUnitId())) {
+			errors.add("source.storage_unit_id", LaravelMessages.EXISTS);
+		}
+		errors.throwIfAny();
+
+		FinishedProductRecipe recipe = product.getRecipe();
+		List<RecipeContent> recipeContents = contents.findByRecipeIdOrderByIdAsc(recipe.getId());
+		if (recipeContents.isEmpty()) {
+			throw new BusinessRuleException("'" + product.getName()
+				+ "' ürününün geçerli bir formülü yok; formülsüz dolum yapılamaz.");
+		}
+		long unitId = request.source().storageUnitId();
+		Unit unit = queries.unit(unitId).orElseThrow(() -> new ModelNotFoundException("StorageUnit", unitId));
+		Tank tank = loadTank(unitId);
 		if (tank.materials().isEmpty()) {
-			throw new BusinessRuleException("'" + unit.string("code") + "' tankı boş.");
+			throw new BusinessRuleException("'" + unit.code() + "' tankı boş.");
 		}
-		long bottles = Php.intval(quantity);
-		double required = requiredSourceQuantity(product, bottles, 0.0, tank);
-		double requested = sourceQuantity != null ? Php.floatval(sourceQuantity)
-			: requiredSourceQuantity(product, bottles, lossPercent == null ? 0 : Php.floatval(lossPercent), tank);
+		int bottles = request.quantity();
+		BigDecimal required = requiredSourceQuantity(product, bottles, BigDecimal.ZERO, tank);
+		BigDecimal requested = request.source().quantity() != null ? request.source().quantity()
+			: requiredSourceQuantity(product, bottles,
+				request.source().lossPercent() == null ? BigDecimal.ZERO : request.source().lossPercent(), tank);
 
 		assertSufficientQuantity(tank, requested);
-		assertTankMatchesRecipe(tank, recipe, contents);
+		assertTankMatchesRecipe(tank, recipe, recipeContents);
 		assertSourceQuantityMatchesBottles(product, bottles, requested, required, tank);
 
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("finished_product_id", product.id());
-		values.put("finished_product_recipe_id", recipe.id());
-		values.put("source_storage_unit_id", unit.id());
-		values.put("quantity", quantity);
-		values.put("status", "planned");
-		values.put("note", note);
-		long runId = db.insert("finished_product_runs", values);
-
-		createRunMaterials(runId, tank, requested);
-		createEstimatedAttributeValues(runId, tank, recipe);
-		packaging.allocateForRun(runId, needs(product.id(), bottles));
-		return runId;
+		FinishedProductRun run = runs.save(new FinishedProductRun(product, recipe, unitId, bottles, request.note()));
+		createRunMaterials(run.getId(), tank, requested);
+		createEstimatedAttributeValues(run.getId(), tank, recipe);
+		packaging.allocateForRun(run.getId(), needs(product.getId(), bottles));
+		return run.getId();
 	}
 
-	/** Tanktaki aktif materyaller (fiziksel sira) ve Laravel'in yukledigi iliskileri. */
-	private record Tank(List<Row> materials, Map<Long, Row> types, Map<Long, Row> products, Map<Long, List<Row>> attributeValues,
-		Map<Long, Row> definitions) {
+	/** Tanktaki aktif materyaller ve urun tipleri. */
+	private record Tank(List<Material> materials, Map<Long, ProductType> types) {
 
-		double total() {
-			double total = 0;
-			for (Row m : materials) {
-				total += Php.floatval(Casts.decimal(m.get("quantity"), 4));
-			}
-			return total;
+		BigDecimal total() {
+			return materials.stream().map(Material::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
 		}
 
-		Row type(Row material) {
-			Long id = material.longValue("production_product_type_id");
+		ProductType type(Material material) {
+			Long id = material.productionProductTypeId();
 			return id == null ? null : types.get(id);
 		}
 
 	}
 
 	private Tank loadTank(long unitId) {
-		List<Row> materials = db.select("select * from materials where current_location_type = ? and current_location_id = ? and status = ?",
-			"storage_unit", unitId, "active");
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id",
-			Relations.column(materials, "production_product_type_id"), null));
-		Map<Long, Row> products = Relations.byId(db.whereIn("production_products", "id",
-			Relations.column(List.copyOf(types.values()), "production_product_id"), null));
-		List<Row> values = db.whereIn("material_attribute_values", "material_id", Relations.ids(materials), null);
-		Map<Long, Row> definitions = Relations.byId(db.whereIn("production_product_attribute_definitions", "id",
-			Relations.column(values, "production_product_attribute_definition_id"), null));
-		return new Tank(materials, types, products, Relations.groupBy(values, "material_id"), definitions);
+		List<Material> materials = queries.activeInTank(unitId);
+		return new Tank(materials,
+			queries.productTypes(materials.stream().map(Material::productionProductTypeId).toList()));
 	}
 
-	private static void assertSufficientQuantity(Tank tank, double requested) {
-		double total = tank.total();
-		if (requested > total) {
-			throw new BusinessRuleException("Tankta yeterli miktar yok. Mevcut: " + Php.floatString(total) + ", İstenen: "
-				+ Php.floatString(requested) + ".");
+	private static void assertSufficientQuantity(Tank tank, BigDecimal requested) {
+		BigDecimal total = tank.total();
+		if (requested.compareTo(total) > 0) {
+			throw new BusinessRuleException("Tankta yeterli miktar yok. Mevcut: " + Quantities.plain(total) + ", İstenen: "
+				+ Quantities.plain(requested) + ".");
 		}
 	}
 
-	/** Tankta tarifte olmayan urun tolerans ustunde olmamali; tarifteki her icerik beklenen oranin +-%2'sinde olmali. */
-	private void assertTankMatchesRecipe(Tank tank, Row recipe, List<Row> contents) {
-		double total = tank.total();
-		Set<Long> recipeTypes = new LinkedHashSet<>();
-		for (Row c : contents) {
-			recipeTypes.add(c.longValue("production_product_type_id"));
-		}
-		List<Row> foreign = tank.materials().stream()
-			.filter(m -> !recipeTypes.contains(m.longValue("production_product_type_id"))).toList();
-		if (!foreign.isEmpty() && total > 0) {
-			double foreignQuantity = 0;
-			for (Row m : foreign) {
-				foreignQuantity += Php.floatval(Casts.decimal(m.get("quantity"), 4));
-			}
-			double ratio = foreignQuantity / total;
-			if (ratio > RATIO_TOLERANCE + EPSILON) {
+	/** Tarifte olmayan urun tolerans ustunde olmamali; her icerik beklenen oranin +-%2'sinde olmali. */
+	private void assertTankMatchesRecipe(Tank tank, FinishedProductRecipe recipe,
+		List<RecipeContent> recipeContents) {
+		BigDecimal total = tank.total();
+		Set<Long> recipeTypes = recipeContents.stream().map(RecipeContent::getProductionProductTypeId)
+			.collect(Collectors.toSet());
+		List<Material> foreign = tank.materials().stream()
+			.filter(m -> !recipeTypes.contains(m.productionProductTypeId())).toList();
+		BigDecimal limit = RATIO_TOLERANCE.add(EPSILON);
+		if (!foreign.isEmpty() && total.signum() > 0) {
+			BigDecimal foreignQuantity = foreign.stream().map(Material::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
+			BigDecimal ratio = foreignQuantity.divide(total, PRECISION);
+			if (ratio.compareTo(limit) > 0) {
 				Set<String> names = new LinkedHashSet<>();
-				for (Row m : foreign) {
-					Row type = tank.type(m);
-					names.add(type != null ? type.string("name") : "ID:" + m.get("production_product_type_id"));
+				for (Material m : foreign) {
+					ProductType type = tank.type(m);
+					names.add(type != null ? type.name() : "ID:" + m.productionProductTypeId());
 				}
 				throw new BusinessRuleException("Tankta tarifte olmayan ürün var: " + String.join(", ", names) + " (%"
-					+ Php.floatString(Php.round(ratio * 100, 1)) + "). '" + recipe.string("name") + "' tarifi bu tanktan doldurulamaz.");
+					+ percent(ratio) + "). '" + recipe.getName() + "' tarifi bu tanktan doldurulamaz.");
 			}
 		}
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id",
-			Relations.column(contents, "production_product_type_id"), null));
-		for (Row content : contents) {
-			long typeId = content.longValue("production_product_type_id");
-			double expected = Php.floatval(Casts.decimal(content.get("ratio"), 4));
-			double actual = 0;
-			for (Row m : tank.materials()) {
-				if (Objects.equals(m.longValue("production_product_type_id"), typeId)) {
-					actual += Php.floatval(Casts.decimal(m.get("quantity"), 4));
-				}
-			}
-			double actualRatio = total > 0 ? actual / total : 0;
-			if (Math.abs(actualRatio - expected) > RATIO_TOLERANCE + EPSILON) {
-				Row type = types.get(typeId);
-				String name = type != null ? type.string("name") : "ID:" + typeId;
+		Map<Long, ProductType> types = queries.productTypes(
+			recipeContents.stream().map(RecipeContent::getProductionProductTypeId).toList());
+		for (RecipeContent content : recipeContents) {
+			long typeId = content.getProductionProductTypeId();
+			BigDecimal expected = content.getRatio();
+			BigDecimal actual = tank.materials().stream()
+				.filter(m -> Objects.equals(m.productionProductTypeId(), typeId))
+				.map(Material::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
+			BigDecimal actualRatio = total.signum() > 0 ? actual.divide(total, PRECISION) : BigDecimal.ZERO;
+			if (actualRatio.subtract(expected).abs().compareTo(limit) > 0) {
+				ProductType type = types.get(typeId);
+				String name = type != null ? type.name() : "ID:" + typeId;
 				throw new BusinessRuleException("Tank blend oranı tarife uymuyor. '" + name + "' için beklenen oran: "
-					+ Php.floatString(Php.round(expected * 100, 1)) + "%, tankta bulunan: "
-					+ Php.floatString(Php.round(actualRatio * 100, 1)) + "%.");
+					+ percent(expected) + "%, tankta bulunan: " + percent(actualRatio) + "%.");
 			}
 		}
+	}
+
+	/** Oranin yuzde karsiligi, tek basamak, gereksiz sifirsiz. */
+	private static String percent(BigDecimal ratio) {
+		return Quantities.plain(ratio.multiply(HUNDRED).setScale(1, RoundingMode.HALF_UP));
 	}
 
 	/** Tanktan cekilecek miktar, tankin (ilk materyalin) biriminde: adet x hacim litre, fire payiyla, 4 basamak. */
-	private static double requiredSourceQuantity(Row product, long bottles, double lossPercent, Tank tank) {
-		double litres = bottles * Php.floatval(Casts.decimal(product.get("volume_litre"), 4));
-		litres *= 1 + (lossPercent / 100);
-		Row first = tank.materials().getFirst();
-		Row type = tank.type(first);
-		return Php.round(convert(litres, "LITRE", first.string("unit"), type,
-			type == null || type.longValue("production_product_id") == null ? null : tank.products().get(type.longValue("production_product_id"))), 4);
+	private static BigDecimal requiredSourceQuantity(FinishedProduct product, int bottles, BigDecimal lossPercent,
+		Tank tank) {
+		BigDecimal litres = BigDecimal.valueOf(bottles).multiply(product.getVolumeLitre())
+			.multiply(BigDecimal.ONE.add(lossPercent.divide(HUNDRED, PRECISION)));
+		Material first = tank.materials().getFirst();
+		return convert(litres, "LITRE", first.unit(), tank.type(first)).setScale(Quantities.SCALE, RoundingMode.HALF_UP);
 	}
 
-	/** {@code UnitConverter::convert}: ayni birimse oldugu gibi, yoksa yogunlukla (kg = litre x yogunluk). */
-	static double convert(double quantity, String from, String to, Row type, Row product) {
+	/** Ayni birimse oldugu gibi, yoksa yogunlukla (kg = litre x yogunluk). */
+	private static BigDecimal convert(BigDecimal quantity, String from, String to, ProductType type) {
 		if (Objects.equals(from, to)) {
 			return quantity;
 		}
-		Double density = type == null ? null : FinishedProductRunResource.effectiveDensity(type, product);
+		Double density = type == null ? null : type.effectiveDensity();
 		if (density == null) {
-			String name = type != null && type.get("name") != null ? type.string("name") : "Bu ürün tipi";
+			String name = type != null && type.name() != null ? type.name() : "Bu ürün tipi";
 			throw new BusinessRuleException(name + " için yoğunluk tanımlı değil; " + from + " ile " + to
 				+ " arasında çevrim yapılamaz. Ürün tipine yoğunluk (kg/L) girilmeli.");
 		}
+		BigDecimal factor = BigDecimal.valueOf(density);
 		if ("LITRE".equals(from) && "KG".equals(to)) {
-			return quantity * density;
+			return quantity.multiply(factor);
 		}
 		if ("KG".equals(from) && "LITRE".equals(to)) {
-			return quantity / density;
+			return quantity.divide(factor, PRECISION);
 		}
 		throw new BusinessRuleException("Desteklenmeyen birim çevrimi: " + from + " -> " + to + ".");
 	}
 
-	/** {@code UnitConverter::label} */
 	private static String label(String unit) {
 		return switch (unit) {
 			case "LITRE" -> "L";
@@ -217,35 +237,34 @@ class FinishedProductRunService {
 	}
 
 	/** Sise adedi x hacim, tanktan cekilecek miktarla uyusmali (eksik olamaz, fazlasi %2 fireyi asamaz). */
-	private static void assertSourceQuantityMatchesBottles(Row product, long bottles, double source, double required, Tank tank) {
-		double volume = Php.floatval(Casts.decimal(product.get("volume_litre"), 4));
-		String unit = label(tank.materials().isEmpty() ? "LITRE" : Objects.requireNonNullElse(tank.materials().getFirst().string("unit"), "LITRE"));
-		String head = bottles + " adet × " + Php.floatString(volume) + " L = " + Php.floatString(required) + " " + unit + " yağ ";
-		if (source + EPSILON < required) {
-			throw new BusinessRuleException(head + "gerekiyor, tanktan çekilecek miktar " + Php.floatString(source) + " " + unit + ".");
+	private static void assertSourceQuantityMatchesBottles(FinishedProduct product, int bottles, BigDecimal source,
+		BigDecimal required, Tank tank) {
+		String unit = label(Objects.requireNonNullElse(tank.materials().getFirst().unit(), "LITRE"));
+		String head = bottles + " adet × " + Quantities.plain(product.getVolumeLitre()) + " L = "
+			+ Quantities.plain(required) + " " + unit + " yağ ";
+		if (source.add(EPSILON).compareTo(required) < 0) {
+			throw new BusinessRuleException(head + "gerekiyor, tanktan çekilecek miktar " + Quantities.plain(source) + " "
+				+ unit + ".");
 		}
-		double max = required * (1 + FILL_LOSS_TOLERANCE);
-		if (source > max + EPSILON) {
-			throw new BusinessRuleException(head + "yeterli, tanktan çekilecek miktar " + Php.floatString(source) + " " + unit
-				+ ". Fark, %" + Php.floatString(FILL_LOSS_TOLERANCE * 100) + " fire toleransını aşıyor (en fazla "
-				+ Php.floatString(Php.round(max, 4)) + " " + unit + ").");
+		BigDecimal max = required.multiply(BigDecimal.ONE.add(FILL_LOSS_TOLERANCE));
+		if (source.compareTo(max.add(EPSILON)) > 0) {
+			throw new BusinessRuleException(head + "yeterli, tanktan çekilecek miktar " + Quantities.plain(source) + " "
+				+ unit + ". Fark, %" + Quantities.plain(FILL_LOSS_TOLERANCE.multiply(HUNDRED))
+				+ " fire toleransını aşıyor (en fazla "
+				+ Quantities.plain(max.setScale(Quantities.SCALE, RoundingMode.HALF_UP)) + " " + unit + ").");
 		}
 	}
 
 	/** Her materyalden tanktaki payi oraninda (4 basamak); sifir pay yazilmaz. */
-	private void createRunMaterials(long runId, Tank tank, double requested) {
-		double tankTotal = tank.total();
-		for (Row material : tank.materials()) {
-			double proportion = tankTotal > 0 ? Php.floatval(Casts.decimal(material.get("quantity"), 4)) / tankTotal : 0;
-			double used = Php.round(proportion * requested, 4);
-			if (used <= 0) {
-				continue;
+	private void createRunMaterials(long runId, Tank tank, BigDecimal requested) {
+		BigDecimal tankTotal = tank.total();
+		for (Material material : tank.materials()) {
+			BigDecimal proportion = tankTotal.signum() > 0 ? material.quantity().divide(tankTotal, PRECISION)
+				: BigDecimal.ZERO;
+			BigDecimal used = proportion.multiply(requested).setScale(Quantities.SCALE, RoundingMode.HALF_UP);
+			if (used.signum() > 0) {
+				runMaterials.save(new RunMaterial(runId, material.id(), used));
 			}
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("source_material_id", material.id());
-			values.put("quantity_used", Php.floatString(used));
-			values.put("finished_product_run_id", runId);
-			db.insert("finished_product_run_materials", values);
 		}
 	}
 
@@ -253,83 +272,70 @@ class FinishedProductRunService {
 	 * Tarifin her attribute kurali icin tanktaki materyallerin agirlikli ortalamasi; kabul araliginin disindaysa
 	 * kosu planlanmaz. Degeri olmayan kural atlanir.
 	 */
-	private void createEstimatedAttributeValues(long runId, Tank tank, Row recipe) {
-		List<Row> rules = db.whereIn("finished_product_recipe_attribute_rules", "finished_product_recipe_id", List.of(recipe.id()), null);
-		Map<Long, Row> definitions = Relations.byId(db.whereIn("attribute_definitions", "id",
-			Relations.column(rules, "attribute_definition_id"), null));
-		for (Row rule : rules) {
-			long definitionId = rule.longValue("attribute_definition_id");
-			double weightedSum = 0;
-			double weightedTotal = 0;
-			for (Row material : tank.materials()) {
-				Row value = null;
-				for (Row v : tank.attributeValues().getOrDefault(material.id(), List.of())) {
-					Row definition = v.longValue("production_product_attribute_definition_id") == null ? null
-						: tank.definitions().get(v.longValue("production_product_attribute_definition_id"));
-					if (definition != null && Objects.equals(definition.longValue("attribute_definition_id"), definitionId)) {
-						value = v;
-						break;
-					}
-				}
-				if (value == null || value.get("value_decimal") == null) {
+	private void createEstimatedAttributeValues(long runId, Tank tank, FinishedProductRecipe recipe) {
+		List<RecipeAttributeRule> attributeRules = rules.findByRecipeIdOrderByIdAsc(recipe.getId());
+		Map<Long, String> labels = queries.attributeLabels(
+			attributeRules.stream().map(RecipeAttributeRule::getAttributeDefinitionId).toList());
+		List<MaterialAttribute> attributes = queries.materialAttributes(
+			tank.materials().stream().map(Material::id).toList());
+		for (RecipeAttributeRule rule : attributeRules) {
+			long definitionId = rule.getAttributeDefinitionId();
+			BigDecimal weightedSum = BigDecimal.ZERO;
+			BigDecimal weightedTotal = BigDecimal.ZERO;
+			for (Material material : tank.materials()) {
+				BigDecimal value = attributes.stream()
+					.filter(a -> Objects.equals(a.materialId(), material.id())
+						&& Objects.equals(a.attributeDefinitionId(), definitionId))
+					.map(MaterialAttribute::valueDecimal)
+					.findFirst().orElse(null);
+				if (value == null) {
 					continue;
 				}
-				double qty = Php.floatval(Casts.decimal(material.get("quantity"), 4));
-				weightedSum += Php.floatval(value.get("value_decimal")) * qty;
-				weightedTotal += qty;
+				weightedSum = weightedSum.add(value.multiply(material.quantity()));
+				weightedTotal = weightedTotal.add(material.quantity());
 			}
-			if (weightedTotal <= 0) {
+			if (weightedTotal.signum() <= 0) {
 				continue;
 			}
-			double estimated = Php.round(weightedSum / weightedTotal, 4);
-			Double min = rule.get("min_deviation") == null ? null
-				: Php.floatval(Casts.decimal(rule.get("value"), 4)) - Php.floatval(Casts.decimal(rule.get("min_deviation"), 4));
-			Double max = rule.get("max_deviation") == null ? null
-				: Php.floatval(Casts.decimal(rule.get("value"), 4)) + Php.floatval(Casts.decimal(rule.get("max_deviation"), 4));
-			Row definition = definitions.get(definitionId);
-			String label = definition == null || definition.get("label") == null ? "" : definition.string("label");
-			if (min != null && estimated < min) {
-				throw new BusinessRuleException("Tahmini " + label + " değeri (" + Php.floatString(estimated) + ") "
-					+ "kabul aralığının altında. Min: " + Php.floatString(min) + ".");
+			BigDecimal estimated = weightedSum.divide(weightedTotal, PRECISION)
+				.setScale(Quantities.SCALE, RoundingMode.HALF_UP);
+			BigDecimal min = rule.getMinDeviation() == null ? null : rule.getValue().subtract(rule.getMinDeviation());
+			BigDecimal max = rule.getMaxDeviation() == null ? null : rule.getValue().add(rule.getMaxDeviation());
+			String label = Objects.requireNonNullElse(labels.get(definitionId), "");
+			if (min != null && estimated.compareTo(min) < 0) {
+				throw new BusinessRuleException("Tahmini " + label + " değeri (" + Quantities.plain(estimated) + ") "
+					+ "kabul aralığının altında. Min: " + Quantities.plain(min) + ".");
 			}
-			if (max != null && estimated > max) {
-				throw new BusinessRuleException("Tahmini " + label + " değeri (" + Php.floatString(estimated) + ") "
-					+ "kabul aralığının üstünde. Max: " + Php.floatString(max) + ".");
+			if (max != null && estimated.compareTo(max) > 0) {
+				throw new BusinessRuleException("Tahmini " + label + " değeri (" + Quantities.plain(estimated) + ") "
+					+ "kabul aralığının üstünde. Max: " + Quantities.plain(max) + ".");
 			}
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("attribute_definition_id", definitionId);
-			values.put("estimated_value", Php.floatString(estimated));
-			values.put("actual_value", null);
-			values.put("finished_product_run_id", runId);
-			db.insert("finished_product_run_attribute_values", values);
+			attributeValues.save(new RunAttributeValue(runId, definitionId, estimated));
 		}
 	}
 
-	/** Urunun ambalaj bilesenleri (fiziksel sira): kalem basina kosu adedi x bilesen adedi. */
-	List<Need> needs(long productId, long bottles) {
-		List<Need> needs = new ArrayList<>();
-		for (Row c : db.whereIn("finished_product_components", "finished_product_id", List.of(productId), null)) {
-			needs.add(new Need(c.longValue("packaging_item_id"), bottles * Php.intval(c.get("quantity"))));
-		}
-		return needs;
+	/** Urunun ambalaj bilesenleri: kalem basina kosu adedi x bilesen adedi. */
+	private List<Need> needs(long productId, int bottles) {
+		return components.findByFinishedProductIdOrderByIdAsc(productId).stream()
+			.map((FinishedProductComponent c) -> new Need(c.getPackagingItemId(), (long) bottles * c.getQuantity()))
+			.toList();
 	}
 
 	// ---- durum -------------------------------------------------------------------
 
-	void updateStatus(Row run, String status, long userId) {
-		String current = run.string("status");
-		if (!FinishedProductRunResource.TRANSITIONS.getOrDefault(current, List.of()).contains(status)) {
-			throw new BusinessRuleException("'" + current + "' durumundan '" + status + "' durumuna geçiş yapılamaz.");
+	@Transactional
+	void updateStatus(long id, UpdateRunStatusRequest request, long userId) {
+		FinishedProductRun run = find(id);
+		RunStatus current = run.getStatus();
+		RunStatus status = request.status();
+		if (!current.transitions().contains(status)) {
+			throw new BusinessRuleException("'" + current.value() + "' durumundan '" + status.value()
+				+ "' durumuna geçiş yapılamaz.");
 		}
-		Map<String, Object> changes = new LinkedHashMap<>();
 		switch (status) {
-			case "in_progress" -> {
-				changes.put("status", "in_progress");
-				changes.put("started_at", Timestamps.now());
-				db.update("finished_product_runs", run.id(), changes);
-			}
-			case "completed" -> complete(run, userId);
-			default -> db.update("finished_product_runs", run.id(), Map.of("status", status));
+			case IN_PROGRESS -> run.start();
+			case COMPLETED -> complete(run, userId);
+			default -> run.cancel();
 		}
 	}
 
@@ -337,30 +343,25 @@ class FinishedProductRunService {
 	 * Once her sey dogrulanir (ambalaj, tanktaki materyaller), sonra stok degisir: urun stogu, ambalaj
 	 * lotlari, tanktan cikis.
 	 */
-	private void complete(Row run, long userId) {
-		long productId = run.longValue("finished_product_id");
-		long bottles = Php.intval(run.get("quantity"));
+	private void complete(FinishedProductRun run, long userId) {
+		long productId = run.getProduct().getId();
+		int bottles = run.getQuantity();
 		List<Need> needs = needs(productId, bottles);
-		List<Row> runMaterials = db.whereIn("finished_product_run_materials", "finished_product_run_id", List.of(run.id()), null);
-		Map<Long, Row> materials = Relations.byId(db.whereIn("materials", "id", Relations.column(runMaterials, "source_material_id"), null));
+		List<RunMaterial> materialRows = runMaterials.findByRunIdOrderByIdAsc(run.getId());
+		Map<Long, Material> materials =
+			queries.materials(materialRows.stream().map(RunMaterial::getSourceMaterialId).toList());
 
-		assertPackagingAvailable(run.id(), needs);
-		assertRunMaterialsStillAvailable(runMaterials, materials);
+		assertPackagingAvailable(run.getId(), needs);
+		assertRunMaterialsStillAvailable(materialRows, materials);
 
-		db.execute("update finished_products set total_stock = total_stock + ?, updated_at = ? where id = ?",
-			bottles, Timestamps.now(), productId);
-		packaging.consumeForRun(run.id(), needs, userId);
-		for (Row runMaterial : runMaterials) {
-			Row material = materials.get(runMaterial.longValue("source_material_id"));
-			long unitId = material.longValue("current_location_id");
-			Row unit = db.find("storage_units", unitId).orElseThrow(() -> new ModelNotFoundException("StorageUnit", unitId));
-			stock.outboundForRun(unit, material, Php.floatval(Casts.decimal(runMaterial.get("quantity_used"), 4)),
-				"Dolum Run #" + run.id(), run.id());
+		products.addStock(productId, bottles, Timestamps.now());
+		packaging.consumeForRun(run.getId(), needs, userId);
+		for (RunMaterial row : materialRows) {
+			Material material = materials.get(row.getSourceMaterialId());
+			stock.outboundForRun(material.currentLocationId(), material.id(), row.getQuantityUsed(),
+				"Dolum Run #" + run.getId(), run.getId());
 		}
-		Map<String, Object> changes = new LinkedHashMap<>();
-		changes.put("status", "completed");
-		changes.put("completed_at", Timestamps.now());
-		db.update("finished_product_runs", run.id(), changes);
+		run.complete();
 	}
 
 	/** Kalem basina eldeki (aktif lot) adet yeter mi; tahsis varsa hala gecerli mi. */
@@ -369,44 +370,45 @@ class FinishedProductRunService {
 		for (Need need : needs) {
 			long available = packaging.availableQuantity(need.itemId());
 			if (available < need.quantity()) {
-				String name = db.find("packaging_items", need.itemId()).map(i -> i.string("name")).orElse("");
-				shortages.add(name + " (gerekli " + need.quantity() + ", lotlarda " + available + ")");
+				shortages.add(queries.packagingItemName(need.itemId()) + " (gerekli " + need.quantity() + ", lotlarda "
+					+ available + ")");
 			}
 		}
 		if (!shortages.isEmpty()) {
 			throw new BusinessRuleException("Ambalaj stoğu yetersiz: " + String.join("; ", shortages) + ".");
 		}
-		if (db.count("select count(*) from finished_product_run_packagings where finished_product_run_id = ?", runId) > 0) {
+		if (queries.hasAllocations(runId)) {
 			packaging.assertAllocationStillAvailable(runId, needs);
 		}
 	}
 
 	/** Planlamadan sonra tanktaki materyal tasinmis, tuketilmis ya da azalmis olabilir. */
-	private void assertRunMaterialsStillAvailable(List<Row> runMaterials, Map<Long, Row> materials) {
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id",
-			Relations.column(List.copyOf(materials.values()), "production_product_type_id"), null));
+	private void assertRunMaterialsStillAvailable(List<RunMaterial> rows, Map<Long, Material> materials) {
+		Map<Long, ProductType> types = queries.productTypes(
+			materials.values().stream().map(Material::productionProductTypeId).toList());
 		List<String> problems = new ArrayList<>();
-		for (Row runMaterial : runMaterials) {
-			Row material = materials.get(runMaterial.longValue("source_material_id"));
-			double needed = Php.floatval(Casts.decimal(runMaterial.get("quantity_used"), 4));
+		for (RunMaterial row : rows) {
+			Material material = materials.get(row.getSourceMaterialId());
 			if (material == null) {
-				problems.add("materyal #" + runMaterial.get("source_material_id") + " bulunamadı");
+				problems.add("materyal #" + row.getSourceMaterialId() + " bulunamadı");
 				continue;
 			}
-			Row type = material.longValue("production_product_type_id") == null ? null : types.get(material.longValue("production_product_type_id"));
-			String label = (type != null && type.get("name") != null ? type.string("name") : "materyal") + " #" + material.id();
-			if (!"active".equals(material.string("status"))) {
-				problems.add(label + " artık aktif değil (" + material.string("status") + ")");
+			ProductType type = material.productionProductTypeId() == null
+				? null : types.get(material.productionProductTypeId());
+			String label = (type != null && type.name() != null ? type.name() : "materyal") + " #" + material.id();
+			if (!"active".equals(material.status())) {
+				problems.add(label + " artık aktif değil (" + material.status() + ")");
 				continue;
 			}
-			if (!"storage_unit".equals(material.string("current_location_type")) || material.longValue("current_location_id") == null
-				|| material.longValue("current_location_id") == 0) {
+			if (!"storage_unit".equals(material.currentLocationType()) || material.currentLocationId() == null
+				|| material.currentLocationId() == 0) {
 				problems.add(label + " artık bir tankta değil");
 				continue;
 			}
-			String quantity = Casts.decimal(material.get("quantity"), 4);
-			if (Php.floatval(quantity) + EPSILON < needed) {
-				problems.add(label + " içinde " + quantity + " kaldı, " + Php.floatString(needed) + " gerekiyor");
+			BigDecimal quantity = Quantities.normalize(material.quantity());
+			if (quantity.add(EPSILON).compareTo(row.getQuantityUsed()) < 0) {
+				problems.add(label + " içinde " + quantity.toPlainString() + " kaldı, "
+					+ Quantities.plain(row.getQuantityUsed()) + " gerekiyor");
 			}
 		}
 		if (!problems.isEmpty()) {
@@ -415,58 +417,48 @@ class FinishedProductRunService {
 		}
 	}
 
+	// ---- attribute degeri, tahsis, silme ------------------------------------------------
 
-	// ---- liste, attribute degeri, silme ---------------------------------------------
-
-	/** En yeni once; {@code perPage} verilirse sayfa. */
-	List<Row> all() {
-		return db.select("select * from finished_product_runs order by created_at desc");
-	}
-
-	long count() {
-		return db.count("select count(*) as aggregate from finished_product_runs");
-	}
-
-	List<Row> page(int page, int perPage) {
-		return db.select("select * from finished_product_runs order by created_at desc"
-			+ " limit " + perPage + " offset " + (long) (page - 1) * perPage);
-	}
-
-	Row byId(long id) {
-		return db.find("finished_product_runs", id).orElseThrow();
-	}
-
-	/**
-	 * Gercek attribute degeri; deger baska kosununsa 404. decimal:4 cast'i: 4 basamakta esit deger degisiklik
-	 * sayilmaz. @return {@code id}, tahmini ve gercek deger
-	 */
-	Map<String, Object> updateAttributeValue(Row run, Row value, Object actualValue) {
-		if (Php.intval(value.get("finished_product_run_id")) != run.id()) {
+	/** Gercek attribute degeri; deger baska kosununsa 404. */
+	@Transactional
+	AttributeValueResponse updateAttributeValue(long runId, long valueId, UpdateAttributeValueRequest request) {
+		FinishedProductRun run = find(runId);
+		RunAttributeValue value = attributeValues.findById(valueId)
+			.orElseThrow(() -> new ModelNotFoundException("FinishedProductRunAttributeValue", valueId));
+		if (!Objects.equals(value.getRunId(), run.getId())) {
 			throw new HttpStatusException(404, "Bu attribute değeri bu run'a ait değil.");
 		}
-		db.update("finished_product_run_attribute_values", value.id(), Map.of("actual_value", Casts.decimal(actualValue, 4)));
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("id", value.get("id"));
-		body.put("estimated_value", Casts.decimal(value.get("estimated_value"), 4));
-		body.put("actual_value", Casts.decimal(db.find("finished_product_run_attribute_values", value.id()).orElseThrow().get("actual_value"), 4));
-		return body;
+		value.recordActual(request.actualValue());
+		return new AttributeValueResponse(value.getId(), value.getEstimatedValue(), value.getActualValue());
 	}
 
-	/** Ambalaj lotu tahsisinin elle degistirilmesi; liste tahsisin tamami. */
-	void syncPackagings(Row run, List<Map<String, Object>> rows) {
-		packaging.syncRunAllocation(run.id(), run.string("status"),
-			needs(run.longValue("finished_product_id"), Php.intval(run.get("quantity"))),
-			rows.stream()
-				.map(row -> new Selection(Php.intval(row.get("packaging_lot_id")), Php.intval(row.get("quantity"))))
-				.toList());
+	/** Liste tahsisin tamami. */
+	@Transactional
+	void syncPackagings(long id, SyncRunPackagingsRequest request) {
+		FinishedProductRun run = find(id);
+		List<Long> lotIds = request.packagings().stream()
+			.map(SyncRunPackagingsRequest.Packaging::packagingLotId).toList();
+		ValidationErrors errors = new ValidationErrors();
+		errors.distinct("packagings", "packaging_lot_id", lotIds);
+		errors.exists("packagings", "packaging_lot_id", lotIds, queries.existingLots(lotIds));
+		errors.throwIfAny();
+		packaging.syncRunAllocation(run.getId(), run.getStatus().value(),
+			needs(run.getProduct().getId(), run.getQuantity()),
+			request.packagings().stream().map(p -> new Selection(p.packagingLotId(), p.quantity())).toList());
 	}
 
 	/** Yalnizca planli kosu silinir. */
-	void delete(Row run) {
-		if (!"planned".equals(run.string("status"))) {
+	@Transactional
+	void delete(long id) {
+		FinishedProductRun run = find(id);
+		if (run.getStatus() != RunStatus.PLANNED) {
 			throw new BusinessRuleException("Sadece planlanmış (planned) durumdaki run silinebilir.");
 		}
-		db.delete("finished_product_runs", run.id());
+		runs.delete(run);
+	}
+
+	private FinishedProductRun find(long id) {
+		return runs.findById(id).orElseThrow(() -> new ModelNotFoundException("FinishedProductRun", id));
 	}
 
 }

@@ -2,132 +2,94 @@ package com.olivamore.api.finishedproduct.run;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
+import com.olivamore.api.shared.web.LaravelPaginator;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
+import com.olivamore.api.shared.web.Listing;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import com.olivamore.api.shared.web.LaravelPaginator;
-import com.olivamore.api.shared.web.Listing;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
-/** Laravel {@code FinishedProductRunController}: dolum kosulari. */
+/** Dolum kosulari. */
 @RestController
 class FinishedProductRunController {
 
-	private final LaravelValidator validator;
 	private final FinishedProductRunService runs;
-	private final FinishedProductRunResource resource;
+	private final FinishedProductRunResponses responses;
 
-	FinishedProductRunController(LaravelValidator validator, FinishedProductRunService runs, FinishedProductRunResource resource) {
-		this.validator = validator;
+	FinishedProductRunController(FinishedProductRunService runs, FinishedProductRunResponses responses) {
 		this.runs = runs;
-		this.resource = resource;
+		this.responses = responses;
 	}
 
 	/** En yeni once; {@code per_page} ile sayfali. */
 	@GetMapping("/api/finished-product-runs")
 	@RequiresPermission("finished_product_run.view")
-	ListResponse<Map<String, Object>> index(HttpServletRequest request) {
+	ListResponse<FinishedProductRunResponse> index(HttpServletRequest request) {
 		Optional<Integer> perPage = Listing.perPage(request);
 		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(resource.runs(runs.all(), FinishedProductRunResource.LIST));
+			return new ListResponse.Plain<>(responses.list());
 		}
 		int page = Listing.currentPage(request);
-		long total = runs.count();
-		List<Row> rows = total == 0 ? List.of() : runs.page(page, perPage.get());
-		return LaravelPaginator.paginate(resource.runs(rows, FinishedProductRunResource.LIST), total, page, perPage.get(), request);
+		Page<FinishedProductRunResponse> rows = responses.page(page, perPage.get());
+		return LaravelPaginator.paginate(rows.getContent(), rows.getTotalElements(), page, perPage.get(), request);
 	}
 
-	@GetMapping("/api/finished-product-runs/{run}")
+	@GetMapping("/api/finished-product-runs/{id}")
 	@RequiresPermission("finished_product_run.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "run", table = "finished_product_runs", model = "FinishedProductRun") Row run) {
-		return DataResponse.of(resource.one(run, FinishedProductRunResource.DETAIL));
+	DataResponse<FinishedProductRunResponse> show(@PathVariable long id) {
+		return DataResponse.of(responses.detail(id));
 	}
 
-	/** Planlama (201): tank ve tarif kontrolleri, materyal paylari, tahmini attribute degerleri, FIFO ambalaj tahsisi. */
+	/** Planlama (201). */
 	@PostMapping("/api/finished-product-runs")
 	@RequiresPermission("finished_product_run.create")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(RequestInput input) {
-		ValidatedInput v = validator.validate(input, FinishedProductRunRequests.store());
-		Map<?, ?> source = (Map<?, ?>) v.get("source");
-		long runId = runs.create(Php.intval(v.get("finished_product_id")), v.get("quantity"), v.get("note"),
-			Php.intval(source.get("storage_unit_id")), source.get("quantity"), source.get("loss_percent"));
-		Map<String, Object> body = resource.one(runs.byId(runId), FinishedProductRunResource.WRITTEN);
-		// Laravel yeni modeli dondurur: adet istekteki haliyle
-		body.put("quantity", v.get("quantity"));
-		return DataResponse.created(body);
+	ResponseEntity<DataResponse<FinishedProductRunResponse>> store(@Valid @RequestBody CreateRunRequest request) {
+		return DataResponse.created(responses.written(runs.create(request)));
 	}
 
-	@PatchMapping("/api/finished-product-runs/{run}/status")
+	@PatchMapping("/api/finished-product-runs/{id}/status")
 	@RequiresPermission("finished_product_run.complete")
-	@Transactional
-	DataResponse<Map<String, Object>> updateStatus(@Bound(value = "run", table = "finished_product_runs", model = "FinishedProductRun") Row run,
-		RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, FinishedProductRunRequests.updateStatus());
-		runs.updateStatus(run, Php.strval(v.get("status")), user.id());
-		return DataResponse.of(resource.one(runs.byId(run.id()), FinishedProductRunResource.WRITTEN));
+	DataResponse<FinishedProductRunResponse> updateStatus(@PathVariable long id,
+		@Valid @RequestBody UpdateRunStatusRequest request, CurrentUser user) {
+		runs.updateStatus(id, request, user.id());
+		return DataResponse.of(responses.written(id));
 	}
 
-	/** Gercek attribute degeri; deger baska kosununsa 404 (dogrulamadan sonra). */
-	@PatchMapping("/api/finished-product-runs/{run}/attribute-values/{attributeValue}")
+	/** Gercek attribute degeri; deger baska kosununsa 404. */
+	@PatchMapping("/api/finished-product-runs/{id}/attribute-values/{attributeValue}")
 	@RequiresPermission("finished_product_run.complete")
-	@Transactional
-	Map<String, Object> updateAttributeValue(
-		@Bound(value = "run", table = "finished_product_runs", model = "FinishedProductRun") Row run,
-		@Bound(value = "attributeValue", table = "finished_product_run_attribute_values", model = "FinishedProductRunAttributeValue") Row value,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, FinishedProductRunRequests.updateAttributeValue());
-		return runs.updateAttributeValue(run, value, v.get("actual_value"));
+	AttributeValueResponse updateAttributeValue(@PathVariable long id, @PathVariable long attributeValue,
+		@Valid @RequestBody UpdateAttributeValueRequest request) {
+		return runs.updateAttributeValue(id, attributeValue, request);
 	}
 
 	/** Ambalaj lotu tahsisinin elle degistirilmesi. */
-	@PutMapping("/api/finished-product-runs/{run}/packagings")
+	@PutMapping("/api/finished-product-runs/{id}/packagings")
 	@RequiresPermission("finished_product_run.create")
-	@Transactional
-	DataResponse<Map<String, Object>> syncPackagings(@Bound(value = "run", table = "finished_product_runs", model = "FinishedProductRun") Row run,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, FinishedProductRunRequests.syncPackagings());
-		runs.syncPackagings(run, items(v.get("packagings")));
-		return DataResponse.of(resource.one(runs.byId(run.id()), FinishedProductRunResource.DETAIL));
+	DataResponse<FinishedProductRunResponse> syncPackagings(@PathVariable long id,
+		@Valid @RequestBody SyncRunPackagingsRequest request) {
+		runs.syncPackagings(id, request);
+		return DataResponse.of(responses.detail(id));
 	}
 
-	@DeleteMapping("/api/finished-product-runs/{run}")
+	@DeleteMapping("/api/finished-product-runs/{id}")
 	@RequiresPermission("finished_product_run.create")
-	@Transactional
-	Map<String, String> destroy(@Bound(value = "run", table = "finished_product_runs", model = "FinishedProductRun") Row run) {
-		runs.delete(run);
+	Map<String, String> destroy(@PathVariable long id) {
+		runs.delete(id);
 		return Map.of("message", "Run başarıyla silindi.");
-	}
-
-	@SuppressWarnings("unchecked")
-	private static List<Map<String, Object>> items(Object value) {
-		if (value instanceof Map<?, ?> m) {
-			return new ArrayList<>((Collection<Map<String, Object>>) m.values());
-		}
-		return value instanceof List<?> l ? (List<Map<String, Object>>) l : List.of();
 	}
 
 }

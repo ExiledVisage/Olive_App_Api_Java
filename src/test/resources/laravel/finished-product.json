@@ -1064,14 +1064,13 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 2 more errors)",
+    "message": "The name field is required. (and 1 more error)",
     "errors": {
      "name": [
       "The name field is required."
      ],
      "contents": [
-      "The contents field is required.",
-      "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0"
+      "The contents field is required."
      ]
     }
    },
@@ -1103,6 +1102,85 @@
    "status": 500,
    "response": {
     "message": "Server Error"
+   },
+   "save": null
+  },
+  {
+   "name": "tarif ekle hatali kurallar",
+   "method": "POST",
+   "path": "/api/finished-product-recipes",
+   "body": {
+    "name": "Kural",
+    "contents": [
+     {
+      "production_product_type_id": 999,
+      "ratio": 2
+     },
+     {
+      "ratio": 0.5
+     }
+    ],
+    "attribute_rules": [
+     {
+      "attribute_definition_id": 999,
+      "value": -1,
+      "min_deviation": -1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The contents.0.ratio field must not be greater than 1. (and 3 more errors)",
+    "errors": {
+     "contents.0.ratio": [
+      "The contents.0.ratio field must not be greater than 1."
+     ],
+     "contents.1.production_product_type_id": [
+      "The contents.1.production_product_type_id field is required."
+     ],
+     "attribute_rules.0.min_deviation": [
+      "The attribute_rules.0.min_deviation field must be at least 0."
+     ],
+     "attribute_rules.0.value": [
+      "The attribute_rules.0.value field must be at least 0."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tarif ekle hatali kayitlar",
+   "method": "POST",
+   "path": "/api/finished-product-recipes",
+   "body": {
+    "name": "Servis",
+    "contents": [
+     {
+      "production_product_type_id": 999,
+      "ratio": 0.5
+     }
+    ],
+    "attribute_rules": [
+     {
+      "attribute_definition_id": 999,
+      "value": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected contents.0.production_product_type_id is invalid. (and 2 more errors)",
+    "errors": {
+     "contents.0.production_product_type_id": [
+      "The selected contents.0.production_product_type_id is invalid."
+     ],
+     "attribute_rules.0.attribute_definition_id": [
+      "The selected attribute_rules.0.attribute_definition_id is invalid."
+     ],
+     "contents": [
+      "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.5"
+     ]
+    }
    },
    "save": null
   },
@@ -1172,11 +1250,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents field must be an array. (and 1 more error)",
+    "message": "The contents field must be an array.",
     "errors": {
      "contents": [
-      "The contents field must be an array.",
-      "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0"
+      "The contents field must be an array."
      ]
     }
    },
@@ -1500,11 +1577,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents field must have at least 1 items. (and 1 more error)",
+    "message": "The contents field must have at least 1 items.",
     "errors": {
      "contents": [
-      "The contents field must have at least 1 items.",
-      "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0"
+      "The contents field must have at least 1 items."
      ]
     }
    },
@@ -1523,13 +1599,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents.0.ratio field is required when contents is present. (and 1 more error)",
+    "message": "The contents.0.ratio field is required when contents is present.",
     "errors": {
      "contents.0.ratio": [
       "The contents.0.ratio field is required when contents is present."
-     ],
-     "contents": [
-      "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0"
      ]
     }
    },
@@ -6658,31 +6731,77 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 7 more errors)",
+    "message": "The is active field must be true or false.",
+    "errors": {
+     "is_active": [
+      "The is active field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "urun ekle hatali kurallar",
+   "method": "POST",
+   "path": "/api/finished-products",
+   "body": {
+    "name": "",
+    "finished_product_recipe_id": 999,
+    "volume_litre": 0,
+    "components": [
+     {
+      "packaging_item_id": 999,
+      "quantity": 0
+     },
+     {
+      "quantity": 2
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The name field is required. (and 3 more errors)",
     "errors": {
      "name": [
       "The name field is required."
      ],
-     "finished_product_recipe_id": [
-      "The selected finished product recipe id is invalid."
-     ],
      "volume_litre": [
       "The volume litre field must be at least 0.001."
-     ],
-     "is_active": [
-      "The is active field must be true or false."
-     ],
-     "components.0.packaging_item_id": [
-      "The selected components.0.packaging_item_id is invalid."
-     ],
-     "components.1.packaging_item_id": [
-      "The components.1.packaging_item_id field is required."
      ],
      "components.0.quantity": [
       "The components.0.quantity field must be at least 1."
      ],
-     "components.1.quantity": [
-      "The components.1.quantity field must be an integer."
+     "components.1.packaging_item_id": [
+      "The components.1.packaging_item_id field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "urun ekle hatali kayitlar",
+   "method": "POST",
+   "path": "/api/finished-products",
+   "body": {
+    "name": "Kayit",
+    "finished_product_recipe_id": 999,
+    "volume_litre": 1,
+    "components": [
+     {
+      "packaging_item_id": 999,
+      "quantity": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product recipe id is invalid. (and 1 more error)",
+    "errors": {
+     "finished_product_recipe_id": [
+      "The selected finished product recipe id is invalid."
+     ],
+     "components.0.packaging_item_id": [
+      "The selected components.0.packaging_item_id is invalid."
      ]
     }
    },
@@ -6877,7 +6996,7 @@
    "body": {
     "name": "Test Blend 250 ml",
     "volume_litre": 0.33,
-    "is_active": "0"
+    "is_active": false
    },
    "status": 200,
    "response": {
@@ -7184,16 +7303,28 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must be a string. (and 2 more errors)",
+    "message": "The volume litre field must be a number.",
     "errors": {
-     "name": [
-      "The name field must be a string."
-     ],
-     "finished_product_recipe_id": [
-      "The selected finished product recipe id is invalid."
-     ],
      "volume_litre": [
       "The volume litre field must be a number."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "urun guncelle hatali kayit",
+   "method": "PATCH",
+   "path": "/api/finished-products/{P2}",
+   "body": {
+    "finished_product_recipe_id": 999
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product recipe id is invalid.",
+    "errors": {
+     "finished_product_recipe_id": [
+      "The selected finished product recipe id is invalid."
      ]
     }
    },

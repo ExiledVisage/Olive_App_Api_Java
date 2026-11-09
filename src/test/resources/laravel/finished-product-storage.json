@@ -45009,14 +45009,45 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must not be greater than 255 characters. (and 2 more errors)",
+    "message": "The description field must be a string.",
+    "errors": {
+     "description": [
+      "The description field must be a string."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "depo ekle uzun ad",
+   "method": "POST",
+   "path": "/api/finished-product-storages",
+   "body": {
+    "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "status": 422,
+   "response": {
+    "message": "The name field must not be greater than 255 characters.",
     "errors": {
      "name": [
       "The name field must not be greater than 255 characters."
-     ],
-     "description": [
-      "The description field must be a string."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "depo ekle hatali aktif",
+   "method": "POST",
+   "path": "/api/finished-product-storages",
+   "body": {
+    "name": "Depo",
+    "is_active": "x"
+   },
+   "status": 422,
+   "response": {
+    "message": "The is active field must be true or false.",
+    "errors": {
      "is_active": [
       "The is active field must be true or false."
      ]
@@ -45054,7 +45085,7 @@
    "path": "/api/finished-product-storages",
    "body": {
     "name": "Pasif Depo",
-    "is_active": "0"
+    "is_active": false
    },
    "status": 201,
    "response": {
@@ -45139,11 +45170,8 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must be a string. (and 1 more error)",
+    "message": "The is active field must be true or false.",
     "errors": {
-     "name": [
-      "The name field must be a string."
-     ],
      "is_active": [
       "The is active field must be true or false."
      ]
@@ -45182,7 +45210,7 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must not be greater than 50 characters. (and 3 more errors)",
+    "message": "The name field must not be greater than 50 characters. (and 2 more errors)",
     "errors": {
      "name": [
       "The name field must not be greater than 50 characters."
@@ -45192,7 +45220,24 @@
      ],
      "max_quantity": [
       "The max quantity field must be at least 1."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "raf ekle olmayan urun",
+   "method": "POST",
+   "path": "/api/finished-product-storages/{ST1}/slots",
+   "body": {
+    "volume_litre": 0.25,
+    "max_quantity": 1,
+    "finished_product_id": 999
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product id is invalid.",
+    "errors": {
      "finished_product_id": [
       "The selected finished product id is invalid."
      ]
@@ -45415,14 +45460,44 @@
    },
    "status": 422,
    "response": {
-    "message": "The volume litre field must be a number. (and 2 more errors)",
+    "message": "The volume litre field must be a number.",
     "errors": {
      "volume_litre": [
       "The volume litre field must be a number."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "raf guncelle hatali kapasite",
+   "method": "PATCH",
+   "path": "/api/finished-product-storages/{ST1}/slots/{SL3}",
+   "body": {
+    "max_quantity": 0
+   },
+   "status": 422,
+   "response": {
+    "message": "The max quantity field must be at least 1.",
+    "errors": {
      "max_quantity": [
       "The max quantity field must be at least 1."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "raf guncelle olmayan urun",
+   "method": "PATCH",
+   "path": "/api/finished-product-storages/{ST1}/slots/{SL3}",
+   "body": {
+    "finished_product_id": 999
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product id is invalid.",
+    "errors": {
      "finished_product_id": [
       "The selected finished product id is invalid."
      ]
@@ -45528,11 +45603,26 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The finished product id field is required. (and 3 more errors)",
+    "message": "The finished product id field is required.",
     "errors": {
      "finished_product_id": [
       "The finished product id field is required."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "giris raf ya da liste yok",
+   "method": "POST",
+   "path": "/api/finished-product-storages/{ST1}/stock-in",
+   "body": {
+    "finished_product_id": 1
+   },
+   "status": 422,
+   "response": {
+    "message": "The finished product storage slot id field is required when placements is not present. (and 2 more errors)",
+    "errors": {
      "finished_product_storage_slot_id": [
       "The finished product storage slot id field is required when placements is not present."
      ],
@@ -45589,25 +45679,47 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected finished product run id is invalid. (and 5 more errors)",
+    "message": "Raf miktarı en az 1 olmalıdır. (and 3 more errors)",
     "errors": {
-     "finished_product_run_id": [
-      "The selected finished product run id is invalid."
-     ],
-     "note": [
-      "The note field must not be greater than 1000 characters."
-     ],
-     "placements.0.finished_product_storage_slot_id": [
-      "The selected placements.0.finished_product_storage_slot_id is invalid."
+     "placements.0.quantity": [
+      "Raf miktarı en az 1 olmalıdır."
      ],
      "placements.1.finished_product_storage_slot_id": [
       "The placements.1.finished_product_storage_slot_id field is required when placements is present."
      ],
-     "placements.0.quantity": [
-      "Raf miktarı en az 1 olmalıdır."
-     ],
      "placements.1.quantity": [
       "The placements.1.quantity field is required when placements is present."
+     ],
+     "note": [
+      "The note field must not be greater than 1000 characters."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "giris raf hatali kayitlar",
+   "method": "POST",
+   "path": "/api/finished-product-storages/{ST1}/stock-in",
+   "body": {
+    "finished_product_id": 1,
+    "finished_product_run_id": 999999,
+    "placements": [
+     {
+      "finished_product_storage_slot_id": 999999,
+      "quantity": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected finished product run id is invalid. (and 1 more error)",
+    "errors": {
+     "finished_product_run_id": [
+      "The selected finished product run id is invalid."
+     ],
+     "placements.0.finished_product_storage_slot_id": [
+      "The selected placements.0.finished_product_storage_slot_id is invalid."
      ]
     }
    },

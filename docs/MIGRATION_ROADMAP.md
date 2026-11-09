@@ -364,7 +364,7 @@ Tüm modüller dev'de bittiği için geçiş bir kerede yapılır. Adım adım k
 - [x] Şema karşılaştırma betiği: `deploy/compare-schema.sh` (yerel Laravel veritabanında "aynı", eklenen kolonda fark raporu)
 - [x] Prova: sunucu compose'u yerelde Laravel'in veritabanıyla ayağa kalktı, 15 ekran Laravel'le aynı
 
-**12b: Sunucuda geçiş (yapılmadı, 2026-11-09'da kapatıldı)**
+**12b: Sunucuda geçiş (ertelendi; Bölüm B bittikten sonra yapılacak)**
 
 Sunucudaki Laravel -> Java değişimi bu yol haritasının parçası olmaktan çıktı. Kod geçişi tamamlanmış
 sayılır; hedef artık aşağıdaki Bölüm B.
@@ -428,7 +428,7 @@ Sıra:
 - [x] `notification`
 - [x] `packaging`
 - [x] `sales`
-- [ ] `finishedproduct`
+- [x] `finishedproduct`
 - [ ] `inventory`
 - [ ] `production`
 - [ ] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
@@ -451,6 +451,9 @@ Sıra:
   `App\Models\...` metinleri Java'ya göre yeniden tasarlanır
 - [ ] `personal_access_tokens` kaldırılır (B3'ten sonra)
 - [ ] V0.xx dosyaları Java'nın temiz başlangıç migration'larıyla değiştirilir
+- [ ] Modüller arası tablo okumaları kaldırılır: başka modülün tablosunu `JdbcClient` ile okuyan
+  yerler o modülün public API'sini kullanır (`ProductCatalog`, `NudgeDirectory`, `OrderStockQueries`,
+  `SupplierDeliveryService` vb.); `product` ile `productionline` arasındaki bağımlılık döngüsü çözülür
 
 ## B5: Dinamik alanların JSONB'ye geçişi
 - [ ] Attribute definition, process type field, stage extension value vb. yapılar Postgres JSONB +
