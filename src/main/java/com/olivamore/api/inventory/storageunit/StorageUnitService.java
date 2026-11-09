@@ -1,236 +1,181 @@
 package com.olivamore.api.inventory.storageunit;
 
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.Rules;
-import com.olivamore.api.shared.validation.ValidatedInput;
-import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.LaravelPaginator;
-import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.ResponseEntity;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
-import org.springframework.stereotype.Service;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
- * Laravel {@code StorageUnitService}: tanklar, izinli urun ve tipler, attribute kurallari (yalnizca decimal attribute,
- * min <= max; sonraki kuralda hata olursa hepsi geri alinir), silme korumalari.
+ * Tanklar, izinli urun ve tipler, attribute kurallari (yalnizca decimal attribute, min <= max; sonraki kuralda
+ * hata olursa hepsi geri alinir), silme korumalari.
  */
 @Service
 class StorageUnitService {
 
-	private static final String TABLE = "storage_units";
-
-	private static final List<String> APPLY_MODES = List.of("incoming_only", "tank_average_only", "incoming_and_average");
-
-	private static final List<String> FLAGS = List.of("is_blend_tank", "allow_multiple_production_product_types",
-		"allow_multiple_production_products");
-
-	private final Db db;
-
-	StorageUnitService(Db db) {
-		this.db = db;
+	private record DefinitionInfo(Long id, String label, String dataType) {
 	}
 
-	List<Row> all() {
-		return db.select("select * from storage_units order by created_at desc");
+	private final StorageUnitRepository units;
+	private final StorageUnitAllowedProductRepository allowedProducts;
+	private final StorageUnitAllowedTypeRepository allowedTypes;
+	private final StorageUnitAttributeRuleRepository rules;
+	private final JdbcClient jdbc;
+
+	StorageUnitService(StorageUnitRepository units, StorageUnitAllowedProductRepository allowedProducts,
+		StorageUnitAllowedTypeRepository allowedTypes, StorageUnitAttributeRuleRepository rules, JdbcClient jdbc) {
+		this.units = units;
+		this.allowedProducts = allowedProducts;
+		this.allowedTypes = allowedTypes;
+		this.rules = rules;
+		this.jdbc = jdbc;
 	}
 
-	Row byId(long id) {
-		return db.find(TABLE, id).orElseThrow();
+	StorageUnit find(long id) {
+		return units.findById(id).orElseThrow(() -> new ModelNotFoundException("StorageUnit", id));
 	}
 
-	/** Tankin hareketleri, en yeni once; {@code perPage} null ise hepsi. */
-	List<Row> movements(long unitId, Integer page, Integer perPage) {
-		String sql = "select * from storage_movements where storage_movements.storage_unit_id = ?"
-			+ " and storage_movements.storage_unit_id is not null order by moved_at desc, id desc";
-		if (perPage != null) {
-			sql += " limit " + perPage + " offset " + (long) (page - 1) * perPage;
+	@Transactional
+	long create(CreateStorageUnitRequest request) {
+		if (units.existsByCode(request.code())) {
+			ValidationErrors errors = new ValidationErrors();
+			errors.add("code", LaravelMessages.UNIQUE);
+			errors.throwIfAny();
 		}
-		return db.select(sql, unitId);
+		return units.save(new StorageUnit(request)).getId();
 	}
 
-	long movementCount(long unitId) {
-		return db.count("select count(*) as aggregate from storage_movements where storage_movements.storage_unit_id = ?"
-			+ " and storage_movements.storage_unit_id is not null", unitId);
-	}
-
-	List<Row> balances(long unitId) {
-		return db.select("select * from storage_unit_balances"
-			+ " where storage_unit_balances.storage_unit_id = ? and storage_unit_balances.storage_unit_id is not null", unitId);
-	}
-
-	/** Bayraklar verilmediyse (ya da null) false, is_active true. @return olusan model (verilen alanlar) */
-	Row create(ValidatedInput v) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("name", v.get("name"));
-		values.put("code", v.get("code"));
-		values.put("capacity", v.get("capacity"));
-		values.put("capacity_unit", v.get("capacity_unit"));
-		for (String flag : FLAGS) {
-			values.put(flag, v.get(flag) == null ? Boolean.FALSE : v.get(flag));
+	@Transactional
+	void update(long id, UpdateStorageUnitRequest request) {
+		StorageUnit unit = find(id);
+		if (request.code() != null && units.existsByCodeAndIdNot(request.code(), id)) {
+			ValidationErrors errors = new ValidationErrors();
+			errors.add("code", LaravelMessages.UNIQUE);
+			errors.throwIfAny();
 		}
-		values.put("description", v.get("description"));
-		values.put("is_active", v.get("is_active") == null ? Boolean.TRUE : v.get("is_active"));
-		return db.create(TABLE, values);
-	}
-
-	/** Yalnizca gonderilen alanlar (null dahil: NOT NULL kolonda Laravel'deki gibi veritabani hatasi). */
-	void update(Row unit, ValidatedInput v) {
-		if (!v.all().isEmpty()) {
-			db.update(TABLE, unit.id(), v.all());
-		}
+		unit.apply(request);
 	}
 
 	/** Icinde aktif materyal ya da hareket kaydi olan tank silinmez (pasife alinir). */
-	void delete(Row unit) {
-		long movementCount = db.count("select count(*) as aggregate from storage_movements"
-			+ " where storage_movements.storage_unit_id = ? and storage_movements.storage_unit_id is not null", unit.id());
-		long materialCount = db.count("select count(*) as aggregate from materials where current_location_type = ?"
-			+ " and current_location_id = ? and status = ?", "storage_unit", unit.id(), "active");
+	@Transactional
+	void delete(long id) {
+		StorageUnit unit = find(id);
+		long movementCount = count("select count(*) from storage_movements where storage_unit_id = :unit", id);
+		long materialCount = count("""
+			select count(*) from materials
+			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
+			""", id);
 		if (materialCount > 0) {
-			throw new BusinessRuleException("'" + unit.string("code") + "' tankında " + materialCount + " aktif materyal var; "
+			throw new BusinessRuleException("'" + unit.getCode() + "' tankında " + materialCount + " aktif materyal var; "
 				+ "silinemez. Önce tankı boşaltın.");
 		}
 		if (movementCount > 0) {
-			throw new BusinessRuleException("'" + unit.string("code") + "' tankının " + movementCount + " hareket kaydı var; "
+			throw new BusinessRuleException("'" + unit.getCode() + "' tankının " + movementCount + " hareket kaydı var; "
 				+ "silinemez. Tankı kullanımdan kaldırmak için is_active alanını false yapın.");
 		}
-		db.delete(TABLE, unit.id());
+		units.delete(unit);
 	}
 
-	void syncAllowedProducts(Row unit, Object ids) {
-		sync(unit, "storage_unit_allowed_production_products", "production_product_id", ids);
+	/** Liste tam hali: listede olmayanlar silinir, eksikler (istek sirasiyla) eklenir. */
+	@Transactional
+	void syncAllowedProducts(long id, SyncAllowedProductsRequest request) {
+		find(id);
+		Set<Long> ids = distinct(request.productionProductIds());
+		ValidationErrors errors = new ValidationErrors();
+		errors.exists("production_product_ids", null, request.productionProductIds(),
+			existingIds("production_products", ids));
+		errors.throwIfAny();
+		allowedProducts.deleteOthers(id, ids);
+		Set<Long> existing = allowedProducts.findByStorageUnitId(id).stream()
+			.map(StorageUnitAllowedProduct::getProductionProductId).collect(Collectors.toSet());
+		ids.stream().filter(pid -> !existing.contains(pid))
+			.forEach(pid -> allowedProducts.save(new StorageUnitAllowedProduct(id, pid)));
 	}
 
-	void syncAllowedTypes(Row unit, Object ids) {
-		sync(unit, "storage_unit_allowed_production_product_types", "production_product_type_id", ids);
+	@Transactional
+	void syncAllowedTypes(long id, SyncAllowedTypesRequest request) {
+		find(id);
+		Set<Long> ids = distinct(request.productionProductTypeIds());
+		ValidationErrors errors = new ValidationErrors();
+		errors.exists("production_product_type_ids", null, request.productionProductTypeIds(),
+			existingIds("production_product_types", ids));
+		errors.throwIfAny();
+		allowedTypes.deleteOthers(id, ids);
+		Set<Long> existing = allowedTypes.findByStorageUnitId(id).stream()
+			.map(StorageUnitAllowedType::getProductionProductTypeId).collect(Collectors.toSet());
+		ids.stream().filter(tid -> !existing.contains(tid))
+			.forEach(tid -> allowedTypes.save(new StorageUnitAllowedType(id, tid)));
 	}
 
-	/** Listede olmayan kurallar silinir, digerleri updateOrCreate. */
-	void syncAttributeRules(Row unit, ValidatedInput v) {
-		List<Map<String, Object>> rules = new ArrayList<>();
-		for (Object item : list(v.get("rules"))) {
-			@SuppressWarnings("unchecked")
-			Map<String, Object> rule = (Map<String, Object>) item;
-			Map<String, Object> r = new LinkedHashMap<>();
-			r.put("production_product_attribute_definition_id", Php.intval(rule.get("production_product_attribute_definition_id")));
-			r.put("min_value_decimal", rule.get("min_value_decimal"));
-			r.put("max_value_decimal", rule.get("max_value_decimal"));
-			r.put("apply_mode", rule.get("apply_mode") == null ? "incoming_and_average" : rule.get("apply_mode"));
-			r.put("is_active", rule.get("is_active") == null ? Boolean.TRUE : rule.get("is_active"));
-			r.put("note", rule.get("note"));
-			rules.add(r);
-		}
-		Set<Long> definitionIds = new LinkedHashSet<>();
-		rules.forEach(r -> definitionIds.add((Long) r.get("production_product_attribute_definition_id")));
+	/** Listede olmayan kurallar silinir, digerleri eklenir ya da guncellenir. */
+	@Transactional
+	void syncAttributeRules(long id, SyncAttributeRulesRequest request) {
+		find(id);
+		List<Long> definitionIds = request.rules().stream()
+			.map(SyncAttributeRulesRequest.Rule::productionProductAttributeDefinitionId).toList();
+		Set<Long> ids = distinct(definitionIds);
+		ValidationErrors errors = new ValidationErrors();
+		errors.exists("rules", "production_product_attribute_definition_id", definitionIds,
+			existingIds("production_product_attribute_definitions", ids));
+		errors.throwIfAny();
 
-		// ProductionProductAttributeDefinition::with('attributeDefinition'): data_type ve label eslemenin attribute'undan
-		Map<Long, Row> definitions = new LinkedHashMap<>();
-		for (Row d : db.select("select m.id, a.label, a.data_type from production_product_attribute_definitions m"
-			+ " left join attribute_definitions a on a.id = m.attribute_definition_id where m.id in ("
-			+ Relations.inList(definitionIds) + ")")) {
-			definitions.put(d.id(), d);
-		}
-
-		db.execute("delete from storage_unit_attribute_rules where storage_unit_attribute_rules.storage_unit_id = ?"
-			+ " and storage_unit_attribute_rules.storage_unit_id is not null"
-			+ " and production_product_attribute_definition_id not in ("
-			+ Relations.inList(definitionIds) + ")", unit.id());
-
-		for (Map<String, Object> rule : rules) {
-			Row definition = definitions.get((Long) rule.get("production_product_attribute_definition_id"));
-			if (definition != null && !"decimal".equals(definition.get("data_type"))) {
+		Map<Long, DefinitionInfo> definitions = definitionInfos(ids);
+		rules.deleteOthers(id, ids);
+		for (SyncAttributeRulesRequest.Rule rule : request.rules()) {
+			DefinitionInfo definition = definitions.get(rule.productionProductAttributeDefinitionId());
+			if (definition != null && !"decimal".equals(definition.dataType())) {
 				throw new BusinessRuleException("Tank attribute rule sadece decimal attribute'lar için tanımlanabilir. "
-					+ "'" + Php.strval(definition.get("label")) + "' attribute'unun tipi: " + Php.strval(definition.get("data_type")) + ".");
+					+ "'" + Objects.requireNonNullElse(definition.label(), "") + "' attribute'unun tipi: "
+					+ Objects.requireNonNullElse(definition.dataType(), "") + ".");
 			}
-			Object min = rule.get("min_value_decimal");
-			Object max = rule.get("max_value_decimal");
-			if (min != null && max != null && Php.floatval(min) > Php.floatval(max)) {
+			if (rule.minValueDecimal() != null && rule.maxValueDecimal() != null
+				&& rule.minValueDecimal().compareTo(rule.maxValueDecimal()) > 0) {
 				throw new BusinessRuleException("Attribute rule içinde min değer max değerden büyük olamaz.");
 			}
-			if (!APPLY_MODES.contains(rule.get("apply_mode"))) {
-				throw new BusinessRuleException("Geçersiz attribute rule apply_mode gönderildi.");
-			}
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("min_value_decimal", min);
-			values.put("max_value_decimal", max);
-			values.put("apply_mode", rule.get("apply_mode"));
-			values.put("is_active", rule.get("is_active"));
-			values.put("note", rule.get("note"));
-			Optional<Row> existing = db.first("select * from storage_unit_attribute_rules"
-				+ " where storage_unit_attribute_rules.storage_unit_id = ? and storage_unit_attribute_rules.storage_unit_id is not null"
-				+ " and production_product_attribute_definition_id = ? limit 1",
-				unit.id(), rule.get("production_product_attribute_definition_id"));
-			if (existing.isPresent()) {
-				db.update("storage_unit_attribute_rules", existing.get().id(), values);
-			}
-			else {
-				Map<String, Object> created = new LinkedHashMap<>();
-				created.put("production_product_attribute_definition_id", rule.get("production_product_attribute_definition_id"));
-				created.putAll(values);
-				created.put("storage_unit_id", unit.id());
-				db.insert("storage_unit_attribute_rules", created);
-			}
+			StorageUnitAttributeRule entity = rules
+				.findByStorageUnitIdAndDefinitionId(id, rule.productionProductAttributeDefinitionId())
+				.orElseGet(() -> new StorageUnitAttributeRule(id, rule.productionProductAttributeDefinitionId()));
+			entity.apply(rule.minValueDecimal(), rule.maxValueDecimal(),
+				rule.applyMode() == null ? ApplyMode.INCOMING_AND_AVERAGE : rule.applyMode(),
+				rule.isActive() == null || rule.isActive(), rule.note());
+			rules.save(entity);
 		}
 	}
 
 	// ---- yardimcilar -------------------------------------------------------
 
-	/** syncAllowed*: (int) + tekrarsiz; listede olmayanlar silinir, eksikler (istek sirasiyla) eklenir. */
-	private void sync(Row unit, String table, String column, Object requested) {
-		LinkedHashSet<Long> ids = new LinkedHashSet<>();
-		for (Object id : list(requested)) {
-			ids.add(Php.intval(id));
-		}
-		String in = Relations.inList(ids);
-		db.execute("delete from " + table + " where " + table + ".storage_unit_id = ? and " + table + ".storage_unit_id is not null"
-			+ (in.isEmpty() ? "" : " and " + column + " not in (" + in + ")"), unit.id());
-		Set<Long> existing = new LinkedHashSet<>();
-		for (Row r : db.select("select " + column + " from " + table + " where " + table + ".storage_unit_id = ?"
-			+ " and " + table + ".storage_unit_id is not null", unit.id())) {
-			existing.add(Php.intval(r.get(column)));
-		}
-		for (Long id : ids) {
-			if (!existing.contains(id)) {
-				Map<String, Object> values = new LinkedHashMap<>();
-				values.put(column, id);
-				values.put("storage_unit_id", unit.id());
-				db.insert(table, values);
-			}
-		}
+	private static Set<Long> distinct(List<Long> values) {
+		return new LinkedHashSet<>(ValidationErrors.present(values));
 	}
 
-	private static List<?> list(Object value) {
-		if (value instanceof List<?> l) {
-			return l;
+	private Collection<Long> existingIds(String table, Collection<Long> ids) {
+		if (ids.isEmpty()) {
+			return List.of();
 		}
-		if (value instanceof Map<?, ?> m) {
-			return new ArrayList<>(m.values());
-		}
-		return List.of();
+		return jdbc.sql("select id from " + table + " where id in (:ids)").param("ids", ids).query(Long.class).list();
+	}
+
+	private Map<Long, DefinitionInfo> definitionInfos(Collection<Long> ids) {
+		return jdbc.sql("""
+			select m.id, a.label, a.data_type from production_product_attribute_definitions m
+			left join attribute_definitions a on a.id = m.attribute_definition_id where m.id in (:ids)
+			""").param("ids", ids).query(DefinitionInfo.class).list().stream()
+			.collect(Collectors.toMap(DefinitionInfo::id, Function.identity()));
+	}
+
+	private long count(String sql, long unitId) {
+		return jdbc.sql(sql).param("unit", unitId).query(Long.class).single();
 	}
 
 }

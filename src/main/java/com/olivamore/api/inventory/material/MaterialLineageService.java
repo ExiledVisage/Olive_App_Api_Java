@@ -1,75 +1,102 @@
 package com.olivamore.api.inventory.material;
 
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.inventory.material.MaterialLineageResponse.Edge;
+import com.olivamore.api.inventory.material.MaterialLineageResponse.MaterialNode;
+import com.olivamore.api.inventory.material.MaterialLineageResponse.Node;
+import com.olivamore.api.inventory.material.MaterialLineageResponse.OtherNode;
+import com.olivamore.api.inventory.material.MaterialQueries.Batch;
+import com.olivamore.api.inventory.material.MaterialQueries.MaterialRow;
+import com.olivamore.api.inventory.material.MaterialQueries.ProductType;
+import com.olivamore.api.inventory.material.MaterialQueries.Unit;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static com.olivamore.api.inventory.material.MaterialResponses.lookup;
 
 /**
- * Laravel {@code MaterialLineageService::build}: materyalin soy grafi (DAG). Koke cikilir, kokten butun
- * torunlara inilir (en fazla 400 dugum), sonra dolum kosulari, depo yerlestirmeleri ve (tek kosudan
- * beslenen depolarda) siparisler eklenir. Dugumlere kokten en uzun yol derinligi verilir.
+ * Materyalin soy grafi (DAG): koke cikilir, kokten butun torunlara inilir (en fazla 400 dugum), sonra dolum
+ * kosulari, depo yerlestirmeleri ve (tek kosudan beslenen depolarda) siparisler eklenir. Dugumlere kokten en
+ * uzun yol derinligi verilir.
  */
 @Service
 class MaterialLineageService {
 
 	static final int MAX_NODES = 400;
 
-	private final Db db;
-
-	MaterialLineageService(Db db) {
-		this.db = db;
+	private record StageRow(Long id, String name) {
 	}
 
-	Map<String, Object> build(Row material) {
-		List<Row> materials = collect(material);
+	private record RunMaterial(Long finishedProductRunId, Long sourceMaterialId, BigDecimal quantityUsed) {
+	}
+
+	private record Run(Long id, Long finishedProductId, Integer quantity, String status) {
+	}
+
+	private record StockMove(Long finishedProductRunId, Long finishedProductStorageId,
+		Long finishedProductStorageSlotId,
+		Long finishedProductId, long quantity, Long orderId) {
+	}
+
+	private record OrderRow(Long id, Long customerId, String status) {
+	}
+
+	private final MaterialQueries queries;
+	private final JdbcClient jdbc;
+
+	MaterialLineageService(MaterialQueries queries, JdbcClient jdbc) {
+		this.queries = queries;
+		this.jdbc = jdbc;
+	}
+
+	MaterialLineageResponse build(long id) {
+		MaterialRow material = queries.material(id).orElseThrow(() -> new ModelNotFoundException("Material", id));
+		List<MaterialRow> materials = collect(material);
 		boolean truncated = materials.size() >= MAX_NODES;
 
-		Map<Long, Row> types = byId("production_product_types", materials, "production_product_type_id");
-		Map<Long, Row> batches = byId("production_batches", materials, "production_batch_id");
-		Map<Long, Row> stages = byId("production_stages", materials, "source_production_stage_id");
-		Map<Long, Row> units = byId("storage_units", materials, "current_location_id");
+		Map<Long, ProductType> types = queries.productTypes(column(materials, MaterialRow::productionProductTypeId));
+		Map<Long, Batch> batches = queries.batches(column(materials, MaterialRow::productionBatchId));
+		Map<Long, StageRow> stages = idRows("production_stages", column(materials, MaterialRow::sourceProductionStageId),
+			StageRow.class, StageRow::id);
+		Map<Long, Unit> units = queries.units(column(materials, MaterialRow::currentLocationId));
 
-		Map<String, Map<String, Object>> nodes = new LinkedHashMap<>();
-		List<Map<String, Object>> edges = new ArrayList<>();
-		for (Row m : materials) {
-			nodes.put("material:" + m.id(), materialNode(m, m.id() == material.id(), types, batches, stages, units));
+		Map<String, Node> nodes = new LinkedHashMap<>();
+		List<Edge> edges = new ArrayList<>();
+		for (MaterialRow m : materials) {
+			nodes.put("material:" + m.id(), materialNode(m, m.id().equals(material.id()), types, batches, stages, units));
 		}
-		for (Row m : materials) {
-			Long parent = Relations.key(m.get("parent_material_id"));
-			if (parent != null && nodes.containsKey("material:" + parent)) {
-				Row stage = stages.get(Relations.key(m.get("source_production_stage_id")));
-				edges.add(edge("material:" + parent, "material:" + m.id(), stage == null ? null : stage.get("name"),
-					Php.jsonFloat(quantity(m)), m.get("unit")));
+		for (MaterialRow m : materials) {
+			if (m.parentMaterialId() != null && nodes.containsKey("material:" + m.parentMaterialId())) {
+				StageRow stage = lookup(stages, m.sourceProductionStageId());
+				edges.add(new Edge("material:" + m.parentMaterialId(), "material:" + m.id(),
+					stage == null ? null : stage.name(), Quantities.number(m.quantity()), m.unit()));
 			}
 		}
 		appendRuns(materials, nodes, edges);
-
-		Map<String, Object> r = new LinkedHashMap<>();
-		r.put("focus", "material:" + material.id());
-		r.put("nodes", withDepths(nodes, edges));
-		r.put("edges", edges);
-		r.put("truncated", truncated);
-		return r;
+		return new MaterialLineageResponse("material:" + material.id(), withDepths(nodes, edges), edges, truncated);
 	}
 
 	/** Koke cik (dongu korumali), kokten genislik oncelikli in; odak her zaman listede. id sirasinda. */
-	private List<Row> collect(Row material) {
-		Map<Long, Row> found = new LinkedHashMap<>();
-		Row root = material;
+	private List<MaterialRow> collect(MaterialRow material) {
+		Map<Long, MaterialRow> found = new LinkedHashMap<>();
+		MaterialRow root = material;
 		int guard = 0;
-		while (root.get("parent_material_id") != null && guard++ < MAX_NODES) {
-			Row parent = db.find("materials", Relations.key(root.get("parent_material_id"))).orElse(null);
+		while (root.parentMaterialId() != null && guard++ < MAX_NODES) {
+			MaterialRow parent = queries.material(root.parentMaterialId()).orElse(null);
 			if (parent == null || found.containsKey(parent.id())) {
 				break;
 			}
@@ -79,157 +106,154 @@ class MaterialLineageService {
 		found.put(root.id(), root);
 		List<Long> frontier = List.of(root.id());
 		while (!frontier.isEmpty() && found.size() < MAX_NODES) {
-			List<Row> children = db.select("select * from materials where parent_material_id in ("
-				+ Relations.inList(frontier) + ") order by id asc");
 			List<Long> next = new ArrayList<>();
-			for (Row child : children) {
-				if (found.containsKey(child.id())) {
-					continue;
+			for (MaterialRow child : queries.children(frontier)) {
+				if (found.putIfAbsent(child.id(), child) == null) {
+					next.add(child.id());
 				}
-				found.put(child.id(), child);
-				next.add(child.id());
 			}
 			frontier = next;
 		}
 		found.put(material.id(), material);
-		return found.values().stream().sorted(Comparator.comparingLong(Row::id)).toList();
+		return found.values().stream().sorted(Comparator.comparingLong(MaterialRow::id)).toList();
 	}
 
 	/** Dolum kosusu dugumleri (kosu basina bir) ve materyal -> kosu kenarlari; sonra depo yerlestirmeleri. */
-	private void appendRuns(List<Row> materials, Map<String, Map<String, Object>> nodes, List<Map<String, Object>> edges) {
-		List<Row> runMaterials = db.select("select * from finished_product_run_materials where source_material_id in ("
-			+ Relations.inList(Relations.ids(materials)) + ")");
+	private void appendRuns(List<MaterialRow> materials, Map<String, Node> nodes, List<Edge> edges) {
+		List<RunMaterial> runMaterials = jdbc.sql("""
+			select finished_product_run_id, source_material_id, quantity_used from finished_product_run_materials
+			where source_material_id in (:ids)
+			""").param("ids", materials.stream().map(MaterialRow::id).toList()).query(RunMaterial.class).list();
 		if (runMaterials.isEmpty()) {
 			return;
 		}
-		Map<Long, Row> runs = byId("finished_product_runs", runMaterials, "finished_product_run_id");
-		Map<Long, Row> products = byId("finished_products", runs.values(), "finished_product_id");
-		Map<Long, Row> materialById = Relations.byId(materials);
-		for (Row rm : runMaterials) {
-			Row run = runs.get(Relations.key(rm.get("finished_product_run_id")));
+		Map<Long, Run> runs = idRows("finished_product_runs", column(runMaterials, RunMaterial::finishedProductRunId),
+			Run.class, Run::id);
+		Map<Long, String> products = names("finished_products", column(runs.values(), Run::finishedProductId));
+		Map<Long, MaterialRow> materialById = materials.stream()
+			.collect(Collectors.toMap(MaterialRow::id, Function.identity()));
+		for (RunMaterial rm : runMaterials) {
+			Run run = lookup(runs, rm.finishedProductRunId());
 			if (run == null) {
 				continue;
 			}
 			String runKey = "run:" + run.id();
 			if (!nodes.containsKey(runKey)) {
-				Row product = products.get(Relations.key(run.get("finished_product_id")));
-				nodes.put(runKey, node(runKey, "finished_product_run", run.get("id"),
-					product != null && product.get("name") != null ? product.get("name") : "Dolum #" + run.id(),
-					Php.strval(run.get("quantity")) + " adet", run.get("status")));
+				String product = lookup(products, run.finishedProductId());
+				nodes.put(runKey, new OtherNode(runKey, "finished_product_run", run.id(),
+					product != null ? product : "Dolum #" + run.id(), run.quantity() + " adet", run.status(), false, 0));
 			}
-			Row source = materialById.get(Relations.key(rm.get("source_material_id")));
-			edges.add(edge("material:" + Php.strval(rm.get("source_material_id")), runKey, "Dolum",
-				Php.jsonFloat(Php.floatval(Casts.decimal(rm.get("quantity_used"), 4))), source == null ? null : source.get("unit")));
+			MaterialRow source = lookup(materialById, rm.sourceMaterialId());
+			edges.add(new Edge("material:" + rm.sourceMaterialId(), runKey, "Dolum", Quantities.number(rm.quantityUsed()),
+				source == null ? null : source.unit()));
 		}
 		appendPlacements(new ArrayList<>(nodes.keySet()), nodes, edges);
 	}
 
 	/** Kosunun ciktisinin depo basina toplami (raf adlari alt satirda). */
-	private void appendPlacements(List<String> keys, Map<String, Map<String, Object>> nodes, List<Map<String, Object>> edges) {
-		List<Long> runIds = keys.stream().filter(k -> k.startsWith("run:")).map(k -> Php.intval(k.substring(4))).toList();
+	private void appendPlacements(List<String> keys, Map<String, Node> nodes, List<Edge> edges) {
+		List<Long> runIds = keys.stream().filter(k -> k.startsWith("run:"))
+			.map(k -> Long.parseLong(k.substring(4))).toList();
 		if (runIds.isEmpty()) {
 			return;
 		}
-		List<Row> movements = db.select("select * from finished_product_stock_movements where finished_product_run_id in ("
-			+ Relations.inList(runIds) + ") and movement_type = ?", "stock_in");
-		Map<Long, Row> storages = byId("finished_product_storages", movements, "finished_product_storage_id");
-		Map<Long, Row> slots = byId("finished_product_storage_slots", movements, "finished_product_storage_slot_id");
-		Map<String, List<Row>> groups = new LinkedHashMap<>();
-		for (Row m : movements) {
-			groups.computeIfAbsent(Php.strval(m.get("finished_product_run_id")) + ":" + Php.strval(m.get("finished_product_storage_id")),
+		List<StockMove> movements = jdbc.sql("""
+			select finished_product_run_id, finished_product_storage_id, finished_product_storage_slot_id,
+				finished_product_id, quantity, order_id
+			from finished_product_stock_movements where finished_product_run_id in (:ids) and movement_type = 'stock_in'
+			""").param("ids", runIds).query(StockMove.class).list();
+		Map<Long, String> storages = names("finished_product_storages",
+			column(movements, StockMove::finishedProductStorageId));
+		Map<Long, String> slots = names("finished_product_storage_slots",
+			column(movements, StockMove::finishedProductStorageSlotId));
+		Map<String, List<StockMove>> groups = new LinkedHashMap<>();
+		for (StockMove m : movements) {
+			groups.computeIfAbsent(m.finishedProductRunId() + ":" + m.finishedProductStorageId(),
 				k -> new ArrayList<>()).add(m);
 		}
-		for (List<Row> group : groups.values()) {
-			Row first = group.getFirst();
-			String key = "placement:" + Php.strval(first.get("finished_product_run_id")) + ":" + Php.strval(first.get("finished_product_storage_id"));
+		for (List<StockMove> group : groups.values()) {
+			StockMove first = group.getFirst();
+			String key = "placement:" + first.finishedProductRunId() + ":" + first.finishedProductStorageId();
 			long total = 0;
 			Set<String> slotNames = new LinkedHashSet<>();
-			for (Row m : group) {
-				total += Php.intval(m.get("quantity"));
-				Row slot = slots.get(Relations.key(m.get("finished_product_storage_slot_id")));
-				Object name = slot == null ? null : slot.get("name");
-				// collect()->filter(): null, "" ve "0" atilir
-				if (name != null && !Php.strval(name).isEmpty() && !Php.strval(name).equals("0")) {
-					slotNames.add(Php.strval(name));
+			for (StockMove m : group) {
+				total += m.quantity();
+				String name = lookup(slots, m.finishedProductStorageSlotId());
+				// bos ve "0" adlar atilir
+				if (name != null && !name.isEmpty() && !name.equals("0")) {
+					slotNames.add(name);
 				}
 			}
 			String names = String.join(", ", slotNames);
-			Row storage = storages.get(Relations.key(first.get("finished_product_storage_id")));
-			nodes.put(key, node(key, "storage_placement", first.get("finished_product_storage_id"),
-				storage != null && storage.get("name") != null ? storage.get("name") : "Depo",
-				names.isEmpty() ? total + " adet" : total + " adet · " + names, null));
-			edges.add(edge("run:" + Php.strval(first.get("finished_product_run_id")), key, "Rafa kondu", total, "ADET"));
+			String storage = lookup(storages, first.finishedProductStorageId());
+			nodes.put(key, new OtherNode(key, "storage_placement", first.finishedProductStorageId(),
+				storage != null ? storage : "Depo", names.isEmpty() ? total + " adet" : total + " adet · " + names, null,
+				false, 0));
+			edges.add(new Edge("run:" + first.finishedProductRunId(), key, "Rafa kondu", total, "ADET"));
 			appendOrders(first, key, nodes, edges);
 		}
 	}
 
 	/** Depo bu urun icin tek bir kosudan beslendiyse, oradan cikilan siparisler. */
-	private void appendOrders(Row placement, String placementKey, Map<String, Map<String, Object>> nodes,
-		List<Map<String, Object>> edges) {
-		long storageId = Php.intval(placement.get("finished_product_storage_id"));
-		long productId = Php.intval(placement.get("finished_product_id"));
-		List<Row> feeding = db.select("select distinct finished_product_run_id from finished_product_stock_movements"
-			+ " where finished_product_storage_id = ? and finished_product_id = ? and movement_type = ?", storageId, productId, "stock_in");
-		if (feeding.size() != 1 || feeding.getFirst().get("finished_product_run_id") == null) {
+	private void appendOrders(StockMove placement, String placementKey, Map<String, Node> nodes, List<Edge> edges) {
+		long storageId = placement.finishedProductStorageId();
+		long productId = placement.finishedProductId();
+		List<Long> feeding = jdbc.sql("""
+			select distinct finished_product_run_id from finished_product_stock_movements
+			where finished_product_storage_id = :storage and finished_product_id = :product and movement_type = 'stock_in'
+			""").param("storage", storageId).param("product", productId).query(Long.class).list();
+		if (feeding.size() != 1 || feeding.getFirst() == null) {
 			return;
 		}
-		List<Row> picks = db.select("select * from finished_product_stock_movements where finished_product_storage_id = ?"
-			+ " and finished_product_id = ? and movement_type = ? and order_id is not null", storageId, productId, "order_pick");
-		Map<Long, Row> orders = byId("orders", picks, "order_id");
-		Map<Long, Row> customers = byId("customers", orders.values(), "customer_id");
-		Map<Long, List<Row>> groups = Relations.groupBy(picks, "order_id");
-		for (Map.Entry<Long, List<Row>> e : groups.entrySet()) {
-			Row order = orders.get(e.getKey());
-			if (order == null) {
-				continue;
-			}
-			String key = "order:" + e.getKey();
-			long total = e.getValue().stream().mapToLong(m -> Php.intval(m.get("quantity"))).sum();
-			if (!nodes.containsKey(key)) {
-				Row customer = customers.get(Relations.key(order.get("customer_id")));
-				nodes.put(key, node(key, "order", e.getKey(),
-					customer != null && customer.get("name") != null ? customer.get("name") : "Sipariş #" + e.getKey(),
-					total + " adet", order.get("status")));
-			}
-			edges.add(edge(placementKey, key, "Siparişe çıktı", total, "ADET"));
+		List<StockMove> picks = jdbc.sql("""
+			select finished_product_run_id, finished_product_storage_id, finished_product_storage_slot_id,
+				finished_product_id, quantity, order_id
+			from finished_product_stock_movements
+			where finished_product_storage_id = :storage and finished_product_id = :product
+				and movement_type = 'order_pick' and order_id is not null
+			""").param("storage", storageId).param("product", productId).query(StockMove.class).list();
+		Map<Long, OrderRow> orders = idRows("orders", column(picks, StockMove::orderId), OrderRow.class, OrderRow::id);
+		Map<Long, String> customers = names("customers", column(orders.values(), OrderRow::customerId));
+		Map<Long, List<StockMove>> groups = new LinkedHashMap<>();
+		for (StockMove pick : picks) {
+			groups.computeIfAbsent(pick.orderId(), k -> new ArrayList<>()).add(pick);
 		}
+		groups.forEach((orderId, group) -> {
+			OrderRow order = orders.get(orderId);
+			if (order == null) {
+				return;
+			}
+			String key = "order:" + orderId;
+			long total = group.stream().mapToLong(StockMove::quantity).sum();
+			if (!nodes.containsKey(key)) {
+				String customer = lookup(customers, order.customerId());
+				nodes.put(key, new OtherNode(key, "order", orderId, customer != null ? customer : "Sipariş #" + orderId,
+					total + " adet", order.status(), false, 0));
+			}
+			edges.add(new Edge(placementKey, key, "Siparişe çıktı", total, "ADET"));
+		});
 	}
 
-	private static Map<String, Object> materialNode(Row m, boolean focus, Map<Long, Row> types, Map<Long, Row> batches,
-		Map<Long, Row> stages, Map<Long, Row> units) {
-		Row type = types.get(Relations.key(m.get("production_product_type_id")));
-		Row batch = batches.get(Relations.key(m.get("production_batch_id")));
-		Row stage = stages.get(Relations.key(m.get("source_production_stage_id")));
-		Row unit = units.get(Relations.key(m.get("current_location_id")));
-		Map<String, Object> r = new LinkedHashMap<>();
-		r.put("key", "material:" + m.id());
-		r.put("kind", "material");
-		r.put("id", m.get("id"));
-		r.put("title", type != null && type.get("name") != null ? type.get("name") : "Materyal");
-		r.put("subtitle", formatQuantity(m));
-		r.put("quantity", Php.jsonFloat(quantity(m)));
-		r.put("unit", m.get("unit"));
-		r.put("status", m.get("status"));
-		r.put("lineage_role", MaterialDetailResource.lineageRole(m));
-		r.put("origin_type", m.get("origin_type"));
-		r.put("batch_code", batch == null ? null : batch.get("batch_code"));
-		r.put("stage_name", stage == null ? null : stage.get("name"));
-		r.put("storage_unit", "storage_unit".equals(m.get("current_location_type")) && unit != null ? unit.get("code") : null);
-		r.put("is_focus", focus);
-		return r;
+	private static MaterialNode materialNode(MaterialRow m, boolean focus, Map<Long, ProductType> types,
+		Map<Long, Batch> batches, Map<Long, StageRow> stages, Map<Long, Unit> units) {
+		ProductType type = lookup(types, m.productionProductTypeId());
+		Batch batch = lookup(batches, m.productionBatchId());
+		StageRow stage = lookup(stages, m.sourceProductionStageId());
+		Unit unit = lookup(units, m.currentLocationId());
+		return new MaterialNode("material:" + m.id(), "material", m.id(),
+			type != null && type.name() != null ? type.name() : "Materyal", formatQuantity(m),
+			Quantities.number(m.quantity()), m.unit(), m.status(), MaterialService.lineageRole(m), m.originType(),
+			batch == null ? null : batch.batchCode(), stage == null ? null : stage.name(),
+			"storage_unit".equals(m.currentLocationType()) && unit != null ? unit.code() : null, focus, 0);
 	}
 
 	/** "1.234 L", "12,5 kg": tam sayiysa ondaliksiz, degilse 2 basamak ve sondaki sifirlar atilir. */
-	static String formatQuantity(Row m) {
-		double q = quantity(m);
-		String text;
-		if (q == Math.floor(q)) {
-			text = Php.numberFormat(q, 0, ",", ".");
-		}
-		else {
-			text = Php.numberFormat(q, 2, ",", ".").replaceAll("0+$", "").replaceAll(",+$", "");
-		}
-		String unit = Php.strval(m.get("unit"));
+	static String formatQuantity(MaterialRow m) {
+		BigDecimal q = m.quantity();
+		boolean whole = q.stripTrailingZeros().scale() <= 0;
+		String text = whole ? grouped(q.setScale(0, RoundingMode.HALF_UP).toPlainString(), "")
+			: stripped(q.setScale(2, RoundingMode.HALF_UP).toPlainString());
+		String unit = String.valueOf(m.unit());
 		return text + " " + switch (unit) {
 			case "LITRE" -> "L";
 			case "KG" -> "kg";
@@ -237,65 +261,70 @@ class MaterialLineageService {
 		};
 	}
 
-	private static double quantity(Row m) {
-		return Php.floatval(Casts.decimal(m.get("quantity"), 4));
+	/** 2 basamakli sabit gosterimden: binlik nokta, ondalik virgul; sondaki sifirlar ve virgul atilir. */
+	private static String stripped(String plain) {
+		int dot = plain.indexOf('.');
+		String text = grouped(plain.substring(0, dot), plain.substring(dot + 1));
+		return text.replaceAll("0+$", "").replaceAll(",+$", "");
+	}
+
+	private static String grouped(String digits, String fraction) {
+		StringBuilder out = new StringBuilder();
+		for (int i = 0; i < digits.length(); i++) {
+			if (i > 0 && (digits.length() - i) % 3 == 0) {
+				out.append('.');
+			}
+			out.append(digits.charAt(i));
+		}
+		return fraction.isEmpty() ? out.toString() : out + "," + fraction;
 	}
 
 	/** Kenarlar uzerinden en uzun yol; (derinlik, anahtar) sirasi. */
-	private static List<Map<String, Object>> withDepths(Map<String, Map<String, Object>> nodes, List<Map<String, Object>> edges) {
+	private static List<Node> withDepths(Map<String, Node> nodes, List<Edge> edges) {
 		Map<String, Integer> depths = new LinkedHashMap<>();
 		nodes.keySet().forEach(k -> depths.put(k, 0));
 		int rounds = 0;
 		boolean changed = true;
 		while (changed && rounds++ < nodes.size() + 1) {
 			changed = false;
-			for (Map<String, Object> e : edges) {
-				Integer from = depths.get((String) e.get("from"));
-				Integer to = depths.get((String) e.get("to"));
+			for (Edge e : edges) {
+				Integer from = depths.get(e.from());
+				Integer to = depths.get(e.to());
 				if (from == null || to == null) {
 					continue;
 				}
 				if (from + 1 > to) {
-					depths.put((String) e.get("to"), from + 1);
+					depths.put(e.to(), from + 1);
 					changed = true;
 				}
 			}
 		}
-		List<Map<String, Object>> result = new ArrayList<>();
-		nodes.forEach((key, node) -> {
-			Map<String, Object> n = new LinkedHashMap<>(node);
-			n.put("depth", depths.getOrDefault(key, 0));
-			result.add(n);
-		});
-		result.sort(Comparator.comparing((Map<String, Object> n) -> (Integer) n.get("depth"))
-			.thenComparing(n -> (String) n.get("key")));
+		List<Node> result = new ArrayList<>();
+		nodes.forEach((key, node) -> result.add(node.withDepth(depths.getOrDefault(key, 0))));
+		result.sort(Comparator.comparingInt(Node::depth).thenComparing(Node::key));
 		return result;
 	}
 
-	private static Map<String, Object> node(String key, String kind, Object id, Object title, String subtitle, Object status) {
-		Map<String, Object> r = new LinkedHashMap<>();
-		r.put("key", key);
-		r.put("kind", kind);
-		r.put("id", id instanceof Number n ? n.longValue() : id);
-		r.put("title", title);
-		r.put("subtitle", subtitle);
-		r.put("status", status);
-		r.put("is_focus", false);
-		return r;
+	private <T> Map<Long, T> idRows(String table, Collection<Long> ids, Class<T> type, Function<T, Long> key) {
+		List<Long> present = ids.stream().filter(Objects::nonNull).distinct().toList();
+		if (present.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("select * from " + table + " where id in (:ids)").param("ids", present)
+			.query(type).list().stream()
+			.collect(Collectors.toMap(key, Function.identity()));
 	}
 
-	private static Map<String, Object> edge(String from, String to, Object label, Object quantity, Object unit) {
-		Map<String, Object> r = new LinkedHashMap<>();
-		r.put("from", from);
-		r.put("to", to);
-		r.put("label", label);
-		r.put("quantity", quantity);
-		r.put("unit", unit);
-		return r;
+	private Map<Long, String> names(String table, Collection<Long> ids) {
+		record NameRow(Long id, String name) {
+		}
+		return idRows(table, ids, NameRow.class, NameRow::id).values().stream()
+			.filter(row -> row.name() != null)
+			.collect(Collectors.toMap(NameRow::id, NameRow::name));
 	}
 
-	private Map<Long, Row> byId(String table, java.util.Collection<Row> rows, String column) {
-		return Relations.byId(db.whereIn(table, "id", Relations.column(rows, column), null));
+	private static <S> List<Long> column(Collection<S> rows, Function<S, Long> column) {
+		return rows.stream().map(column).filter(Objects::nonNull).toList();
 	}
 
 }

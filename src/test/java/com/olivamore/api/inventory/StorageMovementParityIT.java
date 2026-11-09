@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'den yakalanan 56 stok hareketi durumu (src/test/resources/laravel/storage-movement.json,
+ * Laravel'den yakalanan 61 stok hareketi durumu (src/test/resources/laravel/storage-movement.json,
  * reference/capture_movement.py): acilis, giris (var olan materyal: parca/tamami; yeni materyal: partiden),
  * cikis, transfer, duzeltme, tank kurallari (izinli urun/tip, kapasite, asitlik siniri, agirlikli
  * ortalama, farkli urun/tip), materyal bolme, bakiyeler ve hareket gecmisi. Kendi veritabanini kullanir.
@@ -33,7 +33,7 @@ class StorageMovementParityIT {
 			// TRF-YmdHis-XXXXXX: zaman ve Str::random
 			.mask("TRF-\\d{14}-[A-Z0-9]{6}")
 			.run();
-		assertThat(result.steps()).isEqualTo(56);
+		assertThat(result.steps()).isEqualTo(61);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

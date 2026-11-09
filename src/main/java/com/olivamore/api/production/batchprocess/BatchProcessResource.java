@@ -5,6 +5,7 @@ import com.olivamore.api.process.ProcessTypeFieldResponse;
 import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.productionline.StageExtensionResponse;
 import com.olivamore.api.inventory.MaterialResources;
+import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
@@ -68,10 +69,10 @@ public class BatchProcessResource {
 		Map<Long, List<Map<String, Object>>> reviews = detail ? reviews(ids) : Map.of();
 		Map<Long, Row> users = detail ? byId("users", processes, "submitted_by_user_id", "approved_by_user_id") : Map.of();
 		List<Row> createdRows = db.whereIn("materials", "created_by_batch_process_id", ids, null);
-		Map<Long, List<Map<String, Object>>> created = group(materials.materials(createdRows, materialLoad),
+		Map<Long, List<MaterialResponse>> created = group(materials.materials(Relations.ids(createdRows), materialLoad),
 			createdRows, "created_by_batch_process_id");
 		List<Row> closedRows = db.whereIn("materials", "closed_by_batch_process_id", ids, null);
-		Map<Long, List<Map<String, Object>>> closed = group(materials.materials(closedRows, materialLoad),
+		Map<Long, List<MaterialResponse>> closed = group(materials.materials(Relations.ids(closedRows), materialLoad),
 			closedRows, "closed_by_batch_process_id");
 
 		List<Map<String, Object>> out = new ArrayList<>();
@@ -201,8 +202,8 @@ public class BatchProcessResource {
 	}
 
 	/** Resource'lar ile satirlari ayni sirada eslestirip yabanci anahtara gore gruplar. */
-	private static Map<Long, List<Map<String, Object>>> group(List<Map<String, Object>> resources, List<Row> rows, String key) {
-		Map<Long, List<Map<String, Object>>> out = new LinkedHashMap<>();
+	private static <T> Map<Long, List<T>> group(List<T> resources, List<Row> rows, String key) {
+		Map<Long, List<T>> out = new LinkedHashMap<>();
 		for (int i = 0; i < rows.size(); i++) {
 			out.computeIfAbsent(Relations.key(rows.get(i).get(key)), k -> new ArrayList<>()).add(resources.get(i));
 		}

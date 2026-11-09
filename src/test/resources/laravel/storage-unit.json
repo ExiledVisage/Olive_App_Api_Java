@@ -41,28 +41,161 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must be a string. (and 6 more errors)",
+    "message": "The name field must be a string.",
     "errors": {
      "name": [
       "The name field must be a string."
-     ],
-     "code": [
-      "The code has already been taken."
-     ],
-     "capacity": [
-      "The capacity field must be greater than 0."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali birim",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "X-1",
+    "capacity": 1,
+    "capacity_unit": "TON"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected capacity unit is invalid.",
+    "errors": {
      "capacity_unit": [
       "The selected capacity unit is invalid."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali bayrak",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "X-1",
+    "capacity": 1,
+    "capacity_unit": "KG",
+    "is_blend_tank": "evet"
+   },
+   "status": 422,
+   "response": {
+    "message": "The is blend tank field must be true or false.",
+    "errors": {
      "is_blend_tank": [
       "The is blend tank field must be true or false."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali aciklama",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "X-1",
+    "capacity": 1,
+    "capacity_unit": "KG",
+    "description": 3
+   },
+   "status": 422,
+   "response": {
+    "message": "The description field must be a string.",
+    "errors": {
      "description": [
       "The description field must be a string."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali aktif",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "X-1",
+    "capacity": 1,
+    "capacity_unit": "KG",
+    "is_active": "evet"
+   },
+   "status": 422,
+   "response": {
+    "message": "The is active field must be true or false.",
+    "errors": {
      "is_active": [
       "The is active field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali aktif sayi",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "X-1",
+    "capacity": 1,
+    "capacity_unit": "KG",
+    "is_active": 2
+   },
+   "status": 422,
+   "response": {
+    "message": "The is active field must be true or false.",
+    "errors": {
+     "is_active": [
+      "The is active field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali kapasite",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "X-1",
+    "capacity": 0,
+    "capacity_unit": "KG"
+   },
+   "status": 422,
+   "response": {
+    "message": "The capacity field must be greater than 0.",
+    "errors": {
+     "capacity": [
+      "The capacity field must be greater than 0."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank hatali kod",
+   "method": "POST",
+   "path": "/api/storage-units",
+   "body": {
+    "name": "X",
+    "code": "FILL-GEM-03",
+    "capacity": 1,
+    "capacity_unit": "KG"
+   },
+   "status": 422,
+   "response": {
+    "message": "The code has already been taken.",
+    "errors": {
+     "code": [
+      "The code has already been taken."
      ]
     }
    },
@@ -80,11 +213,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The capacity field must be a number. (and 1 more error)",
+    "message": "The capacity field must be a number.",
     "errors": {
      "capacity": [
-      "The capacity field must be a number.",
-      "The capacity field must be greater than 0."
+      "The capacity field must be a number."
      ]
     }
    },
@@ -163,7 +295,7 @@
     "capacity": "2500",
     "capacity_unit": "LITRE",
     "is_blend_tank": true,
-    "allow_multiple_production_product_types": "1",
+    "allow_multiple_production_product_types": true,
     "allow_multiple_production_products": null,
     "is_active": false
    },
@@ -249,7 +381,7 @@
    "body": {
     "name": "Test Tank 2",
     "capacity": 1500,
-    "is_active": "0"
+    "is_active": false
    },
    "status": 200,
    "response": {
@@ -377,16 +509,28 @@
    },
    "status": 422,
    "response": {
-    "message": "The capacity field must be greater than 0. (and 2 more errors)",
+    "message": "The selected capacity unit is invalid.",
+    "errors": {
+     "capacity_unit": [
+      "The selected capacity unit is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tank guncelle hatali kapasite",
+   "method": "PATCH",
+   "path": "/api/storage-units/{T}",
+   "body": {
+    "capacity": 0
+   },
+   "status": 422,
+   "response": {
+    "message": "The capacity field must be greater than 0.",
     "errors": {
      "capacity": [
       "The capacity field must be greater than 0."
-     ],
-     "capacity_unit": [
-      "The selected capacity unit is invalid."
-     ],
-     "is_active": [
-      "The is active field must be true or false."
      ]
     }
    },
@@ -459,13 +603,31 @@
    },
    "status": 422,
    "response": {
-    "message": "The production_product_ids.1 field must be an integer. (and 1 more error)",
+    "message": "The production_product_ids.1 field must be an integer.",
     "errors": {
      "production_product_ids.1": [
       "The production_product_ids.1 field must be an integer."
-     ],
-     "production_product_ids.2": [
-      "The selected production_product_ids.2 is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "izinli urun olmayan",
+   "method": "PUT",
+   "path": "/api/storage-units/{T}/allowed-production-products",
+   "body": {
+    "production_product_ids": [
+     1,
+     999
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected production_product_ids.1 is invalid.",
+    "errors": {
+     "production_product_ids.1": [
+      "The selected production_product_ids.1 is invalid."
      ]
     }
    },
@@ -835,22 +997,98 @@
    },
    "status": 422,
    "response": {
-    "message": "The rules.0.production_product_attribute_definition_id field is required. (and 4 more errors)",
+    "message": "The rules.0.min_value_decimal field must be a number.",
+    "errors": {
+     "rules.0.min_value_decimal": [
+      "The rules.0.min_value_decimal field must be a number."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kural hatali mod",
+   "method": "PUT",
+   "path": "/api/storage-units/{T}/attribute-rules",
+   "body": {
+    "rules": [
+     {
+      "production_product_attribute_definition_id": 4,
+      "apply_mode": "x"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected rules.0.apply_mode is invalid.",
+    "errors": {
+     "rules.0.apply_mode": [
+      "The selected rules.0.apply_mode is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kural hatali aktif",
+   "method": "PUT",
+   "path": "/api/storage-units/{T}/attribute-rules",
+   "body": {
+    "rules": [
+     {
+      "production_product_attribute_definition_id": 4,
+      "is_active": "evet"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The rules.0.is_active field must be true or false.",
+    "errors": {
+     "rules.0.is_active": [
+      "The rules.0.is_active field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kural hatali eksik",
+   "method": "PUT",
+   "path": "/api/storage-units/{T}/attribute-rules",
+   "body": {
+    "rules": [
+     {}
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The rules.0.production_product_attribute_definition_id field is required.",
     "errors": {
      "rules.0.production_product_attribute_definition_id": [
       "The rules.0.production_product_attribute_definition_id field is required."
-     ],
-     "rules.1.production_product_attribute_definition_id": [
-      "The selected rules.1.production_product_attribute_definition_id is invalid."
-     ],
-     "rules.0.min_value_decimal": [
-      "The rules.0.min_value_decimal field must be a number."
-     ],
-     "rules.1.apply_mode": [
-      "The selected rules.1.apply_mode is invalid."
-     ],
-     "rules.1.is_active": [
-      "The rules.1.is_active field must be true or false."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "kural hatali olmayan",
+   "method": "PUT",
+   "path": "/api/storage-units/{T}/attribute-rules",
+   "body": {
+    "rules": [
+     {
+      "production_product_attribute_definition_id": 999
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected rules.0.production_product_attribute_definition_id is invalid.",
+    "errors": {
+     "rules.0.production_product_attribute_definition_id": [
+      "The selected rules.0.production_product_attribute_definition_id is invalid."
      ]
     }
    },

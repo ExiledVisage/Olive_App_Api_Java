@@ -47,31 +47,120 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected storage unit id is invalid. (and 7 more errors)",
+    "message": "The production product type id field must be an integer.",
+    "errors": {
+     "production_product_type_id": [
+      "The production product type id field must be an integer."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "acilis hatali birim",
+   "method": "POST",
+   "path": "/api/storage-movements/opening",
+   "body": {
+    "storage_unit_id": 1,
+    "production_product_type_id": 3,
+    "quantity": 10,
+    "unit": "TON"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected unit is invalid.",
+    "errors": {
+     "unit": [
+      "The selected unit is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "acilis hatali deger",
+   "method": "POST",
+   "path": "/api/storage-movements/opening",
+   "body": {
+    "storage_unit_id": 1,
+    "production_product_type_id": 3,
+    "quantity": 10,
+    "unit": "LITRE",
+    "attribute_values": [
+     {
+      "production_product_attribute_definition_id": 4,
+      "value_decimal": "abc"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The attribute_values.0.value_decimal field must be a number.",
+    "errors": {
+     "attribute_values.0.value_decimal": [
+      "The attribute_values.0.value_decimal field must be a number."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "acilis hatali kurallar",
+   "method": "POST",
+   "path": "/api/storage-movements/opening",
+   "body": {
+    "storage_unit_id": 1,
+    "production_product_type_id": 3,
+    "quantity": 0,
+    "unit": "LITRE",
+    "attribute_values": [
+     {
+      "value_decimal": 1
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The quantity field must be greater than 0. (and 1 more error)",
+    "errors": {
+     "quantity": [
+      "The quantity field must be greater than 0."
+     ],
+     "attribute_values.0.production_product_attribute_definition_id": [
+      "The attribute_values.0.production_product_attribute_definition_id field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "acilis hatali olmayan",
+   "method": "POST",
+   "path": "/api/storage-movements/opening",
+   "body": {
+    "storage_unit_id": 999,
+    "production_product_type_id": 3,
+    "quantity": 10,
+    "unit": "LITRE",
+    "attribute_values": [
+     {
+      "production_product_attribute_definition_id": 999,
+      "value_json": "x"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected storage unit id is invalid. (and 2 more errors)",
     "errors": {
      "storage_unit_id": [
       "The selected storage unit id is invalid."
      ],
-     "production_product_type_id": [
-      "The production product type id field must be an integer."
-     ],
-     "quantity": [
-      "The quantity field must be greater than 0."
-     ],
-     "unit": [
-      "The selected unit is invalid."
-     ],
      "attribute_values.0.production_product_attribute_definition_id": [
-      "The attribute_values.0.production_product_attribute_definition_id field is required."
+      "The selected attribute_values.0.production_product_attribute_definition_id is invalid."
      ],
-     "attribute_values.1.production_product_attribute_definition_id": [
-      "The selected attribute_values.1.production_product_attribute_definition_id is invalid."
-     ],
-     "attribute_values.0.value_decimal": [
-      "The attribute_values.0.value_decimal field must be a number."
-     ],
-     "attribute_values.1.value_json": [
-      "The attribute_values.1.value_json field must be an array."
+     "attribute_values.0.value_json": [
+      "The attribute_values.0.value_json field must be an array."
      ]
     }
    },
@@ -2203,7 +2292,7 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The storage unit id field is required. (and 3 more errors)",
+    "message": "The storage unit id field is required. (and 2 more errors)",
     "errors": {
      "storage_unit_id": [
       "The storage unit id field is required."
@@ -2213,9 +2302,6 @@
      ],
      "is_increase": [
       "The is increase field is required."
-     ],
-     "material_id": [
-      "The material id field is required."
      ]
     }
    },
@@ -2255,11 +2341,28 @@
    },
    "status": 422,
    "response": {
-    "message": "The is increase field must be true or false. (and 1 more error)",
+    "message": "The is increase field must be true or false.",
     "errors": {
      "is_increase": [
       "The is increase field must be true or false."
-     ],
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "duzeltme azalis materyalsiz",
+   "method": "POST",
+   "path": "/api/storage-movements/adjustment",
+   "body": {
+    "storage_unit_id": 13,
+    "quantity": 5,
+    "is_increase": false
+   },
+   "status": 422,
+   "response": {
+    "message": "The material id field is required.",
+    "errors": {
      "material_id": [
       "The material id field is required."
      ]
@@ -2274,7 +2377,7 @@
    "body": {
     "storage_unit_id": 13,
     "quantity": 20,
-    "is_increase": "1",
+    "is_increase": true,
     "production_product_type_id": 4,
     "unit": "LITRE",
     "attribute_values": [

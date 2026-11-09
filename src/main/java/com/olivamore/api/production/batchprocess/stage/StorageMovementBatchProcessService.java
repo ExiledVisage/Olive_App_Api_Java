@@ -8,6 +8,7 @@ import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.php.Php;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -51,10 +52,10 @@ class StorageMovementBatchProcessService extends StageBatchProcessService {
 				}
 				Row unit = findOrFail("storage_units", "StorageUnit", unitId);
 				if ("inbound".equals(action)) {
-					stock.inbound(unit, material, quantity, process, noteText);
+					stock.inbound(unit.id(), material.id(), BigDecimal.valueOf(quantity), process.id(), noteText);
 				}
 				else {
-					stock.outbound(unit, material, quantity, process, noteText);
+					stock.outbound(unit.id(), material.id(), BigDecimal.valueOf(quantity), process.id(), noteText);
 				}
 			}
 			case "transfer" -> {
@@ -66,7 +67,7 @@ class StorageMovementBatchProcessService extends StageBatchProcessService {
 				}
 				Row from = findOrFail("storage_units", "StorageUnit", fromId);
 				Row to = findOrFail("storage_units", "StorageUnit", toId);
-				stock.transfer(from, to, material, quantity, process, noteText);
+				stock.transfer(from.id(), to.id(), material.id(), BigDecimal.valueOf(quantity), process.id(), noteText);
 			}
 			default -> throw new BusinessRuleException("Geçersiz storage movement action gönderildi.");
 		}

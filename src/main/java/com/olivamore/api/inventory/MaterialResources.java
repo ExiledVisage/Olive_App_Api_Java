@@ -1,15 +1,13 @@
 package com.olivamore.api.inventory;
 
-import com.olivamore.api.inventory.material.MaterialResource;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.inventory.material.MaterialResponses;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 /**
- * MaterialResource'un diger modullere acik kismi (ornek: ProductionBatchResource'taki materyaller,
- * BatchProcessResource'taki created/closed materyaller).
+ * Materyal cevaplarinin diger modullere acik kismi (ornek: parti detayindaki materyaller,
+ * prosesin yarattigi ve kapattigi materyaller).
  */
 @Component
 public class MaterialResources {
@@ -17,29 +15,23 @@ public class MaterialResources {
 	/** Yuklenen iliskiler. */
 	public enum Load {
 
-		/** productionProductType.productionProduct + attributeValues.definition */
-		TYPE_AND_ATTRIBUTES(MaterialResource.MaterialLoad.TYPE_AND_ATTRIBUTES),
+		/** urun tipi (kategorisiyle) + attribute degerleri */
+		TYPE_AND_ATTRIBUTES,
 
-		/** + productionBatch, parentMaterial, createdByBatchProcess, closedByBatchProcess */
-		FULL(MaterialResource.MaterialLoad.FULL);
-
-		private final MaterialResource.MaterialLoad load;
-
-		Load(MaterialResource.MaterialLoad load) {
-			this.load = load;
-		}
+		/** + parti, ebeveyn, yaratan ve kapatan proses */
+		FULL
 
 	}
 
-	private final MaterialResource reads;
+	private final MaterialResponses responses;
 
-	MaterialResources(MaterialResource reads) {
-		this.reads = reads;
+	MaterialResources(MaterialResponses responses) {
+		this.responses = responses;
 	}
 
-	/** Satirlarin sirasiyla MaterialResource'lar. */
-	public List<Map<String, Object>> materials(List<Row> materials, Load load) {
-		return reads.materials(materials, load.load);
+	/** Verilen id'lerin sirasiyla cevaplar. */
+	public List<MaterialResponse> materials(List<Long> ids, Load load) {
+		return responses.materials(ids, load == Load.FULL);
 	}
 
 }

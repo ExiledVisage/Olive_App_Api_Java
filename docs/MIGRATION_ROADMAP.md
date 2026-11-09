@@ -429,7 +429,7 @@ Sıra:
 - [x] `packaging`
 - [x] `sales`
 - [x] `finishedproduct`
-- [ ] `inventory`
+- [x] `inventory`
 - [ ] `production`
 - [ ] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
 - [ ] `identity` (JPA'da; request/response ve `Row` kalıntıları)

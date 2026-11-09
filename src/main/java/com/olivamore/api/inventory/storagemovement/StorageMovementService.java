@@ -1,214 +1,399 @@
 package com.olivamore.api.inventory.storagemovement;
 
+import com.olivamore.api.inventory.material.LocationType;
+import com.olivamore.api.inventory.material.Material;
+import com.olivamore.api.inventory.material.MaterialAttributeValue;
+import com.olivamore.api.inventory.material.MaterialAttributeValueRepository;
+import com.olivamore.api.inventory.material.MaterialRepository;
+import com.olivamore.api.inventory.material.MaterialStatus;
+import com.olivamore.api.inventory.material.MaterialUnit;
+import com.olivamore.api.inventory.material.Quantities;
+import com.olivamore.api.inventory.storagemovement.TankQueries.BatchOutput;
+import com.olivamore.api.inventory.storagemovement.TankQueries.BatchProcess;
+import com.olivamore.api.inventory.storagemovement.TankQueries.DecimalValue;
+import com.olivamore.api.inventory.storagemovement.TankQueries.ProductType;
+import com.olivamore.api.inventory.storagemovement.TankQueries.RuleDefinition;
+import com.olivamore.api.inventory.storagemovement.TankQueries.TankMaterial;
+import com.olivamore.api.inventory.storageunit.ApplyMode;
+import com.olivamore.api.inventory.storageunit.StorageUnit;
+import com.olivamore.api.inventory.storageunit.StorageUnitAllowance;
+import com.olivamore.api.inventory.storageunit.StorageUnitAttributeRule;
+import com.olivamore.api.inventory.storageunit.StorageUnitAttributeRuleRepository;
+import com.olivamore.api.inventory.storageunit.StorageUnitBalance;
+import com.olivamore.api.inventory.storageunit.StorageUnitBalanceRepository;
+import com.olivamore.api.inventory.storageunit.StorageUnitRepository;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.LaravelValidationException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tools.jackson.databind.JsonNode;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.security.SecureRandom;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
- * Laravel {@code StorageMovementService} + {@code StorageBalanceService}: tanka giris (acilis, yeni
- * materyal, var olan materyal), cikis, tanklar arasi transfer, sayim duzeltmesi ve tank bakiyesi.
+ * Tanka giris (acilis, yeni materyal, var olan materyal), cikis, tanklar arasi transfer, sayim duzeltmesi ve
+ * tank bakiyesi. Kurallar sirasiyla: miktar, birim, izinli urun/tip, kapasite, tank uyumu (farkli urun/tip,
+ * attribute kurallari ve agirlikli ortalama), materyal bolme.
  * <p>
- * Kurallar Laravel'deki sirayla: miktar, birim, izinli urun/tip, kapasite, tank uyumu (farkli urun/tip,
- * attribute kurallari ve agirlikli ortalama), materyal bolme. Hesaplar PHP float'iyla (double),
- * veritabanina PHP'nin yazdigi 14 basamakla.
- * <p>
- * Laravel'den fark (DEVIATIONS): islemdeki tanklar transaction basinda {@code FOR UPDATE} ile kilitlenir;
- * ayni tanka eszamanli iki giris kapasiteyi birlikte asamaz. Cevaplar degismez.
+ * Islemdeki tanklar transaction basinda satir kilidiyle kilitlenir (id sirasiyla); ayni tanka eszamanli iki
+ * giris kapasiteyi birlikte asamaz. Uretim ayni islemde JDBC ile yazdigi icin her metot sonunda flush yapilir,
+ * materyal satiri veritabanindan tekrar okunur ve tank icerigi hesaplari SQL ile yapilir.
  */
 @Service
 public class StorageMovementService {
 
-	static final String SOURCE_BATCH_PROCESS = "BATCH_PROCESS";
-	static final String SOURCE_OPENING = "STORAGE_OPENING";
-	static final String SOURCE_INTERNAL_TRANSFER = "INTERNAL_TRANSFER";
-	static final String SOURCE_ADJUSTMENT = "STORAGE_ADJUSTMENT";
-	static final String SOURCE_MANUAL = "MANUAL";
-
-	static final String TYPE_IN = "IN";
-	static final String TYPE_OUT = "OUT";
-	static final String TYPE_TRANSFER_IN = "TRANSFER_IN";
-	static final String TYPE_TRANSFER_OUT = "TRANSFER_OUT";
-	static final String TYPE_OPENING = "OPENING";
-	static final String TYPE_ADJUSTMENT_IN = "ADJUSTMENT_IN";
-	static final String TYPE_ADJUSTMENT_OUT = "ADJUSTMENT_OUT";
-
-	/** materials.quantity decimal(14,4): 4 haneden kucuk farklar gurultu. */
-	static final double QUANTITY_EPSILON = 0.00005;
+	/** materials.quantity 4 basamak: daha kucuk farklar gurultu. */
+	private static final BigDecimal QUANTITY_EPSILON = new BigDecimal("0.00005");
 
 	private static final String ALPHANUMERIC = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	private static final DateTimeFormatter REFERENCE_TIME = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 	private static final SecureRandom RANDOM = new SecureRandom();
 
-	private final Db db;
+	private static final String REQUIRED_WITHOUT_TYPE =
+		"The :attribute field is required when production product type id is not present.";
+	private static final String REQUIRED_WITHOUT_MATERIAL =
+		"The :attribute field is required when material id is not present.";
+	private static final String PROHIBITS_MATERIAL = "The :attribute field prohibits material id from being present.";
+	private static final String DIFFERENT_FROM_SOURCE =
+		"The :attribute field and from storage unit id must be different.";
 
-	StorageMovementService(Db db) {
-		this.db = db;
+	private final StorageUnitRepository units;
+	private final StorageUnitBalanceRepository balances;
+	private final StorageUnitAllowance allowance;
+	private final StorageUnitAttributeRuleRepository rules;
+	private final MaterialRepository materials;
+	private final MaterialAttributeValueRepository attributeValues;
+	private final StorageMovementRepository movements;
+	private final TankQueries queries;
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	StorageMovementService(StorageUnitRepository units, StorageUnitBalanceRepository balances,
+		StorageUnitAllowance allowance, StorageUnitAttributeRuleRepository rules, MaterialRepository materials,
+		MaterialAttributeValueRepository attributeValues, StorageMovementRepository movements, TankQueries queries) {
+		this.units = units;
+		this.balances = balances;
+		this.allowance = allowance;
+		this.rules = rules;
+		this.materials = materials;
+		this.attributeValues = attributeValues;
+		this.movements = movements;
+		this.queries = queries;
 	}
 
-	/** Transfer sonucu: iki hareket ve ortak referans. */
-	public record Transfer(String reference, Row out, Row in) {
+	/** Transfer sonucu. */
+	record Transfer(String reference, StorageMovement out, StorageMovement in) {
 	}
 
 	// ======================================================================
-	// Islemler
+	// Tank sayfasi
 	// ======================================================================
 
 	@Transactional
-	Row opening(Row unit, Row type, double quantity, String unitName, List<Map<String, Object>> attributeValues, String note) {
-		return receiveNewMaterial(unit, type, quantity, unitName, attributeValues, null, note, SOURCE_OPENING, TYPE_OPENING);
+	StorageMovement opening(OpeningRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		checkUnit(errors, "storage_unit_id", request.storageUnitId());
+		checkProductType(errors, request.productionProductTypeId());
+		checkAttributeValues(errors, request.attributeValues());
+		errors.throwIfAny();
+		return receiveNewMaterial(request.storageUnitId(), productType(request.productionProductTypeId()),
+			request.quantity(), request.unit().value(), request.attributeValues(), null, request.note(),
+			MovementSource.STORAGE_OPENING, MovementType.OPENING);
 	}
 
-	/** Yeni materyal girisi; parti prosesi verilirse urun tipi partinin ciktilarindan olmali. */
+	/** {@code material_id} ile var olan materyal, {@code production_product_type_id} ile yeni materyal. */
 	@Transactional
-	Row inboundFromType(Row unit, Row type, double quantity, String unitName, List<Map<String, Object>> attributeValues,
-		Row batchProcess, String note) {
+	StorageMovement inbound(InboundRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		checkUnit(errors, "storage_unit_id", request.storageUnitId());
+		checkInboundSource(errors, request);
+		if (request.materialId() != null) {
+			checkMaterial(errors, request.materialId());
+		}
+		if (request.productionProductTypeId() != null) {
+			checkProductType(errors, request.productionProductTypeId());
+		}
+		checkAttributeValues(errors, request.attributeValues());
+		checkBatchProcess(errors, request.batchProcessId());
+		errors.throwIfAny();
+		if (request.materialId() != null) {
+			return inbound(request.storageUnitId(), request.materialId(), request.quantity(), request.batchProcessId(),
+				request.note());
+		}
+		ProductType type = productType(request.productionProductTypeId());
+		BatchProcess batchProcess = resolveBatchProcess(request.batchProcessId());
 		if (batchProcess != null) {
 			assertTypeIsBatchOutput(batchProcess, type);
 		}
-		return receiveNewMaterial(unit, type, quantity, unitName == null ? (String) type.get("unit") : unitName,
-			attributeValues, batchProcess, note, batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_IN);
+		return receiveNewMaterial(request.storageUnitId(), type, request.quantity(),
+			request.unit() == null ? type.unit() : request.unit().value(), request.attributeValues(), batchProcess,
+			request.note(), batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL, MovementType.IN);
 	}
+
+	@Transactional
+	StorageMovement outbound(OutboundRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		checkUnit(errors, "storage_unit_id", request.storageUnitId());
+		checkMaterial(errors, request.materialId());
+		checkBatchProcess(errors, request.batchProcessId());
+		errors.throwIfAny();
+		return outbound(request.storageUnitId(), request.materialId(), request.quantity(), request.batchProcessId(),
+			request.note(), null);
+	}
+
+	@Transactional
+	Transfer transfer(TransferRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		checkUnit(errors, "from_storage_unit_id", request.fromStorageUnitId());
+		checkUnit(errors, "to_storage_unit_id", request.toStorageUnitId());
+		if (request.toStorageUnitId().equals(request.fromStorageUnitId())) {
+			errors.add("to_storage_unit_id", DIFFERENT_FROM_SOURCE);
+		}
+		checkMaterial(errors, request.materialId());
+		checkBatchProcess(errors, request.batchProcessId());
+		errors.throwIfAny();
+		return transfer(request.fromStorageUnitId(), request.toStorageUnitId(), request.materialId(), request.quantity(),
+			request.batchProcessId(), request.note());
+	}
+
+	/** Artis yeni materyal (tip + birim zorunlu), azalis var olan materyalden (material_id zorunlu). */
+	@Transactional
+	StorageMovement adjustment(AdjustmentRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		checkUnit(errors, "storage_unit_id", request.storageUnitId());
+		checkBatchProcess(errors, request.batchProcessId());
+		boolean increase = request.isIncrease();
+		if (increase && request.productionProductTypeId() == null) {
+			errors.add("production_product_type_id", LaravelMessages.REQUIRED);
+		}
+		else if (request.productionProductTypeId() != null) {
+			checkProductType(errors, request.productionProductTypeId());
+		}
+		if (increase && request.unit() == null) {
+			errors.add("unit", LaravelMessages.REQUIRED);
+		}
+		if (!increase && request.materialId() == null) {
+			errors.add("material_id", LaravelMessages.REQUIRED);
+		}
+		else if (request.materialId() != null) {
+			checkMaterial(errors, request.materialId());
+		}
+		checkAttributeValues(errors, request.attributeValues());
+		errors.throwIfAny();
+		BatchProcess batchProcess = resolveBatchProcess(request.batchProcessId());
+		if (increase) {
+			return receiveNewMaterial(request.storageUnitId(), productType(request.productionProductTypeId()),
+				request.quantity(), request.unit().value(), request.attributeValues(), batchProcess, request.note(),
+				MovementSource.STORAGE_ADJUSTMENT, MovementType.ADJUSTMENT_IN);
+		}
+		return adjustmentDecrease(request.storageUnitId(), request.materialId(), request.quantity(), batchProcess,
+			request.note());
+	}
+
+	// ---- dogrulama --------------------------------------------------------
+
+	private void checkUnit(ValidationErrors errors, String field, Long id) {
+		if (!queries.unitExists(id)) {
+			errors.add(field, LaravelMessages.EXISTS);
+		}
+	}
+
+	private void checkProductType(ValidationErrors errors, Long id) {
+		if (!queries.productTypeExists(id)) {
+			errors.add("production_product_type_id", LaravelMessages.EXISTS);
+		}
+	}
+
+	private void checkMaterial(ValidationErrors errors, Long id) {
+		if (!queries.materialExists(id)) {
+			errors.add("material_id", LaravelMessages.EXISTS);
+		}
+	}
+
+	private void checkBatchProcess(ValidationErrors errors, Long id) {
+		if (id != null && !queries.batchProcessExists(id)) {
+			errors.add("batch_process_id", LaravelMessages.EXISTS);
+		}
+	}
+
+	/** {@code required_without} ve {@code prohibits}: ya materyal ya da yeni urun tipi. */
+	private void checkInboundSource(ValidationErrors errors, InboundRequest request) {
+		boolean hasMaterial = request.materialId() != null;
+		boolean hasType = request.productionProductTypeId() != null;
+		if (!hasMaterial && !hasType) {
+			errors.add("material_id", REQUIRED_WITHOUT_TYPE);
+			errors.add("production_product_type_id", REQUIRED_WITHOUT_MATERIAL);
+		}
+		if (hasMaterial && hasType) {
+			errors.add("production_product_type_id", PROHIBITS_MATERIAL);
+		}
+		if (hasMaterial && request.unit() != null) {
+			errors.add("unit", PROHIBITS_MATERIAL);
+		}
+		if (hasMaterial && request.attributeValues() != null && !request.attributeValues().isEmpty()) {
+			errors.add("attribute_values", PROHIBITS_MATERIAL);
+		}
+	}
+
+	/** Attribute degerlerindeki tanimlar var mi; {@code value_json} dizi ya da nesne mi. */
+	private void checkAttributeValues(ValidationErrors errors, List<AttributeValueInput> items) {
+		if (items == null || items.isEmpty()) {
+			return;
+		}
+		List<Long> ids = items.stream().map(AttributeValueInput::productionProductAttributeDefinitionId).toList();
+		errors.exists("attribute_values", "production_product_attribute_definition_id", ids,
+			queries.existingDefinitions(ids));
+		for (int i = 0; i < items.size(); i++) {
+			JsonNode json = items.get(i).valueJson();
+			if (json != null && !json.isNull() && !json.isArray() && !json.isObject()) {
+				errors.add("attribute_values." + i + ".value_json", LaravelMessages.ARRAY);
+			}
+		}
+	}
+
+	// ======================================================================
+	// Islemler (uretim de kullanir)
+	// ======================================================================
 
 	/** Var olan bir materyalin (ya da bir kisminin) tanka alinmasi. */
 	@Transactional
-	public Row inbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
+	public StorageMovement inbound(long unitId, long materialId, BigDecimal quantity, Long batchProcessId,
+		String note) {
 		assertPositiveQuantity(quantity);
-		lock(unit.id());
-		unit = reload(unit);
-		Row type = typeOf(material);
+		StorageUnit unit = lock(unitId).get(unitId);
+		Material material = fresh(materialId);
+		ProductType type = productType(material.getProductionProductTypeId());
+		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
+		String unitName = material.getUnit().value();
 		assertProductionProductAllowed(unit, type);
 		assertProductionProductTypeAllowed(unit, type);
-		assertCapacityAvailable(unit, quantity, Php.strval(material.get("unit")));
-		assertCompatibleWithTank(unit, material, quantity);
-		Row moving = extractPortion(material, quantity, batchProcess);
-		db.update("materials", moving.id(), location("storage_unit", unit.id()));
-		Row movement = createMovement(unit.id(), moving, batchProcess, null,
-			batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_IN, null, quantity, note, false, null);
-		recalculate(unit, moving);
+		assertCapacityAvailable(unit, quantity, unitName);
+		assertCompatibleWithTank(unit, material.getId(), type, quantity);
+		Material moving = extractPortion(material, quantity, batchProcess);
+		moving.moveToStorageUnit(unit.getId());
+		StorageMovement movement = createMovement(unit.getId(), moving, batchProcess, null,
+			batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL, MovementType.IN, null, quantity,
+			note, null);
+		recalculate(unit.getId(), moving);
+		flush();
 		return movement;
 	}
 
-	/** Tanktan cikan miktar tuketilmis sayilir (consumed). */
+	/** Tanktan cikan miktar tuketilmis sayilir. @param runId dolum kosusu; yoksa null */
 	@Transactional
-	public Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note) {
-		return outbound(unit, material, quantity, batchProcess, note, null);
-	}
-
-	/** @param runId dolum kosusu ({@code finished_product_run_id}); yoksa null */
-	@Transactional
-	public Row outbound(Row unit, Row material, double quantity, Row batchProcess, String note, Long runId) {
+	public StorageMovement outbound(long unitId, long materialId, BigDecimal quantity, Long batchProcessId,
+		String note,
+		Long runId) {
 		assertPositiveQuantity(quantity);
-		lock(unit.id());
+		StorageUnit unit = lock(unitId).get(unitId);
+		Material material = fresh(materialId);
+		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
 		assertMaterialInsideStorage(unit, material);
-		Row moving = extractPortion(material, quantity, batchProcess);
-		db.update("materials", moving.id(), closed(moving, "consumed", batchProcess));
-		Row movement = createMovement(unit.id(), moving, batchProcess, null,
-			batchProcess != null ? SOURCE_BATCH_PROCESS : SOURCE_MANUAL, TYPE_OUT, null, quantity, note, true, runId);
-		recalculate(unit, moving);
+		Material moving = extractPortion(material, quantity, batchProcess);
+		moving.close(MaterialStatus.CONSUMED, batchProcess == null ? null : batchProcess.id());
+		StorageMovement movement = createMovement(unit.getId(), moving, batchProcess, null,
+			batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL, MovementType.OUT, null, quantity,
+			note, runId);
+		recalculate(unit.getId(), moving);
+		flush();
 		return movement;
 	}
 
 	@Transactional
-	public Transfer transfer(Row from, Row to, Row material, double quantity, Row batchProcess, String note) {
+	public Transfer transfer(long fromId, long toId, long materialId, BigDecimal quantity, Long batchProcessId,
+		String note) {
 		assertPositiveQuantity(quantity);
-		if (from.id() == to.id()) {
+		if (fromId == toId) {
 			throw new BusinessRuleException("Aynı tanktan aynı tanka transfer yapılamaz.");
 		}
-		lock(from.id(), to.id());
-		to = reload(to);
-		Row type = typeOf(material);
+		Map<Long, StorageUnit> locked = lock(fromId, toId);
+		StorageUnit from = locked.get(fromId);
+		StorageUnit to = locked.get(toId);
+		Material material = fresh(materialId);
+		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
+		ProductType type = productType(material.getProductionProductTypeId());
+		String unitName = material.getUnit().value();
 		assertMaterialInsideStorage(from, material);
 		assertProductionProductAllowed(to, type);
 		assertProductionProductTypeAllowed(to, type);
-		assertCapacityAvailable(to, quantity, Php.strval(material.get("unit")));
-		assertCompatibleWithTank(to, material, quantity);
-		Row moving = extractPortion(material, quantity, batchProcess);
-		String reference = "TRF-" + REFERENCE_TIME.format(Timestamps.now()) + "-" + random(6).toUpperCase(java.util.Locale.ROOT);
-		Row out = createMovement(from.id(), moving, batchProcess, to.id(), SOURCE_INTERNAL_TRANSFER, TYPE_TRANSFER_OUT,
-			reference, quantity, note, false, null);
-		db.update("materials", moving.id(), location("storage_unit", to.id()));
-		Row in = createMovement(to.id(), moving, batchProcess, from.id(), SOURCE_INTERNAL_TRANSFER, TYPE_TRANSFER_IN,
-			reference, quantity, note, false, null);
-		recalculate(from, moving);
-		recalculate(to, moving);
+		assertCapacityAvailable(to, quantity, unitName);
+		assertCompatibleWithTank(to, material.getId(), type, quantity);
+		Material moving = extractPortion(material, quantity, batchProcess);
+		String reference = "TRF-" + REFERENCE_TIME.format(Timestamps.now()) + "-" + random(6).toUpperCase(Locale.ROOT);
+		StorageMovement out = createMovement(from.getId(), moving, batchProcess, to.getId(),
+			MovementSource.INTERNAL_TRANSFER, MovementType.TRANSFER_OUT, reference, quantity, note, null);
+		moving.moveToStorageUnit(to.getId());
+		StorageMovement in = createMovement(to.getId(), moving, batchProcess, from.getId(),
+			MovementSource.INTERNAL_TRANSFER, MovementType.TRANSFER_IN, reference, quantity, note, null);
+		recalculate(from.getId(), moving);
+		recalculate(to.getId(), moving);
+		flush();
 		return new Transfer(reference, out, in);
 	}
 
-	@Transactional
-	Row adjustmentIncrease(Row unit, Row type, double quantity, String unitName, List<Map<String, Object>> attributeValues,
-		Row batchProcess, String note) {
-		return receiveNewMaterial(unit, type, quantity, unitName, attributeValues, batchProcess, note, SOURCE_ADJUSTMENT,
-			TYPE_ADJUSTMENT_IN);
-	}
-
-	/** Sayim duzeltmesiyle dusulen miktar zayi (discarded). */
-	@Transactional
-	Row adjustmentDecrease(Row unit, Row material, double quantity, Row batchProcess, String note) {
+	/** Sayim duzeltmesiyle dusulen miktar zayi. */
+	private StorageMovement adjustmentDecrease(long unitId, long materialId, BigDecimal quantity,
+		BatchProcess batchProcess, String note) {
 		assertPositiveQuantity(quantity);
-		lock(unit.id());
+		StorageUnit unit = lock(unitId).get(unitId);
+		Material material = fresh(materialId);
 		assertMaterialInsideStorage(unit, material);
-		Row moving = extractPortion(material, quantity, batchProcess);
-		db.update("materials", moving.id(), closed(moving, "discarded", batchProcess));
-		Row movement = createMovement(unit.id(), moving, batchProcess, null, SOURCE_ADJUSTMENT, TYPE_ADJUSTMENT_OUT, null,
-			quantity, note, false, null);
-		recalculate(unit, moving);
+		Material moving = extractPortion(material, quantity, batchProcess);
+		moving.close(MaterialStatus.DISCARDED, batchProcess == null ? null : batchProcess.id());
+		StorageMovement movement = createMovement(unit.getId(), moving, batchProcess, null,
+			MovementSource.STORAGE_ADJUSTMENT, MovementType.ADJUSTMENT_OUT, null, quantity, note, null);
+		recalculate(unit.getId(), moving);
+		flush();
 		return movement;
 	}
 
 	/**
-	 * Acilis, yeni materyal girisi ve duzeltme artisi: materyal konumsuz yaratilir, attribute degerleri
-	 * yazilir, tank kurallari dogrulanir, sonra tanka yerlestirilir (hata olursa hicbir kayit kalmaz).
+	 * Acilis, yeni materyal girisi ve duzeltme artisi: materyal konumsuz yaratilir, attribute degerleri yazilir,
+	 * tank kurallari dogrulanir, sonra tanka yerlestirilir (hata olursa hicbir kayit kalmaz).
 	 */
-	private Row receiveNewMaterial(Row unit, Row type, double quantity, String unitName, List<Map<String, Object>> attributeValues,
-		Row batchProcess, String note, String sourceType, String movementType) {
+	private StorageMovement receiveNewMaterial(long unitId, ProductType type, BigDecimal quantity, String unitName,
+		List<AttributeValueInput> items, BatchProcess batchProcess, String note, MovementSource source,
+		MovementType movementType) {
 		assertPositiveQuantity(quantity);
-		if (!Objects.equals(type.get("unit"), unitName)) {
+		if (!Objects.equals(type.unit(), unitName)) {
 			throw new BusinessRuleException("Ürün birimi ile işlem birimi uyuşmuyor.");
 		}
-		lock(unit.id());
-		unit = reload(unit);
+		StorageUnit unit = lock(unitId).get(unitId);
 		assertProductionProductAllowed(unit, type);
 		assertProductionProductTypeAllowed(unit, type);
 		assertCapacityAvailable(unit, quantity, unitName);
 
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("production_batch_id", batchProcess == null ? null : batchProcess.get("production_batch_id"));
-		values.put("production_product_type_id", type.id());
-		values.put("parent_material_id", null);
-		values.put("origin_type", sourceType);
-		values.put("quantity", quantity);
-		values.put("unit", unitName);
-		values.put("status", "active");
-		values.put("current_location_type", null);
-		values.put("current_location_id", null);
-		values.put("source_production_stage_id", batchProcess == null ? null : batchProcess.get("production_stage_id"));
-		values.put("created_by_batch_process_id", batchProcess == null ? null : batchProcess.id());
-		values.put("closed_by_batch_process_id", null);
-		values.put("note", note);
-		Row material = db.create("materials", values);
-		applyAttributeValues(material.id(), type, attributeValues);
+		Material material = materials.save(new Material(batchProcess == null ? null : batchProcess.productionBatchId(),
+			type.id(), source.origin(), quantity, MaterialUnit.of(unitName),
+			batchProcess == null ? null : batchProcess.productionStageId(),
+			batchProcess == null ? null : batchProcess.id(), note));
+		applyAttributeValues(material.getId(), type, items);
 
-		// Uyum kontrolu icin materyal veritabanindan (attribute degerleriyle); miktar verilen float
-		assertCompatibleWithTank(unit, db.find("materials", material.id()).orElseThrow(), quantity);
-		db.update("materials", material.id(), location("storage_unit", unit.id()));
-		Row movement = createMovement(unit.id(), material, batchProcess, null, sourceType, movementType, null, quantity, note, false, null);
-		recalculate(unit, db.find("materials", material.id()).orElseThrow());
+		assertCompatibleWithTank(unit, material.getId(), type, quantity);
+		material.moveToStorageUnit(unit.getId());
+		StorageMovement movement = createMovement(unit.getId(), material, batchProcess, null, source, movementType, null,
+			quantity, note, null);
+		recalculate(unit.getId(), material);
+		flush();
 		return movement;
 	}
 
@@ -216,81 +401,51 @@ public class StorageMovementService {
 	// Kurallar
 	// ======================================================================
 
-	private static void assertPositiveQuantity(double quantity) {
-		if (quantity <= 0) {
+	private static void assertPositiveQuantity(BigDecimal quantity) {
+		if (quantity.signum() <= 0) {
 			throw new BusinessRuleException("Miktar sıfırdan büyük olmalıdır.");
 		}
 	}
 
-	private void assertTypeIsBatchOutput(Row batchProcess, Row type) {
-		List<Row> outputs = db.whereIn("production_batch_output_production_product_types", "production_batch_id",
-			List.of(Php.intval(batchProcess.get("production_batch_id"))), "sort_order asc");
-		boolean isOutput = outputs.stream().anyMatch(o -> Php.intval(o.get("production_product_type_id")) == type.id());
-		if (!isOutput) {
-			Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id",
-				Relations.column(outputs, "production_product_type_id"), null));
-			List<String> names = new ArrayList<>();
-			for (Row o : outputs) {
-				Row t = types.get(Relations.key(o.get("production_product_type_id")));
-				String name = t == null ? null : Php.strval(t.get("name"));
-				if (name != null && !name.isEmpty() && !name.equals("0")) {
-					names.add(name);
-				}
-			}
-			Row batch = db.find("production_batches", Php.intval(batchProcess.get("production_batch_id"))).orElse(null);
-			throw new BusinessRuleException("'" + Php.strval(type.get("name")) + "', '" + Php.strval(batch == null ? null : batch.get("batch_code"))
-				+ "' partisinin çıktılarından biri değil. Partinin çıktıları: " + String.join(", ", names) + ".");
-		}
-	}
-
-	private void assertProductionProductAllowed(Row unit, Row type) {
-		if (db.count("select count(*) as aggregate from storage_unit_allowed_production_products"
-			+ " where storage_unit_allowed_production_products.storage_unit_id = ?"
-			+ " and storage_unit_allowed_production_products.storage_unit_id is not null", unit.id()) == 0) {
+	private void assertTypeIsBatchOutput(BatchProcess batchProcess, ProductType type) {
+		List<BatchOutput> outputs = queries.batchOutputs(batchProcess.productionBatchId());
+		if (outputs.stream().anyMatch(o -> Objects.equals(o.productionProductTypeId(), type.id()))) {
 			return;
 		}
-		if (!exists("storage_unit_allowed_production_products", unit.id(), "production_product_id", type.get("production_product_id"))) {
+		List<String> names = outputs.stream().map(BatchOutput::name)
+			.filter(name -> name != null && !name.isEmpty() && !name.equals("0")).toList();
+		String code = queries.batchCode(batchProcess.productionBatchId()).orElse("");
+		throw new BusinessRuleException("'" + Objects.requireNonNullElse(type.name(), "") + "', '" + code
+			+ "' partisinin çıktılarından biri değil. Partinin çıktıları: " + String.join(", ", names) + ".");
+	}
+
+	private void assertProductionProductAllowed(StorageUnit unit, ProductType type) {
+		if (!allowance.allowsProduct(unit.getId(), type.productionProductId())) {
 			throw new BusinessRuleException("Seçilen tank bu ürün tipini kabul etmiyor.");
 		}
 	}
 
-	private void assertProductionProductTypeAllowed(Row unit, Row type) {
-		if (db.count("select count(*) as aggregate from storage_unit_allowed_production_product_types"
-			+ " where storage_unit_allowed_production_product_types.storage_unit_id = ?"
-			+ " and storage_unit_allowed_production_product_types.storage_unit_id is not null", unit.id()) == 0) {
-			return;
-		}
-		if (!exists("storage_unit_allowed_production_product_types", unit.id(), "production_product_type_id", type.id())) {
+	private void assertProductionProductTypeAllowed(StorageUnit unit, ProductType type) {
+		if (!allowance.allowsProductType(unit.getId(), type.id())) {
 			throw new BusinessRuleException("Seçilen tank bu spesifik ürünü kabul etmiyor.");
 		}
 	}
 
-	private boolean exists(String table, long unitId, String column, Object value) {
-		if (value == null) {
-			return db.count("select count(*) from " + table + " where storage_unit_id = ? and " + column + " is null", unitId) > 0;
-		}
-		return db.count("select count(*) from " + table + " where storage_unit_id = ? and " + column + " = ?", unitId, value) > 0;
-	}
-
-	private static void assertMaterialInsideStorage(Row unit, Row material) {
-		if (!"storage_unit".equals(material.get("current_location_type")) || Php.intval(material.get("current_location_id")) != unit.id()) {
+	private static void assertMaterialInsideStorage(StorageUnit unit, Material material) {
+		if (material.getCurrentLocationType() != LocationType.STORAGE_UNIT
+			|| !Objects.equals(material.getCurrentLocationId(), unit.getId())) {
 			throw new BusinessRuleException("Seçilen material bu tankın içinde bulunmuyor.");
 		}
-		if (!"active".equals(material.get("status"))) {
+		if (material.getStatus() != MaterialStatus.ACTIVE) {
 			throw new BusinessRuleException("Sadece aktif material üzerinde işlem yapılabilir.");
 		}
 	}
 
-	/** StorageBalanceService::assertCapacityAvailable */
-	private void assertCapacityAvailable(Row unit, double incoming, String unitName) {
-		if (!Objects.equals(unit.get("capacity_unit"), unitName)) {
+	private void assertCapacityAvailable(StorageUnit unit, BigDecimal incoming, String unitName) {
+		if (!unit.getCapacityUnit().value().equals(unitName)) {
 			throw new BusinessRuleException("Tank kapasite birimi ile işlem birimi uyuşmuyor.");
 		}
-		Row sum = db.first("select sum(current_quantity) as aggregate from storage_unit_balances where storage_unit_id = ? and unit = ?",
-			unit.id(), unitName).orElseThrow();
-		double current = Php.floatval(sum.get("aggregate"));
-		double capacity = Php.floatval(Casts.decimal(unit.get("capacity"), 2));
-		if (current + incoming > capacity) {
+		if (queries.balanceTotal(unit.getId(), unitName).add(incoming).compareTo(unit.getCapacity()) > 0) {
 			throw new BusinessRuleException("Hedef tankta yeterli boş kapasite yok.");
 		}
 	}
@@ -299,107 +454,103 @@ public class StorageMovementService {
 	 * Tank bossa yalnizca attribute kurallari; doluysa once farkli urun (kategori) ve farkli tip kurallari.
 	 * @param incomingQuantity tanka fiilen girecek miktar (agirlikli ortalamada agirlik)
 	 */
-	private void assertCompatibleWithTank(Row unit, Row incoming, double incomingQuantity) {
-		List<Row> existing = db.select("select * from materials where current_location_type = ? and current_location_id = ?"
-			+ " and status = ?", "storage_unit", unit.id(), "active");
-		List<Row> all = new ArrayList<>(existing);
-		all.add(incoming);
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id",
-			Relations.column(all, "production_product_type_id"), null));
-		Map<Long, List<Row>> values = Relations.groupBy(db.whereIn("material_attribute_values", "material_id",
-			Relations.ids(all), null), "material_id");
-		Row incomingType = types.get(Relations.key(incoming.get("production_product_type_id")));
+	private void assertCompatibleWithTank(StorageUnit unit, long incomingId, ProductType incomingType,
+		BigDecimal incomingQuantity) {
+		flush();
+		List<TankMaterial> existing = queries.activeMaterials(unit.getId());
+		List<Long> typeIds = new ArrayList<>(existing.stream().map(TankMaterial::productionProductTypeId).toList());
+		typeIds.add(incomingType.id());
+		Map<Long, ProductType> types = queries.productTypes(typeIds);
+		List<Long> materialIds = new ArrayList<>(existing.stream().map(TankMaterial::id).toList());
+		materialIds.add(incomingId);
+		Map<Long, List<DecimalValue>> values = queries.decimalValues(materialIds).stream()
+			.collect(Collectors.groupingBy(DecimalValue::materialId));
 		if (!existing.isEmpty()) {
-			if (!Boolean.TRUE.equals(Casts.bool(unit.get("allow_multiple_production_products")))
-				&& existing.stream().anyMatch(m -> productOf(types, m) != Php.intval(incomingType.get("production_product_id")))) {
+			if (!unit.isAllowMultipleProducts()
+				&& existing.stream().anyMatch(m -> productOf(types, m) != productIdOf(incomingType))) {
 				throw new BusinessRuleException("Bu tank doluyken farklı ürün tipleri bir arada tutulamaz.");
 			}
-			if (!Boolean.TRUE.equals(Casts.bool(unit.get("allow_multiple_production_product_types")))
-				&& existing.stream().anyMatch(m -> Php.intval(m.get("production_product_type_id")) != Php.intval(incoming.get("production_product_type_id")))) {
+			if (!unit.isAllowMultipleTypes()
+				&& existing.stream().anyMatch(m -> !Objects.equals(m.productionProductTypeId(), incomingType.id()))) {
 				throw new BusinessRuleException("Bu tank doluyken farklı ürünler bir arada tutulamaz.");
 			}
 		}
-		assertAttributeRules(unit, incoming, incomingType, existing, types, values, incomingQuantity);
+		assertAttributeRules(unit, incomingId, incomingType, existing, types, values, incomingQuantity);
 	}
 
-	private void assertAttributeRules(Row unit, Row incoming, Row incomingType, List<Row> existing, Map<Long, Row> types,
-		Map<Long, List<Row>> values, double incomingQuantity) {
-		List<Row> rules = db.whereIn("storage_unit_attribute_rules", "storage_unit_id", List.of(unit.id()), null).stream()
-			.filter(r -> Boolean.TRUE.equals(Casts.bool(r.get("is_active")))).toList();
-		if (rules.isEmpty()) {
+	private void assertAttributeRules(StorageUnit unit, long incomingId, ProductType incomingType,
+		List<TankMaterial> existing, Map<Long, ProductType> types, Map<Long, List<DecimalValue>> values,
+		BigDecimal incomingQuantity) {
+		List<StorageUnitAttributeRule> active = rules.findByStorageUnitIdAndActiveTrue(unit.getId());
+		if (active.isEmpty()) {
 			return;
 		}
-		Map<Long, Row> mappings = Relations.byId(db.whereIn("production_product_attribute_definitions", "id",
-			Relations.column(rules, "production_product_attribute_definition_id"), null));
-		Map<Long, Row> attributes = Relations.byId(db.whereIn("attribute_definitions", "id",
-			Relations.column(mappings.values(), "attribute_definition_id"), null));
-		for (Row rule : rules) {
-			Row definition = mappings.get(Relations.key(rule.get("production_product_attribute_definition_id")));
+		Map<Long, RuleDefinition> definitions = queries.ruleDefinitions(
+			active.stream().map(StorageUnitAttributeRule::getDefinitionId).toList());
+		for (StorageUnitAttributeRule rule : active) {
+			RuleDefinition definition = definitions.get(rule.getDefinitionId());
 			if (definition == null) {
 				continue;
 			}
-			long productId = Php.intval(definition.get("production_product_id"));
-			if (productId != Php.intval(incomingType.get("production_product_id"))) {
+			long productId = definition.productionProductId() == null ? 0 : definition.productionProductId();
+			if (productId != productIdOf(incomingType)) {
 				continue;
 			}
-			Row attribute = attributes.get(Relations.key(definition.get("attribute_definition_id")));
-			if (attribute == null || !"decimal".equals(attribute.get("data_type"))) {
+			if (definition.attributeDefinitionId() == null || !"decimal".equals(definition.dataType())) {
 				throw new BusinessRuleException("Tank attribute rule şu anda sadece decimal attribute tipleri ile çalışır.");
 			}
-			Double incomingValue = decimalValue(values.get(incoming.id()), definition.id());
+			BigDecimal incomingValue = decimalValue(values.get(incomingId), definition.id());
 			if (incomingValue == null) {
-				throw new BusinessRuleException("Gelen material üzerinde tank kuralı için gerekli attribute değeri bulunamadı.");
+				throw new BusinessRuleException(
+					"Gelen material üzerinde tank kuralı için gerekli attribute değeri bulunamadı.");
 			}
-			Double min = rule.get("min_value_decimal") == null ? null : Php.floatval(Casts.decimal(rule.get("min_value_decimal"), 4));
-			Double max = rule.get("max_value_decimal") == null ? null : Php.floatval(Casts.decimal(rule.get("max_value_decimal"), 4));
-			String label = attribute.get("label") != null ? Php.strval(attribute.get("label")) : Php.strval(attribute.get("attribute_key"));
-			String mode = Php.strval(rule.get("apply_mode"));
-			if (mode.equals("incoming_only") || mode.equals("incoming_and_average")) {
-				assertWithinRange(incomingValue, min, max, label);
+			String label = definition.label() != null ? definition.label()
+				: Objects.requireNonNullElse(definition.attributeKey(), "");
+			ApplyMode mode = rule.getApplyMode();
+			if (mode == ApplyMode.INCOMING_ONLY || mode == ApplyMode.INCOMING_AND_AVERAGE) {
+				assertWithinRange(incomingValue, rule.getMinValueDecimal(), rule.getMaxValueDecimal(), label);
 			}
-			if (mode.equals("tank_average_only") || mode.equals("incoming_and_average")) {
-				double weighted = 0.0;
-				double total = 0.0;
-				for (Row m : existing) {
+			if (mode == ApplyMode.TANK_AVERAGE_ONLY || mode == ApplyMode.INCOMING_AND_AVERAGE) {
+				BigDecimal weighted = BigDecimal.ZERO;
+				BigDecimal total = BigDecimal.ZERO;
+				for (TankMaterial m : existing) {
 					if (productOf(types, m) != productId) {
 						continue;
 					}
-					Double value = decimalValue(values.get(m.id()), definition.id());
+					BigDecimal value = decimalValue(values.get(m.id()), definition.id());
 					if (value == null) {
-						throw new BusinessRuleException("Tank içindeki mevcut material üzerinde gerekli attribute değeri bulunamadı.");
+						throw new BusinessRuleException(
+							"Tank içindeki mevcut material üzerinde gerekli attribute değeri bulunamadı.");
 					}
-					double q = Php.floatval(Casts.decimal(m.get("quantity"), 4));
-					weighted += value * q;
-					total += q;
+					weighted = weighted.add(value.multiply(m.quantity()));
+					total = total.add(m.quantity());
 				}
-				weighted += incomingValue * incomingQuantity;
-				total += incomingQuantity;
-				if (total <= 0) {
+				weighted = weighted.add(incomingValue.multiply(incomingQuantity));
+				total = total.add(incomingQuantity);
+				if (total.signum() <= 0) {
 					throw new BusinessRuleException("Tank ortalaması hesaplanamadı.");
 				}
-				assertWithinRange(weighted / total, min, max, label + " ortalaması");
+				assertWithinRange(weighted.divide(total, MathContext.DECIMAL128), rule.getMinValueDecimal(),
+					rule.getMaxValueDecimal(), label + " ortalaması");
 			}
 		}
 	}
 
 	/** Ilk (tanima ait, decimal degeri dolu) attribute degeri. */
-	private static Double decimalValue(List<Row> values, long definitionId) {
+	private static BigDecimal decimalValue(List<DecimalValue> values, long definitionId) {
 		if (values == null) {
 			return null;
 		}
-		for (Row v : values) {
-			if (Php.intval(v.get("production_product_attribute_definition_id")) == definitionId && v.get("value_decimal") != null) {
-				return Php.floatval(Casts.decimal(v.get("value_decimal"), 4));
-			}
-		}
-		return null;
+		return values.stream()
+			.filter(v -> Objects.equals(v.definitionId(), definitionId) && v.valueDecimal() != null)
+			.map(DecimalValue::valueDecimal).findFirst().orElse(null);
 	}
 
-	private static void assertWithinRange(double value, Double min, Double max, String label) {
-		if (min != null && value < min) {
+	private static void assertWithinRange(BigDecimal value, BigDecimal min, BigDecimal max, String label) {
+		if (min != null && value.compareTo(min) < 0) {
 			throw new BusinessRuleException(label + " değeri tank için izin verilen minimum sınırın altında.");
 		}
-		if (max != null && value > max) {
+		if (max != null && value.compareTo(max) > 0) {
 			throw new BusinessRuleException(label + " değeri tank için izin verilen maksimum sınırın üstünde.");
 		}
 	}
@@ -412,214 +563,125 @@ public class StorageMovementService {
 	 * Tamami (epsilon toleransiyla) isteniyorsa materyalin kendisi; degilse ayni ozelliklerde bir cocuk
 	 * materyal (attribute degerleri kopyalanir) ve ebeveynin miktari dusulur.
 	 */
-	private Row extractPortion(Row material, double quantity, Row batchProcess) {
-		double current = Php.floatval(Casts.decimal(material.get("quantity"), 4));
-		if (quantity - current > QUANTITY_EPSILON) {
+	private Material extractPortion(Material material, BigDecimal quantity, BatchProcess batchProcess) {
+		BigDecimal current = material.getQuantity();
+		if (quantity.subtract(current).compareTo(QUANTITY_EPSILON) > 0) {
 			throw new BusinessRuleException("Material üzerinde yeterli miktar bulunmuyor.");
 		}
-		List<Row> attributeValues = db.whereIn("material_attribute_values", "material_id", List.of(material.id()), null);
-		if (Math.abs(current - quantity) <= QUANTITY_EPSILON) {
+		if (current.subtract(quantity).abs().compareTo(QUANTITY_EPSILON) <= 0) {
 			return material;
 		}
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("production_batch_id", material.get("production_batch_id"));
-		values.put("production_product_type_id", material.get("production_product_type_id"));
-		values.put("parent_material_id", material.id());
-		values.put("origin_type", material.get("origin_type"));
-		values.put("quantity", quantity);
-		values.put("unit", material.get("unit"));
-		values.put("status", "active");
-		values.put("current_location_type", material.get("current_location_type"));
-		values.put("current_location_id", material.get("current_location_id"));
-		values.put("source_production_stage_id", material.get("source_production_stage_id"));
-		values.put("created_by_batch_process_id", batchProcess != null ? batchProcess.id() : material.get("created_by_batch_process_id"));
-		values.put("closed_by_batch_process_id", null);
-		values.put("note", material.get("note"));
-		long childId = db.insert("materials", values);
-		for (Row v : attributeValues) {
-			Map<String, Object> copy = new LinkedHashMap<>();
-			copy.put("production_product_attribute_definition_id", v.get("production_product_attribute_definition_id"));
-			copy.put("value_boolean", Casts.bool(v.get("value_boolean")));
-			copy.put("value_integer", Casts.integer(v.get("value_integer")));
-			copy.put("value_decimal", Casts.decimal(v.get("value_decimal"), 4));
-			copy.put("value_text", v.get("value_text"));
-			copy.put("value_json", Db.json(v.get("value_json")));
-			copy.put("material_id", childId);
-			db.insert("material_attribute_values", copy);
-		}
-		db.update("materials", material.id(), Map.of("quantity", current - quantity));
-		return db.find("materials", childId).orElseThrow();
+		Material child = materials.save(material.splitOff(quantity, batchProcess == null ? null : batchProcess.id()));
+		flush();
+		queries.copyAttributeValues(material.getId(), child.getId(), Timestamps.now());
+		material.reduceTo(current.subtract(quantity));
+		return child;
 	}
 
 	/** Gecersiz tanim (kategoride yok) 422; gecerliler sirayla yazilir. */
-	private void applyAttributeValues(long materialId, Row type, List<Map<String, Object>> items) {
+	private void applyAttributeValues(long materialId, ProductType type, List<AttributeValueInput> items) {
 		if (items == null || items.isEmpty()) {
 			return;
 		}
-		Map<Long, Row> definitions = Relations.byId(db.select("select * from production_product_attribute_definitions"
-			+ " where production_product_id = ?", type.get("production_product_id")));
-		for (Map<String, Object> item : items) {
-			Object definitionId = item.get("production_product_attribute_definition_id");
-			if (!truthy(definitionId) || !definitions.containsKey(Php.intval(definitionId))) {
+		Set<Long> definitions = queries.definitionsOfProduct(type.productionProductId());
+		for (AttributeValueInput item : items) {
+			Long definitionId = item.productionProductAttributeDefinitionId();
+			if (definitionId == null || !definitions.contains(definitionId)) {
 				throw LaravelValidationException.of("attribute_values", "Geçersiz attribute definition gönderildi.");
 			}
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("production_product_attribute_definition_id", definitionId);
-			values.put("value_boolean", item.get("value_boolean"));
-			values.put("value_integer", item.get("value_integer"));
-			values.put("value_decimal", item.get("value_decimal"));
-			values.put("value_text", item.get("value_text"));
-			values.put("value_json", Db.json(item.get("value_json")));
-			values.put("material_id", materialId);
-			db.insert("material_attribute_values", values);
+			attributeValues.save(new MaterialAttributeValue(materialId, definitionId, item.valueBoolean(),
+				item.valueInteger(), item.valueDecimal(), item.valueText(), item.valueJson()));
 		}
 	}
 
 	/**
-	 * StorageBalanceService::recalculateForMaterial: tanktaki aktif materyallerin (ayni kategori, ayni birim)
-	 * toplami; 0 ise bakiye silinir, degilse updateOrCreate ({@code decimal:2} ile degismediyse dokunulmaz).
+	 * Tanktaki aktif materyallerin (ayni kategori, ayni birim) toplami; 0 ise bakiye silinir, degilse
+	 * guncellenir ya da yaratilir (2 basamakta degismediyse dokunulmaz).
 	 */
-	private void recalculate(Row unit, Row material) {
-		Row type = typeOf(material);
-		Object productId = type.get("production_product_id");
-		String unitName = Php.strval(material.get("unit"));
-		Row sum = db.first("select sum(quantity) as aggregate from materials where current_location_type = ?"
-			+ " and current_location_id = ? and status = ? and unit = ? and exists (select * from production_product_types"
-			+ " where materials.production_product_type_id = production_product_types.id and production_product_id = ?)",
-			"storage_unit", unit.id(), "active", unitName, productId).orElseThrow();
-		double total = Php.floatval(sum.get("aggregate"));
-		if (total <= 0) {
-			db.execute("delete from storage_unit_balances where storage_unit_id = ? and production_product_id = ? and unit = ?",
-				unit.id(), productId, unitName);
+	private void recalculate(long unitId, Material material) {
+		flush();
+		Long productId = productType(material.getProductionProductTypeId()).productionProductId();
+		MaterialUnit unit = material.getUnit();
+		BigDecimal total = queries.materialTotal(unitId, unit.value(), productId);
+		if (total.signum() <= 0) {
+			balances.deleteForTank(unitId, productId, unit);
 			return;
 		}
-		Row balance = db.first("select * from storage_unit_balances where storage_unit_id = ? and production_product_id = ?"
-			+ " and unit = ? limit 1", unit.id(), productId, unitName).orElse(null);
+		BigDecimal quantity = Quantities.balance(total);
+		StorageUnitBalance balance = balances.find(unitId, productId, unit).orElse(null);
 		if (balance == null) {
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("storage_unit_id", unit.id());
-			values.put("production_product_id", productId);
-			values.put("unit", unitName);
-			values.put("current_quantity", total);
-			db.insert("storage_unit_balances", values);
+			balances.save(new StorageUnitBalance(unitId, productId, unit, quantity));
 		}
-		else if (!Objects.equals(Casts.decimal(balance.get("current_quantity"), 2), Casts.decimal(Php.floatString(total), 2))) {
-			db.update("storage_unit_balances", balance.id(), Map.of("current_quantity", total));
+		else {
+			balance.setCurrentQuantity(quantity);
 		}
 	}
 
-	private Row createMovement(long unitId, Row material, Row batchProcess, Long counterpartyId, String sourceType,
-		String movementType, String reference, double quantity, String note, boolean withRun, Long runId) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("storage_unit_id", unitId);
-		values.put("material_id", material.id());
-		values.put("batch_process_id", batchProcess == null ? null : batchProcess.id());
-		if (withRun) {
-			values.put("finished_product_run_id", runId);
-		}
-		values.put("counterparty_storage_unit_id", counterpartyId);
-		values.put("source_type", sourceType);
-		values.put("movement_type", movementType);
-		values.put("transfer_reference", reference);
-		values.put("quantity", quantity);
-		values.put("unit", material.get("unit"));
-		values.put("note", note);
-		values.put("moved_at", Timestamps.now());
-		return db.create("storage_movements", values);
+	private StorageMovement createMovement(long unitId, Material material, BatchProcess batchProcess,
+		Long counterpartyId,
+		MovementSource source, MovementType type, String reference, BigDecimal quantity, String note, Long runId) {
+		return movements.save(new StorageMovement(unitId, material.getId(),
+			batchProcess == null ? null : batchProcess.id(),
+			runId, counterpartyId, source, type, reference, Quantities.balance(quantity), material.getUnit(), note,
+			Timestamps.now()));
 	}
 
 	// ======================================================================
 	// yardimcilar
 	// ======================================================================
 
-	/** Islemdeki tanklar (id sirasiyla, kilitlenme olmasin). */
-	private void lock(long... unitIds) {
-		List<Long> ids = java.util.Arrays.stream(unitIds).sorted().boxed().toList();
-		db.select("select id from storage_units where id in (" + Relations.inList(ids) + ") order by id for update");
+	/** Islemdeki tanklar (id sirasiyla, kilitlenme olmasin); kilit altinda en guncel halleriyle. */
+	private Map<Long, StorageUnit> lock(long... unitIds) {
+		List<Long> ids = Arrays.stream(unitIds).sorted().boxed().toList();
+		Map<Long, StorageUnit> locked = new LinkedHashMap<>();
+		units.findAllForUpdate(ids).forEach(u -> locked.put(u.getId(), u));
+		for (Long id : ids) {
+			if (!locked.containsKey(id)) {
+				throw new ModelNotFoundException("StorageUnit", id);
+			}
+		}
+		return locked;
 	}
 
-	private Row reload(Row unit) {
-		return db.find("storage_units", unit.id()).orElseThrow();
+	/** Uretim ayni islemde JDBC ile yazmis olabilir: materyal her seferinde veritabanindan okunur. */
+	private Material fresh(long id) {
+		Material material = materials.findById(id).orElseThrow(() -> new ModelNotFoundException("Material", id));
+		entityManager.refresh(material);
+		return material;
 	}
 
-	private Row typeOf(Row material) {
-		return db.find("production_product_types", Php.intval(material.get("production_product_type_id"))).orElseThrow();
+	private void flush() {
+		entityManager.flush();
 	}
 
-	private static long productOf(Map<Long, Row> types, Row material) {
-		Row type = types.get(Relations.key(material.get("production_product_type_id")));
-		return type == null ? 0 : Php.intval(type.get("production_product_id"));
+	private ProductType productType(long id) {
+		return queries.productType(id).orElseThrow(() -> new ModelNotFoundException("ProductionProductType", id));
 	}
 
-	private static Map<String, Object> location(String type, Long id) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("current_location_type", type);
-		values.put("current_location_id", id);
-		return values;
+	private BatchProcess resolveBatchProcess(Long id) {
+		if (id == null || id == 0) {
+			return null;
+		}
+		return queries.batchProcess(id).orElseThrow(() -> new ModelNotFoundException("BatchProcess", id));
 	}
 
-	private static Map<String, Object> closed(Row material, String status, Row batchProcess) {
-		Map<String, Object> values = location(null, null);
-		values.put("status", status);
-		values.put("closed_by_batch_process_id", batchProcess != null ? batchProcess.id() : material.get("closed_by_batch_process_id"));
-		return values;
+	private static long productOf(Map<Long, ProductType> types, TankMaterial material) {
+		ProductType type = material.productionProductTypeId() == null ? null
+			: types.get(material.productionProductTypeId());
+		return type == null ? 0 : productIdOf(type);
 	}
 
-	/** PHP truthiness ({@code !$value}): null, 0, "0", "" ve bos dizi false. */
-	private static boolean truthy(Object value) {
-		return switch (value) {
-			case null -> false;
-			case Boolean b -> b;
-			case String s -> !s.isEmpty() && !s.equals("0");
-			case Number n -> new java.math.BigDecimal(n.toString()).signum() != 0;
-			case Collection<?> c -> !c.isEmpty();
-			case Map<?, ?> m -> !m.isEmpty();
-			default -> true;
-		};
+	private static long productIdOf(ProductType type) {
+		return type.productionProductId() == null ? 0 : type.productionProductId();
 	}
 
-	/** {@code Str::random}: harf ve rakam. */
+	/** Harf ve rakam. */
 	private static String random(int length) {
 		StringBuilder out = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
 			out.append(ALPHANUMERIC.charAt(RANDOM.nextInt(ALPHANUMERIC.length())));
 		}
 		return out.toString();
-	}
-
-
-	// ---- hareket gecmisi ----------------------------------------------------
-
-	/** Tankin hareketleri: {@code dateFrom}/{@code dateTo} moved_at::date araligi ("0" verilmemis sayilir). */
-	record History(String where, List<Object> args) {
-	}
-
-	History history(long unitId, String from, String to) {
-		StringBuilder where = new StringBuilder(" from storage_movements where storage_unit_id = ?");
-		List<Object> args = new ArrayList<>(List.of(unitId));
-		// when($dateFrom): PHP'de "0" de false
-		if (from != null && !from.equals("0")) {
-			where.append(" and moved_at::date >= ?");
-			args.add(from);
-		}
-		if (to != null && !to.equals("0")) {
-			where.append(" and moved_at::date <= ?");
-			args.add(to);
-		}
-		return new History(where.toString(), args);
-	}
-
-	/** En yeni once (moved_at desc, id desc); {@code perPage} null ise hepsi. */
-	List<Row> history(History h, Integer page, Integer perPage) {
-		String sql = "select *" + h.where() + " order by moved_at desc, id desc";
-		if (perPage != null) {
-			sql += " limit " + perPage + " offset " + (long) (page - 1) * perPage;
-		}
-		return db.select(sql, h.args().toArray());
-	}
-
-	long historyCount(History h) {
-		return db.count("select count(*) as aggregate" + h.where(), h.args().toArray());
 	}
 
 }

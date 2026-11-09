@@ -1,6 +1,7 @@
 package com.olivamore.api.production.batch;
 
 import com.olivamore.api.inventory.MaterialResources;
+import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
 import com.olivamore.api.shared.persistence.Relations;
@@ -41,7 +42,7 @@ class ProductionBatchResource {
 		List<Row> processRows = db.whereIn("batch_processes", "production_batch_id", ids, null);
 		Map<Long, List<Map<String, Object>>> processes = group(processResource.processes(processRows, batchById), processRows, "production_batch_id");
 		List<Row> materialRows = db.whereIn("materials", "production_batch_id", ids, null);
-		Map<Long, List<Map<String, Object>>> batchMaterials = group(materials.materials(materialRows, MaterialResources.Load.FULL),
+		Map<Long, List<MaterialResponse>> batchMaterials = group(materials.materials(Relations.ids(materialRows), MaterialResources.Load.FULL),
 			materialRows, "production_batch_id");
 
 		List<Map<String, Object>> out = new ArrayList<>();
@@ -158,8 +159,8 @@ class ProductionBatchResource {
 	}
 
 	/** Resource'lar ile satirlari ayni sirada eslestirip yabanci anahtara gore gruplar. */
-	private static Map<Long, List<Map<String, Object>>> group(List<Map<String, Object>> resources, List<Row> rows, String key) {
-		Map<Long, List<Map<String, Object>>> out = new LinkedHashMap<>();
+	private static <T> Map<Long, List<T>> group(List<T> resources, List<Row> rows, String key) {
+		Map<Long, List<T>> out = new LinkedHashMap<>();
 		for (int i = 0; i < rows.size(); i++) {
 			out.computeIfAbsent(Relations.key(rows.get(i).get(key)), k -> new ArrayList<>()).add(resources.get(i));
 		}

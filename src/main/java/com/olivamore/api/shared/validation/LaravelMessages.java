@@ -44,6 +44,7 @@ public final class LaravelMessages {
 	public static final String MIN_0 = "The :attribute field must be at least 0.";
 	public static final String MIN_1 = "The :attribute field must be at least 1.";
 	public static final String MIN_ITEMS_1 = "The :attribute field must have at least 1 items.";
+	public static final String GT_0 = "The :attribute field must be greater than 0.";
 	public static final String DISTINCT = "The :attribute field has a duplicate value.";
 	public static final String MIN_RATIO = "The :attribute field must be at least 0.0001.";
 	public static final String MIN_VOLUME = "The :attribute field must be at least 0.001.";
