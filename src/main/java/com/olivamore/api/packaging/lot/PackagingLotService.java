@@ -1,170 +1,165 @@
 package com.olivamore.api.packaging.lot;
 
+import com.olivamore.api.packaging.item.PackagingItem;
+import com.olivamore.api.packaging.item.PackagingItemRepository;
+import com.olivamore.api.packaging.lot.LotEnums.AdjustReason;
+import com.olivamore.api.packaging.lot.LotEnums.MovementType;
+import com.olivamore.api.packaging.lot.LotEnums.Source;
+import com.olivamore.api.packaging.supplier.ProductSupplier;
+import com.olivamore.api.packaging.supplier.ProductSupplierRepository;
 import com.olivamore.api.shared.error.BusinessRuleException;
+import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * Laravel {@code PackagingLotService}: lot listesi, mal girisi, sayim duzeltmesi, silme, hareket defteri ve kalemin
- * eldeki adedi. Tek gercek kaynak lotlarin kalani; {@code packaging_items.current_stock} onbellek. Dolum kosusu
- * tahsisi {@code PackagingAllocations}'ta (modulun disa acik kapisi).
+ * Lotlar: mal girisi, kunye, sayim duzeltmesi, silme ve hareket defteri. Tek gercek kaynak lotlarin kalani;
+ * {@code packaging_items.current_stock} onbellek.
  */
 @Service
 public class PackagingLotService {
 
-	private final Db db;
+	private static final String DUPLICATE_LOT = "Bu ambalaj kaleminde aynı lot numarası zaten girilmiş.";
 
-	PackagingLotService(Db db) {
-		this.db = db;
+	private final PackagingLotRepository lots;
+	private final PackagingLotMovementRepository movements;
+	private final RunPackagingRepository packagings;
+	private final PackagingItemRepository items;
+	private final ProductSupplierRepository suppliers;
+
+	PackagingLotService(PackagingLotRepository lots, PackagingLotMovementRepository movements,
+		RunPackagingRepository packagings, PackagingItemRepository items, ProductSupplierRepository suppliers) {
+		this.lots = lots;
+		this.movements = movements;
+		this.packagings = packagings;
+		this.items = items;
+		this.suppliers = suppliers;
 	}
 
-	/** Kunye duzeltmesi: lot numarasi, tedarikci, giris zamani, not. Miktar yalnizca hareketle degisir. */
-	void update(Row lot, Map<String, Object> data) {
-		db.update("packaging_lots", lot.id(), data);
+	@Transactional(readOnly = true)
+	void ensureItemExists(long itemId) {
+		item(itemId);
 	}
 
-	/** {@code getAll}: kalem ve tedarikci yuklu, giris zamani ve id'ye gore yeniden eskiye. */
-	List<Row> list(Long itemId, Long supplierId, String status, String search) {
-		StringBuilder sql = new StringBuilder("select * from packaging_lots");
-		List<String> where = new ArrayList<>();
-		List<Object> args = new ArrayList<>();
-		if (itemId != null) {
-			where.add("packaging_item_id = ?");
-			args.add(itemId);
+	@Transactional
+	long receive(long itemId, CreatePackagingLotRequest request, long userId) {
+		item(itemId);
+		if (lots.existsByItemIdAndLotCode(itemId, request.lotCode())) {
+			throw LaravelValidationException.of("lot_code", DUPLICATE_LOT);
 		}
-		if (supplierId != null) {
-			where.add("product_supplier_id = ?");
-			args.add(supplierId);
-		}
-		if (status != null && !status.isEmpty() && !"0".equals(status)) {
-			where.add("status = ?");
-			args.add(status);
-		}
-		String term = search == null ? "" : search.trim();
-		if (!term.isEmpty()) {
-			String like = "%" + term + "%";
-			where.add("(lot_code::text ilike ?"
-				+ " or exists (select * from packaging_items where packaging_lots.packaging_item_id = packaging_items.id"
-				+ " and name::text ilike ?)"
-				+ " or exists (select * from product_suppliers where packaging_lots.product_supplier_id = product_suppliers.id"
-				+ " and (name::text ilike ? or code::text ilike ?)))");
-			args.add(like);
-			args.add(like);
-			args.add(like);
-			args.add(like);
-		}
-		if (!where.isEmpty()) {
-			sql.append(" where ").append(String.join(" and ", where));
-		}
-		sql.append(" order by received_at desc, id desc");
-		return db.select(sql.toString(), args.toArray());
+		return receive(itemId, request.lotCode(), request.quantity(), request.receivedAt(),
+			supplier(request.productSupplierId()), request.note(), userId);
 	}
 
-	/**
-	 * {@code receive}: yeni lot, giris hareketi, kalemin eldeki adedi.
-	 * @param receivedAt dogrulanmis {@code received_at} (Carbon::parse); null ise simdi
-	 * @return yeni lot id
-	 */
-	public long receive(long itemId, String lotCode, long quantity, LocalDateTime receivedAt, Object supplierId, Object note, long userId) {
+	/** Yeni lot, giris hareketi, kalemin eldeki adedi. */
+	public long receive(long itemId, String lotCode, int quantity, LocalDateTime receivedAt, Long supplierId,
+		String note, long userId) {
+		return receive(itemId, lotCode, quantity, receivedAt, supplier(supplierId), note, userId);
+	}
+
+	private long receive(long itemId, String lotCode, int quantity, LocalDateTime receivedAt, ProductSupplier supplier,
+		String note, long userId) {
 		LocalDateTime at = receivedAt == null ? Timestamps.now() : receivedAt;
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("packaging_item_id", itemId);
-		values.put("product_supplier_id", supplierId);
-		values.put("lot_code", lotCode);
-		values.put("received_at", at);
-		values.put("quantity_received", quantity);
-		values.put("quantity_remaining", quantity);
-		values.put("status", "active");
-		values.put("note", note);
-		long lotId = db.insert("packaging_lots", values);
-		recordMovement(lotId, itemId, "IN", "SUPPLIER_DELIVERY", quantity, note, at, userId, null);
+		PackagingLot lot = lots.save(new PackagingLot(item(itemId), supplier, lotCode, quantity, at, note));
+		movements.save(new PackagingLotMovement(lot, MovementType.IN, Source.SUPPLIER_DELIVERY, quantity, note, at,
+			userId, null));
 		recalculateItemStock(itemId);
-		return lotId;
+		return lot.getId();
 	}
 
-	/**
-	 * {@code adjust}: sayim farki, fire, iade. Lot kilitlenir; kalanin altina inilemez; fire ve iade yalnizca
-	 * dusus.
-	 */
-	void adjust(long lotId, long delta, String reason, Object note, long userId) {
-		if (delta == 0) {
-			throw new BusinessRuleException("Düzeltme miktarı sıfır olamaz.");
+	/** Kunye duzeltmesi: lot numarasi, tedarikci, giris zamani, not. */
+	@Transactional
+	void update(long lotId, UpdatePackagingLotRequest request) {
+		PackagingLot lot = find(lotId);
+		if (request.lotCode() != null && lots.existsByItemIdAndLotCodeAndIdNot(lot.getItem().getId(),
+			request.lotCode(), lotId)) {
+			throw LaravelValidationException.of("lot_code", DUPLICATE_LOT);
 		}
-		Row lot = db.first("select * from packaging_lots where id = ? for update", lotId)
+		Patch.ifPresent(request.productSupplierId(), value -> lot.assignSupplier(supplier(value)));
+		lot.apply(request);
+	}
+
+	/** Lot kilitlenir; kalanin altina inilemez; fire ve iade yalnizca dusus. */
+	@Transactional
+	void adjust(long lotId, AdjustPackagingLotRequest request, long userId) {
+		int delta = request.delta();
+		if (delta == 0) {
+			throw LaravelValidationException.of("delta", "Düzeltme miktarı sıfır olamaz.");
+		}
+		PackagingLot lot = lots.findForUpdate(lotId)
 			.orElseThrow(() -> new ModelNotFoundException("PackagingLot", lotId));
-		long remaining = toInt(lot.get("quantity_remaining"));
+		int remaining = lot.getQuantityRemaining();
 		if (delta < 0 && remaining + delta < 0) {
-			throw new BusinessRuleException("'" + lot.string("lot_code") + "' lotunda " + remaining + " adet kaldı; "
+			throw new BusinessRuleException("'" + lot.getLotCode() + "' lotunda " + remaining + " adet kaldı; "
 				+ Math.abs(delta) + " adet düşülemez.");
 		}
-		String why = reason == null ? "COUNT" : reason;
-		if (("SCRAP".equals(why) || "RETURN".equals(why)) && delta > 0) {
+		AdjustReason reason = request.reason() == null ? AdjustReason.COUNT : request.reason();
+		if (reason != AdjustReason.COUNT && delta > 0) {
 			throw new BusinessRuleException("Fire ve iade stoğu artırmaz; sayım fazlası için sebebi \"sayım farkı\" seçin.");
 		}
-		String type = switch (why) {
-			case "SCRAP" -> "SCRAP";
-			case "RETURN" -> "RETURN";
-			default -> delta > 0 ? "ADJUSTMENT_IN" : "ADJUSTMENT_OUT";
-		};
-		long left = remaining + delta;
-		Map<String, Object> changes = new LinkedHashMap<>();
-		changes.put("quantity_remaining", left);
-		changes.put("status", left == 0 ? "depleted" : "active");
-		db.update("packaging_lots", lotId, changes);
-		long itemId = lot.longValue("packaging_item_id");
-		recordMovement(lotId, itemId, type, "MANUAL_ADJUSTMENT", Math.abs(delta), note, Timestamps.now(), userId, null);
-		recalculateItemStock(itemId);
+		lot.changeRemaining(remaining + delta);
+		movements.save(new PackagingLotMovement(lot, movementType(reason, delta), Source.MANUAL_ADJUSTMENT,
+			Math.abs(delta), request.note(), Timestamps.now(), userId, null));
+		recalculateItemStock(lot.getItem().getId());
 	}
 
-	/** {@code delete}: yalnizca hic kullanilmamis lot; hareketleriyle silinir. */
-	void delete(Row lot) {
-		String code = lot.string("lot_code");
-		if (toInt(lot.get("quantity_remaining")) != toInt(lot.get("quantity_received"))) {
+	/** Yalnizca hic kullanilmamis lot; hareketleriyle silinir. */
+	@Transactional
+	void delete(long lotId) {
+		PackagingLot lot = find(lotId);
+		String code = lot.getLotCode();
+		if (!lot.untouched()) {
 			throw new BusinessRuleException("'" + code + "' lotundan çıkış yapılmış, silinemez. "
 				+ "Kalan miktarı sayım düzeltmesiyle sıfırlayabilirsiniz.");
 		}
-		if (db.count("select count(*) from finished_product_run_packagings where packaging_lot_id = ?", lot.id()) > 0) {
+		if (packagings.existsByPackagingLotId(lotId)) {
 			throw new BusinessRuleException("'" + code + "' lotu bir dolum koşusuna tahsis edilmiş, silinemez.");
 		}
-		db.execute("delete from packaging_lot_movements where packaging_lot_id = ?", lot.id());
-		db.delete("packaging_lots", lot.id());
-		recalculateItemStock(lot.longValue("packaging_item_id"));
+		long itemId = lot.getItem().getId();
+		movements.deleteForLot(lotId);
+		lots.delete(lot);
+		lots.flush();
+		recalculateItemStock(itemId);
 	}
 
-	/** {@code recalculateItemStock}: kalemin eldeki adedi = lotlarin kalani. */
-	public void recalculateItemStock(long itemId) {
-		long total = db.count("select coalesce(sum(quantity_remaining), 0) from packaging_lots where packaging_item_id = ?", itemId);
-		db.update("packaging_items", itemId, Map.of("current_stock", total));
+	@Transactional(readOnly = true)
+	public boolean hasLots(long itemId) {
+		return lots.existsByItemId(itemId);
 	}
 
-	public void recordMovement(long lotId, long itemId, String type, String source, long quantity, Object note,
-		LocalDateTime movedAt, long userId, Long runId) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("packaging_lot_id", lotId);
-		values.put("packaging_item_id", itemId);
-		values.put("finished_product_run_id", runId);
-		values.put("user_id", userId);
-		values.put("source_type", source);
-		values.put("movement_type", type);
-		values.put("quantity", quantity);
-		values.put("note", note);
-		values.put("moved_at", movedAt);
-		db.insert("packaging_lot_movements", values);
+	/** Kalemin eldeki adedi = lotlarin kalani. */
+	void recalculateItemStock(long itemId) {
+		item(itemId).refreshStock(lots.sumRemaining(itemId));
 	}
 
-	/** integer cast'i */
-	private static int toInt(Object value) {
-		return (int) Php.intval(value);
+	private PackagingLot find(long id) {
+		return lots.findById(id).orElseThrow(() -> new ModelNotFoundException("PackagingLot", id));
+	}
+
+	private PackagingItem item(long id) {
+		return items.findById(id).orElseThrow(() -> new ModelNotFoundException("PackagingItem", id));
+	}
+
+	private ProductSupplier supplier(Long id) {
+		if (id == null) {
+			return null;
+		}
+		return suppliers.findById(id).orElseThrow(() -> LaravelValidationException.of("product_supplier_id",
+			LaravelMessages.format(LaravelMessages.EXISTS, "product_supplier_id")));
+	}
+
+	private static MovementType movementType(AdjustReason reason, int delta) {
+		return switch (reason) {
+			case SCRAP -> MovementType.SCRAP;
+			case RETURN -> MovementType.RETURN;
+			case COUNT -> delta > 0 ? MovementType.ADJUSTMENT_IN : MovementType.ADJUSTMENT_OUT;
+		};
 	}
 
 }

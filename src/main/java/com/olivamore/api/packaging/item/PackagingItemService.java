@@ -2,80 +2,85 @@ package com.olivamore.api.packaging.item;
 
 import com.olivamore.api.packaging.lot.PackagingLotService;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-/** Laravel {@code PackagingItemService}: ambalaj kalemleri. Eldeki adet buradan yazilmaz; lotlarin kalan toplami. */
 @Service
 class PackagingItemService {
 
-	private static final String COUNTS = "(select count(*) from packaging_lots where packaging_items.id = packaging_lots.packaging_item_id) as lots_count,"
-		+ " (select count(*) from packaging_lots where packaging_items.id = packaging_lots.packaging_item_id and status = 'active') as active_lot_count";
-
-	private final Db db;
+	private final PackagingItemRepository repository;
 	private final PackagingLotService lots;
 
-	PackagingItemService(Db db, PackagingLotService lots) {
-		this.db = db;
+	PackagingItemService(PackagingItemRepository repository, PackagingLotService lots) {
+		this.repository = repository;
 		this.lots = lots;
 	}
 
-	/** {@code getAll}: {@code isActive} verilirse suzulur; en yeni once ({@code latest()}); lot sayilari yuklu. */
-	List<Row> all(Boolean isActive) {
-		StringBuilder sql = new StringBuilder("select packaging_items.*, " + COUNTS + " from packaging_items");
-		List<Object> args = new ArrayList<>();
-		if (isActive != null) {
-			sql.append(" where is_active = ?");
-			args.add(isActive);
-		}
-		sql.append(" order by created_at desc");
-		return db.select(sql.toString(), args.toArray());
+	/** En yeni once. */
+	@Transactional(readOnly = true)
+	List<PackagingItemResponse> all(Boolean isActive) {
+		List<PackagingItem> items = isActive == null
+			? repository.findAllByOrderByCreatedAtDesc()
+			: repository.findByActiveOrderByCreatedAtDesc(isActive);
+		Map<Long, PackagingItemRepository.LotCounts> counts = counts();
+		return items.stream().map(item -> response(item, counts)).toList();
 	}
 
-	/** {@code getById}: lot sayilari yuklu. */
-	Row byId(long id) {
-		return db.first("select packaging_items.*, " + COUNTS + " from packaging_items where id = ?", id).orElseThrow();
+	@Transactional(readOnly = true)
+	PackagingItemResponse get(long id) {
+		return response(find(id), counts());
 	}
 
-	/** Yeni kalem. {@code current_stock} verilirse sutuna degil devir lotu olarak yazilir ({@code DEVIR-2026-0018}). @return yeni id */
-	long create(Map<String, Object> validated, long userId) {
-		Map<String, Object> data = new LinkedHashMap<>(validated);
-		long opening = Php.intval(data.remove("current_stock"));
-		if (data.get("is_active") == null) {
-			data.put("is_active", true);
-		}
-		data.put("current_stock", 0);
-		long id = db.insert("packaging_items", data);
-		if (opening > 0) {
-			lots.receive(id, String.format("DEVIR-%d-%04d", Timestamps.now().getYear(), id), opening, null, null,
+	/** {@code currentStock} verilirse devir lotu olarak yazilir. */
+	@Transactional
+	long create(CreatePackagingItemRequest request, long userId) {
+		PackagingItem item = repository.save(new PackagingItem(request));
+		if (request.currentStock() != null && request.currentStock() > 0) {
+			String lotCode = String.format("DEVIR-%d-%04d", Timestamps.now().getYear(), item.getId());
+			lots.receive(item.getId(), lotCode, request.currentStock(), null, null,
 				"Kalem tanımlanırken girilen devir stoğu.", userId);
 		}
-		return id;
+		return item.getId();
 	}
 
-	/** Kalem kunyesi; eldeki adet buradan degismez. */
-	void update(Row item, Map<String, Object> validated) {
-		Map<String, Object> data = new LinkedHashMap<>(validated);
-		data.remove("current_stock");
-		db.update("packaging_items", item.id(), data);
+	@Transactional
+	void update(long id, UpdatePackagingItemRequest request) {
+		find(id).apply(request);
 	}
 
-	void delete(Row item) {
-		if (db.count("select count(*) from finished_product_components where packaging_item_id = ?", item.id()) > 0) {
+	@Transactional
+	void delete(long id) {
+		PackagingItem item = find(id);
+		if (repository.countComponents(id) > 0) {
 			throw new BusinessRuleException("Bu ambalaj kalemi bir ürün bileşeninde kullanıldığı için silinemez.");
 		}
-		if (db.count("select count(*) from packaging_lots where packaging_item_id = ?", item.id()) > 0) {
+		if (lots.hasLots(id)) {
 			throw new BusinessRuleException("Bu ambalaj kaleminin lot kayıtları var; silinemez. Pasife alabilirsiniz.");
 		}
-		db.delete("packaging_items", item.id());
+		repository.delete(item);
+	}
+
+	private PackagingItem find(long id) {
+		return repository.findById(id).orElseThrow(() -> new ModelNotFoundException("PackagingItem", id));
+	}
+
+	private Map<Long, PackagingItemRepository.LotCounts> counts() {
+		return repository.countLots().stream()
+			.collect(Collectors.toMap(PackagingItemRepository.LotCounts::getItemId, Function.identity()));
+	}
+
+	private static PackagingItemResponse response(PackagingItem item,
+		Map<Long, PackagingItemRepository.LotCounts> counts) {
+		PackagingItemRepository.LotCounts count = counts.get(item.getId());
+		return PackagingItemResponse.of(item, count == null ? 0 : count.getTotal(),
+			count == null ? 0 : count.getActive());
 	}
 
 }

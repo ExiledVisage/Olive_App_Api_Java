@@ -426,7 +426,7 @@ Sıra:
 - [x] `product`
 - [x] `supplier`
 - [x] `notification`
-- [ ] `packaging`
+- [x] `packaging`
 - [ ] `sales`
 - [ ] `finishedproduct`
 - [ ] `inventory`

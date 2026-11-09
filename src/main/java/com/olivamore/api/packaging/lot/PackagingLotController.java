@@ -2,128 +2,84 @@ package com.olivamore.api.packaging.lot;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import com.olivamore.api.shared.php.PhpDates;
 
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-
-/** Laravel {@code PackagingLotController}: lotlar, mal girisi, kunye duzeltmesi, sayim duzeltmesi, silme. */
+/** Lotlar, mal girisi, kunye duzeltmesi, sayim duzeltmesi, silme. */
 @RestController
 class PackagingLotController {
 
-	private final LaravelValidator validator;
-	private final PackagingLotService lots;
-	private final PackagingLotResource resource;
+	private final PackagingLotService service;
+	private final PackagingLotResponses responses;
 
-	PackagingLotController(LaravelValidator validator, PackagingLotService lots, PackagingLotResource resource) {
-		this.validator = validator;
-		this.lots = lots;
-		this.resource = resource;
+	PackagingLotController(PackagingLotService service, PackagingLotResponses responses) {
+		this.service = service;
+		this.responses = responses;
 	}
 
-	// ---- okuma (packaging_lot.view) ------------------------------------------
-
-	/** {@code ?packaging_item_id= ?product_supplier_id= ?status= ?search=}; kalem ve tedarikci yuklu. */
 	@GetMapping("/api/packaging-lots")
 	@RequiresPermission("packaging_lot.view")
-	ListResponse<Map<String, Object>> index(HttpServletRequest request) {
-		return new ListResponse.Plain<>(resource.of(lots.list(integer(request, "packaging_item_id"), integer(request, "product_supplier_id"),
-			request.getParameter("status"), request.getParameter("search")), true, true, false));
+	ListResponse<PackagingLotResponse> index(
+		@RequestParam(name = "packaging_item_id", required = false) Long itemId,
+		@RequestParam(name = "product_supplier_id", required = false) Long supplierId,
+		@RequestParam(required = false) String status,
+		@RequestParam(required = false) String search) {
+		return new ListResponse.Plain<>(responses.list(itemId, supplierId, status, search));
 	}
 
-	@GetMapping("/api/packaging-items/{packagingItem}/lots")
+	@GetMapping("/api/packaging-items/{itemId}/lots")
 	@RequiresPermission("packaging_lot.view")
-	ListResponse<Map<String, Object>> indexForItem(@Bound(value = "packagingItem", table = "packaging_items", model = "PackagingItem") Row item) {
-		return new ListResponse.Plain<>(resource.of(lots.list(item.id(), null, null, null), true, true, false));
+	ListResponse<PackagingLotResponse> indexForItem(@PathVariable long itemId) {
+		service.ensureItemExists(itemId);
+		return new ListResponse.Plain<>(responses.list(itemId, null, null, null));
 	}
 
-	@GetMapping("/api/packaging-lots/{packagingLot}")
+	@GetMapping("/api/packaging-lots/{id}")
 	@RequiresPermission("packaging_lot.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "packagingLot", table = "packaging_lots", model = "PackagingLot") Row lot) {
-		return DataResponse.of(resource.detail(lot.id()));
+	DataResponse<PackagingLotResponse> show(@PathVariable long id) {
+		return DataResponse.of(responses.detail(id));
 	}
 
-	// ---- mal girisi ve kunye (packaging_lot.receive) -------------------------
-
-	/** Mal girisi: yeni lot (201). */
-	@PostMapping("/api/packaging-items/{packagingItem}/lots")
+	@PostMapping("/api/packaging-items/{itemId}/lots")
 	@RequiresPermission("packaging_lot.receive")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(@Bound(value = "packagingItem", table = "packaging_items", model = "PackagingItem") Row item,
-		RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, PackagingLotRequests.store(item.id()));
-		long lotId = lots.receive(item.id(), v.string("lot_code"), Php.intval(v.get("quantity")), date(v.get("received_at")),
-			v.get("product_supplier_id"), v.get("note"), user.id());
-		return DataResponse.created(resource.detail(lotId));
+	ResponseEntity<DataResponse<PackagingLotResponse>> store(@PathVariable long itemId,
+		@Valid @RequestBody CreatePackagingLotRequest request, CurrentUser user) {
+		return DataResponse.created(responses.detail(service.receive(itemId, request, user.id())));
 	}
 
-	/** Kunye duzeltmesi: lot numarasi, tedarikci, giris zamani, not. */
-	@PatchMapping("/api/packaging-lots/{packagingLot}")
+	@PatchMapping("/api/packaging-lots/{id}")
 	@RequiresPermission("packaging_lot.receive")
-	@Transactional
-	DataResponse<Map<String, Object>> update(@Bound(value = "packagingLot", table = "packaging_lots", model = "PackagingLot") Row lot, RequestInput input) {
-		ValidatedInput v = validator.validate(input, PackagingLotRequests.update(lot));
-		Map<String, Object> data = new LinkedHashMap<>(v.all());
-		if (data.containsKey("received_at")) {
-			data.put("received_at", date(data.get("received_at")));
-		}
-		lots.update(lot, data);
-		return DataResponse.of(resource.detail(lot.id()));
+	DataResponse<PackagingLotResponse> update(@PathVariable long id,
+		@Valid @RequestBody UpdatePackagingLotRequest request) {
+		service.update(id, request);
+		return DataResponse.of(responses.detail(id));
 	}
 
-	@DeleteMapping("/api/packaging-lots/{packagingLot}")
+	@DeleteMapping("/api/packaging-lots/{id}")
 	@RequiresPermission("packaging_lot.receive")
-	@Transactional
-	Map<String, String> destroy(@Bound(value = "packagingLot", table = "packaging_lots", model = "PackagingLot") Row lot) {
-		lots.delete(lot);
+	Map<String, String> destroy(@PathVariable long id) {
+		service.delete(id);
 		return Map.of("message", "Ambalaj lotu silindi.");
 	}
 
-	// ---- sayim duzeltmesi (packaging_lot.adjustment) -------------------------
-
-	/** Sayim farki, fire ya da iade. */
-	@PostMapping("/api/packaging-lots/{packagingLot}/adjustment")
+	@PostMapping("/api/packaging-lots/{id}/adjustment")
 	@RequiresPermission("packaging_lot.adjustment")
-	@Transactional
-	DataResponse<Map<String, Object>> adjust(@Bound(value = "packagingLot", table = "packaging_lots", model = "PackagingLot") Row lot,
-		RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, PackagingLotRequests.adjust());
-		lots.adjust(lot.id(), Php.intval(v.get("delta")), v.has("reason") ? Php.strval(v.get("reason")) : null, v.get("note"), user.id());
-		return DataResponse.of(resource.detail(lot.id()));
-	}
-
-	// ---- yardimcilar -----------------------------------------------------------
-
-	/** {@code $request->integer($key) ?: null} */
-	private static Long integer(HttpServletRequest request, String key) {
-		String value = request.getParameter(key);
-		long n = value == null ? 0 : Php.intval(value);
-		return n == 0 ? null : n;
-	}
-
-	/** datetime cast'inin yazdigi deger ({@code Carbon::parse}, saat dilimi cevrilmez). */
-	private static LocalDateTime date(Object value) {
-		return value == null ? null : PhpDates.parse(Php.strval(value)).orElseThrow();
+	DataResponse<PackagingLotResponse> adjust(@PathVariable long id,
+		@Valid @RequestBody AdjustPackagingLotRequest request, CurrentUser user) {
+		service.adjust(id, request, user.id());
+		return DataResponse.of(responses.detail(id));
 	}
 
 }

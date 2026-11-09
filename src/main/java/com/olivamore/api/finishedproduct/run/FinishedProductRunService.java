@@ -3,6 +3,7 @@ package com.olivamore.api.finishedproduct.run;
 import com.olivamore.api.inventory.StockOperations;
 import com.olivamore.api.packaging.PackagingAllocations;
 import com.olivamore.api.packaging.PackagingAllocations.Need;
+import com.olivamore.api.packaging.PackagingAllocations.Selection;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
@@ -454,7 +455,10 @@ class FinishedProductRunService {
 	/** Ambalaj lotu tahsisinin elle degistirilmesi; liste tahsisin tamami. */
 	void syncPackagings(Row run, List<Map<String, Object>> rows) {
 		packaging.syncRunAllocation(run.id(), run.string("status"),
-			needs(run.longValue("finished_product_id"), Php.intval(run.get("quantity"))), rows);
+			needs(run.longValue("finished_product_id"), Php.intval(run.get("quantity"))),
+			rows.stream()
+				.map(row -> new Selection(Php.intval(row.get("packaging_lot_id")), Php.intval(row.get("quantity"))))
+				.toList());
 	}
 
 	/** Yalnizca planli kosu silinir. */

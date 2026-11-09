@@ -1,79 +1,77 @@
 package com.olivamore.api.packaging.supplier;
 
+import com.olivamore.api.packaging.lot.PackagingLotResponses;
+import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-/** Laravel {@code ProductSupplierService}: ambalaj ve satin alinan malzemeyi getiren firmalar. */
 @Service
 class ProductSupplierService {
 
-	private static final String LOTS_COUNT = "(select count(*) from packaging_lots"
-		+ " where product_suppliers.id = packaging_lots.product_supplier_id) as lots_count";
+	private final ProductSupplierRepository repository;
+	private final PackagingLotResponses lots;
 
-	private final Db db;
-
-	ProductSupplierService(Db db) {
-		this.db = db;
+	ProductSupplierService(ProductSupplierRepository repository, PackagingLotResponses lots) {
+		this.repository = repository;
+		this.lots = lots;
 	}
 
-	/** {@code getAll}: ad veya kod aramasi, {@code isActive}; ada gore; lot sayisi yuklu. */
-	List<Row> all(String search, Boolean isActive) {
-		StringBuilder sql = new StringBuilder("select product_suppliers.*, " + LOTS_COUNT + " from product_suppliers");
-		List<String> where = new ArrayList<>();
-		List<Object> args = new ArrayList<>();
-		if (isActive != null) {
-			where.add("is_active = ?");
-			args.add(isActive);
+	@Transactional(readOnly = true)
+	List<ProductSupplierResponse> all(Boolean isActive, String search) {
+		Map<Long, Long> counts = repository.countLots().stream().collect(Collectors.toMap(
+			ProductSupplierRepository.LotCount::getSupplierId, ProductSupplierRepository.LotCount::getTotal));
+		return repository.findAll(ProductSupplierRepository.matching(isActive, search), Sort.by("name")).stream()
+			.map(s -> ProductSupplierResponse.of(s, counts.getOrDefault(s.getId(), 0L), null))
+			.toList();
+	}
+
+	/** Lot sayisi ve lotlar. */
+	@Transactional(readOnly = true)
+	ProductSupplierResponse detail(long id) {
+		return ProductSupplierResponse.of(find(id), repository.countLots(id), lots.ofSupplier(id));
+	}
+
+	@Transactional
+	long create(CreateProductSupplierRequest request) {
+		if (repository.existsByCode(request.code())) {
+			throw codeTaken();
 		}
-		String term = search == null ? "" : search.trim();
-		if (!term.isEmpty()) {
-			where.add("(name::text ilike ? or code::text ilike ?)");
-			args.add("%" + term + "%");
-			args.add("%" + term + "%");
+		return repository.save(new ProductSupplier(request)).getId();
+	}
+
+	@Transactional
+	void update(long id, UpdateProductSupplierRequest request) {
+		ProductSupplier supplier = find(id);
+		if (request.code() != null && repository.existsByCodeAndIdNot(request.code(), id)) {
+			throw codeTaken();
 		}
-		if (!where.isEmpty()) {
-			sql.append(" where ").append(String.join(" and ", where));
-		}
-		sql.append(" order by name asc");
-		return db.select(sql.toString(), args.toArray());
-	}
-
-	/** {@code getById}: lot sayisi yuklu. */
-	Row byId(long id) {
-		return db.first("select product_suppliers.*, " + LOTS_COUNT + " from product_suppliers where id = ?", id).orElseThrow();
-	}
-
-	/** Tedarikcinin lotlari, yeniden eskiye. */
-	List<Row> lots(long id) {
-		return db.select("select * from packaging_lots where product_supplier_id = ? order by received_at desc, id desc", id);
-	}
-
-	/** {@code is_active} verilmezse true. @return yeni id */
-	long create(Map<String, Object> validated) {
-		Map<String, Object> data = new LinkedHashMap<>(validated);
-		if (data.get("is_active") == null) {
-			data.put("is_active", true);
-		}
-		return db.insert("product_suppliers", data);
-	}
-
-	void update(Row supplier, Map<String, Object> validated) {
-		db.update("product_suppliers", supplier.id(), validated);
+		supplier.apply(request);
 	}
 
 	/** Lotu olan tedarikci silinmez; pasife alinir. */
-	void delete(Row supplier) {
-		DeletionGuard.of("'" + supplier.string("name") + "' tedarikçisi")
-			.usedBy("ambalaj lotu", db.count("select count(*) from packaging_lots where product_supplier_id = ?", supplier.id()))
+	@Transactional
+	void delete(long id) {
+		ProductSupplier supplier = find(id);
+		DeletionGuard.of("'" + supplier.getName() + "' tedarikçisi")
+			.usedBy("ambalaj lotu", repository.countLots(id))
 			.check("Pasife alabilirsiniz.");
-		db.delete("product_suppliers", supplier.id());
+		repository.delete(supplier);
+	}
+
+	private ProductSupplier find(long id) {
+		return repository.findById(id).orElseThrow(() -> new ModelNotFoundException("ProductSupplier", id));
+	}
+
+	private static LaravelValidationException codeTaken() {
+		return LaravelValidationException.of("code", LaravelMessages.format(LaravelMessages.UNIQUE, "code"));
 	}
 
 }

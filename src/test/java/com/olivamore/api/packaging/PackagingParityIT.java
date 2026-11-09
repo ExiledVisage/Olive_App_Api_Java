@@ -36,7 +36,7 @@ class PackagingParityIT {
 		LaravelReplay.Result result = new LaravelReplay("/laravel/packaging.json", port, jdbc)
 			.capturedAt("2026-11-07T12:00:00Z")
 			.run();
-		assertThat(result.steps()).isEqualTo(113);
+		assertThat(result.steps()).isEqualTo(116);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 
