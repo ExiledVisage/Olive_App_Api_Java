@@ -1,116 +1,141 @@
 package com.olivamore.api.productionline.stage;
 
+import com.olivamore.api.process.ProcessResources;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedHashMap;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Laravel {@code ProductionStageService}, sira mantigi birebir. {@code (production_line_id, stage_order)}
- * unique oldugu icin kaydirma iki adimda: once 100000 ileri, sonra geri (+1 ya da -1 net).
+ * {@code (production_line_id, stage_order)} unique oldugu icin siralar iki adimda kaydirilir:
+ * once gecici olarak {@value #TEMP_OFFSET} ileri, sonra hedefe.
  */
 @Service
-class ProductionStageService {
+public class ProductionStageService {
 
-	static final String STAGE_NOT_IN_LINE = "Stage not found for this production line.";
 	private static final int TEMP_OFFSET = 100000;
 
-	private final Db db;
+	private final ProductionStageRepository repository;
+	private final ProcessResources process;
 
-	ProductionStageService(Db db) {
-		this.db = db;
+	ProductionStageService(ProductionStageRepository repository, ProcessResources process) {
+		this.repository = repository;
+		this.process = process;
 	}
 
-	List<Row> forLine(Row line) {
-		return db.select("""
-			select * from production_stages
-			where production_stages.production_line_id = ? and production_stages.production_line_id is not null
-			order by stage_order asc, stage_order asc""", line.id());
+	@Transactional(readOnly = true)
+	List<ProductionStage> forLine(long lineId) {
+		ensureLine(lineId);
+		return repository.findByProductionLineIdOrderByStageOrderAsc(lineId);
 	}
 
-	static void ensureBelongs(Row line, Row stage) {
-		if (stage.longValue("production_line_id") != line.id()) {
-			throw new HttpStatusException(404, STAGE_NOT_IN_LINE);
-		}
+	@Transactional(readOnly = true)
+	ProductionStage get(long lineId, long stageId) {
+		return find(lineId, stageId);
 	}
 
 	/** Istenen sira 1..(son+1) araligina cekilir, o siradan sonrakiler bir ileri kayar. */
-	Row create(long lineId, Map<String, Object> validated) {
-		int desired = (int) Php.intval(validated.getOrDefault("stage_order", 1));
-		int maxInsert = max(lineId) + 1;
-		desired = Math.max(1, Math.min(desired, maxInsert));
-		shiftUp(lineId, desired, maxInsert - 1);
-		Map<String, Object> values = new LinkedHashMap<>(validated);
-		values.put("production_line_id", lineId);
-		values.put("stage_order", desired);
-		return db.create("production_stages", values);
+	@Transactional
+	ProductionStage create(long lineId, CreateProductionStageRequest request) {
+		ensureLine(lineId);
+		assertProcessType(request.processTypeId());
+		int last = repository.maxOrder(lineId);
+		int order = Math.clamp(request.stageOrder(), 1, last + 1);
+		shift(lineId, order, last, 1);
+		return repository.save(new ProductionStage(lineId, order, request));
 	}
 
-	Row update(long lineId, Row stage, Map<String, Object> validated) {
-		Map<String, Object> values = new LinkedHashMap<>(validated);
-		int oldOrder = stage.intValue("stage_order");
-		if (values.containsKey("stage_order") && values.get("stage_order") != null) {
-			int desired = (int) Php.intval(values.get("stage_order"));
-			desired = Math.max(1, Math.min(desired, max(lineId)));
-			if (desired != oldOrder) {
-				int temp = max(lineId) + TEMP_OFFSET + (int) stage.id();
-				db.update("production_stages", stage.id(), Map.of("stage_order", temp));
-				if (desired < oldOrder) {
-					shiftUp(lineId, desired, oldOrder - 1);
-				}
-				else {
-					shiftDown(lineId, oldOrder + 1, desired);
-				}
-				values.put("stage_order", desired);
-			}
-			else {
-				values.remove("stage_order");
-			}
+	@Transactional
+	ProductionStage update(long lineId, long stageId, UpdateProductionStageRequest request) {
+		ProductionStage stage = find(lineId, stageId);
+		Patch.ifPresent(request.processTypeId(), this::assertProcessType);
+		if (request.stageOrder() != null) {
+			reorder(stage, request.stageOrder());
 		}
-		db.update("production_stages", stage.id(), values);
-		return db.find("production_stages", stage.id()).orElseThrow();
+		stage.apply(request);
+		return stage;
 	}
 
-	void delete(long lineId, Row stage) {
-		String name = stage.string("name") != null ? stage.string("name") : "#" + stage.id();
+	@Transactional
+	void delete(long lineId, long stageId) {
+		ProductionStage stage = find(lineId, stageId);
+		String name = stage.getName() != null ? stage.getName() : "#" + stageId;
 		DeletionGuard.of("'" + name + "' aşaması")
-			.usedBy("parti prosesi", db.count("select count(*) from batch_processes where production_stage_id = ?", stage.id()))
+			.usedBy("parti prosesi", repository.countBatchProcesses(stageId))
 			.check();
-		int deleted = stage.intValue("stage_order");
-		int maxOrder = max(lineId);
-		db.delete("production_stages", stage.id());
-		shiftDown(lineId, deleted + 1, maxOrder);
+		int deleted = stage.getStageOrder();
+		int last = repository.maxOrder(lineId);
+		repository.delete(stage);
+		repository.flush();
+		shift(lineId, deleted + 1, last, -1);
 	}
 
-	private int max(long lineId) {
-		return (int) db.count("select coalesce(max(stage_order), 0) from production_stages where production_line_id = ?", lineId);
+	/** Hat ve asama yoksa 404; asamanin bu hatta ait olmasi aranmaz. */
+	@Transactional(readOnly = true)
+	public void ensureExists(long lineId, long stageId) {
+		ensureLine(lineId);
+		if (!repository.existsById(stageId)) {
+			throw new ModelNotFoundException("ProductionStage", stageId);
+		}
 	}
 
-	/** increment/decrement: Eloquent updated_at'i da gunceller. */
-	private void shiftUp(long lineId, int start, int end) {
-		shift(lineId, start, end, TEMP_OFFSET - 1);
+	private void reorder(ProductionStage stage, int requested) {
+		long lineId = stage.getProductionLineId();
+		int current = stage.getStageOrder();
+		int last = repository.maxOrder(lineId);
+		int order = Math.clamp(requested, 1, last);
+		if (order == current) {
+			return;
+		}
+		stage.moveTo(last + TEMP_OFFSET + stage.getId().intValue());
+		repository.flush();
+		if (order < current) {
+			shift(lineId, order, current - 1, 1);
+		}
+		else {
+			shift(lineId, current + 1, order, -1);
+		}
+		stage.moveTo(order);
 	}
 
-	private void shiftDown(long lineId, int start, int end) {
-		shift(lineId, start, end, TEMP_OFFSET + 1);
-	}
-
-	private void shift(long lineId, int start, int end, int back) {
+	private void shift(long lineId, int start, int end, int by) {
 		if (start > end) {
 			return;
 		}
-		String now = "'" + Timestamps.now().toString().replace('T', ' ') + "'";
-		db.execute("update production_stages set stage_order = stage_order + " + TEMP_OFFSET + ", updated_at = " + now
-			+ " where production_line_id = ? and stage_order between ? and ?", lineId, start, end);
-		db.execute("update production_stages set stage_order = stage_order - " + back + ", updated_at = " + now
-			+ " where production_line_id = ? and stage_order between ? and ?", lineId, start + TEMP_OFFSET, end + TEMP_OFFSET);
+		LocalDateTime now = Timestamps.now();
+		repository.moveOrders(lineId, start, end, TEMP_OFFSET, now);
+		repository.moveOrders(lineId, start + TEMP_OFFSET, end + TEMP_OFFSET, by - TEMP_OFFSET, now);
+	}
+
+	private ProductionStage find(long lineId, long stageId) {
+		ensureLine(lineId);
+		ProductionStage stage = repository.findById(stageId)
+			.orElseThrow(() -> new ModelNotFoundException("ProductionStage", stageId));
+		if (stage.getProductionLineId() != lineId) {
+			throw new HttpStatusException(404, "Stage not found for this production line.");
+		}
+		return stage;
+	}
+
+	private void ensureLine(long lineId) {
+		if (!repository.lineExists(lineId)) {
+			throw new ModelNotFoundException("ProductionLine", lineId);
+		}
+	}
+
+	private void assertProcessType(Long processTypeId) {
+		if (processTypeId != null && process.processTypesById(List.of(processTypeId)).isEmpty()) {
+			throw LaravelValidationException.of("process_type_id",
+				LaravelMessages.format(LaravelMessages.EXISTS, "process_type_id"));
+		}
 	}
 
 }

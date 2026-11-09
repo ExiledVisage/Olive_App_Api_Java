@@ -1,51 +1,54 @@
 package com.olivamore.api.process;
 
 import com.olivamore.api.process.processtype.ProcessTypeResponses;
-import com.olivamore.api.process.processtypefield.ProcessTypeFieldResource;
-import com.olivamore.api.process.stageextensiontype.StageExtensionTypeResource;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.process.processtypefield.ProcessTypeFieldResponses;
+import com.olivamore.api.process.stageextensiontype.StageExtensionTypeResponses;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Proses resource'larinin diger modullere acik kismi: baska bir resource'un icinde gecen proses tipleri,
- * proses alanlari ve uzanti tipi alanlari (ornek: ProductionStageResource'taki {@code process_type},
- * BatchProcessResource'taki {@code field_definitions}).
+ * Proses cevaplarinin diger modullere acik kismi: uretim hattinin asamalarindaki proses tipleri,
+ * parti proseslerindeki alan tanimlari ve uzanti tipi alanlari.
  */
 @Component
 public class ProcessResources {
 
-	private final ProcessTypeResponses typeResponses;
-	private final ProcessTypeFieldResource fieldResource;
-	private final StageExtensionTypeResource extensionTypeResource;
+	private final ProcessTypeResponses types;
+	private final ProcessTypeFieldResponses fields;
+	private final StageExtensionTypeResponses extensionTypes;
 
-	ProcessResources(ProcessTypeResponses typeResponses, ProcessTypeFieldResource fieldResource,
-		StageExtensionTypeResource extensionTypeResource) {
-		this.typeResponses = typeResponses;
-		this.fieldResource = fieldResource;
-		this.extensionTypeResource = extensionTypeResource;
+	ProcessResources(ProcessTypeResponses types, ProcessTypeFieldResponses fields,
+		StageExtensionTypeResponses extensionTypes) {
+		this.types = types;
+		this.fields = fields;
+		this.extensionTypes = extensionTypes;
 	}
 
-	/** Proses tipleri (alanlari yuklu), id'ye gore; bulunamayan id'ler haritada yok. */
+	/** Bulunamayan id'ler haritada yok. */
 	public Map<Long, ProcessTypeResponse> processTypesById(List<Long> ids) {
-		return typeResponses.byIds(ids);
+		return types.byIds(ids);
 	}
 
-	/** ProcessTypeFieldResource'lar, proses tipine gore (sort_order sirasinda). */
-	public Map<Long, List<Map<String, Object>>> processTypeFields(List<Long> processTypeIds) {
-		return fieldResource.byProcessType(processTypeIds);
+	/** Proses tipine gore, sort_order sirasinda. */
+	public Map<Long, List<ProcessTypeFieldResponse>> processTypeFields(List<Long> processTypeIds) {
+		return fields.byProcessType(processTypeIds);
 	}
 
-	/** StageExtensionTypeFieldResource'lar, uzanti tipine gore (sort_order sirasinda). */
-	public Map<Long, List<Map<String, Object>>> extensionTypeFields(List<Long> extensionTypeIds) {
-		return extensionTypeResource.fieldsByType(extensionTypeIds, "sort_order asc");
+	/** Uzanti tipine gore, sort_order sirasinda. */
+	public Map<Long, List<StageExtensionTypeFieldResponse>> extensionTypeFields(List<Long> extensionTypeIds) {
+		return extensionTypes.fieldsByType(extensionTypeIds);
 	}
 
-	/** StageExtensionTypeFieldResource */
-	public Map<String, Object> extensionTypeField(Row field) {
-		return StageExtensionTypeResource.field(field);
+	/** Alanlariyla; bulunamayan id'ler haritada yok. */
+	public Map<Long, StageExtensionTypeSummary> extensionTypesById(List<Long> ids) {
+		return extensionTypes.typesById(ids);
+	}
+
+	/** Bulunamayan id'ler haritada yok. */
+	public Map<Long, StageExtensionTypeFieldResponse> extensionTypeFieldsById(List<Long> fieldIds) {
+		return extensionTypes.fieldsById(fieldIds);
 	}
 
 }

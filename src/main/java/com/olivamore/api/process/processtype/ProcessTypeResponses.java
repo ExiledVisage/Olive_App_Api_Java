@@ -1,7 +1,8 @@
 package com.olivamore.api.process.processtype;
 
 import com.olivamore.api.process.ProcessTypeResponse;
-import com.olivamore.api.process.processtypefield.ProcessTypeFieldResource;
+import com.olivamore.api.process.ProcessTypeFieldResponse;
+import com.olivamore.api.process.processtypefield.ProcessTypeFieldResponses;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,9 +16,9 @@ import java.util.Objects;
 public class ProcessTypeResponses {
 
 	private final ProcessTypeRepository repository;
-	private final ProcessTypeFieldResource fields;
+	private final ProcessTypeFieldResponses fields;
 
-	ProcessTypeResponses(ProcessTypeRepository repository, ProcessTypeFieldResource fields) {
+	ProcessTypeResponses(ProcessTypeRepository repository, ProcessTypeFieldResponses fields) {
 		this.repository = repository;
 		this.fields = fields;
 	}
@@ -32,7 +33,7 @@ public class ProcessTypeResponses {
 	}
 
 	List<ProcessTypeResponse> of(List<ProcessType> types) {
-		Map<Long, List<Map<String, Object>>> byType =
+		Map<Long, List<ProcessTypeFieldResponse>> byType =
 			fields.byProcessType(types.stream().map(ProcessType::getId).toList());
 		return types.stream().map(type -> of(type, byType.getOrDefault(type.getId(), List.of()))).toList();
 	}
@@ -41,7 +42,7 @@ public class ProcessTypeResponses {
 		return of(List.of(type)).getFirst();
 	}
 
-	private static ProcessTypeResponse of(ProcessType type, List<Map<String, Object>> typeFields) {
+	private static ProcessTypeResponse of(ProcessType type, List<ProcessTypeFieldResponse> typeFields) {
 		return new ProcessTypeResponse(type.getId(), type.getName(), type.getDescription(), type.getCategory(),
 			type.isActive(), typeFields, type.getCreatedAt(), type.getUpdatedAt());
 	}

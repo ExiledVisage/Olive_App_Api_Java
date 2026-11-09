@@ -28,6 +28,11 @@ public final class LaravelMessages {
 	public static final String EXISTS = "The selected :attribute is invalid.";
 	public static final String UNIQUE = "The :attribute has already been taken.";
 	public static final String MAX_255 = "The :attribute field must not be greater than 255 characters.";
+	public static final String MAX_50 = "The :attribute field must not be greater than 50 characters.";
+	public static final String MIN_0 = "The :attribute field must be at least 0.";
+	public static final String MIN_1 = "The :attribute field must be at least 1.";
+	public static final String MIN_ITEMS_1 = "The :attribute field must have at least 1 items.";
+	public static final String DISTINCT = "The :attribute field has a duplicate value.";
 
 	private LaravelMessages() {
 	}
@@ -62,7 +67,7 @@ public final class LaravelMessages {
 	 * Ic ice alanlarda nokta korunur: {@code items.0.quantity -> "items.0.quantity"}.
 	 */
 	public static String attribute(String field) {
-		return field.replace('_', ' ');
+		return field.matches(".*\\.\\d+(\\..*)?") ? field : field.replace('_', ' ');
 	}
 
 	/** Mesaj sablonundaki {@code :attribute}'u doldurur. */

@@ -1,7 +1,9 @@
 package com.olivamore.api.production.batchprocess;
 
 import com.olivamore.api.process.ProcessResources;
+import com.olivamore.api.process.ProcessTypeFieldResponse;
 import com.olivamore.api.productionline.ProductionLineResources;
+import com.olivamore.api.productionline.StageExtensionResponse;
 import com.olivamore.api.inventory.MaterialResources;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Db;
@@ -60,8 +62,8 @@ public class BatchProcessResource {
 		Map<Long, Row> operators = byId("users", processes, "operator_id");
 		Map<Long, Row> stages = byId("production_stages", processes, "production_stage_id");
 		Map<Long, Row> types = byId("process_types", stages.values(), "process_type_id");
-		Map<Long, List<Map<String, Object>>> typeFields = process.processTypeFields(new ArrayList<>(types.keySet()));
-		Map<Long, List<Map<String, Object>>> extensions = lines.stageExtensions(new ArrayList<>(stages.keySet()), detail);
+		Map<Long, List<ProcessTypeFieldResponse>> typeFields = process.processTypeFields(new ArrayList<>(types.keySet()));
+		Map<Long, List<StageExtensionResponse>> extensions = lines.stageExtensions(new ArrayList<>(stages.keySet()), detail);
 		Map<Long, List<Map<String, Object>>> fieldValues = fieldValues(ids);
 		Map<Long, List<Map<String, Object>>> reviews = detail ? reviews(ids) : Map.of();
 		Map<Long, Row> users = detail ? byId("users", processes, "submitted_by_user_id", "approved_by_user_id") : Map.of();

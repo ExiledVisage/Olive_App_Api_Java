@@ -1,5 +1,6 @@
 package com.olivamore.api.product.productionproduct;
 
+import com.olivamore.api.productionline.ProductionLineResponse;
 import com.olivamore.api.shared.persistence.Casts;
 import com.olivamore.api.shared.persistence.Row;
 
@@ -25,7 +26,7 @@ final class ProductionProductResource {
 	 * @param lines    girdi + cikti hatlari (tekrarsiz); her baglamda yazilir, yuklenmediyse bos
 	 */
 	static Map<String, Object> of(Row p, Long count, List<Map<String, Object>> mappings, List<Map<String, Object>> types,
-		List<Map<String, Object>> lines) {
+		List<ProductionLineResponse> lines) {
 		Map<String, Object> r = new LinkedHashMap<>();
 		r.put("id", p.get("id"));
 		r.put("key", p.get("key"));

@@ -1,20 +1,14 @@
 package com.olivamore.api.process.processtype;
 
 import com.olivamore.api.process.ProcessCategory;
-import jakarta.persistence.AttributeConverter;
+import com.olivamore.api.shared.persistence.ValueEnumConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-class ProcessCategoryConverter implements AttributeConverter<ProcessCategory, String> {
+class ProcessCategoryConverter extends ValueEnumConverter<ProcessCategory> {
 
-	@Override
-	public String convertToDatabaseColumn(ProcessCategory category) {
-		return category == null ? null : category.value();
-	}
-
-	@Override
-	public ProcessCategory convertToEntityAttribute(String value) {
-		return value == null ? null : ProcessCategory.of(value);
+	ProcessCategoryConverter() {
+		super(ProcessCategory.class);
 	}
 
 }

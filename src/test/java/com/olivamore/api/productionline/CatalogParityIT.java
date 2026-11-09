@@ -43,6 +43,7 @@ class CatalogParityIT {
 				{"message":"The field key has already been taken.","errors":{"field_key":["The field key has already been taken."]}}""")
 			// Laravel insert'e kadar gidip sequence tuketti; Java validation'da reddediyor
 			.burn("alan tekrar anahtar", "process_type_fields_id_seq")
+			.burn("asama gecersiz zorunlu", "production_stages_id_seq")
 			.run();
 		assertThat(result.steps()).isEqualTo(77);
 		assertThat(result.failures()).as(result.report()).isEmpty();

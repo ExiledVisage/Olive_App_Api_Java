@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-class ProcessTypeService {
+public class ProcessTypeService {
 
 	private final ProcessTypeRepository repository;
 
@@ -57,6 +57,14 @@ class ProcessTypeService {
 			.usedBy("girilmiş ölçüm", repository.countMeasurements(id))
 			.check();
 		repository.delete(type);
+	}
+
+	/** Proses tipi yoksa 404. */
+	@Transactional(readOnly = true)
+	public void ensureExists(long id) {
+		if (!repository.existsById(id)) {
+			throw new ModelNotFoundException("ProcessType", id);
+		}
 	}
 
 	private ProcessType find(long id) {

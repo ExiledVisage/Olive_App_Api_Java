@@ -1,18 +1,16 @@
 package com.olivamore.api.productionline.stage;
 
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
+import com.olivamore.api.productionline.ProductionStageResponse;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,69 +18,49 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/** Laravel {@code ProductionStageController}: bir hattin asamalari (production_stage.manage). */
 @RestController
+@RequestMapping("/api/production-lines/{lineId}/stages")
+@RequiresPermission("production_stage.manage")
 class ProductionStageController {
 
-	private final LaravelValidator validator;
-	private final ProductionStageService stages;
-	private final ProductionStageResource resource;
+	private final ProductionStageService service;
+	private final ProductionStageResponses responses;
 
-	ProductionStageController(LaravelValidator validator, ProductionStageService stages, ProductionStageResource resource) {
-		this.validator = validator;
-		this.stages = stages;
-		this.resource = resource;
+	ProductionStageController(ProductionStageService service, ProductionStageResponses responses) {
+		this.service = service;
+		this.responses = responses;
 	}
 
-	@GetMapping("/api/production-lines/{production_line}/stages")
-	@RequiresPermission("production_stage.manage")
-	ListResponse<Map<String, Object>> index(
-		@Bound(value = "production_line", table = "production_lines", model = "ProductionLine") Row line) {
-		return new ListResponse.Plain<>(resource.stages(stages.forLine(line), true, false));
+	@GetMapping
+	ListResponse<ProductionStageResponse> index(@PathVariable long lineId) {
+		return new ListResponse.Plain<>(responses.of(service.forLine(lineId), true));
 	}
 
-	@GetMapping("/api/production-lines/{production_line}/stages/{stage}")
-	@RequiresPermission("production_stage.manage")
-	DataResponse<Map<String, Object>> show(
-		@Bound(value = "production_line", table = "production_lines", model = "ProductionLine") Row line,
-		@Bound(table = "production_stages", model = "ProductionStage") Row stage) {
-		ProductionStageService.ensureBelongs(line, stage);
-		return DataResponse.of(one(stage));
+	@GetMapping("/{id}")
+	DataResponse<ProductionStageResponse> show(@PathVariable long lineId, @PathVariable long id) {
+		return DataResponse.of(one(service.get(lineId, id)));
 	}
 
-	@PostMapping("/api/production-lines/{production_line}/stages")
-	@RequiresPermission("production_stage.manage")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(
-		@Bound(value = "production_line", table = "production_lines", model = "ProductionLine") Row line, RequestInput input) {
-		ValidatedInput v = validator.validate(input, ProductionStageRequests.store());
-		return DataResponse.created(one(stages.create(line.id(), v.all())));
+	@PostMapping
+	ResponseEntity<DataResponse<ProductionStageResponse>> store(@PathVariable long lineId,
+		@Valid @RequestBody CreateProductionStageRequest request) {
+		return DataResponse.created(one(service.create(lineId, request)));
 	}
 
-	@RequestMapping(path = "/api/production-lines/{production_line}/stages/{stage}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	@RequiresPermission("production_stage.manage")
-	@Transactional
-	DataResponse<Map<String, Object>> update(
-		@Bound(value = "production_line", table = "production_lines", model = "ProductionLine") Row line,
-		@Bound(table = "production_stages", model = "ProductionStage") Row stage, RequestInput input) {
-		ValidatedInput v = validator.validate(input, ProductionStageRequests.update());
-		ProductionStageService.ensureBelongs(line, stage);
-		return DataResponse.of(one(stages.update(line.id(), stage, v.all())));
+	@RequestMapping(path = "/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	DataResponse<ProductionStageResponse> update(@PathVariable long lineId, @PathVariable long id,
+		@Valid @RequestBody UpdateProductionStageRequest request) {
+		return DataResponse.of(one(service.update(lineId, id, request)));
 	}
 
-	@DeleteMapping("/api/production-lines/{production_line}/stages/{stage}")
-	@RequiresPermission("production_stage.manage")
-	@Transactional
-	Map<String, String> destroy(
-		@Bound(value = "production_line", table = "production_lines", model = "ProductionLine") Row line,
-		@Bound(table = "production_stages", model = "ProductionStage") Row stage) {
-		ProductionStageService.ensureBelongs(line, stage);
-		stages.delete(line.id(), stage);
+	@DeleteMapping("/{id}")
+	Map<String, String> destroy(@PathVariable long lineId, @PathVariable long id) {
+		service.delete(lineId, id);
 		return Map.of("message", "Production stage deleted successfully.");
 	}
 
-	private Map<String, Object> one(Row stage) {
-		return resource.stages(List.of(stage), true, false).getFirst();
+	private ProductionStageResponse one(ProductionStage stage) {
+		return responses.of(List.of(stage), true).getFirst();
 	}
 
 }

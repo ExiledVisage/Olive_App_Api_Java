@@ -1,89 +1,109 @@
 package com.olivamore.api.productionline.line;
 
-import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.productionline.catalog.ProductCatalog;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.validation.ValidatedInput;
+import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-/** Laravel {@code ProductionLineService}. */
 @Service
 class ProductionLineService {
 
-	private static final String INPUTS = "production_line_input_production_products";
-	private static final String OUTPUTS = "production_line_output_production_products";
+	private static final String INPUTS = "input_production_products";
+	private static final String OUTPUTS = "output_production_products";
 
-	private final Db db;
+	private final ProductionLineRepository lines;
+	private final LineInputProductRepository inputs;
+	private final LineOutputProductRepository outputs;
+	private final ProductCatalog catalog;
 
-	ProductionLineService(Db db) {
-		this.db = db;
+	ProductionLineService(ProductionLineRepository lines, LineInputProductRepository inputs,
+		LineOutputProductRepository outputs, ProductCatalog catalog) {
+		this.lines = lines;
+		this.inputs = inputs;
+		this.outputs = outputs;
+		this.catalog = catalog;
 	}
 
-	List<Row> all() {
-		return db.select("select * from production_lines order by created_at desc");
+	@Transactional(readOnly = true)
+	List<ProductionLine> all() {
+		return lines.findAllByOrderByCreatedAtDesc();
 	}
 
-	Row create(ValidatedInput v) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("name", v.get("name"));
-		values.put("description", v.get("description"));
-		long id = db.insert("production_lines", values);
-		replaceProducts(INPUTS, id, items(v.get("input_production_products")));
-		replaceProducts(OUTPUTS, id, items(v.get("output_production_products")));
-		return db.find("production_lines", id).orElseThrow();
+	@Transactional(readOnly = true)
+	ProductionLine get(long id) {
+		return find(id);
 	}
 
-	Row update(Row line, ValidatedInput v) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("name", v.get("name") != null ? v.get("name") : line.get("name"));
-		values.put("description", v.has("description") ? v.get("description") : line.get("description"));
-		db.update("production_lines", line.id(), values);
-		if (v.has("input_production_products")) {
-			replaceProducts(INPUTS, line.id(), items(v.get("input_production_products")));
+	@Transactional
+	ProductionLine create(CreateProductionLineRequest request) {
+		assertProducts(request.inputProductionProducts(), request.outputProductionProducts());
+		ProductionLine line = lines.save(new ProductionLine(request));
+		replaceInputs(line.getId(), request.inputProductionProducts());
+		replaceOutputs(line.getId(), request.outputProductionProducts());
+		return line;
+	}
+
+	@Transactional
+	ProductionLine update(long id, UpdateProductionLineRequest request) {
+		ProductionLine line = find(id);
+		assertProducts(request.inputProductionProducts(), request.outputProductionProducts());
+		line.apply(request);
+		if (request.inputProductionProducts() != null) {
+			replaceInputs(id, request.inputProductionProducts());
 		}
-		if (v.has("output_production_products")) {
-			replaceProducts(OUTPUTS, line.id(), items(v.get("output_production_products")));
+		if (request.outputProductionProducts() != null) {
+			replaceOutputs(id, request.outputProductionProducts());
 		}
-		return db.find("production_lines", line.id()).orElseThrow();
+		return line;
 	}
 
-	void delete(Row line) {
-		DeletionGuard.of("'" + line.string("name") + "' hattı")
-			.usedBy("üretim partisi", db.count("select count(*) from production_batches where production_line_id = ?", line.id()))
+	@Transactional
+	void delete(long id) {
+		ProductionLine line = find(id);
+		DeletionGuard.of("'" + line.getName() + "' hattı")
+			.usedBy("üretim partisi", lines.countBatches(id))
 			.check();
-		db.execute("delete from " + INPUTS + " where production_line_id = ?", line.id());
-		db.execute("delete from " + OUTPUTS + " where production_line_id = ?", line.id());
-		db.delete("production_lines", line.id());
+		lines.delete(line);
 	}
 
-	/** replaceInputProductTypes / replaceOutputProductTypes */
-	private void replaceProducts(String table, long lineId, List<Map<String, Object>> items) {
-		db.execute("delete from " + table + " where production_line_id = ?", lineId);
+	private ProductionLine find(long id) {
+		return lines.findById(id).orElseThrow(() -> new ModelNotFoundException("ProductionLine", id));
+	}
+
+	private void replaceInputs(long lineId, List<LineProductRequest> items) {
+		inputs.deleteForLine(lineId);
 		for (int i = 0; i < items.size(); i++) {
-			Map<String, Object> item = items.get(i);
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("production_product_id", item.get("production_product_id"));
-			values.put("production_product_type_id", item.get("production_product_type_id"));
-			values.put("sort_order", item.get("sort_order") != null ? item.get("sort_order") : i + 1);
-			values.put("production_line_id", lineId);
-			db.insert(table, values);
+			inputs.save(new LineInputProduct(lineId, items.get(i), i + 1));
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private static List<Map<String, Object>> items(Object value) {
-		if (value instanceof List<?> list) {
-			return list.stream().map(i -> i instanceof Map<?, ?> m ? (Map<String, Object>) m : Map.<String, Object>of()).toList();
+	private void replaceOutputs(long lineId, List<LineProductRequest> items) {
+		outputs.deleteForLine(lineId);
+		for (int i = 0; i < items.size(); i++) {
+			outputs.save(new LineOutputProduct(lineId, items.get(i), i + 1));
 		}
-		if (value instanceof Map<?, ?> map) {
-			return ((Map<String, Object>) map).values().stream()
-				.map(i -> i instanceof Map<?, ?> m ? (Map<String, Object>) m : Map.<String, Object>of()).toList();
+	}
+
+	private void assertProducts(List<LineProductRequest> inputItems, List<LineProductRequest> outputItems) {
+		ValidationErrors errors = new ValidationErrors();
+		check(errors, INPUTS, inputItems);
+		check(errors, OUTPUTS, outputItems);
+		errors.throwIfAny();
+	}
+
+	private void check(ValidationErrors errors, String side, List<LineProductRequest> items) {
+		if (items == null) {
+			return;
 		}
-		return List.of();
+		List<Long> products = items.stream().map(LineProductRequest::productionProductId).toList();
+		List<Long> types = items.stream().map(LineProductRequest::productionProductTypeId).toList();
+		errors.exists(side, "production_product_id", products, catalog.products(products).keySet());
+		errors.distinct(side, "production_product_id", products);
+		errors.exists(side, "production_product_type_id", types, catalog.productTypes(types).keySet());
 	}
 
 }

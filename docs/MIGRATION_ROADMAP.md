@@ -421,8 +421,8 @@ Her modülde B1'in kalıbı uygulanır. Bunlara ek olarak:
 - `@OneToMany` yalnızca modül içinde kurulur; modüller arasında id ve public API kullanılır
 
 Sıra:
-- [ ] `process` (kalan: `processtypefield`, `stageextensiontype`)
-- [ ] `productionline`
+- [x] `process`
+- [x] `productionline`
 - [ ] `product`
 - [ ] `supplier`
 - [ ] `notification`

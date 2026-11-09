@@ -1,65 +1,90 @@
 package com.olivamore.api.process.processtypefield;
 
+import com.olivamore.api.process.processtype.ProcessTypeService;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.shared.validation.LaravelMessages;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tools.jackson.databind.JsonNode;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-/** Laravel {@code ProcessTypeFieldService}. */
 @Service
 class ProcessTypeFieldService {
 
-	static final String FIELD_NOT_IN_TYPE = "Field not found for this process type.";
+	private final ProcessTypeFieldRepository repository;
+	private final ProcessTypeService processTypes;
 
-	private final Db db;
-
-	ProcessTypeFieldService(Db db) {
-		this.db = db;
+	ProcessTypeFieldService(ProcessTypeFieldRepository repository, ProcessTypeService processTypes) {
+		this.repository = repository;
+		this.processTypes = processTypes;
 	}
 
-	List<Row> forProcessType(Row processType) {
-		return db.select("""
-			select * from process_type_fields
-			where process_type_fields.process_type_id = ? and process_type_fields.process_type_id is not null
-			order by sort_order asc, sort_order asc, id asc""", processType.id());
+	@Transactional(readOnly = true)
+	List<ProcessTypeField> forProcessType(long processTypeId) {
+		processTypes.ensureExists(processTypeId);
+		return repository.findByProcessTypeIdOrderBySortOrderAscIdAsc(processTypeId);
 	}
 
-	static void ensureBelongs(Row processType, Row field) {
-		if (field.longValue("process_type_id") != processType.id()) {
-			throw new HttpStatusException(404, FIELD_NOT_IN_TYPE);
+	@Transactional(readOnly = true)
+	ProcessTypeField get(long processTypeId, long fieldId) {
+		return find(processTypeId, fieldId);
+	}
+
+	@Transactional
+	ProcessTypeField create(long processTypeId, CreateProcessTypeFieldRequest request) {
+		processTypes.ensureExists(processTypeId);
+		if (repository.existsByProcessTypeIdAndFieldKey(processTypeId, request.fieldKey())) {
+			throw fieldKeyTaken();
 		}
+		assertContainer(request.options());
+		return repository.save(new ProcessTypeField(processTypeId, request));
 	}
 
-	Row create(Row processType, Map<String, Object> validated) {
-		Map<String, Object> values = jsonOptions(validated);
-		values.put("process_type_id", processType.id());
-		return db.create("process_type_fields", values);
+	@Transactional
+	ProcessTypeField update(long processTypeId, long fieldId, UpdateProcessTypeFieldRequest request) {
+		ProcessTypeField field = find(processTypeId, fieldId);
+		if (request.fieldKey() != null
+			&& repository.existsByProcessTypeIdAndFieldKeyAndIdNot(processTypeId, request.fieldKey(), fieldId)) {
+			throw fieldKeyTaken();
+		}
+		Patch.ifPresent(request.options(), ProcessTypeFieldService::assertContainer);
+		field.apply(request);
+		return field;
 	}
 
-	Row update(Row field, Map<String, Object> validated) {
-		db.update("process_type_fields", field.id(), jsonOptions(validated));
-		return db.find("process_type_fields", field.id()).orElseThrow();
-	}
-
-	void delete(Row field) {
-		DeletionGuard.of("'" + field.string("label") + "' alanı")
-			.usedBy("girilmiş ölçüm", db.count("select count(*) from batch_process_field_values where process_type_field_id = ?", field.id()))
+	@Transactional
+	void delete(long processTypeId, long fieldId) {
+		ProcessTypeField field = find(processTypeId, fieldId);
+		DeletionGuard.of("'" + field.getLabel() + "' alanı")
+			.usedBy("girilmiş ölçüm", repository.countMeasurements(fieldId))
 			.check("Artık kullanılmayacaksa is_active alanını false yapın.");
-		db.delete("process_type_fields", field.id());
+		repository.delete(field);
 	}
 
-	/** {@code 'options' => 'array'} cast'i: JSON olarak yazilir. */
-	private static Map<String, Object> jsonOptions(Map<String, Object> validated) {
-		Map<String, Object> values = new LinkedHashMap<>(validated);
-		if (values.containsKey("options")) {
-			values.put("options", Db.json(values.get("options")));
+	private ProcessTypeField find(long processTypeId, long fieldId) {
+		processTypes.ensureExists(processTypeId);
+		ProcessTypeField field = repository.findById(fieldId)
+			.orElseThrow(() -> new ModelNotFoundException("ProcessTypeField", fieldId));
+		if (field.getProcessTypeId() != processTypeId) {
+			throw new HttpStatusException(404, "Field not found for this process type.");
 		}
-		return values;
+		return field;
+	}
+
+	/** {@code options} JSON dizi ya da nesne olmali. */
+	private static void assertContainer(JsonNode options) {
+		if (options != null && !options.isNull() && !options.isContainer()) {
+			throw LaravelValidationException.of("options", LaravelMessages.format(LaravelMessages.ARRAY, "options"));
+		}
+	}
+
+	private static LaravelValidationException fieldKeyTaken() {
+		return LaravelValidationException.of("field_key", LaravelMessages.format(LaravelMessages.UNIQUE, "field_key"));
 	}
 
 }

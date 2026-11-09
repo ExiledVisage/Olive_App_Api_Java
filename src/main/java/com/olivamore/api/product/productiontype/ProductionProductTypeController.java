@@ -2,6 +2,7 @@ package com.olivamore.api.product.productiontype;
 
 import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.productionline.ProductionLineResources;
+import com.olivamore.api.productionline.ProductionLineResponse;
 import com.olivamore.api.shared.persistence.Row;
 import com.olivamore.api.shared.validation.LaravelValidator;
 import com.olivamore.api.shared.validation.ValidatedInput;
@@ -55,17 +56,19 @@ class ProductionProductTypeController {
 	/** Tipin kategorisini (tip ozelinde ya da tip belirtmeden) girdi ya da cikti olarak kullanan hatlar. */
 	@GetMapping("/api/production-product-types/{productionProductType}/production-lines")
 	@RequiresPermission("production_product_type.view")
-	ListResponse<Map<String, Object>> productionLines(
+	ListResponse<ProductionLineResponse> productionLines(
 		@Bound(table = "production_product_types", model = "ProductionProductType") Row productionProductType) {
-		return new ListResponse.Plain<>(lines.usingProductType(productionProductType));
+		return new ListResponse.Plain<>(lines.usingProductType(
+			productionProductType.longValue("production_product_id"), productionProductType.id()));
 	}
 
 	@GetMapping("/api/production-product-types/{productionProductType}/flow")
 	@RequiresPermission("production_product_type.view")
 	DataResponse<Map<String, Object>> flow(
 		@Bound(table = "production_product_types", model = "ProductionProductType") Row productionProductType) {
-		List<Map<String, Object>> inputs = lines.withInputType(productionProductType);
-		List<Map<String, Object>> outputs = lines.withOutputType(productionProductType);
+		long productId = productionProductType.longValue("production_product_id");
+		List<ProductionLineResponse> inputs = lines.withInputType(productId, productionProductType.id());
+		List<ProductionLineResponse> outputs = lines.withOutputType(productId, productionProductType.id());
 		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("production_product_type", resource.productType(productionProductType));
 		data.put("input_production_lines", inputs);

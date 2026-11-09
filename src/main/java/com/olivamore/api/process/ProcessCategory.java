@@ -1,11 +1,9 @@
 package com.olivamore.api.process;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.olivamore.api.shared.persistence.ValueEnum;
 
-import java.util.Arrays;
-
-/** Proses tipinin kategorisi. JSON ve veritabanindaki degeri {@link #value()}. */
-public enum ProcessCategory {
+/** Proses tipinin kategorisi. */
+public enum ProcessCategory implements ValueEnum {
 
 	SOURCING("sourcing"),
 	WEIGHING("weighing"),
@@ -26,20 +24,13 @@ public enum ProcessCategory {
 		this.value = value;
 	}
 
-	@JsonValue
+	@Override
 	public String value() {
 		return value;
 	}
 
 	public boolean assignable() {
 		return this != MACHINE_PROCESS;
-	}
-
-	public static ProcessCategory of(String value) {
-		return Arrays.stream(values())
-			.filter(category -> category.value.equals(value))
-			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("Bilinmeyen proses kategorisi: " + value));
 	}
 
 }
