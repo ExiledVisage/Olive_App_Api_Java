@@ -188,26 +188,57 @@
    "method": "POST",
    "path": "/api/nudges",
    "body": {
-    "subject_type": "musteri",
+    "subject_type": "musteri"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected subject type is invalid.",
+    "errors": {
+     "subject_type": [
+      "The selected subject type is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durt gecersiz alanlar",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
     "subject_id": 0,
-    "user_id": 999999,
     "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
    },
    "status": 422,
    "response": {
-    "message": "The selected subject type is invalid. (and 3 more errors)",
+    "message": "The subject id field must be at least 1. (and 1 more error)",
     "errors": {
-     "subject_type": [
-      "The selected subject type is invalid."
-     ],
      "subject_id": [
       "The subject id field must be at least 1."
      ],
-     "user_id": [
-      "The selected user id is invalid."
-     ],
      "note": [
       "The note field must not be greater than 500 characters."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "durt olmayan kullanici",
+   "method": "POST",
+   "path": "/api/nudges",
+   "body": {
+    "subject_type": "order",
+    "subject_id": 1,
+    "user_id": 999999
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected user id is invalid.",
+    "errors": {
+     "user_id": [
+      "The selected user id is invalid."
      ]
     }
    },
@@ -267,7 +298,11 @@
        "subject_id": 2,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z"
+       "created_at": "2026-11-07T13:09:21.000000Z",
+       "sent_by": {
+        "id": 1,
+        "name": "Olivamore Admin"
+       }
       }
      ]
     }
@@ -313,7 +348,11 @@
        "subject_id": 4,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z"
+       "created_at": "2026-11-07T13:09:21.000000Z",
+       "sent_by": {
+        "id": 7,
+        "name": "Gıda Mühendisi"
+       }
       }
      ]
     }
@@ -328,7 +367,7 @@
    "body": {
     "subject_type": "finished_product",
     "subject_id": 1,
-    "note": "0"
+    "note": "   "
    },
    "status": 201,
    "response": {
@@ -344,7 +383,11 @@
        "subject_id": 1,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z"
+       "created_at": "2026-11-07T13:09:21.000000Z",
+       "sent_by": {
+        "id": 1,
+        "name": "Olivamore Admin"
+       }
       }
      ]
     }
@@ -373,7 +416,11 @@
        "subject_id": 1,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z"
+       "created_at": "2026-11-07T13:09:21.000000Z",
+       "sent_by": {
+        "id": 7,
+        "name": "Gıda Mühendisi"
+       }
       }
      ]
     }
@@ -403,7 +450,11 @@
        "subject_id": 3276,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:22.000000Z"
+       "created_at": "2026-11-07T13:09:22.000000Z",
+       "sent_by": {
+        "id": 7,
+        "name": "Gıda Mühendisi"
+       }
       }
      ]
     }
@@ -705,15 +756,29 @@
   {
    "name": "liste hatali",
    "method": "GET",
-   "path": "/api/notifications?unread=evet&per_page=101",
+   "path": "/api/notifications?unread=evet",
    "body": null,
    "status": 422,
    "response": {
-    "message": "The unread field must be true or false. (and 1 more error)",
+    "message": "The unread field must be true or false.",
     "errors": {
      "unread": [
       "The unread field must be true or false."
-     ],
+     ]
+    }
+   },
+   "save": null,
+   "as": "depo@olivamore.com"
+  },
+  {
+   "name": "liste hatali sayfa boyu",
+   "method": "GET",
+   "path": "/api/notifications?per_page=101",
+   "body": null,
+   "status": 422,
+   "response": {
+    "message": "The per page field must not be greater than 100.",
+    "errors": {
      "per_page": [
       "The per page field must not be greater than 100."
      ]
@@ -821,7 +886,7 @@
   {
    "name": "liste depo okunmamis sonra",
    "method": "GET",
-   "path": "/api/notifications?unread=true",
+   "path": "/api/notifications?unread=evet",
    "body": null,
    "status": 422,
    "response": {

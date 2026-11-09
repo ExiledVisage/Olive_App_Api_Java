@@ -64,16 +64,15 @@ class LaravelParityFixesIT {
 	}
 
 	@Test
-	void existsOnNullIsAValidationError() {
+	void nullProductIsNoChangeOnPatch() {
 		long id = jdbc.queryForObject("select min(id) from production_product_types", Long.class);
 		Map<String, Object> body = new HashMap<>();
 		body.put("production_product_id", null);
 
 		Response r = send(HttpMethod.PATCH, "/api/production-product-types/" + id, admin(), body);
 
-		assertThat(r.status).as(r.body).isEqualTo(422);
-		assertThat(r.json().get("errors").get("production_product_id").get(0).asString())
-			.isEqualTo("The selected production product id is invalid.");
+		assertThat(r.status).as(r.body).isEqualTo(200);
+		assertThat(r.json().get("data").get("production_product_id").isNull()).isFalse();
 	}
 
 	@Test

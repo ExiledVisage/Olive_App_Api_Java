@@ -1,110 +1,153 @@
 package com.olivamore.api.supplier;
 
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.supplier.SupplierDeliveriesResponse.Delivery;
+import com.olivamore.api.supplier.SupplierDeliveriesResponse.Summary;
+import com.olivamore.api.supplier.SupplierDeliveriesResponse.WeighInField;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-/**
- * {@code SupplierService::getDeliveries}: tedarikcinin uretim partileri ve kantar tartimlari.
- * <p>
- * Uretim modulunun (Faz 6) tablolarini yalnizca okur (SQL; production modulune bagimlilik yok).
- */
+/** Uretim tablolarini yalnizca okur: production modulune bagimlilik yok. */
 @Service
 class SupplierDeliveryService {
 
-	private final Db db;
+	private static final JsonMapper JSON = JsonMapper.builder().build();
 
-	SupplierDeliveryService(Db db) {
-		this.db = db;
+	private record BatchRow(Long id, String batchCode, String status, LocalDateTime receivedAt, String fieldCode,
+		BigDecimal quantityKg) {
 	}
 
-	List<Map<String, Object>> forSupplier(long supplierId) {
-		List<Row> batches = db.select("select * from production_batches where supplier_id = ? order by received_at desc, id desc", supplierId);
-		List<Long> batchIds = Relations.ids(batches);
-		Map<Long, Row> fields = Relations.byId(db.whereIn("supplier_fields", "id", Relations.column(batches, "supplier_field_id"), null));
+	private record ProductNameRow(Long batchId, String name) {
+	}
 
-		List<Row> inputs = db.whereIn("production_batch_input_production_product_types", "production_batch_id", batchIds, "sort_order asc");
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id", Relations.column(inputs, "production_product_type_id"), null));
+	private record WeighInRow(Long id, Long batchId, String quantityJson, LocalDateTime completedAt) {
+	}
 
-		List<Row> processes = db.whereIn("batch_processes", "production_batch_id", batchIds, null);
-		Map<Long, Row> stages = Relations.byId(db.whereIn("production_stages", "id", Relations.column(processes, "production_stage_id"), null));
-		Map<Long, Row> processTypes = Relations.byId(db.whereIn("process_types", "id",
-			Relations.column(new ArrayList<>(stages.values()), "process_type_id"), null));
-		List<Row> values = db.whereIn("batch_process_field_values", "batch_process_id", Relations.ids(processes), null);
-		Map<Long, Row> processFields = Relations.byId(db.whereIn("process_type_fields", "id", Relations.column(values, "process_type_field_id"), null));
+	private record FieldValueRow(Long processId, String fieldKey, String label, String valueText,
+		BigDecimal valueDecimal, Long valueInteger) {
+	}
 
-		List<Map<String, Object>> out = new ArrayList<>();
-		for (Row batch : batches) {
-			Row weighIn = weighIn(batch.id(), processes, stages, processTypes);
-			Map<String, Object> d = new LinkedHashMap<>();
-			d.put("production_batch_id", batch.get("id"));
-			d.put("batch_code", batch.get("batch_code"));
-			d.put("status", batch.get("status"));
-			d.put("received_at", batch.get("received_at"));
-			Row field = batch.longValue("supplier_field_id") == null ? null : fields.get(batch.longValue("supplier_field_id"));
-			d.put("field_code", field == null ? null : field.get("code"));
-			List<Object> names = new ArrayList<>();
-			for (Row input : inputs) {
-				if (input.longValue("production_batch_id") == batch.id()) {
-					Row type = types.get(input.longValue("production_product_type_id"));
-					if (type != null && type.get("name") != null && !"".equals(type.get("name"))) {
-						names.add(type.get("name"));
-					}
-				}
-			}
-			d.put("product_type_names", names);
-			d.put("declared_quantity_kg", Casts.decimal(batch.get("quantity_kg"), 4));
-			Object quantity = null;
-			if (weighIn != null && weighIn.get("operation_data") instanceof Map<?, ?> data) {
-				quantity = data.get("quantity");
-			}
-			d.put("weighed_quantity_kg", quantity);
-			d.put("weighed_at", weighIn == null ? null : weighIn.get("completed_at"));
-			List<Map<String, Object>> weighInFields = new ArrayList<>();
-			if (weighIn != null) {
-				for (Row v : values) {
-					if (v.longValue("batch_process_id") != weighIn.id()) {
-						continue;
-					}
-					Row pf = processFields.get(v.longValue("process_type_field_id"));
-					// value_text ?? value_decimal (decimal:4) ?? value_integer
-					Object value = v.get("value_text") != null ? v.get("value_text")
-						: v.get("value_decimal") != null ? Casts.decimal(v.get("value_decimal"), 4) : v.get("value_integer");
-					if (value == null) {
-						continue;
-					}
-					Map<String, Object> row = new LinkedHashMap<>();
-					row.put("key", pf == null ? null : pf.get("field_key"));
-					row.put("label", pf == null ? null : pf.get("label"));
-					row.put("value", value);
-					weighInFields.add(row);
-				}
-			}
-			d.put("weigh_in_fields", weighInFields);
-			out.add(d);
+	private final JdbcClient jdbc;
+	private final SupplierService suppliers;
+
+	SupplierDeliveryService(JdbcClient jdbc, SupplierService suppliers) {
+		this.jdbc = jdbc;
+		this.suppliers = suppliers;
+	}
+
+	@Transactional(readOnly = true)
+	SupplierDeliveriesResponse forSupplier(long supplierId) {
+		suppliers.ensureExists(supplierId);
+		List<BatchRow> batches = batches(supplierId);
+		if (batches.isEmpty()) {
+			return new SupplierDeliveriesResponse(List.of(), new Summary(0, BigDecimal.ZERO, null));
 		}
-		return out;
+		List<Long> ids = batches.stream().map(BatchRow::id).toList();
+		Map<Long, List<String>> names = productNames(ids);
+		Map<Long, WeighInRow> weighIns = weighIns(ids);
+		Map<Long, List<WeighInField>> fields = fieldValues(weighIns.values().stream().map(WeighInRow::id).toList());
+
+		List<Delivery> deliveries = new ArrayList<>();
+		BigDecimal total = BigDecimal.ZERO;
+		for (BatchRow batch : batches) {
+			WeighInRow weighIn = weighIns.get(batch.id());
+			JsonNode quantity = weighIn == null || weighIn.quantityJson() == null
+				? null : JSON.readTree(weighIn.quantityJson());
+			total = total.add(number(quantity));
+			deliveries.add(new Delivery(batch.id(), batch.batchCode(), batch.status(), batch.receivedAt(),
+				batch.fieldCode(), names.getOrDefault(batch.id(), List.of()), batch.quantityKg(), quantity,
+				weighIn == null ? null : weighIn.completedAt(),
+				weighIn == null ? List.of() : fields.getOrDefault(weighIn.id(), List.of())));
+		}
+		BigDecimal rounded = new BigDecimal(
+			total.setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
+		return new SupplierDeliveriesResponse(deliveries,
+			new Summary(deliveries.size(), rounded, deliveries.getFirst().receivedAt()));
 	}
 
-	/** Kategorisi "weighing" olan proseslerden asama sirasi en kucuk olan (sortBy kararli). */
-	private static Row weighIn(long batchId, List<Row> processes, Map<Long, Row> stages, Map<Long, Row> processTypes) {
-		return processes.stream()
-			.filter(p -> p.longValue("production_batch_id") == batchId)
-			.filter(p -> {
-				Row stage = stages.get(p.longValue("production_stage_id"));
-				Row type = stage == null || stage.longValue("process_type_id") == null ? null : processTypes.get(stage.longValue("process_type_id"));
-				return type != null && "weighing".equals(type.get("category"));
-			})
-			.min(Comparator.comparingInt(p -> stages.get(p.longValue("production_stage_id")).intValue("stage_order")))
-			.orElse(null);
+	private List<BatchRow> batches(long supplierId) {
+		return jdbc.sql("""
+			select b.id, b.batch_code, b.status, b.received_at, f.code as field_code, b.quantity_kg
+			from production_batches b
+			left join supplier_fields f on f.id = b.supplier_field_id
+			where b.supplier_id = ?
+			order by b.received_at desc, b.id desc
+			""").param(supplierId).query(BatchRow.class).list();
+	}
+
+	private Map<Long, List<String>> productNames(List<Long> batchIds) {
+		return jdbc.sql("""
+			select i.production_batch_id as batch_id, t.name
+			from production_batch_input_production_product_types i
+			join production_product_types t on t.id = i.production_product_type_id
+			where i.production_batch_id in (:ids) and t.name <> ''
+			order by i.sort_order, i.id
+			""").param("ids", batchIds).query(ProductNameRow.class).list().stream()
+			.collect(Collectors.groupingBy(ProductNameRow::batchId,
+				Collectors.mapping(ProductNameRow::name, Collectors.toList())));
+	}
+
+	/** Partinin kategorisi "weighing" olan prosesleri arasindan asama sirasi en kucuk olan. */
+	private Map<Long, WeighInRow> weighIns(List<Long> batchIds) {
+		return jdbc.sql("""
+			select distinct on (p.production_batch_id) p.id, p.production_batch_id as batch_id,
+				(p.operation_data -> 'quantity')::text as quantity_json, p.completed_at
+			from batch_processes p
+			join production_stages s on s.id = p.production_stage_id
+			join process_types t on t.id = s.process_type_id
+			where p.production_batch_id in (:ids) and t.category = 'weighing'
+			order by p.production_batch_id, s.stage_order, p.id
+			""").param("ids", batchIds).query(WeighInRow.class).list().stream()
+			.collect(Collectors.toMap(WeighInRow::batchId, row -> row));
+	}
+
+	private Map<Long, List<WeighInField>> fieldValues(List<Long> processIds) {
+		if (processIds.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("""
+			select v.batch_process_id as process_id, f.field_key, f.label, v.value_text, v.value_decimal,
+				v.value_integer
+			from batch_process_field_values v
+			left join process_type_fields f on f.id = v.process_type_field_id
+			where v.batch_process_id in (:ids)
+			order by v.id
+			""").param("ids", processIds).query(FieldValueRow.class).list().stream()
+			.filter(row -> value(row) != null)
+			.collect(Collectors.groupingBy(FieldValueRow::processId, Collectors.mapping(
+				row -> new WeighInField(row.fieldKey(), row.label(), value(row)), Collectors.toList())));
+	}
+
+	private static Object value(FieldValueRow row) {
+		if (row.valueText() != null) {
+			return row.valueText();
+		}
+		return row.valueDecimal() != null ? row.valueDecimal().toPlainString() : row.valueInteger();
+	}
+
+	private static BigDecimal number(JsonNode node) {
+		if (node == null || node.isNull()) {
+			return BigDecimal.ZERO;
+		}
+		if (node.isNumber()) {
+			return node.decimalValue();
+		}
+		try {
+			return new BigDecimal(node.asString().strip());
+		}
+		catch (NumberFormatException e) {
+			return BigDecimal.ZERO;
+		}
 	}
 
 }

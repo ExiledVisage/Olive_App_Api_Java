@@ -1,21 +1,18 @@
 package com.olivamore.api.product.productionproduct;
 
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.product.productattribute.ProductionProductAttributeDefinitionResource;
-import com.olivamore.api.product.productiontype.ProductionProductTypeResource;
+import com.olivamore.api.product.productattribute.ProductAttributeService;
+import com.olivamore.api.product.productiontype.ProductionProductTypeResponses;
 import com.olivamore.api.productionline.ProductionLineResources;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,69 +20,59 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Laravel {@code ProductionProductController}: urun kategorileri (production_product_type.view / .manage).
- * Cevap kodlari Laravel'deki gibi: {@code create()} sonucu 201, {@code ->fresh()} 200.
- */
 @RestController
+@RequestMapping("/api/production-products")
 class ProductionProductController {
 
-	private final LaravelValidator validator;
-	private final ProductionProductService products;
-	private final ProductionProductAttributeDefinitionResource mappingResource;
-	private final ProductionProductTypeResource typeResource;
+	private final ProductionProductService service;
+	private final ProductAttributeService attributes;
+	private final ProductionProductTypeResponses types;
 	private final ProductionLineResources lines;
 
-	ProductionProductController(LaravelValidator validator, ProductionProductService products,
-		ProductionProductAttributeDefinitionResource mappingResource, ProductionProductTypeResource typeResource,
-		ProductionLineResources lines) {
-		this.validator = validator;
-		this.products = products;
-		this.mappingResource = mappingResource;
-		this.typeResource = typeResource;
+	ProductionProductController(ProductionProductService service, ProductAttributeService attributes,
+		ProductionProductTypeResponses types, ProductionLineResources lines) {
+		this.service = service;
+		this.attributes = attributes;
+		this.types = types;
 		this.lines = lines;
 	}
 
-	@GetMapping("/api/production-products")
+	@GetMapping
 	@RequiresPermission("production_product_type.view")
-	ListResponse<Map<String, Object>> index() {
-		return new ListResponse.Plain<>(products.all().stream()
-			.map(p -> ProductionProductResource.of(p, p.longValue("production_product_types_count"), null, null, List.of())).toList());
+	ListResponse<ProductionProductResponse> index() {
+		Map<Long, Long> counts = service.typeCounts();
+		return new ListResponse.Plain<>(service.all().stream()
+			.map(product -> ProductionProductResponse.full(product, counts.getOrDefault(product.getId(), 0L), null,
+				null, List.of()))
+			.toList());
 	}
 
-	@GetMapping("/api/production-products/{productionProduct}")
+	@GetMapping("/{id}")
 	@RequiresPermission("production_product_type.view")
-	DataResponse<Map<String, Object>> show(
-		@Bound(table = "production_products", model = "ProductionProduct") Row productionProduct) {
-		long id = productionProduct.id();
-		List<Map<String, Object>> mappings = mappingResource.ofProduct(id);
-		List<Map<String, Object>> types = typeResource.productTypes(products.types(id));
-		return DataResponse.of(ProductionProductResource.of(productionProduct, products.typeCount(id), mappings, types,
-			lines.ofProduct(id)));
+	DataResponse<ProductionProductResponse> show(@PathVariable long id) {
+		ProductionProduct product = service.get(id);
+		return DataResponse.of(ProductionProductResponse.full(product, service.typeCount(id),
+			attributes.summaries(id), types.ofProduct(id), lines.ofProduct(id)));
 	}
 
-	@PostMapping("/api/production-products")
+	@PostMapping
 	@RequiresPermission("production_product_type.manage")
-	@Transactional
-	ResponseEntity<DataResponse<Map<String, Object>>> store(RequestInput input) {
-		ValidatedInput v = validator.validate(input, ProductionProductRequests.store());
-		return DataResponse.created(ProductionProductResource.of(products.create(v.all())));
+	ResponseEntity<DataResponse<ProductionProductResponse>> store(
+		@Valid @RequestBody CreateProductionProductRequest request) {
+		return DataResponse.created(ProductionProductResponse.basic(service.create(request)));
 	}
 
-	@RequestMapping(path = "/api/production-products/{productionProduct}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	@RequestMapping(path = "/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	@RequiresPermission("production_product_type.manage")
-	@Transactional
-	DataResponse<Map<String, Object>> update(
-		@Bound(table = "production_products", model = "ProductionProduct") Row productionProduct, RequestInput input) {
-		ValidatedInput v = validator.validate(input, ProductionProductRequests.update(productionProduct.id()));
-		return DataResponse.of(ProductionProductResource.of(products.update(productionProduct, v.all())));
+	DataResponse<ProductionProductResponse> update(@PathVariable long id,
+		@Valid @RequestBody UpdateProductionProductRequest request) {
+		return DataResponse.of(ProductionProductResponse.basic(service.update(id, request)));
 	}
 
-	@DeleteMapping("/api/production-products/{productionProduct}")
+	@DeleteMapping("/{id}")
 	@RequiresPermission("production_product_type.manage")
-	@Transactional
-	Map<String, String> destroy(@Bound(table = "production_products", model = "ProductionProduct") Row productionProduct) {
-		products.delete(productionProduct);
+	Map<String, String> destroy(@PathVariable long id) {
+		service.delete(id);
 		return Map.of("message", "ProductionProductType type deleted successfully.");
 	}
 

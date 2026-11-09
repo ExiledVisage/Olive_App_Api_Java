@@ -1,117 +1,142 @@
 package com.olivamore.api.supplier;
 
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.persistence.Db;
+import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.persistence.Row;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-/** Laravel {@code SupplierService}: tedarikciler ve tarlalari. */
 @Service
 class SupplierService {
 
-	static final String FIELD_NOT_OF_SUPPLIER = "Bu tarla bu tedarikçiye ait değil.";
+	private static final String USE_PASSIVE = "Pasife alabilirsiniz.";
 
-	private final Db db;
+	private final SupplierRepository suppliers;
+	private final SupplierFieldRepository fields;
 
-	SupplierService(Db db) {
-		this.db = db;
+	SupplierService(SupplierRepository suppliers, SupplierFieldRepository fields) {
+		this.suppliers = suppliers;
+		this.fields = fields;
 	}
 
-	/**
-	 * @param isActive null ise filtre yok
-	 * @param search   ad, kod ya da tarla kodunda buyuk/kucuk harfe duyarsiz (whereLike -> ilike); bos ise yok
-	 */
-	List<Row> all(Boolean isActive, String search) {
-		StringBuilder sql = new StringBuilder("""
-			select suppliers.*, (select count(*) from production_batches
-			  where suppliers.id = production_batches.supplier_id) as production_batches_count
-			from suppliers""");
-		List<Object> args = new ArrayList<>();
-		List<String> where = new ArrayList<>();
-		if (isActive != null) {
-			where.add("is_active = ?");
-			args.add(isActive);
-		}
-		if (!search.isEmpty()) {
-			String like = "%" + search + "%";
-			where.add("(name::text ilike ? or code::text ilike ? or exists (select * from supplier_fields"
-				+ " where suppliers.id = supplier_fields.supplier_id and code::text ilike ?))");
-			args.add(like);
-			args.add(like);
-			args.add(like);
-		}
-		if (!where.isEmpty()) {
-			sql.append(" where ").append(String.join(" and ", where));
-		}
-		sql.append(" order by name asc");
-		return db.select(sql.toString(), args.toArray());
+	@Transactional(readOnly = true)
+	List<SupplierResponse> all(Boolean isActive, String search) {
+		Map<Long, Long> counts = suppliers.countBatches().stream().collect(Collectors.toMap(
+			SupplierRepository.BatchCount::getSupplierId, SupplierRepository.BatchCount::getTotal));
+		return suppliers.findAll(SupplierSpecifications.matching(isActive, search), Sort.by("name")).stream()
+			.map(supplier -> SupplierResponse.of(supplier, counts.getOrDefault(supplier.getId(), 0L)))
+			.toList();
+	}
+
+	@Transactional(readOnly = true)
+	SupplierResponse get(long id) {
+		return detail(find(id));
 	}
 
 	/** Tedarikci ve (varsa) tarlalari birlikte. */
-	Row create(Map<String, Object> validated) {
-		Map<String, Object> data = new LinkedHashMap<>(validated);
-		Object fields = data.remove("fields");
-		Row supplier = db.create("suppliers", data);
-		for (Map<String, Object> field : items(fields)) {
-			Map<String, Object> values = new LinkedHashMap<>(field);
-			values.put("supplier_id", supplier.id());
-			db.insert("supplier_fields", values);
+	@Transactional
+	SupplierResponse create(CreateSupplierRequest request) {
+		assertNewCodes(request);
+		return detail(suppliers.save(new Supplier(request)));
+	}
+
+	@Transactional
+	SupplierResponse update(long id, UpdateSupplierRequest request) {
+		Supplier supplier = find(id);
+		if (request.code() != null && suppliers.existsByCodeAndIdNot(request.code(), id)) {
+			throwCodeTaken("code");
 		}
-		return supplier;
+		supplier.apply(request);
+		suppliers.flush();
+		return detail(supplier);
 	}
 
-	Row update(Row supplier, Map<String, Object> validated) {
-		db.update("suppliers", supplier.id(), validated);
-		return db.find("suppliers", supplier.id()).orElseThrow();
+	@Transactional
+	void delete(long id) {
+		Supplier supplier = find(id);
+		DeletionGuard.of("'" + supplier.getName() + "' tedarikçisi")
+			.usedBy("üretim partisi", suppliers.countBatches(id))
+			.check(USE_PASSIVE);
+		suppliers.delete(supplier);
 	}
 
-	void delete(Row supplier) {
-		DeletionGuard.of("'" + supplier.string("name") + "' tedarikçisi")
-			.usedBy("üretim partisi", db.count("select count(*) from production_batches where supplier_id = ?", supplier.id()))
-			.check("Pasife alabilirsiniz.");
-		db.delete("suppliers", supplier.id());
+	@Transactional
+	SupplierFieldResponse createField(long supplierId, CreateSupplierFieldRequest request) {
+		Supplier supplier = find(supplierId);
+		if (fields.existsByCode(request.code())) {
+			throwCodeTaken("code");
+		}
+		return SupplierFieldResponse.of(fields.save(new SupplierField(supplier, request)));
 	}
 
-	Row createField(Row supplier, Map<String, Object> validated) {
-		Map<String, Object> values = new LinkedHashMap<>(validated);
-		values.put("supplier_id", supplier.id());
-		return db.create("supplier_fields", values);
+	@Transactional
+	SupplierFieldResponse updateField(long supplierId, long fieldId, UpdateSupplierFieldRequest request) {
+		SupplierField field = findField(supplierId, fieldId);
+		if (request.code() != null && fields.existsByCodeAndIdNot(request.code(), fieldId)) {
+			throwCodeTaken("code");
+		}
+		field.apply(request);
+		return SupplierFieldResponse.of(field);
 	}
 
-	Row updateField(Row field, Map<String, Object> validated) {
-		db.update("supplier_fields", field.id(), validated);
-		return db.find("supplier_fields", field.id()).orElseThrow();
+	@Transactional
+	void deleteField(long supplierId, long fieldId) {
+		SupplierField field = findField(supplierId, fieldId);
+		DeletionGuard.of("'" + field.getCode() + "' tarlası")
+			.usedBy("üretim partisi", fields.countBatches(fieldId))
+			.check(USE_PASSIVE);
+		fields.delete(field);
 	}
 
-	void deleteField(Row field) {
-		DeletionGuard.of("'" + field.string("code") + "' tarlası")
-			.usedBy("üretim partisi", db.count("select count(*) from production_batches where supplier_field_id = ?", field.id()))
-			.check("Pasife alabilirsiniz.");
-		db.delete("supplier_fields", field.id());
-	}
-
-	static void ensureFieldOf(Row supplier, Row field) {
-		if (field.longValue("supplier_id") == null || field.longValue("supplier_id") != supplier.id()) {
-			throw new HttpStatusException(404, FIELD_NOT_OF_SUPPLIER);
+	@Transactional(readOnly = true)
+	void ensureExists(long id) {
+		if (!suppliers.existsById(id)) {
+			throw new ModelNotFoundException("Supplier", id);
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private static List<Map<String, Object>> items(Object value) {
-		if (value instanceof List<?> list) {
-			return list.stream().map(i -> i instanceof Map<?, ?> m ? (Map<String, Object>) m : Map.<String, Object>of()).toList();
+	private SupplierResponse detail(Supplier supplier) {
+		return SupplierResponse.of(supplier, suppliers.countBatches(supplier.getId()));
+	}
+
+	private Supplier find(long id) {
+		return suppliers.findById(id).orElseThrow(() -> new ModelNotFoundException("Supplier", id));
+	}
+
+	private SupplierField findField(long supplierId, long fieldId) {
+		ensureExists(supplierId);
+		SupplierField field = fields.findById(fieldId)
+			.orElseThrow(() -> new ModelNotFoundException("SupplierField", fieldId));
+		if (field.getSupplier().getId() != supplierId) {
+			throw new HttpStatusException(404, "Bu tarla bu tedarikçiye ait değil.");
 		}
-		if (value instanceof Map<?, ?> map) {
-			return ((Map<String, Object>) map).values().stream()
-				.map(i -> i instanceof Map<?, ?> m ? (Map<String, Object>) m : Map.<String, Object>of()).toList();
+		return field;
+	}
+
+	private void assertNewCodes(CreateSupplierRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		if (suppliers.existsByCode(request.code())) {
+			errors.add("code", LaravelMessages.UNIQUE);
 		}
-		return List.of();
+		if (request.fields() != null) {
+			List<String> codes = request.fields().stream().map(CreateSupplierFieldRequest::code).toList();
+			errors.distinct("fields", "code", codes);
+			errors.unique("fields", "code", codes, fields.findExistingCodes(codes));
+		}
+		errors.throwIfAny();
+	}
+
+	private static void throwCodeTaken(String field) {
+		ValidationErrors errors = new ValidationErrors();
+		errors.add(field, LaravelMessages.UNIQUE);
+		errors.throwIfAny();
 	}
 
 }

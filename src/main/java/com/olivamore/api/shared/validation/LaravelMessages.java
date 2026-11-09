@@ -28,6 +28,11 @@ public final class LaravelMessages {
 	public static final String EXISTS = "The selected :attribute is invalid.";
 	public static final String UNIQUE = "The :attribute has already been taken.";
 	public static final String MAX_255 = "The :attribute field must not be greater than 255 characters.";
+	public static final String MAX_VALUE_100 = "The :attribute field must not be greater than 100.";
+	public static final String MAX_500 = "The :attribute field must not be greater than 500 characters.";
+	public static final String MAX_100 = "The :attribute field must not be greater than 100 characters.";
+	public static final String MIN_DENSITY = "The :attribute field must be at least 0.0001.";
+	public static final String MAX_DENSITY = "The :attribute field must not be greater than 25.";
 	public static final String MAX_50 = "The :attribute field must not be greater than 50 characters.";
 	public static final String MIN_0 = "The :attribute field must be at least 0.";
 	public static final String MIN_1 = "The :attribute field must be at least 1.";

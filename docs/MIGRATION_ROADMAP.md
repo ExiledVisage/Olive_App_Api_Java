@@ -423,9 +423,9 @@ Her modülde B1'in kalıbı uygulanır. Bunlara ek olarak:
 Sıra:
 - [x] `process`
 - [x] `productionline`
-- [ ] `product`
-- [ ] `supplier`
-- [ ] `notification`
+- [x] `product`
+- [x] `supplier`
+- [x] `notification`
 - [ ] `packaging`
 - [ ] `sales`
 - [ ] `finishedproduct`

@@ -1,10 +1,9 @@
 /**
- * Uretim urunleri (Faz 4): urun kategorileri (production products), urun tipleri, global attribute
- * tanimlari ve kategori-attribute eslemeleri.
+ * Uretim urunleri: urun kategorileri (production products), urun tipleri, global attribute tanimlari
+ * ve kategori-attribute eslemeleri.
  * <p>
- * Kategori ve tip ekranlarindaki uretim hatlarini {@link com.olivamore.api.productionline.ProductionLineResources}
- * uzerinden yukler. Laravel tablolarina Eloquent'in davranisiyla yazmak icin JPA degil
- * {@link com.olivamore.api.shared.persistence.Db} kullanilir.
+ * Kategori ve tip ekranlarindaki uretim hatlarini
+ * {@link com.olivamore.api.productionline.ProductionLineResources} uzerinden yukler.
  */
 @ApplicationModule(displayName = "Product")
 package com.olivamore.api.product;

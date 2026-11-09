@@ -45,9 +45,54 @@
    "path": "/api/suppliers",
    "body": {
     "name": 5,
+    "code": "T-1"
+   },
+   "status": 422,
+   "response": {
+    "message": "The name field must be a string.",
+    "errors": {
+     "name": [
+      "The name field must be a string."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci gecersiz alanlar",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {
+    "name": "X",
     "code": "T-1",
     "email": "abc",
-    "is_active": "evet",
+    "fields": [
+     {
+      "location": "x"
+     }
+    ]
+   },
+   "status": 422,
+   "response": {
+    "message": "The email field must be a valid email address. (and 1 more error)",
+    "errors": {
+     "email": [
+      "The email field must be a valid email address."
+     ],
+     "fields.0.code": [
+      "The fields.0.code field is required."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "tedarikci tekrar tarla",
+   "method": "POST",
+   "path": "/api/suppliers",
+   "body": {
+    "name": "X",
+    "code": "T-1",
     "fields": [
      {
       "code": "TR-1"
@@ -57,25 +102,13 @@
      },
      {
       "code": "BRH-1250"
-     },
-     {
-      "location": "x"
      }
     ]
    },
    "status": 422,
    "response": {
-    "message": "The name field must be a string. (and 6 more errors)",
+    "message": "The fields.0.code field has a duplicate value. (and 2 more errors)",
     "errors": {
-     "name": [
-      "The name field must be a string."
-     ],
-     "email": [
-      "The email field must be a valid email address."
-     ],
-     "is_active": [
-      "The is active field must be true or false."
-     ],
      "fields.0.code": [
       "The fields.0.code field has a duplicate value."
      ],
@@ -84,9 +117,6 @@
      ],
      "fields.2.code": [
       "The fields.2.code has already been taken."
-     ],
-     "fields.3.code": [
-      "The fields.3.code field is required."
      ]
     }
    },
@@ -124,7 +154,7 @@
      "email": "t@o.co",
      "address": null,
      "note": null,
-     "is_active": null,
+     "is_active": true,
      "delivery_count": 0,
      "fields": [
       {
@@ -235,7 +265,7 @@
    "path": "/api/suppliers/{S}",
    "body": {
     "name": "Test Tedarikci 2",
-    "is_active": "0"
+    "is_active": false
    },
    "status": 200,
    "response": {
@@ -565,7 +595,7 @@
      "location": null,
      "area_decare": null,
      "note": null,
-     "is_active": null
+     "is_active": true
     }
    },
    "save": [

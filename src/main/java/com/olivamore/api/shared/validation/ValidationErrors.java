@@ -19,9 +19,9 @@ public final class ValidationErrors {
 	}
 
 	/** @param key eleman nesneyse alan adi, duz id listesiyse {@code null} */
-	public void distinct(String list, String key, List<Long> values) {
+	public void distinct(String list, String key, List<?> values) {
 		for (int i = 0; i < values.size(); i++) {
-			Long value = values.get(i);
+			Object value = values.get(i);
 			if (value != null && values.stream().filter(value::equals).count() > 1) {
 				add(path(list, i, key), LaravelMessages.DISTINCT);
 			}
@@ -29,10 +29,19 @@ public final class ValidationErrors {
 	}
 
 	/** @param key eleman nesneyse alan adi, duz id listesiyse {@code null} */
-	public void exists(String list, String key, List<Long> values, Collection<Long> existing) {
+	public void exists(String list, String key, List<?> values, Collection<?> existing) {
 		for (int i = 0; i < values.size(); i++) {
 			if (values.get(i) != null && !existing.contains(values.get(i))) {
 				add(path(list, i, key), LaravelMessages.EXISTS);
+			}
+		}
+	}
+
+	/** @param key eleman nesneyse alan adi, duz listeyse {@code null} */
+	public void unique(String list, String key, List<?> values, Collection<?> taken) {
+		for (int i = 0; i < values.size(); i++) {
+			if (values.get(i) != null && taken.contains(values.get(i))) {
+				add(path(list, i, key), LaravelMessages.UNIQUE);
 			}
 		}
 	}

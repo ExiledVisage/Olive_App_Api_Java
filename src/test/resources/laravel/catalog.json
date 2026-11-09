@@ -266,7 +266,7 @@
    ]
   },
   {
-   "name": "tip kucuk harf birim (veritabani kisiti)",
+   "name": "tip kucuk harf birim",
    "method": "POST",
    "path": "/api/production-product-types",
    "body": {
@@ -276,9 +276,14 @@
     "unit": "kg",
     "production_product_id": 1
    },
-   "status": 500,
+   "status": 422,
    "response": {
-    "message": "Server Error"
+    "message": "The selected unit is invalid.",
+    "errors": {
+     "unit": [
+      "The selected unit is invalid."
+     ]
+    }
    },
    "save": null
   },

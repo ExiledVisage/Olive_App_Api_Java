@@ -29,7 +29,7 @@ class SupplierParityIT {
 	@Test
 	void replaysLaravelBehaviour() throws Exception {
 		LaravelReplay.Result result = new LaravelReplay("/laravel/supplier.json", port, jdbc).run();
-		assertThat(result.steps()).isEqualTo(28);
+		assertThat(result.steps()).isEqualTo(30);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

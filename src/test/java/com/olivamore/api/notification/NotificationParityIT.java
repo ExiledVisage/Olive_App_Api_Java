@@ -33,7 +33,7 @@ class NotificationParityIT {
 		LaravelReplay.Result result = new LaravelReplay("/laravel/notification.json", port, jdbc)
 			.capturedAt("2026-11-07T12:00:00Z")
 			.run();
-		assertThat(result.steps()).isEqualTo(38);
+		assertThat(result.steps()).isEqualTo(41);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 
