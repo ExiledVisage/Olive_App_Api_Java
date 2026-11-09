@@ -1,11 +1,9 @@
 package com.olivamore.api.inventory.storageunit;
 
-import com.olivamore.api.inventory.material.StrictBooleanDeserializer;
 import com.olivamore.api.shared.validation.LaravelMessages;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import tools.jackson.databind.annotation.JsonDeserialize;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -25,7 +23,6 @@ record SyncAttributeRulesRequest(
 
 		ApplyMode applyMode,
 
-		@JsonDeserialize(using = StrictBooleanDeserializer.class)
 		Boolean isActive,
 
 		String note) {

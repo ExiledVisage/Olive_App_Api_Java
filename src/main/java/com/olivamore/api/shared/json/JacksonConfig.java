@@ -32,7 +32,9 @@ public class JacksonConfig {
 			.addSerializer(OffsetDateTime.class, dateTime)
 			.addSerializer(ZonedDateTime.class, dateTime)
 			.addSerializer(LocalDateTime.class, dateTime)
-			.addDeserializer(String.class, new LaravelStringDeserializer());
+			.addDeserializer(String.class, new LaravelStringDeserializer())
+			.addDeserializer(Boolean.class, new StrictBooleanDeserializer())
+			.addDeserializer(Boolean.TYPE, new StrictBooleanDeserializer());
 	}
 
 }

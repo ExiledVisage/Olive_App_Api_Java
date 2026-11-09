@@ -1,4 +1,4 @@
-package com.olivamore.api.inventory.material;
+package com.olivamore.api.shared.json;
 
 import tools.jackson.core.JsonParser;
 import tools.jackson.core.JsonToken;

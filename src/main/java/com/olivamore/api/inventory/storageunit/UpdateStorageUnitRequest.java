@@ -1,12 +1,10 @@
 package com.olivamore.api.inventory.storageunit;
 
 import com.olivamore.api.inventory.material.MaterialUnit;
-import com.olivamore.api.inventory.material.StrictBooleanDeserializer;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.validation.LaravelMessages;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Size;
-import tools.jackson.databind.annotation.JsonDeserialize;
 
 import java.math.BigDecimal;
 
@@ -23,17 +21,13 @@ record UpdateStorageUnitRequest(
 
 	MaterialUnit capacityUnit,
 
-	@JsonDeserialize(using = StrictBooleanDeserializer.class)
 	Boolean isBlendTank,
 
-	@JsonDeserialize(using = StrictBooleanDeserializer.class)
 	Boolean allowMultipleProductionProductTypes,
 
-	@JsonDeserialize(using = StrictBooleanDeserializer.class)
 	Boolean allowMultipleProductionProducts,
 
 	Patch<String> description,
 
-	@JsonDeserialize(using = StrictBooleanDeserializer.class)
 	Boolean isActive) {
 }

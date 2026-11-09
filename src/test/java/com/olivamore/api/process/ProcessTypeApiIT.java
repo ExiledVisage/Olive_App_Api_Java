@@ -94,6 +94,17 @@ class ProcessTypeApiIT {
 	}
 
 	@Test
+	void booleansAcceptOnlyTrueAndFalse() {
+		for (String value : new String[] {"2", "1", "\"1\"", "\"true\""}) {
+			Response r = send(HttpMethod.POST, "/api/process-types", admin,
+				"{\"name\":\"Bool\",\"category\":\"quality\",\"is_active\":" + value + "}");
+
+			assertThat(r.status).as(r.body).isEqualTo(422);
+			assertThat(r.body).contains("The is active field must be true or false.");
+		}
+	}
+
+	@Test
 	void missingIdIs404AndMissingPermissionIs403() {
 		assertThat(send(HttpMethod.GET, "/api/process-types/999999", admin, null).status).isEqualTo(404);
 
