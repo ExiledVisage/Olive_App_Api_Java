@@ -17,11 +17,9 @@ import java.util.stream.Collectors;
 @Component
 class NudgeDirectory {
 
-	private static final String USER_MODEL = "App\\Models\\User";
-
 	private static final String HAS_ROLE = """
-		exists (select 1 from model_has_roles m join roles r on r.id = m.role_id
-			where m.model_id = u.id and m.model_type = :model and r.name in (:roles))
+		exists (select 1 from user_roles m join roles r on r.id = m.role_id
+			where m.user_id = u.id and r.name in (:roles))
 		""";
 
 	private record UserRow(Long id, String name, String email) {
@@ -68,7 +66,6 @@ class NudgeDirectory {
 	/** Roldeki kullanicilar, {@code exceptUserId} haric. */
 	List<Long> usersWithRole(String role, long exceptUserId) {
 		return jdbc.sql("select u.id from users u where " + HAS_ROLE + " and u.id <> :except order by u.id")
-			.param("model", USER_MODEL)
 			.param("roles", List.of(role))
 			.param("except", exceptUserId)
 			.query(Long.class)
@@ -91,7 +88,6 @@ class NudgeDirectory {
 	List<NudgeTarget> targets(long actorId) {
 		List<UserRow> users = jdbc.sql(
 				"select u.id, u.name, u.email from users u where " + HAS_ROLE + " and u.id <> :except order by u.name")
-			.param("model", USER_MODEL)
 			.param("roles", NudgeSubject.roles())
 			.param("except", actorId)
 			.query(UserRow.class)
@@ -100,10 +96,9 @@ class NudgeDirectory {
 			return List.of();
 		}
 		Map<Long, List<String>> roles = jdbc.sql("""
-				select m.model_id as user_id, r.name from roles r join model_has_roles m on m.role_id = r.id
-				where m.model_type = :model and m.model_id in (:ids) order by r.id
+				select m.user_id, r.name from roles r join user_roles m on m.role_id = r.id
+				where m.user_id in (:ids) order by r.id
 				""")
-			.param("model", USER_MODEL)
 			.param("ids", users.stream().map(UserRow::id).toList())
 			.query(RoleRow.class)
 			.list().stream()

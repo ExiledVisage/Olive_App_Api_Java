@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /** Kullanicilar ve rolleri. Admin kullanici silinemez, admin rolu ondan kaldirilamaz. */
 @Service
@@ -60,8 +58,8 @@ class UserService {
 		user.setPassword(AuthService.hash(request.password()));
 		user.setCreatedAt(Timestamps.now());
 		user.setUpdatedAt(user.getCreatedAt());
+		user.replaceRoles(roles.findByNameIn(names));
 		users.save(user);
-		assignments.syncUserRoles(user.getId(), roleIds(names));
 		return user;
 	}
 
@@ -108,7 +106,6 @@ class UserService {
 		if (assignments.hasAnyRole(user.getId(), List.of(Role.ADMIN))) {
 			throw HttpStatusException.unprocessable(ADMIN_USER_DELETE);
 		}
-		assignments.detachUser(user.getId());
 		users.delete(user);
 	}
 
@@ -116,7 +113,7 @@ class UserService {
 		if (assignments.hasAnyRole(user.getId(), List.of(Role.ADMIN)) && !names.contains(Role.ADMIN)) {
 			throw HttpStatusException.unprocessable(ADMIN_ROLE_REMOVAL);
 		}
-		assignments.syncUserRoles(user.getId(), roleIds(names));
+		user.replaceRoles(roles.findByNameIn(names));
 	}
 
 	private void checkRoles(ValidationErrors errors, List<String> names) {
@@ -129,21 +126,6 @@ class UserService {
 				errors.add(path, LaravelMessages.EXISTS);
 			}
 		}
-	}
-
-	private List<Long> roleIds(List<String> names) {
-		Map<String, Long> byName = roles.findByNameInAndGuardName(names, Role.GUARD).stream()
-			.collect(Collectors.toMap(Role::getName, Role::getId));
-		return names.stream().map(name -> require(byName, name)).toList();
-	}
-
-	/** Dogrulama guard'a bakmaz; baska guard'daki rol atanamaz, bu bir veri hatasidir. */
-	private static Long require(Map<String, Long> byName, String name) {
-		Long id = byName.get(name);
-		if (id == null) {
-			throw new IllegalStateException("There is no role named `" + name + "` for guard `" + Role.GUARD + "`.");
-		}
-		return id;
 	}
 
 }

@@ -1,8 +1,6 @@
 package com.olivamore.api.identity.role;
 
-import com.olivamore.api.identity.permission.Permission;
 import com.olivamore.api.identity.permission.PermissionRepository;
-import com.olivamore.api.identity.security.Assignments;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
@@ -12,9 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /** Roller ve izinleri. Admin rolu yeniden adlandirilamaz ve silinemez. */
 @Service
@@ -27,12 +23,10 @@ class RoleService {
 
 	private final RoleRepository roles;
 	private final PermissionRepository permissions;
-	private final Assignments assignments;
 
-	RoleService(RoleRepository roles, PermissionRepository permissions, Assignments assignments) {
+	RoleService(RoleRepository roles, PermissionRepository permissions) {
 		this.roles = roles;
 		this.permissions = permissions;
-		this.assignments = assignments;
 	}
 
 	@Transactional(readOnly = true)
@@ -56,11 +50,10 @@ class RoleService {
 		errors.throwIfAny();
 		Role role = new Role();
 		role.setName(request.name());
-		role.setGuardName(Role.GUARD);
 		role.setCreatedAt(Timestamps.now());
 		role.setUpdatedAt(role.getCreatedAt());
+		role.replacePermissions(permissions.findByNameIn(names));
 		roles.save(role);
-		assignments.syncRolePermissions(role.getId(), permissionIds(names));
 		return role;
 	}
 
@@ -81,7 +74,7 @@ class RoleService {
 			role.setName(request.name());
 			role.setUpdatedAt(Timestamps.now());
 		}
-		assignments.syncRolePermissions(role.getId(), permissionIds(names));
+		role.replacePermissions(permissions.findByNameIn(names));
 		return role;
 	}
 
@@ -91,9 +84,7 @@ class RoleService {
 		if (Role.ADMIN.equals(role.getName())) {
 			throw HttpStatusException.unprocessable(ADMIN_ROLE_DELETE);
 		}
-		// model_has_roles ve role_has_permissions FK ile (ON DELETE CASCADE) silinir
 		roles.delete(role);
-		assignments.forgetLaravelPermissionCache();
 	}
 
 	private void checkPermissions(ValidationErrors errors, List<String> names) {
@@ -106,21 +97,6 @@ class RoleService {
 				errors.add(path, LaravelMessages.EXISTS);
 			}
 		}
-	}
-
-	private List<Long> permissionIds(List<String> names) {
-		Map<String, Long> byName = permissions.findByNameInAndGuardName(names, Role.GUARD).stream()
-			.collect(Collectors.toMap(Permission::getName, Permission::getId, (a, b) -> a));
-		return names.stream().map(name -> require(byName, name)).toList();
-	}
-
-	/** Dogrulama guard'a bakmaz; baska guard'daki izin atanamaz, bu bir veri hatasidir. */
-	private static Long require(Map<String, Long> byName, String name) {
-		Long id = byName.get(name);
-		if (id == null) {
-			throw new IllegalStateException("There is no permission named `" + name + "` for guard `" + Role.GUARD + "`.");
-		}
-		return id;
 	}
 
 }

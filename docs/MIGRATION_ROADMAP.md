@@ -448,12 +448,14 @@ Sıra:
   alıyor, limit kontrolünden önce çalışıyor; aşan istek reddedilir
 
 ## B4: Şema
-- [ ] Şemanın sahibi Java: yeni migration'lar Flyway ile yazılır, `baseline-on-migrate` kaldırılır
-- [ ] Laravel tabloları kaldırılır: `migrations`, `cache`, `cache_locks`, `jobs`, `sessions` vb.
-- [ ] Spatie tabloları (`model_has_roles`, `model_has_permissions`, `role_has_permissions`) ve
+- [ ] Şemanın sahibi Java: yeni migration'lar Flyway ile yazılır. Canlı veritabanına da uygulanacakları için
+  veriyi koruyarak ileri yönlü çalışırlar
+- [x] Laravel tabloları kaldırılır: `migrations`, `cache`, `cache_locks`, `jobs`, `sessions` vb.
+- [x] Spatie tabloları (`model_has_roles`, `model_has_permissions`, `role_has_permissions`) ve
   `App\Models\...` metinleri Java'ya göre yeniden tasarlanır
-- [ ] `personal_access_tokens` kaldırılır (B3'ten sonra)
-- [ ] V0.xx dosyaları Java'nın temiz başlangıç migration'larıyla değiştirilir
+- [x] `personal_access_tokens` kaldırılır (B3'te yapıldı)
+- [ ] **Sunucu geçişinden sonra:** V0.xx dosyaları temiz başlangıç migration'larıyla değiştirilir ve
+  `baseline-on-migrate` kaldırılır. Geçiş mevcut Laravel veritabanının üzerine yapıldığı için daha önce yapılamaz
 - [ ] Modüller arası tablo okumaları kaldırılır: başka modülün tablosunu `JdbcClient` ile okuyan
   yerler o modülün public API'sini kullanır (`ProductCatalog`, `NudgeDirectory`, `OrderStockQueries`,
   `SupplierDeliveryService` vb.); `product` ile `productionline` arasındaki bağımlılık döngüsü çözülür

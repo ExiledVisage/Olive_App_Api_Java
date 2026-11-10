@@ -11,7 +11,7 @@ Kaynak: `Olive_Production_Tracking_App_Back` `dev` branch'i, `ba61990`. Laravel 
 |---|---|---|
 | `reference-data.sql` | Dondurulmuş demo verinin tam dökümü (şema + veri). Karşılaştırmalar hep bunun üzerinde yapılır | Evet |
 | `schema.sql` | Sadece şema (73 tablo). Flyway migration'larının (`db/migration/`) kurduğu şemayla aynı (`deploy/compare-schema.sh`) | Evet |
-| `seed-data.sql` | Sadece veri (`pg_dump --data-only`, `cache` / `cache_locks` hariç). Java'nın `--seed` komutu ve integration testleri bunu yükler | Evet |
+| `seed-data.sql` | Sadece veri, Java şemasına (V5) çevrilmiş: Laravel altyapı tabloları yok, roller ve izinler yeni tablolarda. `--seed` komutu ve integration testleri bunu yükler | Evet |
 | `restore.sh` | Laravel'in dev veritabanını `reference-data.sql`'e geri döndürür | Evet |
 | `capture_responses.py` | Tüm GET endpoint'lerini admin olarak çağırıp cevapları `responses/`'a yazar | Evet |
 | `capture_identity.py` | Faz 2: Laravel'in kimlik/yetki davranışını (validation, 401/403/404, 422, 201, 429) yakalar → `src/test/resources/laravel/identity.json`. Veri değiştirir: öncesinde ve sonrasında `restore.sh` | Evet |
@@ -49,7 +49,7 @@ python -I reference/capture_responses.py "$LARAVEL"   # cevapları yakala
 ```
 
 `seed-data.sql` yeniden üretmek için (referans veri değiştiğinde): `reference-data.sql`'i boş bir Postgres 17'ye yükleyip
-`pg_dump --data-only --no-owner --no-privileges --exclude-table-data=cache --exclude-table-data=cache_locks` alın.
+Flyway ile V2 ve sonrasını uygulayın (baseline 1), sonra `pg_dump --data-only --no-owner --no-privileges` alın.
 `materials.parent_material_id` kendi tablosuna bakan bir foreign key; pg_dump bunun için uyarı verir. Mevcut dökümde hiçbir
 kayıt kendinden sonraki bir id'yi göstermediği için yükleme FK kontrolleri açıkken sorunsuz geçer (`BaselineSchemaIT` doğrular).
 

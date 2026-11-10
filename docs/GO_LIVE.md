@@ -47,6 +47,21 @@ deploy/compare-schema.sh canli-sema.sql
 Fark varsa geçiş durur: sunucudaki Laravel kodu ile Java'nın migration'ları (`db/migration/`) arasında
 çalıştırılmamış ya da elle yapılmış bir şema değişikliği vardır, önce o giderilir.
 
+Rol ve izin atamaları yeni tablolara taşınacak. Taşınamayan satır varsa `V5` migration'ı durur, bu yüzden
+geçişten önce kontrol edilir. Sunucuda, Laravel klasöründe (bütün satırlar `0` olmalı):
+
+```bash
+docker compose exec -T db sh -c 'psql -At -U "$POSTGRES_USER" -d "$POSTGRES_DB"' <<'SQL'
+select count(*) from (select model_type from model_has_roles union all select model_type from model_has_permissions) m where model_type <> 'App\Models\User';
+select count(*) from (select model_id from model_has_roles union all select model_id from model_has_permissions) m where not exists (select 1 from users u where u.id = m.model_id);
+select count(*) from (select name from roles group by name having count(*) > 1) d;
+select count(*) from (select name from permissions group by name having count(*) > 1) d;
+SQL
+```
+
+Sıfır olmayan satır varsa geçiş durur ve veri elle düzeltilir: sırasıyla kullanıcı olmayan atama, var olmayan
+kullanıcıya ait atama, aynı adı taşıyan rol, aynı adı taşıyan izin.
+
 ### 3. Yedek
 
 ```bash
@@ -66,9 +81,16 @@ cd /srv/olivamore/dev/olive_oil_back && docker compose stop app
 cd /srv/olivamore/dev/olive_api_java/deploy && ./deploy.sh
 ```
 
-Java ilk açılışta Flyway ile mevcut şemayı kabul eder (`baselineOnMigrate`); Laravel'in
-tablolarına dokunmaz, yalnızca kendi iki tablosunu ekler (`flyway_schema_history`,
-`event_publication`).
+Java ilk açılışta Flyway ile mevcut şemayı kabul eder (`baselineOnMigrate`), sonra kendi migration'larını
+uygular. **Bu migration'lar Laravel'in tablolarını değiştirir:**
+
+- `V2`, `V3`: `event_publication`, `auth_sessions` ve `refresh_tokens` eklenir, `personal_access_tokens` silinir.
+- `V4`: `migrations`, `cache`, `cache_locks`, `jobs`, `job_batches`, `failed_jobs`, `sessions` ve
+  `password_reset_tokens` silinir.
+- `V5`: rol ve izin atamaları `user_roles`, `user_permissions`, `role_permissions` tablolarına aynen taşınır,
+  Spatie tabloları ile `guard_name` ve `remember_token` kolonları silinir.
+
+Bu andan sonra Laravel aynı veritabanıyla çalışamaz.
 
 ### 5. Kontrol
 
@@ -84,13 +106,22 @@ siparişler, günlük özet.
 
 ### Geri dönüş (sorun çıkarsa)
 
+Java'nın migration'ları şemayı değiştirdiği için geri dönüş, 3. adımda alınan yedeğin geri yüklenmesidir.
+**Yedekten sonra Java üzerinden yazılan her veri kaybolur.** Bu yüzden karar, geçişten sonra olabildiğince
+erken verilmelidir.
+
 ```bash
 cd /srv/olivamore/dev/olive_api_java/deploy && docker compose -f compose.server.yaml down
-cd /srv/olivamore/dev/olive_oil_back && docker compose start app
+cd /srv/olivamore/dev/olive_oil_back
+
+# Veritabanı boşaltılıp yedek yüklenir; <tarih> yerine 3. adımdaki dosyanın adı
+docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d postgres -c "DROP DATABASE \"$POSTGRES_DB\" WITH (FORCE);" -c "CREATE DATABASE \"$POSTGRES_DB\" OWNER \"$POSTGRES_USER\";"'
+docker compose exec -T db sh -c 'psql -q -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"' < /srv/olivamore/backups/oncesi-java-<tarih>.sql
+
+docker compose start app
 ```
 
-Java'nın veritabanına eklediği iki tablo Laravel'i etkilemez. Java'nın yazdığı veriler de
-Laravel'in formatında olduğu için Laravel onları sorunsuz okur.
+`V5` hata verip uygulama açılmazsa da aynı yol izlenir: önceki migration'lar uygulanmış olabilir.
 
 ## Geçişten sonra
 

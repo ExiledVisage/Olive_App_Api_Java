@@ -23,14 +23,14 @@ SET row_security = off;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.users (id, name, email, email_verified_at, password, remember_token, created_at, updated_at) FROM stdin;
-1	Olivamore Admin	admin@olivamore.com	\N	$2y$12$.1wjegORyxIF82qFmEsE7.rjgzakb4Lv3dY4FwMw0kNwQctzJWvFy	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
-2	Operator One	operator1@olivamore.com	\N	$2y$12$4eK3.QLh33TBKPvCysd7QOA/zxq4CemPZJFispLZPJ01aQJIpfajK	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
-3	Operator Two	operator2@olivamore.com	\N	$2y$12$hkCSxhvhWuYwLhO6b4yJRe.60105fGgd7pti19v60vH/t7uTx4bQi	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
-4	Production Planner	planner@olivamore.com	\N	$2y$12$i8UndbJvC1jpmqLoDBve5.4hUW3KdewlKnnnDOgtpPVOOhoQsLOGu	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
-5	Üretim İşçisi	uretim@olivamore.com	\N	$2y$12$rgXXsNrQQkmG3o8/0RCESubPH7RF.7xZvgE6KbWra/ePNTJPfRLMO	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
-6	Depo ve Sipariş	depo@olivamore.com	\N	$2y$12$IwKlKcLTse0bIBSl40a1.eebM1kLdvtUlXw4gy75v6Lr6XNRIBke6	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
-7	Gıda Mühendisi	muhendis@olivamore.com	\N	$2y$12$NDGImNySyOiw0CCyx4KvZuvG64iPL3vdzEzkLogWPyvAbetGAyHam	\N	2026-11-06 15:35:11	2026-11-06 15:35:11
+COPY public.users (id, name, email, email_verified_at, password, created_at, updated_at) FROM stdin;
+1	Olivamore Admin	admin@olivamore.com	\N	$2y$12$.1wjegORyxIF82qFmEsE7.rjgzakb4Lv3dY4FwMw0kNwQctzJWvFy	2026-11-06 15:35:11	2026-11-06 15:35:11
+2	Operator One	operator1@olivamore.com	\N	$2y$12$4eK3.QLh33TBKPvCysd7QOA/zxq4CemPZJFispLZPJ01aQJIpfajK	2026-11-06 15:35:11	2026-11-06 15:35:11
+3	Operator Two	operator2@olivamore.com	\N	$2y$12$hkCSxhvhWuYwLhO6b4yJRe.60105fGgd7pti19v60vH/t7uTx4bQi	2026-11-06 15:35:11	2026-11-06 15:35:11
+4	Production Planner	planner@olivamore.com	\N	$2y$12$i8UndbJvC1jpmqLoDBve5.4hUW3KdewlKnnnDOgtpPVOOhoQsLOGu	2026-11-06 15:35:11	2026-11-06 15:35:11
+5	Üretim İşçisi	uretim@olivamore.com	\N	$2y$12$rgXXsNrQQkmG3o8/0RCESubPH7RF.7xZvgE6KbWra/ePNTJPfRLMO	2026-11-06 15:35:11	2026-11-06 15:35:11
+6	Depo ve Sipariş	depo@olivamore.com	\N	$2y$12$IwKlKcLTse0bIBSl40a1.eebM1kLdvtUlXw4gy75v6Lr6XNRIBke6	2026-11-06 15:35:11	2026-11-06 15:35:11
+7	Gıda Mühendisi	muhendis@olivamore.com	\N	$2y$12$NDGImNySyOiw0CCyx4KvZuvG64iPL3vdzEzkLogWPyvAbetGAyHam	2026-11-06 15:35:11	2026-11-06 15:35:11
 \.
 
 
@@ -6851,14 +6851,6 @@ COPY public.finished_product_recipes (id, name, version, is_active, description,
 --
 
 COPY public.customer_preferred_recipes (id, customer_id, finished_product_recipe_id, note, created_at, updated_at) FROM stdin;
-\.
-
-
---
--- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed_at) FROM stdin;
 \.
 
 
@@ -16006,22 +15998,6 @@ COPY public.finished_product_storage_stocks (id, finished_product_storage_id, fi
 
 
 --
--- Data for Name: job_batches; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.job_batches (id, name, total_jobs, pending_jobs, failed_jobs, failed_job_ids, options, cancelled_at, created_at, finished_at) FROM stdin;
-\.
-
-
---
--- Data for Name: jobs; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.jobs (id, queue, payload, attempts, reserved_at, available_at, created_at) FROM stdin;
-\.
-
-
---
 -- Data for Name: production_product_attribute_definitions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -17324,149 +17300,72 @@ COPY public.material_attribute_values (id, material_id, production_product_attri
 
 
 --
--- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.migrations (id, migration, batch) FROM stdin;
-1	0001_01_01_000000_create_users_table	1
-2	0001_01_01_000001_create_cache_table	1
-3	0001_01_01_000002_create_jobs_table	1
-4	2026_03_06_103137_create_personal_access_tokens_table	1
-5	2026_03_06_120000_create_production_products_table	1
-6	2026_03_06_120001_create_production_lines_table	1
-7	2026_03_06_122908_create_production_product_types_table	1
-8	2026_03_06_123410_create_production_batches_table	1
-9	2026_03_06_141135_create_process_types_table	1
-10	2026_03_06_142541_create_production_stages_table	1
-11	2026_03_06_142629_create_batch_processes_table	1
-12	2026_03_09_225618_create_process_type_fields_table	1
-13	2026_03_09_225758_create_batch_process_field_values_table	1
-14	2026_03_12_123915_create_permission_tables	1
-15	2026_03_16_204142_create_stage_extension_types_table	1
-16	2026_03_16_204143_create_production_stage_extensions_table	1
-17	2026_03_16_204143_create_stage_extension_type_fields_table	1
-18	2026_03_16_204144_create_production_stage_extension_values_table	1
-19	2026_03_16_204144_create_storage_units_table	1
-20	2026_03_16_204145_create_storage_unit_balances_table	1
-21	2026_03_23_223221_create_production_product_attribute_definitions_table	1
-22	2026_03_23_223222_create_materials_table	1
-23	2026_03_23_223223_create_material_attribute_values_table	1
-24	2026_03_23_223224_create_storage_movements_table	1
-25	2026_04_01_151301_create_production_line_input_production_product_types_table	1
-26	2026_04_01_151302_create_production_line_output_production_product_types_table	1
-27	2026_04_02_151055_create_production_stage_extension_input_production_products_table	1
-28	2026_04_02_151109_create_production_stage_extension_output_production_products_table	1
-29	2026_04_04_014548_create_storage_unit_allowed_production_products_table	1
-30	2026_04_09_161254_create_storage_unit_allowed_production_product_types_table	1
-31	2026_04_09_194519_create_storage_unit_attribute_rules_table	1
-32	2026_04_22_221540_create_production_batch_input_production_product_types_table	1
-33	2026_04_22_221543_create_production_batch_output_production_product_types_table	1
-34	2026_06_24_100000_create_packaging_items_table	1
-35	2026_06_24_100001_create_finished_product_recipes_table	1
-36	2026_06_24_100002_create_finished_product_recipe_contents_table	1
-37	2026_06_24_100003_create_finished_product_recipe_attribute_rules_table	1
-38	2026_06_24_100004_create_finished_products_table	1
-39	2026_06_24_100005_create_finished_product_components_table	1
-40	2026_06_24_100006_create_finished_product_runs_table	1
-41	2026_06_24_100007_create_finished_product_run_materials_table	1
-42	2026_06_24_100008_create_finished_product_run_attribute_values_table	1
-43	2026_06_24_100009_create_finished_product_storages_table	1
-44	2026_06_24_100010_create_finished_product_storage_slots_table	1
-45	2026_06_24_100011_create_finished_product_storage_stock_table	1
-46	2026_06_24_100012_create_customers_table	1
-47	2026_06_24_100013_create_customer_addresses_table	1
-48	2026_06_24_100014_create_orders_table	1
-49	2026_06_24_100015_create_order_items_table	1
-50	2026_06_24_100016_create_finished_product_storage_slot_stocks_table	1
-51	2026_06_24_100017_create_order_status_histories_table	1
-52	2026_06_24_100018_create_batch_process_reviews_table	1
-53	2026_06_24_100019_create_finished_product_stock_movements_table	1
-54	2026_09_18_100000_create_customer_preferred_recipes_table	1
-55	2026_09_18_100001_add_source_storage_unit_to_finished_product_runs	1
-56	2026_09_18_100002_add_finished_product_run_to_storage_movements	1
-57	2026_09_18_100003_create_suppliers_tables	1
-58	2026_09_18_100004_add_supplier_permissions	1
-59	2026_09_18_100005_add_analytics_permission	1
-60	2026_09_18_100006_create_analytics_reports_table	1
-61	2026_09_21_120000_add_production_product_type_to_production_line_products	1
-62	2026_09_28_100000_create_user_notifications_table	1
-63	2026_10_01_100000_create_product_suppliers_table	1
-64	2026_10_01_100001_create_packaging_lot_tables	1
-65	2026_10_01_100002_add_packaging_lot_permissions	1
-66	2026_10_05_100000_add_density_to_production_product_types	1
-67	2026_10_05_100001_add_default_density_to_production_products	1
-68	2026_10_05_100002_add_run_to_finished_product_stock_movements	1
-69	2026_10_06_100000_add_order_to_finished_product_stock_movements	1
-\.
-
-
---
 -- Data for Name: permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.permissions (id, name, guard_name, created_at, updated_at) FROM stdin;
-1	supplier.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-2	supplier.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-3	analytics.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-4	product_supplier.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-5	product_supplier.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-6	packaging_lot.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-7	packaging_lot.receive	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-8	packaging_lot.adjustment	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-9	production_product_type.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-10	production_product_type.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-11	production_line.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-12	production_line.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-13	production_stage.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-14	process_type.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-15	process_type_field.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-16	attribute_definition.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-17	attribute_definition.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-18	packaging_item.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-19	packaging_item.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-20	production_batch.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-21	production_batch.create	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-22	production_batch.update	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-23	production_batch.delete	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-24	batch_process.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-25	batch_process.fill	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-26	batch_process.complete	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-27	batch_process.skip	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-28	batch_process.reopen	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-29	batch_process.approve	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-30	calendar.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-31	notification.send	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-32	storage_unit.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-33	storage_unit.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-34	storage_movement.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-35	storage_movement.create	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-36	storage_movement.transfer	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-37	storage_movement.adjustment	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-38	finished_product_recipe.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-39	finished_product_recipe.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-40	finished_product.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-41	finished_product.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-42	finished_product_run.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-43	finished_product_run.create	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-44	finished_product_run.complete	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-45	finished_product_storage.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-46	finished_product_storage.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-47	finished_product_storage.stock_in	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-48	finished_product_storage.stock_out	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-49	customer.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-50	customer.manage	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-51	order.view	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-52	order.create	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-53	order.update	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-54	order.update_status	web	2026-11-06 15:35:10	2026-11-06 15:35:10
+COPY public.permissions (id, name, created_at, updated_at) FROM stdin;
+1	supplier.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+2	supplier.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+3	analytics.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+4	product_supplier.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+5	product_supplier.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+6	packaging_lot.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+7	packaging_lot.receive	2026-11-06 15:35:10	2026-11-06 15:35:10
+8	packaging_lot.adjustment	2026-11-06 15:35:10	2026-11-06 15:35:10
+9	production_product_type.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+10	production_product_type.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+11	production_line.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+12	production_line.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+13	production_stage.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+14	process_type.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+15	process_type_field.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+16	attribute_definition.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+17	attribute_definition.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+18	packaging_item.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+19	packaging_item.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+20	production_batch.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+21	production_batch.create	2026-11-06 15:35:10	2026-11-06 15:35:10
+22	production_batch.update	2026-11-06 15:35:10	2026-11-06 15:35:10
+23	production_batch.delete	2026-11-06 15:35:10	2026-11-06 15:35:10
+24	batch_process.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+25	batch_process.fill	2026-11-06 15:35:10	2026-11-06 15:35:10
+26	batch_process.complete	2026-11-06 15:35:10	2026-11-06 15:35:10
+27	batch_process.skip	2026-11-06 15:35:10	2026-11-06 15:35:10
+28	batch_process.reopen	2026-11-06 15:35:10	2026-11-06 15:35:10
+29	batch_process.approve	2026-11-06 15:35:10	2026-11-06 15:35:10
+30	calendar.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+31	notification.send	2026-11-06 15:35:10	2026-11-06 15:35:10
+32	storage_unit.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+33	storage_unit.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+34	storage_movement.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+35	storage_movement.create	2026-11-06 15:35:10	2026-11-06 15:35:10
+36	storage_movement.transfer	2026-11-06 15:35:10	2026-11-06 15:35:10
+37	storage_movement.adjustment	2026-11-06 15:35:10	2026-11-06 15:35:10
+38	finished_product_recipe.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+39	finished_product_recipe.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+40	finished_product.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+41	finished_product.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+42	finished_product_run.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+43	finished_product_run.create	2026-11-06 15:35:10	2026-11-06 15:35:10
+44	finished_product_run.complete	2026-11-06 15:35:10	2026-11-06 15:35:10
+45	finished_product_storage.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+46	finished_product_storage.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+47	finished_product_storage.stock_in	2026-11-06 15:35:10	2026-11-06 15:35:10
+48	finished_product_storage.stock_out	2026-11-06 15:35:10	2026-11-06 15:35:10
+49	customer.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+50	customer.manage	2026-11-06 15:35:10	2026-11-06 15:35:10
+51	order.view	2026-11-06 15:35:10	2026-11-06 15:35:10
+52	order.create	2026-11-06 15:35:10	2026-11-06 15:35:10
+53	order.update	2026-11-06 15:35:10	2026-11-06 15:35:10
+54	order.update_status	2026-11-06 15:35:10	2026-11-06 15:35:10
 \.
 
 
 --
--- Data for Name: model_has_permissions; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: user_permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.model_has_permissions (permission_id, model_type, model_id) FROM stdin;
+COPY public.user_permissions (user_id, permission_id) FROM stdin;
 \.
 
 
@@ -17474,28 +17373,28 @@ COPY public.model_has_permissions (permission_id, model_type, model_id) FROM std
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.roles (id, name, guard_name, created_at, updated_at) FROM stdin;
-1	admin	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-2	operator	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-3	planner	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-4	production_operator	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-5	warehouse_operator	web	2026-11-06 15:35:10	2026-11-06 15:35:10
-6	food_engineer	web	2026-11-06 15:35:10	2026-11-06 15:35:10
+COPY public.roles (id, name, created_at, updated_at) FROM stdin;
+1	admin	2026-11-06 15:35:10	2026-11-06 15:35:10
+2	operator	2026-11-06 15:35:10	2026-11-06 15:35:10
+3	planner	2026-11-06 15:35:10	2026-11-06 15:35:10
+4	production_operator	2026-11-06 15:35:10	2026-11-06 15:35:10
+5	warehouse_operator	2026-11-06 15:35:10	2026-11-06 15:35:10
+6	food_engineer	2026-11-06 15:35:10	2026-11-06 15:35:10
 \.
 
 
 --
--- Data for Name: model_has_roles; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: user_roles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.model_has_roles (role_id, model_type, model_id) FROM stdin;
-1	App\\Models\\User	1
-2	App\\Models\\User	2
-2	App\\Models\\User	3
-3	App\\Models\\User	4
-4	App\\Models\\User	5
-5	App\\Models\\User	6
-6	App\\Models\\User	7
+COPY public.user_roles (user_id, role_id) FROM stdin;
+1	1
+2	2
+3	2
+4	3
+5	4
+6	5
+7	6
 \.
 
 
@@ -22088,14 +21987,6 @@ COPY public.packaging_lot_movements (id, packaging_lot_id, packaging_item_id, fi
 
 
 --
--- Data for Name: password_reset_tokens; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.password_reset_tokens (email, token, created_at) FROM stdin;
-\.
-
-
---
 -- Data for Name: production_batch_input_production_product_types; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -23084,171 +22975,163 @@ COPY public.production_stage_extension_values (id, production_stage_extension_id
 
 
 --
--- Data for Name: role_has_permissions; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: role_permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.role_has_permissions (permission_id, role_id) FROM stdin;
+COPY public.role_permissions (role_id, permission_id) FROM stdin;
 1	1
-2	1
-3	1
-4	1
-5	1
-6	1
-7	1
-8	1
-9	1
-10	1
-11	1
-12	1
-13	1
-14	1
-15	1
-16	1
-17	1
-18	1
-19	1
-20	1
-21	1
-22	1
-23	1
-24	1
-25	1
-26	1
-27	1
-28	1
-29	1
-30	1
-31	1
-32	1
-33	1
-34	1
-35	1
-36	1
-37	1
-38	1
-39	1
-40	1
-41	1
-42	1
-43	1
-44	1
-45	1
-46	1
-47	1
-48	1
-49	1
-50	1
-51	1
-52	1
-53	1
-54	1
-9	2
-11	2
-16	2
-18	2
-6	2
-7	2
-20	2
-24	2
-25	2
-26	2
-27	2
-30	2
 1	2
-4	2
-32	2
-34	2
-35	2
-36	2
-38	2
-40	2
-42	2
-43	2
-44	2
-45	2
-47	2
-48	2
-51	2
-9	3
-11	3
-16	3
-18	3
-20	3
-21	3
-22	3
-24	3
-30	3
 1	3
-2	3
-4	3
-5	3
-6	3
-3	3
-32	3
-34	3
-38	3
-40	3
-42	3
-45	3
-49	3
-50	3
-51	3
-52	3
-53	3
-54	3
-9	4
-11	4
-16	4
-20	4
-21	4
-22	4
-24	4
-25	4
-26	4
-27	4
-30	4
 1	4
-32	4
-34	4
-35	4
-36	4
-18	5
-6	5
-7	5
-4	5
-32	5
-34	5
-38	5
-40	5
-42	5
-43	5
-44	5
-45	5
-47	5
-48	5
-49	5
-51	5
-54	5
-9	6
-16	6
-32	6
-34	6
+1	5
+1	6
+1	7
+1	8
+1	9
+1	10
+1	11
+1	12
+1	13
+1	14
+1	15
+1	16
+1	17
+1	18
+1	19
+1	20
+1	21
+1	22
+1	23
+1	24
+1	25
+1	26
+1	27
+1	28
+1	29
+1	30
+1	31
+1	32
+1	33
+1	34
+1	35
+1	36
+1	37
+1	38
+1	39
+1	40
+1	41
+1	42
+1	43
+1	44
+1	45
+1	46
+1	47
+1	48
+1	49
+1	50
+1	51
+1	52
+1	53
+1	54
+2	9
+2	11
+2	16
+2	18
+2	6
+2	7
+2	20
+2	24
+2	25
+2	26
+2	27
+2	30
+2	1
+2	4
+2	32
+2	34
+2	35
+2	36
+2	38
+2	40
+2	42
+2	43
+2	44
+2	45
+2	47
+2	48
+2	51
+3	9
+3	11
+3	16
+3	18
+3	20
+3	21
+3	22
+3	24
+3	30
+3	1
+3	2
+3	4
+3	5
 3	6
-31	6
-38	6
-39	6
-40	6
-41	6
-45	6
-49	6
-\.
-
-
---
--- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sessions (id, user_id, ip_address, user_agent, payload, last_activity) FROM stdin;
+3	3
+3	32
+3	34
+3	38
+3	40
+3	42
+3	45
+3	49
+3	50
+3	51
+3	52
+3	53
+3	54
+4	9
+4	11
+4	16
+4	20
+4	21
+4	22
+4	24
+4	25
+4	26
+4	27
+4	30
+4	1
+4	32
+4	34
+4	35
+4	36
+5	18
+5	6
+5	7
+5	4
+5	32
+5	34
+5	38
+5	40
+5	42
+5	43
+5	44
+5	45
+5	47
+5	48
+5	49
+5	51
+5	54
+6	9
+6	16
+6	32
+6	34
+6	3
+6	31
+6	38
+6	39
+6	40
+6	41
+6	45
+6	49
 \.
 
 
@@ -26223,13 +26106,6 @@ SELECT pg_catalog.setval('public.customers_id_seq', 16, true);
 
 
 --
--- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
-
-
---
 -- Name: finished_product_components_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -26328,13 +26204,6 @@ SELECT pg_catalog.setval('public.finished_products_id_seq', 22, true);
 
 
 --
--- Name: jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.jobs_id_seq', 1, false);
-
-
---
 -- Name: material_attribute_values_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -26346,13 +26215,6 @@ SELECT pg_catalog.setval('public.material_attribute_values_id_seq', 1278, true);
 --
 
 SELECT pg_catalog.setval('public.materials_id_seq', 2362, true);
-
-
---
--- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.migrations_id_seq', 69, true);
 
 
 --

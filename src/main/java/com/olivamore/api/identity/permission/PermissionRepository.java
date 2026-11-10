@@ -10,6 +10,6 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
 	List<Permission> findAllByOrderByNameAsc();
 
-	List<Permission> findByNameInAndGuardName(List<String> names, String guardName);
+	List<Permission> findByNameIn(List<String> names);
 
 }

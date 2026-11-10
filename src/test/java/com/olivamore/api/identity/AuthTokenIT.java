@@ -233,11 +233,10 @@ class AuthTokenIT {
 		long id = jdbc.queryForObject("select id from users where email = ?", Long.class, email);
 		assertThat(LaravelReplay.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(403);
 
-		jdbc.update("insert into model_has_roles (role_id, model_type, model_id) select id, 'App\\Models\\User', ? "
-			+ "from roles where name = 'admin'", id);
+		jdbc.update("insert into user_roles (user_id, role_id) select ?, id from roles where name = 'admin'", id);
 		assertThat(LaravelReplay.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(200);
 
-		jdbc.update("delete from model_has_roles where model_id = ?", id);
+		jdbc.update("delete from user_roles where user_id = ?", id);
 		assertThat(LaravelReplay.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(403);
 	}
 

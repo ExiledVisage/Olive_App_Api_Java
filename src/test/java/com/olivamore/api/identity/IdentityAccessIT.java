@@ -117,7 +117,7 @@ class IdentityAccessIT {
 	@Test
 	void adminRoleHasEveryPermission() {
 		long permissions = jdbc.queryForObject("select count(*) from permissions", Long.class);
-		long adminPermissions = jdbc.queryForObject("select count(*) from role_has_permissions rp join roles r on r.id = rp.role_id"
+		long adminPermissions = jdbc.queryForObject("select count(*) from role_permissions rp join roles r on r.id = rp.role_id"
 			+ " where r.name = 'admin'", Long.class);
 		assertThat(permissions).isEqualTo(54);
 		assertThat(adminPermissions).isEqualTo(permissions);
@@ -133,11 +133,11 @@ class IdentityAccessIT {
 
 	@Test
 	void userWithoutPermissionsIsForbiddenEverywhere() {
-		jdbc.update("insert into roles (name, guard_name, created_at, updated_at) values ('yetkisiz', 'web', now(), now())");
+		jdbc.update("insert into roles (name, created_at, updated_at) values ('yetkisiz', now(), now())");
 		String token = post("/api/auth/register", null, Map.of("name", "Yetkisiz", "email", "yetkisiz@olivamore.com",
 			"password", "gizli-sifre-123", "password_confirmation", "gizli-sifre-123")).json().get(TestAuth.ACCESS_TOKEN).asString();
 		long id = jdbc.queryForObject("select id from users where email = 'yetkisiz@olivamore.com'", Long.class);
-		jdbc.update("insert into model_has_roles (role_id, model_type, model_id) select id, 'App\\Models\\User', ? from roles where name = 'yetkisiz'", id);
+		jdbc.update("insert into user_roles (user_id, role_id) select ?, id from roles where name = 'yetkisiz'", id);
 
 		for (String path : List.of("/api/users", "/api/roles", "/api/permissions", "/api/users/1")) {
 			Response r = get(path, token);
@@ -151,7 +151,7 @@ class IdentityAccessIT {
 
 	@Test
 	void adminPassesEveryPermissionCheck() {
-		// Gate::before: admin'in role_has_permissions kaydi olmasa da gecer
+		// Gate::before: admin'in role_permissions kaydi olmasa da gecer
 		assertThat(get("/api/test/needs-unknown-permission", login("admin@olivamore.com")).status).isEqualTo(200);
 		assertThat(get("/api/test/needs-unknown-permission", login("planner@olivamore.com")).status).isEqualTo(403);
 	}

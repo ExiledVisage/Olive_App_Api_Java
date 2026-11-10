@@ -8,7 +8,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-/** {@code permissions} (Spatie {@code Permission}). Izinler seeder'dan gelir, API'den degismez. */
+/** Izinler seed'den gelir, API'den degismez. */
 @Entity
 @Table(name = "permissions")
 @Getter
@@ -19,9 +19,6 @@ public class Permission {
 
 	@Column(nullable = false)
 	private String name;
-
-	@Column(name = "guard_name", nullable = false)
-	private String guardName;
 
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
