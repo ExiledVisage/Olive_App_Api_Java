@@ -47,7 +47,6 @@ public class BatchProcess extends AuditedEntity {
 	private String note;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode operationData;
 
 	private Long submittedByUserId;

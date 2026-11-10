@@ -51,11 +51,9 @@ class StageExtensionTypeField extends AuditedEntity {
 	private String defaultValueText;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode defaultValueJson;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode optionsJson;
 
 	private String description;

@@ -46,7 +46,6 @@ class BatchProcessFieldValue extends AuditedEntity {
 	private LocalDateTime valueDatetime;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode valueJson;
 
 	BatchProcessFieldValue(long batchProcessId, long processTypeFieldId, Value value) {

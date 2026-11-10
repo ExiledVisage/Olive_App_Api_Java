@@ -38,7 +38,6 @@ class BatchProcessReview extends AuditedEntity {
 	private Long submittedByUserId;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode operationData;
 
 	private String note;

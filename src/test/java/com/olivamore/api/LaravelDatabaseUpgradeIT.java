@@ -79,7 +79,24 @@ class LaravelDatabaseUpgradeIT {
 		assertThat(db.columns("permissions")).doesNotContain("guard_name");
 		assertThat(db.columns("users")).doesNotContain("remember_token").contains("email_verified_at");
 		assertThat(jdbc.queryForList("select version from flyway_schema_history where version is not null "
-			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5");
+			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6");
+	}
+
+	@Test
+	void convertsJsonColumnsAndKeepsTheirData() {
+		Database db = laravelDatabase();
+		long user = db.user("admin@olivamore.com");
+		long report = db.jdbc.queryForObject("insert into analytics_reports (user_id, name, config) "
+			+ "values (?, 'Rapor', '{\"b\": 1, \"a\": [1, {\"c\": \"ş\"}]}'::json) returning id", Long.class, user);
+
+		db.upgrade();
+
+		assertThat(db.jdbc.queryForObject("select config = '{\"a\": [1, {\"c\": \"ş\"}], \"b\": 1}'::jsonb "
+			+ "from analytics_reports where id = ?", Boolean.class, report)).isTrue();
+		assertThat(db.jdbc.queryForList("select table_name || '.' || column_name from information_schema.columns "
+			+ "where table_schema = 'public' and data_type = 'json'", String.class)).isEmpty();
+		assertThat(db.jdbc.queryForObject("select is_nullable from information_schema.columns "
+			+ "where table_name = 'analytics_reports' and column_name = 'config'", String.class)).isEqualTo("NO");
 	}
 
 	@Test

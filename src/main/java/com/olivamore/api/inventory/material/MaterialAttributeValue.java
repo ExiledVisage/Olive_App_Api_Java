@@ -42,7 +42,6 @@ public class MaterialAttributeValue extends AuditedEntity {
 	private String valueText;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode valueJson;
 
 	public MaterialAttributeValue(long materialId, long definitionId, Boolean valueBoolean, Long valueInteger,

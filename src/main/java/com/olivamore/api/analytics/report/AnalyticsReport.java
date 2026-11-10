@@ -32,7 +32,7 @@ class AnalyticsReport extends AuditedEntity {
 	private String name;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(nullable = false, columnDefinition = "json")
+	@Column(nullable = false)
 	private JsonNode config;
 
 	AnalyticsReport(long userId, String name, JsonNode config) {

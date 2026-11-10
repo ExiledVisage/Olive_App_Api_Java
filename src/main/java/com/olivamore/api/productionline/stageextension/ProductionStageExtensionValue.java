@@ -41,7 +41,6 @@ class ProductionStageExtensionValue extends AuditedEntity {
 	private String valueText;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode valueJson;
 
 	ProductionStageExtensionValue(long extensionId, long fieldId, StageExtensionValueRequest request, JsonNode json) {

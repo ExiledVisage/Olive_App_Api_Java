@@ -460,10 +460,12 @@ Sıra:
   yerler o modülün public API'sini kullanır (`ProductCatalog`, `NudgeDirectory`, `OrderStockQueries`,
   `SupplierDeliveryService` vb.); `product` ile `productionline` arasındaki bağımlılık döngüsü çözülür
 
-## B5: Dinamik alanların JSONB'ye geçişi
-- [ ] Attribute definition, process type field, stage extension value vb. yapılar Postgres JSONB +
-  Hibernate JSON mapping'e taşınır
-- [ ] Mevcut veri Flyway migration'ı ile dönüştürülür
+## B5: JSON kolonlarının JSONB'ye geçişi
+Tanımlar ve tipli değer tabloları (`value_decimal` vb.) ilişkisel kalır: yabancı anahtarlar, benzersiz kısıtlar
+ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
+- [x] Zaten JSON tutan kolonlar (`operation_data`, `options`, `options_json`, `default_value_json`, `value_json`,
+  `config` vb.) `jsonb` olur, Hibernate JSON eşlemesine geçer
+- [x] Mevcut veri Flyway migration'ı ile korunur
 
 ## B6: API sözleşmesi
 - [ ] Sayfalama: Spring `Pageable` / `Page` (`LaravelPaginator`, `Listing` yerine)

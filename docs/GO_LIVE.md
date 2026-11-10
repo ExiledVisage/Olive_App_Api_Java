@@ -62,6 +62,23 @@ SQL
 Sıfır olmayan satır varsa geçiş durur ve veri elle düzeltilir: sırasıyla kullanıcı olmayan atama, var olmayan
 kullanıcıya ait atama, aynı adı taşıyan rol, aynı adı taşıyan izin.
 
+JSON kolonları `jsonb`'ye çevrilecek. `\u0000` karakteri içeren bir değer varsa `V6` durur, bu yüzden o da
+kontrol edilir (bütün satırlar `0` olmalı):
+
+```bash
+docker compose exec -T db sh -c 'psql -At -U "$POSTGRES_USER" -d "$POSTGRES_DB"' <<'SQL'
+select count(*) from batch_processes where operation_data::text like '%\u0000%';
+select count(*) from batch_process_reviews where operation_data::text like '%\u0000%';
+select count(*) from process_type_fields where options::text like '%\u0000%';
+select count(*) from batch_process_field_values where value_json::text like '%\u0000%';
+select count(*) from stage_extension_type_fields where default_value_json::text like '%\u0000%';
+select count(*) from stage_extension_type_fields where options_json::text like '%\u0000%';
+select count(*) from production_stage_extension_values where value_json::text like '%\u0000%';
+select count(*) from material_attribute_values where value_json::text like '%\u0000%';
+select count(*) from analytics_reports where config::text like '%\u0000%';
+SQL
+```
+
 ### 3. Yedek
 
 ```bash
@@ -89,6 +106,7 @@ uygular. **Bu migration'lar Laravel'in tablolarını değiştirir:**
   `password_reset_tokens` silinir.
 - `V5`: rol ve izin atamaları `user_roles`, `user_permissions`, `role_permissions` tablolarına aynen taşınır,
   Spatie tabloları ile `guard_name` ve `remember_token` kolonları silinir.
+- `V6`: JSON kolonları `jsonb`'ye çevrilir. Tablolar yeniden yazılır, uygulama durmuşken çalışır; veri korunur.
 
 Bu andan sonra Laravel aynı veritabanıyla çalışamaz.
 

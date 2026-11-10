@@ -52,7 +52,6 @@ class ProcessTypeField extends AuditedEntity {
 	private boolean active = true;
 
 	@JdbcTypeCode(SqlTypes.JSON)
-	@Column(columnDefinition = "json")
 	private JsonNode options;
 
 	private String defaultValue;
