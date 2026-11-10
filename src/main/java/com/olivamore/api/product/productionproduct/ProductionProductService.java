@@ -1,30 +1,36 @@
 package com.olivamore.api.product.productionproduct;
 
+import com.olivamore.api.product.ProductDirectory;
+import com.olivamore.api.product.ProductUsage;
+import com.olivamore.api.product.ProductUsageCounter;
+import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.validation.LaravelMessages;
 import com.olivamore.api.shared.validation.ValidationErrors;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class ProductionProductService {
 
-	private static final String ATTRIBUTE_IDS =
-		"(select id from production_product_attribute_definitions where production_product_id = ?)";
-
 	private final ProductionProductRepository repository;
-	private final JdbcClient jdbc;
+	private final ProductDirectory directory;
+	private final ProductionLineResources lines;
+	private final List<ProductUsageCounter> counters;
 
-	ProductionProductService(ProductionProductRepository repository, JdbcClient jdbc) {
+	ProductionProductService(ProductionProductRepository repository, ProductDirectory directory,
+		ProductionLineResources lines, List<ProductUsageCounter> counters) {
 		this.repository = repository;
-		this.jdbc = jdbc;
+		this.directory = directory;
+		this.lines = lines;
+		this.counters = counters;
 	}
 
 	@Transactional(readOnly = true)
@@ -79,16 +85,20 @@ public class ProductionProductService {
 	@Transactional
 	void delete(long id) {
 		ProductionProduct product = find(id);
+		Set<Long> mappingIds = directory.attributeMappingIdsOfProduct(id);
+		Map<ProductUsage, Long> usage =
+			ProductUsageCounter.total(counters, counter -> counter.ofProduct(id, mappingIds));
+		ProductionLineResources.ProductUse lineUse = lines.productUse(id);
 		DeletionGuard.of("'" + product.getName() + "' ürün kategorisi")
-			.usedBy("ürün tipi", countBy("production_product_types", id))
-			.usedBy("tank bakiyesi", countBy("storage_unit_balances", id))
-			.usedBy("tank izni", countBy("storage_unit_allowed_production_products", id))
-			.usedBy("hat girdisi", countBy("production_line_input_production_products", id))
-			.usedBy("hat çıktısı", countBy("production_line_output_production_products", id))
-			.usedBy("aşama extension girdisi", countBy("production_stage_extension_input_production_products", id))
-			.usedBy("aşama extension çıktısı", countBy("production_stage_extension_output_production_products", id))
-			.usedBy("materyal attribute değeri", countByAttribute("material_attribute_values", id))
-			.usedBy("tank attribute kuralı", countByAttribute("storage_unit_attribute_rules", id))
+			.usedBy("ürün tipi", typeCount(id))
+			.usedBy("tank bakiyesi", usage.getOrDefault(ProductUsage.TANK_BALANCE, 0L))
+			.usedBy("tank izni", usage.getOrDefault(ProductUsage.TANK_PRODUCT_PERMISSION, 0L))
+			.usedBy("hat girdisi", lineUse.lineInputs())
+			.usedBy("hat çıktısı", lineUse.lineOutputs())
+			.usedBy("aşama extension girdisi", lineUse.extensionInputs())
+			.usedBy("aşama extension çıktısı", lineUse.extensionOutputs())
+			.usedBy("materyal attribute değeri", usage.getOrDefault(ProductUsage.MATERIAL_ATTRIBUTE_VALUE, 0L))
+			.usedBy("tank attribute kuralı", usage.getOrDefault(ProductUsage.TANK_ATTRIBUTE_RULE, 0L))
 			.check();
 		repository.delete(product);
 	}
@@ -108,21 +118,6 @@ public class ProductionProductService {
 
 	private ProductionProduct find(long id) {
 		return repository.findById(id).orElseThrow(() -> new ModelNotFoundException("ProductionProduct", id));
-	}
-
-	private long countBy(String table, long id) {
-		return jdbc.sql("select count(*) from " + table + " where production_product_id = ?")
-			.param(id)
-			.query(Long.class)
-			.single();
-	}
-
-	private long countByAttribute(String table, long id) {
-		return jdbc.sql("select count(*) from " + table + " where production_product_attribute_definition_id in "
-				+ ATTRIBUTE_IDS)
-			.param(id)
-			.query(Long.class)
-			.single();
 	}
 
 }

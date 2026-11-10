@@ -456,7 +456,7 @@ Sıra:
 - [x] `personal_access_tokens` kaldırılır (B3'te yapıldı)
 - [ ] **Sunucu geçişinden sonra:** V0.xx dosyaları temiz başlangıç migration'larıyla değiştirilir ve
   `baseline-on-migrate` kaldırılır. Geçiş mevcut Laravel veritabanının üzerine yapıldığı için daha önce yapılamaz
-- [ ] Modüller arası tablo okumaları kaldırılır: başka modülün tablosunu `JdbcClient` ile okuyan
+- [x] Modüller arası tablo okumaları kaldırılır: başka modülün tablosunu `JdbcClient` ile okuyan
   yerler o modülün public API'sini kullanır (`ProductCatalog`, `NudgeDirectory`, `OrderStockQueries`,
   `SupplierDeliveryService` vb.); `product` ile `productionline` arasındaki bağımlılık döngüsü çözülür
 

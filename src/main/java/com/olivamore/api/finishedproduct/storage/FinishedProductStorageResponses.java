@@ -6,8 +6,8 @@ import com.olivamore.api.finishedproduct.storage.MovementResponse.CounterpartySl
 import com.olivamore.api.finishedproduct.storage.SlotResponse.Content;
 import com.olivamore.api.finishedproduct.storage.SlotResponse.IdName;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.identity.UserDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,18 +32,18 @@ class FinishedProductStorageResponses {
 	private final StorageStockRepository storageStocks;
 	private final StockMovementRepository movements;
 	private final FinishedProductRepository products;
-	private final JdbcClient jdbc;
+	private final UserDirectory userDirectory;
 
 	FinishedProductStorageResponses(FinishedProductStorageRepository storages, StorageSlotRepository slots,
 		SlotStockRepository slotStocks, StorageStockRepository storageStocks, StockMovementRepository movements,
-		FinishedProductRepository products, JdbcClient jdbc) {
+		FinishedProductRepository products, UserDirectory userDirectory) {
 		this.storages = storages;
 		this.slots = slots;
 		this.slotStocks = slotStocks;
 		this.storageStocks = storageStocks;
 		this.movements = movements;
 		this.products = products;
-		this.jdbc = jdbc;
+		this.userDirectory = userDirectory;
 	}
 
 	@Transactional(readOnly = true)
@@ -176,12 +176,8 @@ class FinishedProductStorageResponses {
 	}
 
 	private Map<Long, String> users(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("select id, name from users where id in (:ids)").param("ids", present)
-			.query(UserRow.class).list().stream().collect(Collectors.toMap(UserRow::id, UserRow::name));
+		return userDirectory.users(ids).values().stream()
+			.collect(Collectors.toMap(UserDirectory.User::id, UserDirectory.User::name));
 	}
 
 }

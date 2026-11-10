@@ -1,16 +1,18 @@
 package com.olivamore.api.product.productattribute;
 
+import com.olivamore.api.product.ProductUsage;
+import com.olivamore.api.product.ProductUsageCounter;
 import com.olivamore.api.product.productionproduct.ProductionProductService;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.validation.LaravelMessages;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductAttributeService {
@@ -18,14 +20,14 @@ public class ProductAttributeService {
 	private final ProductAttributeRepository mappings;
 	private final AttributeDefinitionRepository definitions;
 	private final ProductionProductService products;
-	private final JdbcClient jdbc;
+	private final List<ProductUsageCounter> counters;
 
 	ProductAttributeService(ProductAttributeRepository mappings, AttributeDefinitionRepository definitions,
-		ProductionProductService products, JdbcClient jdbc) {
+		ProductionProductService products, List<ProductUsageCounter> counters) {
 		this.mappings = mappings;
 		this.definitions = definitions;
 		this.products = products;
-		this.jdbc = jdbc;
+		this.counters = counters;
 	}
 
 	@Transactional(readOnly = true)
@@ -84,9 +86,11 @@ public class ProductAttributeService {
 	@Transactional
 	void delete(long productId, long mappingId) {
 		ProductAttribute mapping = find(productId, mappingId);
+		Map<ProductUsage, Long> usage =
+			ProductUsageCounter.total(counters, counter -> counter.ofAttributeMapping(mappingId));
 		DeletionGuard.of("'" + mapping.getDefinition().getLabel() + "' attribute eşlemesi")
-			.usedBy("materyal değeri", countUsage("material_attribute_values", mappingId))
-			.usedBy("tank attribute kuralı", countUsage("storage_unit_attribute_rules", mappingId))
+			.usedBy("materyal değeri", usage.getOrDefault(ProductUsage.MATERIAL_ATTRIBUTE_VALUE, 0L))
+			.usedBy("tank attribute kuralı", usage.getOrDefault(ProductUsage.TANK_ATTRIBUTE_RULE, 0L))
 			.check();
 		mappings.delete(mapping);
 	}
@@ -99,13 +103,6 @@ public class ProductAttributeService {
 			throw new BusinessRuleException("Seçilen attribute definition bu ürün kategorisine ait değil.");
 		}
 		return mapping;
-	}
-
-	private long countUsage(String table, long mappingId) {
-		return jdbc.sql("select count(*) from " + table + " where production_product_attribute_definition_id = ?")
-			.param(mappingId)
-			.query(Long.class)
-			.single();
 	}
 
 	private static LaravelValidationException keyTaken() {

@@ -1,6 +1,7 @@
 package com.olivamore.api.inventory.storageunit;
 
 import com.olivamore.api.shared.error.BusinessRuleException;
+import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.validation.LaravelMessages;
 import com.olivamore.api.shared.validation.ValidationErrors;
@@ -8,13 +9,11 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -24,22 +23,22 @@ import java.util.stream.Collectors;
 @Service
 class StorageUnitService {
 
-	private record DefinitionInfo(Long id, String label, String dataType) {
-	}
-
 	private final StorageUnitRepository units;
 	private final StorageUnitAllowedProductRepository allowedProducts;
 	private final StorageUnitAllowedTypeRepository allowedTypes;
 	private final StorageUnitAttributeRuleRepository rules;
 	private final JdbcClient jdbc;
+	private final ProductDirectory directory;
 
 	StorageUnitService(StorageUnitRepository units, StorageUnitAllowedProductRepository allowedProducts,
-		StorageUnitAllowedTypeRepository allowedTypes, StorageUnitAttributeRuleRepository rules, JdbcClient jdbc) {
+		StorageUnitAllowedTypeRepository allowedTypes, StorageUnitAttributeRuleRepository rules, JdbcClient jdbc,
+		ProductDirectory directory) {
 		this.units = units;
 		this.allowedProducts = allowedProducts;
 		this.allowedTypes = allowedTypes;
 		this.rules = rules;
 		this.jdbc = jdbc;
+		this.directory = directory;
 	}
 
 	StorageUnit find(long id) {
@@ -94,7 +93,7 @@ class StorageUnitService {
 		Set<Long> ids = distinct(request.productionProductIds());
 		ValidationErrors errors = new ValidationErrors();
 		errors.exists("production_product_ids", null, request.productionProductIds(),
-			existingIds("production_products", ids));
+			directory.existingProducts(ids));
 		errors.throwIfAny();
 		allowedProducts.deleteOthers(id, ids);
 		Set<Long> existing = allowedProducts.findByStorageUnitId(id).stream()
@@ -109,7 +108,7 @@ class StorageUnitService {
 		Set<Long> ids = distinct(request.productionProductTypeIds());
 		ValidationErrors errors = new ValidationErrors();
 		errors.exists("production_product_type_ids", null, request.productionProductTypeIds(),
-			existingIds("production_product_types", ids));
+			directory.existingTypes(ids));
 		errors.throwIfAny();
 		allowedTypes.deleteOthers(id, ids);
 		Set<Long> existing = allowedTypes.findByStorageUnitId(id).stream()
@@ -127,13 +126,13 @@ class StorageUnitService {
 		Set<Long> ids = distinct(definitionIds);
 		ValidationErrors errors = new ValidationErrors();
 		errors.exists("rules", "production_product_attribute_definition_id", definitionIds,
-			existingIds("production_product_attribute_definitions", ids));
+			directory.existingAttributeMappings(ids));
 		errors.throwIfAny();
 
-		Map<Long, DefinitionInfo> definitions = definitionInfos(ids);
+		Map<Long, ProductDirectory.AttributeMapping> definitions = directory.attributeMappings(ids);
 		rules.deleteOthers(id, ids);
 		for (SyncAttributeRulesRequest.Rule rule : request.rules()) {
-			DefinitionInfo definition = definitions.get(rule.productionProductAttributeDefinitionId());
+			ProductDirectory.AttributeMapping definition = definitions.get(rule.productionProductAttributeDefinitionId());
 			if (definition != null && !"decimal".equals(definition.dataType())) {
 				throw new BusinessRuleException("Tank attribute rule sadece decimal attribute'lar için tanımlanabilir. "
 					+ "'" + Objects.requireNonNullElse(definition.label(), "") + "' attribute'unun tipi: "
@@ -157,21 +156,6 @@ class StorageUnitService {
 
 	private static Set<Long> distinct(List<Long> values) {
 		return new LinkedHashSet<>(ValidationErrors.present(values));
-	}
-
-	private Collection<Long> existingIds(String table, Collection<Long> ids) {
-		if (ids.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("select id from " + table + " where id in (:ids)").param("ids", ids).query(Long.class).list();
-	}
-
-	private Map<Long, DefinitionInfo> definitionInfos(Collection<Long> ids) {
-		return jdbc.sql("""
-			select m.id, a.label, a.data_type from production_product_attribute_definitions m
-			left join attribute_definitions a on a.id = m.attribute_definition_id where m.id in (:ids)
-			""").param("ids", ids).query(DefinitionInfo.class).list().stream()
-			.collect(Collectors.toMap(DefinitionInfo::id, Function.identity()));
 	}
 
 	private long count(String sql, long unitId) {

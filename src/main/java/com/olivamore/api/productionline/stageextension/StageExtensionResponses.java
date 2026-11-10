@@ -7,7 +7,7 @@ import com.olivamore.api.productionline.StageExtensionResponse;
 import com.olivamore.api.productionline.StageExtensionResponse.LinkedProduct;
 import com.olivamore.api.productionline.StageExtensionResponse.ProductSummary;
 import com.olivamore.api.productionline.StageExtensionResponse.Value;
-import com.olivamore.api.productionline.catalog.ProductCatalog;
+import com.olivamore.api.productionline.ProductCatalog;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

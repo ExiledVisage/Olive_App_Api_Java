@@ -1,6 +1,8 @@
 package com.olivamore.api.inventory.material;
 
+import com.olivamore.api.inventory.BatchDirectory;
 import com.olivamore.api.inventory.MaterialResponse;
+import com.olivamore.api.inventory.MaterialRunDirectory;
 import com.olivamore.api.inventory.material.MaterialDetailResponse.LineageSummary;
 import com.olivamore.api.inventory.material.MaterialDetailResponse.TypeSummary;
 import com.olivamore.api.inventory.material.MaterialQueries.Batch;
@@ -8,6 +10,7 @@ import com.olivamore.api.inventory.material.MaterialQueries.MaterialRow;
 import com.olivamore.api.inventory.material.MaterialQueries.Product;
 import com.olivamore.api.inventory.material.MaterialQueries.ProductType;
 import com.olivamore.api.inventory.material.MaterialQueries.Unit;
+import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
@@ -35,10 +38,17 @@ class MaterialService {
 
 	private final MaterialQueries queries;
 	private final JdbcClient jdbc;
+	private final ProductDirectory products;
+	private final BatchDirectory batches;
+	private final MaterialRunDirectory runs;
 
-	MaterialService(MaterialQueries queries, JdbcClient jdbc) {
+	MaterialService(MaterialQueries queries, JdbcClient jdbc, ProductDirectory products, BatchDirectory batches,
+		MaterialRunDirectory runs) {
 		this.queries = queries;
 		this.jdbc = jdbc;
+		this.products = products;
+		this.batches = batches;
+		this.runs = runs;
 	}
 
 	/**
@@ -92,13 +102,22 @@ class MaterialService {
 			if (id != null) {
 				params.put("id", id);
 			}
-			params.put("like", "%" + search + "%");
-			where.add("(" + idPart + """
-				note::text ilike :like
-				or exists (select * from production_product_types t
-					where materials.production_product_type_id = t.id and t.name::text ilike :like)
-				or exists (select * from production_batches b
-					where materials.production_batch_id = b.id and b.batch_code::text ilike :like)
+			String like = "%" + search + "%";
+			params.put("like", like);
+			List<Long> typeIds = products.typeIdsNamed(like);
+			List<Long> batchIds = batches.batchIdsWithCode(like);
+			String typePart = "";
+			if (!typeIds.isEmpty()) {
+				params.put("types", typeIds);
+				typePart = " or production_product_type_id in (:types)";
+			}
+			String batchPart = "";
+			if (!batchIds.isEmpty()) {
+				params.put("batches", batchIds);
+				batchPart = " or production_batch_id in (:batches)";
+			}
+			where.add("(" + idPart + "note::text ilike :like" + typePart + batchPart + """
+
 				or (current_location_type = 'storage_unit' and exists (select * from storage_units u
 					where materials.current_location_id = u.id
 						and (u.name::text ilike :like or u.code::text ilike :like))))
@@ -211,42 +230,11 @@ class MaterialService {
 
 	/** Bu materyalden cekilen dolum kosulari (created_at desc); kullanilan miktar bu materyalinki. */
 	private List<MaterialDetailResponse.Run> runs(long materialId) {
-		record RunRow(Long id, String status, Long finishedProductId, Integer quantity, LocalDateTime startedAt,
-			LocalDateTime completedAt, LocalDateTime createdAt) {
-		}
-		record Used(Long runId, BigDecimal quantityUsed) {
-		}
-		record NameRow(Long id, String name) {
-		}
-		List<RunRow> rows = jdbc.sql("""
-			select id, status, finished_product_id, quantity, started_at, completed_at, created_at
-			from finished_product_runs r
-			where exists (select * from finished_product_run_materials m
-				where r.id = m.finished_product_run_id and m.source_material_id = :material)
-			order by created_at desc
-			""").param("material", materialId).query(RunRow.class).list();
-		if (rows.isEmpty()) {
-			return List.of();
-		}
-		List<Long> runIds = rows.stream().map(RunRow::id).toList();
-		Map<Long, BigDecimal> used = new LinkedHashMap<>();
-		jdbc.sql("""
-			select finished_product_run_id as run_id, quantity_used from finished_product_run_materials
-			where finished_product_run_id in (:ids) and source_material_id = :material
-			""").param("ids", runIds).param("material", materialId).query(Used.class).list()
-			.forEach(u -> used.merge(u.runId(), u.quantityUsed(), BigDecimal::add));
-		Map<Long, String> names = new LinkedHashMap<>();
-		List<Long> productIds = rows.stream().map(RunRow::finishedProductId).filter(Objects::nonNull).distinct()
-			.toList();
-		if (!productIds.isEmpty()) {
-			jdbc.sql("select id, name from finished_products where id in (:ids)").param("ids", productIds)
-				.query(NameRow.class).list().forEach(n -> names.put(n.id(), n.name()));
-		}
-		return rows.stream().map(run -> {
+		return runs.runsOf(materialId).stream().map(run -> {
 			LocalDateTime date = run.completedAt() != null ? run.completedAt()
 				: run.startedAt() != null ? run.startedAt() : run.createdAt();
-			return new MaterialDetailResponse.Run(run.id(), run.status(), lookup(names, run.finishedProductId()),
-				run.quantity(), Quantities.number(used.getOrDefault(run.id(), BigDecimal.ZERO)), date);
+			return new MaterialDetailResponse.Run(run.id(), run.status(), run.productName(), run.quantity(),
+				Quantities.number(run.quantityUsed() == null ? BigDecimal.ZERO : run.quantityUsed()), date);
 		}).toList();
 	}
 

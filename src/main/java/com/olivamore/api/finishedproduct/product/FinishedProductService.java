@@ -8,6 +8,8 @@ import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.finishedproduct.OrderDirectory;
+import com.olivamore.api.packaging.PackagingDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
@@ -24,14 +26,19 @@ class FinishedProductService {
 	private final FinishedProductRecipeRepository recipes;
 	private final FinishedProductRunRepository runs;
 	private final JdbcClient jdbc;
+	private final PackagingDirectory packaging;
+	private final OrderDirectory orders;
 
 	FinishedProductService(FinishedProductRepository products, FinishedProductComponentRepository components,
-		FinishedProductRecipeRepository recipes, FinishedProductRunRepository runs, JdbcClient jdbc) {
+		FinishedProductRecipeRepository recipes, FinishedProductRunRepository runs, JdbcClient jdbc,
+		PackagingDirectory packaging, OrderDirectory orders) {
 		this.products = products;
 		this.components = components;
 		this.recipes = recipes;
 		this.runs = runs;
 		this.jdbc = jdbc;
+		this.packaging = packaging;
+		this.orders = orders;
 	}
 
 	@Transactional
@@ -76,7 +83,7 @@ class FinishedProductService {
 			throw new BusinessRuleException("Bu son ürüne ait dolum kaydı bulunduğu için silinemez.");
 		}
 		DeletionGuard.of("Bu son ürün")
-			.usedBy("sipariş kalemi", countBy("order_items", id))
+			.usedBy("sipariş kalemi", orders.itemCount(id))
 			.usedBy("depo hareketi", countBy("finished_product_stock_movements", id))
 			.usedBy("raf stoğu", countBy("finished_product_storage_slot_stocks", id))
 			.usedBy("depo stoğu", countBy("finished_product_storage_stocks", id))
@@ -98,16 +105,7 @@ class FinishedProductService {
 	private void validateComponents(List<? extends ComponentLine> lines, ValidationErrors errors) {
 		List<Long> itemIds = lines.stream().map(ComponentLine::packagingItemId).toList();
 		errors.distinct("components", "packaging_item_id", itemIds);
-		errors.exists("components", "packaging_item_id", itemIds, existingItems(itemIds));
-	}
-
-	private List<Long> existingItems(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("select id from packaging_items where id in (:ids)").param("ids", present)
-			.query(Long.class).list();
+		errors.exists("components", "packaging_item_id", itemIds, packaging.items(itemIds).keySet());
 	}
 
 	private void saveComponents(long productId, List<? extends ComponentLine> lines) {

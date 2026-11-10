@@ -1,5 +1,7 @@
 package com.olivamore.api.sales.order;
 
+import com.olivamore.api.finishedproduct.FinishedProductDirectory;
+import com.olivamore.api.identity.UserDirectory;
 import com.olivamore.api.sales.customer.CustomerAddressResponse;
 import com.olivamore.api.sales.customer.CustomerResponse;
 import com.olivamore.api.sales.order.OrderResponse.History;
@@ -7,12 +9,10 @@ import com.olivamore.api.sales.order.OrderResponse.Item;
 import com.olivamore.api.sales.order.OrderResponse.Product;
 import com.olivamore.api.sales.order.OrderResponse.UserSummary;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,14 +33,16 @@ class OrderResponses {
 	private final SalesOrderRepository orders;
 	private final OrderItemRepository items;
 	private final OrderStatusHistoryRepository histories;
-	private final JdbcClient jdbc;
+	private final FinishedProductDirectory finishedProducts;
+	private final UserDirectory users;
 
 	OrderResponses(SalesOrderRepository orders, OrderItemRepository items, OrderStatusHistoryRepository histories,
-		JdbcClient jdbc) {
+		FinishedProductDirectory finishedProducts, UserDirectory users) {
 		this.orders = orders;
 		this.items = items;
 		this.histories = histories;
-		this.jdbc = jdbc;
+		this.finishedProducts = finishedProducts;
+		this.users = users;
 	}
 
 	@Transactional(readOnly = true)
@@ -97,26 +99,15 @@ class OrderResponses {
 	}
 
 	private Map<Long, Product> products(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("""
-			select id, name, volume_litre, total_stock, null::int as stored_stock,
-				null::int as awaiting_shipment_stock, null::int as unstored_stock, is_active, created_at, updated_at
-			from finished_products where id in (:ids)
-			""").param("ids", present).query(Product.class).list().stream()
-			.collect(Collectors.toMap(Product::id, Function.identity()));
+		return finishedProducts.products(ids).values().stream().collect(Collectors.toMap(
+			FinishedProductDirectory.Product::id,
+			p -> new Product(p.id(), p.name(), p.volumeLitre(), (int) p.totalStock(), null, null, null, p.isActive(),
+				p.createdAt(), p.updatedAt())));
 	}
 
 	private Map<Long, UserSummary> users(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("select id, name from users where id in (:ids)")
-			.param("ids", present).query(UserSummary.class).list().stream()
-			.collect(Collectors.toMap(UserSummary::id, Function.identity()));
+		return users.users(ids).values().stream().collect(Collectors.toMap(UserDirectory.User::id,
+			u -> new UserSummary(u.id(), u.name())));
 	}
 
 	private static UserSummary user(Map<Long, UserSummary> users, Long id) {

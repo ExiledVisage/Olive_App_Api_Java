@@ -1,5 +1,7 @@
 package com.olivamore.api.inventory.material;
 
+import com.olivamore.api.inventory.BatchDirectory;
+import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
@@ -14,8 +16,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Materyal cevaplarinin ve tank hesaplarinin SQL okumalari. Uretim ayni islemde JDBC ile yazdigi icin
- * entity yerine (session onbellegi bayatlamasin) satirlar her seferinde veritabanindan okunur.
+ * Materyal cevaplarinin ve tank hesaplarinin okumalari: kendi tablolari SQL ile, urun ve parti bilgileri
+ * o modullerin arayuzlerinden.
  */
 @Component
 public class MaterialQueries {
@@ -53,9 +55,13 @@ public class MaterialQueries {
 	}
 
 	private final JdbcClient jdbc;
+	private final ProductDirectory products;
+	private final BatchDirectory batches;
 
-	MaterialQueries(JdbcClient jdbc) {
+	MaterialQueries(JdbcClient jdbc, ProductDirectory products, BatchDirectory batches) {
 		this.jdbc = jdbc;
+		this.products = products;
+		this.batches = batches;
 	}
 
 	public Optional<MaterialRow> material(long id) {
@@ -82,20 +88,25 @@ public class MaterialQueries {
 	}
 
 	public Map<Long, ProductType> productTypes(Collection<Long> ids) {
-		return byId("select * from production_product_types where id in (:ids)", ids, ProductType.class,
-			ProductType::id);
+		return products.productTypes(ids).values().stream().collect(Collectors.toMap(ProductDirectory.ProductType::id,
+			t -> new ProductType(t.id(), t.productionProductId(), t.name(), t.code(), t.type(), t.unit(),
+				t.densityKgPerLitre())));
 	}
 
 	public Map<Long, Product> products(Collection<Long> ids) {
-		return byId("select * from production_products where id in (:ids)", ids, Product.class, Product::id);
+		return this.products.products(ids).values().stream().collect(Collectors.toMap(ProductDirectory.Product::id,
+			p -> new Product(p.id(), p.key(), p.name(), p.description(), p.defaultDensityKgPerLitre())));
 	}
 
 	public Map<Long, Batch> batches(Collection<Long> ids) {
-		return byId("select * from production_batches where id in (:ids)", ids, Batch.class, Batch::id);
+		return this.batches.batches(ids).values().stream().collect(Collectors.toMap(BatchDirectory.Batch::id,
+			b -> new Batch(b.id(), b.batchCode(), b.status())));
 	}
 
 	public Map<Long, BatchProcess> batchProcesses(Collection<Long> ids) {
-		return byId("select * from batch_processes where id in (:ids)", ids, BatchProcess.class, BatchProcess::id);
+		return this.batches.batchProcesses(ids).values().stream().collect(Collectors.toMap(
+			BatchDirectory.BatchProcess::id,
+			p -> new BatchProcess(p.id(), p.productionBatchId(), p.productionStageId(), p.status())));
 	}
 
 	public Map<Long, Unit> units(Collection<Long> ids) {
@@ -104,13 +115,10 @@ public class MaterialQueries {
 
 	/** Urun-attribute eslemesi ve attribute tanimi (etiket, veri tipi, birim, aciklama). */
 	public Map<Long, Definition> definitions(Collection<Long> ids) {
-		return byId("""
-			select m.id, m.production_product_id, m.attribute_definition_id, m.is_required, m.sort_order,
-				a.attribute_key, a.label, a.data_type, a.unit, a.description
-			from production_product_attribute_definitions m
-			left join attribute_definitions a on a.id = m.attribute_definition_id
-			where m.id in (:ids)
-			""", ids, Definition.class, Definition::id);
+		return products.attributeMappings(ids).values().stream().collect(Collectors.toMap(
+			ProductDirectory.AttributeMapping::id,
+			m -> new Definition(m.id(), m.productionProductId(), m.attributeDefinitionId(), m.isRequired(),
+				m.sortOrder(), m.attributeKey(), m.label(), m.dataType(), m.unit(), m.description())));
 	}
 
 	/** Materyallerin attribute degerleri. */

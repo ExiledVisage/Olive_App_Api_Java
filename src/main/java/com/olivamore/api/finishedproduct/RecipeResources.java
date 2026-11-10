@@ -6,6 +6,7 @@ import com.olivamore.api.finishedproduct.recipe.RecipeAttributeRule;
 import com.olivamore.api.finishedproduct.recipe.RecipeAttributeRuleRepository;
 import com.olivamore.api.finishedproduct.recipe.RecipeContent;
 import com.olivamore.api.finishedproduct.recipe.RecipeContentRepository;
+import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
@@ -21,23 +22,19 @@ import java.util.stream.Collectors;
 @Component
 public class RecipeResources {
 
-	private record NamedRow(Long id, String name) {
-	}
-
-	private record LabelRow(Long id, String label) {
-	}
-
 	private final FinishedProductRecipeRepository recipes;
 	private final RecipeContentRepository contents;
 	private final RecipeAttributeRuleRepository rules;
 	private final JdbcClient jdbc;
+	private final ProductDirectory products;
 
 	RecipeResources(FinishedProductRecipeRepository recipes, RecipeContentRepository contents,
-		RecipeAttributeRuleRepository rules, JdbcClient jdbc) {
+		RecipeAttributeRuleRepository rules, JdbcClient jdbc, ProductDirectory products) {
 		this.recipes = recipes;
 		this.contents = contents;
 		this.rules = rules;
 		this.jdbc = jdbc;
+		this.products = products;
 	}
 
 	/** @param withRules attribute kurallari yuklu mu; degilse {@code attribute_rules} anahtari yok */
@@ -72,11 +69,11 @@ public class RecipeResources {
 			return Map.of();
 		}
 		List<RecipeContent> rows = contents.findByRecipeIdInOrderByIdAsc(present);
-		Map<Long, String> typeNames = names("production_product_types",
+		Map<Long, ProductDirectory.ProductType> types = products.productTypes(
 			rows.stream().map(RecipeContent::getProductionProductTypeId).toList());
 		return rows.stream().collect(Collectors.groupingBy(RecipeContent::getRecipeId, Collectors.mapping(
 			row -> new RecipeResponse.Content(row.getId(), row.getProductionProductTypeId(),
-				typeNames.get(row.getProductionProductTypeId()), row.getRatio()),
+				typeName(types, row.getProductionProductTypeId()), row.getRatio()),
 			Collectors.toList())));
 	}
 
@@ -85,31 +82,33 @@ public class RecipeResources {
 			return Map.of();
 		}
 		List<RecipeAttributeRule> rows = rules.findByRecipeIdInOrderByIdAsc(recipeIds);
-		Map<Long, String> labels = labels(rows.stream().map(RecipeAttributeRule::getAttributeDefinitionId).toList());
+		Map<Long, String> labels = products.attributeLabels(
+			rows.stream().map(RecipeAttributeRule::getAttributeDefinitionId).toList());
 		return rows.stream().collect(Collectors.groupingBy(RecipeAttributeRule::getRecipeId, Collectors.mapping(
 			row -> new RecipeResponse.AttributeRule(row.getId(), row.getAttributeDefinitionId(),
 				labels.get(row.getAttributeDefinitionId()), row.getValue(), row.getMinDeviation(), row.getMaxDeviation()),
 			Collectors.toList())));
 	}
 
-	private Map<Long, String> names(String table, List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("select id, name from " + table + " where id in (:ids)").param("ids", present)
-			.query(NamedRow.class).list().stream()
-			.collect(Collectors.toMap(NamedRow::id, NamedRow::name, (a, b) -> a));
+	private static String typeName(Map<Long, ProductDirectory.ProductType> types, Long id) {
+		ProductDirectory.ProductType type = types.get(id);
+		return type == null ? null : type.name();
 	}
 
-	private Map<Long, String> labels(List<Long> ids) {
+	/** Tarifin adi; tarif yoksa {@code null}. */
+	public String recipeName(long id) {
+		return jdbc.sql("select name from finished_product_recipes where id = ?").param(id)
+			.query(String.class).optional().orElse(null);
+	}
+
+	/** Tarif id'leri ada, sonra yeni versiyona gore. */
+	public List<Long> inDisplayOrder(Collection<Long> ids) {
 		List<Long> present = ValidationErrors.present(ids);
 		if (present.isEmpty()) {
-			return Map.of();
+			return List.of();
 		}
-		return jdbc.sql("select id, label from attribute_definitions where id in (:ids)").param("ids", present)
-			.query(LabelRow.class).list().stream()
-			.collect(Collectors.toMap(LabelRow::id, LabelRow::label, (a, b) -> a));
+		return jdbc.sql("select id from finished_product_recipes where id in (:ids) order by name, version desc")
+			.param("ids", present).query(Long.class).list();
 	}
 
 }

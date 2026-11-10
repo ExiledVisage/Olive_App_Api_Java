@@ -6,7 +6,7 @@ import com.olivamore.api.productionline.ProductionLineResponse.LineProductRespon
 import com.olivamore.api.productionline.ProductionLineResponse.ProductSummary;
 import com.olivamore.api.productionline.ProductionLineResponse.ProductTypeSummary;
 import com.olivamore.api.productionline.ProductionStageResponse;
-import com.olivamore.api.productionline.catalog.ProductCatalog;
+import com.olivamore.api.productionline.ProductCatalog;
 import com.olivamore.api.productionline.stage.ProductionStageResponses;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

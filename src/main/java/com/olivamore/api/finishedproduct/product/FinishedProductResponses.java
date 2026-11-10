@@ -4,7 +4,8 @@ import com.olivamore.api.finishedproduct.RecipeResources;
 import com.olivamore.api.finishedproduct.RecipeResponse;
 import com.olivamore.api.finishedproduct.product.FinishedProductResponse.Location;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.validation.ValidationErrors;
+import com.olivamore.api.finishedproduct.FinishedProductDirectory;
+import com.olivamore.api.packaging.PackagingDirectory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,18 +14,11 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /** Entity'den API cevabina: depo toplamlari, raf konumlari, ambalaj kalemleri, tarif. */
 @Component
 class FinishedProductResponses {
-
-	private record ItemRow(Long id, String name, String type) {
-	}
-
-	private record TotalRow(Long productId, long total) {
-	}
 
 	private record LocationRow(Long productId, Long storageId, String storageName, Long slotId, String slotName,
 		long quantity) {
@@ -36,13 +30,17 @@ class FinishedProductResponses {
 	private final FinishedProductComponentRepository components;
 	private final RecipeResources recipes;
 	private final JdbcClient jdbc;
+	private final PackagingDirectory packaging;
+	private final FinishedProductDirectory directory;
 
 	FinishedProductResponses(FinishedProductRepository products, FinishedProductComponentRepository components,
-		RecipeResources recipes, JdbcClient jdbc) {
+		RecipeResources recipes, JdbcClient jdbc, PackagingDirectory packaging, FinishedProductDirectory directory) {
 		this.products = products;
 		this.components = components;
 		this.recipes = recipes;
 		this.jdbc = jdbc;
+		this.packaging = packaging;
+		this.directory = directory;
 	}
 
 	/** En yeni once; tarif icerigi yok. */
@@ -82,8 +80,8 @@ class FinishedProductResponses {
 			? recipes.contentsOf(rows.stream().map(p -> p.getRecipe().getId()).toList())
 			: Map.of();
 		Map<Long, List<FinishedProductResponse.Component>> componentsByProduct = components(ids);
-		Map<Long, Long> stored = stored(ids);
-		Map<Long, Long> awaitingTotals = awaiting ? awaiting(ids) : Map.of();
+		Map<Long, Long> stored = directory.inStorages(ids);
+		Map<Long, Long> awaitingTotals = awaiting ? directory.awaitingShipment(ids) : Map.of();
 		Map<Long, List<Location>> locations = withLocations ? locations(ids) : Map.of();
 		return rows.stream().map(product -> {
 			Long id = product.getId();
@@ -106,49 +104,15 @@ class FinishedProductResponses {
 			return Map.of();
 		}
 		List<FinishedProductComponent> rows = components.findByFinishedProductIdInOrderByIdAsc(productIds);
-		Map<Long, ItemRow> items = items(rows.stream().map(FinishedProductComponent::getPackagingItemId).toList());
+		Map<Long, PackagingDirectory.Item> items = packaging.items(
+			rows.stream().map(FinishedProductComponent::getPackagingItemId).toList());
 		return rows.stream().collect(Collectors.groupingBy(FinishedProductComponent::getFinishedProductId,
 			Collectors.mapping(row -> {
-				ItemRow item = items.get(row.getPackagingItemId());
+				PackagingDirectory.Item item = items.get(row.getPackagingItemId());
 				return new FinishedProductResponse.Component(row.getId(), row.getPackagingItemId(), item == null
 					? null : item.name(),
 					item == null ? null : item.type(), row.getQuantity());
 			}, Collectors.toList())));
-	}
-
-	private Map<Long, ItemRow> items(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("select id, name, type from packaging_items where id in (:ids)").param("ids", present)
-			.query(ItemRow.class).list().stream().collect(Collectors.toMap(ItemRow::id, Function.identity()));
-	}
-
-	private Map<Long, Long> stored(List<Long> ids) {
-		return totals("""
-			select finished_product_id as product_id, sum(quantity) as total
-			from finished_product_storage_stocks where finished_product_id in (:ids)
-			group by finished_product_id
-			""", ids);
-	}
-
-	/** Raftan alinmis, sevk bekleyen adetler. */
-	private Map<Long, Long> awaiting(List<Long> ids) {
-		return totals("""
-			select m.finished_product_id as product_id, sum(m.quantity) as total
-			from finished_product_stock_movements m join orders o on o.id = m.order_id
-			where m.finished_product_id in (:ids) and m.movement_type = 'order_pick' and o.status = 'ready'
-			group by m.finished_product_id
-			""", ids);
-	}
-
-	private Map<Long, Long> totals(String sql, List<Long> ids) {
-		if (ids.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql(sql).param("ids", ids).query(TotalRow.class).list().stream()
-			.collect(Collectors.toMap(TotalRow::productId, TotalRow::total));
 	}
 
 	/** Depo > raf > adet; depo ve raf adina gore. */

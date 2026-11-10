@@ -1,29 +1,31 @@
 package com.olivamore.api.product.productiontype;
 
+import com.olivamore.api.product.ProductUsage;
+import com.olivamore.api.product.ProductUsageCounter;
 import com.olivamore.api.product.productionproduct.ProductionProduct;
 import com.olivamore.api.product.productionproduct.ProductionProductService;
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.validation.LaravelMessages;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 class ProductionProductTypeService {
 
 	private final ProductionProductTypeRepository repository;
 	private final ProductionProductService products;
-	private final JdbcClient jdbc;
+	private final List<ProductUsageCounter> counters;
 
 	ProductionProductTypeService(ProductionProductTypeRepository repository, ProductionProductService products,
-		JdbcClient jdbc) {
+		List<ProductUsageCounter> counters) {
 		this.repository = repository;
 		this.products = products;
-		this.jdbc = jdbc;
+		this.counters = counters;
 	}
 
 	@Transactional(readOnly = true)
@@ -68,12 +70,13 @@ class ProductionProductTypeService {
 	@Transactional
 	void delete(long id) {
 		ProductionProductType type = find(id);
+		Map<ProductUsage, Long> usage = ProductUsageCounter.total(counters, counter -> counter.ofProductType(id));
 		DeletionGuard.of("'" + type.getName() + "' ürün tipi")
-			.usedBy("materyal", countBy("materials", id))
-			.usedBy("parti girdisi", countBy("production_batch_input_production_product_types", id))
-			.usedBy("parti çıktısı", countBy("production_batch_output_production_product_types", id))
-			.usedBy("tank izni", countBy("storage_unit_allowed_production_product_types", id))
-			.usedBy("tarif içeriği", countBy("finished_product_recipe_contents", id))
+			.usedBy("materyal", usage.getOrDefault(ProductUsage.MATERIAL, 0L))
+			.usedBy("parti girdisi", usage.getOrDefault(ProductUsage.BATCH_INPUT, 0L))
+			.usedBy("parti çıktısı", usage.getOrDefault(ProductUsage.BATCH_OUTPUT, 0L))
+			.usedBy("tank izni", usage.getOrDefault(ProductUsage.TANK_TYPE_PERMISSION, 0L))
+			.usedBy("tarif içeriği", usage.getOrDefault(ProductUsage.RECIPE_CONTENT, 0L))
 			.check();
 		repository.delete(type);
 	}
@@ -85,13 +88,6 @@ class ProductionProductTypeService {
 	private ProductionProduct product(long id) {
 		return products.findOptional(id).orElseThrow(() -> LaravelValidationException.of("production_product_id",
 			LaravelMessages.format(LaravelMessages.EXISTS, "production_product_id")));
-	}
-
-	private long countBy(String table, long id) {
-		return jdbc.sql("select count(*) from " + table + " where production_product_type_id = ?")
-			.param(id)
-			.query(Long.class)
-			.single();
 	}
 
 	private static LaravelValidationException codeTaken() {

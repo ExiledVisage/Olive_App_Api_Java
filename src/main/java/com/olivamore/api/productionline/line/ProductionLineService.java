@@ -1,6 +1,6 @@
 package com.olivamore.api.productionline.line;
 
-import com.olivamore.api.productionline.catalog.ProductCatalog;
+import com.olivamore.api.productionline.ProductCatalog;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.validation.ValidationErrors;

@@ -1,6 +1,8 @@
 package com.olivamore.api.finishedproduct.run;
 
-import com.olivamore.api.shared.validation.ValidationErrors;
+import com.olivamore.api.inventory.MaterialDirectory;
+import com.olivamore.api.packaging.PackagingDirectory;
+import com.olivamore.api.product.ProductDirectory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +12,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/** Tank, materyal, urun tipi, ambalaj ve attribute tablolarindan salt okuma. */
+/** Kosu cevaplari ve kurallari icin okumalar: tank, materyal, urun ve ambalaj bilgileri o modullerden. */
 @Component
 class RunQueries {
 
@@ -53,154 +54,131 @@ class RunQueries {
 	}
 
 	private final JdbcClient jdbc;
+	private final MaterialDirectory materialDirectory;
+	private final ProductDirectory productDirectory;
+	private final PackagingDirectory packaging;
 
-	RunQueries(JdbcClient jdbc) {
+	RunQueries(JdbcClient jdbc, MaterialDirectory materialDirectory, ProductDirectory productDirectory,
+		PackagingDirectory packaging) {
 		this.jdbc = jdbc;
+		this.materialDirectory = materialDirectory;
+		this.productDirectory = productDirectory;
+		this.packaging = packaging;
+	}
+
+	private record RunMaterialRow(Long id, Long runId, Long sourceMaterialId, BigDecimal quantityUsed) {
+	}
+
+	private record ValueRow(Long id, Long runId, Long attributeDefinitionId, BigDecimal estimatedValue,
+		BigDecimal actualValue) {
 	}
 
 	Optional<Unit> unit(long id) {
-		return jdbc.sql("select id, name, code from storage_units where id = :id").param("id", id)
-			.query(Unit.class).optional();
+		return materialDirectory.tank(id).map(RunQueries::unit);
 	}
 
 	Map<Long, Unit> units(Collection<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("select id, name, code from storage_units where id in (:ids)").param("ids", present)
-			.query(Unit.class).list().stream().collect(Collectors.toMap(Unit::id, Function.identity()));
+		return materialDirectory.tanks(ids).values().stream()
+			.collect(Collectors.toMap(MaterialDirectory.Tank::id, RunQueries::unit));
+	}
+
+	private static Unit unit(MaterialDirectory.Tank tank) {
+		return new Unit(tank.id(), tank.name(), tank.code());
 	}
 
 	boolean unitExists(long id) {
-		return jdbc.sql("select count(*) from storage_units where id = :id").param("id", id)
-			.query(Long.class).single() > 0;
+		return materialDirectory.tankExists(id);
 	}
 
 	/** Tanktaki aktif materyaller. */
 	List<Material> activeInTank(long unitId) {
-		return jdbc.sql("""
-			select id, production_product_type_id, quantity, unit, status, current_location_type, current_location_id
-			from materials where current_location_type = 'storage_unit' and current_location_id = :unit
-				and status = 'active'
-			""").param("unit", unitId).query(Material.class).list();
+		return materialDirectory.activeInTank(unitId).stream().map(RunQueries::material).toList();
 	}
 
 	Map<Long, Material> materials(Collection<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("""
-			select id, production_product_type_id, quantity, unit, status, current_location_type, current_location_id
-			from materials where id in (:ids)
-			""").param("ids", present).query(Material.class).list().stream()
-			.collect(Collectors.toMap(Material::id, Function.identity()));
+		return materialDirectory.materials(ids).values().stream()
+			.collect(Collectors.toMap(MaterialDirectory.Material::id, RunQueries::material));
+	}
+
+	private static Material material(MaterialDirectory.Material m) {
+		return new Material(m.id(), m.productionProductTypeId(), m.quantity(), m.unit(), m.status(),
+			m.currentLocationType(), m.currentLocationId());
 	}
 
 	Map<Long, ProductType> productTypes(Collection<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		return jdbc.sql("""
-			select t.id, t.name, t.density_kg_per_litre, p.default_density_kg_per_litre
-			from production_product_types t
-			left join production_products p on p.id = t.production_product_id
-			where t.id in (:ids)
-			""").param("ids", present).query(ProductType.class).list().stream()
-			.collect(Collectors.toMap(ProductType::id, Function.identity()));
+		return productDirectory.productTypes(ids).values().stream().collect(Collectors.toMap(
+			ProductDirectory.ProductType::id,
+			t -> new ProductType(t.id(), t.name(), t.densityKgPerLitre(), t.defaultDensityKgPerLitre())));
 	}
 
 	/** Malzeme attribute degerleri, global attribute tanimina cevrilmis. */
 	List<MaterialAttribute> materialAttributes(Collection<Long> materialIds) {
-		List<Long> present = ValidationErrors.present(materialIds);
-		if (present.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("""
-			select v.material_id, d.attribute_definition_id, v.value_decimal
-			from material_attribute_values v
-			join production_product_attribute_definitions d on d.id = v.production_product_attribute_definition_id
-			where v.material_id in (:ids)
-			""").param("ids", present).query(MaterialAttribute.class).list();
+		List<MaterialDirectory.DecimalValue> values = materialDirectory.decimalValues(materialIds);
+		Map<Long, ProductDirectory.AttributeMapping> mappings = productDirectory.attributeMappings(
+			values.stream().map(MaterialDirectory.DecimalValue::mappingId).toList());
+		return values.stream().filter(v -> mappings.containsKey(v.mappingId()))
+			.map(v -> new MaterialAttribute(v.materialId(), mappings.get(v.mappingId()).attributeDefinitionId(),
+				v.valueDecimal()))
+			.toList();
 	}
 
 	Map<Long, String> attributeLabels(Collection<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return Map.of();
-		}
-		record LabelRow(Long id, String label) {
-		}
-		return jdbc.sql("select id, label from attribute_definitions where id in (:ids)").param("ids", present)
-			.query(LabelRow.class).list().stream().collect(Collectors.toMap(LabelRow::id, LabelRow::label));
+		return productDirectory.attributeLabels(ids);
 	}
 
 	String packagingItemName(long itemId) {
-		return jdbc.sql("select name from packaging_items where id = :id").param("id", itemId)
-			.query(String.class).optional().orElse("");
+		return packaging.itemName(itemId);
 	}
 
 	Collection<Long> existingLots(Collection<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("select id from packaging_lots where id in (:ids)").param("ids", present)
-			.query(Long.class).list();
+		return packaging.existingLots(ids);
 	}
 
 	boolean hasAllocations(long runId) {
-		return jdbc.sql("select count(*) from finished_product_run_packagings where finished_product_run_id = :id")
-			.param("id", runId).query(Long.class).single() > 0;
+		return packaging.hasAllocations(runId);
 	}
 
 	List<MaterialDisplay> materialDisplays(Collection<Long> runIds) {
 		if (runIds.isEmpty()) {
 			return List.of();
 		}
-		return jdbc.sql("""
-			select rm.id, rm.finished_product_run_id as run_id, rm.source_material_id, rm.quantity_used, m.unit,
-				m.production_product_type_id, t.name as type_name, t.density_kg_per_litre, p.default_density_kg_per_litre
-			from finished_product_run_materials rm
-			left join materials m on m.id = rm.source_material_id
-			left join production_product_types t on t.id = m.production_product_type_id
-			left join production_products p on p.id = t.production_product_id
-			where rm.finished_product_run_id in (:ids)
-			order by rm.id
-			""").param("ids", runIds).query(MaterialDisplay.class).list();
+		List<RunMaterialRow> rows = jdbc.sql("""
+			select id, finished_product_run_id as run_id, source_material_id, quantity_used
+			from finished_product_run_materials where finished_product_run_id in (:ids) order by id
+			""").param("ids", runIds).query(RunMaterialRow.class).list();
+		Map<Long, MaterialDirectory.Material> materials = materialDirectory.materials(
+			rows.stream().map(RunMaterialRow::sourceMaterialId).toList());
+		Map<Long, ProductDirectory.ProductType> types = productDirectory.productTypes(materials.values().stream()
+			.map(MaterialDirectory.Material::productionProductTypeId).toList());
+		return rows.stream().map(row -> {
+			MaterialDirectory.Material m = materials.get(row.sourceMaterialId());
+			ProductDirectory.ProductType t = m == null ? null : types.get(m.productionProductTypeId());
+			return new MaterialDisplay(row.id(), row.runId(), row.sourceMaterialId(), row.quantityUsed(),
+				m == null ? null : m.unit(), m == null ? null : m.productionProductTypeId(), t == null ? null : t.name(),
+				t == null ? null : t.densityKgPerLitre(), t == null ? null : t.defaultDensityKgPerLitre());
+		}).toList();
 	}
 
 	List<PackagingDisplay> packagingDisplays(Collection<Long> runIds) {
-		if (runIds.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("""
-			select p.id, p.finished_product_run_id as run_id, p.packaging_item_id, i.name as packaging_item_name,
-				i.type as packaging_item_type, p.packaging_lot_id, l.lot_code, l.received_at as lot_received_at,
-				l.quantity_remaining as lot_remaining, s.name as supplier_name, p.quantity
-			from finished_product_run_packagings p
-			left join packaging_items i on i.id = p.packaging_item_id
-			left join packaging_lots l on l.id = p.packaging_lot_id
-			left join product_suppliers s on s.id = l.product_supplier_id
-			where p.finished_product_run_id in (:ids)
-			order by p.id
-			""").param("ids", runIds).query(PackagingDisplay.class).list();
+		return packaging.runPackagings(runIds).stream()
+			.map(p -> new PackagingDisplay(p.id(), p.runId(), p.packagingItemId(), p.packagingItemName(),
+				p.packagingItemType(), p.packagingLotId(), p.lotCode(), p.lotReceivedAt(), p.lotRemaining(),
+				p.supplierName(), p.quantity()))
+			.toList();
 	}
 
 	List<ValueDisplay> valueDisplays(Collection<Long> runIds) {
 		if (runIds.isEmpty()) {
 			return List.of();
 		}
-		return jdbc.sql("""
-			select v.id, v.finished_product_run_id as run_id, v.attribute_definition_id, d.label as attribute_label,
-				v.estimated_value, v.actual_value
-			from finished_product_run_attribute_values v
-			left join attribute_definitions d on d.id = v.attribute_definition_id
-			where v.finished_product_run_id in (:ids)
-			order by v.id
-			""").param("ids", runIds).query(ValueDisplay.class).list();
+		List<ValueRow> rows = jdbc.sql("""
+			select id, finished_product_run_id as run_id, attribute_definition_id, estimated_value, actual_value
+			from finished_product_run_attribute_values where finished_product_run_id in (:ids) order by id
+			""").param("ids", runIds).query(ValueRow.class).list();
+		Map<Long, String> labels = productDirectory.attributeLabels(
+			rows.stream().map(ValueRow::attributeDefinitionId).toList());
+		return rows.stream().map(row -> new ValueDisplay(row.id(), row.runId(), row.attributeDefinitionId(),
+			labels.get(row.attributeDefinitionId()), row.estimatedValue(), row.actualValue())).toList();
 	}
 
 	/** Kendi yogunlugu > 0 ise o, yoksa kategorinin varsayilani > 0 ise o; hic yoksa {@code null}. */

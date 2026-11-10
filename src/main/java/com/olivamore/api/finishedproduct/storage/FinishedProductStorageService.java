@@ -9,9 +9,9 @@ import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.finishedproduct.FinishedProductDirectory;
 import com.olivamore.api.shared.validation.LaravelMessages;
 import com.olivamore.api.shared.validation.ValidationErrors;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,11 +43,11 @@ public class FinishedProductStorageService {
 	private final StockMovementRepository movements;
 	private final FinishedProductRepository products;
 	private final FinishedProductRunRepository runs;
-	private final JdbcClient jdbc;
+	private final FinishedProductDirectory directory;
 
 	FinishedProductStorageService(FinishedProductStorageRepository storages, StorageSlotRepository slots,
 		SlotStockRepository slotStocks, StorageStockRepository storageStocks, StockMovementRepository movements,
-		FinishedProductRepository products, FinishedProductRunRepository runs, JdbcClient jdbc) {
+		FinishedProductRepository products, FinishedProductRunRepository runs, FinishedProductDirectory directory) {
 		this.storages = storages;
 		this.slots = slots;
 		this.slotStocks = slotStocks;
@@ -55,7 +55,7 @@ public class FinishedProductStorageService {
 		this.movements = movements;
 		this.products = products;
 		this.runs = runs;
-		this.jdbc = jdbc;
+		this.directory = directory;
 	}
 
 	// ---- depo ------------------------------------------------------------------
@@ -445,11 +445,7 @@ public class FinishedProductStorageService {
 	/** Depoya yalnizca hicbir depoya yerlesmemis (ve sevkiyat beklemeyen) sise girebilir. */
 	private void assertUnstoredAvailable(FinishedProduct product, long quantity) {
 		long stored = storageStocks.storedTotal(product.getId());
-		long awaiting = jdbc.sql("""
-			select coalesce(sum(m.quantity), 0) from finished_product_stock_movements m
-			join orders o on o.id = m.order_id
-			where m.finished_product_id = :product and m.movement_type = 'order_pick' and o.status = 'ready'
-			""").param("product", product.getId()).query(Long.class).single();
+		long awaiting = directory.awaitingShipment(List.of(product.getId())).getOrDefault(product.getId(), 0L);
 		long total = product.getTotalStock();
 		long unstored = total - stored - awaiting;
 		if (quantity > unstored) {

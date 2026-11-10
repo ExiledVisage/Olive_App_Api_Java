@@ -61,7 +61,7 @@ class ProductionBatchService {
 			errors.add("batch_code", LaravelMessages.UNIQUE);
 		}
 		checkInputTypes(errors, inputIds);
-		if (!queries.exists("production_lines", request.productionLineId())) {
+		if (!queries.lineExists(request.productionLineId())) {
 			errors.add("production_line_id", LaravelMessages.EXISTS);
 		}
 		checkSupplier(errors, request.supplierId(), request.supplierFieldId());
@@ -161,10 +161,10 @@ class ProductionBatchService {
 	}
 
 	private void checkSupplier(ValidationErrors errors, Long supplierId, Long fieldId) {
-		if (supplierId != null && !queries.exists("suppliers", supplierId)) {
+		if (supplierId != null && !queries.supplierExists(supplierId)) {
 			errors.add("supplier_id", LaravelMessages.EXISTS);
 		}
-		if (fieldId != null && !queries.exists("supplier_fields", fieldId)) {
+		if (fieldId != null && !queries.fieldExists(fieldId)) {
 			errors.add("supplier_field_id", LaravelMessages.EXISTS);
 		}
 	}

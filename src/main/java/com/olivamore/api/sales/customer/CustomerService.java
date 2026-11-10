@@ -9,7 +9,7 @@ import com.olivamore.api.shared.validation.LaravelMessages;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.jdbc.core.simple.JdbcClient;
+import com.olivamore.api.finishedproduct.RecipeResources;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,14 +26,14 @@ class CustomerService {
 	private final CustomerRepository customers;
 	private final CustomerAddressRepository addresses;
 	private final CustomerPreferredRecipeRepository preferred;
-	private final JdbcClient jdbc;
+	private final RecipeResources recipes;
 
 	CustomerService(CustomerRepository customers, CustomerAddressRepository addresses,
-		CustomerPreferredRecipeRepository preferred, JdbcClient jdbc) {
+		CustomerPreferredRecipeRepository preferred, RecipeResources recipes) {
 		this.customers = customers;
 		this.addresses = addresses;
 		this.preferred = preferred;
-		this.jdbc = jdbc;
+		this.recipes = recipes;
 	}
 
 	@Transactional(readOnly = true)
@@ -182,11 +182,7 @@ class CustomerService {
 	}
 
 	private String recipeName(long recipeId) {
-		return jdbc.sql("select name from finished_product_recipes where id = ?")
-			.param(recipeId)
-			.query(String.class)
-			.optional()
-			.orElse(null);
+		return recipes.recipeName(recipeId);
 	}
 
 }

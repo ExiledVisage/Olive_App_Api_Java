@@ -5,9 +5,9 @@ import com.olivamore.api.finishedproduct.run.FinishedProductRunRepository;
 import com.olivamore.api.finishedproduct.support.Quantities;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.shared.time.Timestamps;
 import com.olivamore.api.shared.validation.ValidationErrors;
-import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,17 +26,17 @@ class FinishedProductRecipeService {
 	private final RecipeAttributeRuleRepository rules;
 	private final FinishedProductRepository products;
 	private final FinishedProductRunRepository runs;
-	private final JdbcClient jdbc;
+	private final ProductDirectory catalog;
 
 	FinishedProductRecipeService(FinishedProductRecipeRepository recipes, RecipeContentRepository contents,
 		RecipeAttributeRuleRepository rules, FinishedProductRepository products, FinishedProductRunRepository runs,
-		JdbcClient jdbc) {
+		ProductDirectory catalog) {
 		this.recipes = recipes;
 		this.contents = contents;
 		this.rules = rules;
 		this.products = products;
 		this.runs = runs;
-		this.jdbc = jdbc;
+		this.catalog = catalog;
 	}
 
 	/** Aktif tarifler, en yeni once; {@code name} (bos ya da "0" degilse) adinda gecenler. */
@@ -126,12 +126,13 @@ class FinishedProductRecipeService {
 		if (lines != null) {
 			List<Long> typeIds = lines.stream().map(RecipeLines.Content::productionProductTypeId).toList();
 			errors.distinct("contents", "production_product_type_id", typeIds);
-			errors.exists("contents", "production_product_type_id", typeIds, existingTypes(typeIds));
+			errors.exists("contents", "production_product_type_id", typeIds, catalog.existingTypes(typeIds));
 		}
 		if (ruleLines != null) {
 			List<Long> definitionIds = ruleLines.stream().map(RecipeLines.Rule::attributeDefinitionId).toList();
 			errors.distinct("attribute_rules", "attribute_definition_id", definitionIds);
-			errors.exists("attribute_rules", "attribute_definition_id", definitionIds, existingDefinitions(definitionIds));
+			errors.exists("attribute_rules", "attribute_definition_id", definitionIds,
+				catalog.existingAttributeDefinitions(definitionIds));
 		}
 		if (checkTotal) {
 			BigDecimal total = lines.stream().map(RecipeLines.Content::ratio).reduce(BigDecimal.ZERO, BigDecimal::add)
@@ -141,24 +142,6 @@ class FinishedProductRecipeService {
 			}
 		}
 		errors.throwIfAny();
-	}
-
-	private List<Long> existingTypes(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("select id from production_product_types where id in (:ids)").param("ids", present)
-			.query(Long.class).list();
-	}
-
-	private List<Long> existingDefinitions(List<Long> ids) {
-		List<Long> present = ValidationErrors.present(ids);
-		if (present.isEmpty()) {
-			return List.of();
-		}
-		return jdbc.sql("select id from attribute_definitions where id in (:ids)").param("ids", present)
-			.query(Long.class).list();
 	}
 
 	private void saveContents(long recipeId, List<? extends RecipeLines.Content> lines) {

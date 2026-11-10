@@ -2,7 +2,7 @@ package com.olivamore.api.productionline.stageextension;
 
 import com.olivamore.api.process.ProcessResources;
 import com.olivamore.api.process.StageExtensionTypeFieldResponse;
-import com.olivamore.api.productionline.catalog.ProductCatalog;
+import com.olivamore.api.productionline.ProductCatalog;
 import com.olivamore.api.productionline.stage.ProductionStageService;
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.validation.LaravelMessages;
