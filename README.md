@@ -80,7 +80,7 @@ veritabanıyla (şema, her tablonun satır sayısı, sequence'ler) aynı olduğu
 com.olivamore.api
 ├── shared/        Ortak altyapı (OPEN modül): Laravel uyumlu hatalar, validator, sayfalama, JSON,
 │                  model binding, rate limiting, silme koruması
-├── identity/        auth, user, role, permission, security (Sanctum uyumlu token'lar, izin kontrolü)
+├── identity/        auth, user, role, permission, security (JWT, refresh token, izin kontrolü)
 ├── product/         productionproduct, productiontype, attribute, productattribute
 ├── process/         processtype, processtypefield, stageextensiontype
 ├── productionline/  line, stage, stageextension

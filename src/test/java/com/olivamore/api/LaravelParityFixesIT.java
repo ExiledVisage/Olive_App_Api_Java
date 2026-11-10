@@ -1,6 +1,7 @@
 package com.olivamore.api;
 
-import com.olivamore.api.shared.web.throttle.RateLimiter;
+import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ class LaravelParityFixesIT {
 	int port;
 
 	@Autowired
-	RateLimiter rateLimiter;
+	RateLimitBuckets rateLimiter;
 
 	@Autowired
 	JdbcTemplate jdbc;
@@ -110,7 +111,7 @@ class LaravelParityFixesIT {
 	private String admin() {
 		Response r = login("admin@olivamore.com", "123", null);
 		assertThat(r.status).as(r.body).isEqualTo(200);
-		return r.json().get("token").asString();
+		return r.json().get(TestAuth.ACCESS_TOKEN).asString();
 	}
 
 	private Response login(String email, String password, String forwardedFor) {

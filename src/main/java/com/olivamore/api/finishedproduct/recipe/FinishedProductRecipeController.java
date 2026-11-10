@@ -2,11 +2,11 @@ package com.olivamore.api.finishedproduct.recipe;
 
 import com.olivamore.api.finishedproduct.RecipeResources;
 import com.olivamore.api.finishedproduct.RecipeResponse;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,13 +34,13 @@ class FinishedProductRecipeController {
 
 	/** Aktif tarifler, en yeni once. */
 	@GetMapping("/api/finished-product-recipes")
-	@RequiresPermission("finished_product_recipe.view")
+	@PreAuthorize("hasAuthority('finished_product_recipe.view')")
 	ListResponse<RecipeResponse> index(@RequestParam(required = false) String name) {
 		return new ListResponse.Plain<>(resources.responses(recipes.active(name), true));
 	}
 
 	@GetMapping("/api/finished-product-recipes/{id}")
-	@RequiresPermission("finished_product_recipe.view")
+	@PreAuthorize("hasAuthority('finished_product_recipe.view')")
 	DataResponse<RecipeResponse> show(@PathVariable long id) {
 		return DataResponse.of(detail(id));
 	}
@@ -52,21 +52,21 @@ class FinishedProductRecipeController {
 	}
 
 	@PostMapping("/api/finished-product-recipes")
-	@RequiresPermission("finished_product_recipe.manage")
+	@PreAuthorize("hasAuthority('finished_product_recipe.manage')")
 	ResponseEntity<DataResponse<RecipeResponse>> store(@Valid @RequestBody CreateRecipeRequest request) {
 		return DataResponse.created(detail(recipes.create(request)));
 	}
 
 	/** Yeni versiyon olusturur: 201. */
 	@RequestMapping(path = "/api/finished-product-recipes/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	@RequiresPermission("finished_product_recipe.manage")
+	@PreAuthorize("hasAuthority('finished_product_recipe.manage')")
 	ResponseEntity<DataResponse<RecipeResponse>> update(@PathVariable long id,
 		@Valid @RequestBody UpdateRecipeRequest request) {
 		return DataResponse.created(detail(recipes.update(id, request)));
 	}
 
 	@DeleteMapping("/api/finished-product-recipes/{id}")
-	@RequiresPermission("finished_product_recipe.manage")
+	@PreAuthorize("hasAuthority('finished_product_recipe.manage')")
 	Map<String, String> destroy(@PathVariable long id) {
 		recipes.delete(id);
 		return Map.of("message", "Tarif başarıyla silindi.");

@@ -1,7 +1,6 @@
 package com.olivamore.api.notification;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.notification.NotificationResponses.Marked;
 import com.olivamore.api.notification.NotificationResponses.Notification;
 import com.olivamore.api.notification.NotificationResponses.NudgeResult;
@@ -15,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,7 @@ class NotificationController {
 
 	@GetMapping("/api/notifications")
 	ListResponse<Notification> index(@Valid @ModelAttribute NotificationQuery query, HttpServletRequest request,
-		CurrentUser user) {
+		@AuthenticationPrincipal CurrentUser user) {
 		int page = Listing.currentPage(request);
 		Page<UserNotification> rows = service.page(user.id(), query.onlyUnread(), page, query.size());
 		return LaravelPaginator.paginateWithoutQueryString(service.withSenders(rows.getContent()),
@@ -44,29 +45,30 @@ class NotificationController {
 	}
 
 	@GetMapping("/api/notifications/unread-count")
-	DataResponse<UnreadCount> unreadCount(CurrentUser user) {
+	DataResponse<UnreadCount> unreadCount(@AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.of(new UnreadCount(service.unreadCount(user.id())));
 	}
 
 	@PostMapping("/api/notifications/{id}/read")
-	DataResponse<Notification> markRead(@PathVariable long id, CurrentUser user) {
+	DataResponse<Notification> markRead(@PathVariable long id, @AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.of(service.markRead(id, user.id()));
 	}
 
 	@PostMapping("/api/notifications/read-all")
-	DataResponse<Marked> markAllRead(CurrentUser user) {
+	DataResponse<Marked> markAllRead(@AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.of(new Marked(service.markAllRead(user.id())));
 	}
 
 	@PostMapping("/api/nudges")
-	@RequiresPermission("notification.send")
-	ResponseEntity<DataResponse<NudgeResult>> nudge(@Valid @RequestBody NudgeRequest request, CurrentUser actor) {
+	@PreAuthorize("hasAuthority('notification.send')")
+	ResponseEntity<DataResponse<NudgeResult>> nudge(@Valid @RequestBody NudgeRequest request,
+		@AuthenticationPrincipal CurrentUser actor) {
 		return DataResponse.created(service.nudge(actor, request));
 	}
 
 	@GetMapping("/api/nudges/targets")
-	@RequiresPermission("notification.send")
-	DataResponse<List<NudgeTarget>> nudgeTargets(CurrentUser actor) {
+	@PreAuthorize("hasAuthority('notification.send')")
+	DataResponse<List<NudgeTarget>> nudgeTargets(@AuthenticationPrincipal CurrentUser actor) {
 		return DataResponse.of(service.targets(actor));
 	}
 

@@ -7,6 +7,7 @@ import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
 import com.olivamore.api.shared.time.Timestamps;
 import com.olivamore.api.shared.validation.LaravelMessages;
 import com.olivamore.api.shared.web.DataResponse;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,8 @@ class DailySummaryController {
 
 	/** {@code ?date=} (verilmezse bugun). */
 	@GetMapping("/api/daily-summary")
-	DataResponse<DailySummaryResponse> show(@RequestParam(required = false) String date, CurrentUser user) {
+	DataResponse<DailySummaryResponse> show(@RequestParam(required = false) String date,
+		@AuthenticationPrincipal CurrentUser user) {
 		LocalDate day = date == null ? Timestamps.now().toLocalDate() : parse(date);
 		return DataResponse.of(new DailySummaryResponse(day.toString(),
 			permissions.can(user, "production_batch.view") ? summaries.production(day) : null,

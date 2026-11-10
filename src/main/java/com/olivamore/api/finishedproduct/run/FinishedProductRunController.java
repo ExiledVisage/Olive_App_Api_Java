@@ -1,7 +1,6 @@
 package com.olivamore.api.finishedproduct.run;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.LaravelPaginator;
 import com.olivamore.api.shared.web.ListResponse;
@@ -10,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -36,7 +37,7 @@ class FinishedProductRunController {
 
 	/** En yeni once; {@code per_page} ile sayfali. */
 	@GetMapping("/api/finished-product-runs")
-	@RequiresPermission("finished_product_run.view")
+	@PreAuthorize("hasAuthority('finished_product_run.view')")
 	ListResponse<FinishedProductRunResponse> index(HttpServletRequest request) {
 		Optional<Integer> perPage = Listing.perPage(request);
 		if (perPage.isEmpty()) {
@@ -48,29 +49,29 @@ class FinishedProductRunController {
 	}
 
 	@GetMapping("/api/finished-product-runs/{id}")
-	@RequiresPermission("finished_product_run.view")
+	@PreAuthorize("hasAuthority('finished_product_run.view')")
 	DataResponse<FinishedProductRunResponse> show(@PathVariable long id) {
 		return DataResponse.of(responses.detail(id));
 	}
 
 	/** Planlama (201). */
 	@PostMapping("/api/finished-product-runs")
-	@RequiresPermission("finished_product_run.create")
+	@PreAuthorize("hasAuthority('finished_product_run.create')")
 	ResponseEntity<DataResponse<FinishedProductRunResponse>> store(@Valid @RequestBody CreateRunRequest request) {
 		return DataResponse.created(responses.written(runs.create(request)));
 	}
 
 	@PatchMapping("/api/finished-product-runs/{id}/status")
-	@RequiresPermission("finished_product_run.complete")
+	@PreAuthorize("hasAuthority('finished_product_run.complete')")
 	DataResponse<FinishedProductRunResponse> updateStatus(@PathVariable long id,
-		@Valid @RequestBody UpdateRunStatusRequest request, CurrentUser user) {
+		@Valid @RequestBody UpdateRunStatusRequest request, @AuthenticationPrincipal CurrentUser user) {
 		runs.updateStatus(id, request, user.id());
 		return DataResponse.of(responses.written(id));
 	}
 
 	/** Gercek attribute degeri; deger baska kosununsa 404. */
 	@PatchMapping("/api/finished-product-runs/{id}/attribute-values/{attributeValue}")
-	@RequiresPermission("finished_product_run.complete")
+	@PreAuthorize("hasAuthority('finished_product_run.complete')")
 	AttributeValueResponse updateAttributeValue(@PathVariable long id, @PathVariable long attributeValue,
 		@Valid @RequestBody UpdateAttributeValueRequest request) {
 		return runs.updateAttributeValue(id, attributeValue, request);
@@ -78,7 +79,7 @@ class FinishedProductRunController {
 
 	/** Ambalaj lotu tahsisinin elle degistirilmesi. */
 	@PutMapping("/api/finished-product-runs/{id}/packagings")
-	@RequiresPermission("finished_product_run.create")
+	@PreAuthorize("hasAuthority('finished_product_run.create')")
 	DataResponse<FinishedProductRunResponse> syncPackagings(@PathVariable long id,
 		@Valid @RequestBody SyncRunPackagingsRequest request) {
 		runs.syncPackagings(id, request);
@@ -86,7 +87,7 @@ class FinishedProductRunController {
 	}
 
 	@DeleteMapping("/api/finished-product-runs/{id}")
-	@RequiresPermission("finished_product_run.create")
+	@PreAuthorize("hasAuthority('finished_product_run.create')")
 	Map<String, String> destroy(@PathVariable long id) {
 		runs.delete(id);
 		return Map.of("message", "Run başarıyla silindi.");

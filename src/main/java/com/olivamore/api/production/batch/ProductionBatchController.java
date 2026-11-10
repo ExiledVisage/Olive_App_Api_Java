@@ -1,12 +1,13 @@
 package com.olivamore.api.production.batch;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -35,7 +36,7 @@ class ProductionBatchController {
 
 	/** {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); en yeni once; per_page ile sayfali. */
 	@GetMapping("/api/production-batches")
-	@RequiresPermission("production_batch.view")
+	@PreAuthorize("hasAuthority('production_batch.view')")
 	ListResponse<ProductionBatchResponse> index(
 		@RequestParam(name = "received_from", required = false) String receivedFrom,
 		@RequestParam(name = "received_to", required = false) String receivedTo, HttpServletRequest request) {
@@ -44,26 +45,27 @@ class ProductionBatchController {
 
 	/** Gun -> parti sayisi (varis gunu); bos aralikta {@code {}}. */
 	@GetMapping("/api/production-batches/calendar")
-	@RequiresPermission("production_batch.view")
+	@PreAuthorize("hasAuthority('production_batch.view')")
 	Map<String, Map<String, Long>> calendar(@RequestParam(required = false) String from,
 		@RequestParam(required = false) String to) {
 		return Map.of("data", listing.calendar(from, to));
 	}
 
 	@GetMapping("/api/production-batches/{id}")
-	@RequiresPermission("production_batch.view")
+	@PreAuthorize("hasAuthority('production_batch.view')")
 	DataResponse<ProductionBatchResponse> show(@PathVariable long id) {
 		return DataResponse.of(responses.detail(id));
 	}
 
 	@PostMapping("/api/production-batches")
-	@RequiresPermission("production_batch.create")
-	DataResponse<ProductionBatchResponse> store(@Valid @RequestBody CreateProductionBatchRequest request, CurrentUser user) {
+	@PreAuthorize("hasAuthority('production_batch.create')")
+	DataResponse<ProductionBatchResponse> store(@Valid @RequestBody CreateProductionBatchRequest request,
+		@AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.of(responses.detail(batches.create(request, user)));
 	}
 
 	@PatchMapping("/api/production-batches/{id}")
-	@RequiresPermission("production_batch.update")
+	@PreAuthorize("hasAuthority('production_batch.update')")
 	DataResponse<ProductionBatchResponse> update(@PathVariable long id,
 		@Valid @RequestBody UpdateProductionBatchRequest request) {
 		batches.update(id, request);
@@ -72,7 +74,7 @@ class ProductionBatchController {
 
 	/** Cevap 204. */
 	@DeleteMapping("/api/production-batches/{id}")
-	@RequiresPermission("production_batch.delete")
+	@PreAuthorize("hasAuthority('production_batch.delete')")
 	ResponseEntity<Void> destroy(@PathVariable long id) {
 		batches.delete(id);
 		return ResponseEntity.noContent().build();

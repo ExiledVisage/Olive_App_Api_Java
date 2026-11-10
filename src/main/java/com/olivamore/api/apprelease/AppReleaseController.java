@@ -1,6 +1,5 @@
 package com.olivamore.api.apprelease;
 
-import com.olivamore.api.identity.Public;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.throttle.Throttle;
@@ -32,7 +31,6 @@ import java.util.regex.Pattern;
 
 /** Uygulama surumu ve APK indirme. Iki endpoint istemci basina dakikada toplam 30 istegi paylasir. */
 @RestController
-@Public
 @Throttle(maxAttempts = 30, decayMinutes = 1)
 class AppReleaseController {
 

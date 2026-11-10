@@ -1,7 +1,8 @@
 package com.olivamore.api.process;
 
 import com.olivamore.api.TestcontainersConfiguration;
-import com.olivamore.api.shared.web.throttle.RateLimiter;
+import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ class ProcessTypeApiIT {
 	int port;
 
 	@Autowired
-	RateLimiter rateLimiter;
+	RateLimitBuckets rateLimiter;
 
 	@Autowired
 	JdbcTemplate jdbc;
@@ -44,7 +45,7 @@ class ProcessTypeApiIT {
 		http = RestClient.create("http://localhost:" + port);
 		rateLimiter.clear();
 		admin = send(HttpMethod.POST, "/api/auth/login", null,
-			"{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}").json().get("token").asString();
+			"{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}").json().get(TestAuth.ACCESS_TOKEN).asString();
 	}
 
 	@Test
@@ -110,7 +111,7 @@ class ProcessTypeApiIT {
 
 		String noRole = send(HttpMethod.POST, "/api/auth/register", null, """
 			{"name":"Rolsuz","email":"rolsuz@olivamore.com","password":"gizli-sifre-123","password_confirmation":"gizli-sifre-123"}
-			""").json().get("token").asString();
+			""").json().get(TestAuth.ACCESS_TOKEN).asString();
 
 		assertThat(send(HttpMethod.GET, "/api/process-types/999999", noRole, null).status).isEqualTo(403);
 	}

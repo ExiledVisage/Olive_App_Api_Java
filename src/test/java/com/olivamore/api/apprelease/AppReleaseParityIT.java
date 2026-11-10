@@ -1,7 +1,7 @@
 package com.olivamore.api.apprelease;
 
 import com.olivamore.api.TestcontainersConfiguration;
-import com.olivamore.api.shared.web.throttle.RateLimiter;
+import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,7 +64,7 @@ class AppReleaseParityIT {
 	int port;
 
 	@Autowired
-	RateLimiter rateLimiter;
+	RateLimitBuckets rateLimiter;
 
 	@Test
 	void replaysLaravelBehaviour() throws Exception {

@@ -469,7 +469,10 @@
    },
    "response": {
     "message": "User registered successfully.",
-    "token": "3|6JXWArlL8RU1a8Pxkhyj7BwNjtGTijlFMxBUN3rDcebddd93",
+    "access_token": "<jwt>",
+    "refresh_token": "<refresh>",
+    "token_type": "Bearer",
+    "expires_in": 900,
     "user": {
      "id": 8,
      "name": "Yeni Kullanici",
@@ -496,7 +499,10 @@
    },
    "response": {
     "message": "Login successful.",
-    "token": "4|TGp7zt1AJk9EiW0OJVzXDIuKZPG0dgfQy7aI9CBWc6e1eb0c",
+    "access_token": "<jwt>",
+    "refresh_token": "<refresh>",
+    "token_type": "Bearer",
+    "expires_in": 900,
     "user": {
      "id": 8,
      "name": "Yeni Kullanici",

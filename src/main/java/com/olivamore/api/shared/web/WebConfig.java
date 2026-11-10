@@ -1,34 +1,34 @@
 package com.olivamore.api.shared.web;
 
 import com.olivamore.api.shared.web.throttle.NamedLimiter;
-import com.olivamore.api.shared.web.throttle.RateLimiter;
-import com.olivamore.api.shared.web.throttle.ThrottleInterceptor;
+import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
+import com.olivamore.api.shared.web.throttle.RateLimitInterceptor;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.util.unit.DataSize;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.time.Clock;
 import java.util.List;
 
 /** Istek filtreleri ve rate limit. */
 @Configuration(proxyBeanMethods = false)
 public class WebConfig implements WebMvcConfigurer {
 
-	/** Interceptor sirasi: once kimlik, sonra rate limit. */
-	public static final int ORDER_AUTHENTICATE = 0;
-	public static final int ORDER_THROTTLE = 10;
-
 	private final ObjectProvider<NamedLimiter> limiters;
-	private final ObjectProvider<ThrottleInterceptor.UserKey> userKey;
-	private final RateLimiter rateLimiter = new RateLimiter(Clock.systemUTC());
+	private final ObjectProvider<RateLimitInterceptor.UserKey> userKey;
+	private final RateLimitBuckets buckets = new RateLimitBuckets();
+	private final int maxRequestBodyBytes;
 
-	public WebConfig(ObjectProvider<NamedLimiter> limiters, ObjectProvider<ThrottleInterceptor.UserKey> userKey) {
+	public WebConfig(ObjectProvider<NamedLimiter> limiters, ObjectProvider<RateLimitInterceptor.UserKey> userKey,
+		@Value("${olive.http.max-request-body}") DataSize maxRequestBody) {
 		this.limiters = limiters;
 		this.userKey = userKey;
+		this.maxRequestBodyBytes = Math.toIntExact(maxRequestBody.toBytes());
 	}
 
 	/**
@@ -51,18 +51,26 @@ public class WebConfig implements WebMvcConfigurer {
 		return registration;
 	}
 
+	@Bean
+	FilterRegistrationBean<RequestBodyLimitFilter> requestBodyLimitFilter() {
+		FilterRegistrationBean<RequestBodyLimitFilter> registration =
+			new FilterRegistrationBean<>(new RequestBodyLimitFilter(maxRequestBodyBytes));
+		registration.addUrlPatterns("/api/*");
+		registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 12);
+		return registration;
+	}
+
 	/** Tek ornek: interceptor ve testler ayni sayaclari gorur. */
 	@Bean
-	RateLimiter rateLimiter() {
-		return rateLimiter;
+	RateLimitBuckets rateLimitBuckets() {
+		return buckets;
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		ThrottleInterceptor.UserKey key = userKey.getIfAvailable(() -> request -> null);
-		registry.addInterceptor(new ThrottleInterceptor(rateLimiter, List.copyOf(limiters.orderedStream().toList()), key))
-			.addPathPatterns("/api/**")
-			.order(ORDER_THROTTLE);
+		RateLimitInterceptor.UserKey key = userKey.getIfAvailable(() -> request -> null);
+		registry.addInterceptor(new RateLimitInterceptor(buckets, List.copyOf(limiters.orderedStream().toList()), key))
+			.addPathPatterns("/api/**");
 	}
 
 }

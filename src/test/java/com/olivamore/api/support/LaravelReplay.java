@@ -193,7 +193,7 @@ public final class LaravelReplay {
 	/** Kullanici basina bir kez giris (sifre seed'deki 123). */
 	private static String login(RestClient http, String email, Map<String, String> tokens) {
 		return tokens.computeIfAbsent(email, e -> JSON.readTree(call(http, "POST", "/api/auth/login", null,
-			JSON.createObjectNode().put("email", e).put("password", "123")).body).get("token").asString());
+			JSON.createObjectNode().put("email", e).put("password", "123")).body).get(TestAuth.ACCESS_TOKEN).asString());
 	}
 
 	private static void save(JsonNode c, Response actual, Map<String, Long> ids) {

@@ -2,6 +2,7 @@ package com.olivamore.api.productionline;
 
 import com.olivamore.api.TestcontainersConfiguration;
 import com.olivamore.api.support.LaravelReplay;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,7 +58,7 @@ class CatalogParityIT {
 	void processTypeCanKeepItsOwnName() {
 		RestClient http = RestClient.create("http://localhost:" + port);
 		String token = JSON.readTree(LaravelReplay.call(http, "POST", "/api/auth/login", null,
-			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body()).get("token").asString();
+			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body()).get(TestAuth.ACCESS_TOKEN).asString();
 		String name = jdbc.queryForObject("select name from process_types where id = 1", String.class);
 		LaravelReplay.Response same = LaravelReplay.call(http, "PATCH", "/api/process-types/1", token,
 			JSON.readTree("{\"name\":\"" + name + "\"}"));

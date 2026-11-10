@@ -33,8 +33,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BaselineSchemaIT {
 
-	/** Java'nin kendi tablolari: Laravel'de yok. */
-	private static final String JAVA_TABLES = "('flyway_schema_history', 'event_publication')";
+	/** Karsilastirma disi: Java'nin kendi tablolari ve Java'da kaldirilan Sanctum tablosu. */
+	private static final String JAVA_TABLES = "('flyway_schema_history', 'event_publication', 'auth_sessions', "
+		+ "'refresh_tokens', 'personal_access_tokens')";
 
 	/** Laravel'in onbellek tablolari: seed'e bilerek alinmadi. */
 	private static final Set<String> NOT_SEEDED = Set.of("cache", "cache_locks");
@@ -88,13 +89,14 @@ class BaselineSchemaIT {
 
 	@Test
 	void flywayBuiltTheSchemaFromScratch() {
-		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2
+		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2 ve V3
 		List<String> history = app.queryForList(
 			"select version || ' ' || type || ' ' || success from flyway_schema_history order by installed_rank", String.class);
-		assertThat(history).hasSize(71).allMatch(h -> h.endsWith(" SQL true"));
+		assertThat(history).hasSize(72).allMatch(h -> h.endsWith(" SQL true"));
 		assertThat(history.getFirst()).isEqualTo("0.00 SQL true");
 		assertThat(history.get(69)).isEqualTo("0.69 SQL true");
-		assertThat(history.getLast()).isEqualTo("2 SQL true");
+		assertThat(history.get(70)).isEqualTo("2 SQL true");
+		assertThat(history.getLast()).isEqualTo("3 SQL true");
 	}
 
 	@Test
@@ -104,7 +106,7 @@ class BaselineSchemaIT {
 			Set<String> actual = normalized(app.queryForList(query, String.class));
 			assertThat(actual).as(query).isNotEmpty().containsExactlyElementsOf(expected);
 		}
-		assertThat(app.queryForList(TABLES, String.class)).hasSize(73);
+		assertThat(app.queryForList(TABLES, String.class)).hasSize(72);
 	}
 
 	@Test
@@ -120,7 +122,8 @@ class BaselineSchemaIT {
 
 	@Test
 	void sequencesContinueAfterSeed() {
-		String query = "select sequencename || '=' || coalesce(last_value, 0) from pg_sequences where schemaname = 'public'";
+		String query = "select sequencename || '=' || coalesce(last_value, 0) from pg_sequences where schemaname = 'public' "
+			+ "and sequencename not in ('personal_access_tokens_id_seq', 'refresh_tokens_id_seq')";
 		assertThat(new TreeSet<>(app.queryForList(query, String.class)))
 			.containsExactlyElementsOf(new TreeSet<>(laravel.queryForList(query, String.class)));
 	}

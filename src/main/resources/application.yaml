@@ -55,5 +55,16 @@ management:
         http.server.requests: true
 
 olive:
+  http:
+    # Istek govdesi siniri; asan istek 413 alir
+    max-request-body: ${MAX_REQUEST_BODY:2MB}
+  security:
+    jwt:
+      # PKCS#8 PEM (tek satirda \n ile olabilir). Tanimli degilse uygulama baslamaz; bkz. .env.example
+      private-key: ${JWT_PRIVATE_KEY:}
+      key-id: ${JWT_KEY_ID:olive-1}
+      issuer: ${JWT_ISSUER:olive-api}
+      access-token-ttl: ${JWT_ACCESS_TOKEN_TTL:15m}
+      refresh-token-ttl: ${JWT_REFRESH_TOKEN_TTL:30d}
   # Mobil uygulama surumleri (version.json + APK); frontend'in yayinlama betigi buraya koyar
   releases-path: ${APP_RELEASES_PATH:releases}

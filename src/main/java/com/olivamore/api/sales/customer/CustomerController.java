@@ -1,6 +1,5 @@
 package com.olivamore.api.sales.customer;
 
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.LaravelPaginator;
 import com.olivamore.api.shared.web.ListResponse;
@@ -10,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -38,7 +38,7 @@ class CustomerController {
 	}
 
 	@GetMapping
-	@RequiresPermission("customer.view")
+	@PreAuthorize("hasAuthority('customer.view')")
 	ListResponse<CustomerResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive,
 		HttpServletRequest request) {
 		Optional<Integer> perPage = Listing.perPage(request);
@@ -51,67 +51,67 @@ class CustomerController {
 	}
 
 	@GetMapping("/{id}")
-	@RequiresPermission("customer.view")
+	@PreAuthorize("hasAuthority('customer.view')")
 	DataResponse<CustomerResponse> show(@PathVariable long id) {
 		return DataResponse.of(service.get(id));
 	}
 
 	@PostMapping
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	ResponseEntity<DataResponse<CustomerResponse>> store(@Valid @RequestBody CreateCustomerRequest request) {
 		return DataResponse.created(service.get(service.create(request)));
 	}
 
 	@RequestMapping(path = "/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	DataResponse<CustomerResponse> update(@PathVariable long id, @Valid @RequestBody UpdateCustomerRequest request) {
 		service.update(id, request);
 		return DataResponse.of(service.get(id));
 	}
 
 	@DeleteMapping("/{id}")
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	Map<String, String> destroy(@PathVariable long id) {
 		service.delete(id);
 		return Map.of("message", "Müşteri başarıyla silindi.");
 	}
 
 	@GetMapping("/{id}/addresses")
-	@RequiresPermission("customer.view")
+	@PreAuthorize("hasAuthority('customer.view')")
 	ListResponse<CustomerAddressResponse> addresses(@PathVariable long id) {
 		return new ListResponse.Plain<>(service.addresses(id));
 	}
 
 	@PostMapping("/{id}/addresses")
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	ResponseEntity<DataResponse<CustomerAddressResponse>> storeAddress(@PathVariable long id,
 		@Valid @RequestBody CreateCustomerAddressRequest request) {
 		return DataResponse.created(service.addAddress(id, request));
 	}
 
 	@PatchMapping("/{id}/addresses/{addressId}")
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	DataResponse<CustomerAddressResponse> updateAddress(@PathVariable long id, @PathVariable long addressId,
 		@Valid @RequestBody UpdateCustomerAddressRequest request) {
 		return DataResponse.of(service.updateAddress(id, addressId, request));
 	}
 
 	@DeleteMapping("/{id}/addresses/{addressId}")
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	Map<String, String> destroyAddress(@PathVariable long id, @PathVariable long addressId) {
 		service.deleteAddress(id, addressId);
 		return Map.of("message", "Adres başarıyla silindi.");
 	}
 
 	@GetMapping("/{id}/recipes")
-	@RequiresPermission("customer.view")
+	@PreAuthorize("hasAuthority('customer.view')")
 	DataResponse<CustomerRecipeProfiles.Profile> recipes(@PathVariable long id) {
 		service.ensureExists(id);
 		return DataResponse.of(profiles.of(id));
 	}
 
 	@PostMapping("/{id}/preferred-recipes")
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	ResponseEntity<Map<String, String>> storePreferredRecipe(@PathVariable long id,
 		@Valid @RequestBody PreferredRecipeRequest request) {
 		service.addPreferredRecipe(id, request);
@@ -120,7 +120,7 @@ class CustomerController {
 	}
 
 	@DeleteMapping("/{id}/preferred-recipes/{recipeId}")
-	@RequiresPermission("customer.manage")
+	@PreAuthorize("hasAuthority('customer.manage')")
 	Map<String, String> destroyPreferredRecipe(@PathVariable long id, @PathVariable long recipeId) {
 		service.removePreferredRecipe(id, recipeId);
 		return Map.of("message", "Formül müşterinin tercihlerinden çıkarıldı.");

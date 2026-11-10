@@ -22096,14 +22096,6 @@ COPY public.password_reset_tokens (email, token, created_at) FROM stdin;
 
 
 --
--- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, token, abilities, last_used_at, expires_at, created_at, updated_at) FROM stdin;
-\.
-
-
---
 -- Data for Name: production_batch_input_production_product_types; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -26410,13 +26402,6 @@ SELECT pg_catalog.setval('public.packaging_lots_id_seq', 337, true);
 --
 
 SELECT pg_catalog.setval('public.permissions_id_seq', 54, true);
-
-
---
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 1, false);
 
 
 --

@@ -2,8 +2,8 @@
 
 Droplet'teki (`161.35.54.96`) Laravel API'sinin yerine Java API'si geçer. Veritabanı aynı kalır:
 veri taşınmaz, Java Laravel'in `db` konteynerine bağlanır. Telefondaki uygulama aynı adrese
-(`:8001`) bağlanmaya devam eder, hiçbir şey fark etmez. Oturumlar da korunur: Java, Sanctum
-token'larını aynı tablodan okur.
+(`:8001`) bağlanmaya devam eder, hiçbir şey fark etmez. Java JWT kullandığı için geçişte
+herkes yeniden giriş yapar; `JWT_PRIVATE_KEY` tanımlı olmadan uygulama başlamaz.
 
 Evdeki WiFi kurulumu (`main` dalı, SQLite) bu geçişe dahil değil: Java yalnızca PostgreSQL ile çalışır.
 

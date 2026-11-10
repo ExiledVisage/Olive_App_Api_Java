@@ -1,7 +1,7 @@
 package com.olivamore.api.shared.web.throttle;
 
 /**
- * Laravel {@code Illuminate\Cache\RateLimiting\Limit}: {@code Limit::perMinute(5)->by('login:' . $email)}.
+ * Bir anahtar icin istek siniri: {@code decaySeconds} penceresinde en fazla {@code maxAttempts}.
  */
 public record Limit(String key, int maxAttempts, int decaySeconds) {
 

@@ -1,10 +1,10 @@
 package com.olivamore.api.productionline.stageextension;
 
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.productionline.ProductionStageResponse;
 import com.olivamore.api.productionline.stage.ProductionStageResponses;
 import com.olivamore.api.shared.web.DataResponse;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +22,7 @@ class StageExtensionController {
 	}
 
 	@PutMapping("/api/production-lines/{lineId}/stages/{stageId}/extensions")
-	@RequiresPermission("production_stage.manage")
+	@PreAuthorize("hasAuthority('production_stage.manage')")
 	DataResponse<ProductionStageResponse> sync(@PathVariable long lineId, @PathVariable long stageId,
 		@Valid @RequestBody SyncStageExtensionsRequest request) {
 		service.sync(lineId, stageId, request);

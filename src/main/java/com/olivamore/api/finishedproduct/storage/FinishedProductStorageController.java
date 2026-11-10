@@ -1,11 +1,12 @@
 package com.olivamore.api.finishedproduct.storage;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -34,20 +35,20 @@ class FinishedProductStorageController {
 	// ---- okuma ----------------------------------------------------------------------
 
 	@GetMapping("/api/finished-product-storages")
-	@RequiresPermission("finished_product_storage.view")
+	@PreAuthorize("hasAuthority('finished_product_storage.view')")
 	ListResponse<StorageResponse> index() {
 		return new ListResponse.Plain<>(responses.list());
 	}
 
 	@GetMapping("/api/finished-product-storages/{id}")
-	@RequiresPermission("finished_product_storage.view")
+	@PreAuthorize("hasAuthority('finished_product_storage.view')")
 	DataResponse<StorageResponse> show(@PathVariable long id) {
 		return DataResponse.of(responses.detail(id));
 	}
 
 	/** Hareket gecmisi, yeniden eskiye. */
 	@GetMapping("/api/finished-product-storages/{id}/movements")
-	@RequiresPermission("finished_product_storage.view")
+	@PreAuthorize("hasAuthority('finished_product_storage.view')")
 	ListResponse<MovementResponse> movements(@PathVariable long id) {
 		return new ListResponse.Plain<>(responses.movements(id));
 	}
@@ -56,20 +57,20 @@ class FinishedProductStorageController {
 
 	/** 201; raflar ve stok yuklenmez. */
 	@PostMapping("/api/finished-product-storages")
-	@RequiresPermission("finished_product_storage.manage")
+	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	ResponseEntity<DataResponse<StorageResponse>> store(@Valid @RequestBody CreateStorageRequest request) {
 		return DataResponse.created(responses.bare(storages.create(request)));
 	}
 
 	@RequestMapping(path = "/api/finished-product-storages/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	@RequiresPermission("finished_product_storage.manage")
+	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	DataResponse<StorageResponse> update(@PathVariable long id, @Valid @RequestBody UpdateStorageRequest request) {
 		storages.update(id, request);
 		return DataResponse.of(responses.detail(id));
 	}
 
 	@DeleteMapping("/api/finished-product-storages/{id}")
-	@RequiresPermission("finished_product_storage.manage")
+	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	Map<String, String> destroy(@PathVariable long id) {
 		storages.delete(id);
 		return Map.of("message", "Depo silindi.");
@@ -79,7 +80,7 @@ class FinishedProductStorageController {
 
 	/** 201. */
 	@PostMapping("/api/finished-product-storages/{id}/slots")
-	@RequiresPermission("finished_product_storage.manage")
+	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	ResponseEntity<DataResponse<SlotResponse>> storeSlot(@PathVariable long id,
 		@Valid @RequestBody CreateSlotRequest request) {
 		return DataResponse.created(responses.slot(storages.createSlot(id, request)));
@@ -87,7 +88,7 @@ class FinishedProductStorageController {
 
 	/** Raf baska bir depoya ait olsa da kabul edilir. */
 	@PatchMapping("/api/finished-product-storages/{id}/slots/{slot}")
-	@RequiresPermission("finished_product_storage.manage")
+	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	DataResponse<SlotResponse> updateSlot(@PathVariable long id, @PathVariable long slot,
 		@Valid @RequestBody UpdateSlotRequest request) {
 		storages.updateSlot(id, slot, request);
@@ -95,7 +96,7 @@ class FinishedProductStorageController {
 	}
 
 	@DeleteMapping("/api/finished-product-storages/{id}/slots/{slot}")
-	@RequiresPermission("finished_product_storage.manage")
+	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	Map<String, String> destroySlot(@PathVariable long id, @PathVariable long slot) {
 		storages.deleteSlot(id, slot);
 		return Map.of("message", "Slot silindi.");
@@ -105,26 +106,26 @@ class FinishedProductStorageController {
 
 	/** Depoya yerlestirme: tek raf ya da {@code placements}. */
 	@PostMapping("/api/finished-product-storages/{id}/stock-in")
-	@RequiresPermission("finished_product_storage.stock_in")
+	@PreAuthorize("hasAuthority('finished_product_storage.stock_in')")
 	DataResponse<StorageResponse> stockIn(@PathVariable long id, @Valid @RequestBody StockInRequest request,
-		CurrentUser user) {
+		@AuthenticationPrincipal CurrentUser user) {
 		storages.stockIn(id, request, user.id());
 		return DataResponse.of(responses.detail(id));
 	}
 
 	/** Raftan rafa; cevapta iki depo. */
 	@PostMapping("/api/finished-product-storages/{id}/transfer")
-	@RequiresPermission("finished_product_storage.stock_in")
+	@PreAuthorize("hasAuthority('finished_product_storage.stock_in')")
 	DataResponse<TransferResponse> transfer(@PathVariable long id, @Valid @RequestBody TransferRequest request,
-		CurrentUser user) {
+		@AuthenticationPrincipal CurrentUser user) {
 		long target = storages.transfer(id, request, user.id());
 		return DataResponse.of(new TransferResponse(responses.detail(id), responses.detail(target)));
 	}
 
 	@PostMapping("/api/finished-product-storages/{id}/stock-out")
-	@RequiresPermission("finished_product_storage.stock_out")
+	@PreAuthorize("hasAuthority('finished_product_storage.stock_out')")
 	DataResponse<StorageResponse> stockOut(@PathVariable long id, @Valid @RequestBody StockOutRequest request,
-		CurrentUser user) {
+		@AuthenticationPrincipal CurrentUser user) {
 		storages.stockOut(id, request, user.id());
 		return DataResponse.of(responses.detail(id));
 	}

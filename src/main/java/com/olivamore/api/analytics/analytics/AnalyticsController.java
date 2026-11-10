@@ -5,8 +5,8 @@ import com.olivamore.api.analytics.analytics.AnalyticsResponse.Customers;
 import com.olivamore.api.analytics.analytics.AnalyticsResponse.Report;
 import com.olivamore.api.analytics.analytics.AnalyticsResponse.Suppliers;
 import com.olivamore.api.analytics.analytics.AnalyticsResponse.Yield;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** Analiz ekrani ve rapor olusturucu; hepsi {@code ?from=Y-m-d&to=Y-m-d} ister, en fazla iki yil. */
 @RestController
-@RequiresPermission("analytics.view")
+@PreAuthorize("hasAuthority('analytics.view')")
 class AnalyticsController {
 
 	private final AnalyticsService analytics;

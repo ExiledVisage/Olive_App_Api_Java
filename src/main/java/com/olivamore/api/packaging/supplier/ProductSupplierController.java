@@ -1,10 +1,10 @@
 package com.olivamore.api.packaging.supplier;
 
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,27 +29,27 @@ class ProductSupplierController {
 	}
 
 	@GetMapping
-	@RequiresPermission("product_supplier.view")
+	@PreAuthorize("hasAuthority('product_supplier.view')")
 	ListResponse<ProductSupplierResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive,
 		@RequestParam(required = false) String search) {
 		return new ListResponse.Plain<>(service.all(isActive, search));
 	}
 
 	@GetMapping("/{id}")
-	@RequiresPermission("product_supplier.view")
+	@PreAuthorize("hasAuthority('product_supplier.view')")
 	DataResponse<ProductSupplierResponse> show(@PathVariable long id) {
 		return DataResponse.of(service.detail(id));
 	}
 
 	@PostMapping
-	@RequiresPermission("product_supplier.manage")
+	@PreAuthorize("hasAuthority('product_supplier.manage')")
 	ResponseEntity<DataResponse<ProductSupplierResponse>> store(
 		@Valid @RequestBody CreateProductSupplierRequest request) {
 		return DataResponse.created(service.detail(service.create(request)));
 	}
 
 	@PatchMapping("/{id}")
-	@RequiresPermission("product_supplier.manage")
+	@PreAuthorize("hasAuthority('product_supplier.manage')")
 	DataResponse<ProductSupplierResponse> update(@PathVariable long id,
 		@Valid @RequestBody UpdateProductSupplierRequest request) {
 		service.update(id, request);
@@ -57,7 +57,7 @@ class ProductSupplierController {
 	}
 
 	@DeleteMapping("/{id}")
-	@RequiresPermission("product_supplier.manage")
+	@PreAuthorize("hasAuthority('product_supplier.manage')")
 	Map<String, String> destroy(@PathVariable long id) {
 		service.delete(id);
 		return Map.of("message", "Ürün tedarikçisi silindi.");

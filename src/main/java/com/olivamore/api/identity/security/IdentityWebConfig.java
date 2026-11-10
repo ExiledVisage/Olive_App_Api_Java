@@ -1,25 +1,16 @@
 package com.olivamore.api.identity.security;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.auth.TokenService;
 import com.olivamore.api.shared.json.LaravelStringDeserializer;
-import com.olivamore.api.shared.web.WebConfig;
 import com.olivamore.api.shared.web.throttle.Limit;
 import com.olivamore.api.shared.web.throttle.NamedLimiter;
-import com.olivamore.api.shared.web.throttle.ThrottleInterceptor;
+import com.olivamore.api.shared.web.throttle.RateLimitInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.MethodParameter;
-import org.springframework.core.Ordered;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.support.WebDataBinderFactory;
-import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.method.support.ModelAndViewContainer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -27,9 +18,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-/** Kimlik dogrulama, rate limit'ler ve {@link CurrentUser} parametresi. */
+/** Sifre kodlayici ve rate limit'ler. */
 @Configuration(proxyBeanMethods = false)
-public class IdentityWebConfig implements WebMvcConfigurer {
+public class IdentityWebConfig {
 
 	/** {@code BCRYPT_ROUNDS=12}, {@code $2y$}: Laravel ve Java birbirinin hash'ini dogrular. */
 	public static final BCryptPasswordEncoder PASSWORDS =
@@ -37,50 +28,13 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();
 
-	private final TokenService tokens;
-
-	IdentityWebConfig(TokenService tokens) {
-		this.tokens = tokens;
-	}
-
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AccessInterceptor(tokens)).addPathPatterns("/api/**")
-			.order(WebConfig.ORDER_AUTHENTICATE);
-	}
-
-	@Override
-	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-		resolvers.add(new HandlerMethodArgumentResolver() {
-			@Override
-			public boolean supportsParameter(MethodParameter parameter) {
-				return parameter.getParameterType() == CurrentUser.class;
-			}
-
-			@Override
-			public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mav,
-				NativeWebRequest request, WebDataBinderFactory binderFactory) {
-				return Access.current(request.getNativeRequest(HttpServletRequest.class));
-			}
-		});
-	}
-
-	/** Filtre bean degil, kayit nesnesinin icinde duz bir nesne: Modulith insight proxy'lemesin. */
+	/** Sabit limitler: giris yapmis kullanici varsa onun kimligi anahtar olur. */
 	@Bean
-	FilterRegistrationBean<LoginBodyCachingFilter> loginBodyCachingFilter() {
-		FilterRegistrationBean<LoginBodyCachingFilter> registration =
-			new FilterRegistrationBean<>(new LoginBodyCachingFilter());
-		registration.addUrlPatterns("/api/auth/login");
-		registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 12);
-		return registration;
-	}
-
-	/** {@code throttle:N,M}: giris yapmis kullanici varsa onun kimligi anahtar olur. */
-	@Bean
-	ThrottleInterceptor.UserKey throttleUserKey() {
+	RateLimitInterceptor.UserKey rateLimitUserKey() {
 		return request -> {
-			CurrentUser user = Access.current(request);
-			return user == null ? null : String.valueOf(user.id());
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			return authentication != null && authentication.getPrincipal() instanceof CurrentUser user
+				? String.valueOf(user.id()) : null;
 		};
 	}
 
@@ -118,6 +72,22 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 			@Override
 			public List<Limit> limits(HttpServletRequest request) {
 				return List.of(Limit.perMinute(5, "register:" + request.getRemoteAddr()));
+			}
+		};
+	}
+
+	/** Adres basina dakikada 20. */
+	@Bean
+	NamedLimiter refreshLimiter() {
+		return new NamedLimiter() {
+			@Override
+			public String name() {
+				return "refresh";
+			}
+
+			@Override
+			public List<Limit> limits(HttpServletRequest request) {
+				return List.of(Limit.perMinute(20, "refresh:" + request.getRemoteAddr()));
 			}
 		};
 	}

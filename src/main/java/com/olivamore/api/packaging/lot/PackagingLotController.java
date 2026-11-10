@@ -1,11 +1,12 @@
 package com.olivamore.api.packaging.lot;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -30,7 +31,7 @@ class PackagingLotController {
 	}
 
 	@GetMapping("/api/packaging-lots")
-	@RequiresPermission("packaging_lot.view")
+	@PreAuthorize("hasAuthority('packaging_lot.view')")
 	ListResponse<PackagingLotResponse> index(
 		@RequestParam(name = "packaging_item_id", required = false) Long itemId,
 		@RequestParam(name = "product_supplier_id", required = false) Long supplierId,
@@ -40,27 +41,27 @@ class PackagingLotController {
 	}
 
 	@GetMapping("/api/packaging-items/{itemId}/lots")
-	@RequiresPermission("packaging_lot.view")
+	@PreAuthorize("hasAuthority('packaging_lot.view')")
 	ListResponse<PackagingLotResponse> indexForItem(@PathVariable long itemId) {
 		service.ensureItemExists(itemId);
 		return new ListResponse.Plain<>(responses.list(itemId, null, null, null));
 	}
 
 	@GetMapping("/api/packaging-lots/{id}")
-	@RequiresPermission("packaging_lot.view")
+	@PreAuthorize("hasAuthority('packaging_lot.view')")
 	DataResponse<PackagingLotResponse> show(@PathVariable long id) {
 		return DataResponse.of(responses.detail(id));
 	}
 
 	@PostMapping("/api/packaging-items/{itemId}/lots")
-	@RequiresPermission("packaging_lot.receive")
+	@PreAuthorize("hasAuthority('packaging_lot.receive')")
 	ResponseEntity<DataResponse<PackagingLotResponse>> store(@PathVariable long itemId,
-		@Valid @RequestBody CreatePackagingLotRequest request, CurrentUser user) {
+		@Valid @RequestBody CreatePackagingLotRequest request, @AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.created(responses.detail(service.receive(itemId, request, user.id())));
 	}
 
 	@PatchMapping("/api/packaging-lots/{id}")
-	@RequiresPermission("packaging_lot.receive")
+	@PreAuthorize("hasAuthority('packaging_lot.receive')")
 	DataResponse<PackagingLotResponse> update(@PathVariable long id,
 		@Valid @RequestBody UpdatePackagingLotRequest request) {
 		service.update(id, request);
@@ -68,16 +69,16 @@ class PackagingLotController {
 	}
 
 	@DeleteMapping("/api/packaging-lots/{id}")
-	@RequiresPermission("packaging_lot.receive")
+	@PreAuthorize("hasAuthority('packaging_lot.receive')")
 	Map<String, String> destroy(@PathVariable long id) {
 		service.delete(id);
 		return Map.of("message", "Ambalaj lotu silindi.");
 	}
 
 	@PostMapping("/api/packaging-lots/{id}/adjustment")
-	@RequiresPermission("packaging_lot.adjustment")
+	@PreAuthorize("hasAuthority('packaging_lot.adjustment')")
 	DataResponse<PackagingLotResponse> adjust(@PathVariable long id,
-		@Valid @RequestBody AdjustPackagingLotRequest request, CurrentUser user) {
+		@Valid @RequestBody AdjustPackagingLotRequest request, @AuthenticationPrincipal CurrentUser user) {
 		service.adjust(id, request, user.id());
 		return DataResponse.of(responses.detail(id));
 	}

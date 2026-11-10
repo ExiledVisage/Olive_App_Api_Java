@@ -1,7 +1,7 @@
 package com.olivamore.api.product.productattribute;
 
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.ListResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +16,7 @@ class AttributeDefinitionController {
 	}
 
 	@GetMapping("/api/attribute-definitions")
-	@RequiresPermission("attribute_definition.view")
+	@PreAuthorize("hasAuthority('attribute_definition.view')")
 	ListResponse<AttributeDefinitionResponse> index() {
 		return new ListResponse.Plain<>(service.definitions());
 	}

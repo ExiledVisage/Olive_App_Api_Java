@@ -28,7 +28,7 @@ public class HttpStatusException extends RuntimeException {
 		return new HttpStatusException(422, message);
 	}
 
-	/** auth:sanctum gecemedi */
+	/** Kimlik dogrulanamadi. */
 	public static HttpStatusException unauthenticated() {
 		return new HttpStatusException(401, "Unauthenticated.");
 	}

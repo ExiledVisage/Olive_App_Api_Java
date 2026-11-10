@@ -1,6 +1,7 @@
 package com.olivamore.api.identity;
 
 import com.olivamore.api.TestcontainersConfiguration;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -27,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ayni sirayla Java'ya tekrar oynatilir; status, JSON govdesi ve rate limit basliklari karsilastirilir.
  * <p>
  * Iki taraf ayni demo veriden basladigi icin id'ler de ayni cikar (yeni kullanici 8, 9; roller 7, 8).
- * Maskelenenler: token'in rastgele kismi, bu calismada olusan kayitlarin zaman damgalari,
+ * Maskelenenler: token'lar, bu calismada olusan kayitlarin zaman damgalari,
  * {@code X-RateLimit-Reset}. Laravel'in hatalari icin Java'nin dogru davranisi {@link #EXPECTED_DEVIATIONS}'da.
  * <p>
  * Kendi veritabanini kullanir (ayri context): veriyi degistirir.
@@ -37,7 +38,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class IdentityParityIT {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();
-	private static final Pattern TOKEN = Pattern.compile("^(\\d+)\\|[A-Za-z0-9]{40}[0-9a-f]{8}$");
+	private static final Pattern JWT = Pattern.compile("^[\\w-]+\\.[\\w-]+\\.[\\w-]+$");
+	private static final Pattern REFRESH_TOKEN = Pattern.compile("^[\\w-]{43}$");
 	private static final Pattern TIMESTAMP = Pattern.compile("^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{6}Z$");
 	/** Demo verideki en yeni kullanici zamani; bundan sonrasi bu calismada olusmustur. */
 	private static final String SEEDED_UNTIL = "2026-11-06T15:35:11.000000Z";
@@ -146,9 +148,11 @@ class IdentityParityIT {
 			return list.stream().map(IdentityParityIT::normalize).toList();
 		}
 		if (value instanceof String s) {
-			var token = TOKEN.matcher(s);
-			if (token.matches()) {
-				return token.group(1) + "|<token>";
+			if (JWT.matcher(s).matches()) {
+				return "<jwt>";
+			}
+			if (REFRESH_TOKEN.matcher(s).matches()) {
+				return "<refresh>";
 			}
 			if (TIMESTAMP.matcher(s).matches() && s.compareTo(SEEDED_UNTIL) > 0) {
 				return "<yeni zaman>";
@@ -190,7 +194,7 @@ class IdentityParityIT {
 	private static String login(RestClient http, String email) throws Exception {
 		Response r = call(http, "POST", "/api/auth/login", null, JSON.readTree("{\"email\":\"" + email + "\",\"password\":\"123\"}"));
 		assertThat(r.status).as(r.body).isEqualTo(200);
-		return JSON.readTree(r.body).get("token").asString();
+		return JSON.readTree(r.body).get(TestAuth.ACCESS_TOKEN).asString();
 	}
 
 	private static Response call(RestClient http, String method, String path, String token, JsonNode body) {

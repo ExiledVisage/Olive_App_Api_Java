@@ -2,6 +2,7 @@ package com.olivamore.api.inventory;
 
 import com.olivamore.api.TestcontainersConfiguration;
 import com.olivamore.api.support.LaravelReplay;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +43,7 @@ class StorageMovementConcurrencyIT {
 			+ " values ('Kilit', 'TEST-LOCK', 100, 'LITRE', now(), now()) returning id", Long.class);
 		RestClient http = LaravelReplay.client(port);
 		String token = JSON.readTree(LaravelReplay.call(http, "POST", "/api/auth/login", null,
-			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body()).get("token").asString();
+			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body()).get(TestAuth.ACCESS_TOKEN).asString();
 		String body = "{\"storage_unit_id\":" + unit + ",\"production_product_type_id\":3,\"quantity\":60,\"unit\":\"LITRE\"}";
 
 		ExecutorService pool = Executors.newFixedThreadPool(4);

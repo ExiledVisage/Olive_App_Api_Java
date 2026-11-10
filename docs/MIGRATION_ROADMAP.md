@@ -438,13 +438,13 @@ Sıra:
   `LaravelValidator`, `EmailRule`, `@Bound`, `@LaravelModel` silinir
 
 ## B3: Güvenlik
-- [ ] Spring Security: filtre zinciri ve `@PreAuthorize` (`AccessInterceptor`, `AccessAspect`,
+- [x] Spring Security: filtre zinciri ve `@PreAuthorize` (`AccessInterceptor`, `AccessAspect`,
   `@RequiresPermission`, `@RequiresRole` yerine)
-- [ ] OAuth2 Resource Server, NimbusJwtEncoder, RSA (`kid` ile)
-- [ ] Refresh token rotation (DB'de hash'li) ve reuse detection
-- [ ] Sanctum token doğrulaması kaldırılır
-- [ ] Rate limit: elle yazılmış `RateLimiter` ve `ThrottleInterceptor` yerine Bucket4j
-- [ ] İstek gövdesine boyut sınırı: `LoginBodyCachingFilter` giriş yapılmamış isteğin gövdesini sınırsız belleğe
+- [x] OAuth2 Resource Server, NimbusJwtEncoder, RSA (`kid` ile)
+- [x] Refresh token rotation (DB'de hash'li) ve reuse detection
+- [x] Sanctum token doğrulaması kaldırılır
+- [x] Rate limit: elle yazılmış `RateLimiter` ve `ThrottleInterceptor` yerine Bucket4j
+- [x] İstek gövdesine boyut sınırı: `LoginBodyCachingFilter` giriş yapılmamış isteğin gövdesini sınırsız belleğe
   alıyor, limit kontrolünden önce çalışıyor; aşan istek reddedilir
 
 ## B4: Şema

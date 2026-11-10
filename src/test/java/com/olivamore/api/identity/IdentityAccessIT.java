@@ -1,7 +1,8 @@
 package com.olivamore.api.identity;
 
 import com.olivamore.api.TestcontainersConfiguration;
-import com.olivamore.api.shared.web.throttle.RateLimiter;
+import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
@@ -25,8 +27,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'in AuthThrottleTest'i (6 test) ve PermissionTest'in identity'ye ait kismi, ayrica
- * Laravel ile Java'nin token ve sifre uyumlulugu. Kendi veritabanini kullanir (veri degistirir).
+ * Laravel'in AuthThrottleTest'i (6 test) ve PermissionTest'in identity'ye ait kismi.
+ * Kendi veritabanini kullanir (veri degistirir).
  */
 @Import({TestcontainersConfiguration.class, IdentityAccessIT.ProbeController.class})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "olive.test.context=identity-access")
@@ -38,7 +40,7 @@ class IdentityAccessIT {
 	int port;
 
 	@Autowired
-	RateLimiter rateLimiter;
+	RateLimitBuckets buckets;
 
 	@Autowired
 	JdbcTemplate jdbc;
@@ -48,7 +50,7 @@ class IdentityAccessIT {
 	@BeforeEach
 	void setUp() {
 		http = RestClient.create("http://localhost:" + port);
-		rateLimiter.clear();
+		buckets.clear();
 	}
 
 	// ---- AuthThrottleTest --------------------------------------------------
@@ -133,7 +135,7 @@ class IdentityAccessIT {
 	void userWithoutPermissionsIsForbiddenEverywhere() {
 		jdbc.update("insert into roles (name, guard_name, created_at, updated_at) values ('yetkisiz', 'web', now(), now())");
 		String token = post("/api/auth/register", null, Map.of("name", "Yetkisiz", "email", "yetkisiz@olivamore.com",
-			"password", "gizli-sifre-123", "password_confirmation", "gizli-sifre-123")).json().get("token").asString();
+			"password", "gizli-sifre-123", "password_confirmation", "gizli-sifre-123")).json().get(TestAuth.ACCESS_TOKEN).asString();
 		long id = jdbc.queryForObject("select id from users where email = 'yetkisiz@olivamore.com'", Long.class);
 		jdbc.update("insert into model_has_roles (role_id, model_type, model_id) select id, 'App\\Models\\User', ? from roles where name = 'yetkisiz'", id);
 
@@ -160,41 +162,11 @@ class IdentityAccessIT {
 		assertThat(get("/api/test/needs-customer-view", login("muhendis@olivamore.com")).status).isEqualTo(200);
 	}
 
-	// ---- Laravel uyumlulugu ------------------------------------------------
-
 	@Test
-	void tokenWrittenByLaravelIsAccepted() {
-		// Laravel'in yazacagi satir: sha256(duz token), tokenable App\Models\User
-		String plain = "6JXWArlL8RU1a8Pxkhyj7BwNjtGTijlFMxBUN3rDcebddd93";
-		Long id = jdbc.queryForObject("""
-			insert into personal_access_tokens (tokenable_type, tokenable_id, name, token, abilities, created_at, updated_at)
-			values ('App\\Models\\User', 1, 'mobile', encode(sha256(?::bytea), 'hex'), '["*"]', now(), now()) returning id
-			""", Long.class, plain);
-		Response me = get("/api/auth/me", id + "|" + plain);
-		assertThat(me.status).isEqualTo(200);
-		assertThat(me.json().get("data").get("email").asString()).isEqualTo("admin@olivamore.com");
-		assertThat(jdbc.queryForObject("select last_used_at is not null from personal_access_tokens where id = ?", Boolean.class, id)).isTrue();
-		// id'siz bicim de (hash ile aranir)
-		assertThat(get("/api/auth/me", plain).status).isEqualTo(200);
-	}
-
-	@Test
-	void tokenWrittenByJavaHasLaravelShape() {
-		String token = login("planner@olivamore.com");
-		long id = Long.parseLong(token.substring(0, token.indexOf('|')));
-		Map<String, Object> row = jdbc.queryForMap("select * from personal_access_tokens where id = ?", id);
-		assertThat(row.get("tokenable_type")).isEqualTo("App\\Models\\User");
-		assertThat(row.get("name")).isEqualTo("mobile");
-		assertThat(row.get("abilities")).isEqualTo("[\"*\"]");
-		assertThat(row.get("token")).isEqualTo(jdbc.queryForObject("select encode(sha256(?::bytea), 'hex')", String.class,
-			token.substring(token.indexOf('|') + 1)));
-		assertThat(row.get("expires_at")).isNull();
-	}
-
-	@Test
-	void unknownRouteIs404EvenWithoutToken() {
-		// Laravel: olmayan route auth'a ulasmaz
-		assertThat(get("/api/yok-boyle-bir-yer", null).status).isEqualTo(404);
+	void unknownRouteIs404OnlyForAuthenticatedRequests() {
+		// Giris yapmamis istemci route listesini yoklayamaz
+		assertThat(get("/api/yok-boyle-bir-yer", null).status).isEqualTo(401);
+		assertThat(get("/api/yok-boyle-bir-yer", login("admin@olivamore.com")).status).isEqualTo(404);
 		assertThat(get("/api/users", null).status).isEqualTo(401);
 	}
 
@@ -204,13 +176,13 @@ class IdentityAccessIT {
 	@RestController
 	static class ProbeController {
 
-		@RequiresPermission("customer.view")
+		@PreAuthorize("hasAuthority('customer.view')")
 		@GetMapping("/api/test/needs-customer-view")
 		Map<String, String> customerView() {
 			return Map.of("ok", "evet");
 		}
 
-		@RequiresPermission("olmayan.izin")
+		@PreAuthorize("hasAuthority('olmayan.izin')")
 		@GetMapping("/api/test/needs-unknown-permission")
 		Map<String, String> unknown() {
 			return Map.of("ok", "evet");
@@ -231,7 +203,7 @@ class IdentityAccessIT {
 	private String login(String email) {
 		Response r = post("/api/auth/login", null, Map.of("email", email, "password", "123"));
 		assertThat(r.status).as(r.body).isEqualTo(200);
-		return r.json().get("token").asString();
+		return r.json().get(TestAuth.ACCESS_TOKEN).asString();
 	}
 
 	private Response get(String path, String token) {

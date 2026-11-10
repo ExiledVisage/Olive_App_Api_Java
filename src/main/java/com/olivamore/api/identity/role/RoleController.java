@@ -1,10 +1,10 @@
 package com.olivamore.api.identity.role;
 
-import com.olivamore.api.identity.RequiresRole;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/roles")
-@RequiresRole(Role.ADMIN)
+@PreAuthorize("hasRole('" + Role.ADMIN + "')")
 class RoleController {
 
 	private final RoleService service;

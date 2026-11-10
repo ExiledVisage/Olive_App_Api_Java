@@ -17,6 +17,7 @@
 		<java.version>25</java.version>
 		<argLine></argLine>
 		<spring-modulith.version>2.1.1</spring-modulith.version>
+		<bucket4j.version>8.22.0</bucket4j.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,16 +40,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
-		<!-- Yetki kontrolu (@RequiresRole / @RequiresPermission) controller metodunun etrafinda:
-		     Laravel'deki sira 401 -> 404 (model binding) -> 403 ancak boyle kurulabiliyor -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aspectj</artifactId>
+			<artifactId>spring-boot-starter-security-oauth2-resource-server</artifactId>
 		</dependency>
-		<!-- Sadece BCrypt (Laravel'in $2y$ hash'leri). Tam Spring Security JWT'ye gecilince (B2) -->
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-crypto</artifactId>
+			<groupId>com.bucket4j</groupId>
+			<artifactId>bucket4j_jdk17-core</artifactId>
+			<version>${bucket4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>

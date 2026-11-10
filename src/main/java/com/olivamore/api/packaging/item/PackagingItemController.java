@@ -1,11 +1,12 @@
 package com.olivamore.api.packaging.item;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.identity.RequiresPermission;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,26 +30,26 @@ class PackagingItemController {
 	}
 
 	@GetMapping
-	@RequiresPermission("packaging_item.view")
+	@PreAuthorize("hasAuthority('packaging_item.view')")
 	ListResponse<PackagingItemResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive) {
 		return new ListResponse.Plain<>(service.all(isActive));
 	}
 
 	@GetMapping("/{id}")
-	@RequiresPermission("packaging_item.view")
+	@PreAuthorize("hasAuthority('packaging_item.view')")
 	DataResponse<PackagingItemResponse> show(@PathVariable long id) {
 		return DataResponse.of(service.get(id));
 	}
 
 	@PostMapping
-	@RequiresPermission("packaging_item.manage")
+	@PreAuthorize("hasAuthority('packaging_item.manage')")
 	ResponseEntity<DataResponse<PackagingItemResponse>> store(@Valid @RequestBody CreatePackagingItemRequest request,
-		CurrentUser user) {
+		@AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.created(service.get(service.create(request, user.id())));
 	}
 
 	@RequestMapping(path = "/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	@RequiresPermission("packaging_item.manage")
+	@PreAuthorize("hasAuthority('packaging_item.manage')")
 	DataResponse<PackagingItemResponse> update(@PathVariable long id,
 		@Valid @RequestBody UpdatePackagingItemRequest request) {
 		service.update(id, request);
@@ -56,7 +57,7 @@ class PackagingItemController {
 	}
 
 	@DeleteMapping("/{id}")
-	@RequiresPermission("packaging_item.manage")
+	@PreAuthorize("hasAuthority('packaging_item.manage')")
 	Map<String, String> destroy(@PathVariable long id) {
 		service.delete(id);
 		return Map.of("message", "Ambalaj kalemi başarıyla silindi.");

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.UUID;
 
 @Service
 public class AuthService {
@@ -29,7 +30,7 @@ public class AuthService {
 		this.tokens = tokens;
 	}
 
-	record Result(User user, String token) {
+	record Result(User user, TokenService.Tokens tokens) {
 	}
 
 	@Transactional
@@ -49,7 +50,7 @@ public class AuthService {
 		user.setCreatedAt(Timestamps.now());
 		user.setUpdatedAt(user.getCreatedAt());
 		users.save(user);
-		return new Result(user, tokens.issue(user));
+		return new Result(user, tokens.issue(user.getId()));
 	}
 
 	/** Kullanici yoksa da sifre yanlissa da ayni hata (hangisi oldugu sizdirilmaz). */
@@ -59,12 +60,16 @@ public class AuthService {
 		if (user == null || !IdentityWebConfig.PASSWORDS.matches(request.password(), user.getPassword())) {
 			throw LaravelValidationException.of("email", WRONG_CREDENTIALS);
 		}
-		return new Result(user, tokens.issue(user));
+		return new Result(user, tokens.issue(user.getId()));
+	}
+
+	TokenService.Tokens refresh(String refreshToken) {
+		return tokens.rotate(refreshToken);
 	}
 
 	@Transactional
-	void logout(long tokenId) {
-		tokens.revoke(tokenId);
+	void logout(UUID sessionId) {
+		tokens.revoke(sessionId);
 	}
 
 	@Transactional(readOnly = true)

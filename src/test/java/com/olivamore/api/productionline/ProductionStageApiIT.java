@@ -1,7 +1,8 @@
 package com.olivamore.api.productionline;
 
 import com.olivamore.api.TestcontainersConfiguration;
-import com.olivamore.api.shared.web.throttle.RateLimiter;
+import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
+import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ class ProductionStageApiIT {
 	int port;
 
 	@Autowired
-	RateLimiter rateLimiter;
+	RateLimitBuckets rateLimiter;
 
 	RestClient http;
 
@@ -42,7 +43,7 @@ class ProductionStageApiIT {
 		http = RestClient.create("http://localhost:" + port);
 		rateLimiter.clear();
 		admin = send(HttpMethod.POST, "/api/auth/login",
-			"{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}").json().get("token").asString();
+			"{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}").json().get(TestAuth.ACCESS_TOKEN).asString();
 		Response line = send(HttpMethod.POST, "/api/production-lines", """
 			{"name":"Test Hatti %d",
 			 "input_production_products":[{"production_product_id":1}],
