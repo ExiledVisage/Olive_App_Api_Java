@@ -8,7 +8,8 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.olivamore.api.identity.auth.TokenService;
 import com.olivamore.api.identity.role.Role;
 import com.olivamore.api.identity.user.UserRepository;
-import jakarta.servlet.http.HttpServletResponse;
+import com.olivamore.api.shared.error.ApiMessages;
+import com.olivamore.api.shared.error.Problems;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -17,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.authorization.AuthorityAuthorizationManager;
@@ -44,9 +45,9 @@ import org.springframework.security.web.servlet.util.matcher.PathPatternRequestM
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.StringUtils;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateCrtKey;
@@ -72,13 +73,13 @@ class SecurityConfig {
 	@Bean
 	@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 	SecurityFilterChain apiSecurity(HttpSecurity http, TokenService tokens, UserRepository users,
-		Assignments assignments) throws Exception {
+		Assignments assignments, ApiMessages messages, JsonMapper json) throws Exception {
 		AuthenticationEntryPoint unauthenticated = (request, response, e) -> {
 			response.setHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer");
-			write(response, 401, "Unauthenticated.");
+			Problems.write(request, response, Problems.of(HttpStatus.UNAUTHORIZED, messages.text("{error.unauthenticated}")), json);
 		};
 		AccessDeniedHandler denied = (request, response, e) ->
-			write(response, 403, AccessDeniedAdvice.WRONG_PERMISSIONS);
+			Problems.write(request, response, Problems.of(HttpStatus.FORBIDDEN, AccessDeniedAdvice.WRONG_PERMISSIONS), json);
 		return http
 			.securityMatcher("/api/**")
 			.csrf(AbstractHttpConfigurer::disable)
@@ -105,14 +106,6 @@ class SecurityConfig {
 			.<RequestMatcher>map(paths::matcher).toList());
 		DefaultBearerTokenResolver bearer = new DefaultBearerTokenResolver();
 		return request -> open.matches(request) ? null : bearer.resolve(request);
-	}
-
-	private static void write(HttpServletResponse response, int status, String message)
-		throws IOException {
-		response.setStatus(status);
-		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-		response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		response.getWriter().write("{\"message\":\"" + message + "\"}");
 	}
 
 	/** Admin rolu, tabloda kaydi olmasa da her izne sahiptir. */

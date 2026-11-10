@@ -1,6 +1,5 @@
 package com.olivamore.api.inventory.storageunit;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.inventory.material.MaterialUnit;
 
@@ -13,7 +12,6 @@ record StorageUnitResponse(
 	Long id,
 	String name,
 	String code,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal capacity,
 	MaterialUnit capacityUnit,
 	boolean isBlendTank,
@@ -53,9 +51,7 @@ record StorageUnitResponse(
 		Long id,
 		Long storageUnitId,
 		Long productionProductAttributeDefinitionId,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal minValueDecimal,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal maxValueDecimal,
 		ApplyMode applyMode,
 		boolean isActive,
@@ -69,7 +65,6 @@ record StorageUnitResponse(
 		Long id,
 		Long storageUnitId,
 		Long productionProductId,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal currentQuantity,
 		MaterialUnit unit,
 		Product productionProduct,

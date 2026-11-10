@@ -1,10 +1,10 @@
 package com.olivamore.api.process.processtype;
 
 import com.olivamore.api.process.ProcessCategory;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,12 +73,12 @@ public class ProcessTypeService {
 
 	private static void assertAssignable(ProcessCategory category) {
 		if (category != null && !category.assignable()) {
-			throw LaravelValidationException.of("category", LaravelMessages.format(LaravelMessages.IN, "category"));
+			throw ValidationFailedException.of("category", MessageKeys.IN);
 		}
 	}
 
-	private static LaravelValidationException nameTaken() {
-		return LaravelValidationException.of("name", LaravelMessages.format(LaravelMessages.UNIQUE, "name"));
+	private static ValidationFailedException nameTaken() {
+		return ValidationFailedException.of("name", MessageKeys.UNIQUE);
 	}
 
 }

@@ -48,7 +48,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AuthTokenIT {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();
-	private static final String UNAUTHENTICATED = "{\"message\":\"Unauthenticated.\"}";
+	private static final String UNAUTHENTICATED = "Unauthenticated.";
 	private static final String ADMIN = "admin@olivamore.com";
 
 	@LocalServerPort
@@ -98,7 +98,7 @@ class AuthTokenIT {
 
 		Response anonymous = me(null);
 		assertThat(anonymous.status()).isEqualTo(401);
-		assertThat(anonymous.body()).isEqualTo(UNAUTHENTICATED);
+		assertThat(detail(anonymous.body())).isEqualTo(UNAUTHENTICATED);
 	}
 
 	@Test
@@ -122,7 +122,7 @@ class AuthTokenIT {
 		Response reused = refresh(stolen);
 
 		assertThat(reused.status()).isEqualTo(401);
-		assertThat(reused.body()).isEqualTo(UNAUTHENTICATED);
+		assertThat(detail(reused.body())).isEqualTo(UNAUTHENTICATED);
 		assertThat(refresh(rotated.get(TestAuth.REFRESH_TOKEN).asString()).status()).isEqualTo(401);
 		assertThat(me(rotated.get(TestAuth.ACCESS_TOKEN).asString()).status()).isEqualTo(401);
 		assertThat(me(login.get(TestAuth.ACCESS_TOKEN).asString()).status()).isEqualTo(401);
@@ -185,7 +185,7 @@ class AuthTokenIT {
 		Response response = me(token(signingKey, signingKey.getKeyID(), claims -> claims.issuedAt(past.minusSeconds(900)).expiresAt(past)));
 
 		assertThat(response.status()).isEqualTo(401);
-		assertThat(response.body()).isEqualTo(UNAUTHENTICATED);
+		assertThat(detail(response.body())).isEqualTo(UNAUTHENTICATED);
 	}
 
 	@Test
@@ -266,7 +266,8 @@ class AuthTokenIT {
 			HttpResponse.BodyHandlers.ofString());
 
 		assertThat(declared.statusCode()).isEqualTo(413);
-		assertThat(declared.body()).isEqualTo("{\"message\":\"Payload Too Large.\"}");
+		assertThat(JSON.readTree(declared.body())).isEqualTo(JSON.readTree("""
+			{"title":"Content Too Large","status":413,"detail":"Payload Too Large.","instance":"/api/auth/login"}"""));
 		assertThat(chunked.statusCode()).isEqualTo(413);
 	}
 
@@ -290,6 +291,11 @@ class AuthTokenIT {
 		NimbusJwtEncoder encoder = new NimbusJwtEncoder(new ImmutableJWKSet<>(new JWKSet(key)));
 		JwsHeader header = JwsHeader.with(SignatureAlgorithm.RS256).keyId(kid).build();
 		return encoder.encode(JwtEncoderParameters.from(header, change.apply(builder).build())).getTokenValue();
+	}
+
+	/** ProblemDetail cevabinin mesaji. */
+	private static String detail(String body) {
+		return JSON.readTree(body).get("detail").asString();
 	}
 
 	private static JsonNode decode(String jwt, int part) {

@@ -4,8 +4,9 @@ import com.olivamore.api.inventory.storagemovement.StorageMovementListing;
 import com.olivamore.api.inventory.storagemovement.StorageMovementResponse;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +39,7 @@ class StorageUnitController {
 	@GetMapping("/api/storage-units")
 	@PreAuthorize("hasAuthority('storage_unit.view')")
 	ListResponse<StorageUnitResponse> index() {
-		return new ListResponse.Plain<>(responses.all());
+		return new ListResponse<>(responses.all());
 	}
 
 	@GetMapping("/api/storage-units/{id}")
@@ -48,19 +49,19 @@ class StorageUnitController {
 		return DataResponse.of(responses.one(id));
 	}
 
-	/** En yeni once (moved_at desc, id desc); {@code per_page} varsa sayfali. */
+	/** En yeni once (moved_at desc, id desc); {@code page}/{@code size} varsa sayfali. */
 	@GetMapping("/api/storage-units/{id}/movements")
 	@PreAuthorize("hasAuthority('storage_unit.view')")
-	ListResponse<StorageMovementResponse> movements(@PathVariable long id, HttpServletRequest request) {
+	PagedModel<StorageMovementResponse> movements(@PathVariable long id, Pageable pageable) {
 		units.find(id);
-		return movements.forUnit(id, request);
+		return movements.forUnit(id, pageable);
 	}
 
 	@GetMapping("/api/storage-units/{id}/balances")
 	@PreAuthorize("hasAuthority('storage_unit.view')")
 	ListResponse<StorageUnitResponse.Balance> balances(@PathVariable long id) {
 		units.find(id);
-		return new ListResponse.Plain<>(responses.balances(id));
+		return new ListResponse<>(responses.balances(id));
 	}
 
 	// ---- yazma (storage_unit.manage) ---------------------------------------

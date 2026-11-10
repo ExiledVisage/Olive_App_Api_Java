@@ -1,6 +1,5 @@
 package com.olivamore.api.finishedproduct;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;
@@ -24,7 +23,6 @@ public record RecipeResponse(
 		Long id,
 		Long productionProductTypeId,
 		String productionProductTypeName,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal ratio) {
 	}
 
@@ -32,11 +30,8 @@ public record RecipeResponse(
 		Long id,
 		Long attributeDefinitionId,
 		String attributeLabel,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal value,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal minDeviation,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal maxDeviation) {
 	}
 

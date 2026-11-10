@@ -32,6 +32,13 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
+  data:
+    web:
+      pageable:
+        # ?page=0&size=20 (0 tabanli); sayfa parametresi yoksa butun kayitlar (WebConfig)
+        max-page-size: 200
+        serialization-mode: via-dto
+
   docker:
     compose:
       # compose.yaml'daki servisler uygulama kapaninca durmasin

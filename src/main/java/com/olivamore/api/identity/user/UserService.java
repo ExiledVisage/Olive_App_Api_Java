@@ -8,7 +8,7 @@ import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +48,7 @@ class UserService {
 		List<String> names = request.roles() == null ? List.of() : request.roles();
 		ValidationErrors errors = new ValidationErrors();
 		if (users.existsByEmail(request.email())) {
-			errors.add("email", LaravelMessages.UNIQUE);
+			errors.add("email", MessageKeys.UNIQUE);
 		}
 		checkRoles(errors, names);
 		errors.throwIfAny();
@@ -69,7 +69,7 @@ class UserService {
 		User user = get(id);
 		ValidationErrors errors = new ValidationErrors();
 		if (users.existsByEmailAndIdNot(request.email(), id)) {
-			errors.add("email", LaravelMessages.UNIQUE);
+			errors.add("email", MessageKeys.UNIQUE);
 		}
 		if (request.roles() != null && request.roles().value() != null) {
 			checkRoles(errors, request.roles().value());
@@ -120,10 +120,10 @@ class UserService {
 		for (int i = 0; i < names.size(); i++) {
 			String path = "roles." + i;
 			if (names.get(i) == null) {
-				errors.add(path, LaravelMessages.STRING);
+				errors.add(path, MessageKeys.STRING);
 			}
 			else if (!roles.existsByName(names.get(i))) {
-				errors.add(path, LaravelMessages.EXISTS);
+				errors.add(path, MessageKeys.EXISTS);
 			}
 		}
 	}

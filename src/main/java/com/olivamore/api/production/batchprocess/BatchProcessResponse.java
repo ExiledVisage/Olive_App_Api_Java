@@ -1,6 +1,5 @@
 package com.olivamore.api.production.batchprocess;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.process.ProcessCategory;
@@ -62,7 +61,7 @@ public record BatchProcessResponse(
 	}
 
 	public record FieldValueResponse(Long id, Long batchProcessId, Long processTypeFieldId, String valueText,
-		@JsonFormat(shape = JsonFormat.Shape.STRING) BigDecimal valueDecimal, Long valueInteger, Boolean valueBoolean,
+		BigDecimal valueDecimal, Long valueInteger, Boolean valueBoolean,
 		LocalDateTime valueDatetime, JsonNode valueJson, Object resolvedValue, FieldSummary processTypeField) {
 	}
 

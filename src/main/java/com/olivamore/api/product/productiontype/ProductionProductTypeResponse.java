@@ -1,6 +1,5 @@
 package com.olivamore.api.product.productiontype;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,10 +11,8 @@ public record ProductionProductTypeResponse(
 	String code,
 	String type,
 	ProductUnit unit,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal densityKgPerLitre,
 	Double effectiveDensityKgPerLitre,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal defaultDensityKgPerLitre,
 	Long productionProductId,
 	ProductSummary productionProduct,

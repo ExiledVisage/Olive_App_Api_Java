@@ -4,10 +4,10 @@ import com.olivamore.api.product.ProductUsage;
 import com.olivamore.api.product.ProductUsageCounter;
 import com.olivamore.api.product.productionproduct.ProductionProduct;
 import com.olivamore.api.product.productionproduct.ProductionProductService;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,12 +86,12 @@ class ProductionProductTypeService {
 	}
 
 	private ProductionProduct product(long id) {
-		return products.findOptional(id).orElseThrow(() -> LaravelValidationException.of("production_product_id",
-			LaravelMessages.format(LaravelMessages.EXISTS, "production_product_id")));
+		return products.findOptional(id).orElseThrow(() -> ValidationFailedException.of("production_product_id",
+			MessageKeys.EXISTS));
 	}
 
-	private static LaravelValidationException codeTaken() {
-		return LaravelValidationException.of("code", LaravelMessages.format(LaravelMessages.UNIQUE, "code"));
+	private static ValidationFailedException codeTaken() {
+		return ValidationFailedException.of("code", MessageKeys.UNIQUE);
 	}
 
 }

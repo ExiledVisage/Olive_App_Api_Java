@@ -3,9 +3,9 @@ package com.olivamore.api.inventory.storagemovement;
 import com.olivamore.api.inventory.storageunit.StorageUnitRepository;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.ListResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,16 +67,16 @@ class StorageMovementController {
 		return created(movements.adjustment(request));
 	}
 
-	/** {@code ?date_from}, {@code ?date_to}: moved_at araligi; {@code per_page} varsa sayfali. */
+	/** {@code ?date_from}, {@code ?date_to}: moved_at araligi; {@code page}/{@code size} varsa sayfali. */
 	@GetMapping("/api/storage-units/{id}/movement-history")
 	@PreAuthorize("hasAuthority('storage_movement.view')")
-	ListResponse<StorageMovementResponse> history(@PathVariable long id,
+	PagedModel<StorageMovementResponse> history(@PathVariable long id,
 		@RequestParam(name = "date_from", required = false) String dateFrom,
-		@RequestParam(name = "date_to", required = false) String dateTo, HttpServletRequest request) {
+		@RequestParam(name = "date_to", required = false) String dateTo, Pageable pageable) {
 		if (!units.existsById(id)) {
 			throw new ModelNotFoundException("StorageUnit", id);
 		}
-		return listing.history(id, dateFrom, dateTo, request);
+		return listing.history(id, dateFrom, dateTo, pageable);
 	}
 
 	private ResponseEntity<DataResponse<StorageMovementResponse>> created(StorageMovement movement) {

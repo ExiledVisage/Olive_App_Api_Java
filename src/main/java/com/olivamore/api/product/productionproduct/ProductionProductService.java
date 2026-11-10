@@ -6,7 +6,7 @@ import com.olivamore.api.product.ProductUsageCounter;
 import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,10 +58,10 @@ public class ProductionProductService {
 	ProductionProduct create(CreateProductionProductRequest request) {
 		ValidationErrors errors = new ValidationErrors();
 		if (repository.existsByKey(request.key())) {
-			errors.add("key", LaravelMessages.UNIQUE);
+			errors.add("key", MessageKeys.UNIQUE);
 		}
 		if (repository.existsByName(request.name())) {
-			errors.add("name", LaravelMessages.UNIQUE);
+			errors.add("name", MessageKeys.UNIQUE);
 		}
 		errors.throwIfAny();
 		return repository.save(new ProductionProduct(request));
@@ -72,10 +72,10 @@ public class ProductionProductService {
 		ProductionProduct product = find(id);
 		ValidationErrors errors = new ValidationErrors();
 		if (request.key() != null && repository.existsByKeyAndIdNot(request.key(), id)) {
-			errors.add("key", LaravelMessages.UNIQUE);
+			errors.add("key", MessageKeys.UNIQUE);
 		}
 		if (request.name() != null && repository.existsByNameAndIdNot(request.name(), id)) {
-			errors.add("name", LaravelMessages.UNIQUE);
+			errors.add("name", MessageKeys.UNIQUE);
 		}
 		errors.throwIfAny();
 		product.apply(request);

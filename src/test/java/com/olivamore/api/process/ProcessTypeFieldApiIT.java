@@ -85,7 +85,7 @@ class ProcessTypeFieldApiIT {
 		Response r = send(HttpMethod.GET, "/api/process-types/999999/fields", null);
 
 		assertThat(r.status).isEqualTo(404);
-		assertThat(r.body).contains("App\\\\Models\\\\ProcessType");
+		assertThat(r.body).contains("\"detail\":\"ProcessType 999999 not found.\"");
 	}
 
 	@Test

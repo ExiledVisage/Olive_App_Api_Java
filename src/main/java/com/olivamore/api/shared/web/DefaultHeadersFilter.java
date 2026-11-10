@@ -13,7 +13,7 @@ import java.io.IOException;
  * {@code Cache-Control: no-cache, private} yazar. Farkli deger isteyen endpoint (orn. APK indirme:
  * {@code public}) basligi kendisi ezer.
  * <p>
- * WebConfig'te FilterRegistrationBean ile kaydedilir (bean degil; bkz. {@link InputNormalizationFilter}).
+ * WebConfig'te FilterRegistrationBean ile kaydedilir: bean olsaydi Spring Modulith insight proxy'lerdi.
  */
 public class DefaultHeadersFilter extends OncePerRequestFilter {
 

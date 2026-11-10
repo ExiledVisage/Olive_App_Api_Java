@@ -34,11 +34,12 @@ class OliveApiApplicationIT {
 	}
 
 	@Test
-	void unknownRouteReturnsLaravelBody() {
+	void unknownRouteIsProblemDetail() {
 		String token = TestAuth.accessToken(LaravelReplay.client(port), "admin@olivamore.com");
 		Response response = get("/api/yok-boyle-bir-yer?search=%20a%20", token);
 		assertThat(response.status()).isEqualTo(404);
-		assertThat(response.body()).isEqualTo("{\"message\":\"The route api/yok-boyle-bir-yer could not be found.\"}");
+		assertThat(response.body()).contains("\"detail\":\"The route api/yok-boyle-bir-yer could not be found.\"",
+			"\"instance\":\"/api/yok-boyle-bir-yer\"");
 	}
 
 	@Test

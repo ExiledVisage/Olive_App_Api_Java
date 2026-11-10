@@ -8,7 +8,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The key field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The key field is required. (and 1 more error)",
+    "instance": "/api/production-products",
     "errors": {
      "key": [
       "The key field is required."
@@ -30,7 +33,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The key has already been taken. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The key has already been taken. (and 1 more error)",
+    "instance": "/api/production-products",
     "errors": {
      "key": [
       "The key has already been taken."
@@ -53,7 +59,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The default density kg per litre field must not be greater than 25.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The default density kg per litre field must not be greater than 25.",
+    "instance": "/api/production-products",
     "errors": {
      "default_density_kg_per_litre": [
       "The default density kg per litre field must not be greater than 25."
@@ -73,7 +82,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The default density kg per litre field must be a number.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The default density kg per litre field must be a number.",
+    "instance": "/api/production-products",
     "errors": {
      "default_density_kg_per_litre": [
       "The default density kg per litre field must be a number."
@@ -99,7 +111,7 @@
      "key": "test_kategori",
      "name": "Test Kategori",
      "description": "Deneme",
-     "default_density_kg_per_litre": "0.9200",
+     "default_density_kg_per_litre": 0.92,
      "production_lines": []
     }
    },
@@ -122,7 +134,7 @@
      "key": "test_kategori",
      "name": "Test Kategori 2",
      "description": "Deneme",
-     "default_density_kg_per_litre": "0.9200",
+     "default_density_kg_per_litre": 0.92,
      "production_lines": []
     }
    },
@@ -142,7 +154,7 @@
      "key": "test_kategori",
      "name": "Test Kategori 2",
      "description": "Deneme",
-     "default_density_kg_per_litre": "0.9200",
+     "default_density_kg_per_litre": 0.92,
      "production_lines": []
     }
    },
@@ -157,7 +169,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The key has already been taken.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The key has already been taken.",
+    "instance": "/api/production-products/{P}",
     "errors": {
      "key": [
       "The key has already been taken."
@@ -193,8 +208,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Zeytin' ürün kategorisi silinemez; kullanıldığı yerler: 2 ürün tipi, 3 hat girdisi, 9 aşama extension girdisi.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Zeytin' ürün kategorisi silinemez; kullanıldığı yerler: 2 ürün tipi, 3 hat girdisi, 9 aşama extension girdisi.",
+    "instance": "/api/production-products/1"
    },
    "save": null
   },
@@ -205,7 +222,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 4 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 4 more errors)",
+    "instance": "/api/production-product-types",
     "errors": {
      "name": [
       "The name field is required."
@@ -246,7 +266,7 @@
      "code": "TEST_TIP",
      "type": "deneme",
      "unit": "KG",
-     "density_kg_per_litre": "0.9000",
+     "density_kg_per_litre": 0.9,
      "effective_density_kg_per_litre": 0.9,
      "default_density_kg_per_litre": null,
      "production_product_id": 5,
@@ -256,8 +276,8 @@
       "name": "Test Kategori 2",
       "description": "Deneme"
      },
-     "created_at": "2026-11-06T18:45:14.000000Z",
-     "updated_at": "2026-11-06T18:45:14.000000Z"
+     "created_at": "2026-11-06T18:45:14Z",
+     "updated_at": "2026-11-06T18:45:14Z"
     }
    },
    "save": [
@@ -278,7 +298,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected unit is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected unit is invalid.",
+    "instance": "/api/production-product-types",
     "errors": {
      "unit": [
       "The selected unit is invalid."
@@ -300,7 +323,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The code has already been taken.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The code has already been taken.",
+    "instance": "/api/production-product-types",
     "errors": {
      "code": [
       "The code has already been taken."
@@ -318,7 +344,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected production product id is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected production product id is invalid.",
+    "instance": "/api/production-product-types/{T}",
     "errors": {
      "production_product_id": [
       "The selected production product id is invalid."
@@ -352,8 +381,8 @@
       "name": "Test Kategori 2",
       "description": "Deneme"
      },
-     "created_at": "2026-11-06T18:45:14.000000Z",
-     "updated_at": "2026-11-06T18:45:14.000000Z"
+     "created_at": "2026-11-06T18:45:14Z",
+     "updated_at": "2026-11-06T18:45:14Z"
     }
    },
    "save": null
@@ -381,8 +410,8 @@
       "name": "Test Kategori 2",
       "description": "Deneme"
      },
-     "created_at": "2026-11-06T18:45:14.000000Z",
-     "updated_at": "2026-11-06T18:45:14.000000Z"
+     "created_at": "2026-11-06T18:45:14Z",
+     "updated_at": "2026-11-06T18:45:14Z"
     }
    },
    "save": null
@@ -419,8 +448,8 @@
         "name": "Test Kategori 2",
         "description": "Deneme"
        },
-       "created_at": "2026-11-06T18:45:14.000000Z",
-       "updated_at": "2026-11-06T18:45:14.000000Z"
+       "created_at": "2026-11-06T18:45:14Z",
+       "updated_at": "2026-11-06T18:45:14Z"
       }
      ],
      "production_lines": []
@@ -435,8 +464,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Gemlik Zeytini' ürün tipi silinemez; kullanıldığı yerler: 180 materyal, 181 parti girdisi.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Gemlik Zeytini' ürün tipi silinemez; kullanıldığı yerler: 180 materyal, 181 parti girdisi.",
+    "instance": "/api/production-product-types/1"
    },
    "save": null
   },
@@ -447,7 +478,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The attribute key field is required. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The attribute key field is required. (and 2 more errors)",
+    "instance": "/api/production-products/{P}/attribute-definitions",
     "errors": {
      "attribute_key": [
       "The attribute key field is required."
@@ -476,7 +510,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/production-products/{P}/attribute-definitions"
    },
    "save": [
     "M",
@@ -494,7 +531,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/production-products/{P}/attribute-definitions"
    },
    "save": [
     "M2",
@@ -539,8 +579,8 @@
      "label": "Yeni Etiket",
      "data_type": "decimal",
      "unit": "%",
-     "created_at": "2026-11-06T16:00:00.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T16:00:00Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": null
@@ -554,7 +594,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/production-products/{P}/attribute-definitions/{M}"
    },
    "save": null
   },
@@ -565,8 +608,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Seçilen attribute definition bu ürün kategorisine ait değil.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Seçilen attribute definition bu ürün kategorisine ait değil.",
+    "instance": "/api/production-products/1/attribute-definitions/{M}"
    },
    "save": null
   },
@@ -595,8 +640,8 @@
       "label": "Asitlik",
       "data_type": "decimal",
       "unit": "%",
-      "created_at": "2026-11-06T16:00:00.000000Z",
-      "updated_at": "2026-11-06T16:00:00.000000Z"
+      "created_at": "2026-11-06T16:00:00Z",
+      "updated_at": "2026-11-06T16:00:00Z"
      },
      {
       "id": 9,
@@ -615,8 +660,8 @@
       "label": "Yeni Etiket",
       "data_type": "decimal",
       "unit": "%",
-      "created_at": "2026-11-06T16:00:00.000000Z",
-      "updated_at": "2026-11-06T18:45:15.000000Z"
+      "created_at": "2026-11-06T16:00:00Z",
+      "updated_at": "2026-11-06T18:45:15Z"
      }
     ]
    },
@@ -647,7 +692,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 1 more error)",
+    "instance": "/api/process-types",
     "errors": {
      "name": [
       "The name field is required."
@@ -669,7 +717,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected category is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected category is invalid.",
+    "instance": "/api/process-types",
     "errors": {
      "category": [
       "The selected category is invalid."
@@ -696,8 +747,8 @@
      "category": "quality",
      "is_active": false,
      "fields": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -714,7 +765,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The name has already been taken.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name has already been taken.",
+    "instance": "/api/process-types/{PT}",
     "errors": {
      "name": [
       "The name has already been taken."
@@ -740,8 +794,8 @@
      "category": "quality",
      "is_active": true,
      "fields": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": null
@@ -753,8 +807,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Kantarda Tartım' proses tipi silinemez; kullanıldığı yerler: 3 üretim aşaması, 542 girilmiş ölçüm.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Kantarda Tartım' proses tipi silinemez; kullanıldığı yerler: 3 üretim aşaması, 542 girilmiş ölçüm.",
+    "instance": "/api/process-types/1"
    },
    "save": null
   },
@@ -765,7 +821,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The field key field is required. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The field key field is required. (and 2 more errors)",
+    "instance": "/api/process-types/{PT}/fields",
     "errors": {
      "field_key": [
       "The field key field is required."
@@ -816,8 +875,8 @@
       ]
      },
      "default_value": "x",
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -849,8 +908,8 @@
      "is_active": true,
      "options": null,
      "default_value": null,
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -869,7 +928,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/process-types/{PT}/fields"
    },
    "save": null
   },
@@ -896,8 +958,8 @@
      "is_active": true,
      "options": null,
      "default_value": null,
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -914,7 +976,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected data type is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected data type is invalid.",
+    "instance": "/api/process-types/1/fields/{F}",
     "errors": {
      "data_type": [
       "The selected data type is invalid."
@@ -932,7 +997,10 @@
    },
    "status": 404,
    "response": {
-    "message": "Field not found for this process type."
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Field not found for this process type.",
+    "instance": "/api/process-types/1/fields/{F}"
    },
    "save": null
   },
@@ -959,8 +1027,8 @@
      "is_active": true,
      "options": null,
      "default_value": "x",
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": null
@@ -985,8 +1053,8 @@
       "is_active": true,
       "options": null,
       "default_value": null,
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:15.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:15Z"
      },
      {
       "id": 9,
@@ -1000,8 +1068,8 @@
       "is_active": true,
       "options": null,
       "default_value": "x",
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:15.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:15Z"
      }
     ]
    },
@@ -1033,8 +1101,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:15.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:15Z"
       },
       {
        "id": 9,
@@ -1048,12 +1116,12 @@
        "is_active": true,
        "options": null,
        "default_value": "x",
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:15.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:15Z"
       }
      ],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": null
@@ -1076,8 +1144,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Kamyon Plakası' alanı silinemez; kullanıldığı yerler: 271 girilmiş ölçüm. Artık kullanılmayacaksa is_active alanını false yapın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Kamyon Plakası' alanı silinemez; kullanıldığı yerler: 271 girilmiş ölçüm. Artık kullanılmayacaksa is_active alanını false yapın.",
+    "instance": "/api/process-types/1/fields/1"
    },
    "save": null
   },
@@ -1099,7 +1169,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 2 more errors)",
+    "instance": "/api/production-lines",
     "errors": {
      "name": [
       "The name field is required."
@@ -1136,7 +1209,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The input_production_products.0.production_product_id field has a duplicate value. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The input_production_products.0.production_product_id field has a duplicate value. (and 1 more error)",
+    "instance": "/api/production-lines",
     "errors": {
      "input_production_products.0.production_product_id": [
       "The input_production_products.0.production_product_id field has a duplicate value."
@@ -1227,8 +1303,8 @@
       }
      ],
      "stages": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -1304,8 +1380,8 @@
       }
      ],
      "stages": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": null
@@ -1323,7 +1399,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The input_production_products.0.production_product_id field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The input_production_products.0.production_product_id field is required.",
+    "instance": "/api/production-lines/{L}",
     "errors": {
      "input_production_products.0.production_product_id": [
       "The input_production_products.0.production_product_id field is required."
@@ -1339,8 +1418,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Zeytinyağı Üretim Hattı' hattı silinemez; kullanıldığı yerler: 273 üretim partisi.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Zeytinyağı Üretim Hattı' hattı silinemez; kullanıldığı yerler: 273 üretim partisi.",
+    "instance": "/api/production-lines/1"
    },
    "save": null
   },
@@ -1351,7 +1432,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 1 more error)",
+    "instance": "/api/production-lines/{L}/stages",
     "errors": {
      "name": [
       "The name field is required."
@@ -1383,8 +1467,8 @@
      "requires_approval": false,
      "process_type": null,
      "extensions": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -1430,16 +1514,16 @@
         "is_active": true,
         "options": null,
         "default_value": "x",
-        "created_at": "2026-11-06T18:45:15.000000Z",
-        "updated_at": "2026-11-06T18:45:15.000000Z"
+        "created_at": "2026-11-06T18:45:15Z",
+        "updated_at": "2026-11-06T18:45:15Z"
        }
       ],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:15.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:15Z"
      },
      "extensions": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -1468,8 +1552,8 @@
      "requires_approval": true,
      "process_type": null,
      "extensions": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": [
@@ -1513,16 +1597,16 @@
         "is_active": true,
         "options": null,
         "default_value": "x",
-        "created_at": "2026-11-06T18:45:15.000000Z",
-        "updated_at": "2026-11-06T18:45:15.000000Z"
+        "created_at": "2026-11-06T18:45:15Z",
+        "updated_at": "2026-11-06T18:45:15Z"
        }
       ],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:15.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:15Z"
      },
      "extensions": [],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:16.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:16Z"
     }
    },
    "save": null
@@ -1536,7 +1620,10 @@
    },
    "status": 404,
    "response": {
-    "message": "Stage not found for this production line."
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Stage not found for this production line.",
+    "instance": "/api/production-lines/1/stages/{SA}"
    },
    "save": null
   },
@@ -1551,7 +1638,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The is required field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The is required field must be true or false.",
+    "instance": "/api/production-lines/{L}/stages",
     "errors": {
      "is_required": [
       "The is required field must be true or false."
@@ -1578,8 +1668,8 @@
       "requires_approval": false,
       "process_type": null,
       "extensions": [],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:16.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:16Z"
      },
      {
       "id": 39,
@@ -1591,8 +1681,8 @@
       "requires_approval": true,
       "process_type": null,
       "extensions": [],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:16.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:16Z"
      },
      {
       "id": 38,
@@ -1621,16 +1711,16 @@
          "is_active": true,
          "options": null,
          "default_value": "x",
-         "created_at": "2026-11-06T18:45:15.000000Z",
-         "updated_at": "2026-11-06T18:45:15.000000Z"
+         "created_at": "2026-11-06T18:45:15Z",
+         "updated_at": "2026-11-06T18:45:15Z"
         }
        ],
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:15.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:15Z"
       },
       "extensions": [],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:16.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:16Z"
      }
     ]
    },
@@ -1665,8 +1755,8 @@
       "requires_approval": true,
       "process_type": null,
       "extensions": [],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:16.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:16Z"
      },
      {
       "id": 38,
@@ -1695,16 +1785,16 @@
          "is_active": true,
          "options": null,
          "default_value": "x",
-         "created_at": "2026-11-06T18:45:15.000000Z",
-         "updated_at": "2026-11-06T18:45:15.000000Z"
+         "created_at": "2026-11-06T18:45:15Z",
+         "updated_at": "2026-11-06T18:45:15Z"
         }
        ],
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:15.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:15Z"
       },
       "extensions": [],
-      "created_at": "2026-11-06T18:45:15.000000Z",
-      "updated_at": "2026-11-06T18:45:16.000000Z"
+      "created_at": "2026-11-06T18:45:15Z",
+      "updated_at": "2026-11-06T18:45:16Z"
      }
     ]
    },
@@ -1717,7 +1807,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The extensions field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The extensions field is required.",
+    "instance": "/api/production-lines/{L}/stages/{SC}/extensions",
     "errors": {
      "extensions": [
       "The extensions field is required."
@@ -1735,7 +1828,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The extensions field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The extensions field is required.",
+    "instance": "/api/production-lines/{L}/stages/{SC}/extensions",
     "errors": {
      "extensions": [
       "The extensions field is required."
@@ -1760,7 +1856,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The extensions.0.stage_extension_type_id field has a duplicate value. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The extensions.0.stage_extension_type_id field has a duplicate value. (and 1 more error)",
+    "instance": "/api/production-lines/{L}/stages/{SC}/extensions",
     "errors": {
      "extensions.0.stage_extension_type_id": [
       "The extensions.0.stage_extension_type_id field has a duplicate value."
@@ -1791,7 +1890,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Geçersiz stage extension field gönderildi.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Geçersiz stage extension field gönderildi.",
+    "instance": "/api/production-lines/{L}/stages/{SC}/extensions",
     "errors": {
      "extensions.values": [
       "Geçersiz stage extension field gönderildi."
@@ -1934,8 +2036,8 @@
        ]
       }
      ],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:16.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:16Z"
     }
    },
    "save": null
@@ -1983,8 +2085,8 @@
         "is_active": true,
         "options": null,
         "default_value": null,
-        "created_at": "2026-11-06T15:35:12.000000Z",
-        "updated_at": "2026-11-06T15:35:12.000000Z"
+        "created_at": "2026-11-06T15:35:12Z",
+        "updated_at": "2026-11-06T15:35:12Z"
        },
        {
         "id": 2,
@@ -1998,12 +2100,12 @@
         "is_active": true,
         "options": null,
         "default_value": null,
-        "created_at": "2026-11-06T15:35:12.000000Z",
-        "updated_at": "2026-11-06T15:35:12.000000Z"
+        "created_at": "2026-11-06T15:35:12Z",
+        "updated_at": "2026-11-06T15:35:12Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:11.000000Z",
-      "updated_at": "2026-11-06T15:35:11.000000Z"
+      "created_at": "2026-11-06T15:35:11Z",
+      "updated_at": "2026-11-06T15:35:11Z"
      },
      "extensions": [
       {
@@ -2039,8 +2141,8 @@
        "output_production_products": []
       }
      ],
-     "created_at": "2026-11-06T15:35:11.000000Z",
-     "updated_at": "2026-11-06T15:35:11.000000Z"
+     "created_at": "2026-11-06T15:35:11Z",
+     "updated_at": "2026-11-06T15:35:11Z"
     }
    },
    "save": null
@@ -2215,8 +2317,8 @@
          ]
         }
        ],
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:16.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:16Z"
       },
       {
        "id": 38,
@@ -2245,20 +2347,20 @@
           "is_active": true,
           "options": null,
           "default_value": "x",
-          "created_at": "2026-11-06T18:45:15.000000Z",
-          "updated_at": "2026-11-06T18:45:15.000000Z"
+          "created_at": "2026-11-06T18:45:15Z",
+          "updated_at": "2026-11-06T18:45:15Z"
          }
         ],
-        "created_at": "2026-11-06T18:45:15.000000Z",
-        "updated_at": "2026-11-06T18:45:15.000000Z"
+        "created_at": "2026-11-06T18:45:15Z",
+        "updated_at": "2026-11-06T18:45:15Z"
        },
        "extensions": [],
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:16.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:16Z"
       }
      ],
-     "created_at": "2026-11-06T18:45:15.000000Z",
-     "updated_at": "2026-11-06T18:45:15.000000Z"
+     "created_at": "2026-11-06T18:45:15Z",
+     "updated_at": "2026-11-06T18:45:15Z"
     }
    },
    "save": null
@@ -2287,8 +2389,8 @@
        "name": "Test Kategori 2",
        "description": "Deneme"
       },
-      "created_at": "2026-11-06T18:45:14.000000Z",
-      "updated_at": "2026-11-06T18:45:14.000000Z"
+      "created_at": "2026-11-06T18:45:14Z",
+      "updated_at": "2026-11-06T18:45:14Z"
      },
      "input_production_lines": [
       {
@@ -2354,8 +2456,8 @@
          "is_required": true,
          "requires_approval": true,
          "process_type": null,
-         "created_at": "2026-11-06T18:45:15.000000Z",
-         "updated_at": "2026-11-06T18:45:16.000000Z"
+         "created_at": "2026-11-06T18:45:15Z",
+         "updated_at": "2026-11-06T18:45:16Z"
         },
         {
          "id": 38,
@@ -2384,19 +2486,19 @@
             "is_active": true,
             "options": null,
             "default_value": "x",
-            "created_at": "2026-11-06T18:45:15.000000Z",
-            "updated_at": "2026-11-06T18:45:15.000000Z"
+            "created_at": "2026-11-06T18:45:15Z",
+            "updated_at": "2026-11-06T18:45:15Z"
            }
           ],
-          "created_at": "2026-11-06T18:45:15.000000Z",
-          "updated_at": "2026-11-06T18:45:15.000000Z"
+          "created_at": "2026-11-06T18:45:15Z",
+          "updated_at": "2026-11-06T18:45:15Z"
          },
-         "created_at": "2026-11-06T18:45:15.000000Z",
-         "updated_at": "2026-11-06T18:45:16.000000Z"
+         "created_at": "2026-11-06T18:45:15Z",
+         "updated_at": "2026-11-06T18:45:16Z"
         }
        ],
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:15.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:15Z"
       }
      ],
      "output_production_lines": [],
@@ -2464,8 +2566,8 @@
          "is_required": true,
          "requires_approval": true,
          "process_type": null,
-         "created_at": "2026-11-06T18:45:15.000000Z",
-         "updated_at": "2026-11-06T18:45:16.000000Z"
+         "created_at": "2026-11-06T18:45:15Z",
+         "updated_at": "2026-11-06T18:45:16Z"
         },
         {
          "id": 38,
@@ -2494,19 +2596,19 @@
             "is_active": true,
             "options": null,
             "default_value": "x",
-            "created_at": "2026-11-06T18:45:15.000000Z",
-            "updated_at": "2026-11-06T18:45:15.000000Z"
+            "created_at": "2026-11-06T18:45:15Z",
+            "updated_at": "2026-11-06T18:45:15Z"
            }
           ],
-          "created_at": "2026-11-06T18:45:15.000000Z",
-          "updated_at": "2026-11-06T18:45:15.000000Z"
+          "created_at": "2026-11-06T18:45:15Z",
+          "updated_at": "2026-11-06T18:45:15Z"
          },
-         "created_at": "2026-11-06T18:45:15.000000Z",
-         "updated_at": "2026-11-06T18:45:16.000000Z"
+         "created_at": "2026-11-06T18:45:15Z",
+         "updated_at": "2026-11-06T18:45:16Z"
         }
        ],
-       "created_at": "2026-11-06T18:45:15.000000Z",
-       "updated_at": "2026-11-06T18:45:15.000000Z"
+       "created_at": "2026-11-06T18:45:15Z",
+       "updated_at": "2026-11-06T18:45:15Z"
       }
      ]
     }

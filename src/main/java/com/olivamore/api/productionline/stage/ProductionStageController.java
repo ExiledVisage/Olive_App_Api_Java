@@ -33,7 +33,7 @@ class ProductionStageController {
 
 	@GetMapping
 	ListResponse<ProductionStageResponse> index(@PathVariable long lineId) {
-		return new ListResponse.Plain<>(responses.of(service.forLine(lineId), true));
+		return new ListResponse<>(responses.of(service.forLine(lineId), true));
 	}
 
 	@GetMapping("/{id}")

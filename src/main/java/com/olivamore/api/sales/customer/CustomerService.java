@@ -2,12 +2,14 @@ package com.olivamore.api.sales.customer;
 
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.web.Pages;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import com.olivamore.api.finishedproduct.RecipeResources;
 import org.springframework.stereotype.Service;
@@ -43,8 +45,8 @@ class CustomerService {
 	}
 
 	@Transactional(readOnly = true)
-	Page<CustomerResponse> page(Boolean isActive, int page, int size) {
-		PageRequest request = PageRequest.of(page - 1, size, NEWEST_FIRST);
+	Page<CustomerResponse> page(Boolean isActive, Pageable pageable) {
+		PageRequest request = Pages.sorted(pageable, NEWEST_FIRST);
 		Page<Customer> rows = isActive == null ? customers.findAll(request) : customers.findByActive(isActive, request);
 		Map<Long, CustomerResponse> responses = withAddresses(rows.getContent()).stream()
 			.collect(Collectors.toMap(CustomerResponse::id, response -> response));
@@ -125,8 +127,8 @@ class CustomerService {
 		find(customerId);
 		long recipeId = request.finishedProductRecipeId();
 		if (recipeName(recipeId) == null) {
-			throw LaravelValidationException.of("finished_product_recipe_id",
-				LaravelMessages.format(LaravelMessages.EXISTS, "finished_product_recipe_id"));
+			throw ValidationFailedException.of("finished_product_recipe_id",
+				MessageKeys.EXISTS);
 		}
 		preferred.findByCustomerIdAndFinishedProductRecipeId(customerId, recipeId).ifPresentOrElse(
 			existing -> existing.changeNote(request.note()),

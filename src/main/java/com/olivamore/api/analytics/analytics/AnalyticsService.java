@@ -23,9 +23,8 @@ import com.olivamore.api.analytics.analytics.AnalyticsResponse.Yield;
 import com.olivamore.api.analytics.analytics.AnalyticsResponse.YieldSlot;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
-import com.olivamore.api.shared.web.PhpNumbers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +41,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.OptionalLong;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.ToDoubleFunction;
@@ -372,7 +370,7 @@ class AnalyticsService {
 			return null;
 		}
 		if (!queries.exists(table, id)) {
-			errors.add(field, LaravelMessages.EXISTS);
+			errors.add(field, MessageKeys.EXISTS);
 			return null;
 		}
 		return positive(id);
@@ -382,23 +380,24 @@ class AnalyticsService {
 		if (raw == null) {
 			return null;
 		}
-		OptionalLong value = PhpNumbers.validateInt(raw);
-		if (value.isEmpty()) {
-			errors.add(field, LaravelMessages.INTEGER);
+		try {
+			return Long.parseLong(raw.strip());
+		}
+		catch (NumberFormatException e) {
+			errors.add(field, MessageKeys.INTEGER);
 			return null;
 		}
-		return value.getAsLong();
 	}
 
 	private static void choice(ValidationErrors errors, String field, String value, boolean required,
 		Predicate<String> allowed) {
 		if (value == null) {
 			if (required) {
-				errors.add(field, LaravelMessages.REQUIRED);
+				errors.add(field, MessageKeys.REQUIRED);
 			}
 		}
 		else if (!allowed.test(value)) {
-			errors.add(field, LaravelMessages.IN);
+			errors.add(field, MessageKeys.IN);
 		}
 	}
 

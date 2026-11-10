@@ -1,6 +1,5 @@
 package com.olivamore.api.inventory.storagemovement;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.inventory.material.MaterialUnit;
@@ -20,7 +19,6 @@ public record StorageMovementResponse(
 	MovementSource sourceType,
 	MovementType movementType,
 	String transferReference,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal quantity,
 	MaterialUnit unit,
 	String note,

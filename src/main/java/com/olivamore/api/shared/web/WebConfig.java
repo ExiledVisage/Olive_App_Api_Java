@@ -1,5 +1,6 @@
 package com.olivamore.api.shared.web;
 
+import com.olivamore.api.shared.error.ApiMessages;
 import com.olivamore.api.shared.web.throttle.NamedLimiter;
 import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
 import com.olivamore.api.shared.web.throttle.RateLimitInterceptor;
@@ -9,13 +10,16 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer;
 import org.springframework.util.unit.DataSize;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
 
-/** Istek filtreleri ve rate limit. */
+/** Istek filtreleri, sayfalama ve rate limit. */
 @Configuration(proxyBeanMethods = false)
 public class WebConfig implements WebMvcConfigurer {
 
@@ -23,24 +27,19 @@ public class WebConfig implements WebMvcConfigurer {
 	private final ObjectProvider<RateLimitInterceptor.UserKey> userKey;
 	private final RateLimitBuckets buckets = new RateLimitBuckets();
 	private final int maxRequestBodyBytes;
+	private final ApiMessages messages;
+	private final JsonMapper json;
+	private final int maxPageSize;
 
 	public WebConfig(ObjectProvider<NamedLimiter> limiters, ObjectProvider<RateLimitInterceptor.UserKey> userKey,
-		@Value("${olive.http.max-request-body}") DataSize maxRequestBody) {
+		@Value("${olive.http.max-request-body}") DataSize maxRequestBody, ApiMessages messages, JsonMapper json,
+		@Value("${spring.data.web.pageable.max-page-size}") int maxPageSize) {
 		this.limiters = limiters;
 		this.userKey = userKey;
 		this.maxRequestBodyBytes = Math.toIntExact(maxRequestBody.toBytes());
-	}
-
-	/**
-	 * Filtre bean degil, kayit nesnesinin icinde duz bir nesne: Modulith insight
-	 * proxy'lemesin (bkz. {@link InputNormalizationFilter}).
-	 */
-	@Bean
-	FilterRegistrationBean<InputNormalizationFilter> inputNormalizationFilter() {
-		FilterRegistrationBean<InputNormalizationFilter> registration =
-			new FilterRegistrationBean<>(new InputNormalizationFilter());
-		registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 10);
-		return registration;
+		this.messages = messages;
+		this.json = json;
+		this.maxPageSize = maxPageSize;
 	}
 
 	@Bean
@@ -54,10 +53,20 @@ public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	FilterRegistrationBean<RequestBodyLimitFilter> requestBodyLimitFilter() {
 		FilterRegistrationBean<RequestBodyLimitFilter> registration =
-			new FilterRegistrationBean<>(new RequestBodyLimitFilter(maxRequestBodyBytes));
+			new FilterRegistrationBean<>(new RequestBodyLimitFilter(maxRequestBodyBytes,
+				messages.text("{error.content-too-large}"), json));
 		registration.addUrlPatterns("/api/*");
 		registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 12);
 		return registration;
+	}
+
+	/** Sayfa parametresi verilmezse butun kayitlar ({@link Pages}); en buyuk sayfa boyutu application.yaml'da. */
+	@Bean
+	PageableHandlerMethodArgumentResolverCustomizer unpagedByDefault() {
+		return resolver -> {
+			resolver.setFallbackPageable(Pageable.unpaged());
+			resolver.setMaxPageSize(maxPageSize);
+		};
 	}
 
 	/** Tek ornek: interceptor ve testler ayni sayaclari gorur. */
@@ -71,6 +80,7 @@ public class WebConfig implements WebMvcConfigurer {
 		RateLimitInterceptor.UserKey key = userKey.getIfAvailable(() -> request -> null);
 		registry.addInterceptor(new RateLimitInterceptor(buckets, List.copyOf(limiters.orderedStream().toList()), key))
 			.addPathPatterns("/api/**");
+		registry.addInterceptor(new PageParameters(maxPageSize)).addPathPatterns("/api/**");
 	}
 
 }

@@ -26,7 +26,7 @@ class ProductAttributeController {
 
 	@GetMapping
 	ListResponse<ProductAttributeResponse> index(@PathVariable long productId) {
-		return new ListResponse.Plain<>(service.forProduct(productId));
+		return new ListResponse<>(service.forProduct(productId));
 	}
 
 	@GetMapping("/{id}")

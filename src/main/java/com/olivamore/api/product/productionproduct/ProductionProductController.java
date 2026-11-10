@@ -41,7 +41,7 @@ class ProductionProductController {
 	@PreAuthorize("hasAuthority('production_product_type.view')")
 	ListResponse<ProductionProductResponse> index() {
 		Map<Long, Long> counts = service.typeCounts();
-		return new ListResponse.Plain<>(service.all().stream()
+		return new ListResponse<>(service.all().stream()
 			.map(product -> ProductionProductResponse.full(product, counts.getOrDefault(product.getId(), 0L), null,
 				null, List.of()))
 			.toList());

@@ -1,6 +1,5 @@
 package com.olivamore.api.finishedproduct.run;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.finishedproduct.RecipeResponse;
 
@@ -34,7 +33,7 @@ record FinishedProductRunResponse(
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
 
-	record Product(Long id, String name, @JsonFormat(shape = JsonFormat.Shape.STRING) BigDecimal volumeLitre) {
+	record Product(Long id, String name, BigDecimal volumeLitre) {
 	}
 
 	record Unit(Long id, String name, String code) {
@@ -43,7 +42,6 @@ record FinishedProductRunResponse(
 	record Material(
 		Long id,
 		Long sourceMaterialId,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal quantityUsed,
 		String unit,
 		Long productionProductTypeId,
@@ -68,9 +66,7 @@ record FinishedProductRunResponse(
 		Long id,
 		Long attributeDefinitionId,
 		String attributeLabel,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal estimatedValue,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal actualValue) {
 	}
 

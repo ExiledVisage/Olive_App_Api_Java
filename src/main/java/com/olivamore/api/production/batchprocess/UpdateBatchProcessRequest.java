@@ -1,5 +1,6 @@
 package com.olivamore.api.production.batchprocess;
 
+import com.olivamore.api.shared.validation.Texts;
 import com.olivamore.api.shared.json.Patch;
 import tools.jackson.databind.JsonNode;
 
@@ -16,4 +17,9 @@ record UpdateBatchProcessRequest(
 	Patch<String> note,
 
 	JsonNode operationData) {
+
+	UpdateBatchProcessRequest {
+		note = Texts.trim(note);
+	}
+
 }

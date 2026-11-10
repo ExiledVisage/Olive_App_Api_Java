@@ -10,7 +10,7 @@ import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.time.Timestamps;
 import com.olivamore.api.finishedproduct.FinishedProductDirectory;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -197,25 +197,25 @@ public class FinishedProductStorageService {
 	private void validateStockIn(StockInRequest request) {
 		ValidationErrors errors = new ValidationErrors();
 		if (!products.existsById(request.finishedProductId())) {
-			errors.add("finished_product_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_id", MessageKeys.EXISTS);
 		}
 		if (request.finishedProductRunId() != null && !runs.existsById(request.finishedProductRunId())) {
-			errors.add("finished_product_run_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_run_id", MessageKeys.EXISTS);
 		}
 		boolean noPlacements = request.placements() == null || request.placements().isEmpty();
 		Long slotId = request.finishedProductStorageSlotId();
 		if (noPlacements && slotId == null) {
-			errors.add(SLOT_FIELD, LaravelMessages.REQUIRED_WITHOUT_PLACEMENTS);
+			errors.add(SLOT_FIELD, MessageKeys.REQUIRED_WITHOUT, "other", "placements");
 		}
 		else if (slotId != null && !slots.existsById(slotId)) {
-			errors.add(SLOT_FIELD, LaravelMessages.EXISTS);
+			errors.add(SLOT_FIELD, MessageKeys.EXISTS);
 		}
 		if (noPlacements && request.quantity() == null) {
-			errors.add("quantity", LaravelMessages.REQUIRED_WITHOUT_PLACEMENTS);
+			errors.add("quantity", MessageKeys.REQUIRED_WITHOUT, "other", "placements");
 		}
 		if (noPlacements) {
 			if (slotId == null) {
-				errors.add("placements", LaravelMessages.REQUIRED_WITHOUT_SLOT);
+				errors.add("placements", MessageKeys.REQUIRED_WITHOUT, "other", "finished product storage slot id");
 			}
 			else if (request.placements() != null) {
 				errors.add("placements", "En az bir rafa miktar girilmelidir.");
@@ -235,16 +235,16 @@ public class FinishedProductStorageService {
 		FinishedProductStorage sourceStorage = find(sourceStorageId);
 		ValidationErrors errors = new ValidationErrors();
 		if (!products.existsById(request.finishedProductId())) {
-			errors.add("finished_product_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_id", MessageKeys.EXISTS);
 		}
 		if (!slots.existsById(request.sourceSlotId())) {
-			errors.add("source_slot_id", LaravelMessages.EXISTS);
+			errors.add("source_slot_id", MessageKeys.EXISTS);
 		}
 		if (!slots.existsById(request.targetSlotId())) {
-			errors.add("target_slot_id", LaravelMessages.EXISTS);
+			errors.add("target_slot_id", MessageKeys.EXISTS);
 		}
 		if (request.sourceSlotId().equals(request.targetSlotId())) {
-			errors.add("target_slot_id", LaravelMessages.DIFFERENT_SOURCE_SLOT);
+			errors.add("target_slot_id", MessageKeys.DIFFERENT, "other", "source slot id");
 		}
 		errors.throwIfAny();
 		long sourceSlotId = request.sourceSlotId();
@@ -279,10 +279,10 @@ public class FinishedProductStorageService {
 		FinishedProductStorage storage = find(storageId);
 		ValidationErrors errors = new ValidationErrors();
 		if (!products.existsById(request.finishedProductId())) {
-			errors.add("finished_product_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_id", MessageKeys.EXISTS);
 		}
 		if (!slots.existsById(request.finishedProductStorageSlotId())) {
-			errors.add(SLOT_FIELD, LaravelMessages.EXISTS);
+			errors.add(SLOT_FIELD, MessageKeys.EXISTS);
 		}
 		errors.throwIfAny();
 		StorageSlot slot = lockSlot(request.finishedProductStorageSlotId());
@@ -458,7 +458,7 @@ public class FinishedProductStorageService {
 	private void assertProductExists(long productId) {
 		if (!products.existsById(productId)) {
 			ValidationErrors errors = new ValidationErrors();
-			errors.add("finished_product_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_id", MessageKeys.EXISTS);
 			errors.throwIfAny();
 		}
 	}

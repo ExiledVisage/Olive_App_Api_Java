@@ -1,6 +1,5 @@
 package com.olivamore.api.production.batch;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.production.batchprocess.BatchProcessResponse;
 
@@ -19,7 +18,7 @@ record ProductionBatchResponse(
 	BatchQueries.SupplierField supplierField,
 	Long createdByUserId,
 	BatchStatus status,
-	@JsonFormat(shape = JsonFormat.Shape.STRING) BigDecimal quantityKg,
+	BigDecimal quantityKg,
 	LocalDateTime receivedAt,
 	LocalDateTime startedAt,
 	LocalDateTime completedAt,

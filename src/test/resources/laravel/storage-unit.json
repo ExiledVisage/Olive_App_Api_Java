@@ -8,7 +8,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 3 more errors)",
+    "instance": "/api/storage-units",
     "errors": {
      "name": [
       "The name field is required."
@@ -41,7 +44,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field must be a string.",
+    "instance": "/api/storage-units",
     "errors": {
      "name": [
       "The name field must be a string."
@@ -62,7 +68,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected capacity unit is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected capacity unit is invalid.",
+    "instance": "/api/storage-units",
     "errors": {
      "capacity_unit": [
       "The selected capacity unit is invalid."
@@ -84,7 +93,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The is blend tank field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The is blend tank field must be true or false.",
+    "instance": "/api/storage-units",
     "errors": {
      "is_blend_tank": [
       "The is blend tank field must be true or false."
@@ -106,7 +118,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The description field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The description field must be a string.",
+    "instance": "/api/storage-units",
     "errors": {
      "description": [
       "The description field must be a string."
@@ -128,7 +143,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The is active field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The is active field must be true or false.",
+    "instance": "/api/storage-units",
     "errors": {
      "is_active": [
       "The is active field must be true or false."
@@ -150,7 +168,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The is active field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The is active field must be true or false.",
+    "instance": "/api/storage-units",
     "errors": {
      "is_active": [
       "The is active field must be true or false."
@@ -171,7 +192,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The capacity field must be greater than 0.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The capacity field must be greater than 0.",
+    "instance": "/api/storage-units",
     "errors": {
      "capacity": [
       "The capacity field must be greater than 0."
@@ -192,7 +216,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The code has already been taken.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The code has already been taken.",
+    "instance": "/api/storage-units",
     "errors": {
      "code": [
       "The code has already been taken."
@@ -213,7 +240,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The capacity field must be a number.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The capacity field must be a number.",
+    "instance": "/api/storage-units",
     "errors": {
      "capacity": [
       "The capacity field must be a number."
@@ -234,7 +264,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The capacity field must be greater than 0.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The capacity field must be greater than 0.",
+    "instance": "/api/storage-units",
     "errors": {
      "capacity": [
       "The capacity field must be greater than 0."
@@ -260,7 +293,7 @@
      "id": 16,
      "name": "Test Tank",
      "code": "TEST-TANK-1",
-     "capacity": "1000.56",
+     "capacity": 1000.56,
      "capacity_unit": "KG",
      "is_blend_tank": false,
      "allow_multiple_production_product_types": false,
@@ -276,8 +309,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": [
@@ -305,7 +338,7 @@
      "id": 17,
      "name": "Blend",
      "code": "TEST-TANK-2",
-     "capacity": "2500.00",
+     "capacity": 2500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": true,
@@ -321,8 +354,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": [
@@ -341,7 +374,7 @@
      "id": 16,
      "name": "Test Tank",
      "code": "TEST-TANK-1",
-     "capacity": "1000.56",
+     "capacity": 1000.56,
      "capacity_unit": "KG",
      "is_blend_tank": false,
      "allow_multiple_production_product_types": false,
@@ -357,8 +390,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -370,7 +403,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\StorageUnit] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "StorageUnit 999999 not found.",
+    "instance": "/api/storage-units/999999"
    },
    "save": null
   },
@@ -389,7 +425,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "KG",
      "is_blend_tank": false,
      "allow_multiple_production_product_types": false,
@@ -405,8 +441,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -422,7 +458,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "KG",
      "is_blend_tank": false,
      "allow_multiple_production_product_types": false,
@@ -438,8 +474,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -453,7 +489,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The code has already been taken.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The code has already been taken.",
+    "instance": "/api/storage-units/{T}",
     "errors": {
      "code": [
       "The code has already been taken."
@@ -476,7 +515,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "KG",
      "is_blend_tank": false,
      "allow_multiple_production_product_types": false,
@@ -492,8 +531,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -509,7 +548,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected capacity unit is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected capacity unit is invalid.",
+    "instance": "/api/storage-units/{T}",
     "errors": {
      "capacity_unit": [
       "The selected capacity unit is invalid."
@@ -527,7 +569,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The capacity field must be greater than 0.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The capacity field must be greater than 0.",
+    "instance": "/api/storage-units/{T}",
     "errors": {
      "capacity": [
       "The capacity field must be greater than 0."
@@ -550,7 +595,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -566,8 +611,8 @@
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -581,7 +626,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The production product ids field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The production product ids field is required.",
+    "instance": "/api/storage-units/{T}/allowed-production-products",
     "errors": {
      "production_product_ids": [
       "The production product ids field is required."
@@ -603,7 +651,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The production_product_ids.1 field must be an integer.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The production_product_ids.1 field must be an integer.",
+    "instance": "/api/storage-units/{T}/allowed-production-products",
     "errors": {
      "production_product_ids.1": [
       "The production_product_ids.1 field must be an integer."
@@ -624,7 +675,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected production_product_ids.1 is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected production_product_ids.1 is invalid.",
+    "instance": "/api/storage-units/{T}/allowed-production-products",
     "errors": {
      "production_product_ids.1": [
       "The selected production_product_ids.1 is invalid."
@@ -650,7 +704,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -672,8 +726,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 18,
@@ -685,16 +739,16 @@
         "name": "Zeytin",
         "description": "Ham zeytin ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [],
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -715,7 +769,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -737,8 +791,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 19,
@@ -750,16 +804,16 @@
         "name": "Meyve Katkısı",
         "description": "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [],
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -773,7 +827,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The production product type ids field must be an array.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The production product type ids field must be an array.",
+    "instance": "/api/storage-units/{T}/allowed-production-product-types",
     "errors": {
      "production_product_type_ids": [
       "The production product type ids field must be an array."
@@ -798,7 +855,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -820,8 +877,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 19,
@@ -833,8 +890,8 @@
         "name": "Meyve Katkısı",
         "description": "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [
@@ -851,8 +908,8 @@
         "unit": "LITRE",
         "production_product": null
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 16,
@@ -867,15 +924,15 @@
         "unit": "LITRE",
         "production_product": null
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -895,7 +952,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -917,8 +974,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 19,
@@ -930,8 +987,8 @@
         "name": "Meyve Katkısı",
         "description": "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [
@@ -948,15 +1005,15 @@
         "unit": "LITRE",
         "production_product": null
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "attribute_rules": [],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -970,7 +1027,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The rules field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The rules field is required.",
+    "instance": "/api/storage-units/{T}/attribute-rules",
     "errors": {
      "rules": [
       "The rules field is required."
@@ -997,7 +1057,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The rules.0.min_value_decimal field must be a number.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The rules.0.min_value_decimal field must be a number.",
+    "instance": "/api/storage-units/{T}/attribute-rules",
     "errors": {
      "rules.0.min_value_decimal": [
       "The rules.0.min_value_decimal field must be a number."
@@ -1020,7 +1083,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected rules.0.apply_mode is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected rules.0.apply_mode is invalid.",
+    "instance": "/api/storage-units/{T}/attribute-rules",
     "errors": {
      "rules.0.apply_mode": [
       "The selected rules.0.apply_mode is invalid."
@@ -1043,7 +1109,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The rules.0.is_active field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The rules.0.is_active field must be true or false.",
+    "instance": "/api/storage-units/{T}/attribute-rules",
     "errors": {
      "rules.0.is_active": [
       "The rules.0.is_active field must be true or false."
@@ -1063,7 +1132,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The rules.0.production_product_attribute_definition_id field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The rules.0.production_product_attribute_definition_id field is required.",
+    "instance": "/api/storage-units/{T}/attribute-rules",
     "errors": {
      "rules.0.production_product_attribute_definition_id": [
       "The rules.0.production_product_attribute_definition_id field is required."
@@ -1085,7 +1157,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected rules.0.production_product_attribute_definition_id is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected rules.0.production_product_attribute_definition_id is invalid.",
+    "instance": "/api/storage-units/{T}/attribute-rules",
     "errors": {
      "rules.0.production_product_attribute_definition_id": [
       "The selected rules.0.production_product_attribute_definition_id is invalid."
@@ -1110,8 +1185,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tank attribute rule sadece decimal attribute'lar için tanımlanabilir. 'Tür / Çeşit' attribute'unun tipi: string.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tank attribute rule sadece decimal attribute'lar için tanımlanabilir. 'Tür / Çeşit' attribute'unun tipi: string.",
+    "instance": "/api/storage-units/{T}/attribute-rules"
    },
    "save": null
   },
@@ -1130,8 +1207,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Attribute rule içinde min değer max değerden büyük olamaz.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Attribute rule içinde min değer max değerden büyük olamaz.",
+    "instance": "/api/storage-units/{T}/attribute-rules"
    },
    "save": null
   },
@@ -1160,7 +1239,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -1182,8 +1261,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 19,
@@ -1195,8 +1274,8 @@
         "name": "Meyve Katkısı",
         "description": "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [
@@ -1213,8 +1292,8 @@
         "unit": "LITRE",
         "production_product": null
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "attribute_rules": [
@@ -1223,7 +1302,7 @@
        "storage_unit_id": 16,
        "production_product_attribute_definition_id": 4,
        "min_value_decimal": null,
-       "max_value_decimal": "0.8000",
+       "max_value_decimal": 0.8,
        "apply_mode": "incoming_and_average",
        "is_active": true,
        "note": "Asit",
@@ -1238,14 +1317,14 @@
         "sort_order": 1,
         "description": "Asitlik oranı"
        },
-       "created_at": "2026-11-06T20:14:03.000000Z",
-       "updated_at": "2026-11-06T20:14:03.000000Z"
+       "created_at": "2026-11-06T20:14:03Z",
+       "updated_at": "2026-11-06T20:14:03Z"
       },
       {
        "id": 10,
        "storage_unit_id": 16,
        "production_product_attribute_definition_id": 2,
-       "min_value_decimal": "0.1235",
+       "min_value_decimal": 0.1235,
        "max_value_decimal": null,
        "apply_mode": "incoming_only",
        "is_active": false,
@@ -1261,14 +1340,14 @@
         "sort_order": 2,
         "description": "Nem oranı"
        },
-       "created_at": "2026-11-06T20:14:03.000000Z",
-       "updated_at": "2026-11-06T20:14:03.000000Z"
+       "created_at": "2026-11-06T20:14:03Z",
+       "updated_at": "2026-11-06T20:14:03Z"
       }
      ],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -1297,7 +1376,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -1319,8 +1398,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 19,
@@ -1332,8 +1411,8 @@
         "name": "Meyve Katkısı",
         "description": "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [
@@ -1350,8 +1429,8 @@
         "unit": "LITRE",
         "production_product": null
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "attribute_rules": [
@@ -1359,7 +1438,7 @@
        "id": 10,
        "storage_unit_id": 16,
        "production_product_attribute_definition_id": 2,
-       "min_value_decimal": "0.1235",
+       "min_value_decimal": 0.1235,
        "max_value_decimal": null,
        "apply_mode": "tank_average_only",
        "is_active": true,
@@ -1375,15 +1454,15 @@
         "sort_order": 2,
         "description": "Nem oranı"
        },
-       "created_at": "2026-11-06T20:14:03.000000Z",
-       "updated_at": "2026-11-06T20:14:03.000000Z"
+       "created_at": "2026-11-06T20:14:03Z",
+       "updated_at": "2026-11-06T20:14:03Z"
       },
       {
        "id": 11,
        "storage_unit_id": 16,
        "production_product_attribute_definition_id": 3,
-       "min_value_decimal": "10.0000",
-       "max_value_decimal": "30.0000",
+       "min_value_decimal": 10.0,
+       "max_value_decimal": 30.0,
        "apply_mode": "incoming_and_average",
        "is_active": true,
        "note": null,
@@ -1398,14 +1477,14 @@
         "sort_order": 3,
         "description": "Yağ oranı"
        },
-       "created_at": "2026-11-06T20:14:03.000000Z",
-       "updated_at": "2026-11-06T20:14:03.000000Z"
+       "created_at": "2026-11-06T20:14:03Z",
+       "updated_at": "2026-11-06T20:14:03Z"
       }
      ],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -1427,8 +1506,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tank attribute rule sadece decimal attribute'lar için tanımlanabilir. 'Tür / Çeşit' attribute'unun tipi: string.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tank attribute rule sadece decimal attribute'lar için tanımlanabilir. 'Tür / Çeşit' attribute'unun tipi: string.",
+    "instance": "/api/storage-units/{T}/attribute-rules"
    },
    "save": null
   },
@@ -1443,7 +1524,7 @@
      "id": 16,
      "name": "Test Tank 2",
      "code": "TEST-TANK-1",
-     "capacity": "1500.00",
+     "capacity": 1500.0,
      "capacity_unit": "LITRE",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": false,
@@ -1465,8 +1546,8 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       },
       {
        "id": 19,
@@ -1478,8 +1559,8 @@
         "name": "Meyve Katkısı",
         "description": "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "allowed_production_product_types": [
@@ -1496,8 +1577,8 @@
         "unit": "LITRE",
         "production_product": null
        },
-       "created_at": "2026-11-06T20:14:02.000000Z",
-       "updated_at": "2026-11-06T20:14:02.000000Z"
+       "created_at": "2026-11-06T20:14:02Z",
+       "updated_at": "2026-11-06T20:14:02Z"
       }
      ],
      "attribute_rules": [
@@ -1505,7 +1586,7 @@
        "id": 10,
        "storage_unit_id": 16,
        "production_product_attribute_definition_id": 2,
-       "min_value_decimal": "0.1235",
+       "min_value_decimal": 0.1235,
        "max_value_decimal": null,
        "apply_mode": "tank_average_only",
        "is_active": true,
@@ -1521,15 +1602,15 @@
         "sort_order": 2,
         "description": "Nem oranı"
        },
-       "created_at": "2026-11-06T20:14:03.000000Z",
-       "updated_at": "2026-11-06T20:14:03.000000Z"
+       "created_at": "2026-11-06T20:14:03Z",
+       "updated_at": "2026-11-06T20:14:03Z"
       },
       {
        "id": 11,
        "storage_unit_id": 16,
        "production_product_attribute_definition_id": 3,
-       "min_value_decimal": "10.0000",
-       "max_value_decimal": "30.0000",
+       "min_value_decimal": 10.0,
+       "max_value_decimal": 30.0,
        "apply_mode": "incoming_and_average",
        "is_active": true,
        "note": null,
@@ -1544,14 +1625,14 @@
         "sort_order": 3,
         "description": "Yağ oranı"
        },
-       "created_at": "2026-11-06T20:14:03.000000Z",
-       "updated_at": "2026-11-06T20:14:03.000000Z"
+       "created_at": "2026-11-06T20:14:03Z",
+       "updated_at": "2026-11-06T20:14:03Z"
       }
      ],
      "balances": [],
      "current_materials": [],
-     "created_at": "2026-11-06T20:14:02.000000Z",
-     "updated_at": "2026-11-06T20:14:02.000000Z"
+     "created_at": "2026-11-06T20:14:02Z",
+     "updated_at": "2026-11-06T20:14:02Z"
     }
    },
    "save": null
@@ -1568,7 +1649,7 @@
       "id": 25,
       "storage_unit_id": 15,
       "production_product_id": 2,
-      "current_quantity": "3990.07",
+      "current_quantity": 3990.07,
       "unit": "LITRE",
       "production_product": {
        "id": 2,
@@ -1576,8 +1657,8 @@
        "name": "Zeytinyağı",
        "description": "İşlenmiş zeytinyağı ürünü"
       },
-      "created_at": "2025-11-10T19:13:00.000000Z",
-      "updated_at": "2026-10-15T21:02:00.000000Z"
+      "created_at": "2025-11-10T19:13:00Z",
+      "updated_at": "2026-10-15T21:02:00Z"
      }
     ]
    },
@@ -1601,18 +1682,24 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": []
+    "content": [],
+    "page": {
+     "size": 0,
+     "number": 0,
+     "total_elements": 0,
+     "total_pages": 1
+    }
    },
    "save": null
   },
   {
    "name": "hareketler sayfa",
    "method": "GET",
-   "path": "/api/storage-units/15/movements?per_page=5&page=2",
+   "path": "/api/storage-units/15/movements?page=1&size=5",
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 3217,
       "storage_unit_id": 15,
@@ -1623,17 +1710,17 @@
       "source_type": "INTERNAL_TRANSFER",
       "movement_type": "TRANSFER_IN",
       "transfer_reference": "TRF-20261012023200-H5PSQQ",
-      "quantity": "293.24",
+      "quantity": 293.24,
       "unit": "LITRE",
       "note": "Toplama tankından dolum tankına aktarıldı",
-      "moved_at": "2026-10-12T02:32:00.000000Z",
+      "moved_at": "2026-10-12T02:32:00Z",
       "material": {
        "id": 2085,
        "production_batch_id": 238,
        "production_product_type_id": 3,
        "parent_material_id": 2081,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "293.2358",
+       "quantity": 293.2358,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -1664,7 +1751,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.3100",
+         "value_decimal": 0.31,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -1678,12 +1765,12 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-10-12T02:32:00.000000Z",
-         "updated_at": "2026-10-12T02:32:00.000000Z"
+         "created_at": "2026-10-12T02:32:00Z",
+         "updated_at": "2026-10-12T02:32:00Z"
         }
        ],
-       "created_at": "2026-10-12T02:32:00.000000Z",
-       "updated_at": "2026-10-12T02:32:00.000000Z"
+       "created_at": "2026-10-12T02:32:00Z",
+       "updated_at": "2026-10-12T02:32:00Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": {
@@ -1691,8 +1778,8 @@
        "name": "Gemlik Toplama Tankı",
        "code": "TOPLAMA-GEM-01"
       },
-      "created_at": "2026-10-12T02:32:00.000000Z",
-      "updated_at": "2026-10-12T02:32:00.000000Z"
+      "created_at": "2026-10-12T02:32:00Z",
+      "updated_at": "2026-10-12T02:32:00Z"
      },
      {
       "id": 3215,
@@ -1704,17 +1791,17 @@
       "source_type": "INTERNAL_TRANSFER",
       "movement_type": "TRANSFER_IN",
       "transfer_reference": "TRF-20261012023200-ULXAVZ",
-      "quantity": "1.81",
+      "quantity": 1.81,
       "unit": "LITRE",
       "note": "Toplama tankından dolum tankına aktarıldı",
-      "moved_at": "2026-10-12T02:32:00.000000Z",
+      "moved_at": "2026-10-12T02:32:00Z",
       "material": {
        "id": 2072,
        "production_batch_id": 237,
        "production_product_type_id": 3,
        "parent_material_id": 2071,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "1.8061",
+       "quantity": 1.8061,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -1745,7 +1832,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.2700",
+         "value_decimal": 0.27,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -1759,12 +1846,12 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-10-10T17:48:00.000000Z",
-         "updated_at": "2026-10-10T17:48:00.000000Z"
+         "created_at": "2026-10-10T17:48:00Z",
+         "updated_at": "2026-10-10T17:48:00Z"
         }
        ],
-       "created_at": "2026-10-10T16:07:00.000000Z",
-       "updated_at": "2026-10-12T02:32:00.000000Z"
+       "created_at": "2026-10-10T16:07:00Z",
+       "updated_at": "2026-10-12T02:32:00Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": {
@@ -1772,8 +1859,8 @@
        "name": "Gemlik Toplama Tankı",
        "code": "TOPLAMA-GEM-01"
       },
-      "created_at": "2026-10-12T02:32:00.000000Z",
-      "updated_at": "2026-10-12T02:32:00.000000Z"
+      "created_at": "2026-10-12T02:32:00Z",
+      "updated_at": "2026-10-12T02:32:00Z"
      },
      {
       "id": 3170,
@@ -1785,17 +1872,17 @@
       "source_type": "INTERNAL_TRANSFER",
       "movement_type": "TRANSFER_IN",
       "transfer_reference": "TRF-20261011023700-FM8THU",
-      "quantity": "205.64",
+      "quantity": 205.64,
       "unit": "LITRE",
       "note": "Toplama tankından dolum tankına aktarıldı",
-      "moved_at": "2026-10-11T02:37:00.000000Z",
+      "moved_at": "2026-10-11T02:37:00Z",
       "material": {
        "id": 2057,
        "production_batch_id": 234,
        "production_product_type_id": 3,
        "parent_material_id": 2053,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "205.6355",
+       "quantity": 205.6355,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -1826,7 +1913,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.3000",
+         "value_decimal": 0.3,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -1840,12 +1927,12 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-10-11T02:37:00.000000Z",
-         "updated_at": "2026-10-11T02:37:00.000000Z"
+         "created_at": "2026-10-11T02:37:00Z",
+         "updated_at": "2026-10-11T02:37:00Z"
         }
        ],
-       "created_at": "2026-10-11T02:37:00.000000Z",
-       "updated_at": "2026-10-11T02:37:00.000000Z"
+       "created_at": "2026-10-11T02:37:00Z",
+       "updated_at": "2026-10-11T02:37:00Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": {
@@ -1853,8 +1940,8 @@
        "name": "Gemlik Toplama Tankı",
        "code": "TOPLAMA-GEM-01"
       },
-      "created_at": "2026-10-11T02:37:00.000000Z",
-      "updated_at": "2026-10-11T02:37:00.000000Z"
+      "created_at": "2026-10-11T02:37:00Z",
+      "updated_at": "2026-10-11T02:37:00Z"
      },
      {
       "id": 3168,
@@ -1866,17 +1953,17 @@
       "source_type": "INTERNAL_TRANSFER",
       "movement_type": "TRANSFER_IN",
       "transfer_reference": "TRF-20261011023700-D2C5VW",
-      "quantity": "1.66",
+      "quantity": 1.66,
       "unit": "LITRE",
       "note": "Toplama tankından dolum tankına aktarıldı",
-      "moved_at": "2026-10-11T02:37:00.000000Z",
+      "moved_at": "2026-10-11T02:37:00Z",
       "material": {
        "id": 2045,
        "production_batch_id": 233,
        "production_product_type_id": 3,
        "parent_material_id": 2044,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "1.6564",
+       "quantity": 1.6564,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -1907,7 +1994,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.3100",
+         "value_decimal": 0.31,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -1921,12 +2008,12 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-10-07T22:30:00.000000Z",
-         "updated_at": "2026-10-07T22:30:00.000000Z"
+         "created_at": "2026-10-07T22:30:00Z",
+         "updated_at": "2026-10-07T22:30:00Z"
         }
        ],
-       "created_at": "2026-10-07T20:03:00.000000Z",
-       "updated_at": "2026-10-11T02:37:00.000000Z"
+       "created_at": "2026-10-07T20:03:00Z",
+       "updated_at": "2026-10-11T02:37:00Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": {
@@ -1934,8 +2021,8 @@
        "name": "Gemlik Toplama Tankı",
        "code": "TOPLAMA-GEM-01"
       },
-      "created_at": "2026-10-11T02:37:00.000000Z",
-      "updated_at": "2026-10-11T02:37:00.000000Z"
+      "created_at": "2026-10-11T02:37:00Z",
+      "updated_at": "2026-10-11T02:37:00Z"
      },
      {
       "id": 3180,
@@ -1947,17 +2034,17 @@
       "source_type": "INTERNAL_TRANSFER",
       "movement_type": "TRANSFER_IN",
       "transfer_reference": "TRF-20261010153800-3DWOOB",
-      "quantity": "91.46",
+      "quantity": 91.46,
       "unit": "LITRE",
       "note": "Toplama tankından dolum tankına aktarıldı",
-      "moved_at": "2026-10-10T15:38:00.000000Z",
+      "moved_at": "2026-10-10T15:38:00Z",
       "material": {
        "id": 2063,
        "production_batch_id": 235,
        "production_product_type_id": 3,
        "parent_material_id": 2059,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "91.4621",
+       "quantity": 91.4621,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -1988,7 +2075,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.3000",
+         "value_decimal": 0.3,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -2002,12 +2089,12 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-10-10T15:38:00.000000Z",
-         "updated_at": "2026-10-10T15:38:00.000000Z"
+         "created_at": "2026-10-10T15:38:00Z",
+         "updated_at": "2026-10-10T15:38:00Z"
         }
        ],
-       "created_at": "2026-10-10T15:38:00.000000Z",
-       "updated_at": "2026-10-10T15:38:00.000000Z"
+       "created_at": "2026-10-10T15:38:00Z",
+       "updated_at": "2026-10-10T15:38:00Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": {
@@ -2015,110 +2102,15 @@
        "name": "Gemlik Toplama Tankı",
        "code": "TOPLAMA-GEM-01"
       },
-      "created_at": "2026-10-10T15:38:00.000000Z",
-      "updated_at": "2026-10-10T15:38:00.000000Z"
+      "created_at": "2026-10-10T15:38:00Z",
+      "updated_at": "2026-10-10T15:38:00Z"
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=1",
-     "last": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=12",
-     "prev": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=1",
-     "next": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=3"
-    },
-    "meta": {
-     "current_page": 2,
-     "from": 6,
-     "last_page": 12,
-     "links": [
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=1",
-       "label": "&laquo; Previous",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=1",
-       "label": "1",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=2",
-       "label": "2",
-       "page": 2,
-       "active": true
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=3",
-       "label": "3",
-       "page": 3,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=4",
-       "label": "4",
-       "page": 4,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=5",
-       "label": "5",
-       "page": 5,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=6",
-       "label": "6",
-       "page": 6,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=7",
-       "label": "7",
-       "page": 7,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=8",
-       "label": "8",
-       "page": 8,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=9",
-       "label": "9",
-       "page": 9,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=10",
-       "label": "10",
-       "page": 10,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=11",
-       "label": "11",
-       "page": 11,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=12",
-       "label": "12",
-       "page": 12,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/15/movements?per_page=5&page=3",
-       "label": "Next &raquo;",
-       "page": 3,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/storage-units/15/movements",
-     "per_page": 5,
-     "to": 10,
-     "total": 58
+    "page": {
+     "size": 5,
+     "number": 1,
+     "total_elements": 58,
+     "total_pages": 12
     }
    },
    "save": null
@@ -2126,45 +2118,16 @@
   {
    "name": "hareketler sayfa disi",
    "method": "GET",
-   "path": "/api/storage-units/1/movements?per_page=5&page=9",
+   "path": "/api/storage-units/1/movements?page=8&size=5",
    "body": null,
    "status": 200,
    "response": {
-    "data": [],
-    "links": {
-     "first": "http://localhost:8001/api/storage-units/1/movements?per_page=5&page=1",
-     "last": "http://localhost:8001/api/storage-units/1/movements?per_page=5&page=1",
-     "prev": "http://localhost:8001/api/storage-units/1/movements?per_page=5&page=8",
-     "next": null
-    },
-    "meta": {
-     "current_page": 9,
-     "from": null,
-     "last_page": 1,
-     "links": [
-      {
-       "url": "http://localhost:8001/api/storage-units/1/movements?per_page=5&page=8",
-       "label": "&laquo; Previous",
-       "page": 8,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/storage-units/1/movements?per_page=5&page=1",
-       "label": "1",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": null,
-       "label": "Next &raquo;",
-       "page": null,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/storage-units/1/movements",
-     "per_page": 5,
-     "to": null,
-     "total": 3
+    "content": [],
+    "page": {
+     "size": 5,
+     "number": 8,
+     "total_elements": 3,
+     "total_pages": 1
     }
    },
    "save": null
@@ -2172,14 +2135,17 @@
   {
    "name": "hareketler per_page hatali",
    "method": "GET",
-   "path": "/api/storage-units/1/movements?per_page=0",
+   "path": "/api/storage-units/1/movements?page=0&size=0",
    "body": null,
    "status": 422,
    "response": {
-    "message": "The per page field must be at least 1.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The size field must be at least 1.",
+    "instance": "/api/storage-units/1/movements",
     "errors": {
-     "per_page": [
-      "The per page field must be at least 1."
+     "size": [
+      "The size field must be at least 1."
      ]
     }
    },
@@ -2192,7 +2158,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\StorageUnit] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "StorageUnit 999999 not found.",
+    "instance": "/api/storage-units/999999/movements"
    },
    "save": null
   },
@@ -2203,8 +2172,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'REZERV-GEM-01' tankında 23 aktif materyal var; silinemez. Önce tankı boşaltın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'REZERV-GEM-01' tankında 23 aktif materyal var; silinemez. Önce tankı boşaltın.",
+    "instance": "/api/storage-units/15"
    },
    "save": null
   },
@@ -2215,8 +2186,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'DOLUM-AYV-01' tankının 360 hareket kaydı var; silinemez. Tankı kullanımdan kaldırmak için is_active alanını false yapın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'DOLUM-AYV-01' tankının 360 hareket kaydı var; silinemez. Tankı kullanımdan kaldırmak için is_active alanını false yapın.",
+    "instance": "/api/storage-units/13"
    },
    "save": null
   },
@@ -2245,7 +2218,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\StorageUnit] 17"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "StorageUnit 17 not found.",
+    "instance": "/api/storage-units/{T2}"
    },
    "save": null
   }

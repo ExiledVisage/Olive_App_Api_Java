@@ -1,6 +1,8 @@
 package com.olivamore.api.production.batch;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,19 +13,19 @@ import java.util.List;
 
 /** Yeni parti: {@code status} verilmezse pending, {@code received_at} verilmezse simdi. Tarihler serviste. */
 record CreateProductionBatchRequest(
-	@NotNull(message = LaravelMessages.REQUIRED)
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String batchCode,
 
-	@NotEmpty(message = LaravelMessages.REQUIRED)
+	@NotEmpty(message = MessageKeys.REQUIRED)
 	List<Long> inputProductionProductTypeIds,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
+	@NotNull(message = MessageKeys.REQUIRED)
 	Long productionLineId,
 
 	BatchStatus status,
 
-	@DecimalMin(value = "0", message = LaravelMessages.MIN_0)
+	@DecimalMin(value = "0", message = MessageKeys.MIN)
 	BigDecimal quantityKg,
 
 	Long supplierId,
@@ -37,4 +39,10 @@ record CreateProductionBatchRequest(
 	String completedAt,
 
 	String note) {
+
+	CreateProductionBatchRequest {
+		batchCode = Texts.trim(batchCode);
+		note = Texts.trim(note);
+	}
+
 }

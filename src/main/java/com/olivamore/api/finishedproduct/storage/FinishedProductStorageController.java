@@ -37,7 +37,7 @@ class FinishedProductStorageController {
 	@GetMapping("/api/finished-product-storages")
 	@PreAuthorize("hasAuthority('finished_product_storage.view')")
 	ListResponse<StorageResponse> index() {
-		return new ListResponse.Plain<>(responses.list());
+		return new ListResponse<>(responses.list());
 	}
 
 	@GetMapping("/api/finished-product-storages/{id}")
@@ -50,7 +50,7 @@ class FinishedProductStorageController {
 	@GetMapping("/api/finished-product-storages/{id}/movements")
 	@PreAuthorize("hasAuthority('finished_product_storage.view')")
 	ListResponse<MovementResponse> movements(@PathVariable long id) {
-		return new ListResponse.Plain<>(responses.movements(id));
+		return new ListResponse<>(responses.movements(id));
 	}
 
 	// ---- depo -----------------------------------------------------------------------

@@ -1,6 +1,5 @@
 package com.olivamore.api.production.batchprocess.stage;
 
-import com.olivamore.api.shared.json.LaravelStringDeserializer;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ArrayNode;
 import tools.jackson.databind.node.JsonNodeFactory;
@@ -21,15 +20,15 @@ public record OperationData(JsonNode root) {
 		root = root == null ? MissingNode.getInstance() : root;
 	}
 
-	/** Metinler kirpilir, bos metin {@code null} olur (JSON govdesinin diger alanlariyla ayni kural). */
+	/** Serbest veri olarak saklanir: metinler kirpilir, bos metin {@code null} olur (bos alan doldurulmamis sayilir). */
 	public static JsonNode normalized(JsonNode node) {
 		if (node == null) {
 			return null;
 		}
 		JsonNodeFactory factory = JsonNodeFactory.instance;
 		if (node.isString()) {
-			String text = LaravelStringDeserializer.normalize(node.asString(), false);
-			return text == null ? factory.nullNode() : factory.stringNode(text);
+			String text = node.asString().strip();
+			return text.isEmpty() ? factory.nullNode() : factory.stringNode(text);
 		}
 		if (node.isArray()) {
 			ArrayNode out = factory.arrayNode();

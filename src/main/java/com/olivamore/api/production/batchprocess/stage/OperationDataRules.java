@@ -1,7 +1,7 @@
 package com.olivamore.api.production.batchprocess.stage;
 
 import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
@@ -51,7 +51,7 @@ public class OperationDataRules {
 	/** Uzanti yoksa (ya da tamamlama degilse) {@code operation_data} serbest bir dizi. */
 	public void checkOptional(ValidationErrors errors, JsonNode data) {
 		if (OperationData.isPresent(data) && !data.isContainer()) {
-			errors.add(ROOT, LaravelMessages.ARRAY);
+			errors.add(ROOT, MessageKeys.ARRAY);
 		}
 	}
 
@@ -201,10 +201,10 @@ public class OperationDataRules {
 		/** {@code required|array}: bos dizi yok sayilir. */
 		void root() {
 			if (data == null || data.isNull() || (data.isContainer() && data.isEmpty())) {
-				errors.add(ROOT, LaravelMessages.REQUIRED);
+				errors.add(ROOT, MessageKeys.REQUIRED);
 			}
 			else if (!data.isContainer()) {
-				errors.add(ROOT, LaravelMessages.ARRAY);
+				errors.add(ROOT, MessageKeys.ARRAY);
 			}
 		}
 
@@ -214,16 +214,16 @@ public class OperationDataRules {
 
 		void positiveAt(JsonNode node, String path) {
 			if (!OperationData.isPresent(node)) {
-				errors.add(path, LaravelMessages.REQUIRED);
+				errors.add(path, MessageKeys.REQUIRED);
 				return;
 			}
 			BigDecimal value = OperationData.decimal(node);
 			if (value == null) {
-				errors.add(path, LaravelMessages.NUMERIC);
-				errors.add(path, LaravelMessages.GT_0);
+				errors.add(path, MessageKeys.NUMERIC);
+				errors.add(path, MessageKeys.GT, "value", 0);
 			}
 			else if (value.signum() <= 0) {
-				errors.add(path, LaravelMessages.GT_0);
+				errors.add(path, MessageKeys.GT, "value", 0);
 			}
 		}
 
@@ -237,7 +237,7 @@ public class OperationDataRules {
 			}
 			stringAt(node, path);
 			if (!node.isString() || !List.of("KG", "LITRE").contains(node.asString())) {
-				errors.add(path, LaravelMessages.IN);
+				errors.add(path, MessageKeys.IN);
 			}
 		}
 
@@ -251,50 +251,50 @@ public class OperationDataRules {
 			}
 			Long id = OperationData.integer(node);
 			if (id == null) {
-				errors.add(path, LaravelMessages.INTEGER);
+				errors.add(path, MessageKeys.INTEGER);
 			}
 			else if (!queries.exists(table, id)) {
-				errors.add(path, LaravelMessages.EXISTS);
+				errors.add(path, MessageKeys.EXISTS);
 			}
 		}
 
 		void stringAt(JsonNode node, String path) {
 			if (OperationData.isPresent(node) && !node.isString()) {
-				errors.add(path, LaravelMessages.STRING);
+				errors.add(path, MessageKeys.STRING);
 			}
 		}
 
 		void booleanAt(JsonNode node, String path) {
 			if (OperationData.isPresent(node) && !node.isBoolean()) {
-				errors.add(path, LaravelMessages.BOOLEAN);
+				errors.add(path, MessageKeys.BOOLEAN);
 			}
 		}
 
 		void integerAt(JsonNode node, String path) {
 			if (OperationData.isPresent(node) && OperationData.integer(node) == null) {
-				errors.add(path, LaravelMessages.INTEGER);
+				errors.add(path, MessageKeys.INTEGER);
 			}
 		}
 
 		void numberAt(JsonNode node, String path) {
 			if (OperationData.isPresent(node) && OperationData.decimal(node) == null) {
-				errors.add(path, LaravelMessages.NUMERIC);
+				errors.add(path, MessageKeys.NUMERIC);
 			}
 		}
 
 		void arrayAt(JsonNode node, String path) {
 			if (OperationData.isPresent(node) && !node.isContainer()) {
-				errors.add(path, LaravelMessages.ARRAY);
+				errors.add(path, MessageKeys.ARRAY);
 			}
 		}
 
 		void requiredList(String name) {
 			JsonNode node = field(name);
 			if (node == null || (node.isContainer() && node.isEmpty())) {
-				errors.add(path(name), LaravelMessages.REQUIRED);
+				errors.add(path(name), MessageKeys.REQUIRED);
 			}
 			else if (!node.isContainer()) {
-				errors.add(path(name), LaravelMessages.ARRAY);
+				errors.add(path(name), MessageKeys.ARRAY);
 			}
 		}
 
@@ -318,7 +318,7 @@ public class OperationDataRules {
 		void itemsAreArrays(String list) {
 			entries(list).forEach(e -> {
 				if (!e.getValue().isContainer()) {
-					errors.add(path(list) + "." + e.getKey(), LaravelMessages.ARRAY);
+					errors.add(path(list) + "." + e.getKey(), MessageKeys.ARRAY);
 				}
 			});
 		}
@@ -340,8 +340,8 @@ public class OperationDataRules {
 				JsonNode value = child(e.getValue(), type);
 				if (value == null && child(e.getValue(), "production_product_id") == null
 					&& child(e.getValue(), "product_type_key") == null) {
-					errors.add(base + type, "The :attribute field is required when none of " + base + "production_product_id / "
-						+ base + "product_type_key are present.");
+					errors.add(base + type, MessageKeys.REQUIRED_WITHOUT_ALL, "others",
+						base + "production_product_id / " + base + "product_type_key");
 				}
 				else {
 					idAt(value, base + type, PRODUCT_TYPES);
@@ -354,8 +354,7 @@ public class OperationDataRules {
 				String base = path("attributes") + "." + e.getKey() + ".";
 				JsonNode key = child(e.getValue(), "attribute_key");
 				if (key == null && child(e.getValue(), definition) == null) {
-					errors.add(base + "attribute_key", "The :attribute field is required when " + base + definition
-						+ " is not present.");
+					errors.add(base + "attribute_key", MessageKeys.REQUIRED_WITHOUT, "other", base + definition);
 				}
 				else {
 					stringAt(key, base + "attribute_key");
@@ -370,14 +369,14 @@ public class OperationDataRules {
 			}
 			stringAt(node, path("action"));
 			if (!node.isString() || !List.of("inbound", "outbound", "transfer").contains(node.asString())) {
-				errors.add(path("action"), LaravelMessages.IN);
+				errors.add(path("action"), MessageKeys.IN);
 			}
 		}
 
 		void unitId(String name, boolean required) {
 			JsonNode node = field(name);
 			if (node == null && required) {
-				errors.add(path(name), LaravelMessages.REQUIRED);
+				errors.add(path(name), MessageKeys.REQUIRED);
 				return;
 			}
 			idAt(node, path(name), UNITS);
@@ -388,8 +387,8 @@ public class OperationDataRules {
 			JsonNode to = field("to_storage_unit_id");
 			JsonNode from = field("from_storage_unit_id");
 			if (to != null && from != null && to.equals(from)) {
-				errors.add(path("to_storage_unit_id"),
-					"The :attribute field and operation data.from storage unit id must be different.");
+				errors.add(path("to_storage_unit_id"), MessageKeys.DIFFERENT, "other",
+					"operation data.from storage unit id");
 			}
 		}
 

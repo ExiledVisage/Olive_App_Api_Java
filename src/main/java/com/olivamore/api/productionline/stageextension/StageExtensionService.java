@@ -4,8 +4,8 @@ import com.olivamore.api.process.ProcessResources;
 import com.olivamore.api.process.StageExtensionTypeFieldResponse;
 import com.olivamore.api.productionline.ProductCatalog;
 import com.olivamore.api.productionline.stage.ProductionStageService;
-import com.olivamore.api.shared.error.LaravelValidationException;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.error.ValidationFailedException;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +70,7 @@ class StageExtensionService {
 		for (StageExtensionValueRequest request : requests) {
 			StageExtensionTypeFieldResponse field = findField(fields, request);
 			if (field == null) {
-				throw LaravelValidationException.of("extensions.values", INVALID_FIELD);
+				throw ValidationFailedException.of("extensions.values", INVALID_FIELD);
 			}
 			JsonNode json = request.valueJson() == null || request.valueJson().isNull() ? null : request.valueJson();
 			boolean empty = request.valueBoolean() == null && request.valueInteger() == null
@@ -119,7 +119,7 @@ class StageExtensionService {
 		for (int i = 0; i < requests.size(); i++) {
 			JsonNode json = requests.get(i).valueJson();
 			if (json != null && !json.isNull() && !json.isContainer()) {
-				errors.add(path + "." + i + ".value_json", LaravelMessages.ARRAY);
+				errors.add(path + "." + i + ".value_json", MessageKeys.ARRAY);
 			}
 		}
 	}

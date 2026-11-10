@@ -36,7 +36,7 @@ class FinishedProductRecipeController {
 	@GetMapping("/api/finished-product-recipes")
 	@PreAuthorize("hasAuthority('finished_product_recipe.view')")
 	ListResponse<RecipeResponse> index(@RequestParam(required = false) String name) {
-		return new ListResponse.Plain<>(resources.responses(recipes.active(name), true));
+		return new ListResponse<>(resources.responses(recipes.active(name), true));
 	}
 
 	@GetMapping("/api/finished-product-recipes/{id}")
@@ -48,7 +48,7 @@ class FinishedProductRecipeController {
 	/** Ayni addaki butun versiyonlar; yalnizca giris ister. */
 	@GetMapping("/api/finished-product-recipes/{id}/versions")
 	ListResponse<RecipeResponse> versions(@PathVariable long id) {
-		return new ListResponse.Plain<>(resources.responses(recipes.versions(id), true));
+		return new ListResponse<>(resources.responses(recipes.versions(id), true));
 	}
 
 	@PostMapping("/api/finished-product-recipes")

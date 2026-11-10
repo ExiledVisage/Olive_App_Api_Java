@@ -9,8 +9,9 @@ import com.olivamore.api.sales.order.OrderResponse.Item;
 import com.olivamore.api.sales.order.OrderResponse.Product;
 import com.olivamore.api.sales.order.OrderResponse.UserSummary;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.web.Pages;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -51,8 +52,8 @@ class OrderResponses {
 	}
 
 	@Transactional(readOnly = true)
-	Page<OrderResponse> page(String status, Long customerId, int page, int size) {
-		Page<SalesOrder> rows = orders.findAll(matching(status, customerId), PageRequest.of(page - 1, size, NEWEST_FIRST));
+	Page<OrderResponse> page(String status, Long customerId, Pageable pageable) {
+		Page<SalesOrder> rows = orders.findAll(matching(status, customerId), Pages.sorted(pageable, NEWEST_FIRST));
 		Map<Long, OrderResponse> responses = responses(rows.getContent()).stream()
 			.collect(Collectors.toMap(OrderResponse::id, Function.identity()));
 		return rows.map(order -> responses.get(order.getId()));

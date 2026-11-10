@@ -2,12 +2,10 @@ package com.olivamore.api.finishedproduct.run;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.LaravelPaginator;
-import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
-import jakarta.servlet.http.HttpServletRequest;
+import com.olivamore.api.shared.web.Pages;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import java.util.Optional;
 
 /** Dolum kosulari. */
 @RestController
@@ -35,17 +32,11 @@ class FinishedProductRunController {
 		this.responses = responses;
 	}
 
-	/** En yeni once; {@code per_page} ile sayfali. */
+	/** En yeni once; {@code page}/{@code size} ile sayfali. */
 	@GetMapping("/api/finished-product-runs")
 	@PreAuthorize("hasAuthority('finished_product_run.view')")
-	ListResponse<FinishedProductRunResponse> index(HttpServletRequest request) {
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(responses.list());
-		}
-		int page = Listing.currentPage(request);
-		Page<FinishedProductRunResponse> rows = responses.page(page, perPage.get());
-		return LaravelPaginator.paginate(rows.getContent(), rows.getTotalElements(), page, perPage.get(), request);
+	PagedModel<FinishedProductRunResponse> index(Pageable pageable) {
+		return Pages.of(pageable, responses::page, responses::list);
 	}
 
 	@GetMapping("/api/finished-product-runs/{id}")

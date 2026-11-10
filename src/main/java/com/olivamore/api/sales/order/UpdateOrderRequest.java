@@ -1,8 +1,9 @@
 package com.olivamore.api.sales.order;
 
-import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
+import com.olivamore.api.shared.json.IsoDateTimeDeserializer;
 import com.olivamore.api.shared.json.Patch;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import tools.jackson.databind.annotation.JsonDeserialize;
@@ -16,11 +17,16 @@ record UpdateOrderRequest(
 
 	Long deliveryAddressId,
 
-	@JsonDeserialize(using = FlexibleDateTimeDeserializer.class)
+	@JsonDeserialize(using = IsoDateTimeDeserializer.class)
 	LocalDateTime orderDate,
 
 	Patch<String> note,
 
-	@Size(min = 1, message = LaravelMessages.MIN_ITEMS_1)
+	@Size(min = 1, message = MessageKeys.ITEMS_MIN)
 	List<@Valid OrderItemRequest> items) {
+
+	UpdateOrderRequest {
+		note = Texts.trim(note);
+	}
+
 }

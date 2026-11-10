@@ -33,7 +33,7 @@ class UserController {
 
 	@GetMapping
 	ListResponse<UserResponse> index() {
-		return new ListResponse.Plain<>(service.all().stream().map(responses::of).toList());
+		return new ListResponse<>(service.all().stream().map(responses::of).toList());
 	}
 
 	@PostMapping

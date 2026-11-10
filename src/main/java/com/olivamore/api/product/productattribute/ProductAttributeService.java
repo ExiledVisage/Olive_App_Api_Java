@@ -4,10 +4,10 @@ import com.olivamore.api.product.ProductUsage;
 import com.olivamore.api.product.ProductUsageCounter;
 import com.olivamore.api.product.productionproduct.ProductionProductService;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +59,7 @@ public class ProductAttributeService {
 	ProductAttributeResponse create(long productId, CreateProductAttributeRequest request) {
 		products.ensureExists(productId);
 		if (!request.dataType().assignable()) {
-			throw LaravelValidationException.of("data_type", LaravelMessages.format(LaravelMessages.IN, "data_type"));
+			throw ValidationFailedException.of("data_type", MessageKeys.IN);
 		}
 		if (mappings.existsByProductionProductIdAndDefinitionAttributeKey(productId, request.attributeKey())) {
 			throw keyTaken();
@@ -105,9 +105,9 @@ public class ProductAttributeService {
 		return mapping;
 	}
 
-	private static LaravelValidationException keyTaken() {
-		return LaravelValidationException.of("attribute_key",
-			LaravelMessages.format(LaravelMessages.UNIQUE, "attribute_key"));
+	private static ValidationFailedException keyTaken() {
+		return ValidationFailedException.of("attribute_key",
+			MessageKeys.UNIQUE);
 	}
 
 }

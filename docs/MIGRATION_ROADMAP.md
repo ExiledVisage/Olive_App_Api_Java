@@ -468,10 +468,10 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
 - [x] Mevcut veri Flyway migration'ı ile korunur
 
 ## B6: API sözleşmesi
-- [ ] Sayfalama: Spring `Pageable` / `Page` (`LaravelPaginator`, `Listing` yerine)
-- [ ] Hatalar: `ProblemDetail` (RFC 9457), `ApiExceptionHandler` sadeleşir, PHP sınıf adları kalkar
-- [ ] Mesajlar: `messages.properties` (`LaravelMessages` yerine)
-- [ ] Standart Jackson ve ISO tarih (`LaravelDateTimeSerializer`, `LaravelStringDeserializer`,
+- [x] Sayfalama: Spring `Pageable` / `Page` (`LaravelPaginator`, `Listing` yerine)
+- [x] Hatalar: `ProblemDetail` (RFC 9457), `ApiExceptionHandler` sadeleşir, PHP sınıf adları kalkar
+- [x] Mesajlar: `messages.properties` (`LaravelMessages` yerine)
+- [x] Standart Jackson ve ISO tarih (`LaravelDateTimeSerializer`, `LaravelStringDeserializer`,
   `InputNormalizationFilter`, `PhpNumbers` kalkar)
 
 ## B7: Testler

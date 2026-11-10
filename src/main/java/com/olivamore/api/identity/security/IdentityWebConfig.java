@@ -1,7 +1,6 @@
 package com.olivamore.api.identity.security;
 
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.shared.json.LaravelStringDeserializer;
 import com.olivamore.api.shared.web.throttle.Limit;
 import com.olivamore.api.shared.web.throttle.NamedLimiter;
 import com.olivamore.api.shared.web.throttle.RateLimitInterceptor;
@@ -102,8 +101,7 @@ public class IdentityWebConfig {
 			if (!email.isString()) {
 				return email.toString();
 			}
-			String text = LaravelStringDeserializer.normalize(email.asString(), false);
-			return text == null ? "" : text;
+			return email.asString();
 		}
 		catch (IOException | RuntimeException unreadable) {
 			return "";

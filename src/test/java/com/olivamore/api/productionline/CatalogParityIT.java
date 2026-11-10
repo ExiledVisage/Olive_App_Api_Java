@@ -41,7 +41,7 @@ class CatalogParityIT {
 			.deviation("esleme guncelle anahtar", 200, null)
 			// unique kurali route('processType') = null -> veritabani kisiti 500. Java: 422.
 			.deviation("alan tekrar anahtar", 422, """
-				{"message":"The field key has already been taken.","errors":{"field_key":["The field key has already been taken."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The field key has already been taken.","instance":"/api/process-types/{PT}/fields","errors":{"field_key":["The field key has already been taken."]}}""")
 			// Laravel insert'e kadar gidip sequence tuketti; Java validation'da reddediyor
 			.burn("alan tekrar anahtar", "process_type_fields_id_seq")
 			.burn("asama gecersiz zorunlu", "production_stages_id_seq")

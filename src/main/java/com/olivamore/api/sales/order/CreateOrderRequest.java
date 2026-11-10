@@ -1,7 +1,8 @@
 package com.olivamore.api.sales.order;
 
-import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.json.IsoDateTimeDeserializer;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,18 +12,23 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 record CreateOrderRequest(
-	@NotNull(message = LaravelMessages.REQUIRED)
+	@NotNull(message = MessageKeys.REQUIRED)
 	Long customerId,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
+	@NotNull(message = MessageKeys.REQUIRED)
 	Long deliveryAddressId,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
-	@JsonDeserialize(using = FlexibleDateTimeDeserializer.class)
+	@NotNull(message = MessageKeys.REQUIRED)
+	@JsonDeserialize(using = IsoDateTimeDeserializer.class)
 	LocalDateTime orderDate,
 
 	String note,
 
-	@NotEmpty(message = LaravelMessages.REQUIRED)
+	@NotEmpty(message = MessageKeys.REQUIRED)
 	List<@Valid OrderItemRequest> items) {
+
+	CreateOrderRequest {
+		note = Texts.trim(note);
+	}
+
 }

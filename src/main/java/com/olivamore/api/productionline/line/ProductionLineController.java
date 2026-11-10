@@ -31,7 +31,7 @@ class ProductionLineController {
 	@GetMapping
 	@PreAuthorize("hasAuthority('production_line.view')")
 	ListResponse<ProductionLineResponse> index() {
-		return new ListResponse.Plain<>(responses.withExtensions(service.all()));
+		return new ListResponse<>(responses.withExtensions(service.all()));
 	}
 
 	@GetMapping("/{id}")

@@ -1,6 +1,5 @@
 package com.olivamore.api.process;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
@@ -16,7 +15,6 @@ public record StageExtensionTypeFieldResponse(
 	int sortOrder,
 	Boolean defaultValueBoolean,
 	Long defaultValueInteger,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal defaultValueDecimal,
 	String defaultValueText,
 	JsonNode defaultValueJson,

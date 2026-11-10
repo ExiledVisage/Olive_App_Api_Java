@@ -45,7 +45,7 @@
      "created_by_user_id": 1,
      "status": "pending",
      "quantity_kg": null,
-     "received_at": "2026-11-07T00:44:57.000000Z",
+     "received_at": "2026-11-07T00:44:57Z",
      "started_at": null,
      "completed_at": null,
      "note": null,
@@ -190,8 +190,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 2,
@@ -205,8 +205,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -245,8 +245,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3278,
@@ -292,16 +292,16 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3279,
@@ -371,8 +371,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3280,
@@ -410,8 +410,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3281,
@@ -457,8 +457,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 5,
@@ -472,8 +472,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -539,8 +539,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3282,
@@ -610,8 +610,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3283,
@@ -681,8 +681,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3284,
@@ -728,8 +728,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -768,8 +768,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3285,
@@ -905,8 +905,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3286,
@@ -952,8 +952,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -992,8 +992,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3287,
@@ -1084,8 +1084,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 3288,
@@ -1131,8 +1131,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 9,
@@ -1146,8 +1146,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:56.000000Z",
-         "updated_at": "2026-11-07T00:44:56.000000Z"
+         "created_at": "2026-11-07T00:44:56Z",
+         "updated_at": "2026-11-07T00:44:56Z"
         },
         {
          "id": 10,
@@ -1161,8 +1161,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:57.000000Z",
-         "updated_at": "2026-11-07T00:44:57.000000Z"
+         "created_at": "2026-11-07T00:44:57Z",
+         "updated_at": "2026-11-07T00:44:57Z"
         },
         {
          "id": 11,
@@ -1176,21 +1176,21 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:57.000000Z",
-         "updated_at": "2026-11-07T00:44:57.000000Z"
+         "created_at": "2026-11-07T00:44:57Z",
+         "updated_at": "2026-11-07T00:44:57Z"
         }
        ],
        "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:44:57.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:44:57Z"
     }
    },
    "save": [
@@ -1327,8 +1327,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -1342,8 +1342,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -1383,8 +1383,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:44:57.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:44:57Z"
     }
    },
    "save": null
@@ -1402,8 +1402,8 @@
      "production_stage_id": 9,
      "operator_id": 2,
      "status": "completed",
-     "started_at": "2026-11-05T21:50:00.000000Z",
-     "completed_at": "2026-11-05T22:48:00.000000Z",
+     "started_at": "2026-11-05T21:50:00Z",
+     "completed_at": "2026-11-05T22:48:00Z",
      "note": null,
      "operation_data": {
       "action": "inbound",
@@ -1418,12 +1418,12 @@
       ]
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-05T22:35:00.000000Z",
+     "submitted_at": "2026-11-05T22:35:00Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
      },
-     "approved_at": "2026-11-05T22:48:00.000000Z",
+     "approved_at": "2026-11-05T22:48:00Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -1445,7 +1445,7 @@
          }
         ]
        },
-       "reviewed_at": "2026-11-05T22:48:00.000000Z",
+       "reviewed_at": "2026-11-05T22:48:00Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -1619,7 +1619,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2359,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "10.0000",
+       "quantity": 10.0,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -1651,7 +1651,7 @@
        "parent_material": {
         "id": 2359,
         "production_product_type_id": 4,
-        "quantity": "414.0000",
+        "quantity": 414.0,
         "unit": "LITRE",
         "status": "active"
        },
@@ -1663,13 +1663,13 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-05T22:48:00.000000Z",
-       "updated_at": "2026-11-05T22:48:00.000000Z"
+       "created_at": "2026-11-05T22:48:00Z",
+       "updated_at": "2026-11-05T22:48:00Z"
       }
      ],
      "closed_materials": [],
-     "created_at": "2026-11-05T14:59:00.000000Z",
-     "updated_at": "2026-11-05T22:48:00.000000Z"
+     "created_at": "2026-11-05T14:59:00Z",
+     "updated_at": "2026-11-05T22:48:00Z"
     }
    },
    "save": null
@@ -1687,8 +1687,8 @@
      "production_stage_id": 1,
      "operator_id": 2,
      "status": "completed",
-     "started_at": "2026-11-05T15:02:00.000000Z",
-     "completed_at": "2026-11-05T15:15:00.000000Z",
+     "started_at": "2026-11-05T15:02:00Z",
+     "completed_at": "2026-11-05T15:15:00Z",
      "note": null,
      "operation_data": {
       "quantity": 2230
@@ -1734,8 +1734,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -1749,8 +1749,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -1842,7 +1842,7 @@
        "production_product_type_id": 2,
        "parent_material_id": null,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "2180.0000",
+       "quantity": 2180.0,
        "unit": "KG",
        "status": "consumed",
        "current_location_type": "production_batch",
@@ -1885,13 +1885,13 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "created_at": "2026-11-05T15:15:00.000000Z",
-       "updated_at": "2026-11-05T19:43:00.000000Z"
+       "created_at": "2026-11-05T15:15:00Z",
+       "updated_at": "2026-11-05T19:43:00Z"
       }
      ],
      "closed_materials": [],
-     "created_at": "2026-11-05T14:59:00.000000Z",
-     "updated_at": "2026-11-05T15:15:00.000000Z"
+     "created_at": "2026-11-05T14:59:00Z",
+     "updated_at": "2026-11-05T15:15:00Z"
     }
    },
    "save": null
@@ -1903,7 +1903,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\BatchProcess] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "BatchProcess 999999 not found.",
+    "instance": "/api/batch-processes/999999"
    },
    "save": null
   },
@@ -1961,8 +1964,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -1976,8 +1979,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -2017,8 +2020,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:44:57.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:44:57Z"
     }
    },
    "save": null,
@@ -2031,7 +2034,10 @@
    "body": null,
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null,
    "as": "depo@olivamore.com"
@@ -2045,8 +2051,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Ayıklama' aşamasına geçilemez; önceki aşamalar tamamlanmadı: Kantarda Tartım.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ayıklama' aşamasına geçilemez; önceki aşamalar tamamlanmadı: Kantarda Tartım.",
+    "instance": "/api/batch-processes/{P2}"
    },
    "save": null
   },
@@ -2057,7 +2065,7 @@
    "body": {
     "note": "ilk not",
     "operator_id": 2,
-    "started_at": "2026-11-07 08:00"
+    "started_at": "2026-11-07T08:00"
    },
    "status": 200,
    "response": {
@@ -2067,7 +2075,7 @@
      "production_stage_id": 1,
      "operator_id": 2,
      "status": "waiting",
-     "started_at": "2026-11-07T08:00:00.000000Z",
+     "started_at": "2026-11-07T08:00:00Z",
      "completed_at": null,
      "note": "ilk not",
      "operation_data": null,
@@ -2112,8 +2120,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -2127,8 +2135,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -2168,8 +2176,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:02.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:02Z"
     }
    },
    "save": null
@@ -2183,7 +2191,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected status is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected status is invalid.",
+    "instance": "/api/batch-processes/{P1}",
     "errors": {
      "status": [
       "The selected status is invalid."
@@ -2201,7 +2212,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The note field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The note field must be a string.",
+    "instance": "/api/batch-processes/{P1}",
     "errors": {
      "note": [
       "The note field must be a string."
@@ -2221,7 +2235,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected operator id is invalid. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected operator id is invalid. (and 2 more errors)",
+    "instance": "/api/batch-processes/{P1}",
     "errors": {
      "operator_id": [
       "The selected operator id is invalid."
@@ -2245,7 +2262,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation data field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation data field is required. (and 1 more error)",
+    "instance": "/api/batch-processes/{P1}",
     "errors": {
      "operation_data": [
       "The operation data field is required."
@@ -2271,7 +2291,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation data.quantity field must be greater than 0. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation data.quantity field must be greater than 0. (and 2 more errors)",
+    "instance": "/api/batch-processes/{P1}",
     "errors": {
      "operation_data.quantity": [
       "The operation data.quantity field must be greater than 0."
@@ -2298,8 +2321,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Zorunlu alanlar doldurulmadan aşama tamamlanamaz: Kamyon Plakası.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Zorunlu alanlar doldurulmadan aşama tamamlanamaz: Kamyon Plakası.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null
   },
@@ -2315,7 +2340,10 @@
    },
    "status": 403,
    "response": {
-    "message": "This action is unauthorized."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "This action is unauthorized.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null,
    "as": "planner@olivamore.com"
@@ -2327,7 +2355,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The fields field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The fields field is required.",
+    "instance": "/api/batch-processes/{P1}/sync-field-values",
     "errors": {
      "fields": [
       "The fields field is required."
@@ -2350,7 +2381,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The value must be numeric for decimal fields.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The value must be numeric for decimal fields.",
+    "instance": "/api/batch-processes/{P1}/sync-field-values",
     "errors": {
      "fields.0.value": [
       "The value must be numeric for decimal fields."
@@ -2379,7 +2413,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected fields.1.process_type_field_id is invalid. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected fields.1.process_type_field_id is invalid. (and 2 more errors)",
+    "instance": "/api/batch-processes/{P2}/sync-field-values",
     "errors": {
      "fields.1.process_type_field_id": [
       "The selected fields.1.process_type_field_id is invalid."
@@ -2418,7 +2455,7 @@
      "production_stage_id": 1,
      "operator_id": 2,
      "status": "waiting",
-     "started_at": "2026-11-07T08:00:00.000000Z",
+     "started_at": "2026-11-07T08:00:00Z",
      "completed_at": null,
      "note": "ilk not",
      "operation_data": null,
@@ -2463,8 +2500,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -2478,8 +2515,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -2566,8 +2603,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:02.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:02Z"
     }
    },
    "save": null
@@ -2592,7 +2629,7 @@
      "production_stage_id": 1,
      "operator_id": 2,
      "status": "waiting",
-     "started_at": "2026-11-07T08:00:00.000000Z",
+     "started_at": "2026-11-07T08:00:00Z",
      "completed_at": null,
      "note": "ilk not",
      "operation_data": null,
@@ -2637,8 +2674,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -2652,8 +2689,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -2717,8 +2754,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:02.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:02Z"
     }
    },
    "save": null
@@ -2737,7 +2774,10 @@
    },
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/batch-processes/{P1}/sync-field-values"
    },
    "save": null,
    "as": "planner@olivamore.com"
@@ -2755,8 +2795,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tartım birimi ürün birimi ile uyuşmuyor.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tartım birimi ürün birimi ile uyuşmuyor.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null
   },
@@ -2773,8 +2815,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Seçilen ürün bu weighing aşaması için batch içinde uygun değil.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Seçilen ürün bu weighing aşaması için batch içinde uygun değil.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null
   },
@@ -2799,8 +2843,8 @@
      "production_stage_id": 1,
      "operator_id": 2,
      "status": "completed",
-     "started_at": "2026-11-07T08:00:00.000000Z",
-     "completed_at": "2026-11-07T00:45:03.000000Z",
+     "started_at": "2026-11-07T08:00:00Z",
+     "completed_at": "2026-11-07T00:45:03Z",
      "note": "tartildi",
      "operation_data": {
       "quantity": "5000.5",
@@ -2847,8 +2891,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -2862,8 +2906,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -2932,7 +2976,7 @@
        "production_product_type_id": 1,
        "parent_material_id": null,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "5000.5000",
+       "quantity": 5000.5,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -2970,13 +3014,13 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:03.000000Z",
-       "updated_at": "2026-11-07T00:45:03.000000Z"
+       "created_at": "2026-11-07T00:45:03Z",
+       "updated_at": "2026-11-07T00:45:03Z"
       }
      ],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:03.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:03Z"
     }
    },
    "save": null
@@ -2997,8 +3041,8 @@
      "production_stage_id": 1,
      "operator_id": 2,
      "status": "completed",
-     "started_at": "2026-11-07T08:00:00.000000Z",
-     "completed_at": "2026-11-07T00:45:03.000000Z",
+     "started_at": "2026-11-07T08:00:00Z",
+     "completed_at": "2026-11-07T00:45:03Z",
      "note": "tartildi",
      "operation_data": {
       "quantity": "5000.5",
@@ -3045,8 +3089,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 2,
@@ -3060,8 +3104,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -3130,7 +3174,7 @@
        "production_product_type_id": 1,
        "parent_material_id": null,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "5000.5000",
+       "quantity": 5000.5,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -3168,13 +3212,13 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:03.000000Z",
-       "updated_at": "2026-11-07T00:45:03.000000Z"
+       "created_at": "2026-11-07T00:45:03Z",
+       "updated_at": "2026-11-07T00:45:03Z"
       }
      ],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:03.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:03Z"
     }
    },
    "save": null
@@ -3193,8 +3237,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tamamlanmış aşamanın değerleri değiştirilemez. Düzeltmek için aşamayı önce geri alın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tamamlanmış aşamanın değerleri değiştirilemez. Düzeltmek için aşamayı önce geri alın.",
+    "instance": "/api/batch-processes/{P1}/sync-field-values"
    },
    "save": null
   },
@@ -3207,8 +3253,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu proses tamamlanırken 1 materyal oluşturdu; 'waiting' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu proses tamamlanırken 1 materyal oluşturdu; 'waiting' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null
   },
@@ -3221,7 +3269,10 @@
    },
    "status": 403,
    "response": {
-    "message": "This action is unauthorized."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "This action is unauthorized.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null,
    "as": "operator1@olivamore.com"
@@ -3235,8 +3286,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu proses tamamlanırken 1 materyal oluşturdu; 'skipped' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu proses tamamlanırken 1 materyal oluşturdu; 'skipped' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
+    "instance": "/api/batch-processes/{P1}"
    },
    "save": null
   },
@@ -3255,7 +3308,7 @@
      "production_stage_id": 2,
      "operator_id": null,
      "status": "in_progress",
-     "started_at": "2026-11-07T00:45:03.000000Z",
+     "started_at": "2026-11-07T00:45:03Z",
      "completed_at": null,
      "note": null,
      "operation_data": null,
@@ -3296,16 +3349,16 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [],
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:03.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:03Z"
     }
    },
    "save": null,
@@ -3367,16 +3420,16 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [],
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:04.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:04Z"
     }
    },
    "save": null,
@@ -3391,8 +3444,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Ayıklama' zorunlu bir aşama; atlanamaz.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ayıklama' zorunlu bir aşama; atlanamaz.",
+    "instance": "/api/batch-processes/{P2}"
    },
    "save": null
   },
@@ -3405,7 +3460,10 @@
    },
    "status": 403,
    "response": {
-    "message": "This action is unauthorized."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "This action is unauthorized.",
+    "instance": "/api/batch-processes/{P2}"
    },
    "save": null,
    "as": "planner@olivamore.com"
@@ -3416,7 +3474,7 @@
    "path": "/api/batch-processes/{P2}",
    "body": {
     "status": "failed",
-    "completed_at": "2026-11-07 09:30:15"
+    "completed_at": "2026-11-07T09:30:15"
    },
    "status": 200,
    "response": {
@@ -3426,8 +3484,8 @@
      "production_stage_id": 2,
      "operator_id": null,
      "status": "failed",
-     "started_at": "2026-11-07T00:45:04.000000Z",
-     "completed_at": "2026-11-07T09:30:15.000000Z",
+     "started_at": "2026-11-07T00:45:04Z",
+     "completed_at": "2026-11-07T09:30:15Z",
      "note": null,
      "operation_data": null,
      "requires_approval": false,
@@ -3467,16 +3525,16 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [],
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:04.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:04Z"
     }
    },
    "save": null
@@ -3501,8 +3559,8 @@
      "production_stage_id": 2,
      "operator_id": null,
      "status": "failed",
-     "started_at": "2026-11-07T00:45:04.000000Z",
-     "completed_at": "2026-11-07T09:30:15.000000Z",
+     "started_at": "2026-11-07T00:45:04Z",
+     "completed_at": "2026-11-07T09:30:15Z",
      "note": null,
      "operation_data": null,
      "requires_approval": false,
@@ -3542,8 +3600,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [],
@@ -3553,7 +3611,7 @@
        "batch_process_id": 3278,
        "process_type_field_id": 3,
        "value_text": null,
-       "value_decimal": "2.5000",
+       "value_decimal": 2.5,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -3574,8 +3632,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:04.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:04Z"
     }
    },
    "save": null
@@ -3605,8 +3663,8 @@
      "production_stage_id": 2,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:04.000000Z",
-     "completed_at": "2026-11-07T09:30:15.000000Z",
+     "started_at": "2026-11-07T00:45:04Z",
+     "completed_at": "2026-11-07T09:30:15Z",
      "note": null,
      "operation_data": {
       "x": 1,
@@ -3655,8 +3713,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [],
@@ -3666,7 +3724,7 @@
        "batch_process_id": 3278,
        "process_type_field_id": 3,
        "value_text": null,
-       "value_decimal": "2.5000",
+       "value_decimal": 2.5,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -3687,8 +3745,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:04.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:04Z"
     }
    },
    "save": null
@@ -3702,8 +3760,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tamamlanmış bir batch process tekrar in_progress yapılamaz.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tamamlanmış bir batch process tekrar in_progress yapılamaz.",
+    "instance": "/api/batch-processes/{P2}"
    },
    "save": null
   },
@@ -3719,8 +3779,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tartım kayıtlı miktarı artıramaz: bu üründen 5000.5 KG görünüyor, 6000 KG girildi. Üretim aşamaları ürünü azaltır, çoğaltmaz. Terazi daha fazlasını gösteriyorsa ürünün sisteme girildiği aşamadaki miktar yanlış demektir.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tartım kayıtlı miktarı artıramaz: bu üründen 5000.5 KG görünüyor, 6000 KG girildi. Üretim aşamaları ürünü azaltır, çoğaltmaz. Terazi daha fazlasını gösteriyorsa ürünün sisteme girildiği aşamadaki miktar yanlış demektir.",
+    "instance": "/api/batch-processes/{P3}"
    },
    "save": null
   },
@@ -3742,8 +3804,8 @@
      "production_stage_id": 3,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:04.000000Z",
-     "completed_at": "2026-11-07T00:45:04.000000Z",
+     "started_at": "2026-11-07T00:45:04Z",
+     "completed_at": "2026-11-07T00:45:04Z",
      "note": null,
      "operation_data": {
       "quantity": 4800
@@ -3810,8 +3872,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:04.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:04Z"
     }
    },
    "save": null
@@ -3831,8 +3893,8 @@
      "production_stage_id": 4,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:04.000000Z",
-     "completed_at": "2026-11-07T00:45:04.000000Z",
+     "started_at": "2026-11-07T00:45:04Z",
+     "completed_at": "2026-11-07T00:45:04Z",
      "note": null,
      "operation_data": null,
      "requires_approval": false,
@@ -3864,8 +3926,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:04.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:04Z"
     }
    },
    "save": null
@@ -3882,7 +3944,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation data.outputs field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation data.outputs field is required.",
+    "instance": "/api/batch-processes/{P5}",
     "errors": {
      "operation_data.outputs": [
       "The operation data.outputs field is required."
@@ -3909,7 +3974,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation_data.outputs.1 field must be an array. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation_data.outputs.1 field must be an array. (and 3 more errors)",
+    "instance": "/api/batch-processes/{P5}",
     "errors": {
      "operation_data.outputs.1": [
       "The operation_data.outputs.1 field must be an array."
@@ -3945,8 +4013,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Input quantity, seçilen material miktarından büyük olamaz.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Input quantity, seçilen material miktarından büyük olamaz.",
+    "instance": "/api/batch-processes/{P5}"
    },
    "save": null
   },
@@ -3972,8 +4042,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Kütle dengesi tutmuyor: girdi 4800 KG, aynı birimdeki çıktı toplamı 5000 KG. Çıktı girdiden fazla olamaz.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Kütle dengesi tutmuyor: girdi 4800 KG, aynı birimdeki çıktı toplamı 5000 KG. Çıktı girdiden fazla olamaz.",
+    "instance": "/api/batch-processes/{P5}"
    },
    "save": null
   },
@@ -3995,8 +4067,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Çıkış ürün tipinin type değeri çözümlenemedi.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Çıkış ürün tipinin type değeri çözümlenemedi.",
+    "instance": "/api/batch-processes/{P5}"
    },
    "save": null
   },
@@ -4018,8 +4092,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Seçilen çıkış ürün tipi bu aşama için uygun değil.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Seçilen çıkış ürün tipi bu aşama için uygun değil.",
+    "instance": "/api/batch-processes/{P5}"
    },
    "save": null
   },
@@ -4042,8 +4118,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Output unit ürün birimi ile uyuşmuyor.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Output unit ürün birimi ile uyuşmuyor.",
+    "instance": "/api/batch-processes/{P5}"
    },
    "save": null
   },
@@ -4076,8 +4154,8 @@
      "production_stage_id": 5,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:05.000000Z",
-     "completed_at": "2026-11-07T00:45:05.000000Z",
+     "started_at": "2026-11-07T00:45:05Z",
+     "completed_at": "2026-11-07T00:45:05Z",
      "note": null,
      "operation_data": {
       "input_quantity": 4800,
@@ -4130,8 +4208,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 5,
@@ -4145,8 +4223,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -4218,7 +4296,7 @@
        "production_product_type_id": 3,
        "parent_material_id": 2363,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "900.2500",
+       "quantity": 900.25,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "production_batch",
@@ -4250,7 +4328,7 @@
        "parent_material": {
         "id": 2363,
         "production_product_type_id": 1,
-        "quantity": "4800.0000",
+        "quantity": 4800.0,
         "unit": "KG",
         "status": "consumed"
        },
@@ -4262,8 +4340,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:05.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:05Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 2367,
@@ -4271,7 +4349,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2363,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "3500.0000",
+       "quantity": 3500.0,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -4303,7 +4381,7 @@
        "parent_material": {
         "id": 2363,
         "production_product_type_id": 1,
-        "quantity": "4800.0000",
+        "quantity": 4800.0,
         "unit": "KG",
         "status": "consumed"
        },
@@ -4315,8 +4393,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:05.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:05Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       }
      ],
      "closed_materials": [
@@ -4326,7 +4404,7 @@
        "production_product_type_id": 1,
        "parent_material_id": null,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "4800.0000",
+       "quantity": 4800.0,
        "unit": "KG",
        "status": "consumed",
        "current_location_type": "production_batch",
@@ -4369,12 +4447,12 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "created_at": "2026-11-07T00:45:03.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:03Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       }
      ],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:05.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:05Z"
     }
    },
    "save": null
@@ -4391,8 +4469,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Tartım kayıtlı miktarı artıramaz: bu üründen 900.25 LITRE görünüyor, 1000 LITRE girildi. Üretim aşamaları ürünü azaltır, çoğaltmaz. Terazi daha fazlasını gösteriyorsa ürünün sisteme girildiği aşamadaki miktar yanlış demektir.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Tartım kayıtlı miktarı artıramaz: bu üründen 900.25 LITRE görünüyor, 1000 LITRE girildi. Üretim aşamaları ürünü azaltır, çoğaltmaz. Terazi daha fazlasını gösteriyorsa ürünün sisteme girildiği aşamadaki miktar yanlış demektir.",
+    "instance": "/api/batch-processes/{P6}"
    },
    "save": null
   },
@@ -4414,8 +4494,8 @@
      "production_stage_id": 6,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:05.000000Z",
-     "completed_at": "2026-11-07T00:45:05.000000Z",
+     "started_at": "2026-11-07T00:45:05Z",
+     "completed_at": "2026-11-07T00:45:05Z",
      "note": null,
      "operation_data": {
       "quantity": 899.75
@@ -4482,8 +4562,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:05.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:05Z"
     }
    },
    "save": null
@@ -4506,8 +4586,8 @@
      "production_stage_id": 7,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:05.000000Z",
-     "completed_at": "2026-11-07T00:45:05.000000Z",
+     "started_at": "2026-11-07T00:45:05Z",
+     "completed_at": "2026-11-07T00:45:05Z",
      "note": null,
      "operation_data": {
       "quantity": "3400"
@@ -4574,8 +4654,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:05.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:05Z"
     }
    },
    "save": null
@@ -4597,8 +4677,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Attribute definition çözümlenemedi.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Attribute definition çözümlenemedi.",
+    "instance": "/api/batch-processes/{P8}"
    },
    "save": null
   },
@@ -4618,7 +4700,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected operation_data.attributes.0.production_product_attribute_definition_id is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected operation_data.attributes.0.production_product_attribute_definition_id is invalid.",
+    "instance": "/api/batch-processes/{P8}",
     "errors": {
      "operation_data.attributes.0.production_product_attribute_definition_id": [
       "The selected operation_data.attributes.0.production_product_attribute_definition_id is invalid."
@@ -4644,7 +4729,10 @@
    },
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\ProductionProductAttributeDefinition] 1"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "ProductionProductAttributeDefinition 1 not found.",
+    "instance": "/api/batch-processes/{P8}"
    },
    "save": null
   },
@@ -4666,8 +4754,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Seçilen material bu batch’e ait değil.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Seçilen material bu batch’e ait değil.",
+    "instance": "/api/batch-processes/{P8}"
    },
    "save": null
   },
@@ -4685,7 +4775,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation_data.attributes.0.attribute_key field is required when operation_data.attributes.0.production_product_attribute_definition_id is not present.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation_data.attributes.0.attribute_key field is required when operation_data.attributes.0.production_product_attribute_definition_id is not present.",
+    "instance": "/api/batch-processes/{P8}",
     "errors": {
      "operation_data.attributes.0.attribute_key": [
       "The operation_data.attributes.0.attribute_key field is required when operation_data.attributes.0.production_product_attribute_definition_id is not present."
@@ -4734,8 +4827,8 @@
      "production_stage_id": 8,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:05.000000Z",
-     "completed_at": "2026-11-07T00:45:05.000000Z",
+     "started_at": "2026-11-07T00:45:05Z",
+     "completed_at": "2026-11-07T00:45:05Z",
      "note": null,
      "operation_data": {
       "attributes": [
@@ -4799,8 +4892,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -4840,8 +4933,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:05.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:05Z"
     }
    },
    "save": null
@@ -4855,7 +4948,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation data field is required. (and 4 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation data field is required. (and 4 more errors)",
+    "instance": "/api/batch-processes/{P9}",
     "errors": {
      "operation_data": [
       "The operation data field is required."
@@ -4898,8 +4994,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu aşamada hareket türü 'inbound' olarak sabitlenmiş; 'transfer' gönderilemez.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu aşamada hareket türü 'inbound' olarak sabitlenmiş; 'transfer' gönderilemez.",
+    "instance": "/api/batch-processes/{P9}"
    },
    "save": null
   },
@@ -4923,8 +5021,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Seçilen tank bu spesifik ürünü kabul etmiyor.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Seçilen tank bu spesifik ürünü kabul etmiyor.",
+    "instance": "/api/batch-processes/{P9}"
    },
    "save": null
   },
@@ -4948,8 +5048,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Hedef tankta yeterli boş kapasite yok.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Hedef tankta yeterli boş kapasite yok.",
+    "instance": "/api/batch-processes/{P9}"
    },
    "save": null
   },
@@ -4979,7 +5081,7 @@
      "production_stage_id": 9,
      "operator_id": null,
      "status": "awaiting_approval",
-     "started_at": "2026-11-07T00:45:06.000000Z",
+     "started_at": "2026-11-07T00:45:06Z",
      "completed_at": null,
      "note": null,
      "operation_data": {
@@ -4994,7 +5096,7 @@
       ]
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:06.000000Z",
+     "submitted_at": "2026-11-07T00:45:06Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -5156,8 +5258,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:06.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:06Z"
     }
    },
    "save": null
@@ -5176,8 +5278,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Onay bekleyen aşamanın değerleri değiştirilemez. Yetkili reddederse aşama düzeltme için geri döner.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Onay bekleyen aşamanın değerleri değiştirilemez. Yetkili reddederse aşama düzeltme için geri döner.",
+    "instance": "/api/batch-processes/{P9}/sync-field-values"
    },
    "save": null
   },
@@ -5190,8 +5294,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Ön Dinlenme' aşaması onay bekliyor; yetkili onaylamalı ya da reddetmeli.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ön Dinlenme' aşaması onay bekliyor; yetkili onaylamalı ya da reddetmeli.",
+    "instance": "/api/batch-processes/{P9}"
    },
    "save": null
   },
@@ -5202,7 +5308,10 @@
    "body": {},
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/batch-processes/{P9}/approve"
    },
    "save": null,
    "as": "operator1@olivamore.com"
@@ -5214,7 +5323,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The note field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The note field is required.",
+    "instance": "/api/batch-processes/{P9}/reject",
     "errors": {
      "note": [
       "The note field is required."
@@ -5238,7 +5350,7 @@
      "production_stage_id": 9,
      "operator_id": null,
      "status": "in_progress",
-     "started_at": "2026-11-07T00:45:06.000000Z",
+     "started_at": "2026-11-07T00:45:06Z",
      "completed_at": null,
      "note": null,
      "operation_data": {
@@ -5273,7 +5385,7 @@
          }
         ]
        },
-       "reviewed_at": "2026-11-07T00:45:06.000000Z",
+       "reviewed_at": "2026-11-07T00:45:06Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -5438,8 +5550,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:06.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:06Z"
     }
    },
    "save": null
@@ -5451,8 +5563,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "'Ön Dinlenme' aşaması onay beklemiyor (durum: in_progress).",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ön Dinlenme' aşaması onay beklemiyor (durum: in_progress).",
+    "instance": "/api/batch-processes/{P9}/approve"
    },
    "save": null
   },
@@ -5465,8 +5579,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Ön Dinlenme' aşaması onay beklemiyor (durum: in_progress).",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ön Dinlenme' aşaması onay beklemiyor (durum: in_progress).",
+    "instance": "/api/batch-processes/{P9}/reject"
    },
    "save": null
   },
@@ -5496,7 +5612,7 @@
      "production_stage_id": 9,
      "operator_id": null,
      "status": "awaiting_approval",
-     "started_at": "2026-11-07T00:45:06.000000Z",
+     "started_at": "2026-11-07T00:45:06Z",
      "completed_at": null,
      "note": null,
      "operation_data": {
@@ -5511,7 +5627,7 @@
       ]
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:06.000000Z",
+     "submitted_at": "2026-11-07T00:45:06Z",
      "submitted_by": {
       "id": 2,
       "name": "Operator One"
@@ -5534,7 +5650,7 @@
          }
         ]
        },
-       "reviewed_at": "2026-11-07T00:45:06.000000Z",
+       "reviewed_at": "2026-11-07T00:45:06Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -5699,8 +5815,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:06.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:06Z"
     }
    },
    "save": null,
@@ -5715,7 +5831,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The note field must not be greater than 2000 characters.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The note field must not be greater than 2000 characters.",
+    "instance": "/api/batch-processes/{P9}/approve",
     "errors": {
      "note": [
       "The note field must not be greater than 2000 characters."
@@ -5739,8 +5858,8 @@
      "production_stage_id": 9,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:06.000000Z",
-     "completed_at": "2026-11-07T00:45:07.000000Z",
+     "started_at": "2026-11-07T00:45:06Z",
+     "completed_at": "2026-11-07T00:45:07Z",
      "note": null,
      "operation_data": {
       "quantity": 899.75,
@@ -5754,12 +5873,12 @@
       ]
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:06.000000Z",
+     "submitted_at": "2026-11-07T00:45:06Z",
      "submitted_by": {
       "id": 2,
       "name": "Operator One"
      },
-     "approved_at": "2026-11-07T00:45:07.000000Z",
+     "approved_at": "2026-11-07T00:45:07Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -5780,7 +5899,7 @@
          }
         ]
        },
-       "reviewed_at": "2026-11-07T00:45:06.000000Z",
+       "reviewed_at": "2026-11-07T00:45:06Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -5805,7 +5924,7 @@
          }
         ]
        },
-       "reviewed_at": "2026-11-07T00:45:07.000000Z",
+       "reviewed_at": "2026-11-07T00:45:07Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -5975,7 +6094,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2366,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "15.5000",
+       "quantity": 15.5,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -6007,7 +6126,7 @@
        "parent_material": {
         "id": 2366,
         "production_product_type_id": 3,
-        "quantity": "879.7500",
+        "quantity": 879.75,
         "unit": "LITRE",
         "status": "active"
        },
@@ -6019,13 +6138,13 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:07.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:45:07Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       }
      ],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -6039,8 +6158,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu proses tamamlanırken 1 materyal ve 1 stok hareketi oluşturdu; 'waiting' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu proses tamamlanırken 1 materyal ve 1 stok hareketi oluşturdu; 'waiting' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
+    "instance": "/api/batch-processes/{P9}"
    },
    "save": null
   },
@@ -6062,8 +6183,8 @@
      "production_stage_id": 10,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:07.000000Z",
-     "completed_at": "2026-11-07T00:45:07.000000Z",
+     "started_at": "2026-11-07T00:45:07Z",
+     "completed_at": "2026-11-07T00:45:07Z",
      "note": null,
      "operation_data": {
       "quantity": 870
@@ -6105,8 +6226,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       }
      ],
      "extensions": [
@@ -6146,8 +6267,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -6166,7 +6287,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The operation data.to storage unit id field and operation data.from storage unit id must be different.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The operation data.to storage unit id field and operation data.from storage unit id must be different.",
+    "instance": "/api/batch-processes/{P11}",
     "errors": {
      "operation_data.to_storage_unit_id": [
       "The operation data.to storage unit id field and operation data.from storage unit id must be different."
@@ -6196,7 +6320,7 @@
      "production_stage_id": 11,
      "operator_id": null,
      "status": "awaiting_approval",
-     "started_at": "2026-11-07T00:45:07.000000Z",
+     "started_at": "2026-11-07T00:45:07Z",
      "completed_at": null,
      "note": null,
      "operation_data": {
@@ -6206,7 +6330,7 @@
       "to_storage_unit_id": 8
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07.000000Z",
+     "submitted_at": "2026-11-07T00:45:07Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -6322,8 +6446,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -6341,8 +6465,8 @@
      "production_stage_id": 11,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:07.000000Z",
-     "completed_at": "2026-11-07T00:45:07.000000Z",
+     "started_at": "2026-11-07T00:45:07Z",
+     "completed_at": "2026-11-07T00:45:07Z",
      "note": null,
      "operation_data": {
       "quantity": 870,
@@ -6351,12 +6475,12 @@
       "to_storage_unit_id": 8
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07.000000Z",
+     "submitted_at": "2026-11-07T00:45:07Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
      },
-     "approved_at": "2026-11-07T00:45:07.000000Z",
+     "approved_at": "2026-11-07T00:45:07Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -6372,7 +6496,7 @@
         "from_storage_unit_id": 7,
         "to_storage_unit_id": 8
        },
-       "reviewed_at": "2026-11-07T00:45:07.000000Z",
+       "reviewed_at": "2026-11-07T00:45:07Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -6491,8 +6615,8 @@
      "field_values": [],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -6523,7 +6647,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The value must be numeric for decimal fields. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The value must be numeric for decimal fields. (and 3 more errors)",
+    "instance": "/api/batch-processes/{P12}/sync-field-values",
     "errors": {
      "fields.0.value": [
       "The value must be numeric for decimal fields."
@@ -6557,7 +6684,7 @@
      },
      {
       "process_type_field_id": "{FD}",
-      "value": "2026-11-07T10:30:00+03:00"
+      "value": "2026-11-07T10:30:00"
      },
      {
       "process_type_field_id": "{FJ}",
@@ -6620,8 +6747,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 9,
@@ -6635,8 +6762,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:56.000000Z",
-       "updated_at": "2026-11-07T00:44:56.000000Z"
+       "created_at": "2026-11-07T00:44:56Z",
+       "updated_at": "2026-11-07T00:44:56Z"
       },
       {
        "id": 10,
@@ -6650,8 +6777,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 11,
@@ -6665,8 +6792,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "extensions": [],
@@ -6676,7 +6803,7 @@
        "batch_process_id": 3288,
        "process_type_field_id": 8,
        "value_text": null,
-       "value_decimal": "17.8300",
+       "value_decimal": 17.83,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -6725,9 +6852,9 @@
        "value_decimal": null,
        "value_integer": null,
        "value_boolean": null,
-       "value_datetime": "2026-11-07T10:30:00.000000Z",
+       "value_datetime": "2026-11-07T10:30:00Z",
        "value_json": null,
-       "resolved_value": "2026-11-07T10:30:00.000000Z",
+       "resolved_value": "2026-11-07T10:30:00Z",
        "process_type_field": {
         "id": 10,
         "process_type_id": 12,
@@ -6778,8 +6905,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:44:57.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:44:57Z"
     }
    },
    "save": null
@@ -6857,8 +6984,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 9,
@@ -6872,8 +6999,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:56.000000Z",
-       "updated_at": "2026-11-07T00:44:56.000000Z"
+       "created_at": "2026-11-07T00:44:56Z",
+       "updated_at": "2026-11-07T00:44:56Z"
       },
       {
        "id": 10,
@@ -6887,8 +7014,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 11,
@@ -6902,8 +7029,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "extensions": [],
@@ -6913,7 +7040,7 @@
        "batch_process_id": 3288,
        "process_type_field_id": 8,
        "value_text": null,
-       "value_decimal": "18.0000",
+       "value_decimal": 18.0,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -7003,8 +7130,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:44:57.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:44:57Z"
     }
    },
    "save": null
@@ -7018,8 +7145,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Filtreleme' aşaması geri alınamaz; sonraki aşamalar başlamış: Tanklarda Toplama.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Filtreleme' aşaması geri alınamaz; sonraki aşamalar başlamış: Tanklarda Toplama.",
+    "instance": "/api/batch-processes/{P10}"
    },
    "save": null
   },
@@ -7038,12 +7167,12 @@
      "production_stage_id": 12,
      "operator_id": null,
      "status": "awaiting_approval",
-     "started_at": "2026-11-07T00:45:07.000000Z",
+     "started_at": "2026-11-07T00:45:07Z",
      "completed_at": null,
      "note": null,
      "operation_data": null,
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07.000000Z",
+     "submitted_at": "2026-11-07T00:45:07Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -7082,8 +7211,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 9,
@@ -7097,8 +7226,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:56.000000Z",
-       "updated_at": "2026-11-07T00:44:56.000000Z"
+       "created_at": "2026-11-07T00:44:56Z",
+       "updated_at": "2026-11-07T00:44:56Z"
       },
       {
        "id": 10,
@@ -7112,8 +7241,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 11,
@@ -7127,8 +7256,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "extensions": [],
@@ -7138,7 +7267,7 @@
        "batch_process_id": 3288,
        "process_type_field_id": 8,
        "value_text": null,
-       "value_decimal": "18.0000",
+       "value_decimal": 18.0,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -7228,8 +7357,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -7247,17 +7376,17 @@
      "production_stage_id": 12,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:07.000000Z",
-     "completed_at": "2026-11-07T00:45:07.000000Z",
+     "started_at": "2026-11-07T00:45:07Z",
+     "completed_at": "2026-11-07T00:45:07Z",
      "note": null,
      "operation_data": null,
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07.000000Z",
+     "submitted_at": "2026-11-07T00:45:07Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
      },
-     "approved_at": "2026-11-07T00:45:07.000000Z",
+     "approved_at": "2026-11-07T00:45:07Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -7268,7 +7397,7 @@
        "decision": "approved",
        "note": null,
        "operation_data": null,
-       "reviewed_at": "2026-11-07T00:45:07.000000Z",
+       "reviewed_at": "2026-11-07T00:45:07Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -7310,8 +7439,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 9,
@@ -7325,8 +7454,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:56.000000Z",
-       "updated_at": "2026-11-07T00:44:56.000000Z"
+       "created_at": "2026-11-07T00:44:56Z",
+       "updated_at": "2026-11-07T00:44:56Z"
       },
       {
        "id": 10,
@@ -7340,8 +7469,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 11,
@@ -7355,8 +7484,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "extensions": [],
@@ -7366,7 +7495,7 @@
        "batch_process_id": 3288,
        "process_type_field_id": 8,
        "value_text": null,
-       "value_decimal": "18.0000",
+       "value_decimal": 18.0,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -7456,8 +7585,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -7484,9 +7613,9 @@
      "created_by_user_id": 1,
      "status": "completed",
      "quantity_kg": null,
-     "received_at": "2026-11-07T00:44:57.000000Z",
-     "started_at": "2026-11-07T00:45:02.000000Z",
-     "completed_at": "2026-11-07T00:45:07.000000Z",
+     "received_at": "2026-11-07T00:44:57Z",
+     "started_at": "2026-11-07T00:45:02Z",
+     "completed_at": "2026-11-07T00:45:07Z",
      "note": null,
      "input_production_product_types": [
       {
@@ -7591,8 +7720,8 @@
        "production_stage_id": 1,
        "operator_id": 2,
        "status": "completed",
-       "started_at": "2026-11-07T08:00:00.000000Z",
-       "completed_at": "2026-11-07T00:45:03.000000Z",
+       "started_at": "2026-11-07T08:00:00Z",
+       "completed_at": "2026-11-07T00:45:03Z",
        "note": "tartildi",
        "operation_data": {
         "quantity": "5000.5",
@@ -7636,8 +7765,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 2,
@@ -7651,8 +7780,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -7720,7 +7849,7 @@
          "production_product_type_id": 1,
          "parent_material_id": null,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "4800.0000",
+         "quantity": 4800.0,
          "unit": "KG",
          "status": "consumed",
          "current_location_type": "production_batch",
@@ -7745,13 +7874,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:03.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:03Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:03.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:03Z"
       },
       {
        "id": 3282,
@@ -7759,8 +7888,8 @@
        "production_stage_id": 6,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "quantity": 899.75
@@ -7823,8 +7952,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3278,
@@ -7832,8 +7961,8 @@
        "production_stage_id": 2,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:04.000000Z",
-       "completed_at": "2026-11-07T09:30:15.000000Z",
+       "started_at": "2026-11-07T00:45:04Z",
+       "completed_at": "2026-11-07T09:30:15Z",
        "note": null,
        "operation_data": {
         "x": 1,
@@ -7879,8 +8008,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [],
@@ -7890,7 +8019,7 @@
          "batch_process_id": 3278,
          "process_type_field_id": 3,
          "value_text": null,
-         "value_decimal": "2.5000",
+         "value_decimal": 2.5,
          "value_integer": null,
          "value_boolean": null,
          "value_datetime": null,
@@ -7911,8 +8040,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:04.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:04Z"
       },
       {
        "id": 3283,
@@ -7920,8 +8049,8 @@
        "production_stage_id": 7,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "quantity": "3400"
@@ -7984,8 +8113,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3287,
@@ -7993,8 +8122,8 @@
        "production_stage_id": 11,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:07.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:07Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": {
         "quantity": 870,
@@ -8003,8 +8132,8 @@
         "to_storage_unit_id": 8
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-07T00:45:07.000000Z",
-       "approved_at": "2026-11-07T00:45:07.000000Z",
+       "submitted_at": "2026-11-07T00:45:07Z",
+       "approved_at": "2026-11-07T00:45:07Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -8081,8 +8210,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 3279,
@@ -8090,8 +8219,8 @@
        "production_stage_id": 3,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:04.000000Z",
-       "completed_at": "2026-11-07T00:45:04.000000Z",
+       "started_at": "2026-11-07T00:45:04Z",
+       "completed_at": "2026-11-07T00:45:04Z",
        "note": null,
        "operation_data": {
         "quantity": 4800
@@ -8154,8 +8283,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:04.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:04Z"
       },
       {
        "id": 3284,
@@ -8163,8 +8292,8 @@
        "production_stage_id": 8,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "attributes": [
@@ -8225,8 +8354,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -8265,8 +8394,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3288,
@@ -8274,13 +8403,13 @@
        "production_stage_id": 12,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:07.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:07Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": null,
        "requires_approval": null,
-       "submitted_at": "2026-11-07T00:45:07.000000Z",
-       "approved_at": "2026-11-07T00:45:07.000000Z",
+       "submitted_at": "2026-11-07T00:45:07Z",
+       "approved_at": "2026-11-07T00:45:07Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -8312,8 +8441,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 9,
@@ -8327,8 +8456,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:56.000000Z",
-         "updated_at": "2026-11-07T00:44:56.000000Z"
+         "created_at": "2026-11-07T00:44:56Z",
+         "updated_at": "2026-11-07T00:44:56Z"
         },
         {
          "id": 10,
@@ -8342,8 +8471,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:57.000000Z",
-         "updated_at": "2026-11-07T00:44:57.000000Z"
+         "created_at": "2026-11-07T00:44:57Z",
+         "updated_at": "2026-11-07T00:44:57Z"
         },
         {
          "id": 11,
@@ -8357,8 +8486,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:57.000000Z",
-         "updated_at": "2026-11-07T00:44:57.000000Z"
+         "created_at": "2026-11-07T00:44:57Z",
+         "updated_at": "2026-11-07T00:44:57Z"
         }
        ],
        "extensions": [],
@@ -8368,7 +8497,7 @@
          "batch_process_id": 3288,
          "process_type_field_id": 8,
          "value_text": null,
-         "value_decimal": "18.0000",
+         "value_decimal": 18.0,
          "value_integer": null,
          "value_boolean": null,
          "value_datetime": null,
@@ -8458,8 +8587,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 3280,
@@ -8467,8 +8596,8 @@
        "production_stage_id": 4,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:04.000000Z",
-       "completed_at": "2026-11-07T00:45:04.000000Z",
+       "started_at": "2026-11-07T00:45:04Z",
+       "completed_at": "2026-11-07T00:45:04Z",
        "note": null,
        "operation_data": null,
        "requires_approval": null,
@@ -8497,8 +8626,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:04.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:04Z"
       },
       {
        "id": 3285,
@@ -8506,8 +8635,8 @@
        "production_stage_id": 9,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:06.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:06Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": {
         "quantity": 899.75,
@@ -8521,8 +8650,8 @@
         ]
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-07T00:45:06.000000Z",
-       "approved_at": "2026-11-07T00:45:07.000000Z",
+       "submitted_at": "2026-11-07T00:45:06Z",
+       "approved_at": "2026-11-07T00:45:07Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -8649,7 +8778,7 @@
          "production_product_type_id": 5,
          "parent_material_id": 2366,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "15.5000",
+         "quantity": 15.5,
          "unit": "KG",
          "status": "active",
          "current_location_type": "production_batch",
@@ -8674,13 +8803,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:07.000000Z",
-         "updated_at": "2026-11-07T00:45:07.000000Z"
+         "created_at": "2026-11-07T00:45:07Z",
+         "updated_at": "2026-11-07T00:45:07Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 3281,
@@ -8688,8 +8817,8 @@
        "production_stage_id": 5,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "input_quantity": 4800,
@@ -8739,8 +8868,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 5,
@@ -8754,8 +8883,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -8826,7 +8955,7 @@
          "production_product_type_id": 5,
          "parent_material_id": 2363,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "3400.0000",
+         "quantity": 3400.0,
          "unit": "KG",
          "status": "active",
          "current_location_type": "production_batch",
@@ -8851,8 +8980,8 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 2366,
@@ -8860,7 +8989,7 @@
          "production_product_type_id": 3,
          "parent_material_id": 2363,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "870.0000",
+         "quantity": 870.0,
          "unit": "LITRE",
          "status": "active",
          "current_location_type": "storage_unit",
@@ -8891,7 +9020,7 @@
            "production_product_attribute_definition_id": 4,
            "value_boolean": null,
            "value_integer": null,
-           "value_decimal": "0.3100",
+           "value_decimal": 0.31,
            "value_text": null,
            "value_json": null,
            "definition": {
@@ -8905,8 +9034,8 @@
             "sort_order": 1,
             "description": "Asitlik oranı"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           },
           {
            "id": 1280,
@@ -8928,8 +9057,8 @@
             "sort_order": 2,
             "description": "Örnek: Ayvalık, Gemlik"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           },
           {
            "id": 1281,
@@ -8953,8 +9082,8 @@
             "sort_order": 3,
             "description": "JSON formatında vitamin bilgileri"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           },
           {
            "id": 1282,
@@ -8979,12 +9108,12 @@
             "sort_order": 4,
             "description": "JSON formatında mineral bilgileri"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           }
          ],
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:07.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:07Z"
         }
        ],
        "closed_materials": [
@@ -8994,7 +9123,7 @@
          "production_product_type_id": 1,
          "parent_material_id": null,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "4800.0000",
+         "quantity": 4800.0,
          "unit": "KG",
          "status": "consumed",
          "current_location_type": "production_batch",
@@ -9019,12 +9148,12 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:03.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:03Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         }
        ],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3286,
@@ -9032,8 +9161,8 @@
        "production_stage_id": 10,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:07.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:07Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": {
         "quantity": 870
@@ -9072,8 +9201,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -9112,8 +9241,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       }
      ],
      "materials": [
@@ -9123,7 +9252,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2363,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "3400.0000",
+       "quantity": 3400.0,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -9155,7 +9284,7 @@
        "parent_material": {
         "id": 2363,
         "production_product_type_id": 1,
-        "quantity": "4800.0000",
+        "quantity": 4800.0,
         "unit": "KG",
         "status": "consumed"
        },
@@ -9167,8 +9296,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:05.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:05Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 2370,
@@ -9176,7 +9305,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2366,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "15.5000",
+       "quantity": 15.5,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -9208,7 +9337,7 @@
        "parent_material": {
         "id": 2366,
         "production_product_type_id": 3,
-        "quantity": "870.0000",
+        "quantity": 870.0,
         "unit": "LITRE",
         "status": "active"
        },
@@ -9220,8 +9349,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:07.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:45:07Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 2366,
@@ -9229,7 +9358,7 @@
        "production_product_type_id": 3,
        "parent_material_id": 2363,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "870.0000",
+       "quantity": 870.0,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -9261,7 +9390,7 @@
        "parent_material": {
         "id": 2363,
         "production_product_type_id": 1,
-        "quantity": "4800.0000",
+        "quantity": 4800.0,
         "unit": "KG",
         "status": "consumed"
        },
@@ -9272,7 +9401,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.3100",
+         "value_decimal": 0.31,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -9286,8 +9415,8 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 1280,
@@ -9309,8 +9438,8 @@
           "sort_order": 2,
           "description": "Örnek: Ayvalık, Gemlik"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 1281,
@@ -9334,8 +9463,8 @@
           "sort_order": 3,
           "description": "JSON formatında vitamin bilgileri"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 1282,
@@ -9360,8 +9489,8 @@
           "sort_order": 4,
           "description": "JSON formatında mineral bilgileri"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         }
        ],
        "created_by_batch_process": {
@@ -9371,8 +9500,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:05.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:45:05Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 2363,
@@ -9380,7 +9509,7 @@
        "production_product_type_id": 1,
        "parent_material_id": null,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "4800.0000",
+       "quantity": 4800.0,
        "unit": "KG",
        "status": "consumed",
        "current_location_type": "production_batch",
@@ -9423,12 +9552,12 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "created_at": "2026-11-07T00:45:03.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:03Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       }
      ],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:07.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:07Z"
     }
    },
    "save": null
@@ -9442,7 +9571,10 @@
    },
    "status": 403,
    "response": {
-    "message": "This action is unauthorized."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "This action is unauthorized.",
+    "instance": "/api/batch-processes/{P12}"
    },
    "save": null,
    "as": "planner@olivamore.com"
@@ -9468,12 +9600,12 @@
      "note": "yeniden",
      "operation_data": null,
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07.000000Z",
+     "submitted_at": "2026-11-07T00:45:07Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
      },
-     "approved_at": "2026-11-07T00:45:07.000000Z",
+     "approved_at": "2026-11-07T00:45:07Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -9484,7 +9616,7 @@
        "decision": "approved",
        "note": null,
        "operation_data": null,
-       "reviewed_at": "2026-11-07T00:45:07.000000Z",
+       "reviewed_at": "2026-11-07T00:45:07Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -9526,8 +9658,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 9,
@@ -9541,8 +9673,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:56.000000Z",
-       "updated_at": "2026-11-07T00:44:56.000000Z"
+       "created_at": "2026-11-07T00:44:56Z",
+       "updated_at": "2026-11-07T00:44:56Z"
       },
       {
        "id": 10,
@@ -9556,8 +9688,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 11,
@@ -9571,8 +9703,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "extensions": [],
@@ -9582,7 +9714,7 @@
        "batch_process_id": 3288,
        "process_type_field_id": 8,
        "value_text": null,
-       "value_decimal": "18.0000",
+       "value_decimal": 18.0,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -9672,8 +9804,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:08.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:08Z"
     }
    },
    "save": null
@@ -9687,8 +9819,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu proses tamamlanırken 2 stok hareketi oluşturdu; 'waiting' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu proses tamamlanırken 2 stok hareketi oluşturdu; 'waiting' durumuna geri alınamaz. Önce oluşan kayıtları düzeltme (adjustment) hareketiyle geri alın.",
+    "instance": "/api/batch-processes/{P11}"
    },
    "save": null
   },
@@ -9712,17 +9846,17 @@
      "production_stage_id": 12,
      "operator_id": null,
      "status": "skipped",
-     "started_at": "2026-11-07T00:45:08.000000Z",
-     "completed_at": "2026-11-07T00:45:08.000000Z",
+     "started_at": "2026-11-07T00:45:08Z",
+     "completed_at": "2026-11-07T00:45:08Z",
      "note": "yeniden",
      "operation_data": null,
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07.000000Z",
+     "submitted_at": "2026-11-07T00:45:07Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
      },
-     "approved_at": "2026-11-07T00:45:07.000000Z",
+     "approved_at": "2026-11-07T00:45:07Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -9733,7 +9867,7 @@
        "decision": "approved",
        "note": null,
        "operation_data": null,
-       "reviewed_at": "2026-11-07T00:45:07.000000Z",
+       "reviewed_at": "2026-11-07T00:45:07Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -9775,8 +9909,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-06T15:35:12.000000Z",
-       "updated_at": "2026-11-06T15:35:12.000000Z"
+       "created_at": "2026-11-06T15:35:12Z",
+       "updated_at": "2026-11-06T15:35:12Z"
       },
       {
        "id": 9,
@@ -9790,8 +9924,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:56.000000Z",
-       "updated_at": "2026-11-07T00:44:56.000000Z"
+       "created_at": "2026-11-07T00:44:56Z",
+       "updated_at": "2026-11-07T00:44:56Z"
       },
       {
        "id": 10,
@@ -9805,8 +9939,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       },
       {
        "id": 11,
@@ -9820,8 +9954,8 @@
        "is_active": true,
        "options": null,
        "default_value": null,
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:44:57.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:44:57Z"
       }
      ],
      "extensions": [],
@@ -9831,7 +9965,7 @@
        "batch_process_id": 3288,
        "process_type_field_id": 8,
        "value_text": null,
-       "value_decimal": "18.0000",
+       "value_decimal": 18.0,
        "value_integer": null,
        "value_boolean": null,
        "value_datetime": null,
@@ -9921,8 +10055,8 @@
      ],
      "created_materials": [],
      "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:08.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:08Z"
     }
    },
    "save": null
@@ -9949,9 +10083,9 @@
      "created_by_user_id": 1,
      "status": "completed",
      "quantity_kg": null,
-     "received_at": "2026-11-07T00:44:57.000000Z",
-     "started_at": "2026-11-07T00:45:02.000000Z",
-     "completed_at": "2026-11-07T00:45:08.000000Z",
+     "received_at": "2026-11-07T00:44:57Z",
+     "started_at": "2026-11-07T00:45:02Z",
+     "completed_at": "2026-11-07T00:45:08Z",
      "note": null,
      "input_production_product_types": [
       {
@@ -10056,8 +10190,8 @@
        "production_stage_id": 1,
        "operator_id": 2,
        "status": "completed",
-       "started_at": "2026-11-07T08:00:00.000000Z",
-       "completed_at": "2026-11-07T00:45:03.000000Z",
+       "started_at": "2026-11-07T08:00:00Z",
+       "completed_at": "2026-11-07T00:45:03Z",
        "note": "tartildi",
        "operation_data": {
         "quantity": "5000.5",
@@ -10101,8 +10235,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 2,
@@ -10116,8 +10250,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -10185,7 +10319,7 @@
          "production_product_type_id": 1,
          "parent_material_id": null,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "4800.0000",
+         "quantity": 4800.0,
          "unit": "KG",
          "status": "consumed",
          "current_location_type": "production_batch",
@@ -10210,13 +10344,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:03.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:03Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:03.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:03Z"
       },
       {
        "id": 3282,
@@ -10224,8 +10358,8 @@
        "production_stage_id": 6,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "quantity": 899.75
@@ -10288,8 +10422,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3278,
@@ -10297,8 +10431,8 @@
        "production_stage_id": 2,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:04.000000Z",
-       "completed_at": "2026-11-07T09:30:15.000000Z",
+       "started_at": "2026-11-07T00:45:04Z",
+       "completed_at": "2026-11-07T09:30:15Z",
        "note": null,
        "operation_data": {
         "x": 1,
@@ -10344,8 +10478,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [],
@@ -10355,7 +10489,7 @@
          "batch_process_id": 3278,
          "process_type_field_id": 3,
          "value_text": null,
-         "value_decimal": "2.5000",
+         "value_decimal": 2.5,
          "value_integer": null,
          "value_boolean": null,
          "value_datetime": null,
@@ -10376,8 +10510,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:04.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:04Z"
       },
       {
        "id": 3283,
@@ -10385,8 +10519,8 @@
        "production_stage_id": 7,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "quantity": "3400"
@@ -10449,8 +10583,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3287,
@@ -10458,8 +10592,8 @@
        "production_stage_id": 11,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:07.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:07Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": {
         "quantity": 870,
@@ -10468,8 +10602,8 @@
         "to_storage_unit_id": 8
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-07T00:45:07.000000Z",
-       "approved_at": "2026-11-07T00:45:07.000000Z",
+       "submitted_at": "2026-11-07T00:45:07Z",
+       "approved_at": "2026-11-07T00:45:07Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -10546,8 +10680,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 3279,
@@ -10555,8 +10689,8 @@
        "production_stage_id": 3,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:04.000000Z",
-       "completed_at": "2026-11-07T00:45:04.000000Z",
+       "started_at": "2026-11-07T00:45:04Z",
+       "completed_at": "2026-11-07T00:45:04Z",
        "note": null,
        "operation_data": {
         "quantity": 4800
@@ -10619,8 +10753,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:04.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:04Z"
       },
       {
        "id": 3284,
@@ -10628,8 +10762,8 @@
        "production_stage_id": 8,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "attributes": [
@@ -10690,8 +10824,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -10730,8 +10864,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3280,
@@ -10739,8 +10873,8 @@
        "production_stage_id": 4,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:04.000000Z",
-       "completed_at": "2026-11-07T00:45:04.000000Z",
+       "started_at": "2026-11-07T00:45:04Z",
+       "completed_at": "2026-11-07T00:45:04Z",
        "note": null,
        "operation_data": null,
        "requires_approval": null,
@@ -10769,8 +10903,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:04.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:04Z"
       },
       {
        "id": 3285,
@@ -10778,8 +10912,8 @@
        "production_stage_id": 9,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:06.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:06Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": {
         "quantity": 899.75,
@@ -10793,8 +10927,8 @@
         ]
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-07T00:45:06.000000Z",
-       "approved_at": "2026-11-07T00:45:07.000000Z",
+       "submitted_at": "2026-11-07T00:45:06Z",
+       "approved_at": "2026-11-07T00:45:07Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -10921,7 +11055,7 @@
          "production_product_type_id": 5,
          "parent_material_id": 2366,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "15.5000",
+         "quantity": 15.5,
          "unit": "KG",
          "status": "active",
          "current_location_type": "production_batch",
@@ -10946,13 +11080,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:07.000000Z",
-         "updated_at": "2026-11-07T00:45:07.000000Z"
+         "created_at": "2026-11-07T00:45:07Z",
+         "updated_at": "2026-11-07T00:45:07Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 3281,
@@ -10960,8 +11094,8 @@
        "production_stage_id": 5,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:05.000000Z",
-       "completed_at": "2026-11-07T00:45:05.000000Z",
+       "started_at": "2026-11-07T00:45:05Z",
+       "completed_at": "2026-11-07T00:45:05Z",
        "note": null,
        "operation_data": {
         "input_quantity": 4800,
@@ -11011,8 +11145,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 5,
@@ -11026,8 +11160,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -11098,7 +11232,7 @@
          "production_product_type_id": 5,
          "parent_material_id": 2363,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "3400.0000",
+         "quantity": 3400.0,
          "unit": "KG",
          "status": "active",
          "current_location_type": "production_batch",
@@ -11123,8 +11257,8 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 2366,
@@ -11132,7 +11266,7 @@
          "production_product_type_id": 3,
          "parent_material_id": 2363,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "870.0000",
+         "quantity": 870.0,
          "unit": "LITRE",
          "status": "active",
          "current_location_type": "storage_unit",
@@ -11163,7 +11297,7 @@
            "production_product_attribute_definition_id": 4,
            "value_boolean": null,
            "value_integer": null,
-           "value_decimal": "0.3100",
+           "value_decimal": 0.31,
            "value_text": null,
            "value_json": null,
            "definition": {
@@ -11177,8 +11311,8 @@
             "sort_order": 1,
             "description": "Asitlik oranı"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           },
           {
            "id": 1280,
@@ -11200,8 +11334,8 @@
             "sort_order": 2,
             "description": "Örnek: Ayvalık, Gemlik"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           },
           {
            "id": 1281,
@@ -11225,8 +11359,8 @@
             "sort_order": 3,
             "description": "JSON formatında vitamin bilgileri"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           },
           {
            "id": 1282,
@@ -11251,12 +11385,12 @@
             "sort_order": 4,
             "description": "JSON formatında mineral bilgileri"
            },
-           "created_at": "2026-11-07T00:45:05.000000Z",
-           "updated_at": "2026-11-07T00:45:05.000000Z"
+           "created_at": "2026-11-07T00:45:05Z",
+           "updated_at": "2026-11-07T00:45:05Z"
           }
          ],
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:07.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:07Z"
         }
        ],
        "closed_materials": [
@@ -11266,7 +11400,7 @@
          "production_product_type_id": 1,
          "parent_material_id": null,
          "origin_type": "BATCH_PROCESS",
-         "quantity": "4800.0000",
+         "quantity": 4800.0,
          "unit": "KG",
          "status": "consumed",
          "current_location_type": "production_batch",
@@ -11291,12 +11425,12 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-07T00:45:03.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:03Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         }
        ],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 3286,
@@ -11304,8 +11438,8 @@
        "production_stage_id": 10,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-07T00:45:07.000000Z",
-       "completed_at": "2026-11-07T00:45:07.000000Z",
+       "started_at": "2026-11-07T00:45:07Z",
+       "completed_at": "2026-11-07T00:45:07Z",
        "note": null,
        "operation_data": {
         "quantity": 870
@@ -11344,8 +11478,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
        "extensions": [
@@ -11384,8 +11518,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 3288,
@@ -11393,13 +11527,13 @@
        "production_stage_id": 12,
        "operator_id": null,
        "status": "skipped",
-       "started_at": "2026-11-07T00:45:08.000000Z",
-       "completed_at": "2026-11-07T00:45:08.000000Z",
+       "started_at": "2026-11-07T00:45:08Z",
+       "completed_at": "2026-11-07T00:45:08Z",
        "note": "yeniden",
        "operation_data": null,
        "requires_approval": null,
-       "submitted_at": "2026-11-07T00:45:07.000000Z",
-       "approved_at": "2026-11-07T00:45:07.000000Z",
+       "submitted_at": "2026-11-07T00:45:07Z",
+       "approved_at": "2026-11-07T00:45:07Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -11431,8 +11565,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-06T15:35:12.000000Z",
-         "updated_at": "2026-11-06T15:35:12.000000Z"
+         "created_at": "2026-11-06T15:35:12Z",
+         "updated_at": "2026-11-06T15:35:12Z"
         },
         {
          "id": 9,
@@ -11446,8 +11580,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:56.000000Z",
-         "updated_at": "2026-11-07T00:44:56.000000Z"
+         "created_at": "2026-11-07T00:44:56Z",
+         "updated_at": "2026-11-07T00:44:56Z"
         },
         {
          "id": 10,
@@ -11461,8 +11595,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:57.000000Z",
-         "updated_at": "2026-11-07T00:44:57.000000Z"
+         "created_at": "2026-11-07T00:44:57Z",
+         "updated_at": "2026-11-07T00:44:57Z"
         },
         {
          "id": 11,
@@ -11476,8 +11610,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-07T00:44:57.000000Z",
-         "updated_at": "2026-11-07T00:44:57.000000Z"
+         "created_at": "2026-11-07T00:44:57Z",
+         "updated_at": "2026-11-07T00:44:57Z"
         }
        ],
        "extensions": [],
@@ -11487,7 +11621,7 @@
          "batch_process_id": 3288,
          "process_type_field_id": 8,
          "value_text": null,
-         "value_decimal": "18.0000",
+         "value_decimal": 18.0,
          "value_integer": null,
          "value_boolean": null,
          "value_datetime": null,
@@ -11577,8 +11711,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-07T00:44:57.000000Z",
-       "updated_at": "2026-11-07T00:45:08.000000Z"
+       "created_at": "2026-11-07T00:44:57Z",
+       "updated_at": "2026-11-07T00:45:08Z"
       }
      ],
      "materials": [
@@ -11588,7 +11722,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2363,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "3400.0000",
+       "quantity": 3400.0,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -11620,7 +11754,7 @@
        "parent_material": {
         "id": 2363,
         "production_product_type_id": 1,
-        "quantity": "4800.0000",
+        "quantity": 4800.0,
         "unit": "KG",
         "status": "consumed"
        },
@@ -11632,8 +11766,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:05.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:05Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       },
       {
        "id": 2370,
@@ -11641,7 +11775,7 @@
        "production_product_type_id": 5,
        "parent_material_id": 2366,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "15.5000",
+       "quantity": 15.5,
        "unit": "KG",
        "status": "active",
        "current_location_type": "production_batch",
@@ -11673,7 +11807,7 @@
        "parent_material": {
         "id": 2366,
         "production_product_type_id": 3,
-        "quantity": "870.0000",
+        "quantity": 870.0,
         "unit": "LITRE",
         "status": "active"
        },
@@ -11685,8 +11819,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:07.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:45:07Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 2366,
@@ -11694,7 +11828,7 @@
        "production_product_type_id": 3,
        "parent_material_id": 2363,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "870.0000",
+       "quantity": 870.0,
        "unit": "LITRE",
        "status": "active",
        "current_location_type": "storage_unit",
@@ -11726,7 +11860,7 @@
        "parent_material": {
         "id": 2363,
         "production_product_type_id": 1,
-        "quantity": "4800.0000",
+        "quantity": 4800.0,
         "unit": "KG",
         "status": "consumed"
        },
@@ -11737,7 +11871,7 @@
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
-         "value_decimal": "0.3100",
+         "value_decimal": 0.31,
          "value_text": null,
          "value_json": null,
          "definition": {
@@ -11751,8 +11885,8 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 1280,
@@ -11774,8 +11908,8 @@
           "sort_order": 2,
           "description": "Örnek: Ayvalık, Gemlik"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 1281,
@@ -11799,8 +11933,8 @@
           "sort_order": 3,
           "description": "JSON formatında vitamin bilgileri"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         },
         {
          "id": 1282,
@@ -11825,8 +11959,8 @@
           "sort_order": 4,
           "description": "JSON formatında mineral bilgileri"
          },
-         "created_at": "2026-11-07T00:45:05.000000Z",
-         "updated_at": "2026-11-07T00:45:05.000000Z"
+         "created_at": "2026-11-07T00:45:05Z",
+         "updated_at": "2026-11-07T00:45:05Z"
         }
        ],
        "created_by_batch_process": {
@@ -11836,8 +11970,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-07T00:45:05.000000Z",
-       "updated_at": "2026-11-07T00:45:07.000000Z"
+       "created_at": "2026-11-07T00:45:05Z",
+       "updated_at": "2026-11-07T00:45:07Z"
       },
       {
        "id": 2363,
@@ -11845,7 +11979,7 @@
        "production_product_type_id": 1,
        "parent_material_id": null,
        "origin_type": "BATCH_PROCESS",
-       "quantity": "4800.0000",
+       "quantity": 4800.0,
        "unit": "KG",
        "status": "consumed",
        "current_location_type": "production_batch",
@@ -11888,12 +12022,12 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "created_at": "2026-11-07T00:45:03.000000Z",
-       "updated_at": "2026-11-07T00:45:05.000000Z"
+       "created_at": "2026-11-07T00:45:03Z",
+       "updated_at": "2026-11-07T00:45:05Z"
       }
      ],
-     "created_at": "2026-11-07T00:44:57.000000Z",
-     "updated_at": "2026-11-07T00:45:08.000000Z"
+     "created_at": "2026-11-07T00:44:57Z",
+     "updated_at": "2026-11-07T00:45:08Z"
     }
    },
    "save": null

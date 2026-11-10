@@ -18,7 +18,7 @@ class PermissionController {
 
 	@GetMapping("/api/permissions")
 	ListResponse<PermissionResponse> index() {
-		return new ListResponse.Plain<>(
+		return new ListResponse<>(
 			permissions.findAllByOrderByNameAsc().stream().map(PermissionResponse::of).toList());
 	}
 

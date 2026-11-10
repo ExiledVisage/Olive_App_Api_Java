@@ -1,6 +1,5 @@
 package com.olivamore.api.productionline;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.process.StageExtensionTypeFieldResponse;
 import com.olivamore.api.process.StageExtensionTypeSummary;
@@ -29,7 +28,6 @@ public record StageExtensionResponse(
 		Long stageExtensionTypeFieldId,
 		Boolean valueBoolean,
 		Long valueInteger,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal valueDecimal,
 		String valueText,
 		JsonNode valueJson,

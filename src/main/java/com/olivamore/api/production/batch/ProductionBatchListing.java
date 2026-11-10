@@ -1,18 +1,17 @@
 package com.olivamore.api.production.batch;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.web.PagedModel;
 import org.springframework.stereotype.Component;
 
-import com.olivamore.api.shared.web.LaravelPaginator;
-import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
+import com.olivamore.api.shared.web.Pages;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +20,6 @@ import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /** Parti listesi ({@code received_from}/{@code received_to}: varis gunu, dahil) ve takvimi. En yeni once. */
 @Component
@@ -42,20 +40,16 @@ class ProductionBatchListing {
 		this.queries = queries;
 	}
 
-	ListResponse<ProductionBatchResponse> list(String receivedFrom, String receivedTo, HttpServletRequest request) {
+	PagedModel<ProductionBatchResponse> list(String receivedFrom, String receivedTo, Pageable pageable) {
 		ValidationErrors errors = new ValidationErrors();
 		LocalDate from = day(errors, "received_from", receivedFrom);
 		LocalDate to = day(errors, "received_to", receivedTo);
 		errors.throwIfAny();
 		Specification<ProductionBatch> specification = received(from, to);
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(responses.list(batches.findAll(specification, NEWEST_FIRST)));
-		}
-		int page = Listing.currentPage(request);
-		Page<ProductionBatch> rows = batches.findAll(specification, PageRequest.of(page - 1, perPage.get(), NEWEST_FIRST));
-		return LaravelPaginator.paginate(responses.list(rows.getContent()), rows.getTotalElements(), page, perPage.get(),
-			request);
+		return Pages.of(pageable, requested -> {
+			Page<ProductionBatch> rows = batches.findAll(specification, Pages.sorted(requested, NEWEST_FIRST));
+			return new PageImpl<>(responses.list(rows.getContent()), rows.getPageable(), rows.getTotalElements());
+		}, () -> responses.list(batches.findAll(specification, NEWEST_FIRST)));
 	}
 
 	/** Gun -> parti sayisi; bas tarih gecersizse bitis de gecersiz sayilir. */
@@ -64,7 +58,7 @@ class ProductionBatchListing {
 		LocalDate start = requiredDay(errors, "from", from);
 		LocalDate end = requiredDay(errors, "to", to);
 		if (to != null && end != null && (start == null || end.isBefore(start))) {
-			errors.add("to", "The :attribute field must be a date after or equal to from.");
+			errors.add("to", MessageKeys.AFTER_OR_EQUAL, "other", "from");
 		}
 		errors.throwIfAny();
 		return queries.calendar(start, end);
@@ -85,7 +79,7 @@ class ProductionBatchListing {
 
 	private static LocalDate requiredDay(ValidationErrors errors, String field, String value) {
 		if (value == null) {
-			errors.add(field, LaravelMessages.REQUIRED);
+			errors.add(field, MessageKeys.REQUIRED);
 			return null;
 		}
 		return day(errors, field, value);
@@ -99,7 +93,7 @@ class ProductionBatchListing {
 			return LocalDate.parse(value, DAY);
 		}
 		catch (DateTimeParseException e) {
-			errors.add(field, LaravelMessages.dateFormat(DATE_FORMAT));
+			errors.add(field, MessageKeys.DATE_FORMAT, "format", DATE_FORMAT);
 			return null;
 		}
 	}

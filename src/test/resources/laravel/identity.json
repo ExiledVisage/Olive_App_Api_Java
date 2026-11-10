@@ -10,7 +10,10 @@
    "status": 401,
    "headers": {},
    "response": {
-    "message": "Unauthenticated."
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Unauthenticated.",
+    "instance": "/api/auth/me"
    }
   },
   {
@@ -22,7 +25,10 @@
    "status": 401,
    "headers": {},
    "response": {
-    "message": "Unauthenticated."
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Unauthenticated.",
+    "instance": "/api/auth/me"
    }
   },
   {
@@ -34,7 +40,10 @@
    "status": 401,
    "headers": {},
    "response": {
-    "message": "Unauthenticated."
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Unauthenticated.",
+    "instance": "/api/auth/me"
    }
   },
   {
@@ -82,7 +91,7 @@
       "finished_product_storage.stock_out",
       "order.view"
      ],
-     "created_at": "2026-11-06T15:35:11.000000Z"
+     "created_at": "2026-11-06T15:35:11Z"
     }
    }
   },
@@ -99,8 +108,8 @@
     "name": "Operator One",
     "email": "operator1@olivamore.com",
     "email_verified_at": null,
-    "created_at": "2026-11-06T15:35:11.000000Z",
-    "updated_at": "2026-11-06T15:35:11.000000Z"
+    "created_at": "2026-11-06T15:35:11Z",
+    "updated_at": "2026-11-06T15:35:11Z"
    }
   },
   {
@@ -112,7 +121,10 @@
    "status": 403,
    "headers": {},
    "response": {
-    "message": "User does not have the right roles."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right roles.",
+    "instance": "/api/users"
    }
   },
   {
@@ -124,7 +136,10 @@
    "status": 403,
    "headers": {},
    "response": {
-    "message": "User does not have the right roles."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right roles.",
+    "instance": "/api/users/999999"
    }
   },
   {
@@ -136,7 +151,10 @@
    "status": 404,
    "headers": {},
    "response": {
-    "message": "No query results for model [App\\Models\\User] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "User 999999 not found.",
+    "instance": "/api/users/999999"
    }
   },
   {
@@ -148,7 +166,10 @@
    "status": 403,
    "headers": {},
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/customers"
    }
   },
   {
@@ -160,7 +181,10 @@
    "status": 401,
    "headers": {},
    "response": {
-    "message": "Unauthenticated."
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Unauthenticated.",
+    "instance": "/api/customers"
    }
   },
   {
@@ -175,7 +199,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The email field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email field is required. (and 1 more error)",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The email field is required."
@@ -201,7 +228,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The email field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email field must be a string.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The email field must be a string."
@@ -224,7 +254,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The password field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The password field must be a string.",
+    "instance": "/api/auth/login",
     "errors": {
      "password": [
       "The password field must be a string."
@@ -247,7 +280,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The email field must be a valid email address.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email field must be a valid email address.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The email field must be a valid email address."
@@ -270,7 +306,10 @@
     "X-RateLimit-Remaining": "3"
    },
    "response": {
-    "message": "The email field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email field is required. (and 1 more error)",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The email field is required."
@@ -295,7 +334,10 @@
    "status": 500,
    "headers": {},
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/auth/login"
    }
   },
   {
@@ -313,7 +355,10 @@
     "X-RateLimit-Remaining": "3"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -336,7 +381,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -356,7 +404,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The name field is required. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 2 more errors)",
+    "instance": "/api/auth/register",
     "errors": {
      "name": [
       "The name field is required."
@@ -387,7 +438,10 @@
     "X-RateLimit-Remaining": "3"
    },
    "response": {
-    "message": "The name field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field must be a string.",
+    "instance": "/api/auth/register",
     "errors": {
      "name": [
       "The name field must be a string."
@@ -412,7 +466,10 @@
     "X-RateLimit-Remaining": "2"
    },
    "response": {
-    "message": "The name field must not be greater than 255 characters. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field must not be greater than 255 characters. (and 1 more error)",
+    "instance": "/api/auth/register",
     "errors": {
      "name": [
       "The name field must not be greater than 255 characters."
@@ -440,7 +497,10 @@
     "X-RateLimit-Remaining": "1"
    },
    "response": {
-    "message": "The email has already been taken. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email has already been taken. (and 1 more error)",
+    "instance": "/api/auth/register",
     "errors": {
      "email": [
       "The email has already been taken."
@@ -479,7 +539,7 @@
      "email": "yeni@olivamore.com",
      "roles": [],
      "permissions": [],
-     "created_at": "2026-11-06T17:41:34.000000Z"
+     "created_at": "2026-11-06T17:41:34Z"
     }
    }
   },
@@ -509,7 +569,7 @@
      "email": "yeni@olivamore.com",
      "roles": [],
      "permissions": [],
-     "created_at": "2026-11-06T17:41:34.000000Z"
+     "created_at": "2026-11-06T17:41:34Z"
     }
    }
   },
@@ -522,7 +582,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The name field is required. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 2 more errors)",
+    "instance": "/api/users",
     "errors": {
      "name": [
       "The name field is required."
@@ -553,7 +616,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The roles.0 field must be a string.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The roles.0 field must be a string.",
+    "instance": "/api/users",
     "errors": {
      "roles.0": [
       "The roles.0 field must be a string."
@@ -578,7 +644,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The selected roles.0 is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected roles.0 is invalid.",
+    "instance": "/api/users",
     "errors": {
      "roles.0": [
       "The selected roles.0 is invalid."
@@ -600,7 +669,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The roles field must be an array.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The roles field must be an array.",
+    "instance": "/api/users",
     "errors": {
      "roles": [
       "The roles field must be an array."
@@ -672,7 +744,7 @@
       "order.update",
       "order.update_status"
      ],
-     "created_at": "2026-11-06T17:41:34.000000Z"
+     "created_at": "2026-11-06T17:41:34Z"
     }
    }
   },
@@ -735,7 +807,7 @@
       "order.update",
       "order.update_status"
      ],
-     "created_at": "2026-11-06T17:41:34.000000Z"
+     "created_at": "2026-11-06T17:41:34Z"
     }
    }
   },
@@ -758,7 +830,7 @@
      "email": "test@olivamore.com",
      "roles": [],
      "permissions": [],
-     "created_at": "2026-11-06T17:41:34.000000Z"
+     "created_at": "2026-11-06T17:41:34Z"
     }
    }
   },
@@ -774,7 +846,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The email has already been taken.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email has already been taken.",
+    "instance": "/api/users/9",
     "errors": {
      "email": [
       "The email has already been taken."
@@ -795,7 +870,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The password field must be at least 8 characters.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The password field must be at least 8 characters.",
+    "instance": "/api/users/9",
     "errors": {
      "password": [
       "The password field must be at least 8 characters."
@@ -814,7 +892,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The roles field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The roles field is required.",
+    "instance": "/api/users/9/roles",
     "errors": {
      "roles": [
       "The roles field is required."
@@ -856,7 +937,7 @@
       "finished_product_storage.view",
       "customer.view"
      ],
-     "created_at": "2026-11-06T17:41:34.000000Z"
+     "created_at": "2026-11-06T17:41:34Z"
     }
    }
   },
@@ -873,7 +954,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "Admin kullanicisindan admin rolu kaldirilamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Admin kullanicisindan admin rolu kaldirilamaz.",
+    "instance": "/api/users/1/roles"
    }
   },
   {
@@ -891,7 +975,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "Admin kullanicisindan admin rolu kaldirilamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Admin kullanicisindan admin rolu kaldirilamaz.",
+    "instance": "/api/users/1"
    }
   },
   {
@@ -903,7 +990,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "Admin kullanicisi silinemez."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Admin kullanicisi silinemez.",
+    "instance": "/api/users/1"
    }
   },
   {
@@ -927,7 +1017,10 @@
    "status": 404,
    "headers": {},
    "response": {
-    "message": "No query results for model [App\\Models\\User] 9"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "User 9 not found.",
+    "instance": "/api/users/9"
    }
   },
   {
@@ -939,7 +1032,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The name field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required.",
+    "instance": "/api/roles",
     "errors": {
      "name": [
       "The name field is required."
@@ -961,7 +1057,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The name has already been taken. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name has already been taken. (and 1 more error)",
+    "instance": "/api/roles",
     "errors": {
      "name": [
       "The name has already been taken."
@@ -987,7 +1086,10 @@
    "status": 500,
    "headers": {},
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/roles"
    }
   },
   {
@@ -1037,7 +1139,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "Admin rolu yeniden adlandirilamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Admin rolu yeniden adlandirilamaz.",
+    "instance": "/api/roles/1"
    }
   },
   {
@@ -1049,7 +1154,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "Admin rolu silinemez."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Admin rolu silinemez.",
+    "instance": "/api/roles/1"
    }
   },
   {
@@ -1061,7 +1169,10 @@
    "status": 500,
    "headers": {},
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/roles/8"
    }
   },
   {
@@ -1085,7 +1196,10 @@
    "status": 401,
    "headers": {},
    "response": {
-    "message": "Unauthenticated."
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Unauthenticated.",
+    "instance": "/api/auth/me"
    }
   },
   {
@@ -1103,7 +1217,10 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -1126,7 +1243,10 @@
     "X-RateLimit-Remaining": "3"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -1149,7 +1269,10 @@
     "X-RateLimit-Remaining": "2"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -1172,7 +1295,10 @@
     "X-RateLimit-Remaining": "1"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -1195,7 +1321,10 @@
     "X-RateLimit-Remaining": "0"
    },
    "response": {
-    "message": "The provided credentials are incorrect.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The provided credentials are incorrect.",
+    "instance": "/api/auth/login",
     "errors": {
      "email": [
       "The provided credentials are incorrect."
@@ -1220,7 +1349,10 @@
     "X-RateLimit-Reset": "1793986954"
    },
    "response": {
-    "message": "Too Many Attempts."
+    "title": "Too Many Requests",
+    "status": 429,
+    "detail": "Too Many Attempts.",
+    "instance": "/api/auth/login"
    }
   }
  ]

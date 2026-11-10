@@ -1,11 +1,17 @@
 package com.olivamore.api.production.batchprocess;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
-import jakarta.validation.constraints.NotNull;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 record RejectBatchProcessRequest(
-	@NotNull(message = LaravelMessages.REQUIRED)
-	@Size(max = 2000, message = LaravelMessages.MAX_2000)
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Size(max = 2000, message = MessageKeys.SIZE_MAX)
 	String note) {
+
+	RejectBatchProcessRequest {
+		note = Texts.trim(note);
+	}
+
 }

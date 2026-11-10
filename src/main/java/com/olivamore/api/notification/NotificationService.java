@@ -8,10 +8,12 @@ import com.olivamore.api.notification.NotificationResponses.Sender;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
+import com.olivamore.api.shared.web.Pages;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,8 +40,8 @@ class NotificationService {
 
 	/** En yeni once. */
 	@Transactional(readOnly = true)
-	Page<UserNotification> page(long userId, boolean unread, int page, int size) {
-		PageRequest request = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
+	Page<UserNotification> page(long userId, boolean unread, Pageable pageable) {
+		PageRequest request = Pages.sorted(pageable, Sort.by(Sort.Direction.DESC, "createdAt"));
 		return unread
 			? repository.findByUserIdAndReadAtIsNull(userId, request)
 			: repository.findByUserId(userId, request);
@@ -106,7 +108,7 @@ class NotificationService {
 	private void assertUserExists(Long userId) {
 		if (userId != null && !directory.userExists(userId)) {
 			ValidationErrors errors = new ValidationErrors();
-			errors.add("user_id", LaravelMessages.EXISTS);
+			errors.add("user_id", MessageKeys.EXISTS);
 			errors.throwIfAny();
 		}
 	}

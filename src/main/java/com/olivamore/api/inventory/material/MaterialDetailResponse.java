@@ -1,6 +1,5 @@
 package com.olivamore.api.inventory.material;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olivamore.api.inventory.MaterialResponse;
 
 import java.math.BigDecimal;
@@ -13,7 +12,6 @@ import java.util.List;
  */
 record MaterialDetailResponse(
 	Long id,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal quantity,
 	String unit,
 	String status,
@@ -41,7 +39,7 @@ record MaterialDetailResponse(
 	}
 
 	record LineageSummary(Long id, String name,
-		@JsonFormat(shape = JsonFormat.Shape.STRING) BigDecimal quantity, String unit, String status) {
+		BigDecimal quantity, String unit, String status) {
 	}
 
 	record AttributeLine(String label, String unit, Object value) {
@@ -51,7 +49,6 @@ record MaterialDetailResponse(
 		Long id,
 		Long finishedProductRunId,
 		String movementType,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal quantity,
 		String unit,
 		LocalDateTime movedAt,

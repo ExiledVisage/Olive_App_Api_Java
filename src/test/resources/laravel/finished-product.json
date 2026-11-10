@@ -20,7 +20,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -28,13 +28,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 2,
@@ -47,7 +47,7 @@
         "id": 2,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -55,13 +55,13 @@
         "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.8000",
-        "min_deviation": "0.1000",
+        "value": 0.8,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 3,
@@ -74,7 +74,7 @@
         "id": 3,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -82,13 +82,13 @@
         "id": 3,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.4000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.4,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
@@ -101,7 +101,7 @@
         "id": 4,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -109,13 +109,13 @@
         "id": 4,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.9000",
-        "min_deviation": "0.1000",
+        "value": 0.9,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 5,
@@ -128,13 +128,13 @@
         "id": 5,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 6,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
@@ -142,13 +142,13 @@
         "id": 5,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.5000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.5,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 6,
@@ -161,13 +161,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ],
       "attribute_rules": [
@@ -175,13 +175,13 @@
         "id": 6,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.6000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 7,
@@ -194,19 +194,19 @@
         "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.5000"
+        "ratio": 0.5
        },
        {
         "id": 10,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.3500"
+        "ratio": 0.35
        },
        {
         "id": 11,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.1500"
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
@@ -214,13 +214,13 @@
         "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.7000",
-        "min_deviation": "0.1000",
+        "value": 0.7,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -245,7 +245,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -253,13 +253,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 2,
@@ -272,7 +272,7 @@
         "id": 2,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -280,13 +280,13 @@
         "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.8000",
-        "min_deviation": "0.1000",
+        "value": 0.8,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -311,7 +311,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -319,13 +319,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 2,
@@ -338,7 +338,7 @@
         "id": 2,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -346,13 +346,13 @@
         "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.8000",
-        "min_deviation": "0.1000",
+        "value": 0.8,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 3,
@@ -365,7 +365,7 @@
         "id": 3,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -373,13 +373,13 @@
         "id": 3,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.4000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.4,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
@@ -392,7 +392,7 @@
         "id": 4,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -400,13 +400,13 @@
         "id": 4,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.9000",
-        "min_deviation": "0.1000",
+        "value": 0.9,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 5,
@@ -419,13 +419,13 @@
         "id": 5,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 6,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
@@ -433,13 +433,13 @@
         "id": 5,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.5000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.5,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 6,
@@ -452,13 +452,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ],
       "attribute_rules": [
@@ -466,13 +466,13 @@
         "id": 6,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.6000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 7,
@@ -485,19 +485,19 @@
         "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.5000"
+        "ratio": 0.5
        },
        {
         "id": 10,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.3500"
+        "ratio": 0.35
        },
        {
         "id": 11,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.1500"
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
@@ -505,13 +505,13 @@
         "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.7000",
-        "min_deviation": "0.1000",
+        "value": 0.7,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -536,7 +536,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -544,13 +544,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 2,
@@ -563,7 +563,7 @@
         "id": 2,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -571,13 +571,13 @@
         "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.8000",
-        "min_deviation": "0.1000",
+        "value": 0.8,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 3,
@@ -590,7 +590,7 @@
         "id": 3,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -598,13 +598,13 @@
         "id": 3,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.4000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.4,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
@@ -617,7 +617,7 @@
         "id": 4,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -625,13 +625,13 @@
         "id": 4,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.9000",
-        "min_deviation": "0.1000",
+        "value": 0.9,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 5,
@@ -644,13 +644,13 @@
         "id": 5,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 6,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
@@ -658,13 +658,13 @@
         "id": 5,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.5000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.5,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 6,
@@ -677,13 +677,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ],
       "attribute_rules": [
@@ -691,13 +691,13 @@
         "id": 6,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.6000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 7,
@@ -710,19 +710,19 @@
         "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.5000"
+        "ratio": 0.5
        },
        {
         "id": 10,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.3500"
+        "ratio": 0.35
        },
        {
         "id": 11,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.1500"
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
@@ -730,13 +730,13 @@
         "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.7000",
-        "min_deviation": "0.1000",
+        "value": 0.7,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -761,13 +761,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ],
       "attribute_rules": [
@@ -775,13 +775,13 @@
         "id": 6,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.6000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 7,
@@ -794,19 +794,19 @@
         "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.5000"
+        "ratio": 0.5
        },
        {
         "id": 10,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.3500"
+        "ratio": 0.35
        },
        {
         "id": 11,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.1500"
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
@@ -814,13 +814,13 @@
         "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.7000",
-        "min_deviation": "0.1000",
+        "value": 0.7,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -844,7 +844,7 @@
        "id": 1,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "1.0000"
+       "ratio": 1.0
       }
      ],
      "attribute_rules": [
@@ -852,13 +852,13 @@
        "id": 1,
        "attribute_definition_id": 1,
        "attribute_label": "Asitlik",
-       "value": "0.3000",
-       "min_deviation": "0.0500",
-       "max_deviation": "0.0500"
+       "value": 0.3,
+       "min_deviation": 0.05,
+       "max_deviation": 0.05
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T15:35:13.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T15:35:13Z"
     }
    },
    "save": null
@@ -881,13 +881,13 @@
        "id": 5,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "0.7000"
+       "ratio": 0.7
       },
       {
        "id": 6,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "0.3000"
+       "ratio": 0.3
       }
      ],
      "attribute_rules": [
@@ -895,13 +895,13 @@
        "id": 5,
        "attribute_definition_id": 1,
        "attribute_label": "Asitlik",
-       "value": "0.5000",
-       "min_deviation": "0.0500",
-       "max_deviation": "0.0500"
+       "value": 0.5,
+       "min_deviation": 0.05,
+       "max_deviation": 0.05
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T15:35:13.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T15:35:13Z"
     }
    },
    "save": null
@@ -924,19 +924,19 @@
        "id": 9,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "0.5000"
+       "ratio": 0.5
       },
       {
        "id": 10,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "0.3500"
+       "ratio": 0.35
       },
       {
        "id": 11,
        "production_product_type_id": 6,
        "production_product_type_name": "Portakal Aroması",
-       "ratio": "0.1500"
+       "ratio": 0.15
       }
      ],
      "attribute_rules": [
@@ -944,13 +944,13 @@
        "id": 7,
        "attribute_definition_id": 1,
        "attribute_label": "Asitlik",
-       "value": "0.7000",
-       "min_deviation": "0.1000",
+       "value": 0.7,
+       "min_deviation": 0.1,
        "max_deviation": null
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T15:35:13.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T15:35:13Z"
     }
    },
    "save": null
@@ -962,7 +962,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\FinishedProductRecipe] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "FinishedProductRecipe 999999 not found.",
+    "instance": "/api/finished-product-recipes/999999"
    },
    "save": null
   },
@@ -985,7 +988,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -993,13 +996,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -1024,7 +1027,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -1032,13 +1035,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -1052,7 +1055,10 @@
    "body": null,
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null,
    "as": "uretim@olivamore.com"
@@ -1064,7 +1070,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 1 more error)",
+    "instance": "/api/finished-product-recipes",
     "errors": {
      "name": [
       "The name field is required."
@@ -1101,7 +1110,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null
   },
@@ -1130,7 +1142,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents.0.ratio field must not be greater than 1. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The contents.0.ratio field must not be greater than 1. (and 3 more errors)",
+    "instance": "/api/finished-product-recipes",
     "errors": {
      "contents.0.ratio": [
       "The contents.0.ratio field must not be greater than 1."
@@ -1169,7 +1184,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected contents.0.production_product_type_id is invalid. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected contents.0.production_product_type_id is invalid. (and 2 more errors)",
+    "instance": "/api/finished-product-recipes",
     "errors": {
      "contents.0.production_product_type_id": [
       "The selected contents.0.production_product_type_id is invalid."
@@ -1203,7 +1221,10 @@
    },
    "status": 422,
    "response": {
-    "message": "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.8333",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.8333",
+    "instance": "/api/finished-product-recipes",
     "errors": {
      "contents": [
       "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.8333"
@@ -1231,7 +1252,10 @@
    },
    "status": 422,
    "response": {
-    "message": "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 2",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 2",
+    "instance": "/api/finished-product-recipes",
     "errors": {
      "contents": [
       "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 2"
@@ -1250,7 +1274,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents field must be an array.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The contents field must be an array.",
+    "instance": "/api/finished-product-recipes",
     "errors": {
      "contents": [
       "The contents field must be an array."
@@ -1297,13 +1324,13 @@
        "id": 12,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "0.7000"
+       "ratio": 0.7
       },
       {
        "id": 13,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "0.3000"
+       "ratio": 0.3
       }
      ],
      "attribute_rules": [
@@ -1311,13 +1338,13 @@
        "id": 8,
        "attribute_definition_id": 1,
        "attribute_label": "Asitlik",
-       "value": "0.5000",
-       "min_deviation": "0.1000",
+       "value": 0.5,
+       "min_deviation": 0.1,
        "max_deviation": null
       }
      ],
-     "created_at": "2026-11-07T03:29:12.000000Z",
-     "updated_at": "2026-11-07T03:29:12.000000Z"
+     "created_at": "2026-11-07T03:29:12Z",
+     "updated_at": "2026-11-07T03:29:12Z"
     }
    },
    "save": [
@@ -1359,24 +1386,24 @@
        "id": 14,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "0.3333"
+       "ratio": 0.3333
       },
       {
        "id": 15,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "0.3333"
+       "ratio": 0.3333
       },
       {
        "id": 16,
        "production_product_type_id": 6,
        "production_product_type_name": "Portakal Aroması",
-       "ratio": "0.3334"
+       "ratio": 0.3334
       }
      ],
      "attribute_rules": [],
-     "created_at": "2026-11-07T03:29:12.000000Z",
-     "updated_at": "2026-11-07T03:29:12.000000Z"
+     "created_at": "2026-11-07T03:29:12Z",
+     "updated_at": "2026-11-07T03:29:12Z"
     }
    },
    "save": [
@@ -1410,12 +1437,12 @@
        "id": 17,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "1.0000"
+       "ratio": 1.0
       }
      ],
      "attribute_rules": [],
-     "created_at": "2026-11-07T03:29:12.000000Z",
-     "updated_at": "2026-11-07T03:29:12.000000Z"
+     "created_at": "2026-11-07T03:29:12Z",
+     "updated_at": "2026-11-07T03:29:12Z"
     }
    },
    "save": [
@@ -1439,7 +1466,10 @@
    },
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null,
    "as": "planner@olivamore.com"
@@ -1464,13 +1494,13 @@
        "id": 18,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "0.7000"
+       "ratio": 0.7
       },
       {
        "id": 19,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "0.3000"
+       "ratio": 0.3
       }
      ],
      "attribute_rules": [
@@ -1478,13 +1508,13 @@
        "id": 9,
        "attribute_definition_id": 1,
        "attribute_label": "Asitlik",
-       "value": "0.5000",
-       "min_deviation": "0.1000",
+       "value": 0.5,
+       "min_deviation": 0.1,
        "max_deviation": null
       }
      ],
-     "created_at": "2026-11-07T03:29:12.000000Z",
-     "updated_at": "2026-11-07T03:29:12.000000Z"
+     "created_at": "2026-11-07T03:29:12Z",
+     "updated_at": "2026-11-07T03:29:12Z"
     }
    },
    "save": [
@@ -1501,8 +1531,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Sadece aktif tarif versiyonu güncellenebilir. 'Test Blend' v1 pasif; güncel versiyon v2 (id 11).",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Sadece aktif tarif versiyonu güncellenebilir. 'Test Blend' v1 pasif; güncel versiyon v2 (id 11).",
+    "instance": "/api/finished-product-recipes/{R1}"
    },
    "save": null
   },
@@ -1532,12 +1564,12 @@
        "id": 20,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "1.0000"
+       "ratio": 1.0
       }
      ],
      "attribute_rules": [],
-     "created_at": "2026-11-07T03:29:13.000000Z",
-     "updated_at": "2026-11-07T03:29:13.000000Z"
+     "created_at": "2026-11-07T03:29:13Z",
+     "updated_at": "2026-11-07T03:29:13Z"
     }
    },
    "save": [
@@ -1559,7 +1591,10 @@
    },
    "status": 422,
    "response": {
-    "message": "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.9",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.9",
+    "instance": "/api/finished-product-recipes/{R1v3}",
     "errors": {
      "contents": [
       "İçerik oranlarının toplamı 1.00 olmalıdır. Mevcut toplam: 0.9"
@@ -1577,7 +1612,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents field must have at least 1 items.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The contents field must have at least 1 items.",
+    "instance": "/api/finished-product-recipes/{R1v3}",
     "errors": {
      "contents": [
       "The contents field must have at least 1 items."
@@ -1599,7 +1637,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The contents.0.ratio field is required when contents is present.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The contents.0.ratio field is required when contents is present.",
+    "instance": "/api/finished-product-recipes/{R1v3}",
     "errors": {
      "contents.0.ratio": [
       "The contents.0.ratio field is required when contents is present."
@@ -1629,12 +1670,12 @@
        "id": 21,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "1.0000"
+       "ratio": 1.0
       }
      ],
      "attribute_rules": [],
-     "created_at": "2026-11-07T03:29:13.000000Z",
-     "updated_at": "2026-11-07T03:29:13.000000Z"
+     "created_at": "2026-11-07T03:29:13Z",
+     "updated_at": "2026-11-07T03:29:13Z"
     }
    },
    "save": [
@@ -1662,12 +1703,12 @@
        "id": 22,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "1.0000"
+       "ratio": 1.0
       }
      ],
      "attribute_rules": [],
-     "created_at": "2026-11-07T03:29:13.000000Z",
-     "updated_at": "2026-11-07T03:29:13.000000Z"
+     "created_at": "2026-11-07T03:29:13Z",
+     "updated_at": "2026-11-07T03:29:13Z"
     }
    },
    "save": [
@@ -1694,12 +1735,12 @@
         "id": 20,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-07T03:29:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 11,
@@ -1712,13 +1753,13 @@
         "id": 18,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 19,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
@@ -1726,13 +1767,13 @@
         "id": 9,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.5000",
-        "min_deviation": "0.1000",
+        "value": 0.5,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-07T03:29:12.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-07T03:29:12Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 8,
@@ -1745,13 +1786,13 @@
         "id": 12,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 13,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
@@ -1759,13 +1800,13 @@
         "id": 8,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.5000",
-        "min_deviation": "0.1000",
+        "value": 0.5,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-07T03:29:12.000000Z",
-      "updated_at": "2026-11-07T03:29:12.000000Z"
+      "created_at": "2026-11-07T03:29:12Z",
+      "updated_at": "2026-11-07T03:29:12Z"
      }
     ]
    },
@@ -1790,12 +1831,12 @@
         "id": 22,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-07T03:29:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 13,
@@ -1808,12 +1849,12 @@
         "id": 21,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-07T03:29:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },
@@ -1839,13 +1880,13 @@
        "id": 23,
        "production_product_type_id": 3,
        "production_product_type_name": "Gemlik Zeytinyağı",
-       "ratio": "0.7000"
+       "ratio": 0.7
       },
       {
        "id": 24,
        "production_product_type_id": 4,
        "production_product_type_name": "Ayvalık Zeytinyağı",
-       "ratio": "0.3000"
+       "ratio": 0.3
       }
      ],
      "attribute_rules": [
@@ -1853,13 +1894,13 @@
        "id": 10,
        "attribute_definition_id": 1,
        "attribute_label": "Asitlik",
-       "value": "0.5000",
-       "min_deviation": "0.0500",
-       "max_deviation": "0.0500"
+       "value": 0.5,
+       "min_deviation": 0.05,
+       "max_deviation": 0.05
       }
      ],
-     "created_at": "2026-11-07T03:29:13.000000Z",
-     "updated_at": "2026-11-07T03:29:13.000000Z"
+     "created_at": "2026-11-07T03:29:13Z",
+     "updated_at": "2026-11-07T03:29:13Z"
     }
    },
    "save": [
@@ -1877,7 +1918,7 @@
     "data": {
      "id": 15,
      "name": "Klasik Blend 0.5 250ml",
-     "volume_litre": "0.2500",
+     "volume_litre": 0.25,
      "total_stock": 160,
      "stored_stock": 160,
      "awaiting_shipment_stock": null,
@@ -1892,13 +1933,13 @@
         "id": 23,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 24,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ]
      },
@@ -1941,8 +1982,8 @@
        "quantity": 160
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-07T03:29:13.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-07T03:29:13Z"
     }
    },
    "save": null
@@ -1966,12 +2007,12 @@
         "id": 22,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-07T03:29:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 15,
@@ -1984,13 +2025,13 @@
         "id": 23,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.7000"
+        "ratio": 0.7
        },
        {
         "id": 24,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3000"
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
@@ -1998,13 +2039,13 @@
         "id": 10,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.5000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.5,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-07T03:29:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-07T03:29:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 9,
@@ -2017,24 +2058,24 @@
         "id": 14,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.3333"
+        "ratio": 0.3333
        },
        {
         "id": 15,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.3333"
+        "ratio": 0.3333
        },
        {
         "id": 16,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.3334"
+        "ratio": 0.3334
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:12.000000Z",
-      "updated_at": "2026-11-07T03:29:12.000000Z"
+      "created_at": "2026-11-07T03:29:12Z",
+      "updated_at": "2026-11-07T03:29:12Z"
      },
      {
       "id": 10,
@@ -2047,12 +2088,12 @@
         "id": 17,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:12.000000Z",
-      "updated_at": "2026-11-07T03:29:12.000000Z"
+      "created_at": "2026-11-07T03:29:12Z",
+      "updated_at": "2026-11-07T03:29:12Z"
      },
      {
       "id": 6,
@@ -2065,13 +2106,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ],
       "attribute_rules": [
@@ -2079,13 +2120,13 @@
         "id": 6,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.6000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 1,
@@ -2098,7 +2139,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -2106,13 +2147,13 @@
         "id": 1,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.3000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 7,
@@ -2125,19 +2166,19 @@
         "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "0.5000"
+        "ratio": 0.5
        },
        {
         "id": 10,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.3500"
+        "ratio": 0.35
        },
        {
         "id": 11,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.1500"
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
@@ -2145,13 +2186,13 @@
         "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.7000",
-        "min_deviation": "0.1000",
+        "value": 0.7,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 2,
@@ -2164,7 +2205,7 @@
         "id": 2,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -2172,13 +2213,13 @@
         "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.8000",
-        "min_deviation": "0.1000",
+        "value": 0.8,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 3,
@@ -2191,7 +2232,7 @@
         "id": 3,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -2199,13 +2240,13 @@
         "id": 3,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.4000",
-        "min_deviation": "0.0500",
-        "max_deviation": "0.0500"
+        "value": 0.4,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
@@ -2218,7 +2259,7 @@
         "id": 4,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
@@ -2226,13 +2267,13 @@
         "id": 4,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": "0.9000",
-        "min_deviation": "0.1000",
+        "value": 0.9,
+        "min_deviation": 0.1,
         "max_deviation": null
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      }
     ]
    },
@@ -2245,8 +2286,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Naturel Sızma Gemlik 0.3' v1 ile yapılmış dolum koşuları var; silinemez.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Naturel Sızma Gemlik 0.3' v1 ile yapılmış dolum koşuları var; silinemez.",
+    "instance": "/api/finished-product-recipes/1"
    },
    "save": null
   },
@@ -2257,8 +2300,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Bu tarif bir son ürüne bağlı olduğu için silinemez.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu tarif bir son ürüne bağlı olduğu için silinemez.",
+    "instance": "/api/finished-product-recipes/{R5v2}"
    },
    "save": null
   },
@@ -2291,7 +2336,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\FinishedProductRecipe] 9"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "FinishedProductRecipe 9 not found.",
+    "instance": "/api/finished-product-recipes/{R2}"
    },
    "save": null
   },
@@ -2306,7 +2354,7 @@
      {
       "id": 19,
       "name": "Portakallı Zeytinyağı 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -2348,13 +2396,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 20,
       "name": "Portakallı Zeytinyağı 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -2396,13 +2444,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 21,
       "name": "Portakallı Ayvalık Blend 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -2444,13 +2492,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 22,
       "name": "Portakallı Ayvalık Blend 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -2492,13 +2540,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
       "name": "Naturel Sızma Gemlik 0.3 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 186,
       "stored_stock": 186,
       "awaiting_shipment_stock": null,
@@ -2555,13 +2603,13 @@
         "quantity": 144
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-20T13:38:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-20T13:38:00Z"
      },
      {
       "id": 11,
       "name": "Naturel Sızma Ayvalık 0.4 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 36,
       "stored_stock": 36,
       "awaiting_shipment_stock": null,
@@ -2611,13 +2659,13 @@
         "quantity": 36
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-03T20:35:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 7,
       "name": "Naturel Sızma Gemlik 0.8 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 132,
       "stored_stock": 132,
       "awaiting_shipment_stock": null,
@@ -2667,13 +2715,13 @@
         "quantity": 132
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 18,
       "name": "Portakallı Zeytinyağı 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 76,
       "stored_stock": 52,
       "awaiting_shipment_stock": 24,
@@ -2723,13 +2771,13 @@
         "quantity": 52
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2025-11-13T01:27:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2025-11-13T01:27:00Z"
      },
      {
       "id": 8,
       "name": "Naturel Sızma Gemlik 0.8 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 36,
       "stored_stock": 36,
       "awaiting_shipment_stock": null,
@@ -2779,13 +2827,13 @@
         "quantity": 36
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 12,
       "name": "Naturel Sızma Ayvalık 0.4 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 252,
       "stored_stock": 252,
       "awaiting_shipment_stock": null,
@@ -2842,13 +2890,13 @@
         "quantity": 102
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-03T20:35:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 14,
       "name": "Naturel Sızma Ayvalık 0.9 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 68,
       "stored_stock": 68,
       "awaiting_shipment_stock": null,
@@ -2898,13 +2946,13 @@
         "quantity": 68
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 6,
       "name": "Naturel Sızma Gemlik 0.8 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 28,
       "stored_stock": 28,
       "awaiting_shipment_stock": null,
@@ -2954,13 +3002,13 @@
         "quantity": 28
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-08T12:39:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 13,
       "name": "Naturel Sızma Ayvalık 0.9 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 24,
       "stored_stock": 24,
       "awaiting_shipment_stock": null,
@@ -3010,13 +3058,13 @@
         "quantity": 24
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-08T12:39:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 2,
       "name": "Naturel Sızma Gemlik 0.3 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 398,
       "stored_stock": 398,
       "awaiting_shipment_stock": null,
@@ -3080,13 +3128,13 @@
         "quantity": 200
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 3,
       "name": "Naturel Sızma Gemlik 0.3 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 732,
       "stored_stock": 732,
       "awaiting_shipment_stock": null,
@@ -3150,13 +3198,13 @@
         "quantity": 406
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 9,
       "name": "Naturel Sızma Ayvalık 0.4 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 188,
       "stored_stock": 140,
       "awaiting_shipment_stock": 48,
@@ -3206,13 +3254,13 @@
         "quantity": 140
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 10,
       "name": "Naturel Sızma Ayvalık 0.4 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 1920,
       "stored_stock": 1920,
       "awaiting_shipment_stock": null,
@@ -3297,13 +3345,13 @@
         "quantity": 200
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-04T13:19:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 5,
       "name": "Naturel Sızma Gemlik 0.3 5L",
-      "volume_litre": "5.0000",
+      "volume_litre": 5.0,
       "total_stock": 272,
       "stored_stock": 272,
       "awaiting_shipment_stock": null,
@@ -3367,13 +3415,13 @@
         "quantity": 50
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T02:13:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 208,
       "stored_stock": 160,
       "awaiting_shipment_stock": 48,
@@ -3430,13 +3478,13 @@
         "quantity": 148
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T07:25:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 15,
       "name": "Klasik Blend 0.5 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 160,
       "stored_stock": 160,
       "awaiting_shipment_stock": null,
@@ -3486,13 +3534,13 @@
         "quantity": 160
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 16,
       "name": "Klasik Blend 0.5 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 232,
       "stored_stock": 232,
       "awaiting_shipment_stock": null,
@@ -3549,13 +3597,13 @@
         "quantity": 62
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 17,
       "name": "Klasik Blend 0.5 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 144,
       "stored_stock": 144,
       "awaiting_shipment_stock": null,
@@ -3605,8 +3653,8 @@
         "quantity": 144
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },
@@ -3623,7 +3671,7 @@
      {
       "id": 19,
       "name": "Portakallı Zeytinyağı 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -3665,13 +3713,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 20,
       "name": "Portakallı Zeytinyağı 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -3713,13 +3761,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 21,
       "name": "Portakallı Ayvalık Blend 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -3761,13 +3809,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 22,
       "name": "Portakallı Ayvalık Blend 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -3809,13 +3857,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
       "name": "Naturel Sızma Gemlik 0.3 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 186,
       "stored_stock": 186,
       "awaiting_shipment_stock": null,
@@ -3872,13 +3920,13 @@
         "quantity": 144
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-20T13:38:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-20T13:38:00Z"
      },
      {
       "id": 11,
       "name": "Naturel Sızma Ayvalık 0.4 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 36,
       "stored_stock": 36,
       "awaiting_shipment_stock": null,
@@ -3928,13 +3976,13 @@
         "quantity": 36
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-03T20:35:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 7,
       "name": "Naturel Sızma Gemlik 0.8 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 132,
       "stored_stock": 132,
       "awaiting_shipment_stock": null,
@@ -3984,13 +4032,13 @@
         "quantity": 132
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 18,
       "name": "Portakallı Zeytinyağı 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 76,
       "stored_stock": 52,
       "awaiting_shipment_stock": 24,
@@ -4040,13 +4088,13 @@
         "quantity": 52
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2025-11-13T01:27:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2025-11-13T01:27:00Z"
      },
      {
       "id": 8,
       "name": "Naturel Sızma Gemlik 0.8 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 36,
       "stored_stock": 36,
       "awaiting_shipment_stock": null,
@@ -4096,13 +4144,13 @@
         "quantity": 36
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 12,
       "name": "Naturel Sızma Ayvalık 0.4 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 252,
       "stored_stock": 252,
       "awaiting_shipment_stock": null,
@@ -4159,13 +4207,13 @@
         "quantity": 102
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-03T20:35:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 14,
       "name": "Naturel Sızma Ayvalık 0.9 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 68,
       "stored_stock": 68,
       "awaiting_shipment_stock": null,
@@ -4215,13 +4263,13 @@
         "quantity": 68
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 6,
       "name": "Naturel Sızma Gemlik 0.8 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 28,
       "stored_stock": 28,
       "awaiting_shipment_stock": null,
@@ -4271,13 +4319,13 @@
         "quantity": 28
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-08T12:39:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 13,
       "name": "Naturel Sızma Ayvalık 0.9 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 24,
       "stored_stock": 24,
       "awaiting_shipment_stock": null,
@@ -4327,13 +4375,13 @@
         "quantity": 24
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-08T12:39:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 2,
       "name": "Naturel Sızma Gemlik 0.3 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 398,
       "stored_stock": 398,
       "awaiting_shipment_stock": null,
@@ -4397,13 +4445,13 @@
         "quantity": 200
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 3,
       "name": "Naturel Sızma Gemlik 0.3 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 732,
       "stored_stock": 732,
       "awaiting_shipment_stock": null,
@@ -4467,13 +4515,13 @@
         "quantity": 406
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 9,
       "name": "Naturel Sızma Ayvalık 0.4 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 188,
       "stored_stock": 140,
       "awaiting_shipment_stock": 48,
@@ -4523,13 +4571,13 @@
         "quantity": 140
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 10,
       "name": "Naturel Sızma Ayvalık 0.4 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 1920,
       "stored_stock": 1920,
       "awaiting_shipment_stock": null,
@@ -4614,13 +4662,13 @@
         "quantity": 200
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-04T13:19:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 5,
       "name": "Naturel Sızma Gemlik 0.3 5L",
-      "volume_litre": "5.0000",
+      "volume_litre": 5.0,
       "total_stock": 272,
       "stored_stock": 272,
       "awaiting_shipment_stock": null,
@@ -4684,13 +4732,13 @@
         "quantity": 50
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T02:13:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 208,
       "stored_stock": 160,
       "awaiting_shipment_stock": 48,
@@ -4747,13 +4795,13 @@
         "quantity": 148
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T07:25:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 15,
       "name": "Klasik Blend 0.5 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 160,
       "stored_stock": 160,
       "awaiting_shipment_stock": null,
@@ -4803,13 +4851,13 @@
         "quantity": 160
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 16,
       "name": "Klasik Blend 0.5 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 232,
       "stored_stock": 232,
       "awaiting_shipment_stock": null,
@@ -4866,13 +4914,13 @@
         "quantity": 62
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 17,
       "name": "Klasik Blend 0.5 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 144,
       "stored_stock": 144,
       "awaiting_shipment_stock": null,
@@ -4922,8 +4970,8 @@
         "quantity": 144
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },
@@ -4950,7 +4998,7 @@
     "data": {
      "id": 1,
      "name": "Naturel Sızma Gemlik 0.3 250ml",
-     "volume_litre": "0.2500",
+     "volume_litre": 0.25,
      "total_stock": 208,
      "stored_stock": 160,
      "awaiting_shipment_stock": 48,
@@ -4965,7 +5013,7 @@
         "id": 1,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ]
      },
@@ -5015,8 +5063,8 @@
        "quantity": 148
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T07:25:00.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T07:25:00Z"
     }
    },
    "save": null
@@ -5031,7 +5079,7 @@
     "data": {
      "id": 9,
      "name": "Naturel Sızma Ayvalık 0.4 250ml",
-     "volume_litre": "0.2500",
+     "volume_litre": 0.25,
      "total_stock": 188,
      "stored_stock": 140,
      "awaiting_shipment_stock": 48,
@@ -5046,7 +5094,7 @@
         "id": 3,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ]
      },
@@ -5089,8 +5137,8 @@
        "quantity": 140
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T08:09:00.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T08:09:00Z"
     }
    },
    "save": null
@@ -5105,7 +5153,7 @@
     "data": {
      "id": 10,
      "name": "Naturel Sızma Ayvalık 0.4 500ml",
-     "volume_litre": "0.5000",
+     "volume_litre": 0.5,
      "total_stock": 1920,
      "stored_stock": 1920,
      "awaiting_shipment_stock": null,
@@ -5120,7 +5168,7 @@
         "id": 3,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": "1.0000"
+        "ratio": 1.0
        }
       ]
      },
@@ -5198,8 +5246,8 @@
        "quantity": 200
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-04T13:19:00.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-04T13:19:00Z"
     }
    },
    "save": null
@@ -5214,7 +5262,7 @@
     "data": {
      "id": 18,
      "name": "Portakallı Zeytinyağı 250ml",
-     "volume_litre": "0.2500",
+     "volume_litre": 0.25,
      "total_stock": 76,
      "stored_stock": 52,
      "awaiting_shipment_stock": 24,
@@ -5229,13 +5277,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ]
      },
@@ -5278,8 +5326,8 @@
        "quantity": 52
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2025-11-13T01:27:00.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2025-11-13T01:27:00Z"
     }
    },
    "save": null
@@ -5294,7 +5342,7 @@
     "data": {
      "id": 19,
      "name": "Portakallı Zeytinyağı 500ml",
-     "volume_litre": "0.5000",
+     "volume_litre": 0.5,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -5309,13 +5357,13 @@
         "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": "0.8000"
+        "ratio": 0.8
        },
        {
         "id": 8,
         "production_product_type_id": 6,
         "production_product_type_name": "Portakal Aroması",
-        "ratio": "0.2000"
+        "ratio": 0.2
        }
       ]
      },
@@ -5350,8 +5398,8 @@
       }
      ],
      "locations": [],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T15:35:13.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T15:35:13Z"
     }
    },
    "save": null
@@ -5363,7 +5411,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\FinishedProduct] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "FinishedProduct 999999 not found.",
+    "instance": "/api/finished-products/999999"
    },
    "save": null
   },
@@ -5378,7 +5429,7 @@
      {
       "id": 19,
       "name": "Portakallı Zeytinyağı 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -5420,13 +5471,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 20,
       "name": "Portakallı Zeytinyağı 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -5468,13 +5519,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 21,
       "name": "Portakallı Ayvalık Blend 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -5516,13 +5567,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 22,
       "name": "Portakallı Ayvalık Blend 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
@@ -5564,13 +5615,13 @@
        }
       ],
       "locations": [],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T15:35:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 4,
       "name": "Naturel Sızma Gemlik 0.3 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 186,
       "stored_stock": 186,
       "awaiting_shipment_stock": null,
@@ -5627,13 +5678,13 @@
         "quantity": 144
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-20T13:38:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-20T13:38:00Z"
      },
      {
       "id": 11,
       "name": "Naturel Sızma Ayvalık 0.4 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 36,
       "stored_stock": 36,
       "awaiting_shipment_stock": null,
@@ -5683,13 +5734,13 @@
         "quantity": 36
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-03T20:35:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 7,
       "name": "Naturel Sızma Gemlik 0.8 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 132,
       "stored_stock": 132,
       "awaiting_shipment_stock": null,
@@ -5739,13 +5790,13 @@
         "quantity": 132
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 18,
       "name": "Portakallı Zeytinyağı 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 76,
       "stored_stock": 52,
       "awaiting_shipment_stock": 24,
@@ -5795,13 +5846,13 @@
         "quantity": 52
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2025-11-13T01:27:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2025-11-13T01:27:00Z"
      },
      {
       "id": 8,
       "name": "Naturel Sızma Gemlik 0.8 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 36,
       "stored_stock": 36,
       "awaiting_shipment_stock": null,
@@ -5851,13 +5902,13 @@
         "quantity": 36
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 12,
       "name": "Naturel Sızma Ayvalık 0.4 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 252,
       "stored_stock": 252,
       "awaiting_shipment_stock": null,
@@ -5914,13 +5965,13 @@
         "quantity": 102
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-03T20:35:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 14,
       "name": "Naturel Sızma Ayvalık 0.9 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 68,
       "stored_stock": 68,
       "awaiting_shipment_stock": null,
@@ -5970,13 +6021,13 @@
         "quantity": 68
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-10T00:46:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
      },
      {
       "id": 6,
       "name": "Naturel Sızma Gemlik 0.8 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 28,
       "stored_stock": 28,
       "awaiting_shipment_stock": null,
@@ -6026,13 +6077,13 @@
         "quantity": 28
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-08T12:39:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 13,
       "name": "Naturel Sızma Ayvalık 0.9 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 24,
       "stored_stock": 24,
       "awaiting_shipment_stock": null,
@@ -6082,13 +6133,13 @@
         "quantity": 24
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-10-08T12:39:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 2,
       "name": "Naturel Sızma Gemlik 0.3 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 398,
       "stored_stock": 398,
       "awaiting_shipment_stock": null,
@@ -6152,13 +6203,13 @@
         "quantity": 200
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 3,
       "name": "Naturel Sızma Gemlik 0.3 750ml",
-      "volume_litre": "0.7500",
+      "volume_litre": 0.75,
       "total_stock": 732,
       "stored_stock": 732,
       "awaiting_shipment_stock": null,
@@ -6222,13 +6273,13 @@
         "quantity": 406
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 9,
       "name": "Naturel Sızma Ayvalık 0.4 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 188,
       "stored_stock": 140,
       "awaiting_shipment_stock": 48,
@@ -6278,13 +6329,13 @@
         "quantity": 140
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T08:09:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
      },
      {
       "id": 10,
       "name": "Naturel Sızma Ayvalık 0.4 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 1920,
       "stored_stock": 1920,
       "awaiting_shipment_stock": null,
@@ -6369,13 +6420,13 @@
         "quantity": 200
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-04T13:19:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 5,
       "name": "Naturel Sızma Gemlik 0.3 5L",
-      "volume_litre": "5.0000",
+      "volume_litre": 5.0,
       "total_stock": 272,
       "stored_stock": 272,
       "awaiting_shipment_stock": null,
@@ -6439,13 +6490,13 @@
         "quantity": 50
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T02:13:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 208,
       "stored_stock": 160,
       "awaiting_shipment_stock": 48,
@@ -6502,13 +6553,13 @@
         "quantity": 148
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-06T07:25:00.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 15,
       "name": "Klasik Blend 0.5 250ml",
-      "volume_litre": "0.2500",
+      "volume_litre": 0.25,
       "total_stock": 160,
       "stored_stock": 160,
       "awaiting_shipment_stock": null,
@@ -6558,13 +6609,13 @@
         "quantity": 160
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 16,
       "name": "Klasik Blend 0.5 500ml",
-      "volume_litre": "0.5000",
+      "volume_litre": 0.5,
       "total_stock": 232,
       "stored_stock": 232,
       "awaiting_shipment_stock": null,
@@ -6621,13 +6672,13 @@
         "quantity": 62
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      },
      {
       "id": 17,
       "name": "Klasik Blend 0.5 1L",
-      "volume_litre": "1.0000",
+      "volume_litre": 1.0,
       "total_stock": 144,
       "stored_stock": 144,
       "awaiting_shipment_stock": null,
@@ -6677,8 +6728,8 @@
         "quantity": 144
        }
       ],
-      "created_at": "2026-11-06T15:35:13.000000Z",
-      "updated_at": "2026-11-07T03:29:13.000000Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },
@@ -6692,7 +6743,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 3 more errors)",
+    "instance": "/api/finished-products",
     "errors": {
      "name": [
       "The name field is required."
@@ -6731,7 +6785,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The is active field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The is active field must be true or false.",
+    "instance": "/api/finished-products",
     "errors": {
      "is_active": [
       "The is active field must be true or false."
@@ -6760,7 +6817,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 3 more errors)",
+    "instance": "/api/finished-products",
     "errors": {
      "name": [
       "The name field is required."
@@ -6795,7 +6855,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected finished product recipe id is invalid. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected finished product recipe id is invalid. (and 1 more error)",
+    "instance": "/api/finished-products",
     "errors": {
      "finished_product_recipe_id": [
       "The selected finished product recipe id is invalid."
@@ -6831,7 +6894,7 @@
     "data": {
      "id": 23,
      "name": "Test Blend 250ml",
-     "volume_litre": "0.2500",
+     "volume_litre": 0.25,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -6858,8 +6921,8 @@
        "quantity": 1
       }
      ],
-     "created_at": "2026-11-07T03:29:14.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-07T03:29:14Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": [
@@ -6888,7 +6951,7 @@
     "data": {
      "id": 24,
      "name": "Test Pasif",
-     "volume_litre": "1.2346",
+     "volume_litre": 1.2346,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -6908,8 +6971,8 @@
        "quantity": 2
       }
      ],
-     "created_at": "2026-11-07T03:29:14.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-07T03:29:14Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": [
@@ -6938,7 +7001,7 @@
     "data": {
      "id": 25,
      "name": "Null Aktif",
-     "volume_litre": "1.0000",
+     "volume_litre": 1.0,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -6958,8 +7021,8 @@
        "quantity": 1
       }
      ],
-     "created_at": "2026-11-07T03:29:14.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-07T03:29:14Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": [
@@ -6984,7 +7047,10 @@
    },
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/finished-products"
    },
    "save": null,
    "as": "planner@olivamore.com"
@@ -7003,7 +7069,7 @@
     "data": {
      "id": 23,
      "name": "Test Blend 250 ml",
-     "volume_litre": "0.3300",
+     "volume_litre": 0.33,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -7030,8 +7096,8 @@
        "quantity": 1
       }
      ],
-     "created_at": "2026-11-07T03:29:14.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-07T03:29:14Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": null
@@ -7053,7 +7119,7 @@
     "data": {
      "id": 23,
      "name": "Test Blend 250 ml",
-     "volume_litre": "0.3300",
+     "volume_litre": 0.33,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -7073,8 +7139,8 @@
        "quantity": 3
       }
      ],
-     "created_at": "2026-11-07T03:29:14.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-07T03:29:14Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": null
@@ -7092,7 +7158,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The components.0.packaging_item_id field is required when components is present.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The components.0.packaging_item_id field is required when components is present.",
+    "instance": "/api/finished-products/{P1}",
     "errors": {
      "components.0.packaging_item_id": [
       "The components.0.packaging_item_id field is required when components is present."
@@ -7110,7 +7179,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The components field must have at least 1 items.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The components field must have at least 1 items.",
+    "instance": "/api/finished-products/{P1}",
     "errors": {
      "components": [
       "The components field must have at least 1 items."
@@ -7131,7 +7203,7 @@
     "data": {
      "id": 1,
      "name": "Naturel Sızma Gemlik 0.3 250ml",
-     "volume_litre": "0.2500",
+     "volume_litre": 0.25,
      "total_stock": 208,
      "stored_stock": 160,
      "awaiting_shipment_stock": null,
@@ -7172,8 +7244,8 @@
        "quantity": 1
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-06T07:25:00.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-06T07:25:00Z"
     }
    },
    "save": null
@@ -7188,8 +7260,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Naturel Sızma Gemlik 0.3 250ml' ürününün fabrikada 208 şişesi var; hacmi değiştirilemez. Farklı hacim için yeni ürün tanımlayın.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Naturel Sızma Gemlik 0.3 250ml' ürününün fabrikada 208 şişesi var; hacmi değiştirilemez. Farklı hacim için yeni ürün tanımlayın.",
+    "instance": "/api/finished-products/1"
    },
    "save": null
   },
@@ -7205,7 +7279,7 @@
     "data": {
      "id": 19,
      "name": "Portakallı Zeytinyağı 500ml",
-     "volume_litre": "0.5500",
+     "volume_litre": 0.55,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -7246,8 +7320,8 @@
        "quantity": 1
       }
      ],
-     "created_at": "2026-11-06T15:35:13.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-06T15:35:13Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": null
@@ -7265,7 +7339,7 @@
     "data": {
      "id": 24,
      "name": "Test Pasif",
-     "volume_litre": "1.2346",
+     "volume_litre": 1.2346,
      "total_stock": 0,
      "stored_stock": 0,
      "awaiting_shipment_stock": null,
@@ -7285,8 +7359,8 @@
        "quantity": 2
       }
      ],
-     "created_at": "2026-11-07T03:29:14.000000Z",
-     "updated_at": "2026-11-07T03:29:14.000000Z"
+     "created_at": "2026-11-07T03:29:14Z",
+     "updated_at": "2026-11-07T03:29:14Z"
     }
    },
    "save": null,
@@ -7303,7 +7377,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The volume litre field must be a number.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The volume litre field must be a number.",
+    "instance": "/api/finished-products/{P2}",
     "errors": {
      "volume_litre": [
       "The volume litre field must be a number."
@@ -7321,7 +7398,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected finished product recipe id is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected finished product recipe id is invalid.",
+    "instance": "/api/finished-products/{P2}",
     "errors": {
      "finished_product_recipe_id": [
       "The selected finished product recipe id is invalid."
@@ -7337,8 +7417,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Bu son ürüne ait dolum kaydı bulunduğu için silinemez.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu son ürüne ait dolum kaydı bulunduğu için silinemez.",
+    "instance": "/api/finished-products/1"
    },
    "save": null
   },
@@ -7360,7 +7442,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\FinishedProduct] 25"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "FinishedProduct 25 not found.",
+    "instance": "/api/finished-products/{P3}"
    },
    "save": null
   },
@@ -7371,8 +7456,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Bu tarif bir son ürüne bağlı olduğu için silinemez.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu tarif bir son ürüne bağlı olduğu için silinemez.",
+    "instance": "/api/finished-product-recipes/{R3}"
    },
    "save": null
   },
@@ -7393,7 +7480,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null
   },
@@ -7412,7 +7502,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null
   },
@@ -7435,7 +7528,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null
   },
@@ -7464,7 +7560,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-product-recipes"
    },
    "save": null
   },
@@ -7489,7 +7588,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-products"
    },
    "save": null
   },
@@ -7500,7 +7602,10 @@
    "body": null,
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/finished-products/20"
    },
    "save": null
   }

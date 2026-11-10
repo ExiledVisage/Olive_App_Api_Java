@@ -2,9 +2,9 @@ package com.olivamore.api.production.batch;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.ListResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -34,13 +34,13 @@ class ProductionBatchController {
 		this.listing = listing;
 	}
 
-	/** {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); en yeni once; per_page ile sayfali. */
+	/** {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); en yeni once; page/size ile sayfali. */
 	@GetMapping("/api/production-batches")
 	@PreAuthorize("hasAuthority('production_batch.view')")
-	ListResponse<ProductionBatchResponse> index(
+	PagedModel<ProductionBatchResponse> index(
 		@RequestParam(name = "received_from", required = false) String receivedFrom,
-		@RequestParam(name = "received_to", required = false) String receivedTo, HttpServletRequest request) {
-		return listing.list(receivedFrom, receivedTo, request);
+		@RequestParam(name = "received_to", required = false) String receivedTo, Pageable pageable) {
+		return listing.list(receivedFrom, receivedTo, pageable);
 	}
 
 	/** Gun -> parti sayisi (varis gunu); bos aralikta {@code {}}. */

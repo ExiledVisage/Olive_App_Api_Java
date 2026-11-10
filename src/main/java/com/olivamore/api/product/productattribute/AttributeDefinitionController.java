@@ -18,7 +18,7 @@ class AttributeDefinitionController {
 	@GetMapping("/api/attribute-definitions")
 	@PreAuthorize("hasAuthority('attribute_definition.view')")
 	ListResponse<AttributeDefinitionResponse> index() {
-		return new ListResponse.Plain<>(service.definitions());
+		return new ListResponse<>(service.definitions());
 	}
 
 }

@@ -7,7 +7,7 @@ import com.olivamore.api.finishedproduct.support.Quantities;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.finishedproduct.OrderDirectory;
 import com.olivamore.api.packaging.PackagingDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
@@ -97,7 +97,7 @@ class FinishedProductService {
 		}
 		FinishedProductRecipe recipe = recipes.findById(id).orElse(null);
 		if (recipe == null) {
-			errors.add("finished_product_recipe_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_recipe_id", MessageKeys.EXISTS);
 		}
 		return recipe;
 	}

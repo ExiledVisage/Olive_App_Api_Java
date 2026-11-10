@@ -2,10 +2,10 @@ package com.olivamore.api.analytics.dailysummary;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
-import com.olivamore.api.shared.error.LaravelValidationException;
-import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
+import com.olivamore.api.shared.error.ValidationFailedException;
+import com.olivamore.api.shared.json.IsoDateTimeDeserializer;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.web.DataResponse;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +41,8 @@ class DailySummaryController {
 	}
 
 	private static LocalDate parse(String date) {
-		return FlexibleDateTimeDeserializer.parse(date).map(LocalDateTime::toLocalDate)
-			.orElseThrow(() -> LaravelValidationException.of("date", LaravelMessages.format(LaravelMessages.DATE, "date")));
+		return IsoDateTimeDeserializer.parse(date).map(LocalDateTime::toLocalDate)
+			.orElseThrow(() -> ValidationFailedException.of("date", MessageKeys.DATE));
 	}
 
 }

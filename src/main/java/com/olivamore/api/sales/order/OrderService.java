@@ -10,9 +10,9 @@ import com.olivamore.api.sales.order.OrderStockQueries.SlotStock;
 import com.olivamore.api.sales.order.StockCheckResponse.Item;
 import com.olivamore.api.sales.order.StockCheckResponse.Product;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,7 +95,7 @@ class OrderService {
 	void updateStatus(long id, UpdateOrderStatusRequest request, long userId) {
 		OrderStatus to = request.status();
 		if (to == OrderStatus.DRAFT) {
-			throw LaravelValidationException.of("status", LaravelMessages.format(LaravelMessages.IN, "status"));
+			throw ValidationFailedException.of("status", MessageKeys.IN);
 		}
 		assertPickReferences(request.picks());
 		SalesOrder order = find(id);
@@ -271,8 +271,8 @@ class OrderService {
 		return addresses.findById(id).orElseThrow(() -> invalid("delivery_address_id"));
 	}
 
-	private static LaravelValidationException invalid(String field) {
-		return LaravelValidationException.of(field, LaravelMessages.format(LaravelMessages.EXISTS, field));
+	private static ValidationFailedException invalid(String field) {
+		return ValidationFailedException.of(field, MessageKeys.EXISTS);
 	}
 
 }

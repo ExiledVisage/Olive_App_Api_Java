@@ -32,7 +32,7 @@ class PackagingItemController {
 	@GetMapping
 	@PreAuthorize("hasAuthority('packaging_item.view')")
 	ListResponse<PackagingItemResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive) {
-		return new ListResponse.Plain<>(service.all(isActive));
+		return new ListResponse<>(service.all(isActive));
 	}
 
 	@GetMapping("/{id}")

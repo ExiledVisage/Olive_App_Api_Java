@@ -2,12 +2,12 @@ package com.olivamore.api.productionline.stage;
 
 import com.olivamore.api.process.ProcessResources;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -133,8 +133,8 @@ public class ProductionStageService {
 
 	private void assertProcessType(Long processTypeId) {
 		if (processTypeId != null && process.processTypesById(List.of(processTypeId)).isEmpty()) {
-			throw LaravelValidationException.of("process_type_id",
-				LaravelMessages.format(LaravelMessages.EXISTS, "process_type_id"));
+			throw ValidationFailedException.of("process_type_id",
+				MessageKeys.EXISTS);
 		}
 	}
 

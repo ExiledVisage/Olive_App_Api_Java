@@ -40,9 +40,9 @@ class IdentityParityIT {
 	private static final JsonMapper JSON = JsonMapper.builder().build();
 	private static final Pattern JWT = Pattern.compile("^[\\w-]+\\.[\\w-]+\\.[\\w-]+$");
 	private static final Pattern REFRESH_TOKEN = Pattern.compile("^[\\w-]{43}$");
-	private static final Pattern TIMESTAMP = Pattern.compile("^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{6}Z$");
+	private static final Pattern TIMESTAMP = Pattern.compile("^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(\\.\\d+)?Z$");
 	/** Demo verideki en yeni kullanici zamani; bundan sonrasi bu calismada olusmustur. */
-	private static final String SEEDED_UNTIL = "2026-11-06T15:35:11.000000Z";
+	private static final java.time.Instant SEEDED_UNTIL = java.time.Instant.parse("2026-11-06T15:35:11Z");
 
 	/** Durum adi -> istekte kullanilan sabit token (capture_identity.py ile ayni). */
 	private static final Map<String, String> LITERAL_TOKENS = Map.of("bozuk token", "abc", "id'li bozuk token", "1|yanlis");
@@ -54,8 +54,8 @@ class IdentityParityIT {
 	private static final Map<String, Object[]> EXPECTED_DEVIATIONS = Map.of(
 		// Laravel 500: rate limiter diziyi metne ceviremiyor
 		"login email dizi", new Object[] {422, """
-			{"message":"The email field must be a string.",
-			 "errors":{"email":["The email field must be a string."]}}"""},
+			{"title":"Unprocessable Content","status":422,"detail":"The email field must be a string.",
+			 "instance":"/api/auth/login","errors":{"email":["The email field must be a string."]}}"""},
 		// Laravel 500: rol sanctum guard'iyla olusuyor, web izinleri atanamiyor
 		"roles store izinli (Laravel 500)", new Object[] {201, null},
 		// Laravel 500: sanctum guard'li rol silinemiyor
@@ -154,7 +154,7 @@ class IdentityParityIT {
 			if (REFRESH_TOKEN.matcher(s).matches()) {
 				return "<refresh>";
 			}
-			if (TIMESTAMP.matcher(s).matches() && s.compareTo(SEEDED_UNTIL) > 0) {
+			if (TIMESTAMP.matcher(s).matches() && java.time.Instant.parse(s).isAfter(SEEDED_UNTIL)) {
 				return "<yeni zaman>";
 			}
 		}

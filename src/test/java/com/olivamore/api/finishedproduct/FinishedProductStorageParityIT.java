@@ -41,9 +41,9 @@ class FinishedProductStorageParityIT {
 			.unorderedEverywhere("slots", "contents", "stock")
 			.unordered("liste sonra", "data")
 			.deviation("raf sil hareketli", 422, """
-				{"message":"Bu slot silinemez; kullanıldığı yerler: 2 stok hareketi.","errors":{}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"Bu slot silinemez; kullanıldığı yerler: 2 stok hareketi.","instance":"/api/finished-product-storages/{ST1}/slots/{SL3}"}""")
 			.deviation("depo sil hareketli", 422, """
-				{"message":"Bu depo silinemez; kullanıldığı yerler: 14 stok hareketi. Pasife alabilirsiniz.","errors":{}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"Bu depo silinemez; kullanıldığı yerler: 14 stok hareketi. Pasife alabilirsiniz.","instance":"/api/finished-product-storages/{ST1}"}""")
 			.run();
 		assertThat(result.steps()).isEqualTo(93);
 		assertThat(result.failures()).as(result.report()).isEmpty();

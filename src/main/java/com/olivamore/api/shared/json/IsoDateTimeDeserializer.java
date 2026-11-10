@@ -7,46 +7,39 @@ import tools.jackson.databind.ValueDeserializer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeParseException;
-import java.util.List;
 import java.util.Optional;
 
 /**
- * Tarih alanlari: {@code 2026-11-03}, {@code 2026-11-01 09:30}, {@code 2026-11-02 08:00:00} ve ISO-8601.
- * Saat dilimi bilgisi yazilan saati degistirmez.
+ * ISO-8601 tarih-saat girisi, UTC'ye cevrilir (zaman kolonlari UTC): {@code 2026-11-02T08:00:00+03:00},
+ * {@code 2026-11-02T05:00:00Z}, offset'siz {@code 2026-11-02T05:00:00} (UTC kabul edilir) ve yalnizca tarih
+ * {@code 2026-11-02} (gun basi).
  */
-public class FlexibleDateTimeDeserializer extends ValueDeserializer<LocalDateTime> {
-
-	private static final List<DateTimeFormatter> LOCAL_FORMATS = List.of(
-		DateTimeFormatter.ISO_LOCAL_DATE_TIME,
-		DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
-		DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+public class IsoDateTimeDeserializer extends ValueDeserializer<LocalDateTime> {
 
 	@Override
 	public LocalDateTime deserialize(JsonParser parser, DeserializationContext context) {
 		String text = parser.getValueAsString();
-		if (text == null || text.isBlank()) {
+		if (text == null) {
 			return null;
 		}
-		return parse(text.trim()).orElseGet(
+		return parse(text).orElseGet(
 			() -> (LocalDateTime) context.handleWeirdStringValue(LocalDateTime.class, text, "Gecersiz tarih"));
 	}
 
 	public static Optional<LocalDateTime> parse(String text) {
 		try {
-			return Optional.of(OffsetDateTime.parse(text).toLocalDateTime());
+			return Optional.of(OffsetDateTime.parse(text).withOffsetSameInstant(ZoneOffset.UTC).toLocalDateTime());
 		}
 		catch (DateTimeParseException ignored) {
-			// yerel bicimler denenir
+			// offset'siz bicimler denenir
 		}
-		for (DateTimeFormatter format : LOCAL_FORMATS) {
-			try {
-				return Optional.of(LocalDateTime.parse(text, format));
-			}
-			catch (DateTimeParseException ignored) {
-				// siradaki bicim
-			}
+		try {
+			return Optional.of(LocalDateTime.parse(text));
+		}
+		catch (DateTimeParseException ignored) {
+			// yalnizca tarih denenir
 		}
 		try {
 			return Optional.of(LocalDate.parse(text).atStartOfDay());

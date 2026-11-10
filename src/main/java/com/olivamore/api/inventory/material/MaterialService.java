@@ -199,7 +199,7 @@ class MaterialService {
 		}));
 		return sorted.stream().map(v -> {
 			MaterialQueries.Definition d = lookup(definitions, v.definitionId());
-			Object value = v.valueDecimal() != null ? v.valueDecimal().toPlainString()
+			Object value = v.valueDecimal() != null ? v.valueDecimal()
 				: v.valueInteger() != null ? v.valueInteger()
 				: v.valueText() != null ? v.valueText() : v.valueBoolean();
 			return new MaterialDetailResponse.AttributeLine(d == null ? null : d.label(),

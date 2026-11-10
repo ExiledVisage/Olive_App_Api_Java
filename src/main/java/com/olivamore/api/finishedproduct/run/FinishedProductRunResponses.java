@@ -6,8 +6,9 @@ import com.olivamore.api.finishedproduct.product.FinishedProduct;
 import com.olivamore.api.finishedproduct.run.FinishedProductRunResponse.AttributeValue;
 import com.olivamore.api.finishedproduct.run.FinishedProductRunResponse.Packaging;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.web.Pages;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,8 +57,8 @@ class FinishedProductRunResponses {
 	}
 
 	@Transactional(readOnly = true)
-	Page<FinishedProductRunResponse> page(int page, int size) {
-		Page<FinishedProductRun> rows = runs.findAll(PageRequest.of(page - 1, size, NEWEST_FIRST));
+	Page<FinishedProductRunResponse> page(Pageable pageable) {
+		Page<FinishedProductRun> rows = runs.findAll(Pages.sorted(pageable, NEWEST_FIRST));
 		Map<Long, FinishedProductRunResponse> responses = responses(rows.getContent(), LIST).stream()
 			.collect(Collectors.toMap(FinishedProductRunResponse::id, Function.identity()));
 		return rows.map(run -> responses.get(run.getId()));

@@ -3,7 +3,7 @@ package com.olivamore.api.inventory.storageunit;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ class StorageUnitService {
 	long create(CreateStorageUnitRequest request) {
 		if (units.existsByCode(request.code())) {
 			ValidationErrors errors = new ValidationErrors();
-			errors.add("code", LaravelMessages.UNIQUE);
+			errors.add("code", MessageKeys.UNIQUE);
 			errors.throwIfAny();
 		}
 		return units.save(new StorageUnit(request)).getId();
@@ -60,7 +60,7 @@ class StorageUnitService {
 		StorageUnit unit = find(id);
 		if (request.code() != null && units.existsByCodeAndIdNot(request.code(), id)) {
 			ValidationErrors errors = new ValidationErrors();
-			errors.add("code", LaravelMessages.UNIQUE);
+			errors.add("code", MessageKeys.UNIQUE);
 			errors.throwIfAny();
 		}
 		unit.apply(request);

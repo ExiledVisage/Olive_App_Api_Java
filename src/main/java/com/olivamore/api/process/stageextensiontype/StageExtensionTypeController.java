@@ -17,7 +17,7 @@ class StageExtensionTypeController {
 	@GetMapping("/api/stage-extension-types")
 	@PreAuthorize("hasAuthority('production_stage.manage')")
 	ListResponse<StageExtensionTypeResponse> index() {
-		return new ListResponse.Plain<>(responses.all());
+		return new ListResponse<>(responses.all());
 	}
 
 }

@@ -22,7 +22,7 @@ import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,10 +88,10 @@ class FinishedProductRunService {
 		ValidationErrors errors = new ValidationErrors();
 		FinishedProduct product = products.findWithRecipeById(request.finishedProductId()).orElse(null);
 		if (product == null) {
-			errors.add("finished_product_id", LaravelMessages.EXISTS);
+			errors.add("finished_product_id", MessageKeys.EXISTS);
 		}
 		if (!queries.unitExists(request.source().storageUnitId())) {
-			errors.add("source.storage_unit_id", LaravelMessages.EXISTS);
+			errors.add("source.storage_unit_id", MessageKeys.EXISTS);
 		}
 		errors.throwIfAny();
 

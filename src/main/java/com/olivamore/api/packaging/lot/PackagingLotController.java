@@ -37,14 +37,14 @@ class PackagingLotController {
 		@RequestParam(name = "product_supplier_id", required = false) Long supplierId,
 		@RequestParam(required = false) String status,
 		@RequestParam(required = false) String search) {
-		return new ListResponse.Plain<>(responses.list(itemId, supplierId, status, search));
+		return new ListResponse<>(responses.list(itemId, supplierId, status, search));
 	}
 
 	@GetMapping("/api/packaging-items/{itemId}/lots")
 	@PreAuthorize("hasAuthority('packaging_lot.view')")
 	ListResponse<PackagingLotResponse> indexForItem(@PathVariable long itemId) {
 		service.ensureItemExists(itemId);
-		return new ListResponse.Plain<>(responses.list(itemId, null, null, null));
+		return new ListResponse<>(responses.list(itemId, null, null, null));
 	}
 
 	@GetMapping("/api/packaging-lots/{id}")

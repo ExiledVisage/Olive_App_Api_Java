@@ -1,6 +1,7 @@
 package com.olivamore.api.sales.customer;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,18 +10,18 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 record CreateCustomerRequest(
-	@NotBlank(message = LaravelMessages.REQUIRED)
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String name,
 
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String companyName,
 
-	@Size(max = 30, message = LaravelMessages.MAX_30)
+	@Size(max = 30, message = MessageKeys.SIZE_MAX)
 	String phone,
 
-	@Email(message = LaravelMessages.EMAIL)
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@Email(message = MessageKeys.EMAIL)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String email,
 
 	String notes,
@@ -28,4 +29,13 @@ record CreateCustomerRequest(
 	Boolean isActive,
 
 	List<@Valid CreateCustomerAddressRequest> addresses) {
+
+	CreateCustomerRequest {
+		name = Texts.trim(name);
+		companyName = Texts.trim(companyName);
+		email = Texts.trim(email);
+		phone = Texts.trim(phone);
+		notes = Texts.trim(notes);
+	}
+
 }

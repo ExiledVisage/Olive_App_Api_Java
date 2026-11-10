@@ -3,9 +3,9 @@ package com.olivamore.api.identity.auth;
 import com.olivamore.api.identity.security.IdentityWebConfig;
 import com.olivamore.api.identity.user.User;
 import com.olivamore.api.identity.user.UserRepository;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -37,10 +37,10 @@ public class AuthService {
 	Result register(RegisterRequest request) {
 		ValidationErrors errors = new ValidationErrors();
 		if (users.existsByEmail(request.email())) {
-			errors.add("email", LaravelMessages.UNIQUE);
+			errors.add("email", MessageKeys.UNIQUE);
 		}
 		if (!request.password().equals(request.passwordConfirmation())) {
-			errors.add("password", LaravelMessages.CONFIRMED);
+			errors.add("password", MessageKeys.CONFIRMED);
 		}
 		errors.throwIfAny();
 		User user = new User();
@@ -58,7 +58,7 @@ public class AuthService {
 	Result login(LoginRequest request) {
 		User user = users.findFirstByEmail(request.email()).orElse(null);
 		if (user == null || !IdentityWebConfig.PASSWORDS.matches(request.password(), user.getPassword())) {
-			throw LaravelValidationException.of("email", WRONG_CREDENTIALS);
+			throw ValidationFailedException.of("email", WRONG_CREDENTIALS);
 		}
 		return new Result(user, tokens.issue(user.getId()));
 	}

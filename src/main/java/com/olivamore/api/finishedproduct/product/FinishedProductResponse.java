@@ -1,6 +1,5 @@
 package com.olivamore.api.finishedproduct.product;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.finishedproduct.RecipeResponse;
 
@@ -15,7 +14,6 @@ import java.util.List;
 record FinishedProductResponse(
 	Long id,
 	String name,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal volumeLitre,
 	int totalStock,
 	long storedStock,

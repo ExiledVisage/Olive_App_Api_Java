@@ -1,7 +1,7 @@
 package com.olivamore.api.analytics.analytics;
 
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 
 import java.time.LocalDate;
@@ -24,20 +24,20 @@ public record Range(LocalDate fromDate, LocalDate toDate) {
 		Optional<LocalDate> fromDate = ymd(from);
 		Optional<LocalDate> toDate = ymd(to);
 		if (from == null) {
-			errors.add("from", LaravelMessages.REQUIRED);
+			errors.add("from", MessageKeys.REQUIRED);
 		}
 		else if (fromDate.isEmpty()) {
-			errors.add("from", LaravelMessages.dateFormat("Y-m-d"));
+			errors.add("from", MessageKeys.DATE_FORMAT, "format", "Y-m-d");
 		}
 		if (to == null) {
-			errors.add("to", LaravelMessages.REQUIRED);
+			errors.add("to", MessageKeys.REQUIRED);
 		}
 		else {
 			if (toDate.isEmpty()) {
-				errors.add("to", LaravelMessages.dateFormat("Y-m-d"));
+				errors.add("to", MessageKeys.DATE_FORMAT, "format", "Y-m-d");
 			}
 			if (!inOrder(from, to)) {
-				errors.add("to", "The :attribute field must be a date after or equal to from.");
+				errors.add("to", MessageKeys.AFTER_OR_EQUAL, "other", "from");
 			}
 		}
 		errors.throwIfAny();

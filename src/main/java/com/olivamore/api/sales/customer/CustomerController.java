@@ -1,12 +1,11 @@
 package com.olivamore.api.sales.customer;
 
 import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.LaravelPaginator;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
-import jakarta.servlet.http.HttpServletRequest;
+import com.olivamore.api.shared.web.Pages;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import java.util.Optional;
 
 /** Musteriler, adresler, formul tercihleri. */
 @RestController
@@ -39,15 +37,9 @@ class CustomerController {
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('customer.view')")
-	ListResponse<CustomerResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive,
-		HttpServletRequest request) {
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(service.all(isActive));
-		}
-		int page = Listing.currentPage(request);
-		Page<CustomerResponse> rows = service.page(isActive, page, perPage.get());
-		return LaravelPaginator.paginate(rows.getContent(), rows.getTotalElements(), page, perPage.get(), request);
+	PagedModel<CustomerResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive,
+		Pageable pageable) {
+		return Pages.of(pageable, requested -> service.page(isActive, requested), () -> service.all(isActive));
 	}
 
 	@GetMapping("/{id}")
@@ -79,7 +71,7 @@ class CustomerController {
 	@GetMapping("/{id}/addresses")
 	@PreAuthorize("hasAuthority('customer.view')")
 	ListResponse<CustomerAddressResponse> addresses(@PathVariable long id) {
-		return new ListResponse.Plain<>(service.addresses(id));
+		return new ListResponse<>(service.addresses(id));
 	}
 
 	@PostMapping("/{id}/addresses")

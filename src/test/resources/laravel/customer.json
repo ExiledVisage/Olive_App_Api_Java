@@ -8,7 +8,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 4,
       "name": "Zeynep Arslan",
@@ -34,12 +34,12 @@
         "latitude": 39.905,
         "longitude": 32.8597,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 2,
@@ -66,12 +66,12 @@
         "latitude": 38.4381,
         "longitude": 27.1431,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 3,
@@ -98,12 +98,12 @@
         "latitude": 36.8841,
         "longitude": 30.7056,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 1,
@@ -130,8 +130,8 @@
         "latitude": 41.0532,
         "longitude": 28.8103,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        },
        {
         "id": 2,
@@ -149,12 +149,12 @@
         "latitude": 41.0703,
         "longitude": 28.9917,
         "is_default": false,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 13,
@@ -181,12 +181,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T20:56:00.000000Z",
-        "updated_at": "2026-11-05T20:56:00.000000Z"
+        "created_at": "2026-11-05T20:56:00Z",
+        "updated_at": "2026-11-05T20:56:00Z"
        }
       ],
-      "created_at": "2026-11-05T20:56:00.000000Z",
-      "updated_at": "2026-11-05T20:56:00.000000Z"
+      "created_at": "2026-11-05T20:56:00Z",
+      "updated_at": "2026-11-05T20:56:00Z"
      },
      {
       "id": 8,
@@ -213,12 +213,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T10:02:00.000000Z",
-        "updated_at": "2026-11-05T10:02:00.000000Z"
+        "created_at": "2026-11-05T10:02:00Z",
+        "updated_at": "2026-11-05T10:02:00Z"
        }
       ],
-      "created_at": "2026-11-05T10:02:00.000000Z",
-      "updated_at": "2026-11-05T10:02:00.000000Z"
+      "created_at": "2026-11-05T10:02:00Z",
+      "updated_at": "2026-11-05T10:02:00Z"
      },
      {
       "id": 7,
@@ -245,12 +245,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-04T23:52:00.000000Z",
-        "updated_at": "2026-11-04T23:52:00.000000Z"
+        "created_at": "2026-11-04T23:52:00Z",
+        "updated_at": "2026-11-04T23:52:00Z"
        }
       ],
-      "created_at": "2026-11-04T23:52:00.000000Z",
-      "updated_at": "2026-11-04T23:52:00.000000Z"
+      "created_at": "2026-11-04T23:52:00Z",
+      "updated_at": "2026-11-04T23:52:00Z"
      },
      {
       "id": 12,
@@ -277,12 +277,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-27T12:03:00.000000Z",
-        "updated_at": "2026-10-27T12:03:00.000000Z"
+        "created_at": "2026-10-27T12:03:00Z",
+        "updated_at": "2026-10-27T12:03:00Z"
        }
       ],
-      "created_at": "2026-10-27T12:03:00.000000Z",
-      "updated_at": "2026-10-27T12:03:00.000000Z"
+      "created_at": "2026-10-27T12:03:00Z",
+      "updated_at": "2026-10-27T12:03:00Z"
      },
      {
       "id": 6,
@@ -309,12 +309,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-23T17:40:00.000000Z",
-        "updated_at": "2026-10-23T17:40:00.000000Z"
+        "created_at": "2026-10-23T17:40:00Z",
+        "updated_at": "2026-10-23T17:40:00Z"
        }
       ],
-      "created_at": "2026-10-23T17:40:00.000000Z",
-      "updated_at": "2026-10-23T17:40:00.000000Z"
+      "created_at": "2026-10-23T17:40:00Z",
+      "updated_at": "2026-10-23T17:40:00Z"
      },
      {
       "id": 5,
@@ -341,12 +341,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T05:25:00.000000Z",
-        "updated_at": "2026-10-19T05:25:00.000000Z"
+        "created_at": "2026-10-19T05:25:00Z",
+        "updated_at": "2026-10-19T05:25:00Z"
        }
       ],
-      "created_at": "2026-10-19T05:25:00.000000Z",
-      "updated_at": "2026-10-19T05:25:00.000000Z"
+      "created_at": "2026-10-19T05:25:00Z",
+      "updated_at": "2026-10-19T05:25:00Z"
      },
      {
       "id": 16,
@@ -373,12 +373,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T03:07:00.000000Z",
-        "updated_at": "2026-10-19T03:07:00.000000Z"
+        "created_at": "2026-10-19T03:07:00Z",
+        "updated_at": "2026-10-19T03:07:00Z"
        }
       ],
-      "created_at": "2026-10-19T03:07:00.000000Z",
-      "updated_at": "2026-10-19T03:07:00.000000Z"
+      "created_at": "2026-10-19T03:07:00Z",
+      "updated_at": "2026-10-19T03:07:00Z"
      },
      {
       "id": 15,
@@ -405,12 +405,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-11T00:39:00.000000Z",
-        "updated_at": "2026-10-11T00:39:00.000000Z"
+        "created_at": "2026-10-11T00:39:00Z",
+        "updated_at": "2026-10-11T00:39:00Z"
        }
       ],
-      "created_at": "2026-10-11T00:39:00.000000Z",
-      "updated_at": "2026-10-11T00:39:00.000000Z"
+      "created_at": "2026-10-11T00:39:00Z",
+      "updated_at": "2026-10-11T00:39:00Z"
      },
      {
       "id": 11,
@@ -437,12 +437,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-03T13:13:00.000000Z",
-        "updated_at": "2026-10-03T13:13:00.000000Z"
+        "created_at": "2026-10-03T13:13:00Z",
+        "updated_at": "2026-10-03T13:13:00Z"
        }
       ],
-      "created_at": "2026-10-03T13:13:00.000000Z",
-      "updated_at": "2026-10-03T13:13:00.000000Z"
+      "created_at": "2026-10-03T13:13:00Z",
+      "updated_at": "2026-10-03T13:13:00Z"
      },
      {
       "id": 14,
@@ -469,12 +469,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-09-06T10:19:00.000000Z",
-        "updated_at": "2026-09-06T10:19:00.000000Z"
+        "created_at": "2026-09-06T10:19:00Z",
+        "updated_at": "2026-09-06T10:19:00Z"
        }
       ],
-      "created_at": "2026-09-06T10:19:00.000000Z",
-      "updated_at": "2026-09-06T10:19:00.000000Z"
+      "created_at": "2026-09-06T10:19:00Z",
+      "updated_at": "2026-09-06T10:19:00Z"
      },
      {
       "id": 9,
@@ -501,12 +501,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-08-04T08:28:00.000000Z",
-        "updated_at": "2026-08-04T08:28:00.000000Z"
+        "created_at": "2026-08-04T08:28:00Z",
+        "updated_at": "2026-08-04T08:28:00Z"
        }
       ],
-      "created_at": "2026-08-04T08:28:00.000000Z",
-      "updated_at": "2026-08-04T08:28:00.000000Z"
+      "created_at": "2026-08-04T08:28:00Z",
+      "updated_at": "2026-08-04T08:28:00Z"
      },
      {
       "id": 10,
@@ -533,14 +533,20 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-02-19T23:05:00.000000Z",
-        "updated_at": "2026-02-19T23:05:00.000000Z"
+        "created_at": "2026-02-19T23:05:00Z",
+        "updated_at": "2026-02-19T23:05:00Z"
        }
       ],
-      "created_at": "2026-02-19T23:05:00.000000Z",
-      "updated_at": "2026-02-19T23:05:00.000000Z"
+      "created_at": "2026-02-19T23:05:00Z",
+      "updated_at": "2026-02-19T23:05:00Z"
      }
-    ]
+    ],
+    "page": {
+     "size": 16,
+     "number": 0,
+     "total_elements": 16,
+     "total_pages": 1
+    }
    },
    "save": null
   },
@@ -551,7 +557,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 4,
       "name": "Zeynep Arslan",
@@ -577,12 +583,12 @@
         "latitude": 39.905,
         "longitude": 32.8597,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 2,
@@ -609,12 +615,12 @@
         "latitude": 38.4381,
         "longitude": 27.1431,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 3,
@@ -641,12 +647,12 @@
         "latitude": 36.8841,
         "longitude": 30.7056,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 1,
@@ -673,8 +679,8 @@
         "latitude": 41.0532,
         "longitude": 28.8103,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        },
        {
         "id": 2,
@@ -692,12 +698,12 @@
         "latitude": 41.0703,
         "longitude": 28.9917,
         "is_default": false,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 13,
@@ -724,12 +730,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T20:56:00.000000Z",
-        "updated_at": "2026-11-05T20:56:00.000000Z"
+        "created_at": "2026-11-05T20:56:00Z",
+        "updated_at": "2026-11-05T20:56:00Z"
        }
       ],
-      "created_at": "2026-11-05T20:56:00.000000Z",
-      "updated_at": "2026-11-05T20:56:00.000000Z"
+      "created_at": "2026-11-05T20:56:00Z",
+      "updated_at": "2026-11-05T20:56:00Z"
      },
      {
       "id": 8,
@@ -756,12 +762,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T10:02:00.000000Z",
-        "updated_at": "2026-11-05T10:02:00.000000Z"
+        "created_at": "2026-11-05T10:02:00Z",
+        "updated_at": "2026-11-05T10:02:00Z"
        }
       ],
-      "created_at": "2026-11-05T10:02:00.000000Z",
-      "updated_at": "2026-11-05T10:02:00.000000Z"
+      "created_at": "2026-11-05T10:02:00Z",
+      "updated_at": "2026-11-05T10:02:00Z"
      },
      {
       "id": 7,
@@ -788,12 +794,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-04T23:52:00.000000Z",
-        "updated_at": "2026-11-04T23:52:00.000000Z"
+        "created_at": "2026-11-04T23:52:00Z",
+        "updated_at": "2026-11-04T23:52:00Z"
        }
       ],
-      "created_at": "2026-11-04T23:52:00.000000Z",
-      "updated_at": "2026-11-04T23:52:00.000000Z"
+      "created_at": "2026-11-04T23:52:00Z",
+      "updated_at": "2026-11-04T23:52:00Z"
      },
      {
       "id": 12,
@@ -820,12 +826,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-27T12:03:00.000000Z",
-        "updated_at": "2026-10-27T12:03:00.000000Z"
+        "created_at": "2026-10-27T12:03:00Z",
+        "updated_at": "2026-10-27T12:03:00Z"
        }
       ],
-      "created_at": "2026-10-27T12:03:00.000000Z",
-      "updated_at": "2026-10-27T12:03:00.000000Z"
+      "created_at": "2026-10-27T12:03:00Z",
+      "updated_at": "2026-10-27T12:03:00Z"
      },
      {
       "id": 6,
@@ -852,12 +858,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-23T17:40:00.000000Z",
-        "updated_at": "2026-10-23T17:40:00.000000Z"
+        "created_at": "2026-10-23T17:40:00Z",
+        "updated_at": "2026-10-23T17:40:00Z"
        }
       ],
-      "created_at": "2026-10-23T17:40:00.000000Z",
-      "updated_at": "2026-10-23T17:40:00.000000Z"
+      "created_at": "2026-10-23T17:40:00Z",
+      "updated_at": "2026-10-23T17:40:00Z"
      },
      {
       "id": 5,
@@ -884,12 +890,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T05:25:00.000000Z",
-        "updated_at": "2026-10-19T05:25:00.000000Z"
+        "created_at": "2026-10-19T05:25:00Z",
+        "updated_at": "2026-10-19T05:25:00Z"
        }
       ],
-      "created_at": "2026-10-19T05:25:00.000000Z",
-      "updated_at": "2026-10-19T05:25:00.000000Z"
+      "created_at": "2026-10-19T05:25:00Z",
+      "updated_at": "2026-10-19T05:25:00Z"
      },
      {
       "id": 16,
@@ -916,12 +922,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T03:07:00.000000Z",
-        "updated_at": "2026-10-19T03:07:00.000000Z"
+        "created_at": "2026-10-19T03:07:00Z",
+        "updated_at": "2026-10-19T03:07:00Z"
        }
       ],
-      "created_at": "2026-10-19T03:07:00.000000Z",
-      "updated_at": "2026-10-19T03:07:00.000000Z"
+      "created_at": "2026-10-19T03:07:00Z",
+      "updated_at": "2026-10-19T03:07:00Z"
      },
      {
       "id": 15,
@@ -948,12 +954,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-11T00:39:00.000000Z",
-        "updated_at": "2026-10-11T00:39:00.000000Z"
+        "created_at": "2026-10-11T00:39:00Z",
+        "updated_at": "2026-10-11T00:39:00Z"
        }
       ],
-      "created_at": "2026-10-11T00:39:00.000000Z",
-      "updated_at": "2026-10-11T00:39:00.000000Z"
+      "created_at": "2026-10-11T00:39:00Z",
+      "updated_at": "2026-10-11T00:39:00Z"
      },
      {
       "id": 11,
@@ -980,12 +986,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-03T13:13:00.000000Z",
-        "updated_at": "2026-10-03T13:13:00.000000Z"
+        "created_at": "2026-10-03T13:13:00Z",
+        "updated_at": "2026-10-03T13:13:00Z"
        }
       ],
-      "created_at": "2026-10-03T13:13:00.000000Z",
-      "updated_at": "2026-10-03T13:13:00.000000Z"
+      "created_at": "2026-10-03T13:13:00Z",
+      "updated_at": "2026-10-03T13:13:00Z"
      },
      {
       "id": 14,
@@ -1012,12 +1018,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-09-06T10:19:00.000000Z",
-        "updated_at": "2026-09-06T10:19:00.000000Z"
+        "created_at": "2026-09-06T10:19:00Z",
+        "updated_at": "2026-09-06T10:19:00Z"
        }
       ],
-      "created_at": "2026-09-06T10:19:00.000000Z",
-      "updated_at": "2026-09-06T10:19:00.000000Z"
+      "created_at": "2026-09-06T10:19:00Z",
+      "updated_at": "2026-09-06T10:19:00Z"
      },
      {
       "id": 9,
@@ -1044,12 +1050,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-08-04T08:28:00.000000Z",
-        "updated_at": "2026-08-04T08:28:00.000000Z"
+        "created_at": "2026-08-04T08:28:00Z",
+        "updated_at": "2026-08-04T08:28:00Z"
        }
       ],
-      "created_at": "2026-08-04T08:28:00.000000Z",
-      "updated_at": "2026-08-04T08:28:00.000000Z"
+      "created_at": "2026-08-04T08:28:00Z",
+      "updated_at": "2026-08-04T08:28:00Z"
      },
      {
       "id": 10,
@@ -1076,14 +1082,20 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-02-19T23:05:00.000000Z",
-        "updated_at": "2026-02-19T23:05:00.000000Z"
+        "created_at": "2026-02-19T23:05:00Z",
+        "updated_at": "2026-02-19T23:05:00Z"
        }
       ],
-      "created_at": "2026-02-19T23:05:00.000000Z",
-      "updated_at": "2026-02-19T23:05:00.000000Z"
+      "created_at": "2026-02-19T23:05:00Z",
+      "updated_at": "2026-02-19T23:05:00Z"
      }
-    ]
+    ],
+    "page": {
+     "size": 16,
+     "number": 0,
+     "total_elements": 16,
+     "total_pages": 1
+    }
    },
    "save": null
   },
@@ -1094,18 +1106,24 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": []
+    "content": [],
+    "page": {
+     "size": 0,
+     "number": 0,
+     "total_elements": 0,
+     "total_pages": 1
+    }
    },
    "save": null
   },
   {
    "name": "liste ?per_page=5",
    "method": "GET",
-   "path": "/api/customers?per_page=5",
+   "path": "/api/customers?page=0&size=5",
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 1,
       "name": "Ahmet Yılmaz",
@@ -1131,8 +1149,8 @@
         "latitude": 41.0532,
         "longitude": 28.8103,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        },
        {
         "id": 2,
@@ -1150,12 +1168,12 @@
         "latitude": 41.0703,
         "longitude": 28.9917,
         "is_default": false,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 3,
@@ -1182,12 +1200,12 @@
         "latitude": 36.8841,
         "longitude": 30.7056,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 4,
@@ -1214,12 +1232,12 @@
         "latitude": 39.905,
         "longitude": 32.8597,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 2,
@@ -1246,12 +1264,12 @@
         "latitude": 38.4381,
         "longitude": 27.1431,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 13,
@@ -1278,66 +1296,19 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T20:56:00.000000Z",
-        "updated_at": "2026-11-05T20:56:00.000000Z"
+        "created_at": "2026-11-05T20:56:00Z",
+        "updated_at": "2026-11-05T20:56:00Z"
        }
       ],
-      "created_at": "2026-11-05T20:56:00.000000Z",
-      "updated_at": "2026-11-05T20:56:00.000000Z"
+      "created_at": "2026-11-05T20:56:00Z",
+      "updated_at": "2026-11-05T20:56:00Z"
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/customers?per_page=5&page=1",
-     "last": "http://localhost:8001/api/customers?per_page=5&page=4",
-     "prev": null,
-     "next": "http://localhost:8001/api/customers?per_page=5&page=2"
-    },
-    "meta": {
-     "current_page": 1,
-     "from": 1,
-     "last_page": 4,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=2",
-       "label": "2",
-       "page": 2,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=3",
-       "label": "3",
-       "page": 3,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=4",
-       "label": "4",
-       "page": 4,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=2",
-       "label": "Next &raquo;",
-       "page": 2,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/customers",
-     "per_page": 5,
-     "to": 5,
-     "total": 16
+    "page": {
+     "size": 5,
+     "number": 0,
+     "total_elements": 16,
+     "total_pages": 4
     }
    },
    "save": null
@@ -1345,11 +1316,11 @@
   {
    "name": "liste ?per_page=5&page=2",
    "method": "GET",
-   "path": "/api/customers?per_page=5&page=2",
+   "path": "/api/customers?page=1&size=5",
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 8,
       "name": "Deniz Çelik",
@@ -1375,12 +1346,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T10:02:00.000000Z",
-        "updated_at": "2026-11-05T10:02:00.000000Z"
+        "created_at": "2026-11-05T10:02:00Z",
+        "updated_at": "2026-11-05T10:02:00Z"
        }
       ],
-      "created_at": "2026-11-05T10:02:00.000000Z",
-      "updated_at": "2026-11-05T10:02:00.000000Z"
+      "created_at": "2026-11-05T10:02:00Z",
+      "updated_at": "2026-11-05T10:02:00Z"
      },
      {
       "id": 7,
@@ -1407,12 +1378,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-04T23:52:00.000000Z",
-        "updated_at": "2026-11-04T23:52:00.000000Z"
+        "created_at": "2026-11-04T23:52:00Z",
+        "updated_at": "2026-11-04T23:52:00Z"
        }
       ],
-      "created_at": "2026-11-04T23:52:00.000000Z",
-      "updated_at": "2026-11-04T23:52:00.000000Z"
+      "created_at": "2026-11-04T23:52:00Z",
+      "updated_at": "2026-11-04T23:52:00Z"
      },
      {
       "id": 12,
@@ -1439,12 +1410,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-27T12:03:00.000000Z",
-        "updated_at": "2026-10-27T12:03:00.000000Z"
+        "created_at": "2026-10-27T12:03:00Z",
+        "updated_at": "2026-10-27T12:03:00Z"
        }
       ],
-      "created_at": "2026-10-27T12:03:00.000000Z",
-      "updated_at": "2026-10-27T12:03:00.000000Z"
+      "created_at": "2026-10-27T12:03:00Z",
+      "updated_at": "2026-10-27T12:03:00Z"
      },
      {
       "id": 6,
@@ -1471,12 +1442,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-23T17:40:00.000000Z",
-        "updated_at": "2026-10-23T17:40:00.000000Z"
+        "created_at": "2026-10-23T17:40:00Z",
+        "updated_at": "2026-10-23T17:40:00Z"
        }
       ],
-      "created_at": "2026-10-23T17:40:00.000000Z",
-      "updated_at": "2026-10-23T17:40:00.000000Z"
+      "created_at": "2026-10-23T17:40:00Z",
+      "updated_at": "2026-10-23T17:40:00Z"
      },
      {
       "id": 5,
@@ -1503,66 +1474,19 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T05:25:00.000000Z",
-        "updated_at": "2026-10-19T05:25:00.000000Z"
+        "created_at": "2026-10-19T05:25:00Z",
+        "updated_at": "2026-10-19T05:25:00Z"
        }
       ],
-      "created_at": "2026-10-19T05:25:00.000000Z",
-      "updated_at": "2026-10-19T05:25:00.000000Z"
+      "created_at": "2026-10-19T05:25:00Z",
+      "updated_at": "2026-10-19T05:25:00Z"
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/customers?per_page=5&page=1",
-     "last": "http://localhost:8001/api/customers?per_page=5&page=4",
-     "prev": "http://localhost:8001/api/customers?per_page=5&page=1",
-     "next": "http://localhost:8001/api/customers?per_page=5&page=3"
-    },
-    "meta": {
-     "current_page": 2,
-     "from": 6,
-     "last_page": 4,
-     "links": [
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=1",
-       "label": "&laquo; Previous",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=1",
-       "label": "1",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=2",
-       "label": "2",
-       "page": 2,
-       "active": true
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=3",
-       "label": "3",
-       "page": 3,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=4",
-       "label": "4",
-       "page": 4,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=5&page=3",
-       "label": "Next &raquo;",
-       "page": 3,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/customers",
-     "per_page": 5,
-     "to": 10,
-     "total": 16
+    "page": {
+     "size": 5,
+     "number": 1,
+     "total_elements": 16,
+     "total_pages": 4
     }
    },
    "save": null
@@ -1570,14 +1494,17 @@
   {
    "name": "liste ?per_page=0",
    "method": "GET",
-   "path": "/api/customers?per_page=0",
+   "path": "/api/customers?page=0&size=0",
    "body": null,
    "status": 422,
    "response": {
-    "message": "The per page field must be at least 1.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The size field must be at least 1.",
+    "instance": "/api/customers",
     "errors": {
-     "per_page": [
-      "The per page field must be at least 1."
+     "size": [
+      "The size field must be at least 1."
      ]
     }
    },
@@ -1615,8 +1542,8 @@
        "latitude": 41.0532,
        "longitude": 28.8103,
        "is_default": true,
-       "created_at": "2026-11-06T15:35:14.000000Z",
-       "updated_at": "2026-11-06T15:35:14.000000Z"
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-06T15:35:14Z"
       },
       {
        "id": 2,
@@ -1634,12 +1561,12 @@
        "latitude": 41.0703,
        "longitude": 28.9917,
        "is_default": false,
-       "created_at": "2026-11-06T15:35:14.000000Z",
-       "updated_at": "2026-11-06T15:35:14.000000Z"
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-06T15:35:14Z"
       }
      ],
-     "created_at": "2026-11-06T15:35:14.000000Z",
-     "updated_at": "2026-11-06T15:35:14.000000Z"
+     "created_at": "2026-11-06T15:35:14Z",
+     "updated_at": "2026-11-06T15:35:14Z"
     }
    },
    "save": null
@@ -1668,8 +1595,8 @@
       "latitude": 41.0532,
       "longitude": 28.8103,
       "is_default": true,
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 2,
@@ -1687,8 +1614,8 @@
       "latitude": 41.0703,
       "longitude": 28.9917,
       "is_default": false,
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      }
     ]
    },
@@ -1716,11 +1643,11 @@
           "id": 1,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 35,
        "total_quantity": 35817,
@@ -1738,11 +1665,11 @@
           "id": 2,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 11,
        "total_quantity": 21966,
@@ -1760,11 +1687,11 @@
           "id": 3,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 17,
        "total_quantity": 17472,
@@ -1782,11 +1709,11 @@
           "id": 4,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 8,
        "total_quantity": 10062,
@@ -1804,17 +1731,17 @@
           "id": 5,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.7000"
+          "ratio": 0.7
          },
          {
           "id": 6,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "0.3000"
+          "ratio": 0.3
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 11,
        "total_quantity": 4878,
@@ -1832,17 +1759,17 @@
           "id": 7,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.8000"
+          "ratio": 0.8
          },
          {
           "id": 8,
           "production_product_type_id": 6,
           "production_product_type_name": "Portakal Aroması",
-          "ratio": "0.2000"
+          "ratio": 0.2
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 1,
        "total_quantity": 24,
@@ -1885,12 +1812,12 @@
        "latitude": 38.4381,
        "longitude": 27.1431,
        "is_default": true,
-       "created_at": "2026-11-06T15:35:14.000000Z",
-       "updated_at": "2026-11-06T15:35:14.000000Z"
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-06T15:35:14Z"
       }
      ],
-     "created_at": "2026-11-06T15:35:14.000000Z",
-     "updated_at": "2026-11-06T15:35:14.000000Z"
+     "created_at": "2026-11-06T15:35:14Z",
+     "updated_at": "2026-11-06T15:35:14Z"
     }
    },
    "save": null
@@ -1919,8 +1846,8 @@
       "latitude": 38.4381,
       "longitude": 27.1431,
       "is_default": true,
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      }
     ]
    },
@@ -1948,11 +1875,11 @@
           "id": 3,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 27,
        "total_quantity": 44952,
@@ -1970,11 +1897,11 @@
           "id": 1,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 37,
        "total_quantity": 44272,
@@ -1992,11 +1919,11 @@
           "id": 2,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 21,
        "total_quantity": 36834,
@@ -2014,11 +1941,11 @@
           "id": 4,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 11,
        "total_quantity": 9612,
@@ -2036,17 +1963,17 @@
           "id": 5,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.7000"
+          "ratio": 0.7
          },
          {
           "id": 6,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "0.3000"
+          "ratio": 0.3
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 7,
        "total_quantity": 1416,
@@ -2064,17 +1991,17 @@
           "id": 7,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.8000"
+          "ratio": 0.8
          },
          {
           "id": 8,
           "production_product_type_id": 6,
           "production_product_type_name": "Portakal Aroması",
-          "ratio": "0.2000"
+          "ratio": 0.2
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 7,
        "total_quantity": 228,
@@ -2117,12 +2044,12 @@
        "latitude": null,
        "longitude": null,
        "is_default": true,
-       "created_at": "2026-10-19T05:25:00.000000Z",
-       "updated_at": "2026-10-19T05:25:00.000000Z"
+       "created_at": "2026-10-19T05:25:00Z",
+       "updated_at": "2026-10-19T05:25:00Z"
       }
      ],
-     "created_at": "2026-10-19T05:25:00.000000Z",
-     "updated_at": "2026-10-19T05:25:00.000000Z"
+     "created_at": "2026-10-19T05:25:00Z",
+     "updated_at": "2026-10-19T05:25:00Z"
     }
    },
    "save": null
@@ -2151,8 +2078,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": true,
-      "created_at": "2026-10-19T05:25:00.000000Z",
-      "updated_at": "2026-10-19T05:25:00.000000Z"
+      "created_at": "2026-10-19T05:25:00Z",
+      "updated_at": "2026-10-19T05:25:00Z"
      }
     ]
    },
@@ -2180,11 +2107,11 @@
           "id": 2,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 13,
        "total_quantity": 264,
@@ -2202,17 +2129,17 @@
           "id": 5,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.7000"
+          "ratio": 0.7
          },
          {
           "id": 6,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "0.3000"
+          "ratio": 0.3
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 6,
        "total_quantity": 102,
@@ -2230,11 +2157,11 @@
           "id": 1,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 9,
        "total_quantity": 29,
@@ -2277,12 +2204,12 @@
        "latitude": null,
        "longitude": null,
        "is_default": true,
-       "created_at": "2026-10-19T03:07:00.000000Z",
-       "updated_at": "2026-10-19T03:07:00.000000Z"
+       "created_at": "2026-10-19T03:07:00Z",
+       "updated_at": "2026-10-19T03:07:00Z"
       }
      ],
-     "created_at": "2026-10-19T03:07:00.000000Z",
-     "updated_at": "2026-10-19T03:07:00.000000Z"
+     "created_at": "2026-10-19T03:07:00Z",
+     "updated_at": "2026-10-19T03:07:00Z"
     }
    },
    "save": null
@@ -2311,8 +2238,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": true,
-      "created_at": "2026-10-19T03:07:00.000000Z",
-      "updated_at": "2026-10-19T03:07:00.000000Z"
+      "created_at": "2026-10-19T03:07:00Z",
+      "updated_at": "2026-10-19T03:07:00Z"
      }
     ]
    },
@@ -2340,11 +2267,11 @@
           "id": 3,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 2,
        "total_quantity": 24,
@@ -2362,7 +2289,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\Customer] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Customer 999999 not found.",
+    "instance": "/api/customers/999999"
    },
    "save": null
   },
@@ -2373,7 +2303,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 4,
       "name": "Zeynep Arslan",
@@ -2399,12 +2329,12 @@
         "latitude": 39.905,
         "longitude": 32.8597,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 2,
@@ -2431,12 +2361,12 @@
         "latitude": 38.4381,
         "longitude": 27.1431,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 3,
@@ -2463,12 +2393,12 @@
         "latitude": 36.8841,
         "longitude": 30.7056,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 1,
@@ -2495,8 +2425,8 @@
         "latitude": 41.0532,
         "longitude": 28.8103,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        },
        {
         "id": 2,
@@ -2514,12 +2444,12 @@
         "latitude": 41.0703,
         "longitude": 28.9917,
         "is_default": false,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 13,
@@ -2546,12 +2476,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T20:56:00.000000Z",
-        "updated_at": "2026-11-05T20:56:00.000000Z"
+        "created_at": "2026-11-05T20:56:00Z",
+        "updated_at": "2026-11-05T20:56:00Z"
        }
       ],
-      "created_at": "2026-11-05T20:56:00.000000Z",
-      "updated_at": "2026-11-05T20:56:00.000000Z"
+      "created_at": "2026-11-05T20:56:00Z",
+      "updated_at": "2026-11-05T20:56:00Z"
      },
      {
       "id": 8,
@@ -2578,12 +2508,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-05T10:02:00.000000Z",
-        "updated_at": "2026-11-05T10:02:00.000000Z"
+        "created_at": "2026-11-05T10:02:00Z",
+        "updated_at": "2026-11-05T10:02:00Z"
        }
       ],
-      "created_at": "2026-11-05T10:02:00.000000Z",
-      "updated_at": "2026-11-05T10:02:00.000000Z"
+      "created_at": "2026-11-05T10:02:00Z",
+      "updated_at": "2026-11-05T10:02:00Z"
      },
      {
       "id": 7,
@@ -2610,12 +2540,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-11-04T23:52:00.000000Z",
-        "updated_at": "2026-11-04T23:52:00.000000Z"
+        "created_at": "2026-11-04T23:52:00Z",
+        "updated_at": "2026-11-04T23:52:00Z"
        }
       ],
-      "created_at": "2026-11-04T23:52:00.000000Z",
-      "updated_at": "2026-11-04T23:52:00.000000Z"
+      "created_at": "2026-11-04T23:52:00Z",
+      "updated_at": "2026-11-04T23:52:00Z"
      },
      {
       "id": 12,
@@ -2642,12 +2572,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-27T12:03:00.000000Z",
-        "updated_at": "2026-10-27T12:03:00.000000Z"
+        "created_at": "2026-10-27T12:03:00Z",
+        "updated_at": "2026-10-27T12:03:00Z"
        }
       ],
-      "created_at": "2026-10-27T12:03:00.000000Z",
-      "updated_at": "2026-10-27T12:03:00.000000Z"
+      "created_at": "2026-10-27T12:03:00Z",
+      "updated_at": "2026-10-27T12:03:00Z"
      },
      {
       "id": 6,
@@ -2674,12 +2604,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-23T17:40:00.000000Z",
-        "updated_at": "2026-10-23T17:40:00.000000Z"
+        "created_at": "2026-10-23T17:40:00Z",
+        "updated_at": "2026-10-23T17:40:00Z"
        }
       ],
-      "created_at": "2026-10-23T17:40:00.000000Z",
-      "updated_at": "2026-10-23T17:40:00.000000Z"
+      "created_at": "2026-10-23T17:40:00Z",
+      "updated_at": "2026-10-23T17:40:00Z"
      },
      {
       "id": 5,
@@ -2706,12 +2636,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T05:25:00.000000Z",
-        "updated_at": "2026-10-19T05:25:00.000000Z"
+        "created_at": "2026-10-19T05:25:00Z",
+        "updated_at": "2026-10-19T05:25:00Z"
        }
       ],
-      "created_at": "2026-10-19T05:25:00.000000Z",
-      "updated_at": "2026-10-19T05:25:00.000000Z"
+      "created_at": "2026-10-19T05:25:00Z",
+      "updated_at": "2026-10-19T05:25:00Z"
      },
      {
       "id": 16,
@@ -2738,12 +2668,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-19T03:07:00.000000Z",
-        "updated_at": "2026-10-19T03:07:00.000000Z"
+        "created_at": "2026-10-19T03:07:00Z",
+        "updated_at": "2026-10-19T03:07:00Z"
        }
       ],
-      "created_at": "2026-10-19T03:07:00.000000Z",
-      "updated_at": "2026-10-19T03:07:00.000000Z"
+      "created_at": "2026-10-19T03:07:00Z",
+      "updated_at": "2026-10-19T03:07:00Z"
      },
      {
       "id": 15,
@@ -2770,12 +2700,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-11T00:39:00.000000Z",
-        "updated_at": "2026-10-11T00:39:00.000000Z"
+        "created_at": "2026-10-11T00:39:00Z",
+        "updated_at": "2026-10-11T00:39:00Z"
        }
       ],
-      "created_at": "2026-10-11T00:39:00.000000Z",
-      "updated_at": "2026-10-11T00:39:00.000000Z"
+      "created_at": "2026-10-11T00:39:00Z",
+      "updated_at": "2026-10-11T00:39:00Z"
      },
      {
       "id": 11,
@@ -2802,12 +2732,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-10-03T13:13:00.000000Z",
-        "updated_at": "2026-10-03T13:13:00.000000Z"
+        "created_at": "2026-10-03T13:13:00Z",
+        "updated_at": "2026-10-03T13:13:00Z"
        }
       ],
-      "created_at": "2026-10-03T13:13:00.000000Z",
-      "updated_at": "2026-10-03T13:13:00.000000Z"
+      "created_at": "2026-10-03T13:13:00Z",
+      "updated_at": "2026-10-03T13:13:00Z"
      },
      {
       "id": 14,
@@ -2834,12 +2764,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-09-06T10:19:00.000000Z",
-        "updated_at": "2026-09-06T10:19:00.000000Z"
+        "created_at": "2026-09-06T10:19:00Z",
+        "updated_at": "2026-09-06T10:19:00Z"
        }
       ],
-      "created_at": "2026-09-06T10:19:00.000000Z",
-      "updated_at": "2026-09-06T10:19:00.000000Z"
+      "created_at": "2026-09-06T10:19:00Z",
+      "updated_at": "2026-09-06T10:19:00Z"
      },
      {
       "id": 9,
@@ -2866,12 +2796,12 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-08-04T08:28:00.000000Z",
-        "updated_at": "2026-08-04T08:28:00.000000Z"
+        "created_at": "2026-08-04T08:28:00Z",
+        "updated_at": "2026-08-04T08:28:00Z"
        }
       ],
-      "created_at": "2026-08-04T08:28:00.000000Z",
-      "updated_at": "2026-08-04T08:28:00.000000Z"
+      "created_at": "2026-08-04T08:28:00Z",
+      "updated_at": "2026-08-04T08:28:00Z"
      },
      {
       "id": 10,
@@ -2898,14 +2828,20 @@
         "latitude": null,
         "longitude": null,
         "is_default": true,
-        "created_at": "2026-02-19T23:05:00.000000Z",
-        "updated_at": "2026-02-19T23:05:00.000000Z"
+        "created_at": "2026-02-19T23:05:00Z",
+        "updated_at": "2026-02-19T23:05:00Z"
        }
       ],
-      "created_at": "2026-02-19T23:05:00.000000Z",
-      "updated_at": "2026-02-19T23:05:00.000000Z"
+      "created_at": "2026-02-19T23:05:00Z",
+      "updated_at": "2026-02-19T23:05:00Z"
      }
-    ]
+    ],
+    "page": {
+     "size": 16,
+     "number": 0,
+     "total_elements": 16,
+     "total_pages": 1
+    }
    },
    "save": null,
    "as": "muhendis@olivamore.com"
@@ -2917,7 +2853,10 @@
    "body": null,
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/customers"
    },
    "save": null,
    "as": "operator1@olivamore.com"
@@ -2929,7 +2868,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required.",
+    "instance": "/api/customers",
     "errors": {
      "name": [
       "The name field is required."
@@ -2948,7 +2890,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The is active field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The is active field must be true or false.",
+    "instance": "/api/customers",
     "errors": {
      "is_active": [
       "The is active field must be true or false."
@@ -2973,7 +2918,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 5 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 5 more errors)",
+    "instance": "/api/customers",
     "errors": {
      "name": [
       "The name field is required."
@@ -3015,8 +2963,8 @@
      "notes": null,
      "is_active": true,
      "addresses": [],
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": [
@@ -3081,8 +3029,8 @@
        "latitude": 38.4237,
        "longitude": 27.1428,
        "is_default": false,
-       "created_at": "2026-11-07T04:45:10.000000Z",
-       "updated_at": "2026-11-07T04:45:10.000000Z"
+       "created_at": "2026-11-07T04:45:10Z",
+       "updated_at": "2026-11-07T04:45:10Z"
       },
       {
        "id": 19,
@@ -3100,8 +3048,8 @@
        "latitude": null,
        "longitude": null,
        "is_default": true,
-       "created_at": "2026-11-07T04:45:10.000000Z",
-       "updated_at": "2026-11-07T04:45:10.000000Z"
+       "created_at": "2026-11-07T04:45:10Z",
+       "updated_at": "2026-11-07T04:45:10Z"
       },
       {
        "id": 20,
@@ -3119,12 +3067,12 @@
        "latitude": null,
        "longitude": null,
        "is_default": false,
-       "created_at": "2026-11-07T04:45:10.000000Z",
-       "updated_at": "2026-11-07T04:45:10.000000Z"
+       "created_at": "2026-11-07T04:45:10Z",
+       "updated_at": "2026-11-07T04:45:10Z"
       }
      ],
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": [
@@ -3151,8 +3099,8 @@
      "notes": null,
      "is_active": false,
      "addresses": [],
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": [
@@ -3170,7 +3118,10 @@
    },
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/customers"
    },
    "save": null,
    "as": "muhendis@olivamore.com"
@@ -3195,8 +3146,8 @@
      "notes": "not",
      "is_active": false,
      "addresses": [],
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": null
@@ -3219,8 +3170,8 @@
      "notes": "not",
      "is_active": false,
      "addresses": [],
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": null
@@ -3235,7 +3186,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The email field must be a valid email address.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The email field must be a valid email address.",
+    "instance": "/api/customers/{C1}",
     "errors": {
      "email": [
       "The email field must be a valid email address."
@@ -3276,8 +3230,8 @@
        "latitude": 38.4237,
        "longitude": 27.1428,
        "is_default": false,
-       "created_at": "2026-11-07T04:45:10.000000Z",
-       "updated_at": "2026-11-07T04:45:10.000000Z"
+       "created_at": "2026-11-07T04:45:10Z",
+       "updated_at": "2026-11-07T04:45:10Z"
       },
       {
        "id": 19,
@@ -3295,8 +3249,8 @@
        "latitude": null,
        "longitude": null,
        "is_default": true,
-       "created_at": "2026-11-07T04:45:10.000000Z",
-       "updated_at": "2026-11-07T04:45:10.000000Z"
+       "created_at": "2026-11-07T04:45:10Z",
+       "updated_at": "2026-11-07T04:45:10Z"
       },
       {
        "id": 20,
@@ -3314,12 +3268,12 @@
        "latitude": null,
        "longitude": null,
        "is_default": false,
-       "created_at": "2026-11-07T04:45:10.000000Z",
-       "updated_at": "2026-11-07T04:45:10.000000Z"
+       "created_at": "2026-11-07T04:45:10Z",
+       "updated_at": "2026-11-07T04:45:10Z"
       }
      ],
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": null
@@ -3331,7 +3285,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The label field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The label field is required. (and 1 more error)",
+    "instance": "/api/customers/{C2}/addresses",
     "errors": {
      "label": [
       "The label field is required."
@@ -3371,8 +3328,8 @@
      "latitude": 40,
      "longitude": 29.06,
      "is_default": false,
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": [
@@ -3408,8 +3365,8 @@
      "latitude": null,
      "longitude": null,
      "is_default": true,
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": [
@@ -3445,8 +3402,8 @@
      "latitude": 38.1234568,
      "longitude": null,
      "is_default": false,
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": null
@@ -3475,8 +3432,8 @@
       "latitude": 38.4237,
       "longitude": 27.1428,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 19,
@@ -3494,8 +3451,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 20,
@@ -3513,8 +3470,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 21,
@@ -3532,8 +3489,8 @@
       "latitude": 40,
       "longitude": 29.06,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 22,
@@ -3551,8 +3508,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": true,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 23,
@@ -3570,8 +3527,8 @@
       "latitude": 38.1234568,
       "longitude": null,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      }
     ]
    },
@@ -3604,8 +3561,8 @@
      "latitude": null,
      "longitude": 29.06,
      "is_default": true,
-     "created_at": "2026-11-07T04:45:10.000000Z",
-     "updated_at": "2026-11-07T04:45:10.000000Z"
+     "created_at": "2026-11-07T04:45:10Z",
+     "updated_at": "2026-11-07T04:45:10Z"
     }
    },
    "save": null
@@ -3621,7 +3578,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The longitude field must be between -180 and 180.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The longitude field must be between -180 and 180.",
+    "instance": "/api/customers/{C2}/addresses/{A1}",
     "errors": {
      "longitude": [
       "The longitude field must be between -180 and 180."
@@ -3639,7 +3599,10 @@
    },
    "status": 404,
    "response": {
-    "message": "Bu adres bu müşteriye ait değil."
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Bu adres bu müşteriye ait değil.",
+    "instance": "/api/customers/1/addresses/{A1}"
    },
    "save": null
   },
@@ -3652,7 +3615,10 @@
    },
    "status": 404,
    "response": {
-    "message": "Bu adres bu müşteriye ait değil."
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Bu adres bu müşteriye ait değil.",
+    "instance": "/api/customers/1/addresses/{A1}"
    },
    "save": null
   },
@@ -3665,7 +3631,10 @@
    },
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\CustomerAddress] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "CustomerAddress 999999 not found.",
+    "instance": "/api/customers/{C2}/addresses/999999"
    },
    "save": null
   },
@@ -3676,7 +3645,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "Bu adres bu müşteriye ait değil."
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Bu adres bu müşteriye ait değil.",
+    "instance": "/api/customers/1/addresses/{A1}"
    },
    "save": null
   },
@@ -3726,8 +3698,8 @@
       "latitude": 38.4237,
       "longitude": 27.1428,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 19,
@@ -3745,8 +3717,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 20,
@@ -3764,8 +3736,8 @@
       "latitude": null,
       "longitude": null,
       "is_default": false,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      },
      {
       "id": 23,
@@ -3783,8 +3755,8 @@
       "latitude": 38.1234568,
       "longitude": null,
       "is_default": true,
-      "created_at": "2026-11-07T04:45:10.000000Z",
-      "updated_at": "2026-11-07T04:45:10.000000Z"
+      "created_at": "2026-11-07T04:45:10Z",
+      "updated_at": "2026-11-07T04:45:10Z"
      }
     ]
    },
@@ -3807,8 +3779,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Merkez Depo' adresi silinemez; kullanıldığı yerler: 54 sipariş.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Merkez Depo' adresi silinemez; kullanıldığı yerler: 54 sipariş.",
+    "instance": "/api/customers/{OC}/addresses/{OA}"
    },
    "save": null
   },
@@ -3819,7 +3793,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The finished product recipe id field is required.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The finished product recipe id field is required.",
+    "instance": "/api/customers/{C2}/preferred-recipes",
     "errors": {
      "finished_product_recipe_id": [
       "The finished product recipe id field is required."
@@ -3838,7 +3815,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The note field must not be greater than 255 characters.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The note field must not be greater than 255 characters.",
+    "instance": "/api/customers/{C2}/preferred-recipes",
     "errors": {
      "note": [
       "The note field must not be greater than 255 characters."
@@ -3856,7 +3836,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected finished product recipe id is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected finished product recipe id is invalid.",
+    "instance": "/api/customers/{C2}/preferred-recipes",
     "errors": {
      "finished_product_recipe_id": [
       "The selected finished product recipe id is invalid."
@@ -3940,17 +3923,17 @@
          "id": 5,
          "production_product_type_id": 3,
          "production_product_type_name": "Gemlik Zeytinyağı",
-         "ratio": "0.7000"
+         "ratio": 0.7
         },
         {
          "id": 6,
          "production_product_type_id": 4,
          "production_product_type_name": "Ayvalık Zeytinyağı",
-         "ratio": "0.3000"
+         "ratio": 0.3
         }
        ],
-       "created_at": "2026-11-06T15:35:13.000000Z",
-       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-06T15:35:13Z",
        "note": "not degisti"
       },
       {
@@ -3964,11 +3947,11 @@
          "id": 1,
          "production_product_type_id": 3,
          "production_product_type_name": "Gemlik Zeytinyağı",
-         "ratio": "1.0000"
+         "ratio": 1.0
         }
        ],
-       "created_at": "2026-11-06T15:35:13.000000Z",
-       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-06T15:35:13Z",
        "note": null
       }
      ],
@@ -3997,11 +3980,11 @@
          "id": 3,
          "production_product_type_id": 4,
          "production_product_type_name": "Ayvalık Zeytinyağı",
-         "ratio": "1.0000"
+         "ratio": 1.0
         }
        ],
-       "created_at": "2026-11-06T15:35:13.000000Z",
-       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-06T15:35:13Z",
        "note": null
       }
      ],
@@ -4018,11 +4001,11 @@
           "id": 3,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 27,
        "total_quantity": 44952,
@@ -4040,11 +4023,11 @@
           "id": 1,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 37,
        "total_quantity": 44272,
@@ -4062,11 +4045,11 @@
           "id": 2,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 21,
        "total_quantity": 36834,
@@ -4084,11 +4067,11 @@
           "id": 4,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "1.0000"
+          "ratio": 1.0
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 11,
        "total_quantity": 9612,
@@ -4106,17 +4089,17 @@
           "id": 5,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.7000"
+          "ratio": 0.7
          },
          {
           "id": 6,
           "production_product_type_id": 4,
           "production_product_type_name": "Ayvalık Zeytinyağı",
-          "ratio": "0.3000"
+          "ratio": 0.3
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 7,
        "total_quantity": 1416,
@@ -4134,17 +4117,17 @@
           "id": 7,
           "production_product_type_id": 3,
           "production_product_type_name": "Gemlik Zeytinyağı",
-          "ratio": "0.8000"
+          "ratio": 0.8
          },
          {
           "id": 8,
           "production_product_type_id": 6,
           "production_product_type_name": "Portakal Aroması",
-          "ratio": "0.2000"
+          "ratio": 0.2
          }
         ],
-        "created_at": "2026-11-06T15:35:13.000000Z",
-        "updated_at": "2026-11-06T15:35:13.000000Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-06T15:35:13Z"
        },
        "order_count": 7,
        "total_quantity": 228,
@@ -4173,8 +4156,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Naturel Sızma Gemlik 0.3' bu müşterinin tercihlerinde değil.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Naturel Sızma Gemlik 0.3' bu müşterinin tercihlerinde değil.",
+    "instance": "/api/customers/{C2}/preferred-recipes/1"
    },
    "save": null
   },
@@ -4185,7 +4170,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\FinishedProductRecipe] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "FinishedProductRecipe 999999 not found.",
+    "instance": "/api/customers/{C2}/preferred-recipes/999999"
    },
    "save": null
   },
@@ -4209,17 +4197,17 @@
          "id": 5,
          "production_product_type_id": 3,
          "production_product_type_name": "Gemlik Zeytinyağı",
-         "ratio": "0.7000"
+         "ratio": 0.7
         },
         {
          "id": 6,
          "production_product_type_id": 4,
          "production_product_type_name": "Ayvalık Zeytinyağı",
-         "ratio": "0.3000"
+         "ratio": 0.3
         }
        ],
-       "created_at": "2026-11-06T15:35:13.000000Z",
-       "updated_at": "2026-11-06T15:35:13.000000Z",
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-06T15:35:13Z",
        "note": "not degisti"
       }
      ],
@@ -4235,8 +4223,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Bu müşteriye ait siparişler bulunduğu için silinemez.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu müşteriye ait siparişler bulunduğu için silinemez.",
+    "instance": "/api/customers/1"
    },
    "save": null
   },
@@ -4269,7 +4259,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\Customer] 17"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Customer 17 not found.",
+    "instance": "/api/customers/{C1}"
    },
    "save": null
   },
@@ -4288,11 +4281,11 @@
   {
    "name": "liste sonra",
    "method": "GET",
-   "path": "/api/customers?per_page=4",
+   "path": "/api/customers?page=0&size=4",
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 2,
       "name": "Fatma Kaya",
@@ -4318,12 +4311,12 @@
         "latitude": 38.4381,
         "longitude": 27.1431,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 3,
@@ -4350,12 +4343,12 @@
         "latitude": 36.8841,
         "longitude": 30.7056,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 4,
@@ -4382,12 +4375,12 @@
         "latitude": 39.905,
         "longitude": 32.8597,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      },
      {
       "id": 1,
@@ -4414,8 +4407,8 @@
         "latitude": 41.0532,
         "longitude": 28.8103,
         "is_default": true,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        },
        {
         "id": 2,
@@ -4433,66 +4426,19 @@
         "latitude": 41.0703,
         "longitude": 28.9917,
         "is_default": false,
-        "created_at": "2026-11-06T15:35:14.000000Z",
-        "updated_at": "2026-11-06T15:35:14.000000Z"
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-06T15:35:14Z"
        }
       ],
-      "created_at": "2026-11-06T15:35:14.000000Z",
-      "updated_at": "2026-11-06T15:35:14.000000Z"
+      "created_at": "2026-11-06T15:35:14Z",
+      "updated_at": "2026-11-06T15:35:14Z"
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/customers?per_page=4&page=1",
-     "last": "http://localhost:8001/api/customers?per_page=4&page=4",
-     "prev": null,
-     "next": "http://localhost:8001/api/customers?per_page=4&page=2"
-    },
-    "meta": {
-     "current_page": 1,
-     "from": 1,
-     "last_page": 4,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=4&page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=4&page=2",
-       "label": "2",
-       "page": 2,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=4&page=3",
-       "label": "3",
-       "page": 3,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=4&page=4",
-       "label": "4",
-       "page": 4,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/customers?per_page=4&page=2",
-       "label": "Next &raquo;",
-       "page": 2,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/customers",
-     "per_page": 4,
-     "to": 4,
-     "total": 16
+    "page": {
+     "size": 4,
+     "number": 0,
+     "total_elements": 16,
+     "total_pages": 4
     }
    },
    "save": null
@@ -4511,7 +4457,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/customers/2"
    },
    "save": null
   },
@@ -4526,7 +4475,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/customers/2/addresses"
    },
    "save": null
   },
@@ -4540,7 +4492,10 @@
    },
    "status": 500,
    "response": {
-    "message": "Server Error"
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Server Error",
+    "instance": "/api/customers/2/addresses/{OA2}"
    },
    "save": null
   }

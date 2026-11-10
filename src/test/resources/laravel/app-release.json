@@ -12,14 +12,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "29"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
       }
      }
     },
@@ -29,14 +32,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "28"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
       }
      }
     }
@@ -219,14 +225,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "21"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
       }
      }
     }
@@ -244,14 +253,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "20"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
       }
      }
     }
@@ -270,14 +282,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "19"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
       }
      }
     },
@@ -287,14 +302,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "18"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
       }
      }
     }
@@ -312,14 +330,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "17"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
       }
      }
     }
@@ -338,14 +359,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "16"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
       }
      }
     }
@@ -364,14 +388,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "15"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
       }
      }
     }
@@ -390,14 +417,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "14"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
       }
      }
     }
@@ -443,14 +473,17 @@
      "headers": {},
      "status": 404,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "cache-control": "no-cache, private",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "12"
      },
      "body": {
       "json": {
-       "message": "Yayinlanmis surum yok."
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
       }
      }
     }
@@ -778,7 +811,7 @@
      "headers": {},
      "status": 429,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "0",
       "retry-after": "60",
@@ -786,7 +819,10 @@
      },
      "body": {
       "json": {
-       "message": "Too Many Attempts."
+       "title": "Too Many Requests",
+       "status": 429,
+       "detail": "Too Many Attempts.",
+       "instance": "/api/app/version"
       }
      }
     },
@@ -796,7 +832,7 @@
      "headers": {},
      "status": 429,
      "response_headers": {
-      "content-type": "application/json",
+      "content-type": "application/problem+json",
       "x-ratelimit-limit": "30",
       "x-ratelimit-remaining": "0",
       "retry-after": "60",
@@ -804,7 +840,10 @@
      },
      "body": {
       "json": {
-       "message": "Too Many Attempts."
+       "title": "Too Many Requests",
+       "status": 429,
+       "detail": "Too Many Attempts.",
+       "instance": "/api/app/download"
       }
      }
     }

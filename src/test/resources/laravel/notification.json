@@ -33,41 +33,12 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [],
-    "links": {
-     "first": "http://localhost:8001/api/notifications?page=1",
-     "last": "http://localhost:8001/api/notifications?page=1",
-     "prev": null,
-     "next": null
-    },
-    "meta": {
-     "current_page": 1,
-     "from": null,
-     "last_page": 1,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": null,
-       "label": "Next &raquo;",
-       "page": null,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/notifications",
-     "per_page": 30,
-     "to": null,
-     "total": 0
+    "content": [],
+    "page": {
+     "size": 30,
+     "number": 0,
+     "total_elements": 0,
+     "total_pages": 0
     }
    },
    "save": null,
@@ -159,7 +130,10 @@
    "body": null,
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/nudges/targets"
    },
    "save": null,
    "as": "operator1@olivamore.com"
@@ -171,7 +145,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The subject type field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The subject type field is required. (and 1 more error)",
+    "instance": "/api/nudges",
     "errors": {
      "subject_type": [
       "The subject type field is required."
@@ -192,7 +169,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected subject type is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected subject type is invalid.",
+    "instance": "/api/nudges",
     "errors": {
      "subject_type": [
       "The selected subject type is invalid."
@@ -212,7 +192,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The subject id field must be at least 1. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The subject id field must be at least 1. (and 1 more error)",
+    "instance": "/api/nudges",
     "errors": {
      "subject_id": [
       "The subject id field must be at least 1."
@@ -235,7 +218,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The selected user id is invalid.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected user id is invalid.",
+    "instance": "/api/nudges",
     "errors": {
      "user_id": [
       "The selected user id is invalid."
@@ -254,8 +240,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Uyarı gönderilecek kayıt bulunamadı.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Uyarı gönderilecek kayıt bulunamadı.",
+    "instance": "/api/nudges"
    },
    "save": null
   },
@@ -270,8 +258,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Kendinizi uyaramazsınız.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Kendinizi uyaramazsınız.",
+    "instance": "/api/nudges"
    },
    "save": null
   },
@@ -298,7 +288,7 @@
        "subject_id": 2,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z",
+       "created_at": "2026-11-07T13:09:21Z",
        "sent_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -319,8 +309,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu iş için az önce uyarı gönderildi. 3 dakika sonra tekrar deneyebilirsiniz.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu iş için az önce uyarı gönderildi. 3 dakika sonra tekrar deneyebilirsiniz.",
+    "instance": "/api/nudges"
    },
    "save": null
   },
@@ -348,7 +340,7 @@
        "subject_id": 4,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z",
+       "created_at": "2026-11-07T13:09:21Z",
        "sent_by": {
         "id": 7,
         "name": "Gıda Mühendisi"
@@ -383,7 +375,7 @@
        "subject_id": 1,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z",
+       "created_at": "2026-11-07T13:09:21Z",
        "sent_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -416,7 +408,7 @@
        "subject_id": 1,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:21.000000Z",
+       "created_at": "2026-11-07T13:09:21Z",
        "sent_by": {
         "id": 7,
         "name": "Gıda Mühendisi"
@@ -450,7 +442,7 @@
        "subject_id": 3276,
        "is_read": false,
        "read_at": null,
-       "created_at": "2026-11-07T13:09:22.000000Z",
+       "created_at": "2026-11-07T13:09:22Z",
        "sent_by": {
         "id": 7,
         "name": "Gıda Mühendisi"
@@ -472,8 +464,10 @@
    },
    "status": 422,
    "response": {
-    "message": "Bu iş 'admin' rolüne gidiyor ama o rolde uyarılacak kullanıcı yok.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu iş 'admin' rolüne gidiyor ama o rolde uyarılacak kullanıcı yok.",
+    "instance": "/api/nudges"
    },
    "save": null
   },
@@ -487,7 +481,10 @@
    },
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/nudges"
    },
    "save": null,
    "as": "operator1@olivamore.com"
@@ -499,7 +496,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 3,
       "type": "nudge",
@@ -509,7 +506,7 @@
       "subject_id": 1,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 1,
        "name": "Olivamore Admin"
@@ -524,7 +521,7 @@
       "subject_id": 4,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 7,
        "name": "Gıda Mühendisi"
@@ -539,47 +536,18 @@
       "subject_id": 2,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 1,
        "name": "Olivamore Admin"
       }
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/notifications?page=1",
-     "last": "http://localhost:8001/api/notifications?page=1",
-     "prev": null,
-     "next": null
-    },
-    "meta": {
-     "current_page": 1,
-     "from": 1,
-     "last_page": 1,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": null,
-       "label": "Next &raquo;",
-       "page": null,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/notifications",
-     "per_page": 30,
-     "to": 3,
-     "total": 3
+    "page": {
+     "size": 30,
+     "number": 0,
+     "total_elements": 3,
+     "total_pages": 1
     }
    },
    "save": null,
@@ -592,7 +560,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 3,
       "type": "nudge",
@@ -602,7 +570,7 @@
       "subject_id": 1,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 1,
        "name": "Olivamore Admin"
@@ -617,7 +585,7 @@
       "subject_id": 4,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 7,
        "name": "Gıda Mühendisi"
@@ -632,47 +600,18 @@
       "subject_id": 2,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 1,
        "name": "Olivamore Admin"
       }
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/notifications?page=1",
-     "last": "http://localhost:8001/api/notifications?page=1",
-     "prev": null,
-     "next": null
-    },
-    "meta": {
-     "current_page": 1,
-     "from": 1,
-     "last_page": 1,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": null,
-       "label": "Next &raquo;",
-       "page": null,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/notifications",
-     "per_page": 30,
-     "to": 3,
-     "total": 3
+    "page": {
+     "size": 30,
+     "number": 0,
+     "total_elements": 3,
+     "total_pages": 1
     }
    },
    "save": null,
@@ -681,11 +620,11 @@
   {
    "name": "liste depo sayfali",
    "method": "GET",
-   "path": "/api/notifications?per_page=1&page=2",
+   "path": "/api/notifications?page=1&size=1",
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 2,
       "type": "nudge",
@@ -695,59 +634,18 @@
       "subject_id": 4,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 7,
        "name": "Gıda Mühendisi"
       }
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/notifications?page=1",
-     "last": "http://localhost:8001/api/notifications?page=3",
-     "prev": "http://localhost:8001/api/notifications?page=1",
-     "next": "http://localhost:8001/api/notifications?page=3"
-    },
-    "meta": {
-     "current_page": 2,
-     "from": 2,
-     "last_page": 3,
-     "links": [
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "&laquo; Previous",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "1",
-       "page": 1,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=2",
-       "label": "2",
-       "page": 2,
-       "active": true
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=3",
-       "label": "3",
-       "page": 3,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=3",
-       "label": "Next &raquo;",
-       "page": 3,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/notifications",
-     "per_page": 1,
-     "to": 2,
-     "total": 3
+    "page": {
+     "size": 1,
+     "number": 1,
+     "total_elements": 3,
+     "total_pages": 3
     }
    },
    "save": null,
@@ -760,7 +658,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The unread field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The unread field must be true or false.",
+    "instance": "/api/notifications",
     "errors": {
      "unread": [
       "The unread field must be true or false."
@@ -773,14 +674,17 @@
   {
    "name": "liste hatali sayfa boyu",
    "method": "GET",
-   "path": "/api/notifications?per_page=101",
+   "path": "/api/notifications?page=0&size=101",
    "body": null,
    "status": 422,
    "response": {
-    "message": "The per page field must not be greater than 100.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The size field must not be greater than 100.",
+    "instance": "/api/notifications",
     "errors": {
-     "per_page": [
-      "The per page field must not be greater than 100."
+     "size": [
+      "The size field must not be greater than 100."
      ]
     }
    },
@@ -813,8 +717,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Bu bildirim size ait değil.",
-    "errors": {}
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Bu bildirim size ait değil.",
+    "instance": "/api/notifications/{N1}/read"
    },
    "save": null,
    "as": "uretim@olivamore.com"
@@ -834,8 +740,8 @@
      "subject_type": "order",
      "subject_id": 2,
      "is_read": true,
-     "read_at": "2026-11-07T13:09:22.000000Z",
-     "created_at": "2026-11-07T13:09:21.000000Z",
+     "read_at": "2026-11-07T13:09:22Z",
+     "created_at": "2026-11-07T13:09:21Z",
      "sent_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -860,8 +766,8 @@
      "subject_type": "order",
      "subject_id": 2,
      "is_read": true,
-     "read_at": "2026-11-07T13:09:22.000000Z",
-     "created_at": "2026-11-07T13:09:21.000000Z",
+     "read_at": "2026-11-07T13:09:22Z",
+     "created_at": "2026-11-07T13:09:21Z",
      "sent_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -878,7 +784,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\UserNotification] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "UserNotification 999999 not found.",
+    "instance": "/api/notifications/999999/read"
    },
    "save": null,
    "as": "depo@olivamore.com"
@@ -890,7 +799,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The unread field must be true or false.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The unread field must be true or false.",
+    "instance": "/api/notifications",
     "errors": {
      "unread": [
       "The unread field must be true or false."
@@ -949,7 +861,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 4,
       "type": "nudge",
@@ -959,47 +871,18 @@
       "subject_id": 1,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:21.000000Z",
+      "created_at": "2026-11-07T13:09:21Z",
       "sent_by": {
        "id": 7,
        "name": "Gıda Mühendisi"
       }
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/notifications?page=1",
-     "last": "http://localhost:8001/api/notifications?page=1",
-     "prev": null,
-     "next": null
-    },
-    "meta": {
-     "current_page": 1,
-     "from": 1,
-     "last_page": 1,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": null,
-       "label": "Next &raquo;",
-       "page": null,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/notifications",
-     "per_page": 30,
-     "to": 1,
-     "total": 1
+    "page": {
+     "size": 30,
+     "number": 0,
+     "total_elements": 1,
+     "total_pages": 1
     }
    },
    "save": null,
@@ -1012,7 +895,7 @@
    "body": null,
    "status": 200,
    "response": {
-    "data": [
+    "content": [
      {
       "id": 5,
       "type": "nudge",
@@ -1022,47 +905,18 @@
       "subject_id": 3276,
       "is_read": false,
       "read_at": null,
-      "created_at": "2026-11-07T13:09:22.000000Z",
+      "created_at": "2026-11-07T13:09:22Z",
       "sent_by": {
        "id": 7,
        "name": "Gıda Mühendisi"
       }
      }
     ],
-    "links": {
-     "first": "http://localhost:8001/api/notifications?page=1",
-     "last": "http://localhost:8001/api/notifications?page=1",
-     "prev": null,
-     "next": null
-    },
-    "meta": {
-     "current_page": 1,
-     "from": 1,
-     "last_page": 1,
-     "links": [
-      {
-       "url": null,
-       "label": "&laquo; Previous",
-       "page": null,
-       "active": false
-      },
-      {
-       "url": "http://localhost:8001/api/notifications?page=1",
-       "label": "1",
-       "page": 1,
-       "active": true
-      },
-      {
-       "url": null,
-       "label": "Next &raquo;",
-       "page": null,
-       "active": false
-      }
-     ],
-     "path": "http://localhost:8001/api/notifications",
-     "per_page": 30,
-     "to": 1,
-     "total": 1
+    "page": {
+     "size": 30,
+     "number": 0,
+     "total_elements": 1,
+     "total_pages": 1
     }
    },
    "save": null

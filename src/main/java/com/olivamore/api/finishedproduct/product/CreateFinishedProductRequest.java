@@ -1,6 +1,7 @@
 package com.olivamore.api.finishedproduct.product;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -14,28 +15,33 @@ import java.util.List;
 
 /** Yeni urun; {@code is_active} verilmezse aktif. */
 record CreateFinishedProductRequest(
-	@NotBlank(message = LaravelMessages.REQUIRED)
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String name,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
+	@NotNull(message = MessageKeys.REQUIRED)
 	Long finishedProductRecipeId,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
-	@DecimalMin(value = "0.001", message = LaravelMessages.MIN_VOLUME)
+	@NotNull(message = MessageKeys.REQUIRED)
+	@DecimalMin(value = "0.001", message = MessageKeys.MIN)
 	BigDecimal volumeLitre,
 
 	Boolean isActive,
 
-	@NotEmpty(message = LaravelMessages.REQUIRED)
+	@NotEmpty(message = MessageKeys.REQUIRED)
 	List<@Valid Component> components) {
 
+	CreateFinishedProductRequest {
+		name = Texts.trim(name);
+	}
+
+
 	record Component(
-		@NotNull(message = LaravelMessages.REQUIRED)
+		@NotNull(message = MessageKeys.REQUIRED)
 		Long packagingItemId,
 
-		@NotNull(message = LaravelMessages.REQUIRED)
-		@Min(value = 1, message = LaravelMessages.MIN_1)
+		@NotNull(message = MessageKeys.REQUIRED)
+		@Min(value = 1, message = MessageKeys.MIN)
 		Integer quantity) implements ComponentLine {
 	}
 

@@ -30,7 +30,7 @@ class ProcessTypeFieldController {
 
 	@GetMapping
 	ListResponse<ProcessTypeFieldResponse> index(@PathVariable long processTypeId) {
-		return new ListResponse.Plain<>(
+		return new ListResponse<>(
 			service.forProcessType(processTypeId).stream().map(ProcessTypeFieldResponses::of).toList());
 	}
 

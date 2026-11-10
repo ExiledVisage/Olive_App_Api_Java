@@ -8,7 +8,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The from field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The from field is required. (and 1 more error)",
+    "instance": "/api/analytics/yield",
     "errors": {
      "from": [
       "The from field is required."
@@ -27,7 +30,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The from field must match the format Y-m-d. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The from field must match the format Y-m-d. (and 2 more errors)",
+    "instance": "/api/analytics/yield",
     "errors": {
      "from": [
       "The from field must match the format Y-m-d."
@@ -47,7 +53,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The to field must be a date after or equal to from.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The to field must be a date after or equal to from.",
+    "instance": "/api/analytics/yield",
     "errors": {
      "to": [
       "The to field must be a date after or equal to from."
@@ -414,7 +423,10 @@
    "body": null,
    "status": 403,
    "response": {
-    "message": "User does not have the right permissions."
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "User does not have the right permissions.",
+    "instance": "/api/analytics/yield"
    },
    "save": null,
    "as": "operator1@olivamore.com"
@@ -2337,7 +2349,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The selected product type id is invalid. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected product type id is invalid. (and 1 more error)",
+    "instance": "/api/analytics/yield",
     "errors": {
      "product_type_id": [
       "The selected product type id is invalid."
@@ -2373,7 +2388,7 @@
        "supplier_id": 16,
        "name": "Aydın Tarım",
        "code": "TED-114",
-       "last_delivery_at": "2026-10-24T13:01:00.000000Z",
+       "last_delivery_at": "2026-10-24T13:01:00Z",
        "batch_count": 6,
        "incoming_kg": 26680,
        "pressed_kg": 26217,
@@ -2387,7 +2402,7 @@
        "supplier_id": 17,
        "name": "Osman Çetin",
        "code": "TED-115",
-       "last_delivery_at": "2026-10-26T13:46:00.000000Z",
+       "last_delivery_at": "2026-10-26T13:46:00Z",
        "batch_count": 3,
        "incoming_kg": 19565,
        "pressed_kg": 19381,
@@ -2401,7 +2416,7 @@
        "supplier_id": 19,
        "name": "Mehmet Kurt",
        "code": "TED-117",
-       "last_delivery_at": "2026-10-31T16:00:00.000000Z",
+       "last_delivery_at": "2026-10-31T16:00:00Z",
        "batch_count": 4,
        "incoming_kg": 15600,
        "pressed_kg": 15319,
@@ -2415,7 +2430,7 @@
        "supplier_id": 5,
        "name": "Kemal Şahin",
        "code": "TED-103",
-       "last_delivery_at": "2026-10-22T14:50:00.000000Z",
+       "last_delivery_at": "2026-10-22T14:50:00Z",
        "batch_count": 4,
        "incoming_kg": 15590,
        "pressed_kg": 15274,
@@ -2429,7 +2444,7 @@
        "supplier_id": 2,
        "name": "Kaya Zeytincilik",
        "code": "TED-002",
-       "last_delivery_at": "2026-10-06T08:32:00.000000Z",
+       "last_delivery_at": "2026-10-06T08:32:00Z",
        "batch_count": 2,
        "incoming_kg": 14905,
        "pressed_kg": 14626,
@@ -2443,7 +2458,7 @@
        "supplier_id": 3,
        "name": "Polat Zeytincilik",
        "code": "TED-101",
-       "last_delivery_at": "2026-10-22T12:30:00.000000Z",
+       "last_delivery_at": "2026-10-22T12:30:00Z",
        "batch_count": 2,
        "incoming_kg": 14550,
        "pressed_kg": 14432,
@@ -2457,7 +2472,7 @@
        "supplier_id": 25,
        "name": "Osman Şahin",
        "code": "TED-123",
-       "last_delivery_at": "2026-10-29T09:59:00.000000Z",
+       "last_delivery_at": "2026-10-29T09:59:00Z",
        "batch_count": 3,
        "incoming_kg": 14085,
        "pressed_kg": 13976,
@@ -2471,7 +2486,7 @@
        "supplier_id": 22,
        "name": "İbrahim Şahin",
        "code": "TED-120",
-       "last_delivery_at": "2026-10-17T15:00:00.000000Z",
+       "last_delivery_at": "2026-10-17T15:00:00Z",
        "batch_count": 2,
        "incoming_kg": 8710,
        "pressed_kg": 8634,
@@ -2485,7 +2500,7 @@
        "supplier_id": 27,
        "name": "Ali Güneş",
        "code": "TED-125",
-       "last_delivery_at": "2026-10-29T11:40:00.000000Z",
+       "last_delivery_at": "2026-10-29T11:40:00Z",
        "batch_count": 3,
        "incoming_kg": 6565,
        "pressed_kg": 6454,
@@ -2499,7 +2514,7 @@
        "supplier_id": 20,
        "name": "Halil Şahin",
        "code": "TED-118",
-       "last_delivery_at": "2026-10-20T10:23:00.000000Z",
+       "last_delivery_at": "2026-10-20T10:23:00Z",
        "batch_count": 1,
        "incoming_kg": 6375,
        "pressed_kg": 6266,
@@ -2513,7 +2528,7 @@
        "supplier_id": 26,
        "name": "Ali Aslan",
        "code": "TED-124",
-       "last_delivery_at": "2026-10-19T09:36:00.000000Z",
+       "last_delivery_at": "2026-10-19T09:36:00Z",
        "batch_count": 1,
        "incoming_kg": 5590,
        "pressed_kg": 5487,
@@ -2527,7 +2542,7 @@
        "supplier_id": 12,
        "name": "Arslan Zeytincilik",
        "code": "TED-110",
-       "last_delivery_at": "2026-10-30T09:44:00.000000Z",
+       "last_delivery_at": "2026-10-30T09:44:00Z",
        "batch_count": 2,
        "incoming_kg": 4555,
        "pressed_kg": 4480,
@@ -2541,7 +2556,7 @@
        "supplier_id": 18,
        "name": "Kurt Bahçeleri",
        "code": "TED-116",
-       "last_delivery_at": "2026-10-09T13:18:00.000000Z",
+       "last_delivery_at": "2026-10-09T13:18:00Z",
        "batch_count": 2,
        "incoming_kg": 4025,
        "pressed_kg": 3951,
@@ -2555,7 +2570,7 @@
        "supplier_id": 1,
        "name": "Yılmaz Çiftliği",
        "code": "TED-001",
-       "last_delivery_at": "2026-10-10T12:15:00.000000Z",
+       "last_delivery_at": "2026-10-10T12:15:00Z",
        "batch_count": 2,
        "incoming_kg": 3875,
        "pressed_kg": 3822,
@@ -2569,7 +2584,7 @@
        "supplier_id": 13,
        "name": "Kılıç Bahçeleri",
        "code": "TED-111",
-       "last_delivery_at": "2026-10-15T13:36:00.000000Z",
+       "last_delivery_at": "2026-10-15T13:36:00Z",
        "batch_count": 1,
        "incoming_kg": 2815,
        "pressed_kg": 2795,
@@ -2583,7 +2598,7 @@
        "supplier_id": 8,
        "name": "Karaca Çiftliği",
        "code": "TED-106",
-       "last_delivery_at": "2026-10-08T08:39:00.000000Z",
+       "last_delivery_at": "2026-10-08T08:39:00Z",
        "batch_count": 1,
        "incoming_kg": 2460,
        "pressed_kg": 2433,
@@ -2597,7 +2612,7 @@
        "supplier_id": 6,
        "name": "Polat Bahçeleri",
        "code": "TED-104",
-       "last_delivery_at": "2026-10-27T10:07:00.000000Z",
+       "last_delivery_at": "2026-10-27T10:07:00Z",
        "batch_count": 1,
        "incoming_kg": 1645,
        "pressed_kg": 1617,
@@ -2636,7 +2651,7 @@
        "supplier_id": 19,
        "name": "Mehmet Kurt",
        "code": "TED-117",
-       "last_delivery_at": "2026-11-05T08:56:00.000000Z",
+       "last_delivery_at": "2026-11-05T08:56:00Z",
        "batch_count": 21,
        "incoming_kg": 111315,
        "pressed_kg": 109544,
@@ -2650,7 +2665,7 @@
        "supplier_id": 16,
        "name": "Aydın Tarım",
        "code": "TED-114",
-       "last_delivery_at": "2026-10-24T13:01:00.000000Z",
+       "last_delivery_at": "2026-10-24T13:01:00Z",
        "batch_count": 21,
        "incoming_kg": 105235,
        "pressed_kg": 103677,
@@ -2664,7 +2679,7 @@
        "supplier_id": 12,
        "name": "Arslan Zeytincilik",
        "code": "TED-110",
-       "last_delivery_at": "2026-11-04T11:32:00.000000Z",
+       "last_delivery_at": "2026-11-04T11:32:00Z",
        "batch_count": 22,
        "incoming_kg": 99640,
        "pressed_kg": 98065,
@@ -2678,7 +2693,7 @@
        "supplier_id": 27,
        "name": "Ali Güneş",
        "code": "TED-125",
-       "last_delivery_at": "2026-11-02T13:26:00.000000Z",
+       "last_delivery_at": "2026-11-02T13:26:00Z",
        "batch_count": 21,
        "incoming_kg": 99605,
        "pressed_kg": 98167,
@@ -2692,7 +2707,7 @@
        "supplier_id": 17,
        "name": "Osman Çetin",
        "code": "TED-115",
-       "last_delivery_at": "2026-10-26T13:46:00.000000Z",
+       "last_delivery_at": "2026-10-26T13:46:00Z",
        "batch_count": 19,
        "incoming_kg": 96390,
        "pressed_kg": 95316,
@@ -2706,7 +2721,7 @@
        "supplier_id": 20,
        "name": "Halil Şahin",
        "code": "TED-118",
-       "last_delivery_at": "2026-11-04T14:31:00.000000Z",
+       "last_delivery_at": "2026-11-04T14:31:00Z",
        "batch_count": 15,
        "incoming_kg": 78005,
        "pressed_kg": 76912,
@@ -2720,7 +2735,7 @@
        "supplier_id": 2,
        "name": "Kaya Zeytincilik",
        "code": "TED-002",
-       "last_delivery_at": "2026-10-06T08:32:00.000000Z",
+       "last_delivery_at": "2026-10-06T08:32:00Z",
        "batch_count": 15,
        "incoming_kg": 71780,
        "pressed_kg": 70822,
@@ -2734,7 +2749,7 @@
        "supplier_id": 5,
        "name": "Kemal Şahin",
        "code": "TED-103",
-       "last_delivery_at": "2026-11-02T12:29:00.000000Z",
+       "last_delivery_at": "2026-11-02T12:29:00Z",
        "batch_count": 13,
        "incoming_kg": 69355,
        "pressed_kg": 68225,
@@ -2748,7 +2763,7 @@
        "supplier_id": 1,
        "name": "Yılmaz Çiftliği",
        "code": "TED-001",
-       "last_delivery_at": "2026-11-04T15:35:12.000000Z",
+       "last_delivery_at": "2026-11-04T15:35:12Z",
        "batch_count": 13,
        "incoming_kg": 64765,
        "pressed_kg": 63789,
@@ -2762,7 +2777,7 @@
        "supplier_id": 23,
        "name": "Koç Zeytincilik",
        "code": "TED-121",
-       "last_delivery_at": "2026-11-05T14:59:00.000000Z",
+       "last_delivery_at": "2026-11-05T14:59:00Z",
        "batch_count": 13,
        "incoming_kg": 60455,
        "pressed_kg": 59402,
@@ -2776,7 +2791,7 @@
        "supplier_id": 3,
        "name": "Polat Zeytincilik",
        "code": "TED-101",
-       "last_delivery_at": "2026-10-22T12:30:00.000000Z",
+       "last_delivery_at": "2026-10-22T12:30:00Z",
        "batch_count": 11,
        "incoming_kg": 56780,
        "pressed_kg": 55960,
@@ -2790,7 +2805,7 @@
        "supplier_id": 24,
        "name": "Erdoğan Çiftliği",
        "code": "TED-122",
-       "last_delivery_at": "2026-09-09T10:16:00.000000Z",
+       "last_delivery_at": "2026-09-09T10:16:00Z",
        "batch_count": 8,
        "incoming_kg": 54945,
        "pressed_kg": 54014,
@@ -2804,7 +2819,7 @@
        "supplier_id": 25,
        "name": "Osman Şahin",
        "code": "TED-123",
-       "last_delivery_at": "2026-11-03T12:55:00.000000Z",
+       "last_delivery_at": "2026-11-03T12:55:00Z",
        "batch_count": 12,
        "incoming_kg": 49275,
        "pressed_kg": 48590,
@@ -2818,7 +2833,7 @@
        "supplier_id": 6,
        "name": "Polat Bahçeleri",
        "code": "TED-104",
-       "last_delivery_at": "2026-10-27T10:07:00.000000Z",
+       "last_delivery_at": "2026-10-27T10:07:00Z",
        "batch_count": 8,
        "incoming_kg": 44540,
        "pressed_kg": 43832,
@@ -2832,7 +2847,7 @@
        "supplier_id": 15,
        "name": "Güneş Tarım",
        "code": "TED-113",
-       "last_delivery_at": "2026-06-24T07:24:00.000000Z",
+       "last_delivery_at": "2026-06-24T07:24:00Z",
        "batch_count": 9,
        "incoming_kg": 41655,
        "pressed_kg": 41049,
@@ -2846,7 +2861,7 @@
        "supplier_id": 26,
        "name": "Ali Aslan",
        "code": "TED-124",
-       "last_delivery_at": "2026-10-19T09:36:00.000000Z",
+       "last_delivery_at": "2026-10-19T09:36:00Z",
        "batch_count": 8,
        "incoming_kg": 40820,
        "pressed_kg": 40199,
@@ -2860,7 +2875,7 @@
        "supplier_id": 22,
        "name": "İbrahim Şahin",
        "code": "TED-120",
-       "last_delivery_at": "2026-10-17T15:00:00.000000Z",
+       "last_delivery_at": "2026-10-17T15:00:00Z",
        "batch_count": 7,
        "incoming_kg": 37925,
        "pressed_kg": 37361,
@@ -2874,7 +2889,7 @@
        "supplier_id": 13,
        "name": "Kılıç Bahçeleri",
        "code": "TED-111",
-       "last_delivery_at": "2026-10-15T13:36:00.000000Z",
+       "last_delivery_at": "2026-10-15T13:36:00Z",
        "batch_count": 8,
        "incoming_kg": 35060,
        "pressed_kg": 34634,
@@ -2888,7 +2903,7 @@
        "supplier_id": 8,
        "name": "Karaca Çiftliği",
        "code": "TED-106",
-       "last_delivery_at": "2026-10-08T08:39:00.000000Z",
+       "last_delivery_at": "2026-10-08T08:39:00Z",
        "batch_count": 4,
        "incoming_kg": 22935,
        "pressed_kg": 22663,
@@ -2902,7 +2917,7 @@
        "supplier_id": 11,
        "name": "Doğan Tarım",
        "code": "TED-109",
-       "last_delivery_at": "2026-05-12T16:26:00.000000Z",
+       "last_delivery_at": "2026-05-12T16:26:00Z",
        "batch_count": 2,
        "incoming_kg": 22270,
        "pressed_kg": 22110,
@@ -2916,7 +2931,7 @@
        "supplier_id": 21,
        "name": "Güneş Çiftliği",
        "code": "TED-119",
-       "last_delivery_at": "2026-08-29T13:22:00.000000Z",
+       "last_delivery_at": "2026-08-29T13:22:00Z",
        "batch_count": 5,
        "incoming_kg": 20815,
        "pressed_kg": 20501,
@@ -2930,7 +2945,7 @@
        "supplier_id": 10,
        "name": "Ahmet Kaya",
        "code": "TED-108",
-       "last_delivery_at": "2026-09-14T11:04:00.000000Z",
+       "last_delivery_at": "2026-09-14T11:04:00Z",
        "batch_count": 4,
        "incoming_kg": 20130,
        "pressed_kg": 19780,
@@ -2944,7 +2959,7 @@
        "supplier_id": 18,
        "name": "Kurt Bahçeleri",
        "code": "TED-116",
-       "last_delivery_at": "2026-10-09T13:18:00.000000Z",
+       "last_delivery_at": "2026-10-09T13:18:00Z",
        "batch_count": 5,
        "incoming_kg": 19485,
        "pressed_kg": 19194,
@@ -2958,7 +2973,7 @@
        "supplier_id": 14,
        "name": "Öztürk Bahçeleri",
        "code": "TED-112",
-       "last_delivery_at": "2026-02-21T07:12:00.000000Z",
+       "last_delivery_at": "2026-02-21T07:12:00Z",
        "batch_count": 2,
        "incoming_kg": 15795,
        "pressed_kg": 15630,
@@ -2972,7 +2987,7 @@
        "supplier_id": 4,
        "name": "Arslan Tarım",
        "code": "TED-102",
-       "last_delivery_at": "2026-04-18T15:48:00.000000Z",
+       "last_delivery_at": "2026-04-18T15:48:00Z",
        "batch_count": 3,
        "incoming_kg": 8620,
        "pressed_kg": 8522,
@@ -3011,7 +3026,7 @@
        "supplier_id": 19,
        "name": "Mehmet Kurt",
        "code": "TED-117",
-       "last_delivery_at": "2026-11-05T08:56:00.000000Z",
+       "last_delivery_at": "2026-11-05T08:56:00Z",
        "batch_count": 21,
        "incoming_kg": 111315,
        "pressed_kg": 109544,
@@ -3025,7 +3040,7 @@
        "supplier_id": 16,
        "name": "Aydın Tarım",
        "code": "TED-114",
-       "last_delivery_at": "2026-10-24T13:01:00.000000Z",
+       "last_delivery_at": "2026-10-24T13:01:00Z",
        "batch_count": 22,
        "incoming_kg": 111115,
        "pressed_kg": 109448,
@@ -3039,7 +3054,7 @@
        "supplier_id": 12,
        "name": "Arslan Zeytincilik",
        "code": "TED-110",
-       "last_delivery_at": "2026-11-04T11:32:00.000000Z",
+       "last_delivery_at": "2026-11-04T11:32:00Z",
        "batch_count": 22,
        "incoming_kg": 99640,
        "pressed_kg": 98065,
@@ -3053,7 +3068,7 @@
        "supplier_id": 27,
        "name": "Ali Güneş",
        "code": "TED-125",
-       "last_delivery_at": "2026-11-02T13:26:00.000000Z",
+       "last_delivery_at": "2026-11-02T13:26:00Z",
        "batch_count": 21,
        "incoming_kg": 99605,
        "pressed_kg": 98167,
@@ -3067,7 +3082,7 @@
        "supplier_id": 17,
        "name": "Osman Çetin",
        "code": "TED-115",
-       "last_delivery_at": "2026-10-26T13:46:00.000000Z",
+       "last_delivery_at": "2026-10-26T13:46:00Z",
        "batch_count": 19,
        "incoming_kg": 96390,
        "pressed_kg": 95316,
@@ -3081,7 +3096,7 @@
        "supplier_id": 20,
        "name": "Halil Şahin",
        "code": "TED-118",
-       "last_delivery_at": "2026-11-04T14:31:00.000000Z",
+       "last_delivery_at": "2026-11-04T14:31:00Z",
        "batch_count": 15,
        "incoming_kg": 78005,
        "pressed_kg": 76912,
@@ -3095,7 +3110,7 @@
        "supplier_id": 2,
        "name": "Kaya Zeytincilik",
        "code": "TED-002",
-       "last_delivery_at": "2026-10-06T08:32:00.000000Z",
+       "last_delivery_at": "2026-10-06T08:32:00Z",
        "batch_count": 15,
        "incoming_kg": 71780,
        "pressed_kg": 70822,
@@ -3109,7 +3124,7 @@
        "supplier_id": 5,
        "name": "Kemal Şahin",
        "code": "TED-103",
-       "last_delivery_at": "2026-11-02T12:29:00.000000Z",
+       "last_delivery_at": "2026-11-02T12:29:00Z",
        "batch_count": 13,
        "incoming_kg": 69355,
        "pressed_kg": 68225,
@@ -3123,7 +3138,7 @@
        "supplier_id": 1,
        "name": "Yılmaz Çiftliği",
        "code": "TED-001",
-       "last_delivery_at": "2026-11-04T15:35:12.000000Z",
+       "last_delivery_at": "2026-11-04T15:35:12Z",
        "batch_count": 13,
        "incoming_kg": 64765,
        "pressed_kg": 63789,
@@ -3137,7 +3152,7 @@
        "supplier_id": 23,
        "name": "Koç Zeytincilik",
        "code": "TED-121",
-       "last_delivery_at": "2026-11-05T14:59:00.000000Z",
+       "last_delivery_at": "2026-11-05T14:59:00Z",
        "batch_count": 13,
        "incoming_kg": 60455,
        "pressed_kg": 59402,
@@ -3151,7 +3166,7 @@
        "supplier_id": 3,
        "name": "Polat Zeytincilik",
        "code": "TED-101",
-       "last_delivery_at": "2026-10-22T12:30:00.000000Z",
+       "last_delivery_at": "2026-10-22T12:30:00Z",
        "batch_count": 11,
        "incoming_kg": 56780,
        "pressed_kg": 55960,
@@ -3165,7 +3180,7 @@
        "supplier_id": 24,
        "name": "Erdoğan Çiftliği",
        "code": "TED-122",
-       "last_delivery_at": "2026-09-09T10:16:00.000000Z",
+       "last_delivery_at": "2026-09-09T10:16:00Z",
        "batch_count": 8,
        "incoming_kg": 54945,
        "pressed_kg": 54014,
@@ -3179,7 +3194,7 @@
        "supplier_id": 25,
        "name": "Osman Şahin",
        "code": "TED-123",
-       "last_delivery_at": "2026-11-03T12:55:00.000000Z",
+       "last_delivery_at": "2026-11-03T12:55:00Z",
        "batch_count": 12,
        "incoming_kg": 49275,
        "pressed_kg": 48590,
@@ -3193,7 +3208,7 @@
        "supplier_id": 6,
        "name": "Polat Bahçeleri",
        "code": "TED-104",
-       "last_delivery_at": "2026-10-27T10:07:00.000000Z",
+       "last_delivery_at": "2026-10-27T10:07:00Z",
        "batch_count": 8,
        "incoming_kg": 44540,
        "pressed_kg": 43832,
@@ -3207,7 +3222,7 @@
        "supplier_id": 26,
        "name": "Ali Aslan",
        "code": "TED-124",
-       "last_delivery_at": "2026-10-19T09:36:00.000000Z",
+       "last_delivery_at": "2026-10-19T09:36:00Z",
        "batch_count": 9,
        "incoming_kg": 43985,
        "pressed_kg": 43288,
@@ -3221,7 +3236,7 @@
        "supplier_id": 15,
        "name": "Güneş Tarım",
        "code": "TED-113",
-       "last_delivery_at": "2026-06-24T07:24:00.000000Z",
+       "last_delivery_at": "2026-06-24T07:24:00Z",
        "batch_count": 9,
        "incoming_kg": 41655,
        "pressed_kg": 41049,
@@ -3235,7 +3250,7 @@
        "supplier_id": 22,
        "name": "İbrahim Şahin",
        "code": "TED-120",
-       "last_delivery_at": "2026-10-17T15:00:00.000000Z",
+       "last_delivery_at": "2026-10-17T15:00:00Z",
        "batch_count": 7,
        "incoming_kg": 37925,
        "pressed_kg": 37361,
@@ -3249,7 +3264,7 @@
        "supplier_id": 13,
        "name": "Kılıç Bahçeleri",
        "code": "TED-111",
-       "last_delivery_at": "2026-10-15T13:36:00.000000Z",
+       "last_delivery_at": "2026-10-15T13:36:00Z",
        "batch_count": 8,
        "incoming_kg": 35060,
        "pressed_kg": 34634,
@@ -3263,7 +3278,7 @@
        "supplier_id": 8,
        "name": "Karaca Çiftliği",
        "code": "TED-106",
-       "last_delivery_at": "2026-10-08T08:39:00.000000Z",
+       "last_delivery_at": "2026-10-08T08:39:00Z",
        "batch_count": 4,
        "incoming_kg": 22935,
        "pressed_kg": 22663,
@@ -3277,7 +3292,7 @@
        "supplier_id": 11,
        "name": "Doğan Tarım",
        "code": "TED-109",
-       "last_delivery_at": "2026-05-12T16:26:00.000000Z",
+       "last_delivery_at": "2026-05-12T16:26:00Z",
        "batch_count": 2,
        "incoming_kg": 22270,
        "pressed_kg": 22110,
@@ -3291,7 +3306,7 @@
        "supplier_id": 21,
        "name": "Güneş Çiftliği",
        "code": "TED-119",
-       "last_delivery_at": "2026-08-29T13:22:00.000000Z",
+       "last_delivery_at": "2026-08-29T13:22:00Z",
        "batch_count": 5,
        "incoming_kg": 20815,
        "pressed_kg": 20501,
@@ -3305,7 +3320,7 @@
        "supplier_id": 10,
        "name": "Ahmet Kaya",
        "code": "TED-108",
-       "last_delivery_at": "2026-09-14T11:04:00.000000Z",
+       "last_delivery_at": "2026-09-14T11:04:00Z",
        "batch_count": 4,
        "incoming_kg": 20130,
        "pressed_kg": 19780,
@@ -3319,7 +3334,7 @@
        "supplier_id": 18,
        "name": "Kurt Bahçeleri",
        "code": "TED-116",
-       "last_delivery_at": "2026-10-09T13:18:00.000000Z",
+       "last_delivery_at": "2026-10-09T13:18:00Z",
        "batch_count": 5,
        "incoming_kg": 19485,
        "pressed_kg": 19194,
@@ -3333,7 +3348,7 @@
        "supplier_id": 14,
        "name": "Öztürk Bahçeleri",
        "code": "TED-112",
-       "last_delivery_at": "2026-02-21T07:12:00.000000Z",
+       "last_delivery_at": "2026-02-21T07:12:00Z",
        "batch_count": 2,
        "incoming_kg": 15795,
        "pressed_kg": 15630,
@@ -3347,7 +3362,7 @@
        "supplier_id": 4,
        "name": "Arslan Tarım",
        "code": "TED-102",
-       "last_delivery_at": "2026-04-18T15:48:00.000000Z",
+       "last_delivery_at": "2026-04-18T15:48:00Z",
        "batch_count": 3,
        "incoming_kg": 8620,
        "pressed_kg": 8522,
@@ -3386,7 +3401,7 @@
        "supplier_id": 16,
        "name": "Aydın Tarım",
        "code": "TED-114",
-       "last_delivery_at": "2026-10-24T13:01:00.000000Z",
+       "last_delivery_at": "2026-10-24T13:01:00Z",
        "batch_count": 21,
        "incoming_kg": 105235,
        "pressed_kg": 103677,
@@ -3400,7 +3415,7 @@
        "supplier_id": 27,
        "name": "Ali Güneş",
        "code": "TED-125",
-       "last_delivery_at": "2026-11-02T13:26:00.000000Z",
+       "last_delivery_at": "2026-11-02T13:26:00Z",
        "batch_count": 21,
        "incoming_kg": 99605,
        "pressed_kg": 98167,
@@ -3414,7 +3429,7 @@
        "supplier_id": 23,
        "name": "Koç Zeytincilik",
        "code": "TED-121",
-       "last_delivery_at": "2026-11-05T14:59:00.000000Z",
+       "last_delivery_at": "2026-11-05T14:59:00Z",
        "batch_count": 13,
        "incoming_kg": 60455,
        "pressed_kg": 59402,
@@ -3428,7 +3443,7 @@
        "supplier_id": 26,
        "name": "Ali Aslan",
        "code": "TED-124",
-       "last_delivery_at": "2026-10-19T09:36:00.000000Z",
+       "last_delivery_at": "2026-10-19T09:36:00Z",
        "batch_count": 8,
        "incoming_kg": 40820,
        "pressed_kg": 40199,
@@ -3442,7 +3457,7 @@
        "supplier_id": 12,
        "name": "Arslan Zeytincilik",
        "code": "TED-110",
-       "last_delivery_at": "2026-11-04T11:32:00.000000Z",
+       "last_delivery_at": "2026-11-04T11:32:00Z",
        "batch_count": 10,
        "incoming_kg": 36945,
        "pressed_kg": 36378,
@@ -3456,7 +3471,7 @@
        "supplier_id": 11,
        "name": "Doğan Tarım",
        "code": "TED-109",
-       "last_delivery_at": "2026-05-12T16:26:00.000000Z",
+       "last_delivery_at": "2026-05-12T16:26:00Z",
        "batch_count": 2,
        "incoming_kg": 22270,
        "pressed_kg": 22110,
@@ -3470,7 +3485,7 @@
        "supplier_id": 10,
        "name": "Ahmet Kaya",
        "code": "TED-108",
-       "last_delivery_at": "2026-09-14T11:04:00.000000Z",
+       "last_delivery_at": "2026-09-14T11:04:00Z",
        "batch_count": 4,
        "incoming_kg": 20130,
        "pressed_kg": 19780,
@@ -3484,7 +3499,7 @@
        "supplier_id": 5,
        "name": "Kemal Şahin",
        "code": "TED-103",
-       "last_delivery_at": "2026-10-22T14:50:00.000000Z",
+       "last_delivery_at": "2026-10-22T14:50:00Z",
        "batch_count": 5,
        "incoming_kg": 19080,
        "pressed_kg": 18722,
@@ -3498,7 +3513,7 @@
        "supplier_id": 4,
        "name": "Arslan Tarım",
        "code": "TED-102",
-       "last_delivery_at": "2026-04-18T15:48:00.000000Z",
+       "last_delivery_at": "2026-04-18T15:48:00Z",
        "batch_count": 3,
        "incoming_kg": 8620,
        "pressed_kg": 8522,
@@ -3512,7 +3527,7 @@
        "supplier_id": 21,
        "name": "Güneş Çiftliği",
        "code": "TED-119",
-       "last_delivery_at": "2026-08-29T13:22:00.000000Z",
+       "last_delivery_at": "2026-08-29T13:22:00Z",
        "batch_count": 2,
        "incoming_kg": 4940,
        "pressed_kg": 4859,
@@ -5553,7 +5568,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\Customer] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Customer 999999 not found.",
+    "instance": "/api/analytics/customers/999999"
    },
    "save": null
   },
@@ -5564,7 +5582,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The from field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The from field is required. (and 1 more error)",
+    "instance": "/api/analytics/customers/1",
     "errors": {
      "from": [
       "The from field is required."
@@ -6388,7 +6409,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Gelen zeytin' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Gelen zeytin' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -6399,7 +6423,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Gelen zeytin' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Gelen zeytin' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -7025,7 +7052,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Sikilan zeytin' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Sikilan zeytin' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -7036,7 +7066,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Sikilan zeytin' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Sikilan zeytin' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -7662,7 +7695,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Uretilen yag' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Uretilen yag' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -7673,7 +7709,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Uretilen yag' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Uretilen yag' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -8299,7 +8338,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Pirina' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Pirina' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -8310,7 +8352,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Pirina' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Pirina' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -8936,7 +8981,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Parti sayisi' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Parti sayisi' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -8947,7 +8995,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Parti sayisi' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Parti sayisi' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -9573,7 +9624,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Randiman' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Randiman' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -9584,7 +9638,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Randiman' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Randiman' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10210,7 +10267,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Ortalama asitlik' olcusu 'Musteriye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ortalama asitlik' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10221,7 +10281,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Ortalama asitlik' olcusu 'Urune gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Ortalama asitlik' olcusu 'Urune gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10343,7 +10406,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan yag' olcusu 'Tedarikciye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan yag' olcusu 'Tedarikciye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10354,7 +10420,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan yag' olcusu 'Araziye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan yag' olcusu 'Araziye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10365,7 +10434,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan yag' olcusu 'Zeytin cesidine gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan yag' olcusu 'Zeytin cesidine gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10779,7 +10851,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan sise/teneke' olcusu 'Tedarikciye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan sise/teneke' olcusu 'Tedarikciye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10790,7 +10865,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan sise/teneke' olcusu 'Araziye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan sise/teneke' olcusu 'Araziye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -10801,7 +10879,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan sise/teneke' olcusu 'Zeytin cesidine gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan sise/teneke' olcusu 'Zeytin cesidine gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -11215,7 +11296,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Siparis sayisi' olcusu 'Tedarikciye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Siparis sayisi' olcusu 'Tedarikciye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -11226,7 +11310,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Siparis sayisi' olcusu 'Araziye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Siparis sayisi' olcusu 'Araziye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -11237,7 +11324,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Siparis sayisi' olcusu 'Zeytin cesidine gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Siparis sayisi' olcusu 'Zeytin cesidine gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -12080,7 +12170,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "'Satilan yag' olcusu 'Tedarikciye gore' gruplanamaz."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan yag' olcusu 'Tedarikciye gore' gruplanamaz.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -12091,7 +12184,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Cizgi grafigi 'Tedarikciye gore' icin uygun degil."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Cizgi grafigi 'Tedarikciye gore' icin uygun degil.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -12102,7 +12198,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "Randiman toplanabilir bir olcu degil; pasta grafikte gosterilemez."
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "Randiman toplanabilir bir olcu degil; pasta grafikte gosterilemez.",
+    "instance": "/api/analytics/query"
    },
    "save": null
   },
@@ -12157,7 +12256,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The selected metric is invalid. (and 3 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The selected metric is invalid. (and 3 more errors)",
+    "instance": "/api/analytics/query",
     "errors": {
      "metric": [
       "The selected metric is invalid."
@@ -12224,7 +12326,10 @@
    "body": {},
    "status": 422,
    "response": {
-    "message": "The name field is required. (and 1 more error)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field is required. (and 1 more error)",
+    "instance": "/api/analytics/reports",
     "errors": {
      "name": [
       "The name field is required."
@@ -12255,7 +12360,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must not be greater than 120 characters. (and 6 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field must not be greater than 120 characters. (and 6 more errors)",
+    "instance": "/api/analytics/reports",
     "errors": {
      "name": [
       "The name field must not be greater than 120 characters."
@@ -12297,7 +12405,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The config.period field is required when config is present. (and 2 more errors)",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The config.period field is required when config is present. (and 2 more errors)",
+    "instance": "/api/analytics/reports",
     "errors": {
      "config.period": [
       "The config.period field is required when config is present."
@@ -12329,7 +12440,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Satilan yag' olcusu 'Zeytin cesidine gore' gruplanamaz.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Satilan yag' olcusu 'Zeytin cesidine gore' gruplanamaz.",
+    "instance": "/api/analytics/reports",
     "errors": {
      "config": [
       "'Satilan yag' olcusu 'Zeytin cesidine gore' gruplanamaz."
@@ -12375,8 +12489,8 @@
        "x": null
       }
      },
-     "created_at": "2026-11-07T13:21:16.000000Z",
-     "updated_at": "2026-11-07T13:21:16.000000Z"
+     "created_at": "2026-11-07T13:21:16Z",
+     "updated_at": "2026-11-07T13:21:16Z"
     }
    },
    "save": [
@@ -12415,8 +12529,8 @@
        "to": "2026-10-31"
       }
      },
-     "created_at": "2026-11-07T13:21:16.000000Z",
-     "updated_at": "2026-11-07T13:21:16.000000Z"
+     "created_at": "2026-11-07T13:21:16Z",
+     "updated_at": "2026-11-07T13:21:16Z"
     }
    },
    "save": [
@@ -12452,8 +12566,8 @@
        "preset": "year"
       }
      },
-     "created_at": "2026-11-07T13:21:16.000000Z",
-     "updated_at": "2026-11-07T13:21:16.000000Z"
+     "created_at": "2026-11-07T13:21:16Z",
+     "updated_at": "2026-11-07T13:21:16Z"
     }
    },
    "save": [
@@ -12482,8 +12596,8 @@
         "to": "2026-10-31"
        }
       },
-      "created_at": "2026-11-07T13:21:16.000000Z",
-      "updated_at": "2026-11-07T13:21:16.000000Z"
+      "created_at": "2026-11-07T13:21:16Z",
+      "updated_at": "2026-11-07T13:21:16Z"
      },
      {
       "id": 1,
@@ -12500,8 +12614,8 @@
         "x": null
        }
       },
-      "created_at": "2026-11-07T13:21:16.000000Z",
-      "updated_at": "2026-11-07T13:21:16.000000Z"
+      "created_at": "2026-11-07T13:21:16Z",
+      "updated_at": "2026-11-07T13:21:16Z"
      }
     ]
    },
@@ -12526,8 +12640,8 @@
         "preset": "year"
        }
       },
-      "created_at": "2026-11-07T13:21:16.000000Z",
-      "updated_at": "2026-11-07T13:21:16.000000Z"
+      "created_at": "2026-11-07T13:21:16Z",
+      "updated_at": "2026-11-07T13:21:16Z"
      }
     ]
    },
@@ -12558,8 +12672,8 @@
        "x": null
       }
      },
-     "created_at": "2026-11-07T13:21:16.000000Z",
-     "updated_at": "2026-11-07T13:21:16.000000Z"
+     "created_at": "2026-11-07T13:21:16Z",
+     "updated_at": "2026-11-07T13:21:16Z"
     }
    },
    "save": null
@@ -12591,8 +12705,8 @@
        "preset": "quarter"
       }
      },
-     "created_at": "2026-11-07T13:21:16.000000Z",
-     "updated_at": "2026-11-07T13:21:16.000000Z"
+     "created_at": "2026-11-07T13:21:16Z",
+     "updated_at": "2026-11-07T13:21:16Z"
     }
    },
    "save": null
@@ -12613,7 +12727,10 @@
    },
    "status": 422,
    "response": {
-    "message": "'Randiman' olcusu 'Musteriye gore' gruplanamaz.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "'Randiman' olcusu 'Musteriye gore' gruplanamaz.",
+    "instance": "/api/analytics/reports/{R2}",
     "errors": {
      "config": [
       "'Randiman' olcusu 'Musteriye gore' gruplanamaz."
@@ -12631,7 +12748,9 @@
    },
    "status": 404,
    "response": {
-    "message": ""
+    "title": "Not Found",
+    "status": 404,
+    "instance": "/api/analytics/reports/{R3}"
    },
    "save": null
   },
@@ -12644,7 +12763,10 @@
    },
    "status": 422,
    "response": {
-    "message": "The name field must not be greater than 120 characters.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The name field must not be greater than 120 characters.",
+    "instance": "/api/analytics/reports/{R3}",
     "errors": {
      "name": [
       "The name field must not be greater than 120 characters."
@@ -12662,7 +12784,10 @@
    },
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\AnalyticsReport] 999999"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "AnalyticsReport 999999 not found.",
+    "instance": "/api/analytics/reports/999999"
    },
    "save": null
   },
@@ -12673,7 +12798,9 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": ""
+    "title": "Not Found",
+    "status": 404,
+    "instance": "/api/analytics/reports/{R3}"
    },
    "save": null
   },
@@ -12695,7 +12822,10 @@
    "body": null,
    "status": 404,
    "response": {
-    "message": "No query results for model [App\\Models\\AnalyticsReport] 2"
+    "title": "Not Found",
+    "status": 404,
+    "detail": "AnalyticsReport 2 not found.",
+    "instance": "/api/analytics/reports/{R2}"
    },
    "save": null
   },
@@ -12722,8 +12852,8 @@
         "x": null
        }
       },
-      "created_at": "2026-11-07T13:21:16.000000Z",
-      "updated_at": "2026-11-07T13:21:16.000000Z"
+      "created_at": "2026-11-07T13:21:16Z",
+      "updated_at": "2026-11-07T13:21:16Z"
      }
     ]
    },

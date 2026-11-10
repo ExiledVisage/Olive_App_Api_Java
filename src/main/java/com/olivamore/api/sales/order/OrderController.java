@@ -2,12 +2,10 @@ package com.olivamore.api.sales.order;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.LaravelPaginator;
-import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
-import jakarta.servlet.http.HttpServletRequest;
+import com.olivamore.api.shared.web.Pages;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import java.util.Optional;
 
 /** Siparisler, kalemler, durum gecisleri, stok kontrolu. */
 @RestController
@@ -39,15 +36,10 @@ class OrderController {
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('order.view')")
-	ListResponse<OrderResponse> index(@RequestParam(required = false) String status,
-		@RequestParam(name = "customer_id", required = false) Long customerId, HttpServletRequest request) {
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(responses.list(status, customerId));
-		}
-		int page = Listing.currentPage(request);
-		Page<OrderResponse> rows = responses.page(status, customerId, page, perPage.get());
-		return LaravelPaginator.paginate(rows.getContent(), rows.getTotalElements(), page, perPage.get(), request);
+	PagedModel<OrderResponse> index(@RequestParam(required = false) String status,
+		@RequestParam(name = "customer_id", required = false) Long customerId, Pageable pageable) {
+		return Pages.of(pageable, requested -> responses.page(status, customerId, requested),
+			() -> responses.list(status, customerId));
 	}
 
 	@GetMapping("/{id}")

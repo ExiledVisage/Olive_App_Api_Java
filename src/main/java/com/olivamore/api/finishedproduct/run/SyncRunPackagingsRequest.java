@@ -1,6 +1,6 @@
 package com.olivamore.api.finishedproduct.run;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,15 +10,15 @@ import java.util.List;
 
 /** Elle ambalaj lotu tahsisi; liste tahsisin tamami. */
 record SyncRunPackagingsRequest(
-	@NotEmpty(message = LaravelMessages.REQUIRED)
+	@NotEmpty(message = MessageKeys.REQUIRED)
 	List<@Valid Packaging> packagings) {
 
 	record Packaging(
-		@NotNull(message = LaravelMessages.REQUIRED)
+		@NotNull(message = MessageKeys.REQUIRED)
 		Long packagingLotId,
 
-		@NotNull(message = LaravelMessages.REQUIRED)
-		@Min(value = 1, message = LaravelMessages.MIN_1)
+		@NotNull(message = MessageKeys.REQUIRED)
+		@Min(value = 1, message = MessageKeys.MIN)
 		Integer quantity) {
 	}
 

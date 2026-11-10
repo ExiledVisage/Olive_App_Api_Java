@@ -13,9 +13,9 @@ public interface StorageMovementRepository
 	extends JpaRepository<StorageMovement, Long>, JpaSpecificationExecutor<StorageMovement> {
 
 	/** En yeni once. */
-	List<StorageMovement> findByStorageUnitIdOrderByMovedAtDescIdDesc(long storageUnitId);
+	List<StorageMovement> findByStorageUnitId(long storageUnitId, Sort sort);
 
-	Page<StorageMovement> findByStorageUnitIdOrderByMovedAtDescIdDesc(long storageUnitId, Pageable pageable);
+	Page<StorageMovement> findByStorageUnitId(long storageUnitId, Pageable pageable);
 
 	@Override
 	List<StorageMovement> findAll(Specification<StorageMovement> specification, Sort sort);

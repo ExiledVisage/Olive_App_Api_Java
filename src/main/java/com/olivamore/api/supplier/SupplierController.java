@@ -34,7 +34,7 @@ class SupplierController {
 	@PreAuthorize("hasAuthority('supplier.view')")
 	ListResponse<SupplierResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive,
 		@RequestParam(required = false) String search) {
-		return new ListResponse.Plain<>(suppliers.all(isActive, search));
+		return new ListResponse<>(suppliers.all(isActive, search));
 	}
 
 	@GetMapping("/{id}")

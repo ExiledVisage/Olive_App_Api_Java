@@ -39,19 +39,19 @@ class FinishedProductParityIT {
 			// tohum urunleri ayni saniyede olustu: created_at esitliginde sira tanimsiz
 			.unordered("urun liste ?is_active=1", "data")
 			.deviation("tarif ekle hatali", 422, """
-				{"message":"The name field must be a string.","errors":{"name":["The name field must be a string."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The name field must be a string.","instance":"/api/finished-product-recipes","errors":{"name":["The name field must be a string."]}}""")
 			.deviation("tarif ekle oran dizi", 422, """
-				{"message":"The contents.0.ratio field must be a number.","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The contents.0.ratio field must be a number.","instance":"/api/finished-product-recipes","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."]}}""")
 			.deviation("tarif ekle oran metin", 422, """
-				{"message":"The contents.0.ratio field must be a number.","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The contents.0.ratio field must be a number.","instance":"/api/finished-product-recipes","errors":{"contents.0.ratio":["The contents.0.ratio field must be a number."]}}""")
 			.deviation("tarif ekle tekrar tip", 422, """
-				{"message":"The contents.0.production_product_type_id field has a duplicate value. (and 1 more error)","errors":{"contents.0.production_product_type_id":["The contents.0.production_product_type_id field has a duplicate value."],"contents.1.production_product_type_id":["The contents.1.production_product_type_id field has a duplicate value."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The contents.0.production_product_type_id field has a duplicate value. (and 1 more error)","instance":"/api/finished-product-recipes","errors":{"contents.0.production_product_type_id":["The contents.0.production_product_type_id field has a duplicate value."],"contents.1.production_product_type_id":["The contents.1.production_product_type_id field has a duplicate value."]}}""")
 			.deviation("tarif ekle tekrar attribute", 422, """
-				{"message":"The attribute_rules.0.attribute_definition_id field has a duplicate value. (and 1 more error)","errors":{"attribute_rules.0.attribute_definition_id":["The attribute_rules.0.attribute_definition_id field has a duplicate value."],"attribute_rules.1.attribute_definition_id":["The attribute_rules.1.attribute_definition_id field has a duplicate value."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The attribute_rules.0.attribute_definition_id field has a duplicate value. (and 1 more error)","instance":"/api/finished-product-recipes","errors":{"attribute_rules.0.attribute_definition_id":["The attribute_rules.0.attribute_definition_id field has a duplicate value."],"attribute_rules.1.attribute_definition_id":["The attribute_rules.1.attribute_definition_id field has a duplicate value."]}}""")
 			.deviation("urun ekle tekrar kalem", 422, """
-				{"message":"The components.0.packaging_item_id field has a duplicate value. (and 1 more error)","errors":{"components.0.packaging_item_id":["The components.0.packaging_item_id field has a duplicate value."],"components.1.packaging_item_id":["The components.1.packaging_item_id field has a duplicate value."]}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"The components.0.packaging_item_id field has a duplicate value. (and 1 more error)","instance":"/api/finished-products","errors":{"components.0.packaging_item_id":["The components.0.packaging_item_id field has a duplicate value."],"components.1.packaging_item_id":["The components.1.packaging_item_id field has a duplicate value."]}}""")
 			.deviation("urun sil siparisli", 422, """
-				{"message":"Bu son ürün silinemez; kullanıldığı yerler: 4 sipariş kalemi.","errors":{}}""")
+				{"title":"Unprocessable Content","status":422,"detail":"Bu son ürün silinemez; kullanıldığı yerler: 4 sipariş kalemi.","instance":"/api/finished-products/20"}""")
 			.run();
 		assertThat(result.steps()).isEqualTo(79);
 		assertThat(result.failures()).as(result.report()).isEmpty();

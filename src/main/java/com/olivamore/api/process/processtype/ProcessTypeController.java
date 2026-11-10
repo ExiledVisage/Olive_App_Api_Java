@@ -32,7 +32,7 @@ class ProcessTypeController {
 
 	@GetMapping
 	ListResponse<ProcessTypeResponse> index() {
-		return new ListResponse.Plain<>(responses.of(service.all()));
+		return new ListResponse<>(responses.of(service.all()));
 	}
 
 	@GetMapping("/{id}")

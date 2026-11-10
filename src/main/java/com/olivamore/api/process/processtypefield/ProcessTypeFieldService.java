@@ -2,11 +2,11 @@ package com.olivamore.api.process.processtypefield;
 
 import com.olivamore.api.process.processtype.ProcessTypeService;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
@@ -79,12 +79,12 @@ class ProcessTypeFieldService {
 	/** {@code options} JSON dizi ya da nesne olmali. */
 	private static void assertContainer(JsonNode options) {
 		if (options != null && !options.isNull() && !options.isContainer()) {
-			throw LaravelValidationException.of("options", LaravelMessages.format(LaravelMessages.ARRAY, "options"));
+			throw ValidationFailedException.of("options", MessageKeys.ARRAY);
 		}
 	}
 
-	private static LaravelValidationException fieldKeyTaken() {
-		return LaravelValidationException.of("field_key", LaravelMessages.format(LaravelMessages.UNIQUE, "field_key"));
+	private static ValidationFailedException fieldKeyTaken() {
+		return ValidationFailedException.of("field_key", MessageKeys.UNIQUE);
 	}
 
 }

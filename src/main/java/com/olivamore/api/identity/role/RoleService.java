@@ -4,7 +4,7 @@ import com.olivamore.api.identity.permission.PermissionRepository;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ class RoleService {
 	static final String ADMIN_ROLE_RENAME = "Admin rolu yeniden adlandirilamaz.";
 	static final String ADMIN_ROLE_DELETE = "Admin rolu silinemez.";
 
-	private static final String MODEL = "Spatie\\Permission\\Models\\Role";
+	private static final String MODEL = "Role";
 
 	private final RoleRepository roles;
 	private final PermissionRepository permissions;
@@ -44,7 +44,7 @@ class RoleService {
 		List<String> names = request.permissions() == null ? List.of() : request.permissions();
 		ValidationErrors errors = new ValidationErrors();
 		if (roles.existsByName(request.name())) {
-			errors.add("name", LaravelMessages.UNIQUE);
+			errors.add("name", MessageKeys.UNIQUE);
 		}
 		checkPermissions(errors, names);
 		errors.throwIfAny();
@@ -63,7 +63,7 @@ class RoleService {
 		List<String> names = request.permissions() == null ? List.of() : request.permissions();
 		ValidationErrors errors = new ValidationErrors();
 		if (roles.existsByNameAndIdNot(request.name(), id)) {
-			errors.add("name", LaravelMessages.UNIQUE);
+			errors.add("name", MessageKeys.UNIQUE);
 		}
 		checkPermissions(errors, names);
 		errors.throwIfAny();
@@ -91,10 +91,10 @@ class RoleService {
 		for (int i = 0; i < names.size(); i++) {
 			String path = "permissions." + i;
 			if (names.get(i) == null) {
-				errors.add(path, LaravelMessages.STRING);
+				errors.add(path, MessageKeys.STRING);
 			}
 			else if (!permissions.existsByName(names.get(i))) {
-				errors.add(path, LaravelMessages.EXISTS);
+				errors.add(path, MessageKeys.EXISTS);
 			}
 		}
 	}

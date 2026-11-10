@@ -3,10 +3,9 @@ package com.olivamore.api.shared.error;
 import java.util.Map;
 
 /**
- * Laravel'in {@code abort($status, $message)} karsiligi. Cevap yalnizca mesajdir,
- * {@code errors} anahtari yoktur:
- * <pre>abort(422, 'Admin kullanicisi silinemez.')  ->  422 {"message": "Admin kullanicisi silinemez."}</pre>
- * Alan bazli hatalar icin {@link BusinessRuleException} ya da {@link LaravelValidationException}.
+ * Belirli bir HTTP durumu ve mesajla reddetme (401, 403, 429 ya da alan bagimsiz 422). Cevap {@code ProblemDetail};
+ * mesaj {@code detail} olur, varsa basliklar eklenir. Mesaj {@code {error.unauthenticated}} bicimindeyse
+ * {@code messages.properties}'ten cozulur. Alan bazli hatalar icin {@link ValidationFailedException}.
  */
 public class HttpStatusException extends RuntimeException {
 
@@ -23,17 +22,14 @@ public class HttpStatusException extends RuntimeException {
 		this.headers = Map.copyOf(headers);
 	}
 
-	/** {@code abort(422, ...)} */
+	public static HttpStatusException unauthenticated() {
+		return new HttpStatusException(401, "{error.unauthenticated}");
+	}
+
 	public static HttpStatusException unprocessable(String message) {
 		return new HttpStatusException(422, message);
 	}
 
-	/** Kimlik dogrulanamadi. */
-	public static HttpStatusException unauthenticated() {
-		return new HttpStatusException(401, "Unauthenticated.");
-	}
-
-	/** Spatie: role/permission middleware gecemedi */
 	public static HttpStatusException forbidden(String message) {
 		return new HttpStatusException(403, message);
 	}

@@ -34,7 +34,7 @@ class FinishedProductController {
 	@PreAuthorize("hasAuthority('finished_product.view')")
 	ListResponse<FinishedProductResponse> index(
 		@RequestParam(name = "is_active", required = false) Boolean isActive) {
-		return new ListResponse.Plain<>(responses.list(isActive));
+		return new ListResponse<>(responses.list(isActive));
 	}
 
 	/** Detay: tarifin icerigi de. */

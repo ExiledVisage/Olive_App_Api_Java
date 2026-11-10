@@ -23,10 +23,10 @@ import com.olivamore.api.inventory.storageunit.StorageUnitBalance;
 import com.olivamore.api.inventory.storageunit.StorageUnitBalanceRepository;
 import com.olivamore.api.inventory.storageunit.StorageUnitRepository;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -67,13 +67,6 @@ public class StorageMovementService {
 	private static final DateTimeFormatter REFERENCE_TIME = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 	private static final SecureRandom RANDOM = new SecureRandom();
 
-	private static final String REQUIRED_WITHOUT_TYPE =
-		"The :attribute field is required when production product type id is not present.";
-	private static final String REQUIRED_WITHOUT_MATERIAL =
-		"The :attribute field is required when material id is not present.";
-	private static final String PROHIBITS_MATERIAL = "The :attribute field prohibits material id from being present.";
-	private static final String DIFFERENT_FROM_SOURCE =
-		"The :attribute field and from storage unit id must be different.";
 
 	private final StorageUnitRepository units;
 	private final StorageUnitBalanceRepository balances;
@@ -166,7 +159,7 @@ public class StorageMovementService {
 		checkUnit(errors, "from_storage_unit_id", request.fromStorageUnitId());
 		checkUnit(errors, "to_storage_unit_id", request.toStorageUnitId());
 		if (request.toStorageUnitId().equals(request.fromStorageUnitId())) {
-			errors.add("to_storage_unit_id", DIFFERENT_FROM_SOURCE);
+			errors.add("to_storage_unit_id", MessageKeys.DIFFERENT, "other", "from storage unit id");
 		}
 		checkMaterial(errors, request.materialId());
 		checkBatchProcess(errors, request.batchProcessId());
@@ -183,16 +176,16 @@ public class StorageMovementService {
 		checkBatchProcess(errors, request.batchProcessId());
 		boolean increase = request.isIncrease();
 		if (increase && request.productionProductTypeId() == null) {
-			errors.add("production_product_type_id", LaravelMessages.REQUIRED);
+			errors.add("production_product_type_id", MessageKeys.REQUIRED);
 		}
 		else if (request.productionProductTypeId() != null) {
 			checkProductType(errors, request.productionProductTypeId());
 		}
 		if (increase && request.unit() == null) {
-			errors.add("unit", LaravelMessages.REQUIRED);
+			errors.add("unit", MessageKeys.REQUIRED);
 		}
 		if (!increase && request.materialId() == null) {
-			errors.add("material_id", LaravelMessages.REQUIRED);
+			errors.add("material_id", MessageKeys.REQUIRED);
 		}
 		else if (request.materialId() != null) {
 			checkMaterial(errors, request.materialId());
@@ -213,25 +206,25 @@ public class StorageMovementService {
 
 	private void checkUnit(ValidationErrors errors, String field, Long id) {
 		if (!queries.unitExists(id)) {
-			errors.add(field, LaravelMessages.EXISTS);
+			errors.add(field, MessageKeys.EXISTS);
 		}
 	}
 
 	private void checkProductType(ValidationErrors errors, Long id) {
 		if (!queries.productTypeExists(id)) {
-			errors.add("production_product_type_id", LaravelMessages.EXISTS);
+			errors.add("production_product_type_id", MessageKeys.EXISTS);
 		}
 	}
 
 	private void checkMaterial(ValidationErrors errors, Long id) {
 		if (!queries.materialExists(id)) {
-			errors.add("material_id", LaravelMessages.EXISTS);
+			errors.add("material_id", MessageKeys.EXISTS);
 		}
 	}
 
 	private void checkBatchProcess(ValidationErrors errors, Long id) {
 		if (id != null && !queries.batchProcessExists(id)) {
-			errors.add("batch_process_id", LaravelMessages.EXISTS);
+			errors.add("batch_process_id", MessageKeys.EXISTS);
 		}
 	}
 
@@ -240,17 +233,17 @@ public class StorageMovementService {
 		boolean hasMaterial = request.materialId() != null;
 		boolean hasType = request.productionProductTypeId() != null;
 		if (!hasMaterial && !hasType) {
-			errors.add("material_id", REQUIRED_WITHOUT_TYPE);
-			errors.add("production_product_type_id", REQUIRED_WITHOUT_MATERIAL);
+			errors.add("material_id", MessageKeys.REQUIRED_WITHOUT, "other", "production product type id");
+			errors.add("production_product_type_id", MessageKeys.REQUIRED_WITHOUT, "other", "material id");
 		}
 		if (hasMaterial && hasType) {
-			errors.add("production_product_type_id", PROHIBITS_MATERIAL);
+			errors.add("production_product_type_id", MessageKeys.PROHIBITS, "other", "material id");
 		}
 		if (hasMaterial && request.unit() != null) {
-			errors.add("unit", PROHIBITS_MATERIAL);
+			errors.add("unit", MessageKeys.PROHIBITS, "other", "material id");
 		}
 		if (hasMaterial && request.attributeValues() != null && !request.attributeValues().isEmpty()) {
-			errors.add("attribute_values", PROHIBITS_MATERIAL);
+			errors.add("attribute_values", MessageKeys.PROHIBITS, "other", "material id");
 		}
 	}
 
@@ -265,7 +258,7 @@ public class StorageMovementService {
 		for (int i = 0; i < items.size(); i++) {
 			JsonNode json = items.get(i).valueJson();
 			if (json != null && !json.isNull() && !json.isArray() && !json.isObject()) {
-				errors.add("attribute_values." + i + ".value_json", LaravelMessages.ARRAY);
+				errors.add("attribute_values." + i + ".value_json", MessageKeys.ARRAY);
 			}
 		}
 	}
@@ -587,7 +580,7 @@ public class StorageMovementService {
 		for (AttributeValueInput item : items) {
 			Long definitionId = item.productionProductAttributeDefinitionId();
 			if (definitionId == null || !definitions.contains(definitionId)) {
-				throw LaravelValidationException.of("attribute_values", "Geçersiz attribute definition gönderildi.");
+				throw ValidationFailedException.of("attribute_values", "Geçersiz attribute definition gönderildi.");
 			}
 			attributeValues.save(new MaterialAttributeValue(materialId, definitionId, item.valueBoolean(),
 				item.valueInteger(), item.valueDecimal(), item.valueText(), item.valueJson()));

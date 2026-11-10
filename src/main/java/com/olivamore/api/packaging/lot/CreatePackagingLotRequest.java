@@ -1,7 +1,8 @@
 package com.olivamore.api.packaging.lot;
 
-import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.Texts;
+import com.olivamore.api.shared.json.IsoDateTimeDeserializer;
+import com.olivamore.api.shared.validation.MessageKeys;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,18 +13,24 @@ import java.time.LocalDateTime;
 
 /** Mal girisi. */
 record CreatePackagingLotRequest(
-	@NotBlank(message = LaravelMessages.REQUIRED)
-	@Size(max = 100, message = LaravelMessages.MAX_100)
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Size(max = 100, message = MessageKeys.SIZE_MAX)
 	String lotCode,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
-	@Min(value = 1, message = LaravelMessages.MIN_1)
+	@NotNull(message = MessageKeys.REQUIRED)
+	@Min(value = 1, message = MessageKeys.MIN)
 	Integer quantity,
 
-	@JsonDeserialize(using = FlexibleDateTimeDeserializer.class)
+	@JsonDeserialize(using = IsoDateTimeDeserializer.class)
 	LocalDateTime receivedAt,
 
 	Long productSupplierId,
 
 	String note) {
+
+	CreatePackagingLotRequest {
+		lotCode = Texts.trim(lotCode);
+		note = Texts.trim(note);
+	}
+
 }

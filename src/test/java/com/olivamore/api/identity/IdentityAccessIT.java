@@ -62,7 +62,7 @@ class IdentityAccessIT {
 		}
 		Response blocked = attempt("kullanici@olivamore.com", "yanlis");
 		assertThat(blocked.status).isEqualTo(429);
-		assertThat(blocked.body).isEqualTo("{\"message\":\"Too Many Attempts.\"}");
+		assertThat(blocked.body).contains("\"detail\":\"Too Many Attempts.\"");
 		assertThat(blocked.headers.getFirst("Retry-After")).isNotNull();
 	}
 
@@ -142,11 +142,11 @@ class IdentityAccessIT {
 		for (String path : List.of("/api/users", "/api/roles", "/api/permissions", "/api/users/1")) {
 			Response r = get(path, token);
 			assertThat(r.status).as(path).isEqualTo(403);
-			assertThat(r.body).isEqualTo("{\"message\":\"User does not have the right roles.\"}");
+			assertThat(r.body).contains("\"detail\":\"User does not have the right roles.\"");
 		}
 		Response permission = get("/api/test/needs-customer-view", token);
 		assertThat(permission.status).isEqualTo(403);
-		assertThat(permission.body).isEqualTo("{\"message\":\"User does not have the right permissions.\"}");
+		assertThat(permission.body).contains("\"detail\":\"User does not have the right permissions.\"");
 	}
 
 	@Test

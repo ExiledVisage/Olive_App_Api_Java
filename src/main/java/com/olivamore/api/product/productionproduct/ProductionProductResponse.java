@@ -1,6 +1,5 @@
 package com.olivamore.api.product.productionproduct;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.product.productattribute.ProductAttributeResponse;
 import com.olivamore.api.product.productiontype.ProductionProductTypeResponse;
@@ -15,7 +14,6 @@ record ProductionProductResponse(
 	String key,
 	String name,
 	String description,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal defaultDensityKgPerLitre,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	Long productsCount,

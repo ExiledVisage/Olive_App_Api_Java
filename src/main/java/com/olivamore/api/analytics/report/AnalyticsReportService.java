@@ -3,11 +3,10 @@ package com.olivamore.api.analytics.report;
 import com.olivamore.api.analytics.analytics.Range;
 import com.olivamore.api.analytics.analytics.ReportSpec;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
-import com.olivamore.api.shared.web.PhpNumbers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
@@ -26,13 +25,6 @@ class AnalyticsReportService {
 
 	private static final List<String> PRESETS = List.of("week", "month", "quarter", "year");
 
-	private static final String REQUIRED_WITH_CONFIG = "The :attribute field is required when config is present.";
-
-	private static final String REQUIRED_WITHOUT_PRESET =
-		"The :attribute field is required when config.period.preset is not present.";
-
-	private static final String AFTER_FROM = "The :attribute field must be a date after or equal to config.period.from.";
-
 	private final AnalyticsReportRepository reports;
 
 	AnalyticsReportService(AnalyticsReportRepository reports) {
@@ -48,10 +40,10 @@ class AnalyticsReportService {
 	ReportResponse create(CreateReportRequest request, long userId) {
 		ValidationErrors errors = new ValidationErrors();
 		if (request.name() == null) {
-			errors.add("name", LaravelMessages.REQUIRED);
+			errors.add("name", MessageKeys.REQUIRED);
 		}
 		if (request.config() == null) {
-			errors.add("config", LaravelMessages.REQUIRED);
+			errors.add("config", MessageKeys.REQUIRED);
 		}
 		validate(errors, request.name(), request.config());
 		return ReportResponse.of(reports.save(new AnalyticsReport(userId, request.name(), tree(request.config()))));
@@ -98,7 +90,7 @@ class AnalyticsReportService {
 	/** Ayar yalnizca gonderildiyse denetlenir; kurallar gecince olcu, gruplama ve grafik uyumu. */
 	private static void validate(ValidationErrors errors, String name, ReportConfig config) {
 		if (name != null && name.codePointCount(0, name.length()) > MAX_NAME_LENGTH) {
-			errors.add("name", LaravelMessages.maxString(MAX_NAME_LENGTH));
+			errors.add("name", MessageKeys.SIZE_MAX, "max", MAX_NAME_LENGTH);
 		}
 		if (config != null) {
 			checkConfig(errors, config);
@@ -107,7 +99,7 @@ class AnalyticsReportService {
 		if (config != null) {
 			String error = ReportSpec.specError(config.metric(), config.group(), config.chart());
 			if (error != null) {
-				throw LaravelValidationException.of("config", error);
+				throw ValidationFailedException.of("config", error);
 			}
 		}
 	}
@@ -118,36 +110,35 @@ class AnalyticsReportService {
 		choice(errors, "config.chart", config.chart(), ReportSpec::isChart);
 		ReportConfig.Period period = config.period() == null ? new ReportConfig.Period(null, null, null) : config.period();
 		if (period.preset() == null && period.from() == null && period.to() == null) {
-			errors.add("config.period", REQUIRED_WITH_CONFIG);
+			errors.add("config.period", MessageKeys.REQUIRED_WITH, "other", "config");
 		}
 		if (period.preset() != null && !PRESETS.contains(period.preset())) {
-			errors.add("config.period.preset", LaravelMessages.IN);
+			errors.add("config.period.preset", MessageKeys.IN);
 		}
-		String format = LaravelMessages.dateFormat("Y-m-d");
 		if (period.from() == null && period.preset() == null) {
-			errors.add("config.period.from", REQUIRED_WITHOUT_PRESET);
+			errors.add("config.period.from", MessageKeys.REQUIRED_WITHOUT, "other", "config.period.preset");
 		}
 		else if (period.from() != null && Range.ymd(period.from()).isEmpty()) {
-			errors.add("config.period.from", format);
+			errors.add("config.period.from", MessageKeys.DATE_FORMAT, "format", "Y-m-d");
 		}
 		if (period.to() == null) {
 			if (period.preset() == null) {
-				errors.add("config.period.to", REQUIRED_WITHOUT_PRESET);
+				errors.add("config.period.to", MessageKeys.REQUIRED_WITHOUT, "other", "config.period.preset");
 			}
 		}
 		else {
 			if (Range.ymd(period.to()).isEmpty()) {
-				errors.add("config.period.to", format);
+				errors.add("config.period.to", MessageKeys.DATE_FORMAT, "format", "Y-m-d");
 			}
 			if (!Range.inOrder(period.from(), period.to())) {
-				errors.add("config.period.to", AFTER_FROM);
+				errors.add("config.period.to", MessageKeys.AFTER_OR_EQUAL, "other", "config.period.from");
 			}
 		}
 		if (config.filters() != null) {
 			config.filters().forEach((key, value) -> {
 				if (value != null && !value.isNull() && !isInteger(value)) {
 					String path = "config.filters." + key;
-					errors.add(path, LaravelMessages.INTEGER.replace(":attribute", path));
+					errors.add(path, MessageKeys.INTEGER, "attribute", path);
 				}
 			});
 		}
@@ -155,16 +146,22 @@ class AnalyticsReportService {
 
 	private static void choice(ValidationErrors errors, String field, String value, Predicate<String> allowed) {
 		if (value == null) {
-			errors.add(field, REQUIRED_WITH_CONFIG);
+			errors.add(field, MessageKeys.REQUIRED_WITH, "other", "config");
 		}
 		else if (!allowed.test(value)) {
-			errors.add(field, LaravelMessages.IN);
+			errors.add(field, MessageKeys.IN);
 		}
 	}
 
 	private static boolean isInteger(JsonNode value) {
 		if (value.isString()) {
-			return PhpNumbers.validateInt(value.asString()).isPresent();
+			try {
+				Long.parseLong(value.asString().strip());
+				return true;
+			}
+			catch (NumberFormatException e) {
+				return false;
+			}
 		}
 		return value.isNumber() && value.decimalValue().stripTrailingZeros().scale() <= 0;
 	}

@@ -1,7 +1,8 @@
 package com.olivamore.api.finishedproduct.recipe;
 
+import com.olivamore.api.shared.validation.Texts;
 import com.olivamore.api.shared.json.Patch;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -13,38 +14,44 @@ import java.util.List;
 
 /** {@code null} gelen alan degismez; verilmeyen icerik ve kurallar eski versiyondan kopyalanir. */
 record UpdateRecipeRequest(
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String name,
 
 	Patch<String> description,
 
-	@Size(min = 1, message = LaravelMessages.MIN_ITEMS_1)
+	@Size(min = 1, message = MessageKeys.ITEMS_MIN)
 	List<@Valid Content> contents,
 
 	List<@Valid AttributeRule> attributeRules) {
 
+	UpdateRecipeRequest {
+		name = Texts.trim(name);
+		description = Texts.trim(description);
+	}
+
+
 	record Content(
-		@NotNull(message = LaravelMessages.REQUIRED_WITH_CONTENTS)
+		@NotNull(message = MessageKeys.REQUIRED_WITH_CONTENTS)
 		Long productionProductTypeId,
 
-		@NotNull(message = LaravelMessages.REQUIRED_WITH_CONTENTS)
-		@DecimalMin(value = "0.0001", message = LaravelMessages.MIN_RATIO)
-		@DecimalMax(value = "1", message = LaravelMessages.MAX_1)
+		@NotNull(message = MessageKeys.REQUIRED_WITH_CONTENTS)
+		@DecimalMin(value = "0.0001", message = MessageKeys.MIN)
+		@DecimalMax(value = "1", message = MessageKeys.MAX)
 		BigDecimal ratio) implements RecipeLines.Content {
 	}
 
 	record AttributeRule(
-		@NotNull(message = LaravelMessages.REQUIRED)
+		@NotNull(message = MessageKeys.REQUIRED)
 		Long attributeDefinitionId,
 
-		@NotNull(message = LaravelMessages.REQUIRED)
-		@DecimalMin(value = "0", message = LaravelMessages.MIN_0)
+		@NotNull(message = MessageKeys.REQUIRED)
+		@DecimalMin(value = "0", message = MessageKeys.MIN)
 		BigDecimal value,
 
-		@DecimalMin(value = "0", message = LaravelMessages.MIN_0)
+		@DecimalMin(value = "0", message = MessageKeys.MIN)
 		BigDecimal minDeviation,
 
-		@DecimalMin(value = "0", message = LaravelMessages.MIN_0)
+		@DecimalMin(value = "0", message = MessageKeys.MIN)
 		BigDecimal maxDeviation) implements RecipeLines.Rule {
 	}
 

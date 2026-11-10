@@ -1,6 +1,7 @@
 package com.olivamore.api.product.productattribute;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
@@ -9,19 +10,27 @@ import jakarta.validation.constraints.Size;
  * cakisiyor mu diye bakilir.
  */
 record UpdateProductAttributeRequest(
-	@Size(max = 100, message = LaravelMessages.MAX_100)
+	@Size(max = 100, message = MessageKeys.SIZE_MAX)
 	String attributeKey,
 
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String label,
 
 	String description,
 
-	@Size(max = 50, message = LaravelMessages.MAX_50)
+	@Size(max = 50, message = MessageKeys.SIZE_MAX)
 	String unit,
 
 	Boolean isRequired,
 
-	@Min(value = 0, message = LaravelMessages.MIN_0)
+	@Min(value = 0, message = MessageKeys.MIN)
 	Integer sortOrder) {
+
+	UpdateProductAttributeRequest {
+		attributeKey = Texts.trim(attributeKey);
+		label = Texts.trim(label);
+		unit = Texts.trim(unit);
+		description = Texts.trim(description);
+	}
+
 }

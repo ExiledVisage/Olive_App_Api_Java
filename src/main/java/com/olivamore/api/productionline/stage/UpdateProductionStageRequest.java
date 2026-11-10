@@ -1,7 +1,8 @@
 package com.olivamore.api.productionline.stage;
 
+import com.olivamore.api.shared.validation.Texts;
 import com.olivamore.api.shared.json.Patch;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
@@ -9,13 +10,18 @@ import jakarta.validation.constraints.Size;
 record UpdateProductionStageRequest(
 	Patch<Long> processTypeId,
 
-	@Size(max = 255, message = LaravelMessages.MAX_255)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String name,
 
-	@Min(value = 1, message = LaravelMessages.MIN_1)
+	@Min(value = 1, message = MessageKeys.MIN)
 	Integer stageOrder,
 
 	Boolean isRequired,
 
 	Boolean requiresApproval) {
+
+	UpdateProductionStageRequest {
+		name = Texts.trim(name);
+	}
+
 }

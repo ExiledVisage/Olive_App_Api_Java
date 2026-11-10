@@ -32,7 +32,7 @@ class ProductSupplierController {
 	@PreAuthorize("hasAuthority('product_supplier.view')")
 	ListResponse<ProductSupplierResponse> index(@RequestParam(name = "is_active", required = false) Boolean isActive,
 		@RequestParam(required = false) String search) {
-		return new ListResponse.Plain<>(service.all(isActive, search));
+		return new ListResponse<>(service.all(isActive, search));
 	}
 
 	@GetMapping("/{id}")

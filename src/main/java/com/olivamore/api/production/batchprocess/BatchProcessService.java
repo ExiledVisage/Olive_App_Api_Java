@@ -15,12 +15,12 @@ import com.olivamore.api.production.batchprocess.stage.StageQueries.Field;
 import com.olivamore.api.production.batchprocess.stage.StageQueries.Stage;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
+import com.olivamore.api.shared.json.IsoDateTimeDeserializer;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -98,7 +98,7 @@ class BatchProcessService {
 		JsonNode sent = OperationData.normalized(request.operationData());
 		ValidationErrors errors = new ValidationErrors();
 		if (status == ProcessStatus.AWAITING_APPROVAL) {
-			errors.add("status", LaravelMessages.IN);
+			errors.add("status", MessageKeys.IN);
 		}
 		checkOperator(errors, request.operatorId());
 		Patch<LocalDateTime> startedAt = date(errors, "started_at", request.startedAt());
@@ -142,7 +142,7 @@ class BatchProcessService {
 
 	private void checkOperator(ValidationErrors errors, Patch<Long> operatorId) {
 		if (operatorId != null && operatorId.value() != null && !queries.userExists(operatorId.value())) {
-			errors.add("operator_id", LaravelMessages.EXISTS);
+			errors.add("operator_id", MessageKeys.EXISTS);
 		}
 	}
 
@@ -327,7 +327,7 @@ class BatchProcessService {
 			: queries.fieldsOfType(stage.processTypeId()).stream().map(Field::id).collect(Collectors.toSet());
 		List<Long> incoming = items.stream().map(SyncFieldValuesRequest.Item::processTypeFieldId).toList();
 		if (!allowed.containsAll(incoming)) {
-			throw LaravelValidationException.of("field_values", "Process type ile uyumsuz field gönderildi.");
+			throw ValidationFailedException.of("field_values", "Process type ile uyumsuz field gönderildi.");
 		}
 		fieldValues.deleteOthers(id, incoming);
 		for (SyncFieldValuesRequest.Item item : items) {
@@ -346,10 +346,10 @@ class BatchProcessService {
 		for (int i = 0; i < items.size(); i++) {
 			Long fieldId = items.get(i).processTypeFieldId();
 			if (fieldId == null) {
-				errors.add("fields." + i + ".process_type_field_id", LaravelMessages.REQUIRED);
+				errors.add("fields." + i + ".process_type_field_id", MessageKeys.REQUIRED);
 			}
 			else if (!fields.containsKey(fieldId)) {
-				errors.add("fields." + i + ".process_type_field_id", LaravelMessages.EXISTS);
+				errors.add("fields." + i + ".process_type_field_id", MessageKeys.EXISTS);
 			}
 		}
 		for (int i = 0; i < items.size(); i++) {
@@ -381,7 +381,7 @@ class BatchProcessService {
 				}
 			}
 			case "datetime" -> {
-				if (!value.isString() || FlexibleDateTimeDeserializer.parse(value.asString()).isEmpty()) {
+				if (!value.isString() || IsoDateTimeDeserializer.parse(value.asString()).isEmpty()) {
 					errors.add(path, "The value must be a valid datetime.");
 				}
 			}
@@ -408,7 +408,7 @@ class BatchProcessService {
 			case "integer" -> new Value(null, null, OperationData.integer(value), null, null, null);
 			case "boolean" -> new Value(null, null, null, value.booleanValue(), null, null);
 			case "datetime" -> new Value(null, null, null, null,
-				FlexibleDateTimeDeserializer.parse(value.asString()).map(d -> d.withNano(0)).orElse(null), null);
+				IsoDateTimeDeserializer.parse(value.asString()).map(d -> d.withNano(0)).orElse(null), null);
 			case "json" -> new Value(null, null, null, null, null, value);
 			default -> new Value(text(value), null, null, null, null, null);
 		};
@@ -561,9 +561,9 @@ class BatchProcessService {
 		if (raw == null || raw.value() == null) {
 			return raw == null ? null : new Patch<>(null);
 		}
-		Optional<LocalDateTime> parsed = FlexibleDateTimeDeserializer.parse(raw.value());
+		Optional<LocalDateTime> parsed = IsoDateTimeDeserializer.parse(raw.value());
 		if (parsed.isEmpty()) {
-			errors.add(field, LaravelMessages.DATE);
+			errors.add(field, MessageKeys.DATE);
 			return null;
 		}
 		return new Patch<>(parsed.get().withNano(0));

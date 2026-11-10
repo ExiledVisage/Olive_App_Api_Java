@@ -1,6 +1,5 @@
 package com.olivamore.api.inventory;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;
@@ -18,7 +17,6 @@ public record MaterialResponse(
 	Long productionProductTypeId,
 	Long parentMaterialId,
 	String originType,
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	BigDecimal quantity,
 	String unit,
 	String status,
@@ -52,7 +50,7 @@ public record MaterialResponse(
 	}
 
 	public record Parent(Long id, Long productionProductTypeId,
-		@JsonFormat(shape = JsonFormat.Shape.STRING) BigDecimal quantity, String unit, String status) {
+		BigDecimal quantity, String unit, String status) {
 	}
 
 	public record Process(Long id, Long productionBatchId, Long productionStageId, String status) {
@@ -64,7 +62,6 @@ public record MaterialResponse(
 		Long productionProductAttributeDefinitionId,
 		Boolean valueBoolean,
 		Long valueInteger,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal valueDecimal,
 		String valueText,
 		Object valueJson,

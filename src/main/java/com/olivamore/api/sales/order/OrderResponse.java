@@ -1,6 +1,5 @@
 package com.olivamore.api.sales.order;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.sales.customer.CustomerAddressResponse;
 import com.olivamore.api.sales.customer.CustomerResponse;
@@ -32,7 +31,6 @@ record OrderResponse(
 	record Product(
 		Long id,
 		String name,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal volumeLitre,
 		Integer totalStock,
 		Integer storedStock,

@@ -72,7 +72,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
 		headers.put("X-RateLimit-Remaining", "0");
 		headers.put("Retry-After", String.valueOf(retryAfter));
 		headers.put("X-RateLimit-Reset", String.valueOf(Instant.now().getEpochSecond() + retryAfter));
-		return new HttpStatusException(429, "Too Many Attempts.", headers);
+		return new HttpStatusException(429, "{error.too-many-attempts}", headers);
 	}
 
 	private List<Limit> limits(Throttle throttle, HttpServletRequest request) {

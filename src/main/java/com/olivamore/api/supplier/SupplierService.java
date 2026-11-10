@@ -3,7 +3,7 @@ package com.olivamore.api.supplier;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -123,7 +123,7 @@ class SupplierService {
 	private void assertNewCodes(CreateSupplierRequest request) {
 		ValidationErrors errors = new ValidationErrors();
 		if (suppliers.existsByCode(request.code())) {
-			errors.add("code", LaravelMessages.UNIQUE);
+			errors.add("code", MessageKeys.UNIQUE);
 		}
 		if (request.fields() != null) {
 			List<String> codes = request.fields().stream().map(CreateSupplierFieldRequest::code).toList();
@@ -135,7 +135,7 @@ class SupplierService {
 
 	private static void throwCodeTaken(String field) {
 		ValidationErrors errors = new ValidationErrors();
-		errors.add(field, LaravelMessages.UNIQUE);
+		errors.add(field, MessageKeys.UNIQUE);
 		errors.throwIfAny();
 	}
 

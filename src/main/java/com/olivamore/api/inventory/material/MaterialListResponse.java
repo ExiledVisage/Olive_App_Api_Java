@@ -1,6 +1,5 @@
 package com.olivamore.api.inventory.material;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olivamore.api.inventory.MaterialResponse;
 
 import java.math.BigDecimal;
@@ -15,7 +14,6 @@ record MaterialListResponse(List<Item> data, Meta meta) {
 
 	record Item(
 		Long id,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal quantity,
 		String unit,
 		String status,

@@ -1,10 +1,10 @@
 package com.olivamore.api.packaging.supplier;
 
 import com.olivamore.api.packaging.lot.PackagingLotResponses;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,8 +70,8 @@ class ProductSupplierService {
 		return repository.findById(id).orElseThrow(() -> new ModelNotFoundException("ProductSupplier", id));
 	}
 
-	private static LaravelValidationException codeTaken() {
-		return LaravelValidationException.of("code", LaravelMessages.format(LaravelMessages.UNIQUE, "code"));
+	private static ValidationFailedException codeTaken() {
+		return ValidationFailedException.of("code", MessageKeys.UNIQUE);
 	}
 
 }

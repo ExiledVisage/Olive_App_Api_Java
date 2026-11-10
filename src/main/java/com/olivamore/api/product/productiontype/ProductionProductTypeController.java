@@ -34,7 +34,7 @@ class ProductionProductTypeController {
 	@GetMapping
 	@PreAuthorize("hasAuthority('production_product_type.view')")
 	ListResponse<ProductionProductTypeResponse> index() {
-		return new ListResponse.Plain<>(service.all());
+		return new ListResponse<>(service.all());
 	}
 
 	@GetMapping("/{id}")
@@ -47,7 +47,7 @@ class ProductionProductTypeController {
 	@GetMapping("/{id}/production-lines")
 	@PreAuthorize("hasAuthority('production_product_type.view')")
 	ListResponse<ProductionLineResponse> productionLines(@PathVariable long id) {
-		return new ListResponse.Plain<>(lines.usingProductType(service.productIdOf(id), id));
+		return new ListResponse<>(lines.usingProductType(service.productIdOf(id), id));
 	}
 
 	@GetMapping("/{id}/flow")

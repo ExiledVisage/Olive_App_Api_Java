@@ -19,9 +19,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        },
        {
@@ -31,8 +31,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": null
        },
@@ -43,8 +43,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": null
        }
@@ -57,8 +57,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -76,8 +76,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -95,8 +95,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -114,8 +114,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -133,8 +133,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -154,9 +154,9 @@
         "quantity_kg": 3680,
         "supplier": "Ali Güneş",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-02T13:26:00.000000Z",
-        "started_at": "2026-11-02T13:30:00.000000Z",
-        "completed_at": "2026-11-04T06:25:00.000000Z",
+        "received_at": "2026-11-02T13:26:00Z",
+        "started_at": "2026-11-02T13:30:00Z",
+        "completed_at": "2026-11-04T06:25:00Z",
         "current_stage": null
        }
       ]
@@ -175,8 +175,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Ayvalık Dolum Tankı",
-        "started_at": "2026-11-04T12:00:00.000000Z",
-        "completed_at": "2026-11-04T13:19:00.000000Z"
+        "started_at": "2026-11-04T12:00:00Z",
+        "completed_at": "2026-11-04T13:19:00Z"
        },
        {
         "id": 385,
@@ -186,8 +186,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 750ml",
         "volume_litre": 0.75,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-04T02:26:00.000000Z",
-        "completed_at": "2026-11-04T03:08:00.000000Z"
+        "started_at": "2026-11-04T02:26:00Z",
+        "completed_at": "2026-11-04T03:08:00Z"
        }
       ],
       "in_progress": [
@@ -199,7 +199,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -210,7 +210,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -221,7 +221,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -232,7 +232,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -436,7 +436,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -448,7 +448,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -462,8 +462,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -481,8 +481,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -500,8 +500,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -519,8 +519,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -538,8 +538,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -559,9 +559,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -580,8 +580,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -591,8 +591,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -602,8 +602,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -613,8 +613,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -624,8 +624,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -635,8 +635,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -646,8 +646,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -657,8 +657,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -668,8 +668,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -679,8 +679,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -690,8 +690,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -703,7 +703,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -714,7 +714,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -725,7 +725,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -736,7 +736,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -940,9 +940,9 @@
         "quantity_kg": 3510,
         "supplier": "Ali Güneş",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-09-29T11:47:00.000000Z",
-        "started_at": "2026-09-29T11:49:00.000000Z",
-        "completed_at": "2026-10-01T16:02:00.000000Z",
+        "received_at": "2026-09-29T11:47:00Z",
+        "started_at": "2026-09-29T11:49:00Z",
+        "completed_at": "2026-10-01T16:02:00Z",
         "current_stage": null
        }
       ],
@@ -954,8 +954,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -973,8 +973,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -992,8 +992,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -1011,8 +1011,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -1030,8 +1030,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -1060,7 +1060,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1071,7 +1071,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1082,7 +1082,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1093,7 +1093,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -1303,9 +1303,9 @@
         "quantity_kg": 5605,
         "supplier": "Polat Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-01-29T10:56:00.000000Z",
-        "started_at": "2026-01-29T11:00:00.000000Z",
-        "completed_at": "2026-02-01T10:23:00.000000Z",
+        "received_at": "2026-01-29T10:56:00Z",
+        "started_at": "2026-01-29T11:00:00Z",
+        "completed_at": "2026-02-01T10:23:00Z",
         "current_stage": null
        },
        {
@@ -1315,9 +1315,9 @@
         "quantity_kg": 7110,
         "supplier": "Aydın Tarım",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-01-29T09:24:00.000000Z",
-        "started_at": "2026-01-29T09:27:00.000000Z",
-        "completed_at": "2026-01-31T03:23:00.000000Z",
+        "received_at": "2026-01-29T09:24:00Z",
+        "started_at": "2026-01-29T09:27:00Z",
+        "completed_at": "2026-01-31T03:23:00Z",
         "current_stage": null
        }
       ],
@@ -1329,8 +1329,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -1348,8 +1348,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -1367,8 +1367,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -1386,8 +1386,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -1405,8 +1405,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -1426,9 +1426,9 @@
         "quantity_kg": 6020,
         "supplier": "Aydın Tarım",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-01-26T12:00:00.000000Z",
-        "started_at": "2026-01-26T12:04:00.000000Z",
-        "completed_at": "2026-01-29T14:42:00.000000Z",
+        "received_at": "2026-01-26T12:00:00Z",
+        "started_at": "2026-01-26T12:04:00Z",
+        "completed_at": "2026-01-29T14:42:00Z",
         "current_stage": null
        }
       ]
@@ -1447,8 +1447,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 1L",
         "volume_litre": 1,
         "source_storage_unit": "Ayvalık Dolum Tankı",
-        "started_at": "2026-01-29T18:04:00.000000Z",
-        "completed_at": "2026-01-29T20:22:00.000000Z"
+        "started_at": "2026-01-29T18:04:00Z",
+        "completed_at": "2026-01-29T20:22:00Z"
        }
       ],
       "in_progress": [
@@ -1460,7 +1460,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1471,7 +1471,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1482,7 +1482,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1493,7 +1493,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -1704,8 +1704,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -1723,8 +1723,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -1742,8 +1742,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -1761,8 +1761,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -1780,8 +1780,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -1810,7 +1810,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1821,7 +1821,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1832,7 +1832,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -1843,7 +1843,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -2024,7 +2024,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -2036,7 +2036,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -2050,8 +2050,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -2069,8 +2069,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -2088,8 +2088,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -2107,8 +2107,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -2126,8 +2126,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -2147,9 +2147,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -2168,8 +2168,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -2179,8 +2179,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -2190,8 +2190,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -2201,8 +2201,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -2212,8 +2212,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -2223,8 +2223,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -2234,8 +2234,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -2245,8 +2245,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -2256,8 +2256,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -2267,8 +2267,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -2278,8 +2278,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -2291,7 +2291,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -2302,7 +2302,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -2313,7 +2313,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -2324,7 +2324,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -2529,7 +2529,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -2541,7 +2541,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -2555,8 +2555,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -2574,8 +2574,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -2593,8 +2593,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -2612,8 +2612,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -2631,8 +2631,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -2652,9 +2652,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -2673,8 +2673,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -2684,8 +2684,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -2695,8 +2695,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -2706,8 +2706,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -2717,8 +2717,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -2728,8 +2728,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -2739,8 +2739,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -2750,8 +2750,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -2761,8 +2761,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -2772,8 +2772,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -2783,8 +2783,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -2796,7 +2796,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -2807,7 +2807,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -2818,7 +2818,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -2829,7 +2829,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -3034,7 +3034,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -3046,7 +3046,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -3060,8 +3060,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -3079,8 +3079,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -3098,8 +3098,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -3117,8 +3117,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -3136,8 +3136,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -3157,9 +3157,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -3178,8 +3178,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -3189,8 +3189,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -3200,8 +3200,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -3211,8 +3211,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -3222,8 +3222,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -3233,8 +3233,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -3244,8 +3244,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -3255,8 +3255,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -3266,8 +3266,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -3277,8 +3277,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -3288,8 +3288,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -3301,7 +3301,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -3312,7 +3312,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -3323,7 +3323,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -3334,7 +3334,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -3539,7 +3539,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -3551,7 +3551,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -3565,8 +3565,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -3584,8 +3584,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -3603,8 +3603,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -3622,8 +3622,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -3641,8 +3641,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -3662,9 +3662,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -3697,8 +3697,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -3708,8 +3708,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -3719,8 +3719,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -3730,8 +3730,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -3741,8 +3741,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -3752,8 +3752,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -3763,8 +3763,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -3774,8 +3774,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -3785,8 +3785,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -3796,8 +3796,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -3807,8 +3807,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -3820,7 +3820,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -3831,7 +3831,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -3842,7 +3842,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -3853,7 +3853,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -4082,7 +4082,7 @@
   {
    "name": "saatli tarih",
    "method": "GET",
-   "path": "/api/daily-summary?date=2026-11-06%2023:30",
+   "path": "/api/daily-summary?date=2026-11-06T23:30",
    "body": null,
    "status": 200,
    "response": {
@@ -4097,7 +4097,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -4109,7 +4109,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -4123,8 +4123,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -4142,8 +4142,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -4161,8 +4161,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -4180,8 +4180,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -4199,8 +4199,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -4220,9 +4220,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -4241,8 +4241,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -4252,8 +4252,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -4263,8 +4263,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -4274,8 +4274,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -4285,8 +4285,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -4296,8 +4296,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -4307,8 +4307,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -4318,8 +4318,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -4329,8 +4329,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -4340,8 +4340,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -4351,8 +4351,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -4364,7 +4364,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -4375,7 +4375,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -4386,7 +4386,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -4397,7 +4397,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -4586,7 +4586,7 @@
   {
    "name": "iso tarih",
    "method": "GET",
-   "path": "/api/daily-summary?date=2026-11-04T08:00:00%2B03:00",
+   "path": "/api/daily-summary?date=2026-11-04T08:00:00",
    "body": null,
    "status": 200,
    "response": {
@@ -4601,9 +4601,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        },
        {
@@ -4613,8 +4613,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": null
        },
@@ -4625,8 +4625,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": null
        }
@@ -4639,8 +4639,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -4658,8 +4658,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -4677,8 +4677,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -4696,8 +4696,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -4715,8 +4715,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -4736,9 +4736,9 @@
         "quantity_kg": 3680,
         "supplier": "Ali Güneş",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-02T13:26:00.000000Z",
-        "started_at": "2026-11-02T13:30:00.000000Z",
-        "completed_at": "2026-11-04T06:25:00.000000Z",
+        "received_at": "2026-11-02T13:26:00Z",
+        "started_at": "2026-11-02T13:30:00Z",
+        "completed_at": "2026-11-04T06:25:00Z",
         "current_stage": null
        }
       ]
@@ -4757,8 +4757,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Ayvalık Dolum Tankı",
-        "started_at": "2026-11-04T12:00:00.000000Z",
-        "completed_at": "2026-11-04T13:19:00.000000Z"
+        "started_at": "2026-11-04T12:00:00Z",
+        "completed_at": "2026-11-04T13:19:00Z"
        },
        {
         "id": 385,
@@ -4768,8 +4768,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 750ml",
         "volume_litre": 0.75,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-04T02:26:00.000000Z",
-        "completed_at": "2026-11-04T03:08:00.000000Z"
+        "started_at": "2026-11-04T02:26:00Z",
+        "completed_at": "2026-11-04T03:08:00Z"
        }
       ],
       "in_progress": [
@@ -4781,7 +4781,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -4792,7 +4792,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -4803,7 +4803,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -4814,7 +4814,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -5007,7 +5007,10 @@
    "body": null,
    "status": 422,
    "response": {
-    "message": "The date field must be a valid date.",
+    "title": "Unprocessable Content",
+    "status": 422,
+    "detail": "The date field must be a valid date.",
+    "instance": "/api/daily-summary",
     "errors": {
      "date": [
       "The date field must be a valid date."
@@ -5035,8 +5038,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -5054,8 +5057,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -5073,8 +5076,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -5092,8 +5095,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -5111,8 +5114,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3273,
@@ -5141,7 +5144,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -5152,7 +5155,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -5163,7 +5166,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -5174,7 +5177,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],
@@ -5360,7 +5363,7 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -5372,7 +5375,7 @@
         "quantity_kg": 5000,
         "supplier": "Kaya Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-06T15:35:12.000000Z",
+        "received_at": "2026-11-06T15:35:12Z",
         "started_at": null,
         "completed_at": null,
         "current_stage": null
@@ -5386,8 +5389,8 @@
         "quantity_kg": 4080,
         "supplier": "Osman Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-03T12:55:00.000000Z",
-        "started_at": "2026-11-03T12:58:00.000000Z",
+        "received_at": "2026-11-03T12:55:00Z",
+        "started_at": "2026-11-03T12:58:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3227,
@@ -5405,8 +5408,8 @@
         "quantity_kg": 6380,
         "supplier": "Arslan Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T11:32:00.000000Z",
-        "started_at": "2026-11-04T11:36:00.000000Z",
+        "received_at": "2026-11-04T11:32:00Z",
+        "started_at": "2026-11-04T11:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3237,
@@ -5424,8 +5427,8 @@
         "quantity_kg": 2185,
         "supplier": "Halil Şahin",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T14:31:00.000000Z",
-        "started_at": "2026-11-04T14:36:00.000000Z",
+        "received_at": "2026-11-04T14:31:00Z",
+        "started_at": "2026-11-04T14:36:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3249,
@@ -5443,8 +5446,8 @@
         "quantity_kg": 4415,
         "supplier": "Mehmet Kurt",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T08:56:00.000000Z",
-        "started_at": "2026-11-05T09:00:00.000000Z",
+        "received_at": "2026-11-05T08:56:00Z",
+        "started_at": "2026-11-05T09:00:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3261,
@@ -5462,8 +5465,8 @@
         "quantity_kg": 2230,
         "supplier": "Koç Zeytincilik",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-05T14:59:00.000000Z",
-        "started_at": "2026-11-05T15:02:00.000000Z",
+        "received_at": "2026-11-05T14:59:00Z",
+        "started_at": "2026-11-05T15:02:00Z",
         "completed_at": null,
         "current_stage": {
          "batch_process_id": 3272,
@@ -5483,9 +5486,9 @@
         "quantity_kg": 8000,
         "supplier": "Yılmaz Çiftliği",
         "production_line": "Zeytinyağı Üretim Hattı",
-        "received_at": "2026-11-04T15:35:12.000000Z",
-        "started_at": "2026-11-06T15:35:12.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z",
+        "received_at": "2026-11-04T15:35:12Z",
+        "started_at": "2026-11-06T15:35:12Z",
+        "completed_at": "2026-11-06T15:35:13Z",
         "current_stage": null
        }
       ]
@@ -5498,14 +5501,14 @@
         "production_batch_id": 273,
         "batch_code": "P-261105-02",
         "stage_name": "Asitlik Analizi",
-        "submitted_at": "2026-11-06T10:00:00.000000Z"
+        "submitted_at": "2026-11-06T10:00:00Z"
        },
        {
         "id": 3273,
         "production_batch_id": 273,
         "batch_code": "P-261105-02",
         "stage_name": "Ön Dinlenme",
-        "submitted_at": "2026-11-06T10:00:00.000000Z"
+        "submitted_at": "2026-11-06T10:00:00Z"
        }
       ]
      },
@@ -5519,8 +5522,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 2,
@@ -5530,8 +5533,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 5,
@@ -5541,8 +5544,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.8",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 7,
@@ -5552,8 +5555,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 9,
@@ -5563,8 +5566,8 @@
         "finished_product": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.9",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 10,
@@ -5574,8 +5577,8 @@
         "finished_product": "Klasik Blend 0.5 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 11,
@@ -5585,8 +5588,8 @@
         "finished_product": "Klasik Blend 0.5 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Klasik Blend 0.5",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 13,
@@ -5596,8 +5599,8 @@
         "finished_product": "Portakallı Zeytinyağı 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 15,
@@ -5607,8 +5610,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
-        "completed_at": "2026-11-06T15:35:13.000000Z"
+        "started_at": "2026-11-06T15:35:13Z",
+        "completed_at": "2026-11-06T15:35:13Z"
        },
        {
         "id": 389,
@@ -5618,8 +5621,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre": 0.25,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T05:37:00.000000Z",
-        "completed_at": "2026-11-06T07:25:00.000000Z"
+        "started_at": "2026-11-06T05:37:00Z",
+        "completed_at": "2026-11-06T07:25:00Z"
        },
        {
         "id": 388,
@@ -5629,8 +5632,8 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı",
-        "started_at": "2026-11-06T01:19:00.000000Z",
-        "completed_at": "2026-11-06T02:13:00.000000Z"
+        "started_at": "2026-11-06T01:19:00Z",
+        "completed_at": "2026-11-06T02:13:00Z"
        }
       ],
       "in_progress": [
@@ -5642,7 +5645,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre": 1,
         "source_storage_unit": "Dolum Tankı — Gemlik 0.3",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -5653,7 +5656,7 @@
         "finished_product": "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Ayvalık 0.4",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -5664,7 +5667,7 @@
         "finished_product": "Portakallı Zeytinyağı 500ml",
         "volume_litre": 0.5,
         "source_storage_unit": "Dolum Tankı — Portakallı Zeytinyağı",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        },
        {
@@ -5675,7 +5678,7 @@
         "finished_product": "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre": 5,
         "source_storage_unit": "Gemlik Dolum Tankı (Üretim)",
-        "started_at": "2026-11-06T15:35:13.000000Z",
+        "started_at": "2026-11-06T15:35:13Z",
         "completed_at": null
        }
       ],

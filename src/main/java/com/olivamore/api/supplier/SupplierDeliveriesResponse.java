@@ -1,6 +1,5 @@
 package com.olivamore.api.supplier;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
@@ -17,7 +16,6 @@ record SupplierDeliveriesResponse(List<Delivery> data, Summary summary) {
 		LocalDateTime receivedAt,
 		String fieldCode,
 		List<String> productTypeNames,
-		@JsonFormat(shape = JsonFormat.Shape.STRING)
 		BigDecimal declaredQuantityKg,
 		JsonNode weighedQuantityKg,
 		LocalDateTime weighedAt,

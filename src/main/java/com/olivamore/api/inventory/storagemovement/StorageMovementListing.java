@@ -1,24 +1,22 @@
 package com.olivamore.api.inventory.storagemovement;
 
-import com.olivamore.api.shared.error.LaravelValidationException;
-import com.olivamore.api.shared.validation.LaravelMessages;
-import com.olivamore.api.shared.web.LaravelPaginator;
-import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
+import com.olivamore.api.shared.error.ValidationFailedException;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.web.Pages;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.web.PagedModel;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /** Tankin hareketleri ve tarih aralikli gecmisi: en yeni once; {@code per_page} varsa sayfali. */
 @Component
@@ -35,33 +33,25 @@ public class StorageMovementListing {
 	}
 
 	/** Tankin butun hareketleri. */
-	public ListResponse<StorageMovementResponse> forUnit(long unitId, HttpServletRequest request) {
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(responses.list(movements.findByStorageUnitIdOrderByMovedAtDescIdDesc(unitId)));
-		}
-		int page = Listing.currentPage(request);
-		Page<StorageMovement> rows = movements.findByStorageUnitIdOrderByMovedAtDescIdDesc(unitId,
-			PageRequest.of(page - 1, perPage.get()));
-		return LaravelPaginator.paginate(responses.list(rows.getContent()), rows.getTotalElements(), page, perPage.get(),
-			request);
+	public PagedModel<StorageMovementResponse> forUnit(long unitId, Pageable pageable) {
+		return Pages.of(pageable,
+			requested -> page(movements.findByStorageUnitId(unitId, Pages.sorted(requested, NEWEST_FIRST))),
+			() -> responses.list(movements.findByStorageUnitId(unitId, NEWEST_FIRST)));
 	}
 
 	/** {@code date_from}, {@code date_to}: moved_at tarih araligi ("0" verilmemis sayilir). */
-	ListResponse<StorageMovementResponse> history(long unitId, String dateFrom, String dateTo,
-		HttpServletRequest request) {
+	PagedModel<StorageMovementResponse> history(long unitId, String dateFrom, String dateTo, Pageable pageable) {
 		LocalDate from = date("date_from", dateFrom);
 		LocalDate to = date("date_to", dateTo);
 		Specification<StorageMovement> specification = forUnit(unitId, from, to);
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(responses.list(movements.findAll(specification, NEWEST_FIRST)));
-		}
-		int page = Listing.currentPage(request);
-		Page<StorageMovement> rows = movements.findAll(specification,
-			PageRequest.of(page - 1, perPage.get(), NEWEST_FIRST));
-		return LaravelPaginator.paginate(responses.list(rows.getContent()), rows.getTotalElements(), page, perPage.get(),
-			request);
+		return Pages.of(pageable,
+			requested -> page(movements.findAll(specification, Pages.sorted(requested, NEWEST_FIRST))),
+			() -> responses.list(movements.findAll(specification, NEWEST_FIRST)));
+	}
+
+	private Page<StorageMovementResponse> page(Page<StorageMovement> rows) {
+		List<StorageMovementResponse> content = responses.list(rows.getContent());
+		return new PageImpl<>(content, rows.getPageable(), rows.getTotalElements());
 	}
 
 	private static Specification<StorageMovement> forUnit(long unitId, LocalDate from, LocalDate to) {
@@ -87,8 +77,7 @@ public class StorageMovementListing {
 			return LocalDate.parse(value);
 		}
 		catch (DateTimeParseException e) {
-			throw new LaravelValidationException(
-				java.util.Map.of(field, List.of(LaravelMessages.format(LaravelMessages.DATE, field))));
+			throw ValidationFailedException.of(field, MessageKeys.DATE);
 		}
 	}
 

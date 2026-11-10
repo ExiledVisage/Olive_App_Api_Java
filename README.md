@@ -102,37 +102,48 @@ yalnızca modül kökündedir (ör. `productionline.ProductionLineResources`, `p
 `inventory.MaterialResources`). Spring Modulith bunu ve modüller arası döngü olmamasını `ModularityTests`
 ile doğrular.
 
-Bir Laravel controller'ını taşırken:
+API sözleşmesi:
 
 ```java
 @RestController
-@RequiresPermission("order.view")                // Laravel: ->middleware('permission:order.view')
 class OrderController {
 
-    @GetMapping("/api/orders/{order}")
-    DataResponse<OrderResource> show(@Bound Order order) { ... }      // route model binding, yoksa 404
+    @GetMapping("/api/orders")
+    @PreAuthorize("hasAuthority('order.view')")
+    PagedModel<OrderResponse> index(@RequestParam(required = false) String status, Pageable pageable) {
+        return Pages.of(pageable, responses::page, () -> responses.list(status));
+    }
 
     @PostMapping("/api/orders")
-    @RequiresPermission("order.create")
-    ResponseEntity<DataResponse<OrderResource>> store(RequestInput input, CurrentUser user) {
-        ValidatedInput v = validator.validate(input, Rules.of()        // FormRequest::rules(), aynı sırayla
-            .field("customer_id", "required|integer|exists:customers,id")
-            .field("items", "required|array|min:1")
-            .field("items.*.quantity", "required|integer|min:1"));
-        return DataResponse.created(...);                              // yeni model -> 201
+    @PreAuthorize("hasAuthority('order.create')")
+    ResponseEntity<DataResponse<OrderResponse>> store(@Valid @RequestBody CreateOrderRequest request) {
+        return DataResponse.created(...);                                // 201
+    }
+}
+
+record CreateOrderRequest(
+    @NotNull(message = MessageKeys.REQUIRED) Long customerId,
+    @Size(max = 1000, message = MessageKeys.SIZE_MAX) String note) {
+
+    CreateOrderRequest {
+        note = Texts.trim(note);                                         // kırpılır, boş metin null
     }
 }
 ```
 
-Laravel uyumluluğu için kurallar:
-- **Giriş:** `/api/**` altındaki her endpoint varsayılan olarak giriş ister; giriş istemeyenler `@Public`. Rol/izin: `@RequiresRole`, `@RequiresPermission` (sınıf ve metot birlikte kullanılabilir, admin her izne sahip). Sıra Laravel'deki gibi 401 → 404 → 403.
-- **Validation:** `LaravelValidator` + `Rules`, kurallar Laravel'deki metnin aynısı ve aynı sırada (hata sırası buna bağlı). Desteklenmeyen bir kural ilk kullanımda hata verir; Laravel'in `ValidatesAttributes` kodundan birebir eklenir. Bean Validation (`@Valid`) kullanılmaz.
-- **Girdi:** `RequestInput` (JSON gövdesi + query, kırpılmış, boş metin null). `@RequestBody` kullanılmaz.
-- **Hatalar:** `BusinessRuleException` (422 + `errors`), `HttpStatusException.unprocessable(...)` (`abort(422, ...)`, sadece `message`), `ModelNotFoundException` (404), `LaravelValidationException` (422).
-- **Cevaplar:** tek kayıt `DataResponse.of(...)` / yeni kayıt `DataResponse.created(...)`, liste `Listing.of(...)` (`per_page` yoksa sayfasız).
-- **Veritabanı:** Laravel tablolarına yazan modüller `Db` kullanır (JDBC, Eloquent davranışı: `create`, `update`, `whereIn` ile ilişki yükleme). Route model binding: `@Bound(table = "process_types", model = "ProcessType") Row processType`. JPA entity'leri (`@LaravelModel`) sadece identity'de. Zaman damgaları `Timestamps.now()` (UTC, saniyeye kırpılmış).
-- **Resource'lar:** `Map` (LinkedHashMap) olarak kurulur; Laravel'de `whenLoaded` ile yüklenmemiş ilişkinin anahtarı yazılmaz. Cast'ler resource'ta (`decimal:4` → `"0.9150"`).
+- **Girdi:** JSON gövdesi `@Valid @RequestBody` ile istek record'una, query parametreleri `@RequestParam` /
+  `@ModelAttribute` ile bağlanır (query parametreleri kırpılır, boş değer verilmemiş sayılır). Metin alanları
+  record kurucusunda `Texts.trim` ile temizlenir (şifre ve token hariç). Boolean alanlar yalnızca `true`/`false`,
+  metin alanına sayı gelmez. Tarih-saat ISO-8601 (`2026-11-06T18:35:14+03:00`, offset'siz değer UTC kabul edilir).
+- **Cevaplar:** tek kayıt `{"data": {...}}` (`DataResponse`), sayfasız liste `{"data": [...]}` (`ListResponse`),
+  sayfalı liste Spring Data `PagedModel`: `{"content": [...], "page": {"size", "number", "total_elements",
+  "total_pages"}}`. Sayfa `?page=0&size=20` (0 tabanlı, en fazla 200, ikisi birlikte); verilmezse bütün kayıtlar.
+  Tarihler ISO-8601 UTC (`2026-11-06T15:35:14Z`), sayılar JSON sayısı.
+- **Hatalar:** RFC 9457 `ProblemDetail` (`application/problem+json`):
+  `{"title": "Unprocessable Content", "status": 422, "detail": "...", "instance": "/api/orders", "errors": {"alan": ["..."]}}`.
+  `errors` yalnızca alan hatalarında. `ValidationFailedException` (alan hataları), `BusinessRuleException` (422),
+  `HttpStatusException` (durum + mesaj), `ModelNotFoundException` (404, `Order 7 not found.`).
+- **Mesajlar:** `messages.properties`; anotasyonlarda `MessageKeys` (`{validation.required}`), `{attribute}` alanın adı.
 - **Rate limit:** `@Throttle("login")` (adlandırılmış, `NamedLimiter` bean'i) ya da `@Throttle(maxAttempts = 30, decayMinutes = 1)`.
 - **Silme:** `DeletionGuard.of("...").usedBy("...", n).check()`
-- **Şema:** Geçiş boyunca Laravel'in tablolarına Java migration yazmaz. Java sadece kendi altyapı tabloları için migration ekleyebilir (V2: `event_publication`).
-- **Doğrulama:** Her modül için Laravel'in davranışı `reference/capture_*.py` ile yakalanır, Java'ya `*ParityIT` ile tekrar oynatılır (örnek: `IdentityParityIT`). Farklar ya düzeltilir ya [DEVIATIONS.md](docs/laravel-reference/DEVIATIONS.md)'ye yazılır.
+- **Doğrulama:** Laravel'den yakalanan davranış `reference/capture_*.py` ile, Java'ya `*ParityIT` ile tekrar oynatılır.

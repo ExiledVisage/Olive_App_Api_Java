@@ -8,11 +8,11 @@ import com.olivamore.api.production.batchprocess.BatchProcessRepository;
 import com.olivamore.api.production.batchprocess.ProcessStatus;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
+import com.olivamore.api.shared.json.IsoDateTimeDeserializer;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,11 +58,11 @@ class ProductionBatchService {
 		ValidationErrors errors = new ValidationErrors();
 		List<Long> inputIds = request.inputProductionProductTypeIds();
 		if (batches.existsByBatchCode(request.batchCode())) {
-			errors.add("batch_code", LaravelMessages.UNIQUE);
+			errors.add("batch_code", MessageKeys.UNIQUE);
 		}
 		checkInputTypes(errors, inputIds);
 		if (!queries.lineExists(request.productionLineId())) {
-			errors.add("production_line_id", LaravelMessages.EXISTS);
+			errors.add("production_line_id", MessageKeys.EXISTS);
 		}
 		checkSupplier(errors, request.supplierId(), request.supplierFieldId());
 		LocalDateTime receivedAt = date(errors, "received_at", request.receivedAt());
@@ -100,7 +100,7 @@ class ProductionBatchService {
 		ProductionBatch batch = find(id);
 		ValidationErrors errors = new ValidationErrors();
 		if (request.batchCode() != null && batches.existsByBatchCodeAndIdNot(request.batchCode(), id)) {
-			errors.add("batch_code", LaravelMessages.UNIQUE);
+			errors.add("batch_code", MessageKeys.UNIQUE);
 		}
 		checkSupplier(errors, value(request.supplierId()), value(request.supplierFieldId()));
 		Patch<LocalDateTime> receivedAt = patchDate(errors, "received_at", request.receivedAt());
@@ -150,7 +150,7 @@ class ProductionBatchService {
 	private void checkInputTypes(ValidationErrors errors, List<Long> ids) {
 		for (int i = 0; i < ids.size(); i++) {
 			if (ids.get(i) == null) {
-				errors.add(INPUT_TYPES + "." + i, LaravelMessages.REQUIRED);
+				errors.add(INPUT_TYPES + "." + i, MessageKeys.REQUIRED);
 			}
 		}
 		errors.distinct(INPUT_TYPES, null, ids);
@@ -162,10 +162,10 @@ class ProductionBatchService {
 
 	private void checkSupplier(ValidationErrors errors, Long supplierId, Long fieldId) {
 		if (supplierId != null && !queries.supplierExists(supplierId)) {
-			errors.add("supplier_id", LaravelMessages.EXISTS);
+			errors.add("supplier_id", MessageKeys.EXISTS);
 		}
 		if (fieldId != null && !queries.fieldExists(fieldId)) {
-			errors.add("supplier_field_id", LaravelMessages.EXISTS);
+			errors.add("supplier_field_id", MessageKeys.EXISTS);
 		}
 	}
 
@@ -177,9 +177,9 @@ class ProductionBatchService {
 		if (text == null) {
 			return null;
 		}
-		Optional<LocalDateTime> parsed = FlexibleDateTimeDeserializer.parse(text);
+		Optional<LocalDateTime> parsed = IsoDateTimeDeserializer.parse(text);
 		if (parsed.isEmpty()) {
-			errors.add(field, LaravelMessages.DATE);
+			errors.add(field, MessageKeys.DATE);
 			return null;
 		}
 		return parsed.get().withNano(0);

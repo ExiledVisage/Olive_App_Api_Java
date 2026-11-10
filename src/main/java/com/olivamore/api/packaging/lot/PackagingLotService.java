@@ -8,11 +8,11 @@ import com.olivamore.api.packaging.lot.LotEnums.Source;
 import com.olivamore.api.packaging.supplier.ProductSupplier;
 import com.olivamore.api.packaging.supplier.ProductSupplierRepository;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +51,7 @@ public class PackagingLotService {
 	long receive(long itemId, CreatePackagingLotRequest request, long userId) {
 		item(itemId);
 		if (lots.existsByItemIdAndLotCode(itemId, request.lotCode())) {
-			throw LaravelValidationException.of("lot_code", DUPLICATE_LOT);
+			throw ValidationFailedException.of("lot_code", DUPLICATE_LOT);
 		}
 		return receive(itemId, request.lotCode(), request.quantity(), request.receivedAt(),
 			supplier(request.productSupplierId()), request.note(), userId);
@@ -79,7 +79,7 @@ public class PackagingLotService {
 		PackagingLot lot = find(lotId);
 		if (request.lotCode() != null && lots.existsByItemIdAndLotCodeAndIdNot(lot.getItem().getId(),
 			request.lotCode(), lotId)) {
-			throw LaravelValidationException.of("lot_code", DUPLICATE_LOT);
+			throw ValidationFailedException.of("lot_code", DUPLICATE_LOT);
 		}
 		Patch.ifPresent(request.productSupplierId(), value -> lot.assignSupplier(supplier(value)));
 		lot.apply(request);
@@ -90,7 +90,7 @@ public class PackagingLotService {
 	void adjust(long lotId, AdjustPackagingLotRequest request, long userId) {
 		int delta = request.delta();
 		if (delta == 0) {
-			throw LaravelValidationException.of("delta", "Düzeltme miktarı sıfır olamaz.");
+			throw ValidationFailedException.of("delta", "Düzeltme miktarı sıfır olamaz.");
 		}
 		PackagingLot lot = lots.findForUpdate(lotId)
 			.orElseThrow(() -> new ModelNotFoundException("PackagingLot", lotId));
@@ -150,8 +150,8 @@ public class PackagingLotService {
 		if (id == null) {
 			return null;
 		}
-		return suppliers.findById(id).orElseThrow(() -> LaravelValidationException.of("product_supplier_id",
-			LaravelMessages.format(LaravelMessages.EXISTS, "product_supplier_id")));
+		return suppliers.findById(id).orElseThrow(() -> ValidationFailedException.of("product_supplier_id",
+			MessageKeys.EXISTS));
 	}
 
 	private static MovementType movementType(AdjustReason reason, int delta) {

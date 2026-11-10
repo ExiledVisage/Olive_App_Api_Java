@@ -1,5 +1,6 @@
 package com.olivamore.api.shared.web;
 
+import com.olivamore.api.shared.error.Problems;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ReadListener;
 import jakarta.servlet.ServletException;
@@ -8,8 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.OncePerRequestFilter;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -23,7 +25,7 @@ import java.util.Set;
  * govde hic okunmaz; beyan yoksa en fazla sinir kadar okunur. Okunan govde tekrar okunabilir: giris limiti
  * e-postayi buradan alir.
  * <p>
- * WebConfig'te FilterRegistrationBean ile kaydedilir (bean degil; bkz. {@link InputNormalizationFilter}).
+ * WebConfig'te FilterRegistrationBean ile kaydedilir: bean olsaydi Spring Modulith insight proxy'lerdi.
  */
 public class RequestBodyLimitFilter extends OncePerRequestFilter {
 
@@ -31,9 +33,14 @@ public class RequestBodyLimitFilter extends OncePerRequestFilter {
 		HttpMethod.OPTIONS.name());
 
 	private final int maxBytes;
+	private final String detail;
+	private final JsonMapper json;
 
-	public RequestBodyLimitFilter(int maxBytes) {
+	/** @param detail 413 cevabinin mesaji */
+	public RequestBodyLimitFilter(int maxBytes, String detail, JsonMapper json) {
 		this.maxBytes = maxBytes;
+		this.detail = detail;
+		this.json = json;
 	}
 
 	@Override
@@ -44,21 +51,19 @@ public class RequestBodyLimitFilter extends OncePerRequestFilter {
 			return;
 		}
 		if (request.getContentLengthLong() > maxBytes) {
-			reject(response);
+			reject(request, response);
 			return;
 		}
 		byte[] body = request.getInputStream().readNBytes(maxBytes + 1);
 		if (body.length > maxBytes) {
-			reject(response);
+			reject(request, response);
 			return;
 		}
 		chain.doFilter(new CachedBodyRequest(request, body), response);
 	}
 
-	private static void reject(HttpServletResponse response) throws IOException {
-		response.setStatus(413);
-		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-		response.getWriter().write("{\"message\":\"Payload Too Large.\"}");
+	private void reject(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Problems.write(request, response, Problems.of(HttpStatus.CONTENT_TOO_LARGE, detail), json);
 	}
 
 	private static final class CachedBodyRequest extends HttpServletRequestWrapper {

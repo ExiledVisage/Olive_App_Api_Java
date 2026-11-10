@@ -1,15 +1,20 @@
 package com.olivamore.api.identity.auth;
 
-import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.MessageKeys;
+import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 record LoginRequest(
-	@NotBlank(message = LaravelMessages.REQUIRED)
-	@Email(message = LaravelMessages.EMAIL)
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Email(message = MessageKeys.EMAIL)
 	String email,
 
-	@NotNull(message = LaravelMessages.REQUIRED)
+	@NotBlank(message = MessageKeys.REQUIRED)
 	String password) {
+
+	LoginRequest {
+		email = Texts.trim(email);
+	}
+
 }
