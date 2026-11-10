@@ -1,311 +1,272 @@
 package com.olivamore.api.analytics.analytics;
 
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
+import com.olivamore.api.analytics.analytics.AnalyticsQueries.BatchRow;
+import com.olivamore.api.analytics.analytics.AnalyticsQueries.CustomerNames;
+import com.olivamore.api.analytics.analytics.AnalyticsQueries.ItemRow;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.BatchTotals;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.CustomerDetail;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.CustomerRef;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.CustomerRow;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.CustomerSlot;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.CustomerSummary;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.Customers;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.OrderTotals;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.Period;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.ProductRow;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.Report;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.ReportRow;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.SupplierRow;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.SupplierSummary;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.Suppliers;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.Variety;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.Yield;
+import com.olivamore.api.analytics.analytics.AnalyticsResponse.YieldSlot;
+import com.olivamore.api.shared.error.HttpStatusException;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import com.olivamore.api.shared.web.PhpNumbers;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.OptionalLong;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.ToDoubleFunction;
 
 /**
- * Laravel {@code AnalyticsService}: randiman, tedarikci ve musteri ozetleri, rapor olusturucu.
- * <p>
- * Asamalar adlarindan degil gorevlerinden taninir: gelen zeytin (zeytin tartan ilk tartim), sikilan zeytin
- * (donusumun {@code input_quantity}'si), yag ve pirina (tartim), asitlik (yag analizi). Toplamlar uzerinden
- * hesaplanir; PHP float (double) toplama sirasi korunur.
+ * Randiman, tedarikci ve musteri ozetleri, rapor olusturucu. Toplamlar {@code double} ve satir sirasiyla toplanir,
+ * oranlar yuvarlanmamis toplamlardan hesaplanir.
  */
 @Service
+@Transactional(readOnly = true)
 class AnalyticsService {
 
-	static final String DAY = "day";
-	static final String WEEK = "week";
-	static final String MONTH = "month";
+	private static final String DAY = "day";
+	private static final String WEEK = "week";
+	private static final String MONTH = "month";
 
-	/** Parti satiri: gelen, sikilan, yag, pirina, asitlik. */
-	record BatchRow(long batchId, LocalDateTime receivedAt, Long supplierId, String supplierName, String supplierCode, Long fieldId,
-		String fieldCode, Long productTypeId, String productTypeName, Double incoming, Double pressed, Double oil, Double pomace,
-		Double acidity) {
+	private static final DateTimeFormatter YEAR_MONTH = DateTimeFormatter.ofPattern("yyyy-MM");
+
+	private record Bucket(String key, String start) {
 	}
 
-	/** Iptal edilmemis siparisin kalemi. */
-	record ItemRow(long orderId, Long customerId, Row customer, LocalDate orderDate, Long finishedProductId, Row product, long quantity) {
-	}
+	private final AnalyticsQueries queries;
 
-	private final Db db;
-
-	AnalyticsService(Db db) {
-		this.db = db;
+	AnalyticsService(AnalyticsQueries queries) {
+		this.queries = queries;
 	}
 
 	// ---- randiman ------------------------------------------------------------------
 
-	Map<String, Object> yield(Range range, Long productTypeId, Long supplierId) {
-		List<BatchRow> rows = batchRows(range, supplierId, productTypeId, null);
+	Yield yield(String from, String to, String productTypeId, String supplierId) {
+		Range range = Range.of(from, to);
+		ValidationErrors errors = new ValidationErrors();
+		Long type = existingId(errors, "product_type_id", productTypeId, "production_product_types");
+		Long supplier = existingId(errors, "supplier_id", supplierId, "suppliers");
+		errors.throwIfAny();
+
+		List<BatchRow> rows = queries.batches(range, supplier, type, null);
 		String bucket = bucketFor(range);
-		List<Map<String, Object>> series = new ArrayList<>();
-		for (Map<String, Object> slot : emptyBuckets(range, bucket)) {
-			Map<String, Object> m = new LinkedHashMap<>(slot);
-			m.putAll(totals(rows.stream().filter(r -> bucketKey(r.receivedAt().toLocalDate(), bucket).equals(slot.get("key"))).toList()));
-			series.add(m);
-		}
-		List<Map<String, Object>> byVariety = new ArrayList<>();
-		for (List<BatchRow> group : groupBy(rows, r -> r.productTypeId() == null ? "" : r.productTypeId()).values()) {
-			Map<String, Object> m = new LinkedHashMap<>();
-			m.put("product_type_id", group.getFirst().productTypeId());
-			m.put("name", group.getFirst().productTypeName());
-			m.putAll(totals(group));
-			byVariety.add(m);
-		}
-		sortByDesc(byVariety, "pressed_kg");
-		Map<String, Object> out = new LinkedHashMap<>();
-		out.put("bucket", bucket);
-		out.put("summary", totals(rows));
-		out.put("series", series);
-		out.put("by_variety", byVariety);
-		return out;
+		List<YieldSlot> series = emptyBuckets(range, bucket).stream()
+			.map(slot -> new YieldSlot(slot.key(), slot.start(), totals(rows.stream()
+				.filter(r -> bucketKey(r.receivedAt().toLocalDate(), bucket).equals(slot.key())).toList())))
+			.toList();
+		List<Variety> varieties = new ArrayList<>(groupBy(rows, BatchRow::productTypeId).values().stream()
+			.map(group -> new Variety(group.getFirst().productTypeId(), group.getFirst().productTypeName(), totals(group)))
+			.toList());
+		varieties.sort(descending(v -> v.totals().pressedKg()));
+		return new Yield(bucket, totals(rows), series, varieties);
 	}
 
 	// ---- tedarikciler ----------------------------------------------------------------
 
-	Map<String, Object> suppliers(Range range, Long productTypeId) {
-		List<BatchRow> rows = batchRows(range, null, productTypeId, null).stream().filter(r -> r.supplierId() != null).toList();
-		List<Map<String, Object>> suppliers = new ArrayList<>();
-		for (List<BatchRow> group : groupBy(rows, BatchRow::supplierId).values()) {
-			BatchRow first = group.getFirst();
-			Map<String, Object> m = new LinkedHashMap<>();
-			m.put("supplier_id", first.supplierId());
-			m.put("name", first.supplierName());
-			m.put("code", first.supplierCode());
-			m.put("last_delivery_at", group.stream().map(BatchRow::receivedAt).filter(Objects::nonNull).max(Comparator.naturalOrder()).orElse(null));
-			m.putAll(totals(group));
-			suppliers.add(m);
-		}
-		sortByDesc(suppliers, "incoming_kg");
-		Map<String, Object> summary = new LinkedHashMap<>(totals(rows));
-		summary.put("supplier_count", suppliers.size());
-		Map<String, Object> out = new LinkedHashMap<>();
-		out.put("summary", summary);
-		out.put("suppliers", suppliers);
-		return out;
+	Suppliers suppliers(String from, String to, String productTypeId) {
+		Range range = Range.of(from, to);
+		ValidationErrors errors = new ValidationErrors();
+		Long type = existingId(errors, "product_type_id", productTypeId, "production_product_types");
+		errors.throwIfAny();
+
+		List<BatchRow> rows = queries.batches(range, null, type, null).stream()
+			.filter(r -> r.supplierId() != null).toList();
+		List<SupplierRow> suppliers = new ArrayList<>(groupBy(rows, BatchRow::supplierId).values().stream()
+			.map(group -> {
+				BatchRow first = group.getFirst();
+				return new SupplierRow(first.supplierId(), first.supplierName(), first.supplierCode(),
+					group.stream().map(BatchRow::receivedAt).filter(Objects::nonNull)
+						.max(Comparator.naturalOrder()).orElse(null),
+					totals(group));
+			})
+			.toList());
+		suppliers.sort(descending(s -> s.totals().incomingKg()));
+		return new Suppliers(new SupplierSummary(totals(rows), suppliers.size()), suppliers);
 	}
 
 	// ---- musteriler -------------------------------------------------------------------
 
-	Map<String, Object> customers(Range range) {
-		List<ItemRow> items = orderItems(range.fromDate(), range.toDate(), null, null);
-		List<Map<String, Object>> customers = new ArrayList<>();
-		for (List<ItemRow> group : groupBy(items, i -> i.customerId() == null ? "" : i.customerId()).values()) {
-			Row customer = group.getFirst().customer();
-			Map<String, Object> m = new LinkedHashMap<>();
-			m.put("customer_id", customer == null ? null : customer.get("id"));
-			m.put("name", customerName(customer));
-			m.put("order_count", orderCount(group));
-			m.putAll(orderTotals(group));
-			List<Map<String, Object>> products = productBreakdown(group);
-			m.put("top_product", products.isEmpty() ? null : products.getFirst().get("name"));
-			customers.add(m);
-		}
-		sortByDesc(customers, "litres");
-		Map<String, Object> summary = new LinkedHashMap<>(orderTotals(items));
-		summary.put("order_count", orderCount(items));
-		summary.put("customer_count", customers.size());
-		Map<String, Object> out = new LinkedHashMap<>();
-		out.put("summary", summary);
-		out.put("customers", customers);
-		return out;
+	Customers customers(String from, String to) {
+		Range range = Range.of(from, to);
+		List<ItemRow> items = queries.orderItems(range.fromDate(), range.toDate(), null, null);
+		List<CustomerRow> customers = new ArrayList<>(groupBy(items, ItemRow::customerId).values().stream()
+			.map(group -> {
+				ItemRow first = group.getFirst();
+				List<ProductRow> products = productBreakdown(group);
+				return new CustomerRow(first.customerId(), displayName(first.companyName(), first.customerName()),
+					orderCount(group), orderTotals(group), products.isEmpty() ? null : products.getFirst().name());
+			})
+			.toList());
+		customers.sort(descending(c -> c.totals().litres()));
+		return new Customers(new CustomerSummary(orderTotals(items), orderCount(items), customers.size()), customers);
 	}
 
-	/**
-	 * Tek musteri: donemlere gore siparisler, urun tercihi, onceki donem. Onceki donem Laravel'deki gibi
-	 * {@code subDays(gun + 0.99..)}: bir gun uzun (Carbon ondalik gunu yuvarliyor).
-	 */
-	Map<String, Object> customer(Row customer, Range range) {
-		List<ItemRow> items = orderItems(range.fromDate(), range.toDate(), customer.id(), null);
+	/** Tek musteri: donemlere gore siparisler, urun tercihi, bir gun uzun onceki donem. */
+	CustomerDetail customer(long id, String from, String to) {
+		CustomerNames customer = queries.customer(id).orElseThrow(() -> new ModelNotFoundException("Customer", id));
+		Range range = Range.of(from, to);
+		List<ItemRow> items = queries.orderItems(range.fromDate(), range.toDate(), id, null);
 		String bucket = bucketFor(range);
-		List<Map<String, Object>> series = new ArrayList<>();
-		for (Map<String, Object> slot : emptyBuckets(range, bucket)) {
-			List<ItemRow> inSlot = items.stream().filter(i -> i.orderDate() != null && bucketKey(i.orderDate(), bucket).equals(slot.get("key"))).toList();
-			Map<String, Object> m = new LinkedHashMap<>(slot);
-			m.putAll(orderTotals(inSlot));
-			m.put("order_count", orderCount(inSlot));
-			series.add(m);
-		}
+		List<CustomerSlot> series = emptyBuckets(range, bucket).stream()
+			.map(slot -> {
+				List<ItemRow> inSlot = items.stream()
+					.filter(i -> i.orderDate() != null && bucketKey(i.orderDate(), bucket).equals(slot.key())).toList();
+				return new CustomerSlot(slot.key(), slot.start(), orderTotals(inSlot), orderCount(inSlot));
+			})
+			.toList();
 		long days = range.inclusiveDays();
-		List<ItemRow> previous = orderItems(range.fromDate().minusDays(days + 1), range.fromDate().minusDays(1), customer.id(), null);
-		Map<String, Object> c = new LinkedHashMap<>();
-		c.put("id", customer.get("id"));
-		c.put("name", customerName(customer));
-		Map<String, Object> summary = new LinkedHashMap<>(orderTotals(items));
-		summary.put("order_count", orderCount(items));
-		Map<String, Object> prev = new LinkedHashMap<>(orderTotals(previous));
-		prev.put("order_count", orderCount(previous));
-		Map<String, Object> out = new LinkedHashMap<>();
-		out.put("customer", c);
-		out.put("bucket", bucket);
-		out.put("summary", summary);
-		out.put("previous", prev);
-		out.put("series", series);
-		out.put("products", productBreakdown(items));
-		return out;
+		List<ItemRow> previous = queries.orderItems(range.fromDate().minusDays(days + 1), range.fromDate().minusDays(1),
+			id, null);
+		return new CustomerDetail(new CustomerRef(customer.id(), displayName(customer.companyName(), customer.name())),
+			bucket, period(items), period(previous), series, productBreakdown(items));
 	}
 
-	// ---- parti satirlari ------------------------------------------------------------------
+	private static Period period(List<ItemRow> items) {
+		return new Period(orderTotals(items), orderCount(items));
+	}
 
-	/** Aralikta gelmis, yagi tartilmis ve sikilan miktari olan partiler. */
-	List<BatchRow> batchRows(Range range, Object supplierId, Object productTypeId, Object fieldId) {
-		Map<Long, Role> roles = stageRoles();
-		StringBuilder sql = new StringBuilder("select id, received_at, supplier_id, supplier_field_id from production_batches"
-			+ " where received_at between ? and ?");
-		List<Object> args = new ArrayList<>(List.of(range.from(), range.to()));
-		if (truthy(supplierId)) {
-			sql.append(" and supplier_id = ?");
-			args.add(supplierId);
+	// ---- rapor olusturucu --------------------------------------------------------------
+
+	Report report(ReportQuery query) {
+		Range range = Range.of(query.from(), query.to());
+		ValidationErrors errors = new ValidationErrors();
+		choice(errors, "metric", query.metric(), true, ReportSpec::isMetric);
+		choice(errors, "group", query.group(), true, ReportSpec::isGroup);
+		choice(errors, "chart", query.chart(), false, ReportSpec::isChart);
+		Long supplierId = integer(errors, "supplier_id", query.supplierId());
+		Long fieldId = integer(errors, "supplier_field_id", query.supplierFieldId());
+		Long productTypeId = integer(errors, "product_type_id", query.productTypeId());
+		Long customerId = integer(errors, "customer_id", query.customerId());
+		Long finishedProductId = integer(errors, "finished_product_id", query.finishedProductId());
+		errors.throwIfAny();
+		String error = ReportSpec.specError(query.metric(), query.group(), query.chart());
+		if (error != null) {
+			throw new HttpStatusException(422, error);
 		}
-		if (truthy(productTypeId)) {
-			sql.append(" and exists (select * from production_batch_input_production_product_types where production_batches.id ="
-				+ " production_batch_input_production_product_types.production_batch_id and production_product_type_id = ?)");
-			args.add(productTypeId);
+
+		String metric = query.metric();
+		String group = query.group();
+		boolean production = ReportSpec.METRICS.get(metric).source().equals(ReportSpec.PRODUCTION);
+		List<BatchRow> batches = production
+			? queries.batches(range, positive(supplierId), positive(productTypeId), positive(fieldId)) : List.of();
+		List<ItemRow> items = production ? List.of()
+			: queries.orderItems(range.fromDate(), range.toDate(), positive(customerId), positive(finishedProductId));
+
+		boolean byTime = ReportSpec.GROUPS.get(group).kind().equals(ReportSpec.TIME);
+		String bucket = byTime ? bucketFor(range) : null;
+		List<ReportRow> rows;
+		if (byTime) {
+			rows = timeRows(range, bucket, metric, production, batches, items);
 		}
-		if (truthy(fieldId)) {
-			sql.append(" and supplier_field_id = ?");
-			args.add(fieldId);
+		else {
+			rows = new ArrayList<>(production ? batchRows(group, metric, batches) : itemRows(group, metric, items));
+			rows.sort(descending(r -> r.value() == null ? Double.NEGATIVE_INFINITY : r.value()));
 		}
-		List<Row> batches = db.select(sql.toString(), args.toArray());
-		if (batches.isEmpty()) {
-			return List.of();
-		}
-		Map<Long, Row> suppliers = Relations.byId(db.whereIn("suppliers", "id", Relations.column(batches, "supplier_id"), null));
-		Map<Long, Row> fields = Relations.byId(db.whereIn("supplier_fields", "id", Relations.column(batches, "supplier_field_id"), null));
-		List<Row> inputRows = db.whereIn("production_batch_input_production_product_types", "production_batch_id", Relations.ids(batches), "sort_order");
-		Map<Long, Row> types = Relations.byId(db.whereIn("production_product_types", "id", Relations.column(inputRows, "production_product_type_id"), null));
-		Map<Long, List<Row>> inputs = Relations.groupBy(inputRows, "production_batch_id");
-		Map<Long, List<Row>> processes = new LinkedHashMap<>();
-		if (!roles.isEmpty()) {
-			for (Row p : db.select("select production_batch_id, production_stage_id, operation_data from batch_processes where production_batch_id in ("
-				+ Relations.inList(Relations.ids(batches)) + ") and production_stage_id in (" + Relations.inList(roles.keySet())
-				+ ") and status = ?", "completed")) {
-				processes.computeIfAbsent(p.longValue("production_batch_id"), k -> new ArrayList<>()).add(p);
+		Double total = production ? productionValue(metric, batches) : salesValue(metric, items);
+		return new Report(ReportSpec.METRICS.get(metric), ReportSpec.GROUPS.get(group), bucket, rows,
+			production ? "parti" : "siparis", total);
+	}
+
+	private static List<ReportRow> timeRows(Range range, String bucket, String metric, boolean production,
+		List<BatchRow> batches, List<ItemRow> items) {
+		return emptyBuckets(range, bucket).stream().map(slot -> {
+			if (production) {
+				List<BatchRow> subset = batches.stream()
+					.filter(r -> bucketKey(r.receivedAt().toLocalDate(), bucket).equals(slot.key())).toList();
+				return new ReportRow(slot.key(), slot.start(), productionValue(metric, subset), subset.size());
 			}
-		}
-		List<BatchRow> out = new ArrayList<>();
-		for (Row batch : batches) {
-			Map<String, Double> values = new LinkedHashMap<>();
-			List<Row> ordered = new ArrayList<>(processes.getOrDefault(batch.id(), List.of()));
-			ordered.sort(Comparator.comparingLong(p -> roles.get(p.longValue("production_stage_id")).order()));
-			for (Row process : ordered) {
-				String role = roles.get(process.longValue("production_stage_id")).role();
-				Map<?, ?> data = process.get("operation_data") instanceof Map<?, ?> m ? m : Map.of();
-				Object value = switch (role) {
-					case "pressed" -> data.get("input_quantity");
-					case "acidity" -> acidity(data.get("attributes"));
-					default -> data.get("quantity");
-				};
-				if (value != null && values.get(role) == null) {
-					values.put(role, Php.floatval(value));
-				}
-			}
-			List<Row> batchInputs = inputs.getOrDefault(batch.id(), List.of());
-			Row type = batchInputs.isEmpty() ? null : types.get(batchInputs.getFirst().longValue("production_product_type_id"));
-			Row supplier = batch.longValue("supplier_id") == null ? null : suppliers.get(batch.longValue("supplier_id"));
-			Row field = batch.longValue("supplier_field_id") == null ? null : fields.get(batch.longValue("supplier_field_id"));
-			Double pressed = values.get("pressed") != null ? values.get("pressed") : values.get("incoming");
-			out.add(new BatchRow(batch.id(), batch.time("received_at"), batch.longValue("supplier_id"),
-				supplier == null ? null : supplier.string("name"), supplier == null ? null : supplier.string("code"),
-				batch.longValue("supplier_field_id"), field == null ? null : field.string("code"),
-				type == null ? null : type.id(), type == null ? null : type.string("name"),
-				values.get("incoming"), pressed, values.get("oil"), values.get("pomace"), values.get("acidity")));
-		}
-		return out.stream().filter(r -> r.oil() != null && r.pressed() != null && r.pressed() > 0).toList();
+			List<ItemRow> subset = items.stream()
+				.filter(i -> i.orderDate() != null && bucketKey(i.orderDate(), bucket).equals(slot.key())).toList();
+			return new ReportRow(slot.key(), slot.start(), salesValue(metric, subset), orderCount(subset));
+		}).toList();
 	}
 
-	/** {@code collect($attributes)->firstWhere('attribute_key', 'acidity')['value']} */
-	private static Object acidity(Object attributes) {
-		Collection<?> list = attributes instanceof Map<?, ?> m ? m.values() : attributes instanceof List<?> l ? l : List.of();
-		for (Object a : list) {
-			if (a instanceof Map<?, ?> m && "acidity".equals(m.get("attribute_key") == null ? null : Php.strval(m.get("attribute_key")))) {
-				return m.get("value");
-			}
-		}
-		return null;
+	private static List<ReportRow> batchRows(String group, String metric, List<BatchRow> batches) {
+		Function<BatchRow, Long> keyOf = switch (group) {
+			case "supplier" -> BatchRow::supplierId;
+			case "field" -> BatchRow::fieldId;
+			default -> BatchRow::productTypeId;
+		};
+		Function<BatchRow, String> labelOf = switch (group) {
+			case "supplier" -> r -> (text(r.supplierName()) + " (" + text(r.supplierCode()) + ")").strip();
+			case "field" -> r -> text(r.fieldCode()) + " • " + text(r.supplierName());
+			default -> BatchRow::productTypeName;
+		};
+		List<BatchRow> keyed = batches.stream().filter(r -> keyOf.apply(r) != null).toList();
+		return groupBy(keyed, keyOf).entrySet().stream()
+			.map(e -> new ReportRow(String.valueOf(e.getKey()), labelOf.apply(e.getValue().getFirst()),
+				productionValue(metric, e.getValue()), e.getValue().size()))
+			.toList();
 	}
 
-	private record Role(String role, long order) {
+	private static List<ReportRow> itemRows(String group, String metric, List<ItemRow> items) {
+		boolean byCustomer = group.equals("customer");
+		Function<ItemRow, Long> keyOf = byCustomer ? ItemRow::customerId : ItemRow::finishedProductId;
+		Function<ItemRow, String> labelOf = byCustomer
+			? i -> displayName(i.companyName(), i.customerName()) : ItemRow::productName;
+		List<ItemRow> keyed = items.stream().filter(i -> keyOf.apply(i) != null).toList();
+		return groupBy(keyed, keyOf).entrySet().stream()
+			.map(e -> new ReportRow(String.valueOf(e.getKey()), labelOf.apply(e.getValue().getFirst()),
+				salesValue(metric, e.getValue()), orderCount(e.getValue())))
+			.toList();
 	}
 
-	/** Asama id -> gorev ve sira: gelen (hattin ilk zeytin tartimi), sikilan, yag, pirina, asitlik. */
-	private Map<Long, Role> stageRoles() {
-		List<Row> stages = db.select("select * from production_stages order by production_line_id asc, stage_order asc");
-		List<Row> extensions = db.whereIn("production_stage_extensions", "production_stage_id", Relations.ids(stages), "sort_order");
-		Map<Long, Row> extensionTypes = Relations.byId(db.whereIn("stage_extension_types", "id",
-			Relations.column(extensions, "stage_extension_type_id"), null));
-		List<Row> inputRows = db.whereIn("production_stage_extension_input_production_products", "production_stage_extension_id",
-			Relations.ids(extensions), "sort_order");
-		Map<Long, Row> products = Relations.byId(db.whereIn("production_products", "id", Relations.column(inputRows, "production_product_id"), null));
-		Map<Long, List<Row>> byStage = Relations.groupBy(extensions, "production_stage_id");
-		Map<Long, List<Row>> inputsByExtension = Relations.groupBy(inputRows, "production_stage_extension_id");
-		Map<Long, Role> roles = new LinkedHashMap<>();
-		java.util.Set<Long> seenIncoming = new java.util.HashSet<>();
-		for (Row stage : stages) {
-			for (Row extension : byStage.getOrDefault(stage.id(), List.of())) {
-				if (!Boolean.TRUE.equals(Casts.bool(extension.get("is_enabled")))) {
-					continue;
-				}
-				Row typeRow = extensionTypes.get(extension.longValue("stage_extension_type_id"));
-				String type = typeRow == null ? null : typeRow.string("key");
-				List<String> keys = new ArrayList<>();
-				for (Row input : inputsByExtension.getOrDefault(extension.id(), List.of())) {
-					Row product = products.get(input.longValue("production_product_id"));
-					String key = product == null ? null : product.string("key");
-					if (key != null && !key.isEmpty() && !"0".equals(key)) {
-						keys.add(key);
-					}
-				}
-				Long line = stage.longValue("production_line_id");
-				String role = null;
-				if ("weighing".equals(type) && keys.contains("olive") && !seenIncoming.contains(line)) {
-					role = "incoming";
-				}
-				else if ("material_transformation".equals(type) && keys.contains("olive")) {
-					role = "pressed";
-				}
-				else if ("weighing".equals(type) && keys.contains("olive_oil")) {
-					role = "oil";
-				}
-				else if ("weighing".equals(type) && keys.contains("pomace")) {
-					role = "pomace";
-				}
-				else if ("analysis".equals(type) && keys.contains("olive_oil")) {
-					role = "acidity";
-				}
-				if (role == null) {
-					continue;
-				}
-				if (role.equals("incoming")) {
-					seenIncoming.add(line);
-				}
-				roles.put(stage.id(), new Role(role, Php.intval(stage.get("stage_order"))));
-			}
-		}
-		return roles;
+	private static Double productionValue(String metric, List<BatchRow> rows) {
+		BatchTotals totals = totals(rows);
+		return switch (metric) {
+			case "incoming_kg" -> totals.incomingKg();
+			case "pressed_kg" -> totals.pressedKg();
+			case "oil_kg" -> totals.oilKg();
+			case "pomace_kg" -> totals.pomaceKg();
+			case "batch_count" -> (double) totals.batchCount();
+			case "yield_pct" -> totals.yieldPct();
+			default -> totals.avgAcidity();
+		};
 	}
 
-	/** Toplamlar ve toplamdan hesaplanan randiman (PHP 8.4 round). */
-	static Map<String, Object> totals(List<BatchRow> rows) {
+	private static Double salesValue(String metric, List<ItemRow> items) {
+		OrderTotals totals = orderTotals(items);
+		return switch (metric) {
+			case "litres" -> totals.litres();
+			case "bottle_count" -> (double) totals.bottleCount();
+			default -> (double) orderCount(items);
+		};
+	}
+
+	// ---- toplamlar -----------------------------------------------------------------------
+
+	private static BatchTotals totals(List<BatchRow> rows) {
 		double incoming = 0;
 		double pressed = 0;
 		double oil = 0;
@@ -316,139 +277,84 @@ class AnalyticsService {
 			incoming += r.incoming() == null ? 0 : r.incoming();
 			pressed += r.pressed() == null ? 0 : r.pressed();
 			oil += r.oil() == null ? 0 : r.oil();
-		}
-		for (BatchRow r : rows) {
 			pomace += r.pomace() == null ? 0 : r.pomace();
-		}
-		for (BatchRow r : rows) {
 			if (r.acidity() != null) {
 				aciditySum += r.acidity();
 				acidityCount++;
 			}
 		}
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put("batch_count", rows.size());
-		m.put("incoming_kg", Php.round(incoming, 1));
-		m.put("pressed_kg", Php.round(pressed, 1));
-		m.put("oil_kg", Php.round(oil, 1));
-		m.put("pomace_kg", Php.round(pomace, 1));
-		m.put("yield_pct", pressed > 0 ? Php.round(oil / pressed * 100, 2) : null);
-		m.put("gross_yield_pct", incoming > 0 ? Php.round(oil / incoming * 100, 2) : null);
-		m.put("avg_acidity", acidityCount == 0 ? null : Php.round(aciditySum / acidityCount, 2));
-		return m;
+		return new BatchTotals(rows.size(), round(incoming, 1), round(pressed, 1), round(oil, 1), round(pomace, 1),
+			pressed > 0 ? round(oil / pressed * 100, 2) : null,
+			incoming > 0 ? round(oil / incoming * 100, 2) : null,
+			acidityCount == 0 ? null : round(aciditySum / acidityCount, 2));
 	}
 
-	// ---- siparis satirlari ------------------------------------------------------------------
-
-	List<ItemRow> orderItems(LocalDate from, LocalDate to, Object customerId, Object finishedProductId) {
-		StringBuilder sql = new StringBuilder("select * from order_items where ");
-		List<Object> args = new ArrayList<>();
-		if (truthy(finishedProductId)) {
-			sql.append("finished_product_id = ? and ");
-			args.add(finishedProductId);
-		}
-		sql.append("exists (select * from orders where order_items.order_id = orders.id and status != ? and order_date between ? and ?");
-		args.add("cancelled");
-		args.add(from.toString());
-		args.add(to.toString());
-		if (truthy(customerId)) {
-			sql.append(" and customer_id = ?");
-			args.add(customerId);
-		}
-		sql.append(")");
-		List<Row> items = db.select(sql.toString(), args.toArray());
-		Map<Long, Row> orders = Relations.byId(db.whereIn("orders", "id", Relations.column(items, "order_id"), null));
-		Map<Long, Row> customers = Relations.byId(db.whereIn("customers", "id", Relations.column(List.copyOf(orders.values()), "customer_id"), null));
-		Map<Long, Row> products = Relations.byId(db.whereIn("finished_products", "id", Relations.column(items, "finished_product_id"), null));
-		List<ItemRow> out = new ArrayList<>();
-		for (Row item : items) {
-			Row order = orders.get(item.longValue("order_id"));
-			Long customerKey = order == null ? null : order.longValue("customer_id");
-			out.add(new ItemRow(item.longValue("order_id"), customerKey, customerKey == null ? null : customers.get(customerKey),
-				order == null ? null : date(order.get("order_date")), item.longValue("finished_product_id"),
-				item.longValue("finished_product_id") == null ? null : products.get(item.longValue("finished_product_id")),
-				Php.intval(item.get("quantity"))));
-		}
-		return out;
-	}
-
-	static Map<String, Object> orderTotals(List<ItemRow> items) {
+	private static OrderTotals orderTotals(List<ItemRow> items) {
 		long bottles = 0;
 		double litres = 0;
-		for (ItemRow i : items) {
-			bottles += i.quantity();
+		for (ItemRow item : items) {
+			bottles += item.quantity();
+			litres += item.quantity() * (item.volumeLitre() == null ? 0 : item.volumeLitre().doubleValue());
 		}
-		for (ItemRow i : items) {
-			litres += i.quantity() * (i.product() == null ? 0 : Php.floatval(Casts.decimal(i.product().get("volume_litre"), 4)));
-		}
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put("bottle_count", bottles);
-		m.put("litres", Php.round(litres, 1));
-		return m;
+		return new OrderTotals(bottles, round(litres, 1));
 	}
 
-	private static List<Map<String, Object>> productBreakdown(List<ItemRow> items) {
-		List<Map<String, Object>> out = new ArrayList<>();
-		for (List<ItemRow> group : groupBy(items, i -> i.finishedProductId() == null ? "" : i.finishedProductId()).values()) {
-			Map<String, Object> m = new LinkedHashMap<>();
-			m.put("finished_product_id", group.getFirst().finishedProductId());
-			m.put("name", group.getFirst().product() == null ? null : group.getFirst().product().get("name"));
-			m.putAll(orderTotals(group));
-			out.add(m);
-		}
-		sortByDesc(out, "litres");
-		return out;
+	private static List<ProductRow> productBreakdown(List<ItemRow> items) {
+		List<ProductRow> products = new ArrayList<>(groupBy(items, ItemRow::finishedProductId).values().stream()
+			.map(group -> new ProductRow(group.getFirst().finishedProductId(), group.getFirst().productName(),
+				orderTotals(group)))
+			.toList());
+		products.sort(descending(p -> p.totals().litres()));
+		return products;
 	}
 
-	static int orderCount(List<ItemRow> items) {
+	private static int orderCount(List<ItemRow> items) {
 		return new LinkedHashSet<>(items.stream().map(ItemRow::orderId).toList()).size();
 	}
 
-	/** {@code company_name ?: name} */
-	static String customerName(Row customer) {
-		if (customer == null) {
-			return null;
+	/** Firma adi doluysa o, degilse kisi adi. */
+	private static String displayName(String company, String name) {
+		return company != null && !company.isEmpty() && !"0".equals(company) ? company : name;
+	}
+
+	/** Yarim deger sifirdan uzaga; en kisa ondalik gosterim uzerinden ({@code 0.285 -> 0.29}). */
+	private static double round(double value, int places) {
+		if (!Double.isFinite(value) || value == 0) {
+			return value;
 		}
-		String company = customer.string("company_name");
-		return company != null && !company.isEmpty() && !"0".equals(company) ? company : customer.string("name");
+		return new BigDecimal(Double.toString(value)).setScale(places, RoundingMode.HALF_UP).doubleValue();
 	}
 
 	// ---- zaman dilimleri ---------------------------------------------------------------------
 
-	/**
-	 * Carbon 3: {@code diffInDays(gunSonu) + 1 = N + 0.99..}. Gun gun yalnizca N <= 30, hafta N <= 119, ustu ay
-	 * (Laravel'de 31 gunluk aralik haftalik).
-	 */
-	static String bucketFor(Range range) {
-		long n = range.inclusiveDays();
-		if (n <= 30) {
+	/** 30 gune kadar gun, 119 gune kadar hafta, ustu ay. */
+	private static String bucketFor(Range range) {
+		long days = range.inclusiveDays();
+		if (days <= 30) {
 			return DAY;
 		}
-		return n <= 119 ? WEEK : MONTH;
+		return days <= 119 ? WEEK : MONTH;
 	}
 
-	/** Gun: Y-m-d; hafta: pazartesi (tr); ay: Y-m. */
-	static String bucketKey(LocalDate date, String bucket) {
+	/** Gun: Y-m-d; hafta: pazartesi; ay: Y-m. */
+	private static String bucketKey(LocalDate date, String bucket) {
 		return switch (bucket) {
 			case DAY -> date.toString();
 			case WEEK -> date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).toString();
-			default -> date.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+			default -> date.format(YEAR_MONTH);
 		};
 	}
 
 	/** Araligin butun dilimleri, bos olanlar dahil. */
-	static List<Map<String, Object>> emptyBuckets(Range range, String bucket) {
-		List<Map<String, Object>> slots = new ArrayList<>();
+	private static List<Bucket> emptyBuckets(Range range, String bucket) {
+		List<Bucket> slots = new ArrayList<>();
 		LocalDate cursor = switch (bucket) {
 			case DAY -> range.fromDate();
 			case WEEK -> range.fromDate().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 			default -> range.fromDate().withDayOfMonth(1);
 		};
 		while (!cursor.isAfter(range.toDate())) {
-			Map<String, Object> slot = new LinkedHashMap<>();
-			slot.put("key", bucketKey(cursor, bucket));
-			slot.put("start", cursor.toString());
-			slots.add(slot);
+			slots.add(new Bucket(bucketKey(cursor, bucket), cursor.toString()));
 			cursor = switch (bucket) {
 				case DAY -> cursor.plusDays(1);
 				case WEEK -> cursor.plusWeeks(1);
@@ -458,60 +364,65 @@ class AnalyticsService {
 		return slots;
 	}
 
-	// ---- yardimcilar --------------------------------------------------------------------------
+	// ---- dogrulama ve yardimcilar ---------------------------------------------------------------
 
-	/** {@code groupBy}: ilk gorulme sirasiyla. */
-	static <T> Map<Object, List<T>> groupBy(List<T> items, Function<T, Object> key) {
-		Map<Object, List<T>> out = new LinkedHashMap<>();
+	private Long existingId(ValidationErrors errors, String field, String raw, String table) {
+		Long id = integer(errors, field, raw);
+		if (id == null) {
+			return null;
+		}
+		if (!queries.exists(table, id)) {
+			errors.add(field, LaravelMessages.EXISTS);
+			return null;
+		}
+		return positive(id);
+	}
+
+	private static Long integer(ValidationErrors errors, String field, String raw) {
+		if (raw == null) {
+			return null;
+		}
+		OptionalLong value = PhpNumbers.validateInt(raw);
+		if (value.isEmpty()) {
+			errors.add(field, LaravelMessages.INTEGER);
+			return null;
+		}
+		return value.getAsLong();
+	}
+
+	private static void choice(ValidationErrors errors, String field, String value, boolean required,
+		Predicate<String> allowed) {
+		if (value == null) {
+			if (required) {
+				errors.add(field, LaravelMessages.REQUIRED);
+			}
+		}
+		else if (!allowed.test(value)) {
+			errors.add(field, LaravelMessages.IN);
+		}
+	}
+
+	/** Sifir filtre verilmemis sayilir. */
+	private static Long positive(Long id) {
+		return id == null || id == 0 ? null : id;
+	}
+
+	private static String text(String value) {
+		return value == null ? "" : value;
+	}
+
+	/** Ilk gorulme sirasiyla; anahtar {@code null} olabilir. */
+	private static <T, K> Map<K, List<T>> groupBy(List<T> items, Function<T, K> key) {
+		Map<K, List<T>> groups = new LinkedHashMap<>();
 		for (T item : items) {
-			out.computeIfAbsent(key.apply(item), k -> new ArrayList<>()).add(item);
+			groups.computeIfAbsent(key.apply(item), k -> new ArrayList<>()).add(item);
 		}
-		return out;
+		return groups;
 	}
 
-	/** {@code sortByDesc}: kararli, null en sonda (PHP'de null < sayi). */
-	static void sortByDesc(List<Map<String, Object>> rows, String key) {
-		rows.sort((a, b) -> Double.compare(number(b.get(key)), number(a.get(key))));
-	}
-
-	private static double number(Object value) {
-		return value == null ? Double.NEGATIVE_INFINITY : ((Number) value).doubleValue();
-	}
-
-	/** PHP truthiness (when() kosulu). */
-	static boolean truthy(Object value) {
-		return value != null && !"".equals(value) && !"0".equals(value) && !(value instanceof Number n && n.doubleValue() == 0)
-			&& !Boolean.FALSE.equals(value);
-	}
-
-	static LocalDate date(Object value) {
-		return switch (value) {
-			case null -> null;
-			case LocalDate d -> d;
-			case LocalDateTime t -> t.toLocalDate();
-			case java.sql.Date d -> d.toLocalDate();
-			default -> LocalDate.parse(Php.strval(value).substring(0, 10));
-		};
-	}
-
-	/**
-	 * Aralik: {@code from} gun basi, {@code to} gun sonu (sorguya "Y-m-d 23:59:59").
-	 * @param inclusiveDays iki uc dahil gun sayisi
-	 */
-	record Range(LocalDate fromDate, LocalDate toDate) {
-
-		LocalDateTime from() {
-			return fromDate.atStartOfDay();
-		}
-
-		LocalDateTime to() {
-			return toDate.atTime(23, 59, 59);
-		}
-
-		long inclusiveDays() {
-			return java.time.temporal.ChronoUnit.DAYS.between(fromDate, toDate) + 1;
-		}
-
+	/** Kararli, buyukten kucuge. */
+	private static <T> Comparator<T> descending(ToDoubleFunction<T> value) {
+		return Comparator.comparingDouble(value).reversed();
 	}
 
 }

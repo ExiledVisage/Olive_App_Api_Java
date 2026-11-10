@@ -431,7 +431,7 @@ Sıra:
 - [x] `finishedproduct`
 - [x] `inventory`
 - [x] `production`
-- [ ] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
+- [x] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
 - [ ] `identity` (JPA'da; request/response ve `Row` kalıntıları)
 - [ ] `Db`, `Row`, `Relations`, `Casts`, `Php`, `PhpDates`, `RequestInput`, `ValidatedInput`, `Rules`,
   `LaravelValidator`, `EmailRule`, `@Bound`, `@LaravelModel` silinir

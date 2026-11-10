@@ -12411,7 +12411,6 @@
       "group": "customer",
       "chart": "bar",
       "period": {
-       "preset": null,
        "from": "2026-10-01",
        "to": "2026-10-31"
       }
@@ -12479,7 +12478,6 @@
        "group": "customer",
        "chart": "bar",
        "period": {
-        "preset": null,
         "from": "2026-10-01",
         "to": "2026-10-31"
        }
@@ -12642,14 +12640,14 @@
    "method": "PATCH",
    "path": "/api/analytics/reports/{R3}",
    "body": {
-    "name": ""
+    "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
    },
    "status": 422,
    "response": {
-    "message": "The name field must be a string.",
+    "message": "The name field must not be greater than 120 characters.",
     "errors": {
      "name": [
-      "The name field must be a string."
+      "The name field must not be greater than 120 characters."
      ]
     }
    },

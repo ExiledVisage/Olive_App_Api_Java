@@ -1,234 +1,119 @@
 package com.olivamore.api.analytics.analytics;
 
-import com.olivamore.api.analytics.analytics.AnalyticsService.BatchRow;
-import com.olivamore.api.analytics.analytics.AnalyticsService.ItemRow;
-
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-/**
- * Laravel {@code AnalyticsService}'in rapor olusturucusu (kayitli raporlar da kullanir): olcu x gruplama x filtre x donem. Olculer, gruplamalar,
- * grafik turleri ve kurallari Laravel'deki sabitlerin aynisi (sirasi da).
- */
+/** Rapor olusturucunun katalogu (olculer, gruplamalar, grafik turleri) ve secim kurallari. */
 public final class ReportSpec {
 
-	public static final Map<String, Map<String, Object>> METRICS = new LinkedHashMap<>();
-	public static final Map<String, Map<String, Object>> GROUPS = new LinkedHashMap<>();
-	public static final Map<String, Map<String, Object>> CHARTS = new LinkedHashMap<>();
-	static final Map<String, List<String>> FILTERS = new LinkedHashMap<>();
+	static final String PRODUCTION = "production";
+	static final String SALES = "sales";
+	static final String TIME = "time";
+	static final String CATEGORY = "category";
 
-	static {
-		metric("incoming_kg", "Gelen zeytin", "kg", "production", true);
-		metric("pressed_kg", "Sikilan zeytin", "kg", "production", true);
-		metric("oil_kg", "Uretilen yag", "kg", "production", true);
-		metric("pomace_kg", "Pirina", "kg", "production", true);
-		metric("batch_count", "Parti sayisi", "adet", "production", true);
-		metric("yield_pct", "Randiman", "%", "production", false);
-		metric("avg_acidity", "Ortalama asitlik", "%", "production", false);
-		metric("litres", "Satilan yag", "L", "sales", true);
-		metric("bottle_count", "Satilan sise/teneke", "adet", "sales", true);
-		metric("order_count", "Siparis sayisi", "adet", "sales", true);
-
-		group("time", "Zamana gore", "time", List.of("production", "sales"));
-		group("supplier", "Tedarikciye gore", "category", List.of("production"));
-		group("field", "Araziye gore", "category", List.of("production"));
-		group("variety", "Zeytin cesidine gore", "category", List.of("production"));
-		group("customer", "Musteriye gore", "category", List.of("sales"));
-		group("product", "Urune gore", "category", List.of("sales"));
-
-		chart("line", "Cizgi", List.of("time"), false);
-		chart("column", "Sutun", List.of("time", "category"), false);
-		chart("bar", "Yatay cubuk", List.of("category"), false);
-		chart("pie", "Pasta", List.of("category"), true);
-		chart("table", "Tablo", List.of("time", "category"), false);
-
-		FILTERS.put("production", List.of("supplier_id", "supplier_field_id", "product_type_id"));
-		FILTERS.put("sales", List.of("customer_id", "finished_product_id"));
+	record Metric(String key, String label, String unit, String source, boolean additive) {
 	}
+
+	record Group(String key, String label, String kind, List<String> sources) {
+	}
+
+	record Chart(String key, String label, List<String> groupKinds, boolean additiveOnly) {
+	}
+
+	record Catalog(List<Metric> metrics, List<Group> groups, List<Chart> charts, Map<String, List<String>> filters) {
+	}
+
+	static final Map<String, Metric> METRICS = byKey(Metric::key, Stream.of(
+		new Metric("incoming_kg", "Gelen zeytin", "kg", PRODUCTION, true),
+		new Metric("pressed_kg", "Sikilan zeytin", "kg", PRODUCTION, true),
+		new Metric("oil_kg", "Uretilen yag", "kg", PRODUCTION, true),
+		new Metric("pomace_kg", "Pirina", "kg", PRODUCTION, true),
+		new Metric("batch_count", "Parti sayisi", "adet", PRODUCTION, true),
+		new Metric("yield_pct", "Randiman", "%", PRODUCTION, false),
+		new Metric("avg_acidity", "Ortalama asitlik", "%", PRODUCTION, false),
+		new Metric("litres", "Satilan yag", "L", SALES, true),
+		new Metric("bottle_count", "Satilan sise/teneke", "adet", SALES, true),
+		new Metric("order_count", "Siparis sayisi", "adet", SALES, true)));
+
+	static final Map<String, Group> GROUPS = byKey(Group::key, Stream.of(
+		new Group(TIME, "Zamana gore", TIME, List.of(PRODUCTION, SALES)),
+		new Group("supplier", "Tedarikciye gore", CATEGORY, List.of(PRODUCTION)),
+		new Group("field", "Araziye gore", CATEGORY, List.of(PRODUCTION)),
+		new Group("variety", "Zeytin cesidine gore", CATEGORY, List.of(PRODUCTION)),
+		new Group("customer", "Musteriye gore", CATEGORY, List.of(SALES)),
+		new Group("product", "Urune gore", CATEGORY, List.of(SALES))));
+
+	static final Map<String, Chart> CHARTS = byKey(Chart::key, Stream.of(
+		new Chart("line", "Cizgi", List.of(TIME), false),
+		new Chart("column", "Sutun", List.of(TIME, CATEGORY), false),
+		new Chart("bar", "Yatay cubuk", List.of(CATEGORY), false),
+		new Chart("pie", "Pasta", List.of(CATEGORY), true),
+		new Chart("table", "Tablo", List.of(TIME, CATEGORY), false)));
+
+	private static final Map<String, List<String>> FILTERS = filters();
 
 	private ReportSpec() {
 	}
 
-	private static void metric(String key, String label, String unit, String source, boolean additive) {
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put("label", label);
-		m.put("unit", unit);
-		m.put("source", source);
-		m.put("additive", additive);
-		METRICS.put(key, m);
+	private static Map<String, List<String>> filters() {
+		Map<String, List<String>> filters = new LinkedHashMap<>();
+		filters.put(PRODUCTION, List.of("supplier_id", "supplier_field_id", "product_type_id"));
+		filters.put(SALES, List.of("customer_id", "finished_product_id"));
+		return filters;
 	}
 
-	private static void group(String key, String label, String kind, List<String> sources) {
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put("label", label);
-		m.put("kind", kind);
-		m.put("sources", sources);
-		GROUPS.put(key, m);
+	private static <T> Map<String, T> byKey(Function<T, String> key, Stream<T> items) {
+		return items.collect(Collectors.toMap(key, Function.identity(), (a, b) -> a, LinkedHashMap::new));
 	}
 
-	private static void chart(String key, String label, List<String> groupKinds, boolean additiveOnly) {
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put("label", label);
-		m.put("group_kinds", groupKinds);
-		m.put("additive_only", additiveOnly);
-		CHARTS.put(key, m);
+	static Catalog catalog() {
+		return new Catalog(List.copyOf(METRICS.values()), List.copyOf(GROUPS.values()), List.copyOf(CHARTS.values()),
+			FILTERS);
 	}
 
-	static Map<String, Object> catalog() {
-		Map<String, Object> out = new LinkedHashMap<>();
-		out.put("metrics", list(METRICS));
-		out.put("groups", list(GROUPS));
-		out.put("charts", list(CHARTS));
-		out.put("filters", FILTERS);
-		return out;
+	public static boolean isMetric(String key) {
+		return METRICS.containsKey(key);
 	}
 
-	private static List<Map<String, Object>> list(Map<String, Map<String, Object>> items) {
-		List<Map<String, Object>> out = new ArrayList<>();
-		items.forEach((key, item) -> out.add(withKey(key, item)));
-		return out;
+	public static boolean isGroup(String key) {
+		return GROUPS.containsKey(key);
 	}
 
-	private static Map<String, Object> withKey(String key, Map<String, Object> item) {
-		Map<String, Object> m = new LinkedHashMap<>();
-		m.put("key", key);
-		m.putAll(item);
-		return m;
+	public static boolean isChart(String key) {
+		return CHARTS.containsKey(key);
 	}
 
 	/** Secimin tutarliligi; tutarsizsa neden, tutarliysa null. */
-	@SuppressWarnings("unchecked")
-	public static String specError(String metric, String group, String chart) {
-		Map<String, Object> m = METRICS.get(metric);
-		Map<String, Object> g = GROUPS.get(group);
-		if (m == null) {
+	public static String specError(String metricKey, String groupKey, String chartKey) {
+		Metric metric = METRICS.get(metricKey);
+		Group group = GROUPS.get(groupKey);
+		if (metric == null) {
 			return "Bilinmeyen olcu.";
 		}
-		if (g == null) {
+		if (group == null) {
 			return "Bilinmeyen gruplama.";
 		}
-		if (!((List<String>) g.get("sources")).contains((String) m.get("source"))) {
-			return "'" + m.get("label") + "' olcusu '" + g.get("label") + "' gruplanamaz.";
+		if (!group.sources().contains(metric.source())) {
+			return "'" + metric.label() + "' olcusu '" + group.label() + "' gruplanamaz.";
 		}
-		if (chart == null) {
+		if (chartKey == null) {
 			return null;
 		}
-		Map<String, Object> c = CHARTS.get(chart);
-		if (c == null) {
+		Chart chart = CHARTS.get(chartKey);
+		if (chart == null) {
 			return "Bilinmeyen grafik turu.";
 		}
-		if (!((List<String>) c.get("group_kinds")).contains((String) g.get("kind"))) {
-			return c.get("label") + " grafigi '" + g.get("label") + "' icin uygun degil.";
+		if (!chart.groupKinds().contains(group.kind())) {
+			return chart.label() + " grafigi '" + group.label() + "' icin uygun degil.";
 		}
-		if (Boolean.TRUE.equals(c.get("additive_only")) && !Boolean.TRUE.equals(m.get("additive"))) {
-			return m.get("label") + " toplanabilir bir olcu degil; pasta grafikte gosterilemez.";
+		if (chart.additiveOnly() && !metric.additive()) {
+			return metric.label() + " toplanabilir bir olcu degil; pasta grafikte gosterilemez.";
 		}
 		return null;
-	}
-
-	/** Olcu degeri, zaman diliminde ya da kategoride; toplam tum satirlarin birlikte degeri. */
-	static Map<String, Object> query(AnalyticsService analytics, String metric, String group, AnalyticsService.Range range, Map<String, Object> filters) {
-		Map<String, Object> m = METRICS.get(metric);
-		Map<String, Object> g = GROUPS.get(group);
-		String source = (String) m.get("source");
-		Map<String, Object> applied = new LinkedHashMap<>();
-		filters.forEach((k, v) -> {
-			if (FILTERS.get(source).contains(k)) {
-				applied.put(k, v);
-			}
-		});
-		boolean production = source.equals("production");
-		List<BatchRow> batches = production
-			? analytics.batchRows(range, applied.get("supplier_id"), applied.get("product_type_id"), applied.get("supplier_field_id"))
-			: List.of();
-		List<ItemRow> items = production ? List.of()
-			: analytics.orderItems(range.fromDate(), range.toDate(), applied.get("customer_id"), applied.get("finished_product_id"));
-
-		String bucket = null;
-		List<Map<String, Object>> rows = new ArrayList<>();
-		if ("time".equals(g.get("kind"))) {
-			bucket = AnalyticsService.bucketFor(range);
-			for (Map<String, Object> slot : AnalyticsService.emptyBuckets(range, bucket)) {
-				String b = bucket;
-				Map<String, Object> row = new LinkedHashMap<>();
-				row.put("key", slot.get("key"));
-				row.put("label", slot.get("start"));
-				if (production) {
-					List<BatchRow> subset = batches.stream().filter(r -> AnalyticsService.bucketKey(r.receivedAt().toLocalDate(), b).equals(slot.get("key"))).toList();
-					row.put("value", productionValue(metric, subset));
-					row.put("count", subset.size());
-				}
-				else {
-					List<ItemRow> subset = items.stream().filter(i -> i.orderDate() != null
-						&& AnalyticsService.bucketKey(i.orderDate(), b).equals(slot.get("key"))).toList();
-					row.put("value", salesValue(metric, subset));
-					row.put("count", AnalyticsService.orderCount(subset));
-				}
-				rows.add(row);
-			}
-		}
-		else if (production) {
-			Function<BatchRow, Object> keyOf = switch (group) {
-				case "supplier" -> BatchRow::supplierId;
-				case "field" -> BatchRow::fieldId;
-				default -> BatchRow::productTypeId;
-			};
-			Function<BatchRow, String> labelOf = switch (group) {
-				case "supplier" -> r -> (str(r.supplierName()) + " (" + str(r.supplierCode()) + ")").strip();
-				case "field" -> r -> str(r.fieldCode()) + " • " + str(r.supplierName());
-				default -> BatchRow::productTypeName;
-			};
-			AnalyticsService.groupBy(batches.stream().filter(r -> keyOf.apply(r) != null).toList(), keyOf).forEach((key, subset) -> {
-				Map<String, Object> row = new LinkedHashMap<>();
-				row.put("key", String.valueOf(key));
-				row.put("label", labelOf.apply(subset.getFirst()));
-				row.put("value", productionValue(metric, subset));
-				row.put("count", subset.size());
-				rows.add(row);
-			});
-			AnalyticsService.sortByDesc(rows, "value");
-		}
-		else {
-			Function<ItemRow, Object> keyOf = group.equals("customer") ? ItemRow::customerId : ItemRow::finishedProductId;
-			Function<ItemRow, Object> labelOf = group.equals("customer") ? i -> AnalyticsService.customerName(i.customer())
-				: i -> i.product() == null ? null : i.product().get("name");
-			AnalyticsService.groupBy(items.stream().filter(i -> keyOf.apply(i) != null).toList(), keyOf).forEach((key, subset) -> {
-				Map<String, Object> row = new LinkedHashMap<>();
-				row.put("key", String.valueOf(key));
-				row.put("label", labelOf.apply(subset.getFirst()));
-				row.put("value", salesValue(metric, subset));
-				row.put("count", AnalyticsService.orderCount(subset));
-				rows.add(row);
-			});
-			AnalyticsService.sortByDesc(rows, "value");
-		}
-		Map<String, Object> out = new LinkedHashMap<>();
-		out.put("metric", withKey(metric, m));
-		out.put("group", withKey(group, g));
-		out.put("bucket", bucket);
-		out.put("rows", rows);
-		out.put("count_unit", production ? "parti" : "siparis");
-		out.put("total", production ? productionValue(metric, batches) : salesValue(metric, items));
-		return out;
-	}
-
-	private static Double productionValue(String metric, List<BatchRow> subset) {
-		Object value = AnalyticsService.totals(subset).get(metric);
-		return value == null ? null : ((Number) value).doubleValue();
-	}
-
-	private static Double salesValue(String metric, List<ItemRow> subset) {
-		Map<String, Object> totals = new LinkedHashMap<>(AnalyticsService.orderTotals(subset));
-		totals.put("order_count", AnalyticsService.orderCount(subset));
-		Object value = totals.get(metric);
-		return value == null ? null : ((Number) value).doubleValue();
-	}
-
-	private static String str(String value) {
-		return value == null ? "" : value;
 	}
 
 }

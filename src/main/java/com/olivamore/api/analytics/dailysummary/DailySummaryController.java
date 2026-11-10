@@ -2,61 +2,45 @@ package com.olivamore.api.analytics.dailysummary;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.php.PhpDates;
+import com.olivamore.api.shared.error.LaravelValidationException;
+import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.Rules;
-import com.olivamore.api.shared.validation.ValidatedInput;
-import com.olivamore.api.shared.web.RequestInput;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.web.DataResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.time.LocalDateTime;
 
-/**
- * Laravel {@code DailySummaryController}: acilis ekrani. Ayri izin istemez; her bolum kullanicinin iznine bakar,
- * izin yoksa govdede hic yer almaz.
- */
+/** Acilis ekrani. Ayri izin istemez; her bolum kullanicinin iznine bakar, izin yoksa govdede yer almaz. */
 @RestController
 class DailySummaryController {
 
-	private final LaravelValidator validator;
 	private final Permissions permissions;
 	private final DailySummaryService summaries;
 
-	DailySummaryController(LaravelValidator validator, Permissions permissions, DailySummaryService summaries) {
-		this.validator = validator;
+	DailySummaryController(Permissions permissions, DailySummaryService summaries) {
 		this.permissions = permissions;
 		this.summaries = summaries;
 	}
 
 	/** {@code ?date=} (verilmezse bugun). */
 	@GetMapping("/api/daily-summary")
-	Map<String, Object> show(RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, Rules.of().field("date", "nullable|date"));
-		LocalDate date = v.get("date") == null ? Timestamps.now().toLocalDate()
-			: PhpDates.parse(Php.strval(v.get("date"))).orElseThrow().toLocalDate();
-		Map<String, Object> summary = new LinkedHashMap<>();
-		summary.put("date", date.toString());
-		if (permissions.can(user, "production_batch.view")) {
-			summary.put("production", summaries.production(date));
-		}
-		if (permissions.can(user, "batch_process.view")) {
-			summary.put("stages", summaries.stages(date));
-		}
-		if (permissions.can(user, "finished_product_run.view")) {
-			summary.put("filling_runs", summaries.fillingRuns(date));
-		}
-		if (permissions.can(user, "order.view")) {
-			summary.put("orders", summaries.orders(date));
-		}
-		if (permissions.can(user, "finished_product.view")) {
-			summary.put("stock", summaries.stock());
-		}
-		return Map.of("data", summary);
+	DataResponse<DailySummaryResponse> show(@RequestParam(required = false) String date, CurrentUser user) {
+		LocalDate day = date == null ? Timestamps.now().toLocalDate() : parse(date);
+		return DataResponse.of(new DailySummaryResponse(day.toString(),
+			permissions.can(user, "production_batch.view") ? summaries.production(day) : null,
+			permissions.can(user, "batch_process.view") ? summaries.stages(day) : null,
+			permissions.can(user, "finished_product_run.view") ? summaries.fillingRuns(day) : null,
+			permissions.can(user, "order.view") ? summaries.orders(day) : null,
+			permissions.can(user, "finished_product.view") ? summaries.stock() : null));
+	}
+
+	private static LocalDate parse(String date) {
+		return FlexibleDateTimeDeserializer.parse(date).map(LocalDateTime::toLocalDate)
+			.orElseThrow(() -> LaravelValidationException.of("date", LaravelMessages.format(LaravelMessages.DATE, "date")));
 	}
 
 }
