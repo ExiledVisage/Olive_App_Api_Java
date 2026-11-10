@@ -8,6 +8,10 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	boolean existsByEmail(String email);
+
+	boolean existsByEmailAndIdNot(String email, long id);
+
 	/** Laravel {@code where('email', ...)}: PostgreSQL'de buyuk/kucuk harfe duyarli. */
 	Optional<User> findFirstByEmail(String email);
 

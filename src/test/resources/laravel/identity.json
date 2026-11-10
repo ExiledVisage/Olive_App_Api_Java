@@ -121,10 +121,10 @@
    "method": "GET",
    "path": "/api/users/999999",
    "body": null,
-   "status": 404,
+   "status": 403,
    "headers": {},
    "response": {
-    "message": "No query results for model [App\\Models\\User] 999999"
+    "message": "User does not have the right roles."
    }
   },
   {
@@ -193,6 +193,29 @@
    "path": "/api/auth/login",
    "body": {
     "email": 5,
+    "password": "x"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "4"
+   },
+   "response": {
+    "message": "The email field must be a string.",
+    "errors": {
+     "email": [
+      "The email field must be a string."
+     ]
+    }
+   }
+  },
+  {
+   "name": "login sifre sayi",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/login",
+   "body": {
+    "email": "a@b.co",
     "password": 5
    },
    "status": 422,
@@ -201,12 +224,8 @@
     "X-RateLimit-Remaining": "4"
    },
    "response": {
-    "message": "The email field must be a string. (and 2 more errors)",
+    "message": "The password field must be a string.",
     "errors": {
-     "email": [
-      "The email field must be a string.",
-      "The email field must be a valid email address."
-     ],
      "password": [
       "The password field must be a string."
      ]
@@ -358,9 +377,9 @@
    "path": "/api/auth/register",
    "body": {
     "name": 5,
-    "email": "admin@olivamore.com",
-    "password": "kisa",
-    "password_confirmation": "farkli"
+    "email": "tip@olivamore.com",
+    "password": "12345678",
+    "password_confirmation": "12345678"
    },
    "status": 422,
    "headers": {
@@ -368,17 +387,10 @@
     "X-RateLimit-Remaining": "3"
    },
    "response": {
-    "message": "The name field must be a string. (and 3 more errors)",
+    "message": "The name field must be a string.",
     "errors": {
      "name": [
       "The name field must be a string."
-     ],
-     "email": [
-      "The email has already been taken."
-     ],
-     "password": [
-      "The password field must be at least 8 characters.",
-      "The password field confirmation does not match."
      ]
     }
    }
@@ -390,9 +402,9 @@
    "path": "/api/auth/register",
    "body": {
     "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "email": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@b.co",
-    "password": "uzun-sifre-1",
-    "password_confirmation": "uzun-sifre-1"
+    "email": "uzun@olivamore.com",
+    "password": "kisa",
+    "password_confirmation": "kisa"
    },
    "status": 422,
    "headers": {
@@ -400,10 +412,41 @@
     "X-RateLimit-Remaining": "2"
    },
    "response": {
-    "message": "The name field must not be greater than 255 characters.",
+    "message": "The name field must not be greater than 255 characters. (and 1 more error)",
     "errors": {
      "name": [
       "The name field must not be greater than 255 characters."
+     ],
+     "password": [
+      "The password field must be at least 8 characters."
+     ]
+    }
+   }
+  },
+  {
+   "name": "register email alinmis ve sifre uyusmuyor",
+   "as": null,
+   "method": "POST",
+   "path": "/api/auth/register",
+   "body": {
+    "name": "A",
+    "email": "admin@olivamore.com",
+    "password": "12345678",
+    "password_confirmation": "farkli"
+   },
+   "status": 422,
+   "headers": {
+    "X-RateLimit-Limit": "5",
+    "X-RateLimit-Remaining": "1"
+   },
+   "response": {
+    "message": "The email has already been taken. (and 1 more error)",
+    "errors": {
+     "email": [
+      "The email has already been taken."
+     ],
+     "password": [
+      "The password field confirmation does not match."
      ]
     }
    }
@@ -422,7 +465,7 @@
    "status": 201,
    "headers": {
     "X-RateLimit-Limit": "5",
-    "X-RateLimit-Remaining": "1"
+    "X-RateLimit-Remaining": "0"
    },
    "response": {
     "message": "User registered successfully.",
@@ -498,6 +541,30 @@
     "password": "12345678",
     "roles": [
      5,
+     "planner"
+    ]
+   },
+   "status": 422,
+   "headers": {},
+   "response": {
+    "message": "The roles.0 field must be a string.",
+    "errors": {
+     "roles.0": [
+      "The roles.0 field must be a string."
+     ]
+    }
+   }
+  },
+  {
+   "name": "users store olmayan rol",
+   "as": "admin",
+   "method": "POST",
+   "path": "/api/users",
+   "body": {
+    "name": "A",
+    "email": "a@b.co",
+    "password": "12345678",
+    "roles": [
      "yok",
      "planner"
     ]
@@ -505,13 +572,10 @@
    "status": 422,
    "headers": {},
    "response": {
-    "message": "The roles.0 field must be a string. (and 1 more error)",
+    "message": "The selected roles.0 is invalid.",
     "errors": {
      "roles.0": [
-      "The roles.0 field must be a string."
-     ],
-     "roles.1": [
-      "The selected roles.1 is invalid."
+      "The selected roles.0 is invalid."
      ]
     }
    }

@@ -2,75 +2,64 @@ package com.olivamore.api.identity.user;
 
 import com.olivamore.api.identity.RequiresRole;
 import com.olivamore.api.identity.role.Role;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-/** Laravel {@code UserController} ve {@code UserRoleController} ({@code role:admin}). Liste sayfasiz. */
 @RestController
+@RequestMapping("/api/users")
 @RequiresRole(Role.ADMIN)
 class UserController {
 
 	private final UserService service;
-	private final UserRepository users;
-	private final UserResource resource;
-	private final LaravelValidator validator;
+	private final UserResponses responses;
 
-	UserController(UserService service, UserRepository users, UserResource resource, LaravelValidator validator) {
+	UserController(UserService service, UserResponses responses) {
 		this.service = service;
-		this.users = users;
-		this.resource = resource;
-		this.validator = validator;
+		this.responses = responses;
 	}
 
-	@GetMapping("/api/users")
-	ListResponse<UserResource.Data> index() {
-		return new ListResponse.Plain<>(users.latest().stream().map(resource::of).toList());
+	@GetMapping
+	ListResponse<UserResponse> index() {
+		return new ListResponse.Plain<>(service.all().stream().map(responses::of).toList());
 	}
 
-	@PostMapping("/api/users")
-	ResponseEntity<DataResponse<UserResource.Data>> store(RequestInput input) {
-		ValidatedInput v = validator.validate(input, UserRequests.store());
-		return DataResponse.created(resource.of(service.createUser(v.string("name"), v.string("email"), v.string("password"), v.strings("roles"))));
+	@PostMapping
+	ResponseEntity<DataResponse<UserResponse>> store(@Valid @RequestBody CreateUserRequest request) {
+		return DataResponse.created(responses.of(service.create(request)));
 	}
 
-	@GetMapping("/api/users/{user}")
-	DataResponse<UserResource.Data> show(@Bound User user) {
-		return DataResponse.of(resource.of(user));
+	@GetMapping("/{id}")
+	DataResponse<UserResponse> show(@PathVariable long id) {
+		return DataResponse.of(responses.of(service.get(id)));
 	}
 
-	@RequestMapping(path = "/api/users/{user}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	DataResponse<UserResource.Data> update(@Bound User user, RequestInput input) {
-		ValidatedInput v = validator.validate(input, UserRequests.update(user.getId()));
-		service.updateUser(user, v.string("name"), v.string("email"), v.string("password"), v.has("roles"), v.strings("roles"));
-		return DataResponse.of(resource.of(user));
+	@RequestMapping(path = "/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	DataResponse<UserResponse> update(@PathVariable long id, @Valid @RequestBody UpdateUserRequest request) {
+		return DataResponse.of(responses.of(service.update(id, request)));
 	}
 
-	@DeleteMapping("/api/users/{user}")
-	Map<String, String> destroy(@Bound User user) {
-		service.deleteUser(user);
+	@DeleteMapping("/{id}")
+	Map<String, String> destroy(@PathVariable long id) {
+		service.delete(id);
 		return Map.of("message", "User deleted successfully.");
 	}
 
-	/** UserRoleController */
-	@PatchMapping("/api/users/{user}/roles")
-	DataResponse<UserResource.Data> updateRoles(@Bound User user, RequestInput input) {
-		ValidatedInput v = validator.validate(input, UserRequests.updateRoles());
-		service.syncRoles(user, v.strings("roles"));
-		return DataResponse.of(resource.of(user));
+	@PatchMapping("/{id}/roles")
+	DataResponse<UserResponse> updateRoles(@PathVariable long id, @Valid @RequestBody UpdateUserRolesRequest request) {
+		return DataResponse.of(responses.of(service.updateRoles(id, request)));
 	}
 
 }

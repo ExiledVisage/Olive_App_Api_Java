@@ -1,16 +1,18 @@
 package com.olivamore.api.identity.security;
 
-import com.olivamore.api.identity.auth.TokenService;
 import com.olivamore.api.identity.CurrentUser;
-import com.olivamore.api.shared.web.RequestInput;
+import com.olivamore.api.identity.auth.TokenService;
+import com.olivamore.api.shared.json.LaravelStringDeserializer;
 import com.olivamore.api.shared.web.WebConfig;
 import com.olivamore.api.shared.web.throttle.Limit;
 import com.olivamore.api.shared.web.throttle.NamedLimiter;
 import com.olivamore.api.shared.web.throttle.ThrottleInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.Ordered;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -18,7 +20,10 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,8 +31,11 @@ import java.util.Locale;
 @Configuration(proxyBeanMethods = false)
 public class IdentityWebConfig implements WebMvcConfigurer {
 
-	/** Laravel {@code BCRYPT_ROUNDS=12}, {@code $2y$}: Laravel ve Java birbirinin hash'ini dogrular. */
-	public static final BCryptPasswordEncoder PASSWORDS = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12);
+	/** {@code BCRYPT_ROUNDS=12}, {@code $2y$}: Laravel ve Java birbirinin hash'ini dogrular. */
+	public static final BCryptPasswordEncoder PASSWORDS =
+		new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12);
+
+	private static final JsonMapper JSON = JsonMapper.builder().build();
 
 	private final TokenService tokens;
 
@@ -37,7 +45,8 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AccessInterceptor(tokens)).addPathPatterns("/api/**").order(WebConfig.ORDER_AUTHENTICATE);
+		registry.addInterceptor(new AccessInterceptor(tokens)).addPathPatterns("/api/**")
+			.order(WebConfig.ORDER_AUTHENTICATE);
 	}
 
 	@Override
@@ -49,11 +58,21 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 			}
 
 			@Override
-			public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mav, NativeWebRequest request,
-				WebDataBinderFactory binderFactory) {
+			public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mav,
+				NativeWebRequest request, WebDataBinderFactory binderFactory) {
 				return Access.current(request.getNativeRequest(HttpServletRequest.class));
 			}
 		});
+	}
+
+	/** Filtre bean degil, kayit nesnesinin icinde duz bir nesne: Modulith insight proxy'lemesin. */
+	@Bean
+	FilterRegistrationBean<LoginBodyCachingFilter> loginBodyCachingFilter() {
+		FilterRegistrationBean<LoginBodyCachingFilter> registration =
+			new FilterRegistrationBean<>(new LoginBodyCachingFilter());
+		registration.addUrlPatterns("/api/auth/login");
+		registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 12);
+		return registration;
 	}
 
 	/** {@code throttle:N,M}: giris yapmis kullanici varsa onun kimligi anahtar olur. */
@@ -66,8 +85,8 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 	}
 
 	/**
-	 * AppServiceProvider: {@code RateLimiter::for('login')}. Tek hesaba dakikada 5, ayni adresten
-	 * butun hesaplara dakikada 20. E-posta kucuk harfe cevrilip kirpilir: harf degistirerek sinir asilamaz.
+	 * Tek hesaba dakikada 5, ayni adresten butun hesaplara dakikada 20. E-posta kucuk harfe cevrilip kirpilir:
+	 * harf degistirerek sinir asilamaz.
 	 */
 	@Bean
 	NamedLimiter loginLimiter() {
@@ -79,15 +98,15 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 
 			@Override
 			public List<Limit> limits(HttpServletRequest request) {
-				Object email = RequestInput.of(request).get("email");
-				String key = (email == null ? "" : String.valueOf(email)).trim().toLowerCase(Locale.ROOT);
+				String key = loginEmail(request).trim().toLowerCase(Locale.ROOT);
 				String ip = request.getRemoteAddr();
-				return List.of(Limit.perMinute(5, "login:login:" + key + "|" + ip), Limit.perMinute(20, "login:login-ip:" + ip));
+				return List.of(Limit.perMinute(5, "login:login:" + key + "|" + ip),
+					Limit.perMinute(20, "login:login-ip:" + ip));
 			}
 		};
 	}
 
-	/** {@code RateLimiter::for('register')}: adres basina dakikada 5. */
+	/** Adres basina dakikada 5. */
 	@Bean
 	NamedLimiter registerLimiter() {
 		return new NamedLimiter() {
@@ -101,6 +120,24 @@ public class IdentityWebConfig implements WebMvcConfigurer {
 				return List.of(Limit.perMinute(5, "register:" + request.getRemoteAddr()));
 			}
 		};
+	}
+
+	/** Govde okunamiyorsa ya da e-posta yoksa bos: yine de adres ve bos anahtar uzerinden sinirlanir. */
+	private static String loginEmail(HttpServletRequest request) {
+		try {
+			JsonNode email = JSON.readTree(request.getInputStream()).get("email");
+			if (email == null || email.isNull()) {
+				return "";
+			}
+			if (!email.isString()) {
+				return email.toString();
+			}
+			String text = LaravelStringDeserializer.normalize(email.asString(), false);
+			return text == null ? "" : text;
+		}
+		catch (IOException | RuntimeException unreadable) {
+			return "";
+		}
 	}
 
 }

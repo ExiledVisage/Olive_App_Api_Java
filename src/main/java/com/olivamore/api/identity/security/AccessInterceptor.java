@@ -17,7 +17,7 @@ import java.util.Optional;
  * giris ister, yoksa 401 {@code {"message": "Unauthenticated."}}.
  * <p>
  * Handler bulunduktan sonra calisir: olmayan route Laravel'deki gibi tokensiz de 404, yanlis metot 405 doner.
- * Rol/izin kontrolu ({@link AccessAspect}) daha sonra, model binding'den (404) sonra yapilir.
+ * Rol/izin kontrolu ({@link AccessAspect}) daha sonra yapilir.
  */
 class AccessInterceptor implements HandlerInterceptor {
 

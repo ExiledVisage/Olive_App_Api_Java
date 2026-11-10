@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
+	boolean existsByName(String name);
+
 	List<Permission> findAllByOrderByNameAsc();
 
 	List<Permission> findByNameInAndGuardName(List<String> names, String guardName);

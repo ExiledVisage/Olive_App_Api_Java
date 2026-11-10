@@ -1,6 +1,5 @@
 package com.olivamore.api.identity.user;
 
-import com.olivamore.api.shared.web.binding.LaravelModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
 /** {@code users} (Laravel {@code App\Models\User}). */
 @Entity
 @Table(name = "users")
-@LaravelModel("User")
 @Getter
 @Setter
 public class User {

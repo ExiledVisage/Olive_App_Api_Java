@@ -17,9 +17,8 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * Spatie'nin {@code role:} ve {@code permission:} middleware'leri. Controller metodu cagrilmadan hemen
- * once calisir, yani parametreler (model binding, 404) cozulduktan sonra: Laravel'deki sira
- * 401 (auth) -> 404 (binding) -> 403 (rol/izin).
+ * Rol ve izin kontrolu. Controller metodu cagrilmadan hemen once calisir: istek govdesinin bicim dogrulamasindan
+ * sonra, kaydin aranmasindan (404) once.
  * <ul>
  *   <li>rol: kullanici rollerden birine sahip olmali (admin icin istisna yok)</li>
  *   <li>izin: admin her izne sahip ({@code Gate::before}); digerleri dogrudan ya da rol uzerinden</li>

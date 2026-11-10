@@ -89,12 +89,12 @@ class LaravelParityFixesIT {
 	}
 
 	@Test
-	void rolesSentAsAJsonObjectUseTheValues() {
+	void permissionsMustBeAJsonArray() {
 		Response r = send(HttpMethod.POST, "/api/roles", admin(),
 			Map.of("name", "nesne-rol", "permissions", Map.of("a", "customer.view")));
 
-		assertThat(r.status).as(r.body).isEqualTo(201);
-		assertThat(r.body).contains("customer.view");
+		assertThat(r.status).as(r.body).isEqualTo(422);
+		assertThat(r.body).contains("The permissions field must be an array.");
 	}
 
 	@Test

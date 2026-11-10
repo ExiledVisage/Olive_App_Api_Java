@@ -27,6 +27,8 @@ public final class LaravelMessages {
 	public static final String IN = "The selected :attribute is invalid.";
 	public static final String EXISTS = "The selected :attribute is invalid.";
 	public static final String UNIQUE = "The :attribute has already been taken.";
+	public static final String CONFIRMED = "The :attribute field confirmation does not match.";
+	public static final String MIN_8 = "The :attribute field must be at least 8 characters.";
 	public static final String MAX_255 = "The :attribute field must not be greater than 255 characters.";
 	public static final String MAX_VALUE_100 = "The :attribute field must not be greater than 100.";
 	public static final String MAX_500 = "The :attribute field must not be greater than 500 characters.";

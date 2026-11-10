@@ -432,8 +432,9 @@ Sıra:
 - [x] `inventory`
 - [x] `production`
 - [x] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
-- [ ] `identity` (JPA'da; request/response ve `Row` kalıntıları)
-- [ ] `Db`, `Row`, `Relations`, `Casts`, `Php`, `PhpDates`, `RequestInput`, `ValidatedInput`, `Rules`,
+- [x] `identity` (JPA'da; request/response ve `Row` kalıntıları)
+- [x] `apprelease`
+- [x] `Db`, `Row`, `Relations`, `Casts`, `Php`, `PhpDates`, `RequestInput`, `ValidatedInput`, `Rules`,
   `LaravelValidator`, `EmailRule`, `@Bound`, `@LaravelModel` silinir
 
 ## B3: Güvenlik
@@ -443,6 +444,8 @@ Sıra:
 - [ ] Refresh token rotation (DB'de hash'li) ve reuse detection
 - [ ] Sanctum token doğrulaması kaldırılır
 - [ ] Rate limit: elle yazılmış `RateLimiter` ve `ThrottleInterceptor` yerine Bucket4j
+- [ ] İstek gövdesine boyut sınırı: `LoginBodyCachingFilter` giriş yapılmamış isteğin gövdesini sınırsız belleğe
+  alıyor, limit kontrolünden önce çalışıyor; aşan istek reddedilir
 
 ## B4: Şema
 - [ ] Şemanın sahibi Java: yeni migration'lar Flyway ile yazılır, `baseline-on-migrate` kaldırılır

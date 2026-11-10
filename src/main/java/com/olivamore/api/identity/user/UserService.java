@@ -1,23 +1,24 @@
 package com.olivamore.api.identity.user;
 
 import com.olivamore.api.identity.auth.AuthService;
-import com.olivamore.api.identity.security.Assignments;
-import com.olivamore.api.identity.permission.Permission;
-import com.olivamore.api.identity.permission.PermissionRepository;
 import com.olivamore.api.identity.role.Role;
 import com.olivamore.api.identity.role.RoleRepository;
-import com.olivamore.api.identity.user.User;
-import com.olivamore.api.identity.user.UserRepository;
+import com.olivamore.api.identity.security.Assignments;
 import com.olivamore.api.shared.error.HttpStatusException;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Laravel {@code UserService} ve {@code UserRoleService}: kullanicilar ve rolleri. Admin kullanici silinemez, admin rolu ondan kaldirilamaz. */
+/** Kullanicilar ve rolleri. Admin kullanici silinemez, admin rolu ondan kaldirilamaz. */
 @Service
 class UserService {
 
@@ -34,55 +35,76 @@ class UserService {
 		this.assignments = assignments;
 	}
 
+	@Transactional(readOnly = true)
+	List<User> all() {
+		return users.latest();
+	}
+
+	@Transactional(readOnly = true)
+	User get(long id) {
+		return users.findById(id).orElseThrow(() -> new ModelNotFoundException("User", id));
+	}
+
 	@Transactional
-	User createUser(String name, String email, String password, List<String> roleNames) {
+	User create(CreateUserRequest request) {
+		List<String> names = request.roles() == null ? List.of() : request.roles();
+		ValidationErrors errors = new ValidationErrors();
+		if (users.existsByEmail(request.email())) {
+			errors.add("email", LaravelMessages.UNIQUE);
+		}
+		checkRoles(errors, names);
+		errors.throwIfAny();
 		User user = new User();
-		user.setName(name);
-		user.setEmail(email);
-		user.setPassword(AuthService.hash(password));
+		user.setName(request.name());
+		user.setEmail(request.email());
+		user.setPassword(AuthService.hash(request.password()));
 		user.setCreatedAt(Timestamps.now());
 		user.setUpdatedAt(user.getCreatedAt());
 		users.save(user);
-		assignments.syncUserRoles(user.getId(), roleIds(roleNames == null ? List.of() : roleNames));
+		assignments.syncUserRoles(user.getId(), roleIds(names));
 		return user;
 	}
 
-	/**
-	 * {@code roles} anahtari geldiyse roller senkronlanir (null = hepsi kaldirilir). Sifre bossa degismez.
-	 * Eloquent {@code update} gibi: bir sey degismediyse {@code updated_at} da degismez.
-	 */
+	/** Bir sey degismediyse {@code updated_at} da degismez. */
 	@Transactional
-	User updateUser(User user, String name, String email, String password, boolean rolesGiven, List<String> roleNames) {
-		boolean dirty = !Objects.equals(user.getName(), name) || !Objects.equals(user.getEmail(), email);
-		user.setName(name);
-		user.setEmail(email);
-		if (password != null && !password.isEmpty()) {
-			user.setPassword(AuthService.hash(password));
+	User update(long id, UpdateUserRequest request) {
+		User user = get(id);
+		ValidationErrors errors = new ValidationErrors();
+		if (users.existsByEmailAndIdNot(request.email(), id)) {
+			errors.add("email", LaravelMessages.UNIQUE);
+		}
+		if (request.roles() != null && request.roles().value() != null) {
+			checkRoles(errors, request.roles().value());
+		}
+		errors.throwIfAny();
+		boolean dirty = !Objects.equals(user.getName(), request.name())
+			|| !Objects.equals(user.getEmail(), request.email());
+		user.setName(request.name());
+		user.setEmail(request.email());
+		if (request.password() != null) {
+			user.setPassword(AuthService.hash(request.password()));
 			dirty = true;
 		}
 		if (dirty) {
 			user.setUpdatedAt(Timestamps.now());
 		}
-		// @Bound ile gelen entity transaction disinda yuklendi: save (merge) degisikligi yazar
-		user = users.save(user);
-		if (rolesGiven) {
-			syncRoles(user, roleNames == null ? List.of() : roleNames);
-		}
-		return user;
-	}
-
-	/** {@code UserRoleService::syncRoles} */
-	@Transactional
-	User syncRoles(User user, List<String> roleNames) {
-		if (assignments.hasAnyRole(user.getId(), List.of(Role.ADMIN)) && !roleNames.contains(Role.ADMIN)) {
-			throw HttpStatusException.unprocessable(ADMIN_ROLE_REMOVAL);
-		}
-		assignments.syncUserRoles(user.getId(), roleIds(roleNames));
+		Patch.ifPresent(request.roles(), names -> syncRoles(user, names == null ? List.of() : names));
 		return user;
 	}
 
 	@Transactional
-	void deleteUser(User user) {
+	User updateRoles(long id, UpdateUserRolesRequest request) {
+		User user = get(id);
+		ValidationErrors errors = new ValidationErrors();
+		checkRoles(errors, request.roles());
+		errors.throwIfAny();
+		syncRoles(user, request.roles());
+		return user;
+	}
+
+	@Transactional
+	void delete(long id) {
+		User user = get(id);
 		if (assignments.hasAnyRole(user.getId(), List.of(Role.ADMIN))) {
 			throw HttpStatusException.unprocessable(ADMIN_USER_DELETE);
 		}
@@ -90,17 +112,36 @@ class UserService {
 		users.delete(user);
 	}
 
+	private void syncRoles(User user, List<String> names) {
+		if (assignments.hasAnyRole(user.getId(), List.of(Role.ADMIN)) && !names.contains(Role.ADMIN)) {
+			throw HttpStatusException.unprocessable(ADMIN_ROLE_REMOVAL);
+		}
+		assignments.syncUserRoles(user.getId(), roleIds(names));
+	}
+
+	private void checkRoles(ValidationErrors errors, List<String> names) {
+		for (int i = 0; i < names.size(); i++) {
+			String path = "roles." + i;
+			if (names.get(i) == null) {
+				errors.add(path, LaravelMessages.STRING);
+			}
+			else if (!roles.existsByName(names.get(i))) {
+				errors.add(path, LaravelMessages.EXISTS);
+			}
+		}
+	}
+
 	private List<Long> roleIds(List<String> names) {
 		Map<String, Long> byName = roles.findByNameInAndGuardName(names, Role.GUARD).stream()
 			.collect(Collectors.toMap(Role::getName, Role::getId));
-		return names.stream().map(n -> require(byName, n, "role")).toList();
+		return names.stream().map(name -> require(byName, name)).toList();
 	}
 
-	/** Spatie RoleDoesNotExist / PermissionDoesNotExist: validation ({@code exists}) gecse de guard tutmazsa 500. */
-	private static Long require(Map<String, Long> byName, String name, String kind) {
+	/** Dogrulama guard'a bakmaz; baska guard'daki rol atanamaz, bu bir veri hatasidir. */
+	private static Long require(Map<String, Long> byName, String name) {
 		Long id = byName.get(name);
 		if (id == null) {
-			throw new IllegalStateException("There is no " + kind + " named `" + name + "` for guard `" + Role.GUARD + "`.");
+			throw new IllegalStateException("There is no role named `" + name + "` for guard `" + Role.GUARD + "`.");
 		}
 		return id;
 	}

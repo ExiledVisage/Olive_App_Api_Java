@@ -5,6 +5,8 @@ import com.olivamore.api.identity.user.User;
 import com.olivamore.api.identity.user.UserRepository;
 import com.olivamore.api.shared.error.LaravelValidationException;
 import com.olivamore.api.shared.time.Timestamps;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-/** Laravel {@code App\Services\Auth\AuthService}. */
 @Service
 public class AuthService {
 
@@ -28,15 +29,23 @@ public class AuthService {
 		this.tokens = tokens;
 	}
 
-	public record Result(User user, String token) {
+	record Result(User user, String token) {
 	}
 
 	@Transactional
-	public Result register(String name, String email, String password) {
+	Result register(RegisterRequest request) {
+		ValidationErrors errors = new ValidationErrors();
+		if (users.existsByEmail(request.email())) {
+			errors.add("email", LaravelMessages.UNIQUE);
+		}
+		if (!request.password().equals(request.passwordConfirmation())) {
+			errors.add("password", LaravelMessages.CONFIRMED);
+		}
+		errors.throwIfAny();
 		User user = new User();
-		user.setName(name);
-		user.setEmail(email);
-		user.setPassword(hash(password));
+		user.setName(request.name());
+		user.setEmail(request.email());
+		user.setPassword(hash(request.password()));
 		user.setCreatedAt(Timestamps.now());
 		user.setUpdatedAt(user.getCreatedAt());
 		users.save(user);
@@ -45,20 +54,25 @@ public class AuthService {
 
 	/** Kullanici yoksa da sifre yanlissa da ayni hata (hangisi oldugu sizdirilmaz). */
 	@Transactional
-	public Result login(String email, String password) {
-		User user = users.findFirstByEmail(email).orElse(null);
-		if (user == null || !IdentityWebConfig.PASSWORDS.matches(password, user.getPassword())) {
+	Result login(LoginRequest request) {
+		User user = users.findFirstByEmail(request.email()).orElse(null);
+		if (user == null || !IdentityWebConfig.PASSWORDS.matches(request.password(), user.getPassword())) {
 			throw LaravelValidationException.of("email", WRONG_CREDENTIALS);
 		}
 		return new Result(user, tokens.issue(user));
 	}
 
 	@Transactional
-	public void logout(long tokenId) {
+	void logout(long tokenId) {
 		tokens.revoke(tokenId);
 	}
 
-	/** {@code Hash::make}. PHP gibi 72 bayttan sonrasi yok sayilir; Spring uzun sifrede hata atiyor. */
+	@Transactional(readOnly = true)
+	User current(long userId) {
+		return users.findById(userId).orElseThrow();
+	}
+
+	/** 72 bayttan sonrasi yok sayilir; Spring uzun sifrede hata atiyor. */
 	public static String hash(String password) {
 		byte[] bytes = password.getBytes(StandardCharsets.UTF_8);
 		if (bytes.length <= BCRYPT_MAX_BYTES) {

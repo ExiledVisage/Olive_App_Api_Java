@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'den yakalanan 53 durum (src/test/resources/laravel/identity.json, reference/capture_identity.py)
+ * Laravel'den yakalanan 56 durum (src/test/resources/laravel/identity.json, reference/capture_identity.py)
  * ayni sirayla Java'ya tekrar oynatilir; status, JSON govdesi ve rate limit basliklari karsilastirilir.
  * <p>
  * Iki taraf ayni demo veriden basladigi icin id'ler de ayni cikar (yeni kullanici 8, 9; roller 7, 8).
@@ -52,8 +52,8 @@ class IdentityParityIT {
 	private static final Map<String, Object[]> EXPECTED_DEVIATIONS = Map.of(
 		// Laravel 500: rate limiter diziyi metne ceviremiyor
 		"login email dizi", new Object[] {422, """
-			{"message":"The email field must be a string. (and 1 more error)",
-			 "errors":{"email":["The email field must be a string.","The email field must be a valid email address."]}}"""},
+			{"message":"The email field must be a string.",
+			 "errors":{"email":["The email field must be a string."]}}"""},
 		// Laravel 500: rol sanctum guard'iyla olusuyor, web izinleri atanamiyor
 		"roles store izinli (Laravel 500)", new Object[] {201, null},
 		// Laravel 500: sanctum guard'li rol silinemiyor
@@ -125,7 +125,7 @@ class IdentityParityIT {
 				failures.add(name + ": basliklar Laravel " + expectedHeaders + ", Java " + actualHeaders);
 			}
 		}
-		assertThat(compared + skipped).isEqualTo(53);
+		assertThat(compared + skipped).isEqualTo(56);
 		assertThat(skipped).isEqualTo(NOT_YET_PORTED.size());
 		assertThat(failures).as(failures.size() + " fark:\n  " + String.join("\n  ", failures)).isEmpty();
 	}
