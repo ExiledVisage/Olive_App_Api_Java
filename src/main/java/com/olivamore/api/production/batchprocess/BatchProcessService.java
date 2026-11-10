@@ -2,59 +2,85 @@ package com.olivamore.api.production.batchprocess;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
+import com.olivamore.api.production.batch.ProductionBatch;
+import com.olivamore.api.production.batch.ProductionBatchRepository;
+import com.olivamore.api.production.batchprocess.BatchProcessFieldValue.Value;
+import com.olivamore.api.production.batchprocess.stage.OperationData;
+import com.olivamore.api.production.batchprocess.stage.OperationDataRules;
 import com.olivamore.api.production.batchprocess.stage.StageExtensions;
+import com.olivamore.api.production.batchprocess.stage.StageProcess;
+import com.olivamore.api.production.batchprocess.stage.StageQueries;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Field;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Stage;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.LaravelValidationException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import com.olivamore.api.shared.php.PhpDates;
+import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.json.FlexibleDateTimeDeserializer;
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.time.Timestamps;
-import com.olivamore.api.shared.validation.ValidatedInput;
-import org.springframework.stereotype.Service;
+import com.olivamore.api.shared.validation.LaravelMessages;
+import com.olivamore.api.shared.validation.ValidationErrors;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tools.jackson.databind.JsonNode;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Savepoint;
-
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Laravel {@code BatchProcessService}: asama durumu (katı sıra, geri alma, atlama, başarısızlık), tamamlama
- * (uzanti isleyicileri), onay akisi (gonderim, onay, red) ve partinin durumunun proseslerden turetilmesi.
+ * Asama durumu (kati sira, geri alma, atlama, basarisizlik), tamamlama (uzanti isleyicileri), onay akisi (gonderim,
+ * onay, red) ve partinin durumunun proseslerden turetilmesi.
  * <p>
- * Onay gerektiren asamada tamamlama "onay bekliyor"a gecer: isleyiciler gonderim aninda bir savepoint icinde
- * denenip geri alinir (kural hatasi isciye hemen doner), etki onayda islenir.
+ * Onay gerektiren asamada tamamlama "onay bekliyor"a gecer: isleyiciler gonderim aninda bir savepoint icinde denenip
+ * geri alinir (kural hatasi isciye hemen doner), etki onayda islenir.
  */
 @Service
 class BatchProcessService {
 
-	static final String AWAITING_APPROVAL = "awaiting_approval";
-	static final String APPROVE_PERMISSION = "batch_process.approve";
-	static final String COMPLETE_PERMISSION = "batch_process.complete";
-	static final String SKIP_PERMISSION = "batch_process.skip";
-	static final String REOPEN_PERMISSION = "batch_process.reopen";
+	private static final String COMPLETE_PERMISSION = "batch_process.complete";
+	private static final String SKIP_PERMISSION = "batch_process.skip";
+	private static final String REOPEN_PERMISSION = "batch_process.reopen";
 
-	private static final String TABLE = "batch_processes";
-
-	private final Db db;
+	private final BatchProcessRepository processes;
+	private final BatchProcessFieldValueRepository fieldValues;
+	private final BatchProcessReviewRepository reviews;
+	private final ProductionBatchRepository batches;
+	private final StageQueries queries;
 	private final StageExtensions handlers;
+	private final OperationDataRules operationRules;
 	private final Permissions permissions;
 	private final DataSource dataSource;
 
-	BatchProcessService(Db db, StageExtensions handlers, Permissions permissions, DataSource dataSource) {
-		this.db = db;
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	BatchProcessService(BatchProcessRepository processes, BatchProcessFieldValueRepository fieldValues,
+		BatchProcessReviewRepository reviews, ProductionBatchRepository batches, StageQueries queries,
+		StageExtensions handlers, OperationDataRules operationRules, Permissions permissions, DataSource dataSource) {
+		this.processes = processes;
+		this.fieldValues = fieldValues;
+		this.reviews = reviews;
+		this.batches = batches;
+		this.queries = queries;
 		this.handlers = handlers;
+		this.operationRules = operationRules;
 		this.permissions = permissions;
 		this.dataSource = dataSource;
 	}
@@ -64,101 +90,130 @@ class BatchProcessService {
 	// ======================================================================
 
 	/** Gonderilen alanlar; {@code status} varsa durum gecisi (kaydetme dahil), yoksa yalnizca kaydetme. */
-	void update(Row process, ValidatedInput data, CurrentUser actor) {
-		Map<String, Object> attributes = new LinkedHashMap<>(process.values());
-		Map<String, Object> changes = new LinkedHashMap<>();
-		if (data.has("note")) {
-			changes.put("note", data.get("note"));
+	@Transactional
+	void update(long id, UpdateBatchProcessRequest request, CurrentUser actor) {
+		BatchProcess process = find(id);
+		ProcessStatus status = request.status();
+		authorize(process, status, actor);
+		JsonNode sent = OperationData.normalized(request.operationData());
+		ValidationErrors errors = new ValidationErrors();
+		if (status == ProcessStatus.AWAITING_APPROVAL) {
+			errors.add("status", LaravelMessages.IN);
 		}
-		if (data.has("operator_id")) {
-			changes.put("operator_id", data.get("operator_id"));
+		checkOperator(errors, request.operatorId());
+		Patch<LocalDateTime> startedAt = date(errors, "started_at", request.startedAt());
+		Patch<LocalDateTime> completedAt = date(errors, "completed_at", request.completedAt());
+		JsonNode data = checkOperationData(errors, process, status, sent);
+		errors.throwIfAny();
+
+		// Zaten tamamlanmissa bu istekteki alanlar da kaydedilmez
+		if (!(status == ProcessStatus.COMPLETED && process.getStatus() == ProcessStatus.COMPLETED)) {
+			Patch.ifPresent(request.note(), process::changeNote);
+			Patch.ifPresent(request.operatorId(), process::changeOperator);
+			Patch.ifPresent(startedAt, process::changeStartedAt);
+			Patch.ifPresent(completedAt, process::changeCompletedAt);
 		}
-		if (data.has("started_at")) {
-			changes.put("started_at", date(data.get("started_at")));
+		long batchId = process.getProductionBatchId();
+		if (status != null) {
+			applyStatus(process, status, data, actor);
 		}
-		if (data.has("completed_at")) {
-			changes.put("completed_at", date(data.get("completed_at")));
-		}
-		attributes.putAll(changes);
-		Model model = new Model(process.id(), attributes, changes);
-		if (data.has("status")) {
-			applyStatus(model, Php.strval(data.get("status")), data.get("operation_data"), actor);
-		}
-		else {
-			model.save();
-		}
-		syncBatchStatus(Php.intval(process.get("production_batch_id")));
+		syncBatchStatus(batchId);
 	}
 
-	private void applyStatus(Model p, String status, Object operationData, CurrentUser actor) {
-		if (AWAITING_APPROVAL.equals(p.status())) {
-			throw new BusinessRuleException("'" + stageLabel(p.row()) + "' aşaması onay bekliyor; yetkili onaylamalı ya da reddetmeli.");
-		}
-		assertCanSetStatus(p.row(), status, actor);
-		if (in(status, "in_progress", "completed", "skipped", "failed")) {
-			assertPreviousStagesDone(p.row());
-		}
-		switch (status) {
-			case "waiting" -> {
-				assertCanReopen(p.row(), actor);
-				assertNoLaterStageStarted(p.row());
-				assertNoSideEffectsToUndo(p.row(), "waiting");
-				p.set("status", "waiting");
-				p.set("started_at", null);
-				p.set("completed_at", null);
-				p.set("operation_data", Db.json(null));
-				p.save();
-			}
-			case "in_progress" -> {
-				if ("completed".equals(p.status())) {
-					throw new BusinessRuleException("Tamamlanmış bir batch process tekrar in_progress yapılamaz.");
-				}
-				p.set("status", "in_progress");
-				p.setIfNull("started_at", Timestamps.now());
-				p.set("completed_at", null);
-				p.save();
-			}
-			case "completed" -> {
-				if (!"completed".equals(p.status()) && requiresApproval(p.row())) {
-					submitForApproval(p, operationData, actor);
-				}
-				else {
-					complete(p, operationData);
-				}
-			}
-			case "skipped" -> {
-				assertNoSideEffectsToUndo(p.row(), "skipped");
-				Row stage = stage(p.row());
-				if (stage != null && Boolean.TRUE.equals(Casts.bool(stage.get("is_required")))) {
-					throw new BusinessRuleException("'" + stageLabel(p.row()) + "' zorunlu bir aşama; atlanamaz.");
-				}
-				p.setIfNull("started_at", Timestamps.now());
-				p.set("status", "skipped");
-				p.setIfNull("completed_at", Timestamps.now());
-				p.save();
-			}
-			case "failed" -> {
-				p.setIfNull("started_at", Timestamps.now());
-				p.set("status", "failed");
-				p.setIfNull("completed_at", Timestamps.now());
-				p.save();
-			}
-			default -> throw new BusinessRuleException("Geçersiz batch process durumu gönderildi.");
-		}
-	}
-
-	/** Zaten tamamlanmissa hicbir sey yapilmaz (bu istekteki diger alanlar da kaydedilmez). */
-	private void complete(Model p, Object operationData) {
-		if ("completed".equals(p.status())) {
+	/** Tamamlama, atlama ve kapanmis asamayi geri acma ayri yetkiler; kurallardan once (403). */
+	private void authorize(BatchProcess process, ProcessStatus status, CurrentUser user) {
+		if (status == null) {
 			return;
 		}
-		p.setIfNull("started_at", Timestamps.now());
-		assertRequiredFieldsFilled(p.row());
-		handlers.dispatch(p.row(), handlers.extensions(p.stageId()), StageExtensions.asMap(operationData));
-		p.set("operation_data", Db.json(StageExtensions.phpJson(empty(operationData) ? null : operationData)));
-		p.set("status", "completed");
-		p.setIfNull("completed_at", Timestamps.now());
-		p.save();
+		String required = switch (status) {
+			case COMPLETED -> COMPLETE_PERMISSION;
+			case SKIPPED -> SKIP_PERMISSION;
+			case WAITING -> isOpen(process) ? null : REOPEN_PERMISSION;
+			default -> null;
+		};
+		if (required != null && !permissions.can(user, required)) {
+			throw HttpStatusException.forbidden("This action is unauthorized.");
+		}
+	}
+
+	private static boolean isOpen(BatchProcess process) {
+		return process.getStatus() == ProcessStatus.WAITING || process.getStatus() == ProcessStatus.IN_PROGRESS;
+	}
+
+	private void checkOperator(ValidationErrors errors, Patch<Long> operatorId) {
+		if (operatorId != null && operatorId.value() != null && !queries.userExists(operatorId.value())) {
+			errors.add("operator_id", LaravelMessages.EXISTS);
+		}
+	}
+
+	/** Yalnizca asama tamamlanirken (zaten tamamlanmamis/onay beklemiyorsa) uzantilara gore. */
+	private JsonNode checkOperationData(ValidationErrors errors, BatchProcess process, ProcessStatus status,
+		JsonNode data) {
+		if (status == ProcessStatus.COMPLETED && process.getStatus() != ProcessStatus.COMPLETED
+			&& process.getStatus() != ProcessStatus.AWAITING_APPROVAL) {
+			List<Extension> extensions = extensions(process);
+			operationRules.check(errors, extensions, data);
+			return operationRules.declaredOnly(extensions, data);
+		}
+		operationRules.checkOptional(errors, data);
+		return data;
+	}
+
+	private List<Extension> extensions(BatchProcess process) {
+		return queries.extensions(process.getProductionStageId());
+	}
+
+	private void applyStatus(BatchProcess p, ProcessStatus status, JsonNode data, CurrentUser actor) {
+		if (p.getStatus() == ProcessStatus.AWAITING_APPROVAL) {
+			throw new BusinessRuleException(
+				"'" + stageLabel(p) + "' aşaması onay bekliyor; yetkili onaylamalı ya da reddetmeli.");
+		}
+		if (status != ProcessStatus.WAITING) {
+			assertPreviousStagesDone(p);
+		}
+		LocalDateTime now = Timestamps.now();
+		switch (status) {
+			case WAITING -> {
+				assertNoLaterStageStarted(p);
+				assertNoSideEffectsToUndo(p, "waiting");
+				p.reopen();
+			}
+			case IN_PROGRESS -> {
+				if (p.getStatus() == ProcessStatus.COMPLETED) {
+					throw new BusinessRuleException("Tamamlanmış bir batch process tekrar in_progress yapılamaz.");
+				}
+				p.begin(now);
+			}
+			case COMPLETED -> {
+				if (p.getStatus() != ProcessStatus.COMPLETED && requiresApproval(p)) {
+					submitForApproval(p, data, actor, now);
+				}
+				else {
+					complete(p, data, now);
+				}
+			}
+			case SKIPPED -> {
+				assertNoSideEffectsToUndo(p, "skipped");
+				if (stage(p).isRequired()) {
+					throw new BusinessRuleException("'" + stageLabel(p) + "' zorunlu bir aşama; atlanamaz.");
+				}
+				p.skip(now);
+			}
+			case FAILED -> p.fail(now);
+			default -> {
+			}
+		}
+	}
+
+	/** Zaten tamamlanmissa hicbir sey yapilmaz. */
+	private void complete(BatchProcess p, JsonNode data, LocalDateTime now) {
+		if (p.getStatus() == ProcessStatus.COMPLETED) {
+			return;
+		}
+		p.markStarted(now);
+		assertRequiredFieldsFilled(p);
+		handlers.dispatch(context(p), extensions(p), new OperationData(data));
+		p.finish(OperationData.forStorage(data), now);
 	}
 
 	// ======================================================================
@@ -166,35 +221,31 @@ class BatchProcessService {
 	// ======================================================================
 
 	/** Asamada isaretliyse, depo hareketi yapiyorsa ya da hattin son asamasiysa. */
-	boolean requiresApproval(Row process) {
-		Row stage = stage(process);
-		if (Boolean.TRUE.equals(Casts.bool(stage.get("requires_approval")))) {
+	boolean requiresApproval(BatchProcess process) {
+		Stage stage = stage(process);
+		if (stage.requiresApproval()) {
 			return true;
 		}
-		if (handlers.extensions(stage.id()).stream().anyMatch(e -> e.enabled() && "storage_movement".equals(e.key()))) {
-			return true;
-		}
-		Row max = db.first("select max(stage_order) as aggregate from production_stages where production_line_id = ?",
-			stage.get("production_line_id")).orElseThrow();
-		return Php.intval(stage.get("stage_order")) == Php.intval(max.get("aggregate"));
+		boolean movesStock = queries.extensions(stage.id()).stream()
+			.anyMatch(e -> e.enabled() && "storage_movement".equals(e.key()));
+		return movesStock || stage.stageOrder() == queries.lastStageOrder(stage.productionLineId());
 	}
 
-	private void submitForApproval(Model p, Object operationData, CurrentUser actor) {
-		p.setIfNull("started_at", Timestamps.now());
-		assertRequiredFieldsFilled(p.row());
-		dryRun(p.row(), p.stageId(), operationData);
-		p.set("operation_data", Db.json(StageExtensions.phpJson(empty(operationData) ? null : operationData)));
-		p.set("status", AWAITING_APPROVAL);
-		p.set("submitted_by_user_id", actor == null ? null : actor.id());
-		p.set("submitted_at", Timestamps.now());
-		p.save();
+	private void submitForApproval(BatchProcess p, JsonNode data, CurrentUser actor, LocalDateTime now) {
+		p.markStarted(now);
+		assertRequiredFieldsFilled(p);
+		dryRun(p, data).submit(OperationData.forStorage(data), actor.id(), now);
 	}
 
 	/**
-	 * Kurallar gonderim aninda denenip geri alinir (Laravel: {@code DB::beginTransaction()} ... {@code finally
-	 * DB::rollBack()}, yani istegin transaction'inda bir savepoint). Hata isciye hemen doner.
+	 * Kurallar gonderim aninda denenip geri alinir (istegin transaction'inda bir savepoint). Hata isciye hemen doner.
+	 * Geri alinan satirlar persistence context'te kalmasin diye context temizlenir.
+	 * @return yeniden yuklenen proses
 	 */
-	private void dryRun(Row process, long stageId, Object operationData) {
+	private BatchProcess dryRun(BatchProcess process, JsonNode data) {
+		StageProcess context = context(process);
+		long id = process.getId();
+		entityManager.flush();
 		Connection connection = DataSourceUtils.getConnection(dataSource);
 		Savepoint savepoint;
 		try {
@@ -204,9 +255,10 @@ class BatchProcessService {
 			throw new IllegalStateException("Savepoint acilamadi", e);
 		}
 		try {
-			handlers.dispatch(process, handlers.extensions(stageId), StageExtensions.asMap(operationData));
+			handlers.dispatch(context, extensions(process), new OperationData(data));
 		}
 		finally {
+			entityManager.clear();
 			try {
 				connection.rollback(savepoint);
 			}
@@ -214,52 +266,38 @@ class BatchProcessService {
 				throw new IllegalStateException("Savepoint'e geri donulemedi", e);
 			}
 		}
+		return find(id);
 	}
 
-	void approve(Row process, CurrentUser reviewer, Object note) {
+	@Transactional
+	void approve(long id, CurrentUser reviewer, String note) {
+		BatchProcess process = find(id);
 		assertAwaitingApproval(process);
 		assertPreviousStagesDone(process);
-		Object operationData = process.get("operation_data");
-		handlers.dispatch(process, handlers.extensions(Php.intval(process.get("production_stage_id"))),
-			StageExtensions.asMap(operationData == null ? List.of() : operationData));
+		handlers.dispatch(context(process), extensions(process), new OperationData(process.getOperationData()));
 		recordReview(process, "approved", reviewer, note);
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("status", "completed");
-		values.put("completed_at", Timestamps.now());
-		values.put("approved_by_user_id", reviewer.id());
-		values.put("approved_at", Timestamps.now());
-		db.update(TABLE, process.id(), values);
-		syncBatchStatus(Php.intval(process.get("production_batch_id")));
+		process.approve(reviewer.id(), Timestamps.now());
+		syncBatchStatus(process.getProductionBatchId());
 	}
 
-	void reject(Row process, CurrentUser reviewer, Object reason) {
+	@Transactional
+	void reject(long id, CurrentUser reviewer, String reason) {
+		BatchProcess process = find(id);
 		assertAwaitingApproval(process);
 		recordReview(process, "rejected", reviewer, reason);
-		// Gonderilmis veri korunur ki isci duzeltirken uzerinden calissin
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("status", "in_progress");
-		values.put("submitted_by_user_id", null);
-		values.put("submitted_at", null);
-		db.update(TABLE, process.id(), values);
-		syncBatchStatus(Php.intval(process.get("production_batch_id")));
+		process.reject();
+		syncBatchStatus(process.getProductionBatchId());
 	}
 
-	private void recordReview(Row process, String decision, CurrentUser reviewer, Object note) {
-		Map<String, Object> values = new LinkedHashMap<>();
-		values.put("decision", decision);
-		values.put("reviewed_by_user_id", reviewer.id());
-		values.put("submitted_by_user_id", process.get("submitted_by_user_id"));
-		values.put("operation_data", Db.json(StageExtensions.phpJson(process.get("operation_data"))));
-		values.put("note", note);
-		values.put("reviewed_at", Timestamps.now());
-		values.put("batch_process_id", process.id());
-		db.insert("batch_process_reviews", values);
+	private void recordReview(BatchProcess process, String decision, CurrentUser reviewer, String note) {
+		reviews.save(new BatchProcessReview(process.getId(), decision, reviewer.id(), process.getSubmittedByUserId(),
+			process.getOperationData(), note, Timestamps.now()));
 	}
 
-	private void assertAwaitingApproval(Row process) {
-		if (!AWAITING_APPROVAL.equals(process.get("status"))) {
+	private void assertAwaitingApproval(BatchProcess process) {
+		if (process.getStatus() != ProcessStatus.AWAITING_APPROVAL) {
 			throw new BusinessRuleException("'" + stageLabel(process) + "' aşaması onay beklemiyor (durum: "
-				+ Php.strval(process.get("status")) + ").");
+				+ process.getStatus().value() + ").");
 		}
 	}
 
@@ -268,124 +306,165 @@ class BatchProcessService {
 	// ======================================================================
 
 	/**
-	 * Gonderilmeyen alanlarin degerleri silinir, gonderilenler updateOrCreate. Tamamlanmis ya da onay bekleyen
-	 * asamada degistirilemez.
+	 * Gonderilmeyen alanlarin degerleri silinir, gonderilenler guncellenir ya da eklenir. Tamamlanmis ya da onay
+	 * bekleyen asamada degistirilemez.
 	 */
-	void syncFieldValues(Row process, List<Map<String, Object>> fieldValues) {
-		if ("completed".equals(process.get("status"))) {
-			throw new BusinessRuleException("Tamamlanmış aşamanın değerleri değiştirilemez. Düzeltmek için aşamayı önce geri alın.");
+	@Transactional
+	void syncFieldValues(long id, SyncFieldValuesRequest request) {
+		BatchProcess process = find(id);
+		List<SyncFieldValuesRequest.Item> items = request.fields();
+		Map<Long, Field> fields = checkFieldValues(items);
+		if (process.getStatus() == ProcessStatus.COMPLETED) {
+			throw new BusinessRuleException(
+				"Tamamlanmış aşamanın değerleri değiştirilemez. Düzeltmek için aşamayı önce geri alın.");
 		}
-		if (AWAITING_APPROVAL.equals(process.get("status"))) {
+		if (process.getStatus() == ProcessStatus.AWAITING_APPROVAL) {
 			throw new BusinessRuleException(
 				"Onay bekleyen aşamanın değerleri değiştirilemez. Yetkili reddederse aşama düzeltme için geri döner.");
 		}
-		Row stage = stage(process);
-		List<Long> allowed = stage == null || stage.get("process_type_id") == null ? List.of()
-			: db.select("select id from process_type_fields where process_type_fields.process_type_id = ?"
-				+ " and process_type_fields.process_type_id is not null", stage.get("process_type_id")).stream().map(Row::id).toList();
-		List<Long> incoming = new ArrayList<>();
-		for (Map<String, Object> value : fieldValues) {
-			Object id = value.get("process_type_field_id");
-			if (StageExtensions.truthy(id)) {
-				incoming.add(Php.intval(id));
-			}
-		}
-		if (incoming.stream().anyMatch(id -> !allowed.contains(id))) {
+		Stage stage = stage(process);
+		Set<Long> allowed = stage.processTypeId() == null ? Set.of()
+			: queries.fieldsOfType(stage.processTypeId()).stream().map(Field::id).collect(Collectors.toSet());
+		List<Long> incoming = items.stream().map(SyncFieldValuesRequest.Item::processTypeFieldId).toList();
+		if (!allowed.containsAll(incoming)) {
 			throw LaravelValidationException.of("field_values", "Process type ile uyumsuz field gönderildi.");
 		}
-		db.execute("delete from batch_process_field_values where batch_process_field_values.batch_process_id = ?"
-			+ " and batch_process_field_values.batch_process_id is not null"
-			+ (incoming.isEmpty() ? "" : " and process_type_field_id not in (" + com.olivamore.api.shared.persistence.Relations.inList(incoming) + ")"),
-			process.id());
-		for (Map<String, Object> value : fieldValues) {
-			long fieldId = Php.intval(value.get("process_type_field_id"));
-			Map<String, Object> values = new LinkedHashMap<>();
-			values.put("value_text", value.get("value_text"));
-			values.put("value_decimal", value.get("value_decimal"));
-			values.put("value_integer", value.get("value_integer"));
-			values.put("value_boolean", value.get("value_boolean"));
-			values.put("value_datetime", value.get("value_datetime"));
-			values.put("value_json", Db.json(StageExtensions.phpJson(value.get("value_json"))));
-			Row existing = db.first("select * from batch_process_field_values where batch_process_field_values.batch_process_id = ?"
-				+ " and batch_process_field_values.batch_process_id is not null and process_type_field_id = ? limit 1",
-				process.id(), fieldId).orElse(null);
-			if (existing == null) {
-				Map<String, Object> create = new LinkedHashMap<>();
-				create.put("process_type_field_id", fieldId);
-				create.putAll(values);
-				create.put("batch_process_id", process.id());
-				db.insert("batch_process_field_values", create);
+		fieldValues.deleteOthers(id, incoming);
+		for (SyncFieldValuesRequest.Item item : items) {
+			Value value = fieldValue(fields.get(item.processTypeFieldId()), OperationData.normalized(item.value()));
+			fieldValues.findByBatchProcessIdAndProcessTypeFieldId(id, item.processTypeFieldId()).ifPresentOrElse(
+				existing -> existing.apply(value),
+				() -> fieldValues.save(new BatchProcessFieldValue(id, item.processTypeFieldId(), value)));
+		}
+	}
+
+	/** Alanlar var olmali; deger alanin veri tipine uymali (null serbest). */
+	private Map<Long, Field> checkFieldValues(List<SyncFieldValuesRequest.Item> items) {
+		ValidationErrors errors = new ValidationErrors();
+		Map<Long, Field> fields = queries.fields(items.stream().map(SyncFieldValuesRequest.Item::processTypeFieldId)
+			.filter(Objects::nonNull).distinct().toList());
+		for (int i = 0; i < items.size(); i++) {
+			Long fieldId = items.get(i).processTypeFieldId();
+			if (fieldId == null) {
+				errors.add("fields." + i + ".process_type_field_id", LaravelMessages.REQUIRED);
 			}
-			else {
-				db.update("batch_process_field_values", existing.id(), values);
+			else if (!fields.containsKey(fieldId)) {
+				errors.add("fields." + i + ".process_type_field_id", LaravelMessages.EXISTS);
 			}
 		}
+		for (int i = 0; i < items.size(); i++) {
+			Field field = fields.get(items.get(i).processTypeFieldId());
+			JsonNode value = OperationData.normalized(items.get(i).value());
+			if (field != null && OperationData.isPresent(value)) {
+				checkFieldValue(errors, "fields." + i + ".value", field.dataType(), value);
+			}
+		}
+		errors.throwIfAny();
+		return fields;
+	}
+
+	private static void checkFieldValue(ValidationErrors errors, String path, String dataType, JsonNode value) {
+		switch (dataType) {
+			case "decimal" -> {
+				if (OperationData.decimal(value) == null) {
+					errors.add(path, "The value must be numeric for decimal fields.");
+				}
+			}
+			case "integer" -> {
+				if (OperationData.integer(value) == null) {
+					errors.add(path, "The value must be an integer.");
+				}
+			}
+			case "boolean" -> {
+				if (!value.isBoolean()) {
+					errors.add(path, "The value must be boolean.");
+				}
+			}
+			case "datetime" -> {
+				if (!value.isString() || FlexibleDateTimeDeserializer.parse(value.asString()).isEmpty()) {
+					errors.add(path, "The value must be a valid datetime.");
+				}
+			}
+			case "json" -> {
+				if (!value.isContainer()) {
+					errors.add(path, "The value must be an array for json fields.");
+				}
+			}
+			default -> {
+				if (!value.isString() && !value.isNumber()) {
+					errors.add(path, "The value must be text.");
+				}
+			}
+		}
+	}
+
+	/** Alanin veri tipine gore ilgili deger; {@code null} gelirse hepsi bos. */
+	private static Value fieldValue(Field field, JsonNode value) {
+		if (!OperationData.isPresent(value)) {
+			return new Value(null, null, null, null, null, null);
+		}
+		return switch (field.dataType()) {
+			case "decimal" -> new Value(null, OperationData.decimal(value), null, null, null, null);
+			case "integer" -> new Value(null, null, OperationData.integer(value), null, null, null);
+			case "boolean" -> new Value(null, null, null, value.booleanValue(), null, null);
+			case "datetime" -> new Value(null, null, null, null,
+				FlexibleDateTimeDeserializer.parse(value.asString()).map(d -> d.withNano(0)).orElse(null), null);
+			case "json" -> new Value(null, null, null, null, null, value);
+			default -> new Value(text(value), null, null, null, null, null);
+		};
+	}
+
+	private static String text(JsonNode value) {
+		return value.isNumber() ? plain(value.decimalValue()) : value.asString();
+	}
+
+	private static String plain(BigDecimal value) {
+		return value.stripTrailingZeros().toPlainString();
 	}
 
 	// ======================================================================
 	// Kurallar
 	// ======================================================================
 
-	/** Tamamlama ve atlama ayri yetkiler (ayni endpoint). */
-	private void assertCanSetStatus(Row process, String status, CurrentUser actor) {
-		if (actor == null) {
-			return;
-		}
-		String required = switch (status) {
-			case "completed" -> COMPLETE_PERMISSION;
-			case "skipped" -> SKIP_PERMISSION;
-			default -> null;
-		};
-		if (required != null && !permissions.can(actor, required)) {
-			throw HttpStatusException.forbidden("'" + stageLabel(process) + "' aşamasında bu işlemi yapma yetkiniz yok.");
-		}
-	}
-
-	/** Baslatilmis ama bitmemis asama yetkisiz geri alinir; kapanmis asama geri acma yetkisi ister. */
-	private void assertCanReopen(Row process, CurrentUser actor) {
-		if (in(process.get("status"), "waiting", "in_progress")) {
-			return;
-		}
-		if (actor == null || permissions.can(actor, REOPEN_PERMISSION)) {
-			return;
-		}
-		throw HttpStatusException.forbidden("'" + stageLabel(process) + "' aşamasını geri açma yetkiniz yok.");
-	}
-
 	/** Onceki asamalarin hepsi tamamlanmis ya da atlanmis olmali. */
-	private void assertPreviousStagesDone(Row process) {
-		int order = stageOrder(process);
-		List<Row> pending = siblings(process).stream()
-			.filter(s -> stageOrder(s) < order)
-			.filter(s -> !in(s.get("status"), "completed", "skipped"))
+	private void assertPreviousStagesDone(BatchProcess process) {
+		Map<Long, Stage> stages = siblingStages(process);
+		int order = stages.get(process.getProductionStageId()).stageOrder();
+		List<BatchProcess> pending = siblings(process, stages).stream()
+			.filter(s -> stages.get(s.getProductionStageId()).stageOrder() < order)
+			.filter(s -> s.getStatus() != ProcessStatus.COMPLETED && s.getStatus() != ProcessStatus.SKIPPED)
 			.toList();
 		if (!pending.isEmpty()) {
 			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasına geçilemez; önceki aşamalar tamamlanmadı: "
-				+ pending.stream().map(this::stageLabel).collect(Collectors.joining(", ")) + ".");
+				+ labels(pending, stages) + ".");
 		}
 	}
 
 	/** Sonraki bir asama baslamisken onceki asama geri alinamaz. */
-	private void assertNoLaterStageStarted(Row process) {
-		int order = stageOrder(process);
-		List<Row> started = siblings(process).stream()
-			.filter(s -> stageOrder(s) > order)
-			.filter(s -> !"waiting".equals(s.get("status")))
+	private void assertNoLaterStageStarted(BatchProcess process) {
+		Map<Long, Stage> stages = siblingStages(process);
+		int order = stages.get(process.getProductionStageId()).stageOrder();
+		List<BatchProcess> started = siblings(process, stages).stream()
+			.filter(s -> stages.get(s.getProductionStageId()).stageOrder() > order)
+			.filter(s -> s.getStatus() != ProcessStatus.WAITING)
 			.toList();
 		if (!started.isEmpty()) {
 			throw new BusinessRuleException("'" + stageLabel(process) + "' aşaması geri alınamaz; sonraki aşamalar başlamış: "
-				+ started.stream().map(this::stageLabel).collect(Collectors.joining(", ")) + ".");
+				+ labels(started, stages) + ".");
 		}
 	}
 
+	private static String labels(List<BatchProcess> rows, Map<Long, Stage> stages) {
+		return rows.stream().map(s -> stages.get(s.getProductionStageId()).label()).collect(Collectors.joining(", "));
+	}
+
 	/** Tamamlanirken materyal ya da stok hareketi uretmis proses geri alinamaz. */
-	private void assertNoSideEffectsToUndo(Row process, String target) {
-		if (!"completed".equals(process.get("status"))) {
+	private void assertNoSideEffectsToUndo(BatchProcess process, String target) {
+		if (process.getStatus() != ProcessStatus.COMPLETED) {
 			return;
 		}
-		long materials = db.count("select count(*) as aggregate from materials where materials.created_by_batch_process_id = ?"
-			+ " and materials.created_by_batch_process_id is not null", process.id());
-		long movements = db.count("select count(*) as aggregate from storage_movements where batch_process_id = ?", process.id());
+		long materials = queries.materialsCreatedBy(process.getId());
+		long movements = queries.movementsOf(process.getId());
 		if (materials == 0 && movements == 0) {
 			return;
 		}
@@ -401,29 +480,21 @@ class BatchProcessService {
 	}
 
 	/** Proses tipinin zorunlu ve aktif alanlari dolu olmali. */
-	private void assertRequiredFieldsFilled(Row process) {
-		Row stage = stage(process);
-		if (stage == null || stage.get("process_type_id") == null
-			|| db.find("process_types", Php.intval(stage.get("process_type_id"))).isEmpty()) {
+	private void assertRequiredFieldsFilled(BatchProcess process) {
+		Stage stage = stage(process);
+		if (stage.processTypeId() == null) {
 			return;
 		}
-		List<Long> filled = new ArrayList<>();
-		for (Row v : db.select("select * from batch_process_field_values where batch_process_field_values.batch_process_id = ?"
-			+ " and batch_process_field_values.batch_process_id is not null", process.id())) {
-			if (v.get("value_text") != null || v.get("value_decimal") != null || v.get("value_integer") != null
-				|| v.get("value_boolean") != null || v.get("value_datetime") != null || v.get("value_json") != null) {
-				filled.add(Php.intval(v.get("process_type_field_id")));
-			}
-		}
-		List<String> missing = new ArrayList<>();
-		for (Row f : db.whereIn("process_type_fields", "process_type_id", List.of(Php.intval(stage.get("process_type_id"))), "sort_order asc")) {
-			if (Boolean.TRUE.equals(Casts.bool(f.get("is_required"))) && Boolean.TRUE.equals(Casts.bool(f.get("is_active")))
-				&& !filled.contains(f.id())) {
-				missing.add(Php.strval(f.get("label")));
-			}
-		}
+		Set<Long> filled = fieldValues.findByBatchProcessId(process.getId()).stream()
+			.filter(BatchProcessFieldValue::isFilled).map(BatchProcessFieldValue::getProcessTypeFieldId)
+			.collect(Collectors.toSet());
+		List<String> missing = queries.fieldsOfType(stage.processTypeId()).stream()
+			.filter(f -> f.isRequired() && f.isActive() && !filled.contains(f.id()))
+			.map(Field::label)
+			.toList();
 		if (!missing.isEmpty()) {
-			throw new BusinessRuleException("Zorunlu alanlar doldurulmadan aşama tamamlanamaz: " + String.join(", ", missing) + ".");
+			throw new BusinessRuleException(
+				"Zorunlu alanlar doldurulmadan aşama tamamlanamaz: " + String.join(", ", missing) + ".");
 		}
 	}
 
@@ -433,163 +504,69 @@ class BatchProcessService {
 
 	/** Proseslerden: basarisiz ya da suren varsa in_progress, hepsi bittiyse completed, hic baslamadiysa pending. */
 	void syncBatchStatus(long batchId) {
-		Row batch = db.find("production_batches", batchId).orElseThrow();
-		List<Row> processes = db.select("select * from batch_processes where batch_processes.production_batch_id = ?"
-			+ " and batch_processes.production_batch_id is not null", batchId);
-		List<Object> statuses = processes.stream().map(p -> p.get("status")).toList();
-		boolean started = processes.stream().anyMatch(p -> p.get("started_at") != null);
-		Object startedAt = batch.get("started_at") != null ? batch.get("started_at") : Timestamps.now();
-		Map<String, Object> values = new LinkedHashMap<>();
-		if (statuses.contains("failed") || statuses.contains("in_progress")) {
-			values.put("status", "in_progress");
-			values.put("started_at", startedAt);
-			values.put("completed_at", null);
+		ProductionBatch batch = batches.findById(batchId).orElseThrow();
+		List<BatchProcess> rows = processes.findByProductionBatchId(batchId);
+		boolean running = rows.stream().anyMatch(p -> p.getStatus() == ProcessStatus.FAILED
+			|| p.getStatus() == ProcessStatus.IN_PROGRESS);
+		boolean finished = !rows.isEmpty() && rows.stream().allMatch(p -> p.getStatus() == ProcessStatus.COMPLETED
+			|| p.getStatus() == ProcessStatus.SKIPPED);
+		boolean started = rows.stream().anyMatch(p -> p.getStartedAt() != null);
+		LocalDateTime now = Timestamps.now();
+		if (!running && finished) {
+			batch.markCompleted(now);
 		}
-		else if (!statuses.isEmpty() && statuses.stream().allMatch(s -> "completed".equals(s) || "skipped".equals(s))) {
-			values.put("status", "completed");
-			values.put("started_at", startedAt);
-			values.put("completed_at", batch.get("completed_at") != null ? batch.get("completed_at") : Timestamps.now());
-		}
-		else if (started) {
-			values.put("status", "in_progress");
-			values.put("started_at", startedAt);
-			values.put("completed_at", null);
+		else if (running || started) {
+			batch.markInProgress(now);
 		}
 		else {
-			values.put("status", "pending");
-			values.put("started_at", null);
-			values.put("completed_at", null);
+			batch.markPending();
 		}
-		db.update("production_batches", batchId, values);
 	}
 
 	// ======================================================================
 	// yardimcilar
 	// ======================================================================
 
-	/** Bellekteki proses modeli: degisiklikler kaydedilene kadar birikir (Eloquent save: yalnizca degisenler). */
-	private final class Model {
+	private BatchProcess find(long id) {
+		return processes.findById(id).orElseThrow(() -> new ModelNotFoundException("BatchProcess", id));
+	}
 
-		private final long id;
-		private final Map<String, Object> attributes;
-		private final Map<String, Object> changes;
+	private static StageProcess context(BatchProcess process) {
+		return new StageProcess(process.getId(), process.getProductionBatchId(), process.getProductionStageId(),
+			process.getNote());
+	}
 
-		Model(long id, Map<String, Object> attributes, Map<String, Object> changes) {
-			this.id = id;
-			this.attributes = attributes;
-			this.changes = changes;
+	private Stage stage(BatchProcess process) {
+		return queries.stage(process.getProductionStageId());
+	}
+
+	private String stageLabel(BatchProcess process) {
+		return stage(process).label();
+	}
+
+	private Map<Long, Stage> siblingStages(BatchProcess process) {
+		List<Long> ids = new ArrayList<>(processes.findByProductionBatchId(process.getProductionBatchId()).stream()
+			.map(BatchProcess::getProductionStageId).toList());
+		return queries.stages(ids);
+	}
+
+	/** Partinin diger prosesleri, asama sirasina gore. */
+	private List<BatchProcess> siblings(BatchProcess process, Map<Long, Stage> stages) {
+		return processes.findByProductionBatchIdAndIdNot(process.getProductionBatchId(), process.getId()).stream()
+			.sorted(Comparator.comparingInt(s -> stages.get(s.getProductionStageId()).stageOrder()))
+			.toList();
+	}
+
+	private static Patch<LocalDateTime> date(ValidationErrors errors, String field, Patch<String> raw) {
+		if (raw == null || raw.value() == null) {
+			return raw == null ? null : new Patch<>(null);
 		}
-
-		Object status() {
-			return attributes.get("status");
+		Optional<LocalDateTime> parsed = FlexibleDateTimeDeserializer.parse(raw.value());
+		if (parsed.isEmpty()) {
+			errors.add(field, LaravelMessages.DATE);
+			return null;
 		}
-
-		long stageId() {
-			return Php.intval(attributes.get("production_stage_id"));
-		}
-
-		void set(String key, Object value) {
-			attributes.put(key, value instanceof Db.Json j ? j.value() : value);
-			changes.put(key, value);
-		}
-
-		void setIfNull(String key, Object value) {
-			if (attributes.get(key) == null) {
-				set(key, value);
-			}
-		}
-
-		Row row() {
-			return new Row(new LinkedHashMap<>(attributes));
-		}
-
-		void save() {
-			if (!changes.isEmpty()) {
-				db.update(TABLE, id, changes);
-			}
-		}
-
-	}
-
-	private Row stage(Row process) {
-		return db.find("production_stages", Php.intval(process.get("production_stage_id"))).orElse(null);
-	}
-
-	private int stageOrder(Row process) {
-		Row stage = stage(process);
-		return stage == null ? 0 : (int) Php.intval(stage.get("stage_order"));
-	}
-
-	private String stageLabel(Row process) {
-		Row stage = stage(process);
-		return stage != null && stage.get("name") != null ? Php.strval(stage.get("name")) : "#" + Php.strval(process.get("production_stage_id"));
-	}
-
-	/** Partinin diger prosesleri, asama sirasina gore (ayni sirada olanlar sorgu sirasiyla). */
-	private List<Row> siblings(Row process) {
-		List<Row> rows = new ArrayList<>(db.select("select * from batch_processes where production_batch_id = ? and id != ?",
-			process.get("production_batch_id"), process.id()));
-		rows.sort(Comparator.comparingInt(this::stageOrder));
-		return rows;
-	}
-
-	private static java.time.LocalDateTime date(Object value) {
-		return value == null ? null : PhpDates.parse(Php.strval(value)).orElseThrow();
-	}
-
-	private static boolean in(Object value, String... options) {
-		return value != null && List.of(options).contains(value);
-	}
-
-	/** PHP {@code $x ?: null}: bos dizi ve null bos. */
-	private static boolean empty(Object value) {
-		return !StageExtensions.truthy(value);
-	}
-
-
-	/** Alan degerleri: alanin veri tipine gore ilgili {@code value_*} kolonu; gonderilmeyenler silinir. */
-	void syncFieldValues(Row process, Object fields) {
-		List<Map<String, Object>> normalized = new ArrayList<>();
-		for (Object item : list(fields)) {
-			Map<String, Object> field = StageExtensions.asMap(item);
-			Row definition = db.first("select * from process_type_fields where process_type_fields.id = ? limit 1",
-				field.get("process_type_field_id")).orElse(null);
-			Object value = field.get("value");
-			Map<String, Object> payload = new LinkedHashMap<>();
-			payload.put("process_type_field_id", Php.intval(field.get("process_type_field_id")));
-			payload.put("value_text", null);
-			payload.put("value_decimal", null);
-			payload.put("value_integer", null);
-			payload.put("value_boolean", null);
-			payload.put("value_datetime", null);
-			payload.put("value_json", null);
-			if (definition != null && value != null) {
-				switch (Php.strval(definition.get("data_type"))) {
-					case "decimal" -> payload.put("value_decimal", Php.floatval(value));
-					case "integer" -> payload.put("value_integer", Php.intval(value));
-					case "boolean" -> payload.put("value_boolean", filterBoolean(value));
-					case "datetime" -> payload.put("value_datetime", PhpDates.parse(Php.strval(value)).orElse(null));
-					case "json" -> payload.put("value_json", value);
-					default -> payload.put("value_text", Php.strval(value));
-				}
-			}
-			normalized.add(payload);
-		}
-		syncFieldValues(process, normalized);
-	}
-
-	/** {@code filter_var(FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)} (deger dogrulanmis: 0/1/true/false). */
-	private static Boolean filterBoolean(Object value) {
-		return switch (value) {
-			case Boolean b -> b;
-			case Long l -> l == 1 ? Boolean.TRUE : l == 0 ? Boolean.FALSE : null;
-			case String s -> s.equals("1") ? Boolean.TRUE : s.equals("0") ? Boolean.FALSE : null;
-			default -> null;
-		};
-	}
-
-	private static List<?> list(Object value) {
-		return value instanceof List<?> l ? l : value instanceof Map<?, ?> m ? new ArrayList<>(m.values()) : List.of();
+		return new Patch<>(parsed.get().withNano(0));
 	}
 
 }

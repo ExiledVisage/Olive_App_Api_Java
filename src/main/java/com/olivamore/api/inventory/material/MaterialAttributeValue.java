@@ -49,6 +49,12 @@ public class MaterialAttributeValue extends AuditedEntity {
 		BigDecimal valueDecimal, String valueText, JsonNode valueJson) {
 		this.materialId = materialId;
 		this.definitionId = definitionId;
+		update(valueBoolean, valueInteger, valueDecimal, valueText, valueJson);
+	}
+
+	/** Butun degerler verilenle degisir. */
+	public void update(Boolean valueBoolean, Long valueInteger, BigDecimal valueDecimal, String valueText,
+		JsonNode valueJson) {
 		this.valueBoolean = valueBoolean;
 		this.valueInteger = valueInteger;
 		this.valueDecimal = Quantities.material(valueDecimal);

@@ -1,165 +1,153 @@
 package com.olivamore.api.production.batchprocess.stage;
 
 import com.olivamore.api.inventory.StockOperations;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Material;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.OutputProduct;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.ProductType;
 import com.olivamore.api.shared.error.BusinessRuleException;
-import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import com.olivamore.api.production.batchprocess.stage.StageExtensions.Extension;
 import org.springframework.stereotype.Service;
 
-/** Laravel {@code MaterialTransformationBatchProcessService}: girdi materyali (yoksa urun tipinden yaratilir) tuketilir, ciktilar yaratilir; ayni birimdeki ciktilar girdiyi asamaz. */
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Objects;
+
+/** Girdi materyali (yoksa tipinden yaratilir) tuketilir, ciktilar yaratilir; ayni birimdeki ciktilar girdiyi asamaz. */
 @Service
 class MaterialTransformationBatchProcessService extends StageBatchProcessService {
 
-	MaterialTransformationBatchProcessService(Db db, StockOperations stock) {
-		super(db, stock);
+	MaterialTransformationBatchProcessService(StageQueries queries, StockOperations stock) {
+		super(queries, stock);
 	}
 
-	void transformation(Row process, List<Extension> extensions, Map<String, Object> data) {
-		Extension extension = require(extensions, "material_transformation", "Material transformation extension bulunamadı.");
-		double inputQuantity = data.get("input_quantity") != null ? Php.floatval(data.get("input_quantity")) : 0;
-		if (inputQuantity <= 0) {
+	void transformation(StageProcess process, List<Extension> extensions, OperationData data) {
+		Extension extension = require(extensions, "material_transformation",
+			"Material transformation extension bulunamadı.");
+		BigDecimal inputQuantity = data.quantity("input_quantity");
+		if (inputQuantity.signum() <= 0) {
 			throw new BusinessRuleException("Transformation için input_quantity zorunludur.");
 		}
-		Row input = inputMaterial(process, extension, data, inputQuantity);
-		Row inputType = db.find("production_product_types", Php.intval(input.get("production_product_type_id"))).orElseThrow();
+		Material input = inputMaterial(process, extension, data, inputQuantity);
+		ProductType inputType = queries.productType(input.productionProductTypeId()).orElseThrow();
 
-		List<Map<String, Object>> outputs = items(data.get("outputs"));
+		List<OperationData> outputs = data.items("outputs");
 		if (outputs.isEmpty()) {
 			throw new BusinessRuleException("Transformation işlemi için en az bir output gerekir.");
 		}
-		double sameUnitTotal = 0.0;
-		for (Map<String, Object> output : outputs) {
-			Row type = outputType(process, inputType, extension, output);
-			double quantity = output.get("quantity") != null ? Php.floatval(output.get("quantity")) : 0;
-			if (quantity <= 0) {
+		BigDecimal sameUnitTotal = BigDecimal.ZERO;
+		for (OperationData output : outputs) {
+			ProductType type = outputType(process, inputType, extension, output);
+			BigDecimal quantity = output.quantity("quantity");
+			if (quantity.signum() <= 0) {
 				throw new BusinessRuleException("Output quantity sıfırdan büyük olmalıdır.");
 			}
-			Object unit = output.get("unit") != null ? output.get("unit") : type.get("unit");
-			if (!Objects.equals(unit, type.get("unit"))) {
+			String unit = output.text("unit") != null ? output.text("unit") : type.unit();
+			if (!Objects.equals(unit, type.unit())) {
 				throw new BusinessRuleException("Output unit ürün birimi ile uyuşmuyor.");
 			}
-			if (Objects.equals(unit, input.get("unit"))) {
-				sameUnitTotal += quantity;
+			if (Objects.equals(unit, input.unit())) {
+				sameUnitTotal = sameUnitTotal.add(quantity);
 			}
 			createMaterial(process, type.id(), input.id(), quantity, unit);
 		}
 
-		if (sameUnitTotal > 0.0 && sameUnitTotal - inputQuantity > QUANTITY_EPSILON) {
-			String u = Php.strval(input.get("unit"));
-			throw new BusinessRuleException("Kütle dengesi tutmuyor: girdi " + Php.floatString(inputQuantity) + " " + u + ", "
-				+ "aynı birimdeki çıktı toplamı " + Php.floatString(sameUnitTotal) + " " + u + ". "
+		if (sameUnitTotal.signum() > 0 && sameUnitTotal.subtract(inputQuantity).compareTo(QUANTITY_EPSILON) > 0) {
+			throw new BusinessRuleException("Kütle dengesi tutmuyor: girdi " + plain(inputQuantity) + " " + input.unit() + ", "
+				+ "aynı birimdeki çıktı toplamı " + plain(sameUnitTotal) + " " + input.unit() + ". "
 				+ "Çıktı girdiden fazla olamaz.");
 		}
-
-		// applyInputConsumption
-		double current = Php.floatval(Casts.decimal(input.get("quantity"), 4));
-		if (inputQuantity > current) {
+		if (inputQuantity.compareTo(input.quantity()) > 0) {
 			throw new BusinessRuleException("Input quantity, seçilen material miktarından büyük olamaz.");
 		}
-		double remaining = current - inputQuantity;
-		Object note = process.get("note") != null ? process.get("note") : input.get("note");
-		Map<String, Object> values = new LinkedHashMap<>();
-		if (remaining <= 0.000001) {
-			values.put("status", "consumed");
-			values.put("closed_by_batch_process_id", process.id());
-		}
-		else {
-			values.put("quantity", decimal4(remaining));
-		}
-		values.put("note", note);
-		db.update("materials", input.id(), values);
+		stock.consumeInput(input.id(), inputQuantity, process.id(), process.note());
 	}
 
 	/** Partide uygun aktif materyal varsa o (secilen ya da tek), yoksa urun tipinden yeni girdi materyali. */
-	private Row inputMaterial(Row process, Extension extension, Map<String, Object> data, double inputQuantity) {
-		List<Row> candidates = candidateMaterials(process, extension.inputProductIds());
+	private Material inputMaterial(StageProcess process, Extension extension, OperationData data,
+		BigDecimal inputQuantity) {
+		List<Material> candidates = candidateMaterials(process, extension.inputProductIds());
 		if (!candidates.isEmpty()) {
-			Row material;
-			if (truthy(data.get("input_material_id"))) {
-				long id = Php.intval(data.get("input_material_id"));
-				material = candidates.stream().filter(m -> m.id() == id).findFirst()
-					.orElseThrow(() -> new BusinessRuleException("Seçilen input material bu aşama için uygun değil."));
-			}
-			else if (candidates.size() > 1) {
-				throw new BusinessRuleException("Birden fazla uygun input material bulundu. input_material_id gönderilmelidir.");
-			}
-			else {
-				material = candidates.getFirst();
-			}
-			if (inputQuantity > Php.floatval(Casts.decimal(material.get("quantity"), 4))) {
+			Material material = selectInput(candidates, data);
+			if (inputQuantity.compareTo(material.quantity()) > 0) {
 				throw new BusinessRuleException("Input quantity, seçilen material miktarından büyük olamaz.");
 			}
 			return material;
 		}
-		List<Row> types = candidateTypes(process, extension);
-		Row type;
-		if (truthy(data.get("input_production_product_type_id"))) {
-			long id = Php.intval(data.get("input_production_product_type_id"));
-			type = types.stream().filter(t -> t.id() == id).findFirst()
+		ProductType type = inputType(process, extension, data);
+		long id = createMaterial(process, type.id(), null, inputQuantity, type.unit());
+		return queries.material(id).orElseThrow();
+	}
+
+	private static Material selectInput(List<Material> candidates, OperationData data) {
+		Long selected = data.id("input_material_id");
+		if (selected != null) {
+			return candidates.stream().filter(m -> selected.equals(m.id())).findFirst()
+				.orElseThrow(() -> new BusinessRuleException("Seçilen input material bu aşama için uygun değil."));
+		}
+		if (candidates.size() > 1) {
+			throw new BusinessRuleException("Birden fazla uygun input material bulundu. input_material_id gönderilmelidir.");
+		}
+		return candidates.getFirst();
+	}
+
+	private ProductType inputType(StageProcess process, Extension extension, OperationData data) {
+		List<ProductType> types = candidateTypes(process, extension);
+		Long selected = data.id("input_production_product_type_id");
+		if (selected != null) {
+			return types.stream().filter(t -> selected.equals(t.id())).findFirst()
 				.orElseThrow(() -> new BusinessRuleException("Seçilen giriş ürün tipi bu aşama için uygun değil."));
 		}
-		else if (types.isEmpty()) {
+		if (types.isEmpty()) {
 			throw new BusinessRuleException("Transformation için uygun giriş ürün tipi bulunamadı.");
 		}
-		else if (types.size() > 1) {
+		if (types.size() > 1) {
 			throw new BusinessRuleException(
 				"Birden fazla uygun giriş ürün tipi bulundu. input_production_product_type_id gönderilmelidir.");
 		}
-		else {
-			type = types.getFirst();
-		}
-		long id = createMaterial(process, type.id(), null, inputQuantity, type.get("unit"));
-		return db.find("materials", id).orElseThrow();
+		return types.getFirst();
 	}
 
-	private Row outputType(Row process, Row inputType, Extension extension, Map<String, Object> output) {
-		List<Row> batchOutputs = batchTypes("production_batch_output_production_product_types", process);
-		if (truthy(output.get("production_product_type_id"))) {
-			long id = Php.intval(output.get("production_product_type_id"));
-			List<Long> allowed = Relations.column(extension.outputProducts(), "production_product_id");
+	private ProductType outputType(StageProcess process, ProductType inputType, Extension extension,
+		OperationData output) {
+		List<ProductType> batchOutputs = queries.outputTypes(process.productionBatchId());
+		Long selected = output.id("production_product_type_id");
+		if (selected != null) {
+			List<Long> allowed = extension.outputProducts().stream().map(OutputProduct::productionProductId).toList();
 			return batchOutputs.stream()
-				.filter(t -> t.id() == id)
-				.filter(t -> allowed.contains(Php.intval(t.get("production_product_id"))))
-				.filter(t -> Objects.equals(t.get("type"), inputType.get("type")) || t.get("type") == null)
+				.filter(t -> selected.equals(t.id()))
+				.filter(t -> allowed.contains(t.productionProductId()))
+				.filter(t -> Objects.equals(t.type(), inputType.type()) || t.type() == null)
 				.findFirst()
 				.orElseThrow(() -> new BusinessRuleException("Seçilen çıkış ürün tipi bu aşama için uygun değil."));
 		}
-		long productId;
-		if (truthy(output.get("production_product_id"))) {
-			productId = Php.intval(output.get("production_product_id"));
-		}
-		else {
-			Row match = !truthy(output.get("product_type_key")) ? null : extension.outputProducts().stream()
-				.filter(o -> o.get("product_key") != null && o.get("product_key").equals(output.get("product_type_key")))
-				.findFirst().orElse(null);
-			if (match == null) {
-				throw new BusinessRuleException("Çıkış ürün tipinin type değeri çözümlenemedi.");
-			}
-			productId = Php.intval(match.get("production_product_id"));
-		}
-		List<Row> sameProduct = unique(batchOutputs.stream().filter(t -> Php.intval(t.get("production_product_id")) == productId).toList());
-		// where('type', $inputType): gevsek karsilastirma (null == "")
-		List<Row> candidates = sameProduct.stream().filter(t -> looseEquals(t.get("type"), inputType.get("type"))).toList();
+		long productId = outputProductId(extension, output);
+		List<ProductType> sameProduct = unique(batchOutputs.stream()
+			.filter(t -> Objects.equals(t.productionProductId(), productId)).toList());
+		List<ProductType> candidates = sameProduct.stream().filter(t -> sameText(t.type(), inputType.type())).toList();
 		if (candidates.isEmpty()) {
-			candidates = sameProduct.stream().filter(t -> t.get("type") == null).toList();
+			candidates = sameProduct.stream().filter(t -> t.type() == null).toList();
 		}
 		if (candidates.isEmpty()) {
 			throw new BusinessRuleException("Giriş ürünüyle uyumlu çıkış ürün tipi bulunamadı.");
 		}
 		if (candidates.size() > 1) {
-			throw new BusinessRuleException("Birden fazla uygun çıkış ürün tipi bulundu. production_product_type_id gönderilmelidir.");
+			throw new BusinessRuleException(
+				"Birden fazla uygun çıkış ürün tipi bulundu. production_product_type_id gönderilmelidir.");
 		}
 		return candidates.getFirst();
+	}
+
+	private static long outputProductId(Extension extension, OperationData output) {
+		Long productId = output.id("production_product_id");
+		if (productId != null) {
+			return productId;
+		}
+		String key = output.isTruthy("product_type_key") ? output.text("product_type_key") : null;
+		return extension.outputProducts().stream()
+			.filter(o -> o.productKey() != null && o.productKey().equals(key))
+			.findFirst()
+			.map(OutputProduct::productionProductId)
+			.orElseThrow(() -> new BusinessRuleException("Çıkış ürün tipinin type değeri çözümlenemedi."));
 	}
 
 }

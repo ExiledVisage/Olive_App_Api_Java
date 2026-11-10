@@ -1,131 +1,137 @@
 package com.olivamore.api.production.batchprocess.stage;
 
 import com.olivamore.api.inventory.StockOperations;
+import com.olivamore.api.inventory.StockOperations.AttributeValue;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.AttributeDefinition;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Material;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import com.olivamore.api.production.batchprocess.stage.StageExtensions.Extension;
 import org.springframework.stereotype.Service;
+import tools.jackson.databind.JsonNode;
 
-/** Laravel {@code AnalysisBatchProcessService}: materyalin attribute degerleri (updateOrCreate). */
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Objects;
+
+/** Materyalin attribute degerleri (tanim icin satir varsa degisir, yoksa eklenir). */
 @Service
 class AnalysisBatchProcessService extends StageBatchProcessService {
 
-	AnalysisBatchProcessService(Db db, StockOperations stock) {
-		super(db, stock);
+	private static final List<String> TYPED_VALUES = List.of("value_boolean", "value_integer", "value_decimal", "value_text",
+		"value_json");
+
+	AnalysisBatchProcessService(StageQueries queries, StockOperations stock) {
+		super(queries, stock);
 	}
 
-	void analysis(Row process, List<Extension> extensions, Map<String, Object> data) {
+	void analysis(StageProcess process, List<Extension> extensions, OperationData data) {
 		Extension extension = require(extensions, "analysis", "Analysis extension bulunamadı.");
-		Row material;
-		if (truthy(data.get("material_id"))) {
-			material = findOrFail("materials", "Material", data.get("material_id"));
-			if (Php.intval(material.get("production_batch_id")) != Php.intval(process.get("production_batch_id"))) {
-				throw new BusinessRuleException("Seçilen material bu batch’e ait değil.");
-			}
-		}
-		else {
-			List<Row> materials = candidateMaterials(process, extension.inputProductIds());
-			if (materials.isEmpty()) {
-				throw new BusinessRuleException("Analysis için uygun material bulunamadı.");
-			}
-			if (materials.size() > 1) {
-				throw new BusinessRuleException("Birden fazla uygun material bulundu. material_id gönderilmelidir.");
-			}
-			material = materials.getFirst();
-		}
-		List<Map<String, Object>> attributes = items(data.get("attributes"));
+		Material material = material(process, extension, data);
+		List<OperationData> attributes = data.items("attributes");
 		if (attributes.isEmpty()) {
 			throw new BusinessRuleException("Analysis işlemi için attributes zorunludur.");
 		}
-		Object productId = db.find("production_product_types", Php.intval(material.get("production_product_type_id"))).orElseThrow()
-			.get("production_product_id");
-		for (Map<String, Object> attribute : attributes) {
-			Row definition = definition(productId, attribute);
-			Map<String, Object> payload = attributePayload(definition, attribute);
-			Row existing = db.first("select * from material_attribute_values where material_attribute_values.material_id = ?"
-				+ " and material_attribute_values.material_id is not null and production_product_attribute_definition_id = ? limit 1",
-				material.id(), definition.id()).orElse(null);
-			if (existing == null) {
-				Map<String, Object> values = new LinkedHashMap<>();
-				values.put("production_product_attribute_definition_id", definition.id());
-				values.putAll(payload);
-				values.put("material_id", material.id());
-				db.insert("material_attribute_values", values);
-			}
-			else {
-				db.update("material_attribute_values", existing.id(), payload);
-			}
+		long productId = queries.productType(material.productionProductTypeId()).orElseThrow().productionProductId();
+		for (OperationData attribute : attributes) {
+			AttributeDefinition definition = definition(productId, attribute);
+			stock.recordAttribute(material.id(), definition.id(), value(definition, attribute));
 		}
 	}
 
-	private Row definition(Object productId, Map<String, Object> attribute) {
-		if (truthy(attribute.get("production_product_attribute_definition_id"))) {
-			Object id = attribute.get("production_product_attribute_definition_id");
-			return db.first("select * from production_product_attribute_definitions where production_product_id = ?"
-				+ " and production_product_attribute_definitions.id = ? limit 1", productId, id)
+	private Material material(StageProcess process, Extension extension, OperationData data) {
+		Long selected = data.id("material_id");
+		if (selected != null) {
+			Material material = queries.material(selected)
+				.orElseThrow(() -> new ModelNotFoundException("Material", selected));
+			if (!Objects.equals(material.productionBatchId(), process.productionBatchId())) {
+				throw new BusinessRuleException("Seçilen material bu batch’e ait değil.");
+			}
+			return material;
+		}
+		List<Material> materials = candidateMaterials(process, extension.inputProductIds());
+		if (materials.isEmpty()) {
+			throw new BusinessRuleException("Analysis için uygun material bulunamadı.");
+		}
+		if (materials.size() > 1) {
+			throw new BusinessRuleException("Birden fazla uygun material bulundu. material_id gönderilmelidir.");
+		}
+		return materials.getFirst();
+	}
+
+	private AttributeDefinition definition(long productId, OperationData attribute) {
+		Long id = attribute.id("production_product_attribute_definition_id");
+		if (id != null) {
+			return queries.definition(productId, id)
 				.orElseThrow(() -> new ModelNotFoundException("ProductionProductAttributeDefinition", id));
 		}
-		if (truthy(attribute.get("attribute_key"))) {
-			Row found = db.first("select * from production_product_attribute_definitions where production_product_id = ? and exists"
-				+ " (select * from attribute_definitions where production_product_attribute_definitions.attribute_definition_id"
-				+ " = attribute_definitions.id and attribute_key = ?) limit 1", productId, attribute.get("attribute_key")).orElse(null);
-			if (found != null) {
-				return found;
+		if (attribute.isTruthy("attribute_key")) {
+			var found = queries.definitionByKey(productId, attribute.text("attribute_key"));
+			if (found.isPresent()) {
+				return found.get();
 			}
 		}
 		throw new BusinessRuleException("Attribute definition çözümlenemedi.");
 	}
 
 	/** Tek {@code value} verilip value_* verilmediyse tanimin veri tipine gore; degilse value_* oldugu gibi. */
-	private Map<String, Object> attributePayload(Row definition, Map<String, Object> attribute) {
-		Map<String, Object> payload = new LinkedHashMap<>();
-		payload.put("value_boolean", null);
-		payload.put("value_integer", null);
-		payload.put("value_decimal", null);
-		payload.put("value_text", null);
-		payload.put("value_json", Db.json(null));
-		boolean typed = List.of("value_boolean", "value_integer", "value_decimal", "value_text", "value_json").stream()
-			.anyMatch(attribute::containsKey);
-		if (!typed && attribute.containsKey("value")) {
-			Object value = attribute.get("value");
-			Row attributeDefinition = db.find("attribute_definitions", Php.intval(definition.get("attribute_definition_id"))).orElse(null);
-			String dataType = attributeDefinition == null || attributeDefinition.get("data_type") == null ? null
-				: Php.strval(attributeDefinition.get("data_type"));
-			switch (dataType == null ? "" : dataType) {
-				case "boolean" -> payload.put("value_boolean", truthy(value));
-				case "integer" -> payload.put("value_integer", Php.intval(value));
-				case "decimal" -> payload.put("value_decimal", decimal4(Php.floatval(value)));
-				case "string", "text" -> payload.put("value_text", Php.strval(scalarText(value)));
-				case "json" -> payload.put("value_json", Db.json(StageExtensions.phpJson(value)));
-				default -> throw new BusinessRuleException("Desteklenmeyen attribute data_type değeri: '" + (dataType == null ? "" : dataType) + "'.");
-			}
-			return payload;
+	private AttributeValue value(AttributeDefinition definition, OperationData attribute) {
+		boolean typed = TYPED_VALUES.stream().anyMatch(attribute::has);
+		if (!typed && attribute.has("value")) {
+			return singleValue(definition, attribute.value("value"));
 		}
-		payload.put("value_boolean", attribute.get("value_boolean"));
-		payload.put("value_integer", attribute.get("value_integer"));
-		payload.put("value_decimal", attribute.get("value_decimal"));
-		payload.put("value_text", scalarText(attribute.get("value_text")));
-		payload.put("value_json", Db.json(StageExtensions.phpJson(attribute.get("value_json"))));
-		return payload;
+		JsonNode valueInteger = attribute.value("value_integer");
+		JsonNode valueBoolean = attribute.value("value_boolean");
+		return new AttributeValue(valueBoolean == null ? null : valueBoolean.booleanValue(),
+			OperationData.integer(valueInteger), OperationData.decimal(attribute.value("value_decimal")),
+			attribute.text("value_text"), attribute.value("value_json"));
 	}
 
-	/** Laravel'de dizi metne cevrilemeyip 500 veriyor; Java'da "Array" yazilmasin diye 422 (DEVIATIONS). */
-	static Object scalarText(Object value) {
-		if (value instanceof Collection<?> || value instanceof Map<?, ?>) {
+	private AttributeValue singleValue(AttributeDefinition definition, JsonNode value) {
+		String dataType = queries.attributeDataType(definition.attributeDefinitionId()).orElse("");
+		return switch (dataType) {
+			case "boolean" -> new AttributeValue(booleanValue(value), null, null, null, null);
+			case "integer" -> new AttributeValue(null, integerValue(value), null, null, null);
+			case "decimal" -> new AttributeValue(null, null, numberOrZero(value), null, null);
+			case "string", "text" -> new AttributeValue(null, null, null, textValue(value), null);
+			case "json" -> new AttributeValue(null, null, null, null, value);
+			default -> throw new BusinessRuleException("Desteklenmeyen attribute data_type değeri: '" + dataType + "'.");
+		};
+	}
+
+	/** Yalnizca JSON true/false; "hayir" gibi bir metin sessizce "evet" kaydedilmez. */
+	static boolean booleanValue(JsonNode value) {
+		if (value == null || !value.isBoolean()) {
+			throw new BusinessRuleException("Attribute değeri true ya da false olmalıdır.");
+		}
+		return value.booleanValue();
+	}
+
+	private static BigDecimal numberOrZero(JsonNode value) {
+		BigDecimal number = OperationData.decimal(value);
+		return number == null ? BigDecimal.ZERO : number;
+	}
+
+	/** Metinse sayisal degeri, ondalikliysa tam kismi; sayi degilse sifir. */
+	private static long integerValue(JsonNode value) {
+		return numberOrZero(value).longValue();
+	}
+
+	/** Dizi metne cevrilemez; sayi sondaki sifirlar olmadan yazilir. */
+	static String textValue(JsonNode value) {
+		if (value == null) {
+			return "";
+		}
+		if (value.isContainer()) {
 			throw new BusinessRuleException("Attribute metin değeri dizi olamaz.");
 		}
-		return value;
+		if (value.isNumber()) {
+			return plain(value.decimalValue());
+		}
+		if (value.isBoolean()) {
+			return value.booleanValue() ? "1" : "";
+		}
+		return value.asString();
 	}
 
 }

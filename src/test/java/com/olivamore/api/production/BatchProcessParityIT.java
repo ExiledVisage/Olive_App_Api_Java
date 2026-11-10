@@ -37,7 +37,7 @@ class BatchProcessParityIT {
 			.unordered("parti atlanmis", "data.processes")
 			.unordered("parti atlanmis", "data.materials")
 			.run();
-		assertThat(result.steps()).isEqualTo(108);
+		assertThat(result.steps()).isEqualTo(110);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

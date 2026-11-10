@@ -32,7 +32,7 @@ class ProductionBatchParityIT {
 			// varsayilan received_at "simdi": takvim sayimi yakalandigi gune bagli
 			.capturedAt("2026-11-06T21:39:00Z")
 			.run();
-		assertThat(result.steps()).isEqualTo(36);
+		assertThat(result.steps()).isEqualTo(40);
 		assertThat(result.failures()).as(result.report()).isEmpty();
 	}
 

@@ -2,103 +2,79 @@ package com.olivamore.api.production.batch;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.RequiresPermission;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.validation.LaravelValidator;
-import com.olivamore.api.shared.validation.ValidatedInput;
 import com.olivamore.api.shared.web.DataResponse;
-import com.olivamore.api.shared.web.LaravelPaginator;
 import com.olivamore.api.shared.web.ListResponse;
-import com.olivamore.api.shared.web.Listing;
-import com.olivamore.api.shared.web.RequestInput;
-import com.olivamore.api.shared.web.binding.Bound;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-/** Laravel {@code ProductionBatchController}: partiler, takvim. */
+/** Partiler ve takvim. */
 @RestController
 class ProductionBatchController {
 
-	private static final String TABLE = "production_batches";
-	private static final String MODEL = "ProductionBatch";
-
-	private final LaravelValidator validator;
 	private final ProductionBatchService batches;
-	private final ProductionBatchResource resource;
+	private final ProductionBatchResponses responses;
+	private final ProductionBatchListing listing;
 
-	ProductionBatchController(LaravelValidator validator, ProductionBatchService batches, ProductionBatchResource resource) {
-		this.validator = validator;
+	ProductionBatchController(ProductionBatchService batches, ProductionBatchResponses responses,
+		ProductionBatchListing listing) {
 		this.batches = batches;
-		this.resource = resource;
+		this.responses = responses;
+		this.listing = listing;
 	}
 
-	// ---- okuma (production_batch.view) -------------------------------------
-
-	/** {@code ?received_from}, {@code ?received_to} (Y-m-d, varis gunu, dahil); en yeni once; per_page ile sayfali. */
+	/** {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); en yeni once; per_page ile sayfali. */
 	@GetMapping("/api/production-batches")
 	@RequiresPermission("production_batch.view")
-	ListResponse<Map<String, Object>> index(HttpServletRequest request, RequestInput input) {
-		ProductionBatchService.Filter filter = batches.filter(validator.validate(input, ProductionBatchRequests.index()));
-		Optional<Integer> perPage = Listing.perPage(request);
-		if (perPage.isEmpty()) {
-			return new ListResponse.Plain<>(resource.batches(batches.all(filter)));
-		}
-		int page = Listing.currentPage(request);
-		long total = batches.count(filter);
-		List<Row> rows = total == 0 ? List.of() : batches.page(filter, page, perPage.get());
-		return LaravelPaginator.paginate(resource.batches(rows), total, page, perPage.get(), request);
+	ListResponse<ProductionBatchResponse> index(
+		@RequestParam(name = "received_from", required = false) String receivedFrom,
+		@RequestParam(name = "received_to", required = false) String receivedTo, HttpServletRequest request) {
+		return listing.list(receivedFrom, receivedTo, request);
 	}
 
 	/** Gun -> parti sayisi (varis gunu); bos aralikta {@code {}}. */
 	@GetMapping("/api/production-batches/calendar")
 	@RequiresPermission("production_batch.view")
-	Map<String, Object> calendar(RequestInput input) {
-		ValidatedInput v = validator.validate(input, ProductionBatchRequests.calendar());
-		return Map.of("data", batches.calendar(v.get("from"), v.get("to")));
+	Map<String, Map<String, Long>> calendar(@RequestParam(required = false) String from,
+		@RequestParam(required = false) String to) {
+		return Map.of("data", listing.calendar(from, to));
 	}
 
-	@GetMapping("/api/production-batches/{production_batch}")
+	@GetMapping("/api/production-batches/{id}")
 	@RequiresPermission("production_batch.view")
-	DataResponse<Map<String, Object>> show(@Bound(value = "production_batch", table = TABLE, model = MODEL) Row batch) {
-		return DataResponse.of(resource.batch(batch));
+	DataResponse<ProductionBatchResponse> show(@PathVariable long id) {
+		return DataResponse.of(responses.detail(id));
 	}
 
-	// ---- yazma -------------------------------------------------------------
-
-	/** Cevap 200 (Laravel fresh() ile yeni bir model doner). */
 	@PostMapping("/api/production-batches")
 	@RequiresPermission("production_batch.create")
-	@Transactional
-	DataResponse<Map<String, Object>> store(RequestInput input, CurrentUser user) {
-		ValidatedInput v = validator.validate(input, ProductionBatchRequests.store());
-		return DataResponse.of(resource.batch(batches.byId(batches.create(v, user))));
+	DataResponse<ProductionBatchResponse> store(@Valid @RequestBody CreateProductionBatchRequest request, CurrentUser user) {
+		return DataResponse.of(responses.detail(batches.create(request, user)));
 	}
 
-	@PatchMapping("/api/production-batches/{production_batch}")
+	@PatchMapping("/api/production-batches/{id}")
 	@RequiresPermission("production_batch.update")
-	@Transactional
-	DataResponse<Map<String, Object>> update(@Bound(value = "production_batch", table = TABLE, model = MODEL) Row batch,
-		RequestInput input) {
-		ValidatedInput v = validator.validate(input, ProductionBatchRequests.update(batch.id()));
-		batches.update(batch, v);
-		return DataResponse.of(resource.batch(batches.byId(batch.id())));
+	DataResponse<ProductionBatchResponse> update(@PathVariable long id,
+		@Valid @RequestBody UpdateProductionBatchRequest request) {
+		batches.update(id, request);
+		return DataResponse.of(responses.detail(id));
 	}
 
 	/** Cevap 204. */
-	@DeleteMapping("/api/production-batches/{production_batch}")
+	@DeleteMapping("/api/production-batches/{id}")
 	@RequiresPermission("production_batch.delete")
-	@Transactional
-	ResponseEntity<Void> destroy(@Bound(value = "production_batch", table = TABLE, model = MODEL) Row batch) {
-		batches.delete(batch);
+	ResponseEntity<Void> destroy(@PathVariable long id) {
+		batches.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 

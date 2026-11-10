@@ -35,6 +35,7 @@ public final class LaravelMessages {
 	public static final String MAX_30 = "The :attribute field must not be greater than 30 characters.";
 	public static final String MAX_150 = "The :attribute field must not be greater than 150 characters.";
 	public static final String MAX_1000 = "The :attribute field must not be greater than 1000 characters.";
+	public static final String MAX_2000 = "The :attribute field must not be greater than 2000 characters.";
 	public static final String BETWEEN_90 = "The :attribute field must be between -90 and 90.";
 	public static final String BETWEEN_180 = "The :attribute field must be between -180 and 180.";
 	public static final String MAX_100 = "The :attribute field must not be greater than 100 characters.";

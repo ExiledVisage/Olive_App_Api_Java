@@ -2175,31 +2175,59 @@
    "save": null
   },
   {
-   "name": "bilgi hatali",
+   "name": "bilgi hatali durum",
    "method": "PATCH",
    "path": "/api/batch-processes/{P1}",
    "body": {
-    "status": "bogus",
+    "status": "bogus"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected status is invalid.",
+    "errors": {
+     "status": [
+      "The selected status is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "bilgi hatali not",
+   "method": "PATCH",
+   "path": "/api/batch-processes/{P1}",
+   "body": {
+    "note": 5
+   },
+   "status": 422,
+   "response": {
+    "message": "The note field must be a string.",
+    "errors": {
+     "note": [
+      "The note field must be a string."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "bilgi hatali kayitlar",
+   "method": "PATCH",
+   "path": "/api/batch-processes/{P1}",
+   "body": {
     "operator_id": 999,
     "started_at": "dun",
-    "note": 5,
     "operation_data": "x"
    },
    "status": 422,
    "response": {
-    "message": "The selected status is invalid. (and 4 more errors)",
+    "message": "The selected operator id is invalid. (and 2 more errors)",
     "errors": {
-     "status": [
-      "The selected status is invalid."
-     ],
      "operator_id": [
       "The selected operator id is invalid."
      ],
      "started_at": [
       "The started at field must be a valid date."
-     ],
-     "note": [
-      "The note field must be a string."
      ],
      "operation_data": [
       "The operation data field must be an array."
@@ -6525,7 +6553,7 @@
      },
      {
       "process_type_field_id": "{FB}",
-      "value": "1"
+      "value": true
      },
      {
       "process_type_field_id": "{FD}",

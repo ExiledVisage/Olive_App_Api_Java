@@ -430,7 +430,7 @@ Sıra:
 - [x] `sales`
 - [x] `finishedproduct`
 - [x] `inventory`
-- [ ] `production`
+- [x] `production`
 - [ ] `analytics` (entity'ler JPA; ağır raporlar SQL + `record` olarak kalır)
 - [ ] `identity` (JPA'da; request/response ve `Row` kalıntıları)
 - [ ] `Db`, `Row`, `Relations`, `Casts`, `Php`, `PhpDates`, `RequestInput`, `ValidatedInput`, `Rules`,
@@ -499,8 +499,8 @@ sayılmıyor.
 
 **Hedef akış:** ham ürün → üretim aşamaları → ön dinlendirme tankı → son tank → dolum → depo → satış
 
-**Zamanlama:** Davranışı bilerek değiştirdiği için B2'deki `production` taşınmasından sonra, ayrı bir özellik
-olarak yapılır.
+**Zamanlama:** Davranışı bilerek değiştirdiği için ayrı bir özellik olarak B7'den sonra, B8'den ve sunucu
+geçişinden önce yapılır.
 
 ## C1: Tank türleri
 - [ ] Tankın türü düzenlenebilir bir alan olur: normal (son tank) ya da ön dinlendirme
@@ -578,7 +578,7 @@ Bölüm B: Tamamen Java Mimarisi
   B9 Dashboard'lar    B10 Doküman
   B11 Kabul kriteri ◄─ hepsi
 
-Bölüm C: Tank Materyal Modeli ◄─ B2 (production)
+Bölüm C: Tank Materyal Modeli ◄─ B7 (B8 ve sunucu geçişinden önce)
   C1 Tank türleri ─► C2 Son tank ─► C3 Ön dinlendirme ─► C4 Boşaltma ─► C5 Tortu
   C6 Birimler    C7 İzlenebilirlik ve eski veri    C8 Konuşulacaklar
 ```

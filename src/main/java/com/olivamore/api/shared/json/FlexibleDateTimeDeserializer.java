@@ -33,7 +33,7 @@ public class FlexibleDateTimeDeserializer extends ValueDeserializer<LocalDateTim
 			() -> (LocalDateTime) context.handleWeirdStringValue(LocalDateTime.class, text, "Gecersiz tarih"));
 	}
 
-	static Optional<LocalDateTime> parse(String text) {
+	public static Optional<LocalDateTime> parse(String text) {
 		try {
 			return Optional.of(OffsetDateTime.parse(text).toLocalDateTime());
 		}

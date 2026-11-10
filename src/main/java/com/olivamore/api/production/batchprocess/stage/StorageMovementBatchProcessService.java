@@ -1,95 +1,79 @@
 package com.olivamore.api.production.batchprocess.stage;
 
 import com.olivamore.api.inventory.StockOperations;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
+import com.olivamore.api.production.batchprocess.stage.StageQueries.Material;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
-import com.olivamore.api.shared.persistence.Casts;
-import com.olivamore.api.shared.persistence.Db;
-import com.olivamore.api.shared.persistence.Relations;
-import com.olivamore.api.shared.persistence.Row;
-import com.olivamore.api.shared.php.Php;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import com.olivamore.api.production.batchprocess.stage.StageExtensions.Extension;
 import org.springframework.stereotype.Service;
 
-/** Laravel {@code StorageMovementBatchProcessService}: tanka giris, cikis ya da transfer (asamada sabitlenmis tur). */
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Objects;
+
+/** Tanka giris, cikis ya da transfer (asamada sabitlenmis tur). */
 @Service
 class StorageMovementBatchProcessService extends StageBatchProcessService {
 
-	StorageMovementBatchProcessService(Db db, StockOperations stock) {
-		super(db, stock);
+	StorageMovementBatchProcessService(StageQueries queries, StockOperations stock) {
+		super(queries, stock);
 	}
 
-	void storageMovement(Row process, List<Extension> extensions, Map<String, Object> data) {
-		String pinned = StageExtensions.pinnedAction(extensions);
-		Object sent = data.get("action");
-		String action;
-		if (pinned == null) {
-			action = sent == null ? "inbound" : Php.strval(sent);
-		}
-		else {
-			if (sent != null && !pinned.equals(sent)) {
-				throw new BusinessRuleException("Bu aşamada hareket türü '" + pinned + "' olarak sabitlenmiş; '" + Php.strval(sent)
-					+ "' gönderilemez.");
-			}
-			action = pinned;
-		}
-		Object note = data.get("note") != null ? data.get("note") : process.get("note");
-		String noteText = note == null ? null : Php.strval(note);
-		double quantity = data.get("quantity") != null ? Php.floatval(data.get("quantity")) : 0;
+	void storageMovement(StageProcess process, List<Extension> extensions, OperationData data) {
+		String action = action(extensions, data);
+		String note = data.text("note") != null ? data.text("note") : process.note();
+		BigDecimal quantity = data.quantity("quantity");
 		switch (action) {
 			case "inbound", "outbound" -> {
-				Row material = storageMaterial(process, extensions, data);
-				Object unitId = data.get("storage_unit_id");
-				if (!truthy(unitId) || quantity <= 0) {
+				Material material = storageMaterial(process, extensions, data);
+				Long unitId = data.id("storage_unit_id");
+				if (unitId == null || quantity.signum() <= 0) {
 					throw new BusinessRuleException(("inbound".equals(action) ? "Inbound" : "Outbound")
 						+ " için storage_unit_id ve quantity zorunludur.");
 				}
-				Row unit = findOrFail("storage_units", "StorageUnit", unitId);
 				if ("inbound".equals(action)) {
-					stock.inbound(unit.id(), material.id(), BigDecimal.valueOf(quantity), process.id(), noteText);
+					stock.inbound(unitId, material.id(), quantity, process.id(), note);
 				}
 				else {
-					stock.outbound(unit.id(), material.id(), BigDecimal.valueOf(quantity), process.id(), noteText);
+					stock.outbound(unitId, material.id(), quantity, process.id(), note);
 				}
 			}
 			case "transfer" -> {
-				Row material = storageMaterial(process, extensions, data);
-				Object fromId = data.get("from_storage_unit_id");
-				Object toId = data.get("to_storage_unit_id");
-				if (!truthy(fromId) || !truthy(toId) || quantity <= 0) {
+				Material material = storageMaterial(process, extensions, data);
+				Long fromId = data.id("from_storage_unit_id");
+				Long toId = data.id("to_storage_unit_id");
+				if (fromId == null || toId == null || quantity.signum() <= 0) {
 					throw new BusinessRuleException("Transfer için from_storage_unit_id, to_storage_unit_id ve quantity zorunludur.");
 				}
-				Row from = findOrFail("storage_units", "StorageUnit", fromId);
-				Row to = findOrFail("storage_units", "StorageUnit", toId);
-				stock.transfer(from.id(), to.id(), material.id(), BigDecimal.valueOf(quantity), process.id(), noteText);
+				stock.transfer(fromId, toId, material.id(), quantity, process.id(), note);
 			}
 			default -> throw new BusinessRuleException("Geçersiz storage movement action gönderildi.");
 		}
 	}
 
+	/** Gonderilen hareket turu; sabitlenmisse farkli tur reddedilir. */
+	private static String action(List<Extension> extensions, OperationData data) {
+		String pinned = StageExtensions.pinnedAction(extensions);
+		String sent = data.text("action");
+		if (pinned == null) {
+			return sent == null ? "inbound" : sent;
+		}
+		if (sent != null && !pinned.equals(sent)) {
+			throw new BusinessRuleException("Bu aşamada hareket türü '" + pinned + "' olarak sabitlenmiş; '" + sent
+				+ "' gönderilemez.");
+		}
+		return pinned;
+	}
+
 	/** Uzantinin girdi kategorilerindeki (tanimliysa) aktif parti materyali; secilen ya da tek. */
-	private Row storageMaterial(Row process, List<Extension> extensions, Map<String, Object> data) {
+	private Material storageMaterial(StageProcess process, List<Extension> extensions, OperationData data) {
 		Extension extension = first(extensions, "storage_movement");
 		List<Long> categories = extension == null ? List.of() : extension.inputProductIds();
-		if (truthy(data.get("material_id"))) {
-			Row material = findOrFail("materials", "Material", data.get("material_id"));
-			if (Php.intval(material.get("production_batch_id")) != Php.intval(process.get("production_batch_id"))) {
-				throw new BusinessRuleException("Seçilen material bu batch’e ait değil.");
-			}
-			Row type = db.find("production_product_types", Php.intval(material.get("production_product_type_id"))).orElseThrow();
-			if (!categories.isEmpty() && !categories.contains(Php.intval(type.get("production_product_id")))) {
-				throw new BusinessRuleException("Seçilen material (" + Php.strval(type.get("name")) + ") bu aşamanın girdi ürünlerinden değil.");
-			}
-			return material;
+		Long selected = data.id("material_id");
+		if (selected != null) {
+			return selectedMaterial(process, categories, selected);
 		}
-		List<Row> materials = categories.isEmpty()
-			? db.select("select * from materials where production_batch_id = ? and status = ?", process.get("production_batch_id"), "active")
+		List<Material> materials = categories.isEmpty() ? queries.activeMaterials(process.productionBatchId())
 			: candidateMaterials(process, categories);
 		if (materials.isEmpty()) {
 			throw new BusinessRuleException("Storage movement için aktif material bulunamadı.");
@@ -98,6 +82,18 @@ class StorageMovementBatchProcessService extends StageBatchProcessService {
 			throw new BusinessRuleException("Birden fazla aktif material bulundu. material_id gönderilmelidir.");
 		}
 		return materials.getFirst();
+	}
+
+	private Material selectedMaterial(StageProcess process, List<Long> categories, long id) {
+		Material material = queries.material(id).orElseThrow(() -> new ModelNotFoundException("Material", id));
+		if (!Objects.equals(material.productionBatchId(), process.productionBatchId())) {
+			throw new BusinessRuleException("Seçilen material bu batch’e ait değil.");
+		}
+		var type = queries.productType(material.productionProductTypeId()).orElseThrow();
+		if (!categories.isEmpty() && !categories.contains(type.productionProductId())) {
+			throw new BusinessRuleException("Seçilen material (" + type.name() + ") bu aşamanın girdi ürünlerinden değil.");
+		}
+		return material;
 	}
 
 }

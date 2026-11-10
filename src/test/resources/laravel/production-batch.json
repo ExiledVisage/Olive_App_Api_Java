@@ -14625,7 +14625,7 @@
    "save": null
   },
   {
-   "name": "parti hatali",
+   "name": "parti hatali id tipi",
    "method": "POST",
    "path": "/api/production-batches",
    "body": {
@@ -14636,33 +14636,86 @@
      999,
      "x"
     ],
+    "production_line_id": 99
+   },
+   "status": 422,
+   "response": {
+    "message": "The input_production_product_type_ids.3 field must be an integer.",
+    "errors": {
+     "input_production_product_type_ids.3": [
+      "The input_production_product_type_ids.3 field must be an integer."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "parti hatali durum",
+   "method": "POST",
+   "path": "/api/production-batches",
+   "body": {
+    "batch_code": "T-1",
+    "input_production_product_type_ids": [
+     1
+    ],
+    "production_line_id": 1,
+    "status": "x"
+   },
+   "status": 422,
+   "response": {
+    "message": "The selected status is invalid.",
+    "errors": {
+     "status": [
+      "The selected status is invalid."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "parti hatali miktar",
+   "method": "POST",
+   "path": "/api/production-batches",
+   "body": {
+    "batch_code": "T-1",
+    "input_production_product_type_ids": [
+     1
+    ],
+    "production_line_id": 1,
+    "quantity_kg": -1
+   },
+   "status": 422,
+   "response": {
+    "message": "The quantity kg field must be at least 0.",
+    "errors": {
+     "quantity_kg": [
+      "The quantity kg field must be at least 0."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "parti hatali kayitlar",
+   "method": "POST",
+   "path": "/api/production-batches",
+   "body": {
+    "batch_code": "P-261105-02",
+    "input_production_product_type_ids": [
+     1,
+     1,
+     999
+    ],
     "production_line_id": 99,
-    "status": "x",
-    "quantity_kg": -1,
     "received_at": "dun",
     "supplier_id": 999
    },
    "status": 422,
    "response": {
-    "message": "The batch code has already been taken. (and 9 more errors)",
+    "message": "The batch code has already been taken. (and 6 more errors)",
     "errors": {
      "batch_code": [
       "The batch code has already been taken."
-     ],
-     "production_line_id": [
-      "The selected production line id is invalid."
-     ],
-     "status": [
-      "The selected status is invalid."
-     ],
-     "quantity_kg": [
-      "The quantity kg field must be at least 0."
-     ],
-     "supplier_id": [
-      "The selected supplier id is invalid."
-     ],
-     "received_at": [
-      "The received at field must be a valid date."
      ],
      "input_production_product_type_ids.0": [
       "The input_production_product_type_ids.0 field has a duplicate value."
@@ -14673,8 +14726,14 @@
      "input_production_product_type_ids.2": [
       "The selected input_production_product_type_ids.2 is invalid."
      ],
-     "input_production_product_type_ids.3": [
-      "The input_production_product_type_ids.3 field must be an integer."
+     "production_line_id": [
+      "The selected production line id is invalid."
+     ],
+     "supplier_id": [
+      "The selected supplier id is invalid."
+     ],
+     "received_at": [
+      "The received at field must be a valid date."
      ]
     }
    },
@@ -23908,27 +23967,36 @@
    "save": null
   },
   {
-   "name": "guncelle hatali",
+   "name": "guncelle hatali tarih",
    "method": "PATCH",
    "path": "/api/production-batches/{B}",
    "body": {
-    "status": null,
-    "received_at": "2026-13-01",
+    "received_at": "2026-13-01"
+   },
+   "status": 422,
+   "response": {
+    "message": "The received at field must be a valid date.",
+    "errors": {
+     "received_at": [
+      "The received at field must be a valid date."
+     ]
+    }
+   },
+   "save": null
+  },
+  {
+   "name": "guncelle hatali miktar",
+   "method": "PATCH",
+   "path": "/api/production-batches/{B}",
+   "body": {
     "quantity_kg": "abc"
    },
    "status": 422,
    "response": {
-    "message": "The status field must be a string. (and 3 more errors)",
+    "message": "The quantity kg field must be a number.",
     "errors": {
-     "status": [
-      "The status field must be a string.",
-      "The selected status is invalid."
-     ],
      "quantity_kg": [
       "The quantity kg field must be a number."
-     ],
-     "received_at": [
-      "The received at field must be a valid date."
      ]
     }
    },

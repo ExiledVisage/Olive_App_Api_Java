@@ -21,6 +21,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Material extends AuditedEntity {
 
+	/** Bunun altinda kalan girdi tukenmis sayilir. */
+	private static final BigDecimal CONSUMED_BELOW = new BigDecimal("0.000001");
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -74,6 +77,17 @@ public class Material extends AuditedEntity {
 		this.note = note;
 	}
 
+	/** Uretim prosesinin yarattigi materyal: partinin icinde durur. */
+	public static Material ofBatchProcess(long batchId, long typeId, Long parentId, BigDecimal quantity, MaterialUnit unit,
+		long stageId, long processId, String note) {
+		Material material = new Material(batchId, typeId, MaterialOrigin.BATCH_PROCESS, quantity, unit, stageId, processId,
+			note);
+		material.parentMaterialId = parentId;
+		material.currentLocationType = LocationType.PRODUCTION_BATCH;
+		material.currentLocationId = batchId;
+		return material;
+	}
+
 	/** Bu materyalden ayrilan parca: ayni ozellikler, ayni konum, proses verilirse prosese bagli. */
 	public Material splitOff(BigDecimal portion, Long batchProcessId) {
 		Material child = new Material();
@@ -89,6 +103,38 @@ public class Material extends AuditedEntity {
 		child.createdByBatchProcessId = batchProcessId != null ? batchProcessId : createdByBatchProcessId;
 		child.note = note;
 		return child;
+	}
+
+	/** Tartimda olculen miktar; konumu yoksa partiye yerlesir, proses notu varsa yazilir. */
+	public void recordWeighing(BigDecimal measured, MaterialUnit measuredUnit, long stageId, long batchId,
+		String processNote) {
+		quantity = Quantities.material(measured);
+		unit = measuredUnit;
+		sourceProductionStageId = stageId;
+		if (currentLocationType == null) {
+			currentLocationType = LocationType.PRODUCTION_BATCH;
+		}
+		if (currentLocationId == null) {
+			currentLocationId = batchId;
+		}
+		if (processNote != null) {
+			note = processNote;
+		}
+	}
+
+	/** Donusum girdisi: kalan yoksa proses tarafindan tuketilir (konum silinmez), varsa miktar azalir. */
+	public void consumeInput(BigDecimal used, long processId, String processNote) {
+		BigDecimal remaining = quantity.subtract(used);
+		if (remaining.compareTo(CONSUMED_BELOW) <= 0) {
+			status = MaterialStatus.CONSUMED;
+			closedByBatchProcessId = processId;
+		}
+		else {
+			quantity = Quantities.material(remaining);
+		}
+		if (processNote != null) {
+			note = processNote;
+		}
 	}
 
 	public void reduceTo(BigDecimal remaining) {
