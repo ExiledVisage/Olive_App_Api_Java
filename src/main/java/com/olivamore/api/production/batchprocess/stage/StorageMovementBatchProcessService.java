@@ -86,6 +86,10 @@ class StorageMovementBatchProcessService extends StageBatchProcessService {
 
 	private Material selectedMaterial(StageProcess process, List<Long> categories, long id) {
 		Material material = queries.material(id).orElseThrow(() -> new ModelNotFoundException("Material", id));
+		if (material.productionBatchId() == null) {
+			throw new BusinessRuleException("Seçilen material bir partiye ait değil (ör. son tanktaki karışım); üretim "
+				+ "içinden üzerinde işlem yapılamaz.");
+		}
 		if (!Objects.equals(material.productionBatchId(), process.productionBatchId())) {
 			throw new BusinessRuleException("Seçilen material bu batch’e ait değil.");
 		}

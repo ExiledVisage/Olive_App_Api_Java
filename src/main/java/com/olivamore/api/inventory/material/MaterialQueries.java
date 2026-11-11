@@ -44,6 +44,11 @@ public class MaterialQueries {
 	public record Unit(Long id, String name, String code) {
 	}
 
+	/** Son tanka giris: gelen materyal (source) karistigi tank materyaline (material) girdi. */
+	public record MovementLink(Long id, Long sourceMaterialId, Long materialId, String movementType,
+		BigDecimal quantity, String unit) {
+	}
+
 	public record Definition(Long id, Long productionProductId, Long attributeDefinitionId, Boolean isRequired,
 		Integer sortOrder, String attributeKey, String label, String dataType, String unit, String description) {
 	}
@@ -79,6 +84,26 @@ public class MaterialQueries {
 		}
 		return jdbc.sql("select * from materials where parent_material_id in (:ids) order by id asc")
 			.param("ids", present).query(MaterialRow.class).list();
+	}
+
+	/** Bu materyallerin girdigi tank materyalleri (giris hareketleri, id sirasiyla). */
+	public List<MovementLink> linksFrom(Collection<Long> sourceIds) {
+		return links("source_material_id", sourceIds);
+	}
+
+	/** Bu tank materyallerine giren materyaller (giris hareketleri, id sirasiyla). */
+	public List<MovementLink> linksTo(Collection<Long> materialIds) {
+		return links("material_id", materialIds);
+	}
+
+	private List<MovementLink> links(String column, Collection<Long> ids) {
+		List<Long> present = ValidationErrors.present(ids);
+		if (present.isEmpty()) {
+			return List.of();
+		}
+		return jdbc.sql("select id, source_material_id, material_id, movement_type, quantity, unit from storage_movements"
+			+ " where source_material_id is not null and " + column + " in (:ids) order by id")
+			.param("ids", present).query(MovementLink.class).list();
 	}
 
 	/** Materyalin cocuklari; sira verilmez (detay ekrani). */

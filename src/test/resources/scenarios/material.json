@@ -27606,6 +27606,40 @@
        "depth": 1
       },
       {
+       "key": "material:30",
+       "kind": "material",
+       "id": 30,
+       "title": "Zeytin Pirinası",
+       "subtitle": "16 kg",
+       "quantity": 16,
+       "unit": "KG",
+       "status": "active",
+       "lineage_role": "derived",
+       "origin_type": "BATCH_PROCESS",
+       "batch_code": "P-251106-01",
+       "stage_name": "Ön Dinlenme",
+       "storage_unit": null,
+       "is_focus": false,
+       "depth": 2
+      },
+      {
+       "key": "material:31",
+       "kind": "material",
+       "id": 31,
+       "title": "Ayvalık Zeytinyağı",
+       "subtitle": "129,36 L",
+       "quantity": 129.36,
+       "unit": "LITRE",
+       "status": "consumed",
+       "lineage_role": "derived",
+       "origin_type": "BATCH_PROCESS",
+       "batch_code": "P-251106-01",
+       "stage_name": "Filtreleme",
+       "storage_unit": null,
+       "is_focus": false,
+       "depth": 2
+      },
+      {
        "key": "material:32",
        "kind": "material",
        "id": 32,
@@ -27621,6 +27655,23 @@
        "storage_unit": null,
        "is_focus": true,
        "depth": 2
+      },
+      {
+       "key": "material:33",
+       "kind": "material",
+       "id": 33,
+       "title": "Ayvalık Zeytinyağı",
+       "subtitle": "483 L",
+       "quantity": 483,
+       "unit": "LITRE",
+       "status": "consumed",
+       "lineage_role": "derived",
+       "origin_type": "BATCH_PROCESS",
+       "batch_code": "P-251106-01",
+       "stage_name": "Filtreleme",
+       "storage_unit": null,
+       "is_focus": false,
+       "depth": 3
       },
       {
        "key": "run:18",
@@ -27680,9 +27731,30 @@
       },
       {
        "from": "material:27",
+       "to": "material:30",
+       "label": "Ön Dinlenme",
+       "quantity": 16,
+       "unit": "KG"
+      },
+      {
+       "from": "material:27",
+       "to": "material:31",
+       "label": "Filtreleme",
+       "quantity": 129.36,
+       "unit": "LITRE"
+      },
+      {
+       "from": "material:27",
        "to": "material:32",
        "label": "Filtreleme",
        "quantity": 1.016,
+       "unit": "LITRE"
+      },
+      {
+       "from": "material:32",
+       "to": "material:33",
+       "label": "Filtreleme",
+       "quantity": 483,
        "unit": "LITRE"
       },
       {
@@ -29581,6 +29653,40 @@
        "depth": 1
       },
       {
+       "key": "material:2331",
+       "kind": "material",
+       "id": 2331,
+       "title": "Zeytin Pirinası",
+       "subtitle": "12 kg",
+       "quantity": 12,
+       "unit": "KG",
+       "status": "active",
+       "lineage_role": "derived",
+       "origin_type": "BATCH_PROCESS",
+       "batch_code": "P-261103-01",
+       "stage_name": "Ön Dinlenme",
+       "storage_unit": null,
+       "is_focus": false,
+       "depth": 2
+      },
+      {
+       "key": "material:2332",
+       "kind": "material",
+       "id": 2332,
+       "title": "Gemlik Zeytinyağı",
+       "subtitle": "214,23 L",
+       "quantity": 214.233,
+       "unit": "LITRE",
+       "status": "consumed",
+       "lineage_role": "derived",
+       "origin_type": "BATCH_PROCESS",
+       "batch_code": "P-261103-01",
+       "stage_name": "Filtreleme",
+       "storage_unit": null,
+       "is_focus": false,
+       "depth": 2
+      },
+      {
        "key": "material:2333",
        "kind": "material",
        "id": 2333,
@@ -29596,6 +29702,23 @@
        "storage_unit": null,
        "is_focus": false,
        "depth": 2
+      },
+      {
+       "key": "material:2334",
+       "kind": "material",
+       "id": 2334,
+       "title": "Gemlik Zeytinyağı",
+       "subtitle": "435 L",
+       "quantity": 435,
+       "unit": "LITRE",
+       "status": "consumed",
+       "lineage_role": "derived",
+       "origin_type": "BATCH_PROCESS",
+       "batch_code": "P-261103-01",
+       "stage_name": "Filtreleme",
+       "storage_unit": null,
+       "is_focus": false,
+       "depth": 3
       },
       {
        "key": "material:2335",
@@ -29672,9 +29795,30 @@
       },
       {
        "from": "material:2328",
+       "to": "material:2331",
+       "label": "Ön Dinlenme",
+       "quantity": 12,
+       "unit": "KG"
+      },
+      {
+       "from": "material:2328",
+       "to": "material:2332",
+       "label": "Filtreleme",
+       "quantity": 214.233,
+       "unit": "LITRE"
+      },
+      {
+       "from": "material:2328",
        "to": "material:2333",
        "label": "Filtreleme",
        "quantity": 0.926,
+       "unit": "LITRE"
+      },
+      {
+       "from": "material:2333",
+       "to": "material:2334",
+       "label": "Filtreleme",
+       "quantity": 435,
        "unit": "LITRE"
       },
       {

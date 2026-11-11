@@ -7,12 +7,11 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-/** Tanktan cikis. */
+/** Tanktan cikis. Son tankta karisimdan oransal: material_id verilmez (verilirse tankta olmali). */
 record OutboundRequest(
 	@NotNull(message = MessageKeys.REQUIRED)
 	Long storageUnitId,
 
-	@NotNull(message = MessageKeys.REQUIRED)
 	Long materialId,
 
 	Long batchProcessId,

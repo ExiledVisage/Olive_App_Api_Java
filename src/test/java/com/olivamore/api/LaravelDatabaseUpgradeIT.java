@@ -62,8 +62,10 @@ class LaravelDatabaseUpgradeIT {
 			.containsExactlyInAnyOrder(admin + ":" + adminRole, operator + ":" + operatorRole);
 		assertThat(jdbc.queryForList("select user_id || ':' || permission_id from user_permissions", String.class))
 			.containsExactly(operator + ":" + edit);
+		long measure = jdbc.queryForObject("select id from permissions where name = 'storage_unit.measure'", Long.class);
 		assertThat(jdbc.queryForList("select role_id || ':' || permission_id from role_permissions", String.class))
-			.containsExactlyInAnyOrder(adminRole + ":" + view, adminRole + ":" + edit, operatorRole + ":" + view);
+			.containsExactlyInAnyOrder(adminRole + ":" + view, adminRole + ":" + edit, operatorRole + ":" + view,
+				adminRole + ":" + measure);
 		assertThat(jdbc.queryForObject("select name from roles where id = ?", String.class, operatorRole))
 			.isEqualTo("production_operator");
 		assertThat(jdbc.queryForObject("select name from permissions where id = ?", String.class, edit))
@@ -79,7 +81,44 @@ class LaravelDatabaseUpgradeIT {
 		assertThat(db.columns("permissions")).doesNotContain("guard_name");
 		assertThat(db.columns("users")).doesNotContain("remember_token").contains("email_verified_at");
 		assertThat(jdbc.queryForList("select version from flyway_schema_history where version is not null "
-			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7");
+			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7", "8");
+	}
+
+	@Test
+	void grantsTankMeasurementToAdminAndToWhoeverAdjustsStock() {
+		Database db = laravelDatabase();
+		long operator = db.user("uretim@olivamore.com");
+		long adminRole = db.role("admin", "web");
+		long warehouseRole = db.role("warehouse_operator", "web");
+		long plannerRole = db.role("planner", "web");
+		long adjustment = db.permission("storage_movement.adjustment", "web");
+		db.grant(warehouseRole, adjustment);
+		db.assignPermission(adjustment, USER_MODEL, operator);
+
+		db.upgrade();
+
+		JdbcTemplate jdbc = db.jdbc;
+		long measure = jdbc.queryForObject("select id from permissions where name = 'storage_unit.measure'", Long.class);
+		assertThat(jdbc.queryForList("select role_id from role_permissions where permission_id = ?", Long.class,
+			measure)).containsExactlyInAnyOrder(adminRole, warehouseRole).doesNotContain(plannerRole);
+		assertThat(jdbc.queryForList("select user_id from user_permissions where permission_id = ?", Long.class,
+			measure)).containsExactly(operator);
+	}
+
+	@Test
+	void marksTanksDescribedAsRestingTanksAsPreSettling() {
+		Database db = laravelDatabase();
+		long byName = db.tank("Gemlik Ön Dinlenme Tankı", "T-01", null);
+		long byCode = db.tank("Tank 2", "DİNLENME-02", null);
+		long byDescription = db.tank("Tank 3", "T-03", "dinlenme icin kullaniliyor");
+		long last = db.tank("Son Tank", "SON-01", "blend");
+
+		db.upgrade();
+
+		assertThat(db.jdbc.queryForList("select id from storage_units where kind = 'pre_settling'", Long.class))
+			.containsExactlyInAnyOrder(byName, byCode, byDescription);
+		assertThat(db.jdbc.queryForObject("select kind from storage_units where id = ?", String.class, last))
+			.isEqualTo("final");
 	}
 
 	@Test
@@ -173,6 +212,11 @@ class LaravelDatabaseUpgradeIT {
 		long user(String email) {
 			return jdbc.queryForObject("insert into users (name, email, password, remember_token) values (?, ?, 'hash', 't') "
 				+ "returning id", Long.class, email, email);
+		}
+
+		long tank(String name, String code, String description) {
+			return jdbc.queryForObject("insert into storage_units (name, code, capacity, capacity_unit, description) "
+				+ "values (?, ?, 1000, 'LITRE', ?) returning id", Long.class, name, code, description);
 		}
 
 		long role(String name, String guard) {

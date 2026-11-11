@@ -518,23 +518,23 @@ geçişinden önce yapılır.
 - [x] Son tanktan ön dinlendirme tankına aktarım yapılamaz (tanklar arası transfer)
 
 ## C2: Son tank
-- [ ] Tank ve ürün tipi başına tek aktif tank materyali olur; `materials` tablosunda tutulur, partisi boştur
-- [ ] Tanka giren materyal, giren miktar kadar o anda kapanır; kısmi girişte kalan kısım üretimde aktif kalır
-- [ ] Aynı tip yeniden girerse miktar aynı satıra eklenir, farklı tip yeni tank materyali açar
-- [ ] Sayısal özellikler kütleye göre ağırlıklı ortalamayla güncellenir (litre yoğunlukla kg'ye çevrilir);
+- [x] Tank ve ürün tipi başına tek aktif tank materyali olur; `materials` tablosunda tutulur, partisi boştur
+- [x] Tanka giren materyal, giren miktar kadar o anda kapanır; kısmi girişte kalan kısım üretimde aktif kalır
+- [x] Aynı tip yeniden girerse miktar aynı satıra eklenir, farklı tip yeni tank materyali açar
+- [x] Sayısal özellikler kütleye göre ağırlıklı ortalamayla güncellenir (litre yoğunlukla kg'ye çevrilir);
   diğerleri aynıysa kalır, farklıysa boşalır. Dolum ve çıkış ortalamayı değiştirmez
-- [ ] Ürünün zorunlu (`is_required`) özelliklerinden biri ölçülmemiş materyal son tanka giremez
-- [ ] Son tanka isteğe bağlı analiz girilebilir: ölçülen değer hesaplanan ortalamanın yerine geçer,
+- [x] Ürünün zorunlu (`is_required`) özelliklerinden biri ölçülmemiş materyal son tanka giremez
+- [x] Son tanka isteğe bağlı analiz girilebilir: ölçülen değer hesaplanan ortalamanın yerine geçer,
   sonraki girişler bu değerden devam eder
-- [ ] Her tank ölçümü geçmişe yazılır: hesaplanan değer, ölçülen değer, fark, ölçen kişi ve zaman.
+- [x] Her tank ölçümü geçmişe yazılır: hesaplanan değer, ölçülen değer, fark, ölçen kişi ve zaman.
   Sapma, hesabın ve ölçümlerin ne kadar tuttuğunu izlemek için saklanır
-- [ ] Tank materyali sıfırlanınca kapanır, sonraki giriş yeni bir tane açar
-- [ ] Tanktan çıkışta çocuk materyal açılmaz, tank materyali doğrudan azalır
-- [ ] Dolum, elle çıkış, tanktan tanka transfer ve sayım azalışı tipler arasında oransal düşer;
+- [x] Tank materyali sıfırlanınca kapanır, sonraki giriş yeni bir tane açar
+- [x] Tanktan çıkışta çocuk materyal açılmaz, tank materyali doğrudan azalır
+- [x] Dolum, elle çıkış, tanktan tanka transfer ve sayım azalışı tipler arasında oransal düşer;
   yuvarlama farkı son tipe yazılır
-- [ ] Transferde hedef tank karışımdaki her tipi kabul etmeli, biri reddedilirse transferin tamamı reddedilir
-- [ ] Tank sayfasındaki giriş, çıkış, transfer ve sayım hareketleri normal tanklar için kalır
-- [ ] Üretim içinden son tanktaki karışım materyali üzerinde çıkış ya da transfer yapılamaz (tek partisi yok)
+- [x] Transferde hedef tank karışımdaki her tipi kabul etmeli, biri reddedilirse transferin tamamı reddedilir
+- [x] Tank sayfasındaki giriş, çıkış, transfer ve sayım hareketleri normal tanklar için kalır
+- [x] Üretim içinden son tanktaki karışım materyali üzerinde çıkış ya da transfer yapılamaz (tek partisi yok)
 
 ## C3: Ön dinlendirme tankı
 - [ ] Materyaller birleşmez, parti başına satırlar korunur ve tank ekranında tek tek görünür
@@ -570,9 +570,11 @@ geçişinden önce yapılır.
   yoksa yalnızca girilen birim gösterilir. Dolu tankta karışımın yoğunluğu (toplam kg / toplam litre) kullanılır
 
 ## C7: İzlenebilirlik ve eski veri
-- [ ] Tanka giriş hareketi, karıştığı tank materyalini gösterir; soy grafiği parti → tank materyali → dolum →
+- [x] Tanka giriş hareketi, karıştığı tank materyalini gösterir; soy grafiği parti → tank materyali → dolum →
   depo → sipariş şeklinde yürür
 - [ ] Tanklardaki mevcut aktif materyaller tank ve tip bazında birleştirilir, ortalamalar hesaplanır, eskiler kapanır
+- [x] Canlıda dinlenme tankları yalnızca metinle belirtiliyor: V7, kodunda, adında ya da açıklamasında "dinlen"
+  geçen tankları `pre_settling` yapar; liste geçişten önce GO_LIVE 2. adımda kontrol edilir
 - [ ] Üretim aşamalarında sabitlenmiş eski `outbound` ve `transfer` ayarları geçişten önce canlı veride kontrol edilir
 
 ## C8: Geliştirme başlarken konuşulacaklar

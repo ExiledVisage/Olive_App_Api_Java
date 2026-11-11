@@ -7070,22 +7070,22 @@ COPY public.finished_product_recipe_contents (id, finished_product_recipe_id, pr
 -- Data for Name: storage_units; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.storage_units (id, name, code, capacity, capacity_unit, is_blend_tank, allow_multiple_production_product_types, allow_multiple_production_products, description, is_active, created_at, updated_at) FROM stdin;
-1	Dolum Tankı — Gemlik 0.3	FILL-GEM-03	3000.00	LITRE	f	f	f	Düşük asitlikli Gemlik yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-2	Dolum Tankı — Gemlik 0.8	FILL-GEM-08	2000.00	LITRE	f	f	f	Yüksek asitlikli Gemlik yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-3	Dolum Tankı — Ayvalık 0.4	FILL-AVL-04	2000.00	LITRE	f	f	f	Düşük asitlikli Ayvalık yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-4	Dolum Tankı — Ayvalık 0.9	FILL-AVL-09	1000.00	LITRE	f	f	f	Yüksek asitlikli Ayvalık yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-5	Dolum Tankı — Klasik Blend 0.5	FILL-BLEND-50	2000.00	LITRE	t	t	f	%70 Gemlik + %30 Ayvalık blend dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-6	Dolum Tankı — Portakallı Zeytinyağı	FILL-ORANGE-60	2000.00	LITRE	t	t	t	%80 Gemlik + %20 portakal aroması dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-7	Gemlik Ön Dinlenme Tankı	DINLENME-GEM-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-8	Gemlik Toplama Tankı	TOPLAMA-GEM-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-9	Gemlik Dolum Tankı (Üretim)	FILL-GEM-11	5000.00	LITRE	f	f	f	Üretim partisinden beslenen dolum tankı; icerigi acilis stogu degil, kendi zeytinimizden.	t	2026-11-06 15:35:13	2026-11-06 15:35:13
-10	Ayvalık Ön Dinlenme Tankı	DINLENME-AYV-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:14	2026-11-06 15:35:14
-11	Ayvalık Toplama Tankı	TOPLAMA-AYV-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:14	2026-11-06 15:35:14
-12	Gemlik Dolum Tankı	DOLUM-GEM-01	10000.00	LITRE	f	f	f	Toplama tankından beslenir; dolum koşuları buradan çeker. Her çevrim sonunda boşaltılır ki asitlik ortalaması kaymasın.	t	2026-11-06 15:35:14	2026-11-06 15:35:14
-13	Ayvalık Dolum Tankı	DOLUM-AYV-01	10000.00	LITRE	f	f	f	Toplama tankından beslenir; dolum koşuları buradan çeker. Her çevrim sonunda boşaltılır ki asitlik ortalaması kaymasın.	t	2026-11-06 15:35:14	2026-11-06 15:35:14
-14	Blend Dolum Tankı	DOLUM-BLEND-01	10000.00	LITRE	t	t	f	Gemlik ve Ayvalık yağı burada karışır; soy ağacında iki ebeveynli düğüm buradan doğar.	t	2026-11-06 15:35:14	2026-11-06 15:35:14
-15	Gemlik Blend Rezerv Tankı	REZERV-GEM-01	6000.00	LITRE	f	f	f	Hasat döneminin düşük asitli Gemlik yağı burada bekler ve yıl boyunca blendlerde yüksek asitli Ayvalık ile harmanlanır.	t	2026-11-06 15:35:14	2026-11-06 15:35:14
+COPY public.storage_units (id, name, code, capacity, capacity_unit, is_blend_tank, allow_multiple_production_product_types, allow_multiple_production_products, description, is_active, created_at, updated_at, kind) FROM stdin;
+1	Dolum Tankı — Gemlik 0.3	FILL-GEM-03	3000.00	LITRE	f	f	f	Düşük asitlikli Gemlik yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+2	Dolum Tankı — Gemlik 0.8	FILL-GEM-08	2000.00	LITRE	f	f	f	Yüksek asitlikli Gemlik yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+3	Dolum Tankı — Ayvalık 0.4	FILL-AVL-04	2000.00	LITRE	f	f	f	Düşük asitlikli Ayvalık yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+4	Dolum Tankı — Ayvalık 0.9	FILL-AVL-09	1000.00	LITRE	f	f	f	Yüksek asitlikli Ayvalık yağı dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+5	Dolum Tankı — Klasik Blend 0.5	FILL-BLEND-50	2000.00	LITRE	t	t	f	%70 Gemlik + %30 Ayvalık blend dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+6	Dolum Tankı — Portakallı Zeytinyağı	FILL-ORANGE-60	2000.00	LITRE	t	t	t	%80 Gemlik + %20 portakal aroması dolum tankı	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+7	Gemlik Ön Dinlenme Tankı	DINLENME-GEM-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:12	2026-11-06 15:35:12	pre_settling
+8	Gemlik Toplama Tankı	TOPLAMA-GEM-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:12	2026-11-06 15:35:12	final
+9	Gemlik Dolum Tankı (Üretim)	FILL-GEM-11	5000.00	LITRE	f	f	f	Üretim partisinden beslenen dolum tankı; icerigi acilis stogu degil, kendi zeytinimizden.	t	2026-11-06 15:35:13	2026-11-06 15:35:13	final
+10	Ayvalık Ön Dinlenme Tankı	DINLENME-AYV-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:14	2026-11-06 15:35:14	pre_settling
+11	Ayvalık Toplama Tankı	TOPLAMA-AYV-01	10000.00	LITRE	f	f	f	\N	t	2026-11-06 15:35:14	2026-11-06 15:35:14	final
+12	Gemlik Dolum Tankı	DOLUM-GEM-01	10000.00	LITRE	f	f	f	Toplama tankından beslenir; dolum koşuları buradan çeker. Her çevrim sonunda boşaltılır ki asitlik ortalaması kaymasın.	t	2026-11-06 15:35:14	2026-11-06 15:35:14	final
+13	Ayvalık Dolum Tankı	DOLUM-AYV-01	10000.00	LITRE	f	f	f	Toplama tankından beslenir; dolum koşuları buradan çeker. Her çevrim sonunda boşaltılır ki asitlik ortalaması kaymasın.	t	2026-11-06 15:35:14	2026-11-06 15:35:14	final
+14	Blend Dolum Tankı	DOLUM-BLEND-01	10000.00	LITRE	t	t	f	Gemlik ve Ayvalık yağı burada karışır; soy ağacında iki ebeveynli düğüm buradan doğar.	t	2026-11-06 15:35:14	2026-11-06 15:35:14	final
+15	Gemlik Blend Rezerv Tankı	REZERV-GEM-01	6000.00	LITRE	f	f	f	Hasat döneminin düşük asitli Gemlik yağı burada bekler ve yıl boyunca blendlerde yüksek asitli Ayvalık ile harmanlanır.	t	2026-11-06 15:35:14	2026-11-06 15:35:14	final
 \.
 
 
@@ -17358,6 +17358,7 @@ COPY public.permissions (id, name, created_at, updated_at) FROM stdin;
 52	order.create	2026-11-06 15:35:10	2026-11-06 15:35:10
 53	order.update	2026-11-06 15:35:10	2026-11-06 15:35:10
 54	order.update_status	2026-11-06 15:35:10	2026-11-06 15:35:10
+55	storage_unit.measure	2026-11-06 15:35:10	2026-11-06 15:35:10
 \.
 
 
@@ -23132,6 +23133,7 @@ COPY public.role_permissions (role_id, permission_id) FROM stdin;
 6	41
 6	45
 6	49
+1	55
 \.
 
 
@@ -26263,7 +26265,7 @@ SELECT pg_catalog.setval('public.packaging_lots_id_seq', 337, true);
 -- Name: permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.permissions_id_seq', 54, true);
+SELECT pg_catalog.setval('public.permissions_id_seq', 55, true);
 
 
 --

@@ -6464,22 +6464,22 @@
      "production_stage_id": 11,
      "operator_id": null,
      "status": "completed",
-     "started_at": "2026-11-07T00:45:07Z",
-     "completed_at": "2026-11-07T00:45:07Z",
+     "started_at": "2026-11-11T18:01:27Z",
+     "completed_at": "2026-11-11T18:01:27Z",
      "note": null,
      "operation_data": {
-      "quantity": 870,
       "note": "toplandi",
-      "from_storage_unit_id": 7,
-      "to_storage_unit_id": 8
+      "quantity": 870,
+      "to_storage_unit_id": 8,
+      "from_storage_unit_id": 7
      },
      "requires_approval": true,
-     "submitted_at": "2026-11-07T00:45:07Z",
+     "submitted_at": "2026-11-11T18:01:27Z",
+     "approved_at": "2026-11-11T18:01:27Z",
      "submitted_by": {
       "id": 1,
       "name": "Olivamore Admin"
      },
-     "approved_at": "2026-11-07T00:45:07Z",
      "approved_by": {
       "id": 1,
       "name": "Olivamore Admin"
@@ -6490,12 +6490,12 @@
        "decision": "approved",
        "note": null,
        "operation_data": {
-        "quantity": 870,
         "note": "toplandi",
-        "from_storage_unit_id": 7,
-        "to_storage_unit_id": 8
+        "quantity": 870,
+        "to_storage_unit_id": 8,
+        "from_storage_unit_id": 7
        },
-       "reviewed_at": "2026-11-07T00:45:07Z",
+       "reviewed_at": "2026-11-11T18:01:27Z",
        "reviewed_by": {
         "id": 1,
         "name": "Olivamore Admin"
@@ -6613,9 +6613,166 @@
      ],
      "field_values": [],
      "created_materials": [],
-     "closed_materials": [],
-     "created_at": "2026-11-07T00:44:57Z",
-     "updated_at": "2026-11-07T00:45:07Z"
+     "closed_materials": [
+      {
+       "id": 2366,
+       "production_batch_id": 274,
+       "production_product_type_id": 3,
+       "parent_material_id": 2363,
+       "origin_type": "BATCH_PROCESS",
+       "quantity": 870.0,
+       "unit": "LITRE",
+       "status": "consumed",
+       "current_location_type": null,
+       "current_location_id": null,
+       "source_production_stage_id": 10,
+       "created_by_batch_process_id": 3281,
+       "closed_by_batch_process_id": 3287,
+       "note": null,
+       "production_product_type": {
+        "id": 3,
+        "production_product_id": 2,
+        "name": "Gemlik Zeytinyağı",
+        "code": "OLIVE_OIL_GEMLIK",
+        "type": "gemlik",
+        "unit": "LITRE",
+        "density_kg_per_litre": 0.916,
+        "production_product": {
+         "id": 2,
+         "key": "olive_oil",
+         "name": "Zeytinyağı",
+         "description": "İşlenmiş zeytinyağı ürünü"
+        }
+       },
+       "production_batch": {
+        "id": 274,
+        "batch_code": "T-BP-1",
+        "status": "in_progress"
+       },
+       "parent_material": {
+        "id": 2363,
+        "production_product_type_id": 1,
+        "quantity": 4800.0,
+        "unit": "KG",
+        "status": "consumed"
+       },
+       "attribute_values": [
+        {
+         "id": 1279,
+         "material_id": 2366,
+         "production_product_attribute_definition_id": 4,
+         "value_boolean": null,
+         "value_integer": null,
+         "value_decimal": 0.31,
+         "value_text": null,
+         "value_json": null,
+         "definition": {
+          "id": 4,
+          "production_product_id": 2,
+          "attribute_key": "acidity",
+          "label": "Asitlik",
+          "data_type": "decimal",
+          "unit": "%",
+          "is_required": false,
+          "sort_order": 1,
+          "description": "Asitlik oranı"
+         },
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
+        },
+        {
+         "id": 1280,
+         "material_id": 2366,
+         "production_product_attribute_definition_id": 5,
+         "value_boolean": null,
+         "value_integer": null,
+         "value_decimal": null,
+         "value_text": "Gemlik",
+         "value_json": null,
+         "definition": {
+          "id": 5,
+          "production_product_id": 2,
+          "attribute_key": "cultivar",
+          "label": "Tür / Çeşit",
+          "data_type": "string",
+          "unit": null,
+          "is_required": false,
+          "sort_order": 2,
+          "description": "Örnek: Ayvalık, Gemlik"
+         },
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
+        },
+        {
+         "id": 1281,
+         "material_id": 2366,
+         "production_product_attribute_definition_id": 6,
+         "value_boolean": null,
+         "value_integer": null,
+         "value_decimal": null,
+         "value_text": null,
+         "value_json": {
+          "e": 12
+         },
+         "definition": {
+          "id": 6,
+          "production_product_id": 2,
+          "attribute_key": "vitamin_profile",
+          "label": "Vitamin Profili",
+          "data_type": "json",
+          "unit": null,
+          "is_required": false,
+          "sort_order": 3,
+          "description": "JSON formatında vitamin bilgileri"
+         },
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
+        },
+        {
+         "id": 1282,
+         "material_id": 2366,
+         "production_product_attribute_definition_id": 7,
+         "value_boolean": null,
+         "value_integer": null,
+         "value_decimal": null,
+         "value_text": null,
+         "value_json": [
+          1,
+          2
+         ],
+         "definition": {
+          "id": 7,
+          "production_product_id": 2,
+          "attribute_key": "mineral_profile",
+          "label": "Mineral Profili",
+          "data_type": "json",
+          "unit": null,
+          "is_required": false,
+          "sort_order": 4,
+          "description": "JSON formatında mineral bilgileri"
+         },
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
+        }
+       ],
+       "created_by_batch_process": {
+        "id": 3281,
+        "production_batch_id": 274,
+        "production_stage_id": 5,
+        "status": "completed"
+       },
+       "closed_by_batch_process": {
+        "id": 3287,
+        "production_batch_id": 274,
+        "production_stage_id": 11,
+        "status": "completed"
+       },
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:27Z"
+      }
+     ],
+     "created_at": "2026-11-11T18:01:23Z",
+     "updated_at": "2026-11-11T18:01:27Z"
     }
    },
    "save": null
@@ -7612,9 +7769,9 @@
      "created_by_user_id": 1,
      "status": "completed",
      "quantity_kg": null,
-     "received_at": "2026-11-11T13:37:32Z",
-     "started_at": "2026-11-11T13:37:32Z",
-     "completed_at": "2026-11-11T13:37:35Z",
+     "received_at": "2026-11-11T18:01:23Z",
+     "started_at": "2026-11-11T18:01:24Z",
+     "completed_at": "2026-11-11T18:01:27Z",
      "note": null,
      "input_production_product_types": [
       {
@@ -7720,7 +7877,7 @@
        "operator_id": 2,
        "status": "completed",
        "started_at": "2026-11-07T08:00:00Z",
-       "completed_at": "2026-11-11T13:37:33Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": "tartildi",
        "operation_data": {
         "unit": "KG",
@@ -7873,13 +8030,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:33Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:33Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3278,
@@ -7887,7 +8044,7 @@
        "production_stage_id": 2,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:33Z",
+       "started_at": "2026-11-11T18:01:25Z",
        "completed_at": "2026-11-07T09:30:15Z",
        "note": null,
        "operation_data": {
@@ -7966,8 +8123,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:33Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3279,
@@ -7975,8 +8132,8 @@
        "production_stage_id": 3,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:33Z",
-       "completed_at": "2026-11-11T13:37:33Z",
+       "started_at": "2026-11-11T18:01:25Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": null,
        "operation_data": {
         "quantity": 4800
@@ -8039,8 +8196,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:33Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3280,
@@ -8048,8 +8205,8 @@
        "production_stage_id": 4,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:25Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": null,
        "operation_data": null,
        "requires_approval": null,
@@ -8078,8 +8235,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3281,
@@ -8087,8 +8244,8 @@
        "production_stage_id": 5,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:25Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": null,
        "operation_data": {
         "outputs": [
@@ -8227,12 +8384,12 @@
          "origin_type": "BATCH_PROCESS",
          "quantity": 870.0,
          "unit": "LITRE",
-         "status": "active",
-         "current_location_type": "storage_unit",
-         "current_location_id": 8,
+         "status": "consumed",
+         "current_location_type": null,
+         "current_location_id": null,
          "source_production_stage_id": 10,
          "created_by_batch_process_id": 3281,
-         "closed_by_batch_process_id": null,
+         "closed_by_batch_process_id": 3287,
          "note": null,
          "production_product_type": {
           "id": 3,
@@ -8270,8 +8427,8 @@
             "sort_order": 1,
             "description": "Asitlik oranı"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           },
           {
            "id": 1280,
@@ -8293,8 +8450,8 @@
             "sort_order": 2,
             "description": "Örnek: Ayvalık, Gemlik"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           },
           {
            "id": 1281,
@@ -8318,8 +8475,8 @@
             "sort_order": 3,
             "description": "JSON formatında vitamin bilgileri"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           },
           {
            "id": 1282,
@@ -8344,12 +8501,12 @@
             "sort_order": 4,
             "description": "JSON formatında mineral bilgileri"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           }
          ],
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:35Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:27Z"
         },
         {
          "id": 2367,
@@ -8382,8 +8539,8 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "closed_materials": [
@@ -8418,12 +8575,12 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:33Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3282,
@@ -8431,8 +8588,8 @@
        "production_stage_id": 6,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "quantity": 899.75
@@ -8495,8 +8652,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3283,
@@ -8504,8 +8661,8 @@
        "production_stage_id": 7,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "quantity": "3400"
@@ -8568,8 +8725,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3284,
@@ -8577,8 +8734,8 @@
        "production_stage_id": 8,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "attributes": [
@@ -8679,8 +8836,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3285,
@@ -8688,8 +8845,8 @@
        "production_stage_id": 9,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "outputs": [
@@ -8703,8 +8860,8 @@
         "storage_unit_id": 7
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-11T13:37:34Z",
-       "approved_at": "2026-11-11T13:37:35Z",
+       "submitted_at": "2026-11-11T18:01:26Z",
+       "approved_at": "2026-11-11T18:01:26Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -8856,13 +9013,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:35Z",
-         "updated_at": "2026-11-11T13:37:35Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3286,
@@ -8870,8 +9027,8 @@
        "production_stage_id": 10,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:35Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "quantity": 870
@@ -8950,8 +9107,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3287,
@@ -8959,8 +9116,8 @@
        "production_stage_id": 11,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:35Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:27Z",
+       "completed_at": "2026-11-11T18:01:27Z",
        "note": null,
        "operation_data": {
         "note": "toplandi",
@@ -8969,8 +9126,8 @@
         "from_storage_unit_id": 7
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-11T13:37:35Z",
-       "approved_at": "2026-11-11T13:37:35Z",
+       "submitted_at": "2026-11-11T18:01:27Z",
+       "approved_at": "2026-11-11T18:01:27Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -9046,9 +9203,142 @@
        ],
        "field_values": [],
        "created_materials": [],
-       "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "closed_materials": [
+        {
+         "id": 2366,
+         "production_batch_id": 274,
+         "production_product_type_id": 3,
+         "parent_material_id": 2363,
+         "origin_type": "BATCH_PROCESS",
+         "quantity": 870.0,
+         "unit": "LITRE",
+         "status": "consumed",
+         "current_location_type": null,
+         "current_location_id": null,
+         "source_production_stage_id": 10,
+         "created_by_batch_process_id": 3281,
+         "closed_by_batch_process_id": 3287,
+         "note": null,
+         "production_product_type": {
+          "id": 3,
+          "production_product_id": 2,
+          "name": "Gemlik Zeytinyağı",
+          "code": "OLIVE_OIL_GEMLIK",
+          "type": "gemlik",
+          "unit": "LITRE",
+          "density_kg_per_litre": 0.916,
+          "production_product": {
+           "id": 2,
+           "key": "olive_oil",
+           "name": "Zeytinyağı",
+           "description": "İşlenmiş zeytinyağı ürünü"
+          }
+         },
+         "attribute_values": [
+          {
+           "id": 1279,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 4,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": 0.31,
+           "value_text": null,
+           "value_json": null,
+           "definition": {
+            "id": 4,
+            "production_product_id": 2,
+            "attribute_key": "acidity",
+            "label": "Asitlik",
+            "data_type": "decimal",
+            "unit": "%",
+            "is_required": false,
+            "sort_order": 1,
+            "description": "Asitlik oranı"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          },
+          {
+           "id": 1280,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 5,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": null,
+           "value_text": "Gemlik",
+           "value_json": null,
+           "definition": {
+            "id": 5,
+            "production_product_id": 2,
+            "attribute_key": "cultivar",
+            "label": "Tür / Çeşit",
+            "data_type": "string",
+            "unit": null,
+            "is_required": false,
+            "sort_order": 2,
+            "description": "Örnek: Ayvalık, Gemlik"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          },
+          {
+           "id": 1281,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 6,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": null,
+           "value_text": null,
+           "value_json": {
+            "e": 12
+           },
+           "definition": {
+            "id": 6,
+            "production_product_id": 2,
+            "attribute_key": "vitamin_profile",
+            "label": "Vitamin Profili",
+            "data_type": "json",
+            "unit": null,
+            "is_required": false,
+            "sort_order": 3,
+            "description": "JSON formatında vitamin bilgileri"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          },
+          {
+           "id": 1282,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 7,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": null,
+           "value_text": null,
+           "value_json": [
+            1,
+            2
+           ],
+           "definition": {
+            "id": 7,
+            "production_product_id": 2,
+            "attribute_key": "mineral_profile",
+            "label": "Mineral Profili",
+            "data_type": "json",
+            "unit": null,
+            "is_required": false,
+            "sort_order": 4,
+            "description": "JSON formatında mineral bilgileri"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          }
+         ],
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:27Z"
+        }
+       ],
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:27Z"
       },
       {
        "id": 3288,
@@ -9056,13 +9346,13 @@
        "production_stage_id": 12,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:35Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:27Z",
+       "completed_at": "2026-11-11T18:01:27Z",
        "note": null,
        "operation_data": null,
        "requires_approval": null,
-       "submitted_at": "2026-11-11T13:37:35Z",
-       "approved_at": "2026-11-11T13:37:35Z",
+       "submitted_at": "2026-11-11T18:01:27Z",
+       "approved_at": "2026-11-11T18:01:27Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -9109,8 +9399,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-11T13:37:32Z",
-         "updated_at": "2026-11-11T13:37:32Z"
+         "created_at": "2026-11-11T18:01:24Z",
+         "updated_at": "2026-11-11T18:01:24Z"
         },
         {
          "id": 10,
@@ -9124,8 +9414,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-11T13:37:32Z",
-         "updated_at": "2026-11-11T13:37:32Z"
+         "created_at": "2026-11-11T18:01:24Z",
+         "updated_at": "2026-11-11T18:01:24Z"
         },
         {
          "id": 11,
@@ -9139,8 +9429,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-11T13:37:32Z",
-         "updated_at": "2026-11-11T13:37:32Z"
+         "created_at": "2026-11-11T18:01:24Z",
+         "updated_at": "2026-11-11T18:01:24Z"
         }
        ],
        "extensions": [],
@@ -9240,8 +9530,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:27Z"
       }
      ],
      "materials": [
@@ -9294,8 +9584,8 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "created_at": "2026-11-11T13:37:33Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 2366,
@@ -9305,12 +9595,12 @@
        "origin_type": "BATCH_PROCESS",
        "quantity": 870.0,
        "unit": "LITRE",
-       "status": "active",
-       "current_location_type": "storage_unit",
-       "current_location_id": 8,
+       "status": "consumed",
+       "current_location_type": null,
+       "current_location_id": null,
        "source_production_stage_id": 10,
        "created_by_batch_process_id": 3281,
-       "closed_by_batch_process_id": null,
+       "closed_by_batch_process_id": 3287,
        "note": null,
        "production_product_type": {
         "id": 3,
@@ -9360,8 +9650,8 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         },
         {
          "id": 1280,
@@ -9383,8 +9673,8 @@
           "sort_order": 2,
           "description": "Örnek: Ayvalık, Gemlik"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         },
         {
          "id": 1281,
@@ -9408,8 +9698,8 @@
           "sort_order": 3,
           "description": "JSON formatında vitamin bilgileri"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         },
         {
          "id": 1282,
@@ -9434,8 +9724,8 @@
           "sort_order": 4,
           "description": "JSON formatında mineral bilgileri"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "created_by_batch_process": {
@@ -9444,9 +9734,14 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "closed_by_batch_process": null,
-       "created_at": "2026-11-11T13:37:34Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "closed_by_batch_process": {
+        "id": 3287,
+        "production_batch_id": 274,
+        "production_stage_id": 11,
+        "status": "completed"
+       },
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:27Z"
       },
       {
        "id": 2367,
@@ -9498,8 +9793,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-11T13:37:34Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 2370,
@@ -9541,7 +9836,7 @@
         "production_product_type_id": 3,
         "quantity": 870.0,
         "unit": "LITRE",
-        "status": "active"
+        "status": "consumed"
        },
        "attribute_values": [],
        "created_by_batch_process": {
@@ -9551,12 +9846,12 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-11T13:37:35Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:26Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       }
      ],
-     "created_at": "2026-11-11T13:37:32Z",
-     "updated_at": "2026-11-11T13:37:35Z"
+     "created_at": "2026-11-11T18:01:23Z",
+     "updated_at": "2026-11-11T18:01:27Z"
     }
    },
    "save": null
@@ -10082,9 +10377,9 @@
      "created_by_user_id": 1,
      "status": "completed",
      "quantity_kg": null,
-     "received_at": "2026-11-11T13:37:32Z",
-     "started_at": "2026-11-11T13:37:32Z",
-     "completed_at": "2026-11-11T13:37:35Z",
+     "received_at": "2026-11-11T18:01:23Z",
+     "started_at": "2026-11-11T18:01:24Z",
+     "completed_at": "2026-11-11T18:01:27Z",
      "note": null,
      "input_production_product_types": [
       {
@@ -10190,7 +10485,7 @@
        "operator_id": 2,
        "status": "completed",
        "started_at": "2026-11-07T08:00:00Z",
-       "completed_at": "2026-11-11T13:37:33Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": "tartildi",
        "operation_data": {
         "unit": "KG",
@@ -10343,13 +10638,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:33Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:33Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3278,
@@ -10357,7 +10652,7 @@
        "production_stage_id": 2,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:33Z",
+       "started_at": "2026-11-11T18:01:25Z",
        "completed_at": "2026-11-07T09:30:15Z",
        "note": null,
        "operation_data": {
@@ -10436,8 +10731,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:33Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3279,
@@ -10445,8 +10740,8 @@
        "production_stage_id": 3,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:33Z",
-       "completed_at": "2026-11-11T13:37:33Z",
+       "started_at": "2026-11-11T18:01:25Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": null,
        "operation_data": {
         "quantity": 4800
@@ -10509,8 +10804,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:33Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3280,
@@ -10518,8 +10813,8 @@
        "production_stage_id": 4,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:25Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": null,
        "operation_data": null,
        "requires_approval": null,
@@ -10548,8 +10843,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:25Z"
       },
       {
        "id": 3281,
@@ -10557,8 +10852,8 @@
        "production_stage_id": 5,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:25Z",
+       "completed_at": "2026-11-11T18:01:25Z",
        "note": null,
        "operation_data": {
         "outputs": [
@@ -10697,12 +10992,12 @@
          "origin_type": "BATCH_PROCESS",
          "quantity": 870.0,
          "unit": "LITRE",
-         "status": "active",
-         "current_location_type": "storage_unit",
-         "current_location_id": 8,
+         "status": "consumed",
+         "current_location_type": null,
+         "current_location_id": null,
          "source_production_stage_id": 10,
          "created_by_batch_process_id": 3281,
-         "closed_by_batch_process_id": null,
+         "closed_by_batch_process_id": 3287,
          "note": null,
          "production_product_type": {
           "id": 3,
@@ -10740,8 +11035,8 @@
             "sort_order": 1,
             "description": "Asitlik oranı"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           },
           {
            "id": 1280,
@@ -10763,8 +11058,8 @@
             "sort_order": 2,
             "description": "Örnek: Ayvalık, Gemlik"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           },
           {
            "id": 1281,
@@ -10788,8 +11083,8 @@
             "sort_order": 3,
             "description": "JSON formatında vitamin bilgileri"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           },
           {
            "id": 1282,
@@ -10814,12 +11109,12 @@
             "sort_order": 4,
             "description": "JSON formatında mineral bilgileri"
            },
-           "created_at": "2026-11-11T13:37:34Z",
-           "updated_at": "2026-11-11T13:37:34Z"
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
           }
          ],
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:35Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:27Z"
         },
         {
          "id": 2367,
@@ -10852,8 +11147,8 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "closed_materials": [
@@ -10888,12 +11183,12 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:33Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3282,
@@ -10901,8 +11196,8 @@
        "production_stage_id": 6,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "quantity": 899.75
@@ -10965,8 +11260,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3283,
@@ -10974,8 +11269,8 @@
        "production_stage_id": 7,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "quantity": "3400"
@@ -11038,8 +11333,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3284,
@@ -11047,8 +11342,8 @@
        "production_stage_id": 8,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:34Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "attributes": [
@@ -11149,8 +11444,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3285,
@@ -11158,8 +11453,8 @@
        "production_stage_id": 9,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:34Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "outputs": [
@@ -11173,8 +11468,8 @@
         "storage_unit_id": 7
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-11T13:37:34Z",
-       "approved_at": "2026-11-11T13:37:35Z",
+       "submitted_at": "2026-11-11T18:01:26Z",
+       "approved_at": "2026-11-11T18:01:26Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -11326,13 +11621,13 @@
           }
          },
          "attribute_values": [],
-         "created_at": "2026-11-11T13:37:35Z",
-         "updated_at": "2026-11-11T13:37:35Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3286,
@@ -11340,8 +11635,8 @@
        "production_stage_id": 10,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:35Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:26Z",
+       "completed_at": "2026-11-11T18:01:26Z",
        "note": null,
        "operation_data": {
         "quantity": 870
@@ -11420,8 +11715,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 3287,
@@ -11429,8 +11724,8 @@
        "production_stage_id": 11,
        "operator_id": null,
        "status": "completed",
-       "started_at": "2026-11-11T13:37:35Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:27Z",
+       "completed_at": "2026-11-11T18:01:27Z",
        "note": null,
        "operation_data": {
         "note": "toplandi",
@@ -11439,8 +11734,8 @@
         "from_storage_unit_id": 7
        },
        "requires_approval": null,
-       "submitted_at": "2026-11-11T13:37:35Z",
-       "approved_at": "2026-11-11T13:37:35Z",
+       "submitted_at": "2026-11-11T18:01:27Z",
+       "approved_at": "2026-11-11T18:01:27Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -11516,9 +11811,142 @@
        ],
        "field_values": [],
        "created_materials": [],
-       "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "closed_materials": [
+        {
+         "id": 2366,
+         "production_batch_id": 274,
+         "production_product_type_id": 3,
+         "parent_material_id": 2363,
+         "origin_type": "BATCH_PROCESS",
+         "quantity": 870.0,
+         "unit": "LITRE",
+         "status": "consumed",
+         "current_location_type": null,
+         "current_location_id": null,
+         "source_production_stage_id": 10,
+         "created_by_batch_process_id": 3281,
+         "closed_by_batch_process_id": 3287,
+         "note": null,
+         "production_product_type": {
+          "id": 3,
+          "production_product_id": 2,
+          "name": "Gemlik Zeytinyağı",
+          "code": "OLIVE_OIL_GEMLIK",
+          "type": "gemlik",
+          "unit": "LITRE",
+          "density_kg_per_litre": 0.916,
+          "production_product": {
+           "id": 2,
+           "key": "olive_oil",
+           "name": "Zeytinyağı",
+           "description": "İşlenmiş zeytinyağı ürünü"
+          }
+         },
+         "attribute_values": [
+          {
+           "id": 1279,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 4,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": 0.31,
+           "value_text": null,
+           "value_json": null,
+           "definition": {
+            "id": 4,
+            "production_product_id": 2,
+            "attribute_key": "acidity",
+            "label": "Asitlik",
+            "data_type": "decimal",
+            "unit": "%",
+            "is_required": false,
+            "sort_order": 1,
+            "description": "Asitlik oranı"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          },
+          {
+           "id": 1280,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 5,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": null,
+           "value_text": "Gemlik",
+           "value_json": null,
+           "definition": {
+            "id": 5,
+            "production_product_id": 2,
+            "attribute_key": "cultivar",
+            "label": "Tür / Çeşit",
+            "data_type": "string",
+            "unit": null,
+            "is_required": false,
+            "sort_order": 2,
+            "description": "Örnek: Ayvalık, Gemlik"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          },
+          {
+           "id": 1281,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 6,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": null,
+           "value_text": null,
+           "value_json": {
+            "e": 12
+           },
+           "definition": {
+            "id": 6,
+            "production_product_id": 2,
+            "attribute_key": "vitamin_profile",
+            "label": "Vitamin Profili",
+            "data_type": "json",
+            "unit": null,
+            "is_required": false,
+            "sort_order": 3,
+            "description": "JSON formatında vitamin bilgileri"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          },
+          {
+           "id": 1282,
+           "material_id": 2366,
+           "production_product_attribute_definition_id": 7,
+           "value_boolean": null,
+           "value_integer": null,
+           "value_decimal": null,
+           "value_text": null,
+           "value_json": [
+            1,
+            2
+           ],
+           "definition": {
+            "id": 7,
+            "production_product_id": 2,
+            "attribute_key": "mineral_profile",
+            "label": "Mineral Profili",
+            "data_type": "json",
+            "unit": null,
+            "is_required": false,
+            "sort_order": 4,
+            "description": "JSON formatında mineral bilgileri"
+           },
+           "created_at": "2026-11-11T18:01:26Z",
+           "updated_at": "2026-11-11T18:01:26Z"
+          }
+         ],
+         "created_at": "2026-11-11T18:01:25Z",
+         "updated_at": "2026-11-11T18:01:27Z"
+        }
+       ],
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:27Z"
       },
       {
        "id": 3288,
@@ -11526,13 +11954,13 @@
        "production_stage_id": 12,
        "operator_id": null,
        "status": "skipped",
-       "started_at": "2026-11-11T13:37:35Z",
-       "completed_at": "2026-11-11T13:37:35Z",
+       "started_at": "2026-11-11T18:01:27Z",
+       "completed_at": "2026-11-11T18:01:27Z",
        "note": "yeniden",
        "operation_data": null,
        "requires_approval": null,
-       "submitted_at": "2026-11-11T13:37:35Z",
-       "approved_at": "2026-11-11T13:37:35Z",
+       "submitted_at": "2026-11-11T18:01:27Z",
+       "approved_at": "2026-11-11T18:01:27Z",
        "production_batch": {
         "id": 274,
         "batch_code": "T-BP-1",
@@ -11579,8 +12007,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-11T13:37:32Z",
-         "updated_at": "2026-11-11T13:37:32Z"
+         "created_at": "2026-11-11T18:01:24Z",
+         "updated_at": "2026-11-11T18:01:24Z"
         },
         {
          "id": 10,
@@ -11594,8 +12022,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-11T13:37:32Z",
-         "updated_at": "2026-11-11T13:37:32Z"
+         "created_at": "2026-11-11T18:01:24Z",
+         "updated_at": "2026-11-11T18:01:24Z"
         },
         {
          "id": 11,
@@ -11609,8 +12037,8 @@
          "is_active": true,
          "options": null,
          "default_value": null,
-         "created_at": "2026-11-11T13:37:32Z",
-         "updated_at": "2026-11-11T13:37:32Z"
+         "created_at": "2026-11-11T18:01:24Z",
+         "updated_at": "2026-11-11T18:01:24Z"
         }
        ],
        "extensions": [],
@@ -11710,8 +12138,8 @@
        ],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-11T13:37:32Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:23Z",
+       "updated_at": "2026-11-11T18:01:27Z"
       }
      ],
      "materials": [
@@ -11764,8 +12192,8 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "created_at": "2026-11-11T13:37:33Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 2366,
@@ -11775,12 +12203,12 @@
        "origin_type": "BATCH_PROCESS",
        "quantity": 870.0,
        "unit": "LITRE",
-       "status": "active",
-       "current_location_type": "storage_unit",
-       "current_location_id": 8,
+       "status": "consumed",
+       "current_location_type": null,
+       "current_location_id": null,
        "source_production_stage_id": 10,
        "created_by_batch_process_id": 3281,
-       "closed_by_batch_process_id": null,
+       "closed_by_batch_process_id": 3287,
        "note": null,
        "production_product_type": {
         "id": 3,
@@ -11830,8 +12258,8 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         },
         {
          "id": 1280,
@@ -11853,8 +12281,8 @@
           "sort_order": 2,
           "description": "Örnek: Ayvalık, Gemlik"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         },
         {
          "id": 1281,
@@ -11878,8 +12306,8 @@
           "sort_order": 3,
           "description": "JSON formatında vitamin bilgileri"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         },
         {
          "id": 1282,
@@ -11904,8 +12332,8 @@
           "sort_order": 4,
           "description": "JSON formatında mineral bilgileri"
          },
-         "created_at": "2026-11-11T13:37:34Z",
-         "updated_at": "2026-11-11T13:37:34Z"
+         "created_at": "2026-11-11T18:01:26Z",
+         "updated_at": "2026-11-11T18:01:26Z"
         }
        ],
        "created_by_batch_process": {
@@ -11914,9 +12342,14 @@
         "production_stage_id": 5,
         "status": "completed"
        },
-       "closed_by_batch_process": null,
-       "created_at": "2026-11-11T13:37:34Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "closed_by_batch_process": {
+        "id": 3287,
+        "production_batch_id": 274,
+        "production_stage_id": 11,
+        "status": "completed"
+       },
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:27Z"
       },
       {
        "id": 2367,
@@ -11968,8 +12401,8 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-11T13:37:34Z",
-       "updated_at": "2026-11-11T13:37:34Z"
+       "created_at": "2026-11-11T18:01:25Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       },
       {
        "id": 2370,
@@ -12011,7 +12444,7 @@
         "production_product_type_id": 3,
         "quantity": 870.0,
         "unit": "LITRE",
-        "status": "active"
+        "status": "consumed"
        },
        "attribute_values": [],
        "created_by_batch_process": {
@@ -12021,12 +12454,12 @@
         "status": "completed"
        },
        "closed_by_batch_process": null,
-       "created_at": "2026-11-11T13:37:35Z",
-       "updated_at": "2026-11-11T13:37:35Z"
+       "created_at": "2026-11-11T18:01:26Z",
+       "updated_at": "2026-11-11T18:01:26Z"
       }
      ],
-     "created_at": "2026-11-11T13:37:32Z",
-     "updated_at": "2026-11-11T13:37:35Z"
+     "created_at": "2026-11-11T18:01:23Z",
+     "updated_at": "2026-11-11T18:01:27Z"
     }
    },
    "save": null

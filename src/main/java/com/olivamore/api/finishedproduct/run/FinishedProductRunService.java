@@ -14,6 +14,7 @@ import com.olivamore.api.finishedproduct.run.RunQueries.MaterialAttribute;
 import com.olivamore.api.finishedproduct.run.RunQueries.ProductType;
 import com.olivamore.api.finishedproduct.run.RunQueries.Unit;
 import com.olivamore.api.finishedproduct.support.Quantities;
+import com.olivamore.api.inventory.MixShares;
 import com.olivamore.api.inventory.StockOperations;
 import com.olivamore.api.packaging.PackagingAllocations;
 import com.olivamore.api.packaging.PackagingAllocations.Need;
@@ -37,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -125,11 +127,31 @@ class FinishedProductRunService {
 		return run.getId();
 	}
 
-	/** Tanktaki aktif materyaller ve urun tipleri. */
+	/**
+	 * Tanktaki aktif materyaller ve urun tipleri. Miktarlar ortak birimde (ilk materyalin birimi) karsilastirilir:
+	 * her materyal tipinin yogunluguyla cevrilir ({@link MixShares}, tank sayfasindaki cikisla ayni kural).
+	 */
 	private record Tank(List<Material> materials, Map<Long, ProductType> types) {
 
+		String unit() {
+			return materials.getFirst().unit();
+		}
+
+		List<MixShares.Part> parts() {
+			return materials.stream().map(m -> {
+				ProductType type = type(m);
+				return new MixShares.Part(m.quantity(), m.unit(), type == null ? null : type.effectiveDensity(),
+					type == null ? null : type.name());
+			}).toList();
+		}
+
+		/** Materyallerin ortak birimdeki miktarlari (materials sirasiyla). */
+		List<BigDecimal> common() {
+			return MixShares.inUnit(parts(), unit());
+		}
+
 		BigDecimal total() {
-			return materials.stream().map(Material::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
+			return MixShares.total(parts(), unit());
 		}
 
 		ProductType type(Material material) {
@@ -157,13 +179,14 @@ class FinishedProductRunService {
 	private void assertTankMatchesRecipe(Tank tank, FinishedProductRecipe recipe,
 		List<RecipeContent> recipeContents) {
 		BigDecimal total = tank.total();
+		List<BigDecimal> common = tank.common();
 		Set<Long> recipeTypes = recipeContents.stream().map(RecipeContent::getProductionProductTypeId)
 			.collect(Collectors.toSet());
 		List<Material> foreign = tank.materials().stream()
 			.filter(m -> !recipeTypes.contains(m.productionProductTypeId())).toList();
 		BigDecimal limit = RATIO_TOLERANCE.add(EPSILON);
 		if (!foreign.isEmpty() && total.signum() > 0) {
-			BigDecimal foreignQuantity = foreign.stream().map(Material::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
+			BigDecimal foreignQuantity = sumOf(tank, common, m -> !recipeTypes.contains(m.productionProductTypeId()));
 			BigDecimal ratio = foreignQuantity.divide(total, PRECISION);
 			if (ratio.compareTo(limit) > 0) {
 				Set<String> names = new LinkedHashSet<>();
@@ -180,9 +203,7 @@ class FinishedProductRunService {
 		for (RecipeContent content : recipeContents) {
 			long typeId = content.getProductionProductTypeId();
 			BigDecimal expected = content.getRatio();
-			BigDecimal actual = tank.materials().stream()
-				.filter(m -> Objects.equals(m.productionProductTypeId(), typeId))
-				.map(Material::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
+			BigDecimal actual = sumOf(tank, common, m -> Objects.equals(m.productionProductTypeId(), typeId));
 			BigDecimal actualRatio = total.signum() > 0 ? actual.divide(total, PRECISION) : BigDecimal.ZERO;
 			if (actualRatio.subtract(expected).abs().compareTo(limit) > 0) {
 				ProductType type = types.get(typeId);
@@ -191,6 +212,17 @@ class FinishedProductRunService {
 					+ percent(expected) + "%, tankta bulunan: " + percent(actualRatio) + "%.");
 			}
 		}
+	}
+
+	/** Kosulu saglayan materyallerin ortak birimdeki toplami. */
+	private static BigDecimal sumOf(Tank tank, List<BigDecimal> common, Predicate<Material> filter) {
+		BigDecimal sum = BigDecimal.ZERO;
+		for (int i = 0; i < tank.materials().size(); i++) {
+			if (filter.test(tank.materials().get(i))) {
+				sum = sum.add(common.get(i));
+			}
+		}
+		return sum;
 	}
 
 	/** Oranin yuzde karsiligi, tek basamak, gereksiz sifirsiz. */
@@ -241,22 +273,22 @@ class FinishedProductRunService {
 		}
 	}
 
-	/** Her materyalden tanktaki payi oraninda (4 basamak); sifir pay yazilmaz. */
+	/**
+	 * Her materyalden tanktaki payi oraninda ({@link MixShares}: ortak birimde oran, materyalin kendi biriminde pay,
+	 * yuvarlama farki son materyale); sifir pay yazilmaz.
+	 */
 	private void createRunMaterials(long runId, Tank tank, BigDecimal requested) {
-		BigDecimal tankTotal = tank.total();
-		for (Material material : tank.materials()) {
-			BigDecimal proportion = tankTotal.signum() > 0 ? material.quantity().divide(tankTotal, PRECISION)
-				: BigDecimal.ZERO;
-			BigDecimal used = proportion.multiply(requested).setScale(Quantities.SCALE, RoundingMode.HALF_UP);
-			if (used.signum() > 0) {
-				runMaterials.save(new RunMaterial(runId, material.id(), used));
+		List<BigDecimal> used = MixShares.split(tank.parts(), requested, tank.unit());
+		for (int i = 0; i < tank.materials().size(); i++) {
+			if (used.get(i).signum() > 0) {
+				runMaterials.save(new RunMaterial(runId, tank.materials().get(i).id(), used.get(i)));
 			}
 		}
 	}
 
 	/**
-	 * Tarifin her attribute kurali icin tanktaki materyallerin agirlikli ortalamasi; kabul araliginin disindaysa
-	 * kosu planlanmaz. Degeri olmayan kural atlanir.
+	 * Tarifin her attribute kurali icin tanktaki materyallerin (ortak birimde) agirlikli ortalamasi; kabul
+	 * araliginin disindaysa kosu planlanmaz. Degeri olmayan kural atlanir.
 	 */
 	private void createEstimatedAttributeValues(long runId, Tank tank, FinishedProductRecipe recipe) {
 		List<RecipeAttributeRule> attributeRules = rules.findByRecipeIdOrderByIdAsc(recipe.getId());
@@ -264,11 +296,13 @@ class FinishedProductRunService {
 			attributeRules.stream().map(RecipeAttributeRule::getAttributeDefinitionId).toList());
 		List<MaterialAttribute> attributes = queries.materialAttributes(
 			tank.materials().stream().map(Material::id).toList());
+		List<BigDecimal> common = tank.common();
 		for (RecipeAttributeRule rule : attributeRules) {
 			long definitionId = rule.getAttributeDefinitionId();
 			BigDecimal weightedSum = BigDecimal.ZERO;
 			BigDecimal weightedTotal = BigDecimal.ZERO;
-			for (Material material : tank.materials()) {
+			for (int i = 0; i < tank.materials().size(); i++) {
+				Material material = tank.materials().get(i);
 				BigDecimal value = attributes.stream()
 					.filter(a -> Objects.equals(a.materialId(), material.id())
 						&& Objects.equals(a.attributeDefinitionId(), definitionId))
@@ -277,8 +311,8 @@ class FinishedProductRunService {
 				if (value == null) {
 					continue;
 				}
-				weightedSum = weightedSum.add(value.multiply(material.quantity()));
-				weightedTotal = weightedTotal.add(material.quantity());
+				weightedSum = weightedSum.add(value.multiply(common.get(i)));
+				weightedTotal = weightedTotal.add(common.get(i));
 			}
 			if (weightedTotal.signum() <= 0) {
 				continue;

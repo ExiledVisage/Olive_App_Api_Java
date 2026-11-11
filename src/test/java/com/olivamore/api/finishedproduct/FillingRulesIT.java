@@ -22,8 +22,8 @@ import static org.assertj.core.api.Assertions.within;
 
 /**
  * Dolum kurallari, her test kendi tankiyla: tarif orani toleransi (%2), tarifteki asitlik araligi, tanktan cekilen
- * yagin fire toleransi (%2), materyallerden oransal tuketim, tamamlanmada yag, ambalaj ve son urun stogu, durum
- * gecisleri ve yetki.
+ * yagin fire toleransi (%2), materyallerden oransal tuketim (kg ve litre tipler ortak birimde), tamamlanmada yag,
+ * ambalaj ve son urun stogu, durum gecisleri ve yetki.
  * Demo veri: urun 1 (tarif 1: %100 Gemlik, asitlik 0.3 +-0.05, 0.25 L, ambalaj kalemleri 1, 8, 12, 17),
  * urun 15 (tarif 5: %70 Gemlik + %30 Ayvalik, asitlik 0.5 +-0.05).
  */
@@ -89,15 +89,40 @@ class FillingRulesIT {
 	}
 
 	@Test
-	void oilIsDrawnFromEachMaterialInProportionToItsShare() {
+	void oilIsDrawnFromTheTankMaterialOfTheType() {
 		long tank = tank(Map.of(), null);
-		long large = open(tank, GEMLIK, "60", "0.3");
-		long small = open(tank, GEMLIK, "40", "0.3");
+		long first = open(tank, GEMLIK, "60", "0.3");
+		long second = open(tank, GEMLIK, "40", "0.3");
 
 		long run = id(plan(GEMLIK_03, 20, tank, null));
 
-		assertThat(used(run, large)).isEqualByComparingTo("3");
-		assertThat(used(run, small)).isEqualByComparingTo("2");
+		// son tankta ayni tipin girisleri tek tank materyalinde birlesir
+		assertThat(second).isEqualTo(first);
+		assertThat(used(run, first)).isEqualByComparingTo("5");
+	}
+
+	@Test
+	void blendOfLitreAndKilogramTypesIsDrawnByItsConvertedShare() {
+		// Ayvalik bu test icin kg birimli, yogunluk 0.9: 270 kg = 300 L, karisim %70 Gemlik + %30 Ayvalik
+		jdbc.update("update production_product_types set unit = 'KG', density_kg_per_litre = 0.9 where id = ?", AYVALIK);
+		try {
+			long tank = tank(Map.of(GEMLIK, "700"), "0.5");
+			long gemlik = jdbc.queryForObject("select id from materials where current_location_type = 'storage_unit'"
+				+ " and current_location_id = ? and status = 'active'", Long.class, tank);
+			long ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
+			BigDecimal litres = jdbc.queryForObject("select volume_litre from finished_products where id = ?",
+				BigDecimal.class, BLEND).multiply(BigDecimal.TEN);
+
+			long run = id(plan(BLEND, 10, tank, null));
+
+			// oran ham miktarla (700 / 970) degil, litreyle (700 / 1000): Gemlik %70 litre, Ayvalik %30 litre x 0.9 kg
+			assertThat(used(run, gemlik)).isEqualByComparingTo(litres.multiply(new BigDecimal("0.7")));
+			assertThat(used(run, ayvalik)).isEqualByComparingTo(litres.multiply(new BigDecimal("0.27")));
+		}
+		finally {
+			jdbc.update("update production_product_types set unit = 'LITRE', density_kg_per_litre = null where id = ?",
+				AYVALIK);
+		}
 	}
 
 	@Test
@@ -166,8 +191,12 @@ class FillingRulesIT {
 
 	/** @return materyal id */
 	private long open(long tank, int type, String quantity, String acidity) {
+		return open(tank, type, quantity, "LITRE", acidity);
+	}
+
+	private long open(long tank, int type, String quantity, String unit, String acidity) {
 		Response r = api.post("/api/storage-movements/opening", Map.of("storage_unit_id", tank,
-			"production_product_type_id", type, "quantity", new BigDecimal(quantity), "unit", "LITRE",
+			"production_product_type_id", type, "quantity", new BigDecimal(quantity), "unit", unit,
 			"attribute_values", List.of(Map.of("production_product_attribute_definition_id", ACIDITY,
 				"value_decimal", new BigDecimal(acidity)))));
 		assertThat(r.status()).as(r.body()).isEqualTo(201);

@@ -22,9 +22,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tank kurallari, her test kendi tankiyla: kapasite, izinli urun ve tip, dolu tankta farkli tip, attribute kurallari
- * (gelen deger ve agirlikli ortalama), kismi cikista materyal bolme, transfer, sayim duzeltmesi, tank turu ve
- * birim cevrimi. Demo veri: tip 3 Gemlik ve tip 4 Ayvalik zeytinyagi (urun 2, LITRE, kategori yogunlugu 0.916),
- * tip 1 Gemlik zeytini (KG, yogunluk yok), tip 6 baska urun; tanim 4 asitlik.
+ * (gelen deger ve agirlikli ortalama), on dinlendirme tankinda kismi cikista materyal bolme, transfer, sayim
+ * duzeltmesi, tank turu ve birim cevrimi; son tankin tip materyali {@code FinalTankRulesIT}'te. Demo veri: tip 3
+ * Gemlik ve tip 4 Ayvalik zeytinyagi (urun 2, LITRE, kategori yogunlugu 0.916), tip 1 Gemlik zeytini (KG, yogunluk
+ * yok), tip 6 baska urun; tanim 4 asitlik.
  */
 @ApiIntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -117,12 +118,12 @@ class TankRulesIT {
 	}
 
 	@Test
-	void partialOutboundSplitsTheMaterial() {
-		long tank = tank(1000, Map.of());
+	void partialOutboundSplitsTheMaterialInAPreSettlingTank() {
+		long tank = tank(1000, Map.of("kind", "pre_settling"));
 		long material = materialOf(open(tank, GEMLIK, "100", "0.3"));
 
 		JsonNode moved = data(api.post("/api/storage-movements/outbound",
-			Map.of("storage_unit_id", tank, "material_id", material, "quantity", 40))).get("material");
+			Map.of("storage_unit_id", tank, "material_id", material, "quantity", 40))).get(0).get("material");
 
 		assertThat(moved.get("parent_material_id").asLong()).isEqualTo(material);
 		assertThat(moved.get("status").asString()).isEqualTo("consumed");
@@ -133,32 +134,40 @@ class TankRulesIT {
 	}
 
 	@Test
-	void outboundCannotTakeMoreThanTheMaterialHas() {
-		long tank = tank(1000, Map.of());
-		long material = materialOf(open(tank, GEMLIK, "100", null));
+	void outboundCannotTakeMoreThanTheTankHas() {
+		long settling = tank(1000, Map.of("kind", "pre_settling"));
+		long last = tank(1000, Map.of());
+		long material = materialOf(open(settling, GEMLIK, "100", null));
+		open(last, GEMLIK, "100", null);
 
 		assertRule(api.post("/api/storage-movements/outbound",
-			Map.of("storage_unit_id", tank, "material_id", material, "quantity", "100.0001")),
+			Map.of("storage_unit_id", settling, "material_id", material, "quantity", "100.0001")),
 			"Material üzerinde yeterli miktar bulunmuyor.");
+		assertRule(api.post("/api/storage-movements/outbound", Map.of("storage_unit_id", last, "quantity", "100.0001")),
+			"Tankta yeterli miktar bulunmuyor.");
 	}
 
 	@Test
-	void transferMovesAPortionToTheTargetTank() {
+	void transferMovesAPortionIntoTheTargetTankMaterial() {
 		long from = tank(1000, Map.of());
 		long to = tank(1000, Map.of());
 		long material = materialOf(open(from, GEMLIK, "100", "0.3"));
 
 		JsonNode transfer = data(api.post("/api/storage-movements/transfer", Map.of("from_storage_unit_id", from,
-			"to_storage_unit_id", to, "material_id", material, "quantity", "30.5")));
+			"to_storage_unit_id", to, "quantity", "30.5")));
 
-		assertThat(transfer.get("out_movement").get("movement_type").asString()).isEqualTo("TRANSFER_OUT");
-		assertThat(transfer.get("in_movement").get("movement_type").asString()).isEqualTo("TRANSFER_IN");
-		assertThat(transfer.get("in_movement").get("storage_unit_id").asLong()).isEqualTo(to);
+		JsonNode out = transfer.get("out_movements").get(0);
+		JsonNode in = transfer.get("in_movements").get(0);
+		assertThat(out.get("movement_type").asString()).isEqualTo("TRANSFER_OUT");
+		assertThat(out.get("material_id").asLong()).isEqualTo(material);
+		assertThat(in.get("movement_type").asString()).isEqualTo("TRANSFER_IN");
+		assertThat(in.get("storage_unit_id").asLong()).isEqualTo(to);
+		assertThat(in.get("source_material_id").asLong()).isEqualTo(material);
 		assertThat(quantity(material)).isEqualByComparingTo("69.5");
 		assertThat(balance(from)).isEqualByComparingTo("69.5");
 		assertThat(balance(to)).isEqualByComparingTo("30.5");
-		// tasinan parcanin attribute degeri de tasinir
-		long moved = transfer.get("in_movement").get("material_id").asLong();
+		// hedefin tank materyali kaynagin attribute degerini alir
+		long moved = in.get("material_id").asLong();
 		assertThat(jdbc.queryForObject("select value_decimal from material_attribute_values where material_id = ?",
 			BigDecimal.class, moved)).isEqualByComparingTo("0.3");
 	}
@@ -178,18 +187,35 @@ class TankRulesIT {
 
 	@Test
 	void countAdjustmentDiscardsADecreaseAndCreatesMaterialOnIncrease() {
-		long tank = tank(1000, Map.of());
+		long tank = tank(1000, Map.of("kind", "pre_settling"));
 		long material = materialOf(open(tank, GEMLIK, "100", null));
 
 		JsonNode decrease = data(api.post("/api/storage-movements/adjustment",
-			Map.of("storage_unit_id", tank, "quantity", 20, "is_increase", false, "material_id", material)));
+			Map.of("storage_unit_id", tank, "quantity", 20, "is_increase", false, "material_id", material))).get(0);
 		JsonNode increase = data(api.post("/api/storage-movements/adjustment", Map.of("storage_unit_id", tank,
-			"quantity", 5, "is_increase", true, "production_product_type_id", GEMLIK, "unit", "LITRE")));
+			"quantity", 5, "is_increase", true, "production_product_type_id", GEMLIK, "unit", "LITRE"))).get(0);
 
 		assertThat(decrease.get("movement_type").asString()).isEqualTo("ADJUSTMENT_OUT");
 		assertThat(decrease.get("material").get("status").asString()).isEqualTo("discarded");
 		assertThat(increase.get("movement_type").asString()).isEqualTo("ADJUSTMENT_IN");
 		assertThat(quantity(material)).isEqualByComparingTo("80");
+		assertThat(balance(tank)).isEqualByComparingTo("85");
+	}
+
+	@Test
+	void countAdjustmentChangesTheTankMaterialOfAFinalTank() {
+		long tank = tank(1000, Map.of());
+		long material = materialOf(open(tank, GEMLIK, "100", null));
+
+		JsonNode decrease = data(api.post("/api/storage-movements/adjustment",
+			Map.of("storage_unit_id", tank, "quantity", 20, "is_increase", false))).get(0);
+		JsonNode increase = data(api.post("/api/storage-movements/adjustment", Map.of("storage_unit_id", tank,
+			"quantity", 5, "is_increase", true, "production_product_type_id", GEMLIK, "unit", "LITRE"))).get(0);
+
+		assertThat(decrease.get("movement_type").asString()).isEqualTo("ADJUSTMENT_OUT");
+		assertThat(decrease.get("material_id").asLong()).isEqualTo(material);
+		assertThat(increase.get("material_id").asLong()).isEqualTo(material);
+		assertThat(quantity(material)).isEqualByComparingTo("85");
 		assertThat(balance(tank)).isEqualByComparingTo("85");
 	}
 

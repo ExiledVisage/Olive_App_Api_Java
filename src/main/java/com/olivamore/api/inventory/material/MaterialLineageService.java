@@ -29,8 +29,9 @@ import java.util.stream.Collectors;
 import static com.olivamore.api.inventory.material.MaterialResponses.lookup;
 
 /**
- * Materyalin soy grafi (DAG): koke cikilir, kokten butun torunlara inilir (en fazla 400 dugum), sonra dolum
- * kosulari, depo yerlestirmeleri ve (tek kosudan beslenen depolarda) siparisler eklenir. Dugumlere kokten en
+ * Materyalin soy grafi (DAG): koklere cikilir, oradan butun torunlara inilir (en fazla 400 dugum). Kenarlar
+ * ebeveyn-cocuk ve son tanka giris (gelen materyal -> tank materyali); sonra dolum kosulari, depo yerlestirmeleri
+ * ve (tek kosudan beslenen depolarda) siparisler eklenir. Dugumlere kokten en
  * uzun yol derinligi verilir.
  */
 @Service
@@ -86,36 +87,63 @@ class MaterialLineageService {
 					stage == null ? null : stage.name(), Quantities.number(m.quantity()), m.unit()));
 			}
 		}
+		appendMovementLinks(materials, nodes, edges);
 		appendRuns(materials, nodes, edges);
 		return new MaterialLineageResponse("material:" + material.id(), withDepths(nodes, edges), edges, truncated);
 	}
 
-	/** Koke cik (dongu korumali), kokten genislik oncelikli in; odak her zaman listede. id sirasinda. */
+	/**
+	 * Once yukari (ebeveyn ve son tankta tank materyaline giren materyaller), sonra bulunanlarin hepsinden asagi
+	 * (cocuklar ve girdigi tank materyalleri) genislik oncelikli; dongu korumali, odak her zaman listede. id sirasinda.
+	 */
 	private List<MaterialRow> collect(MaterialRow material) {
 		Map<Long, MaterialRow> found = new LinkedHashMap<>();
-		MaterialRow root = material;
-		int guard = 0;
-		while (root.parentMaterialId() != null && guard++ < MAX_NODES) {
-			MaterialRow parent = queries.material(root.parentMaterialId()).orElse(null);
-			if (parent == null || found.containsKey(parent.id())) {
-				break;
-			}
-			found.put(parent.id(), parent);
-			root = parent;
-		}
-		found.put(root.id(), root);
-		List<Long> frontier = List.of(root.id());
-		while (!frontier.isEmpty() && found.size() < MAX_NODES) {
-			List<Long> next = new ArrayList<>();
-			for (MaterialRow child : queries.children(frontier)) {
-				if (found.putIfAbsent(child.id(), child) == null) {
-					next.add(child.id());
-				}
-			}
-			frontier = next;
-		}
 		found.put(material.id(), material);
+		List<Long> frontier = List.of(material.id());
+		while (!frontier.isEmpty() && found.size() < MAX_NODES) {
+			Set<Long> up = new LinkedHashSet<>();
+			frontier.stream().map(found::get).map(MaterialRow::parentMaterialId).filter(Objects::nonNull).forEach(up::add);
+			queries.linksTo(frontier).forEach(link -> up.add(link.sourceMaterialId()));
+			frontier = addAll(found, up);
+		}
+		frontier = new ArrayList<>(found.keySet());
+		while (!frontier.isEmpty() && found.size() < MAX_NODES) {
+			Set<Long> down = new LinkedHashSet<>();
+			queries.children(frontier).forEach(child -> down.add(child.id()));
+			queries.linksFrom(frontier).forEach(link -> down.add(link.materialId()));
+			frontier = addAll(found, down);
+		}
 		return found.values().stream().sorted(Comparator.comparingLong(MaterialRow::id)).toList();
+	}
+
+	/** Bulunmamis olanlar (sinira kadar) eklenir; eklenenlerin id'leri. */
+	private List<Long> addAll(Map<Long, MaterialRow> found, Set<Long> ids) {
+		List<Long> fresh = ids.stream().filter(id -> !found.containsKey(id)).toList();
+		List<Long> added = new ArrayList<>();
+		queries.materials(fresh).values().stream().sorted(Comparator.comparingLong(MaterialRow::id)).forEach(row -> {
+			if (found.size() < MAX_NODES && found.putIfAbsent(row.id(), row) == null) {
+				added.add(row.id());
+			}
+		});
+		return added;
+	}
+
+	/** Giris hareketleri: gelen -> tank materyali, ayni cift icin miktarlar toplanir. */
+	private void appendMovementLinks(List<MaterialRow> materials, Map<String, Node> nodes, List<Edge> edges) {
+		record Pair(String from, String to, String label, String unit) {
+		}
+		Map<Pair, BigDecimal> totals = new LinkedHashMap<>();
+		for (MaterialQueries.MovementLink link : queries.linksFrom(materials.stream().map(MaterialRow::id).toList())) {
+			String from = "material:" + link.sourceMaterialId();
+			String to = "material:" + link.materialId();
+			if (!nodes.containsKey(from) || !nodes.containsKey(to)) {
+				continue;
+			}
+			String label = "TRANSFER_IN".equals(link.movementType()) ? "Transfer" : "Tanka girdi";
+			totals.merge(new Pair(from, to, label, link.unit()), link.quantity(), BigDecimal::add);
+		}
+		totals.forEach((pair, quantity) -> edges.add(new Edge(pair.from(), pair.to(), pair.label(),
+			Quantities.number(quantity), pair.unit())));
 	}
 
 	/** Dolum kosusu dugumleri (kosu basina bir) ve materyal -> kosu kenarlari; sonra depo yerlestirmeleri. */

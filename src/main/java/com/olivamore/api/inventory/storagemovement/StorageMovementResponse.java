@@ -6,6 +6,7 @@ import com.olivamore.api.inventory.material.MaterialUnit;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /** Hareket cevabi; {@code storage_unit} yalnizca yazma cevaplarinda var. */
@@ -13,6 +14,7 @@ public record StorageMovementResponse(
 	Long id,
 	Long storageUnitId,
 	Long materialId,
+	Long sourceMaterialId,
 	Long batchProcessId,
 	Long finishedProductRunId,
 	Long counterpartyStorageUnitId,
@@ -31,9 +33,9 @@ public record StorageMovementResponse(
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
 
-	/** Transfer cevabi (200). */
-	public record Transfer(String transferReference, StorageMovementResponse outMovement,
-		StorageMovementResponse inMovement) {
+	/** Transfer cevabi (200): son tanktan cikista karisimdaki her tip icin bir cikis ve bir giris hareketi. */
+	public record Transfer(String transferReference, List<StorageMovementResponse> outMovements,
+		List<StorageMovementResponse> inMovements) {
 	}
 
 }

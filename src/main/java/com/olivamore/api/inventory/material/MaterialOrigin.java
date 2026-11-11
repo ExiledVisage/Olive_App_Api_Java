@@ -9,7 +9,9 @@ public enum MaterialOrigin implements ValueEnum {
 	BATCH_PROCESS("BATCH_PROCESS"),
 	STORAGE_OPENING("STORAGE_OPENING"),
 	STORAGE_ADJUSTMENT("STORAGE_ADJUSTMENT"),
-	MANUAL("MANUAL");
+	MANUAL("MANUAL"),
+	/** Son tankin tip materyali: girisler buna eklenir, partisi yoktur. */
+	TANK("TANK");
 
 	private final String value;
 

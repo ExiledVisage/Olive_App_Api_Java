@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/** Acilis, giris, cikis, transfer, duzeltme ve tankin hareket gecmisi. Hareket cevaplari 201, transfer 200. */
+/**
+ * Acilis, giris, cikis, transfer, duzeltme ve tankin hareket gecmisi. Hareket cevaplari 201, transfer 200; cikis,
+ * transfer ve duzeltme son tankta karisimdan oransal oldugu icin hareket listesi doner.
+ */
 @RestController
 class StorageMovementController {
 
@@ -47,24 +50,27 @@ class StorageMovementController {
 		return created(movements.inbound(request));
 	}
 
+	/** Son tankta karisimdaki her materyal icin bir hareket: cevap liste. */
 	@PostMapping("/api/storage-movements/outbound")
 	@PreAuthorize("hasAuthority('storage_movement.create')")
-	ResponseEntity<DataResponse<StorageMovementResponse>> outbound(@Valid @RequestBody OutboundRequest request) {
-		return created(movements.outbound(request));
+	ResponseEntity<DataResponse<List<StorageMovementResponse>>> outbound(@Valid @RequestBody OutboundRequest request) {
+		return DataResponse.created(responses.written(movements.outbound(request)));
 	}
 
 	@PostMapping("/api/storage-movements/transfer")
 	@PreAuthorize("hasAuthority('storage_movement.transfer')")
 	DataResponse<StorageMovementResponse.Transfer> transfer(@Valid @RequestBody TransferRequest request) {
 		StorageMovementService.Transfer transfer = movements.transfer(request);
-		List<StorageMovementResponse> both = responses.written(List.of(transfer.out(), transfer.in()));
-		return DataResponse.of(new StorageMovementResponse.Transfer(transfer.reference(), both.get(0), both.get(1)));
+		return DataResponse.of(new StorageMovementResponse.Transfer(transfer.reference(),
+			responses.written(transfer.out()), responses.written(transfer.in())));
 	}
 
+	/** Son tankta azalis karisimdaki her materyal icin bir hareket: cevap liste. */
 	@PostMapping("/api/storage-movements/adjustment")
 	@PreAuthorize("hasAuthority('storage_movement.adjustment')")
-	ResponseEntity<DataResponse<StorageMovementResponse>> adjustment(@Valid @RequestBody AdjustmentRequest request) {
-		return created(movements.adjustment(request));
+	ResponseEntity<DataResponse<List<StorageMovementResponse>>> adjustment(
+		@Valid @RequestBody AdjustmentRequest request) {
+		return DataResponse.created(responses.written(movements.adjustment(request)));
 	}
 
 	/** {@code ?date_from}, {@code ?date_to}: moved_at araligi; {@code page}/{@code size} varsa sayfali. */

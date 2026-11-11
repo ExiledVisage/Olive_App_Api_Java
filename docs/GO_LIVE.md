@@ -93,6 +93,20 @@ case when p.default_density_kg_per_litre > 0 then p.default_density_kg_per_litre
 SQL
 ```
 
+Dinlenme tankları canlıda yalnızca metinle belirtiliyor. `V7`, kodunda, adında ya da açıklamasında "dinlen" geçen
+tankları ön dinlendirme tankı yapar, diğerleri son tank olur. Hangi tankların seçileceği önceden listelenir:
+
+```bash
+docker compose exec -T db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"' <<'SQL'
+select id, code, name, description from storage_units
+where concat_ws(' ', code, name, description) ~* 'd[iıİI]nlen' order by id;
+SQL
+```
+
+Liste fabrikadaki dinlenme tanklarıyla aynı olmalı. Yanlış eşleşen tankın metni düzeltilir, eksik kalan dinlenme
+tankının adına "dinlenme" eklenir. Son tanka giren parti materyali kapanır, yanlış türde kalan dinlenme tankı
+üretimdeki toplama aşamasını durdurur.
+
 ### 3. Yedek
 
 ```bash
@@ -121,7 +135,10 @@ uygular. **Bu migration'lar Laravel'in tablolarını değiştirir:**
 - `V5`: rol ve izin atamaları `user_roles`, `user_permissions`, `role_permissions` tablolarına aynen taşınır,
   Spatie tabloları ile `guard_name` ve `remember_token` kolonları silinir.
 - `V6`: JSON kolonları `jsonb`'ye çevrilir. Tablolar yeniden yazılır, uygulama durmuşken çalışır; veri korunur.
-- `V7`: `storage_units`'a tank türü (`kind`) eklenir; var olan bütün tanklar son tank (`final`) olur.
+- `V7`: `storage_units`'a tank türü (`kind`) eklenir; metninde "dinlen" geçen tanklar ön dinlendirme
+  (`pre_settling`), diğerleri son tank (`final`) olur.
+- `V8`: `storage_movements`'a gelen materyal (`source_material_id`) ve son tank ölçüm geçmişi tablosu
+  (`tank_measurements`) eklenir. Var olan satırlara dokunulmaz.
 
 Bu andan sonra Laravel aynı veritabanıyla çalışamaz.
 

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-/** Tanklar arasi transfer. */
+/** Tanklar arasi transfer. Son tanktan karisimdan oransal: material_id verilmez (verilirse kaynakta olmali). */
 record TransferRequest(
 	@NotNull(message = MessageKeys.REQUIRED)
 	Long fromStorageUnitId,
@@ -15,7 +15,6 @@ record TransferRequest(
 	@NotNull(message = MessageKeys.REQUIRED)
 	Long toStorageUnitId,
 
-	@NotNull(message = MessageKeys.REQUIRED)
 	Long materialId,
 
 	Long batchProcessId,

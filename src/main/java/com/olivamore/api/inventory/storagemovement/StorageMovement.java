@@ -33,6 +33,9 @@ public class StorageMovement extends AuditedEntity {
 	@Column(nullable = false)
 	private Long materialId;
 
+	/** Son tanka giriste gelen materyal (material_id karistigi tank materyali); diger hareketlerde null. */
+	private Long sourceMaterialId;
+
 	private Long batchProcessId;
 
 	private Long finishedProductRunId;
@@ -60,11 +63,12 @@ public class StorageMovement extends AuditedEntity {
 
 	private LocalDateTime movedAt;
 
-	StorageMovement(long storageUnitId, long materialId, Long batchProcessId, Long finishedProductRunId,
-		Long counterpartyStorageUnitId, MovementSource sourceType, MovementType movementType, String transferReference,
-		BigDecimal quantity, MaterialUnit unit, String note, LocalDateTime movedAt) {
+	StorageMovement(long storageUnitId, long materialId, Long sourceMaterialId, Long batchProcessId,
+		Long finishedProductRunId, Long counterpartyStorageUnitId, MovementSource sourceType, MovementType movementType,
+		String transferReference, BigDecimal quantity, MaterialUnit unit, String note, LocalDateTime movedAt) {
 		this.storageUnitId = storageUnitId;
 		this.materialId = materialId;
+		this.sourceMaterialId = sourceMaterialId;
 		this.batchProcessId = batchProcessId;
 		this.finishedProductRunId = finishedProductRunId;
 		this.counterpartyStorageUnitId = counterpartyStorageUnitId;

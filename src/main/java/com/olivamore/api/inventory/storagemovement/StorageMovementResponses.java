@@ -46,9 +46,10 @@ public class StorageMovementResponses {
 			.flatMap(m -> Stream.of(m.getStorageUnitId(), m.getCounterpartyStorageUnitId())).toList());
 		return movements.stream().map(m -> {
 			MaterialQueries.BatchProcess process = lookup(processes, m.getBatchProcessId());
-			return new StorageMovementResponse(m.getId(), m.getStorageUnitId(), m.getMaterialId(), m.getBatchProcessId(),
-				m.getFinishedProductRunId(), m.getCounterpartyStorageUnitId(), m.getSourceType(), m.getMovementType(),
-				m.getTransferReference(), m.getQuantity(), m.getUnit(), m.getNote(), m.getMovedAt(),
+			return new StorageMovementResponse(m.getId(), m.getStorageUnitId(), m.getMaterialId(),
+				m.getSourceMaterialId(), m.getBatchProcessId(), m.getFinishedProductRunId(),
+				m.getCounterpartyStorageUnitId(), m.getSourceType(), m.getMovementType(), m.getTransferReference(),
+				m.getQuantity(), m.getUnit(), m.getNote(), m.getMovedAt(),
 				withStorageUnit ? Optional.ofNullable(summary(lookup(units, m.getStorageUnitId()))) : null,
 				lookup(materialResponses, m.getMaterialId()), process == null ? null : MaterialResponses.process(process),
 				summary(lookup(units, m.getCounterpartyStorageUnitId())), m.getCreatedAt(), m.getUpdatedAt());

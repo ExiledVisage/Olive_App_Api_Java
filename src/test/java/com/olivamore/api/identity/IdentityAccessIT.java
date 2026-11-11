@@ -123,7 +123,7 @@ class IdentityAccessIT {
 		long permissions = jdbc.queryForObject("select count(*) from permissions", Long.class);
 		long adminPermissions = jdbc.queryForObject("select count(*) from role_permissions rp join roles r on r.id = rp.role_id"
 			+ " where r.name = 'admin'", Long.class);
-		assertThat(permissions).isEqualTo(54);
+		assertThat(permissions).isEqualTo(55);
 		assertThat(adminPermissions).isEqualTo(permissions);
 	}
 

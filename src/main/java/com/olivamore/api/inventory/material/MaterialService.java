@@ -238,7 +238,7 @@ class MaterialService {
 		}).toList();
 	}
 
-	/** Ebeveyn varsa derived, yoksa kokenden. */
+	/** Ebeveyn varsa derived, yoksa kokenden (son tankin tip materyali tank). */
 	static String lineageRole(MaterialRow m) {
 		if (m.parentMaterialId() != null) {
 			return "derived";
@@ -247,6 +247,7 @@ class MaterialService {
 			case "BATCH_PROCESS" -> "root_raw";
 			case "STORAGE_OPENING" -> "root_opening";
 			case "STORAGE_ADJUSTMENT" -> "root_adjustment";
+			case "TANK" -> "tank";
 			default -> "root_other";
 		};
 	}

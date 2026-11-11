@@ -10,7 +10,10 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
-/** Duzeltme: artis yeni materyal (tip + birim zorunlu), azalis var olan materyalden (material_id zorunlu). */
+/**
+ * Duzeltme: artis yeni materyal (tip + birim zorunlu); azalis son tankta karisimdan oransal, diger tanklarda var olan
+ * materyalden (material_id zorunlu).
+ */
 record AdjustmentRequest(
 	@NotNull(message = MessageKeys.REQUIRED)
 	Long storageUnitId,

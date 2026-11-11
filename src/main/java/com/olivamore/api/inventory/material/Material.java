@@ -24,6 +24,9 @@ public class Material extends AuditedEntity {
 	/** Bunun altinda kalan girdi tukenmis sayilir. */
 	private static final BigDecimal CONSUMED_BELOW = new BigDecimal("0.000001");
 
+	/** materials.quantity 4 basamak: daha kucuk kalan gurultu. */
+	private static final BigDecimal DRAINED_BELOW = new BigDecimal("0.00005");
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -86,6 +89,35 @@ public class Material extends AuditedEntity {
 		material.currentLocationType = LocationType.PRODUCTION_BATCH;
 		material.currentLocationId = batchId;
 		return material;
+	}
+
+	/** Son tankin tip materyali: partisiz, bos baslar ve tankta durur; girisler {@link #add} ile eklenir. */
+	public static Material tankMix(long typeId, MaterialUnit unit, long unitId) {
+		Material material = new Material(null, typeId, MaterialOrigin.TANK, BigDecimal.ZERO, unit, null, null, null);
+		material.moveToStorageUnit(unitId);
+		return material;
+	}
+
+	public void add(BigDecimal added) {
+		quantity = Quantities.material(quantity.add(added));
+	}
+
+	/**
+	 * Miktar dogrudan duser, cocuk materyal acilmaz. Kalan yoksa (tolerans icinde) kapanir; kapanan materyalin
+	 * miktari son haliyle kalir (donusum girdisindeki gibi).
+	 */
+	public void drain(BigDecimal amount, MaterialStatus closedStatus, Long batchProcessId) {
+		BigDecimal remaining = quantity.subtract(amount);
+		if (remaining.compareTo(DRAINED_BELOW) <= 0) {
+			close(closedStatus, batchProcessId);
+		}
+		else {
+			quantity = Quantities.material(remaining);
+		}
+	}
+
+	public boolean isTankMix() {
+		return originType == MaterialOrigin.TANK;
 	}
 
 	/** Bu materyalden ayrilan parca: ayni ozellikler, ayni konum, proses verilirse prosese bagli. */

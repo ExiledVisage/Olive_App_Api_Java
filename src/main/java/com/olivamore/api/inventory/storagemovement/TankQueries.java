@@ -9,8 +9,12 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -135,6 +139,52 @@ class TankQueries {
 	/** Kategorinin attribute tanimlarinin id'leri. */
 	Set<Long> definitionsOfProduct(Long productId) {
 		return products.attributeMappingIdsOfProduct(productId);
+	}
+
+	/** Tanktaki aktif materyallerin id'leri (id sirasiyla). */
+	List<Long> activeMaterialIds(long unitId) {
+		return jdbc.sql("""
+			select id from materials
+			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
+			order by id
+			""").param("unit", unitId).query(Long.class).list();
+	}
+
+	/** Son tankta tipin aktif tank materyali. */
+	Optional<Long> tankMix(long unitId, long typeId) {
+		return jdbc.sql("""
+			select id from materials
+			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
+				and origin_type = 'TANK' and production_product_type_id = :type
+			order by id limit 1
+			""").param("unit", unitId).param("type", typeId).query(Long.class).optional();
+	}
+
+	/** Kategorinin zorunlu attribute tanimlari: esleme id'si ve etiketi (sort_order, id sirasiyla). */
+	Map<Long, String> requiredDefinitions(Long productId) {
+		return products.attributeMappings(products.attributeMappingIdsOfProduct(productId)).values().stream()
+			.filter(m -> Boolean.TRUE.equals(m.isRequired()))
+			.sorted(Comparator.comparing((ProductDirectory.AttributeMapping m) -> Objects.requireNonNullElse(m.sortOrder(),
+				Integer.MAX_VALUE)).thenComparing(ProductDirectory.AttributeMapping::id))
+			.collect(Collectors.toMap(ProductDirectory.AttributeMapping::id,
+				m -> m.label() != null ? m.label() : Objects.requireNonNullElse(m.attributeKey(), ""),
+				(a, b) -> a, LinkedHashMap::new));
+	}
+
+	/** Materyalde degeri dolu olan tanimlar. */
+	Set<Long> definitionsWithValue(long materialId) {
+		return Set.copyOf(jdbc.sql("""
+			select production_product_attribute_definition_id from material_attribute_values
+			where material_id = :material and (value_boolean is not null or value_integer is not null
+				or value_decimal is not null or (value_text is not null and value_text <> '') or value_json is not null)
+			""").param("material", materialId).query(Long.class).list());
+	}
+
+	/** Eslemelerin veri tipi (attribute tanimindan). */
+	Map<Long, String> dataTypes(Collection<Long> mappingIds) {
+		Map<Long, String> types = new HashMap<>();
+		products.attributeMappings(mappingIds).values().forEach(m -> types.put(m.id(), m.dataType()));
+		return types;
 	}
 
 	/** Tanktaki aktif materyallerin tipi, miktari ve birimi. */
