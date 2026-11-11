@@ -41,6 +41,10 @@ public class StorageUnit extends AuditedEntity {
 	@Convert(converter = MaterialUnit.UnitConverter.class)
 	private MaterialUnit capacityUnit;
 
+	@Column(nullable = false)
+	@Convert(converter = StorageUnitKind.KindConverter.class)
+	private StorageUnitKind kind = StorageUnitKind.FINAL;
+
 	@Column(name = "is_blend_tank", nullable = false)
 	private boolean blendTank;
 
@@ -60,6 +64,7 @@ public class StorageUnit extends AuditedEntity {
 		code = request.code();
 		capacity = Quantities.balance(request.capacity());
 		capacityUnit = request.capacityUnit();
+		kind = request.kind() == null ? StorageUnitKind.FINAL : request.kind();
 		blendTank = Boolean.TRUE.equals(request.isBlendTank());
 		allowMultipleTypes = Boolean.TRUE.equals(request.allowMultipleProductionProductTypes());
 		allowMultipleProducts = Boolean.TRUE.equals(request.allowMultipleProductionProducts());
@@ -80,6 +85,9 @@ public class StorageUnit extends AuditedEntity {
 		}
 		if (request.capacityUnit() != null) {
 			capacityUnit = request.capacityUnit();
+		}
+		if (request.kind() != null) {
+			kind = request.kind();
 		}
 		if (request.isBlendTank() != null) {
 			blendTank = request.isBlendTank();

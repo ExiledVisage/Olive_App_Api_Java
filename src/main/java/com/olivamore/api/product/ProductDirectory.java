@@ -22,6 +22,12 @@ public class ProductDirectory {
 
 	public record ProductType(Long id, Long productionProductId, String name, String code, String type, String unit,
 		BigDecimal densityKgPerLitre, BigDecimal defaultDensityKgPerLitre) {
+
+		/** Kendi yogunlugu, yoksa kategorinin varsayilani; ikisi de yoksa null. */
+		public BigDecimal effectiveDensity() {
+			return UnitConversion.effectiveDensity(densityKgPerLitre, defaultDensityKgPerLitre);
+		}
+
 	}
 
 	/** Urun-attribute eslemesi ve global attribute tanimi. */

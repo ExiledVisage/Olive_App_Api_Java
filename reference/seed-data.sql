@@ -7040,8 +7040,8 @@ COPY public.production_product_types (id, production_product_id, name, code, typ
 2	1	Ayvalık Zeytini	OLIVE_AYVALIK	ayvalik	KG	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
 3	2	Gemlik Zeytinyağı	OLIVE_OIL_GEMLIK	gemlik	LITRE	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
 4	2	Ayvalık Zeytinyağı	OLIVE_OIL_AYVALIK	ayvalik	LITRE	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
-5	3	Zeytin Pirinası	OLIVE_POMACE	\N	KG	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
-6	4	Portakal Aroması	ORANGE	orange	LITRE	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
+5	3	Zeytin Pirinası	OLIVE_POMACE	\N	KG	2026-11-06 15:35:11	2026-11-06 15:35:11	1.1000
+6	4	Portakal Aroması	ORANGE	orange	LITRE	2026-11-06 15:35:11	2026-11-06 15:35:11	0.9200
 7	4	Limon Aroması	LEMON	lemon	LITRE	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
 8	4	Sarımsak Aroması	GARLIC	garlic	LITRE	2026-11-06 15:35:11	2026-11-06 15:35:11	\N
 \.

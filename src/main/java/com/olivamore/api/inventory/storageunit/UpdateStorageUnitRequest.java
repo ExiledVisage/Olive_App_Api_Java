@@ -22,6 +22,8 @@ record UpdateStorageUnitRequest(
 
 	MaterialUnit capacityUnit,
 
+	StorageUnitKind kind,
+
 	Boolean isBlendTank,
 
 	Boolean allowMultipleProductionProductTypes,

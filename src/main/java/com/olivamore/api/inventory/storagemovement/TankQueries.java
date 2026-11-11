@@ -28,7 +28,11 @@ class TankQueries {
 	record DecimalValue(Long materialId, Long definitionId, BigDecimal valueDecimal) {
 	}
 
-	record ProductType(Long id, Long productionProductId, String name, String unit) {
+	/** @param density etkin yogunluk (kg/L); yoksa null */
+	record ProductType(Long id, Long productionProductId, String name, String unit, BigDecimal density) {
+	}
+
+	record Content(Long productionProductTypeId, BigDecimal quantity, String unit) {
 	}
 
 	record BatchProcess(Long id, Long productionBatchId, Long productionStageId) {
@@ -54,7 +58,7 @@ class TankQueries {
 
 	Map<Long, ProductType> productTypes(Collection<Long> ids) {
 		return products.productTypes(ids).values().stream().collect(Collectors.toMap(ProductDirectory.ProductType::id,
-			t -> new ProductType(t.id(), t.productionProductId(), t.name(), t.unit())));
+			t -> new ProductType(t.id(), t.productionProductId(), t.name(), t.unit(), t.effectiveDensity())));
 	}
 
 	Optional<ProductType> productType(long id) {
@@ -133,12 +137,13 @@ class TankQueries {
 		return products.attributeMappingIdsOfProduct(productId);
 	}
 
-	/** Tanktaki toplam bakiye (tankin biriminde). */
-	BigDecimal balanceTotal(long unitId, String unit) {
+	/** Tanktaki aktif materyallerin tipi, miktari ve birimi. */
+	List<Content> contents(long unitId) {
 		return jdbc.sql("""
-			select coalesce(sum(current_quantity), 0) from storage_unit_balances
-			where storage_unit_id = :u and unit = :n
-			""").param("u", unitId).param("n", unit).query(BigDecimal.class).single();
+			select production_product_type_id, quantity, unit from materials
+			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
+			order by id
+			""").param("unit", unitId).query(Content.class).list();
 	}
 
 	/** Aktif materyallerin ayni kategori ve birimdeki toplami. */

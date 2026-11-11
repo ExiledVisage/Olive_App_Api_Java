@@ -79,6 +79,20 @@ select count(*) from analytics_reports where config::text like '%\u0000%';
 SQL
 ```
 
+Yoğunluğu bilinmeyen ürün tanka giremez; tanklarda yoğunluğu tanımsız ürün tipinden aktif materyal kalmamalı
+(sonuç `0` olmalı). Sıfır değilse geçişten önce o ürün tiplerine ya da ürünlerine yoğunluk (kg/L) girilir:
+
+```bash
+docker compose exec -T db sh -c 'psql -At -U "$POSTGRES_USER" -d "$POSTGRES_DB"' <<'SQL'
+select count(*) from materials m
+left join production_product_types t on t.id = m.production_product_type_id
+left join production_products p on p.id = t.production_product_id
+where m.current_location_type = 'storage_unit' and m.status = 'active'
+and coalesce(case when t.density_kg_per_litre > 0 then t.density_kg_per_litre end,
+case when p.default_density_kg_per_litre > 0 then p.default_density_kg_per_litre end) is null;
+SQL
+```
+
 ### 3. Yedek
 
 ```bash
@@ -107,6 +121,7 @@ uygular. **Bu migration'lar Laravel'in tablolarını değiştirir:**
 - `V5`: rol ve izin atamaları `user_roles`, `user_permissions`, `role_permissions` tablolarına aynen taşınır,
   Spatie tabloları ile `guard_name` ve `remember_token` kolonları silinir.
 - `V6`: JSON kolonları `jsonb`'ye çevrilir. Tablolar yeniden yazılır, uygulama durmuşken çalışır; veri korunur.
+- `V7`: `storage_units`'a tank türü (`kind`) eklenir; var olan bütün tanklar son tank (`final`) olur.
 
 Bu andan sonra Laravel aynı veritabanıyla çalışamaz.
 

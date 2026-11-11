@@ -769,7 +769,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -1309,7 +1309,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -1768,7 +1768,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -1821,7 +1821,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -2714,7 +2714,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -3212,7 +3212,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -3616,7 +3616,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -3669,7 +3669,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -4485,7 +4485,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -4983,7 +4983,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -5387,7 +5387,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -5440,7 +5440,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -6256,7 +6256,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -6754,7 +6754,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -7158,7 +7158,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -7211,7 +7211,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -8027,7 +8027,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -8525,7 +8525,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -8929,7 +8929,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -8982,7 +8982,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -9816,7 +9816,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -10314,7 +10314,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -10718,7 +10718,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -10771,7 +10771,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -11587,7 +11587,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -12085,7 +12085,7 @@
            "code": "OLIVE_POMACE",
            "type": null,
            "unit": "KG",
-           "density_kg_per_litre": null,
+           "density_kg_per_litre": 1.1,
            "production_product": {
             "id": 3,
             "key": "pomace",
@@ -12489,7 +12489,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -12542,7 +12542,7 @@
          "code": "OLIVE_POMACE",
          "type": null,
          "unit": "KG",
-         "density_kg_per_litre": null,
+         "density_kg_per_litre": 1.1,
          "production_product": {
           "id": 3,
           "key": "pomace",
@@ -13515,7 +13515,7 @@
           "code": "OLIVE_POMACE",
           "type": null,
           "unit": "KG",
-          "density_kg_per_litre": null,
+          "density_kg_per_litre": 1.1,
           "production_product": {
            "id": 3,
            "key": "pomace",
@@ -14013,7 +14013,7 @@
           "code": "OLIVE_POMACE",
           "type": null,
           "unit": "KG",
-          "density_kg_per_litre": null,
+          "density_kg_per_litre": 1.1,
           "production_product": {
            "id": 3,
            "key": "pomace",
@@ -14417,7 +14417,7 @@
         "code": "OLIVE_POMACE",
         "type": null,
         "unit": "KG",
-        "density_kg_per_litre": null,
+        "density_kg_per_litre": 1.1,
         "production_product": {
          "id": 3,
          "key": "pomace",
@@ -14470,7 +14470,7 @@
         "code": "OLIVE_POMACE",
         "type": null,
         "unit": "KG",
-        "density_kg_per_litre": null,
+        "density_kg_per_litre": 1.1,
         "production_product": {
          "id": 3,
          "key": "pomace",

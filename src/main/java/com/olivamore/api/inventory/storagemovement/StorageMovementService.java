@@ -10,6 +10,7 @@ import com.olivamore.api.inventory.material.MaterialUnit;
 import com.olivamore.api.inventory.material.Quantities;
 import com.olivamore.api.inventory.storagemovement.TankQueries.BatchOutput;
 import com.olivamore.api.inventory.storagemovement.TankQueries.BatchProcess;
+import com.olivamore.api.inventory.storagemovement.TankQueries.Content;
 import com.olivamore.api.inventory.storagemovement.TankQueries.DecimalValue;
 import com.olivamore.api.inventory.storagemovement.TankQueries.ProductType;
 import com.olivamore.api.inventory.storagemovement.TankQueries.RuleDefinition;
@@ -21,7 +22,9 @@ import com.olivamore.api.inventory.storageunit.StorageUnitAttributeRule;
 import com.olivamore.api.inventory.storageunit.StorageUnitAttributeRuleRepository;
 import com.olivamore.api.inventory.storageunit.StorageUnitBalance;
 import com.olivamore.api.inventory.storageunit.StorageUnitBalanceRepository;
+import com.olivamore.api.inventory.storageunit.StorageUnitKind;
 import com.olivamore.api.inventory.storageunit.StorageUnitRepository;
+import com.olivamore.api.product.UnitConversion;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
@@ -50,7 +53,7 @@ import java.util.stream.Collectors;
 
 /**
  * Tanka giris (acilis, yeni materyal, var olan materyal), cikis, tanklar arasi transfer, sayim duzeltmesi ve
- * tank bakiyesi. Kurallar sirasiyla: miktar, birim, izinli urun/tip, kapasite, tank uyumu (farkli urun/tip,
+ * tank bakiyesi. Kurallar sirasiyla: miktar, birim, izinli urun/tip, yogunluk, kapasite, tank uyumu (farkli urun/tip,
  * attribute kurallari ve agirlikli ortalama), materyal bolme.
  * <p>
  * Islemdeki tanklar transaction basinda satir kilidiyle kilitlenir (id sirasiyla); ayni tanka eszamanli iki
@@ -279,7 +282,8 @@ public class StorageMovementService {
 		String unitName = material.getUnit().value();
 		assertProductionProductAllowed(unit, type);
 		assertProductionProductTypeAllowed(unit, type);
-		assertCapacityAvailable(unit, quantity, unitName);
+		assertDensityDefined(type);
+		assertCapacityAvailable(unit, quantity, unitName, type);
 		assertCompatibleWithTank(unit, material.getId(), type, quantity);
 		Material moving = extractPortion(material, quantity, batchProcess);
 		moving.moveToStorageUnit(unit.getId());
@@ -321,6 +325,9 @@ public class StorageMovementService {
 		Map<Long, StorageUnit> locked = lock(fromId, toId);
 		StorageUnit from = locked.get(fromId);
 		StorageUnit to = locked.get(toId);
+		if (from.getKind() == StorageUnitKind.FINAL && to.getKind() == StorageUnitKind.PRE_SETTLING) {
+			throw new BusinessRuleException("Son tanktan ön dinlendirme tankına transfer yapılamaz.");
+		}
 		Material material = fresh(materialId);
 		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
 		ProductType type = productType(material.getProductionProductTypeId());
@@ -328,7 +335,8 @@ public class StorageMovementService {
 		assertMaterialInsideStorage(from, material);
 		assertProductionProductAllowed(to, type);
 		assertProductionProductTypeAllowed(to, type);
-		assertCapacityAvailable(to, quantity, unitName);
+		assertDensityDefined(type);
+		assertCapacityAvailable(to, quantity, unitName, type);
 		assertCompatibleWithTank(to, material.getId(), type, quantity);
 		Material moving = extractPortion(material, quantity, batchProcess);
 		String reference = "TRF-" + REFERENCE_TIME.format(Timestamps.now()) + "-" + random(6).toUpperCase(Locale.ROOT);
@@ -373,7 +381,8 @@ public class StorageMovementService {
 		StorageUnit unit = lock(unitId).get(unitId);
 		assertProductionProductAllowed(unit, type);
 		assertProductionProductTypeAllowed(unit, type);
-		assertCapacityAvailable(unit, quantity, unitName);
+		assertDensityDefined(type);
+		assertCapacityAvailable(unit, quantity, unitName, type);
 
 		Material material = materials.save(new Material(batchProcess == null ? null : batchProcess.productionBatchId(),
 			type.id(), source.origin(), quantity, MaterialUnit.of(unitName),
@@ -434,13 +443,37 @@ public class StorageMovementService {
 		}
 	}
 
-	private void assertCapacityAvailable(StorageUnit unit, BigDecimal incoming, String unitName) {
-		if (!unit.getCapacityUnit().value().equals(unitName)) {
-			throw new BusinessRuleException("Tank kapasite birimi ile işlem birimi uyuşmuyor.");
+	/** Fabrikada kg'si bilinmeyen urun tanka konmaz: birim ayni olsa bile tipin etkin yogunlugu tanimli olmali. */
+	private static void assertDensityDefined(ProductType type) {
+		if (type.density() == null) {
+			String name = type.name() != null ? type.name() : "Bu ürün tipi";
+			throw new BusinessRuleException(name + " için yoğunluk tanımlı değil; yoğunluğu bilinmeyen ürün tanka "
+				+ "giremez. Ürün tipine yoğunluk (kg/L) girilmeli.");
 		}
-		if (queries.balanceTotal(unit.getId(), unitName).add(incoming).compareTo(unit.getCapacity()) > 0) {
+	}
+
+	/**
+	 * Giren miktar ve tanktaki her aktif materyal, kendi tipinin yogunluguyla tankin kapasite birimine cevrilip
+	 * toplanir; cevrim gerekip yogunluk yoksa islem reddedilir.
+	 */
+	private void assertCapacityAvailable(StorageUnit unit, BigDecimal incoming, String unitName, ProductType type) {
+		String capacityUnit = unit.getCapacityUnit().value();
+		List<Content> contents = queries.contents(unit.getId());
+		Map<Long, ProductType> types = queries.productTypes(
+			contents.stream().map(Content::productionProductTypeId).toList());
+		BigDecimal total = toUnit(incoming, unitName, capacityUnit, type);
+		for (Content content : contents) {
+			total = total.add(toUnit(content.quantity(), content.unit(), capacityUnit,
+				types.get(content.productionProductTypeId())));
+		}
+		if (Quantities.material(total).compareTo(unit.getCapacity()) > 0) {
 			throw new BusinessRuleException("Hedef tankta yeterli boş kapasite yok.");
 		}
+	}
+
+	private static BigDecimal toUnit(BigDecimal quantity, String from, String to, ProductType type) {
+		return UnitConversion.convert(quantity, from, to, type == null ? null : type.density(),
+			type == null ? null : type.name());
 	}
 
 	/**

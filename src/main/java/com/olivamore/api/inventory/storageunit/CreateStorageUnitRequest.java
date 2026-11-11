@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-/** Yeni tank; bayraklar verilmezse false, {@code is_active} true. */
+/** Yeni tank; bayraklar verilmezse false, {@code is_active} true, tur son tank. */
 record CreateStorageUnitRequest(
 	@NotBlank(message = MessageKeys.REQUIRED)
 	@Size(max = 255, message = MessageKeys.SIZE_MAX)
@@ -26,6 +26,8 @@ record CreateStorageUnitRequest(
 
 	@NotNull(message = MessageKeys.REQUIRED)
 	MaterialUnit capacityUnit,
+
+	StorageUnitKind kind,
 
 	Boolean isBlendTank,
 

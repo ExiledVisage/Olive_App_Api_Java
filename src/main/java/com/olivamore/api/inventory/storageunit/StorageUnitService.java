@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * Tanklar, izinli urun ve tipler, attribute kurallari (yalnizca decimal attribute, min <= max; sonraki kuralda
- * hata olursa hepsi geri alinir), silme korumalari.
+ * hata olursa hepsi geri alinir), silme korumalari. Tank turu yalnizca tank bosken degisir.
  */
 @Service
 class StorageUnitService {
@@ -63,6 +63,13 @@ class StorageUnitService {
 			errors.add("code", MessageKeys.UNIQUE);
 			errors.throwIfAny();
 		}
+		if (request.kind() != null && request.kind() != unit.getKind()) {
+			long materialCount = activeMaterialCount(id);
+			if (materialCount > 0) {
+				throw new BusinessRuleException("'" + unit.getCode() + "' tankında " + materialCount
+					+ " aktif materyal var; tank türü yalnızca tank boşken değiştirilebilir.");
+			}
+		}
 		unit.apply(request);
 	}
 
@@ -71,10 +78,7 @@ class StorageUnitService {
 	void delete(long id) {
 		StorageUnit unit = find(id);
 		long movementCount = count("select count(*) from storage_movements where storage_unit_id = :unit", id);
-		long materialCount = count("""
-			select count(*) from materials
-			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
-			""", id);
+		long materialCount = activeMaterialCount(id);
 		if (materialCount > 0) {
 			throw new BusinessRuleException("'" + unit.getCode() + "' tankında " + materialCount + " aktif materyal var; "
 				+ "silinemez. Önce tankı boşaltın.");
@@ -156,6 +160,13 @@ class StorageUnitService {
 
 	private static Set<Long> distinct(List<Long> values) {
 		return new LinkedHashSet<>(ValidationErrors.present(values));
+	}
+
+	private long activeMaterialCount(long unitId) {
+		return count("""
+			select count(*) from materials
+			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
+			""", unitId);
 	}
 
 	private long count(String sql, long unitId) {

@@ -3,6 +3,7 @@ package com.olivamore.api.finishedproduct.run;
 import com.olivamore.api.inventory.MaterialDirectory;
 import com.olivamore.api.packaging.PackagingDirectory;
 import com.olivamore.api.product.ProductDirectory;
+import com.olivamore.api.product.UnitConversion;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 
@@ -25,8 +26,8 @@ class RunQueries {
 	record ProductType(Long id, String name, BigDecimal densityKgPerLitre, BigDecimal defaultDensityKgPerLitre) {
 
 		/** Kendi yogunlugu > 0 ise o, yoksa kategorinin varsayilani > 0 ise o. */
-		Double effectiveDensity() {
-			return effective(densityKgPerLitre, defaultDensityKgPerLitre);
+		BigDecimal effectiveDensity() {
+			return UnitConversion.effectiveDensity(densityKgPerLitre, defaultDensityKgPerLitre);
 		}
 
 	}
@@ -183,10 +184,8 @@ class RunQueries {
 
 	/** Kendi yogunlugu > 0 ise o, yoksa kategorinin varsayilani > 0 ise o; hic yoksa {@code null}. */
 	static Double effective(BigDecimal own, BigDecimal fallback) {
-		if (own != null && own.signum() > 0) {
-			return own.doubleValue();
-		}
-		return fallback != null && fallback.signum() > 0 ? fallback.doubleValue() : null;
+		BigDecimal density = UnitConversion.effectiveDensity(own, fallback);
+		return density == null ? null : density.doubleValue();
 	}
 
 }

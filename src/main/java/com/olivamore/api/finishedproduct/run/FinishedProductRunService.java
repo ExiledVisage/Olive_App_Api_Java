@@ -18,6 +18,7 @@ import com.olivamore.api.inventory.StockOperations;
 import com.olivamore.api.packaging.PackagingAllocations;
 import com.olivamore.api.packaging.PackagingAllocations.Need;
 import com.olivamore.api.packaging.PackagingAllocations.Selection;
+import com.olivamore.api.product.UnitConversion;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
@@ -206,25 +207,10 @@ class FinishedProductRunService {
 		return convert(litres, "LITRE", first.unit(), tank.type(first)).setScale(Quantities.SCALE, RoundingMode.HALF_UP);
 	}
 
-	/** Ayni birimse oldugu gibi, yoksa yogunlukla (kg = litre x yogunluk). */
+	/** Ayni birimse oldugu gibi, yoksa tipin yogunluguyla. */
 	private static BigDecimal convert(BigDecimal quantity, String from, String to, ProductType type) {
-		if (Objects.equals(from, to)) {
-			return quantity;
-		}
-		Double density = type == null ? null : type.effectiveDensity();
-		if (density == null) {
-			String name = type != null && type.name() != null ? type.name() : "Bu ürün tipi";
-			throw new BusinessRuleException(name + " için yoğunluk tanımlı değil; " + from + " ile " + to
-				+ " arasında çevrim yapılamaz. Ürün tipine yoğunluk (kg/L) girilmeli.");
-		}
-		BigDecimal factor = BigDecimal.valueOf(density);
-		if ("LITRE".equals(from) && "KG".equals(to)) {
-			return quantity.multiply(factor);
-		}
-		if ("KG".equals(from) && "LITRE".equals(to)) {
-			return quantity.divide(factor, PRECISION);
-		}
-		throw new BusinessRuleException("Desteklenmeyen birim çevrimi: " + from + " -> " + to + ".");
+		return UnitConversion.convert(quantity, from, to, type == null ? null : type.effectiveDensity(),
+			type == null ? null : type.name());
 	}
 
 	private static String label(String unit) {

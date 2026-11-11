@@ -11196,7 +11196,7 @@
        "unit": "LITRE",
        "production_product_type_id": 6,
        "production_product_type_name": "Portakal Aroması",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 0.92
       }
      ],
      "packagings": [
@@ -13823,7 +13823,12 @@
       }
      ],
      "created_at": "2026-11-06T15:35:12Z",
-     "updated_at": "2026-11-06T15:35:12Z"
+     "updated_at": "2026-11-06T15:35:12Z",
+     "filled_litre": 2945,
+     "filled_kg": 2697.62,
+     "capacity_kg": 2748,
+     "capacity_litre": 3000,
+     "kind": "final"
     }
    },
    "save": null
@@ -15248,7 +15253,12 @@
       }
      ],
      "created_at": "2026-11-06T15:35:12Z",
-     "updated_at": "2026-11-06T15:35:12Z"
+     "updated_at": "2026-11-06T15:35:12Z",
+     "filled_litre": 890,
+     "filled_kg": 815.24,
+     "capacity_kg": 1832,
+     "capacity_litre": 2000,
+     "kind": "final"
     }
    },
    "save": null

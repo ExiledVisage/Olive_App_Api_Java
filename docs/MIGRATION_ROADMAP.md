@@ -512,9 +512,10 @@ sayılmıyor.
 geçişinden önce yapılır.
 
 ## C1: Tank türleri
-- [ ] Tankın türü düzenlenebilir bir alan olur: normal (son tank) ya da ön dinlendirme
-- [ ] Tür iki yönde de değişebilir, ama yalnızca tank boşken; doluysa işlem reddedilir
-- [ ] Son tanktan ön dinlendirme tankına aktarım yapılamaz
+- [x] Tankın türü düzenlenebilir bir alan olur: normal (son tank) ya da ön dinlendirme (`kind`: `final`,
+  `pre_settling`; V7)
+- [x] Tür iki yönde de değişebilir, ama yalnızca tank boşken; doluysa işlem reddedilir
+- [x] Son tanktan ön dinlendirme tankına aktarım yapılamaz (tanklar arası transfer)
 
 ## C2: Son tank
 - [ ] Tank ve ürün tipi başına tek aktif tank materyali olur; `materials` tablosunda tutulur, partisi boştur
@@ -559,12 +560,14 @@ geçişinden önce yapılır.
 - [ ] Tortunun hangi ürün olacağı aşama ayarındaki çıktı ürünlerinden belirlenir, kodda sabit olmaz
 
 ## C6: Birimler
-- [ ] Litre tanka kg ürün girebilir (ve tersi); birim farkı yoğunlukla çevrilir, ton birimi yoktur
-- [ ] Tankın sabit bir temel birimi olmaz, tank materyali ürün tipinin kendi biriminde kalır
-- [ ] Kapasite ve içerik hem kg hem litre gösterilir, kapasite kontrolü çevrilmiş miktarla yapılır
-- [ ] Çevrim gerekip yoğunluk tanımlı değilse işlem reddedilir
-- [ ] Boş tankta diğer birimdeki karşılık kabul edilen ürünün yoğunluğundan hesaplanır; ürün listesi boşsa ya da
-  yoğunluk tanımsızsa yalnızca girilen birim gösterilir
+- [x] Litre tanka kg ürün girebilir (ve tersi); birim farkı yoğunlukla çevrilir, ton birimi yoktur
+- [x] Tankın sabit bir temel birimi olmaz, tank materyali ürün tipinin kendi biriminde kalır
+- [x] Kapasite ve içerik hem kg hem litre gösterilir, kapasite kontrolü çevrilmiş miktarla yapılır
+- [x] Yoğunluğu tanımlı olmayan ürün tipi tanka giremez (birim aynı olsa bile; tipin kendi yoğunluğu, yoksa ürünün
+  varsayılanı)
+- [x] Boş tankta diğer birimdeki karşılık: aday tipler (izinli tipler, yoksa izinli ürünlerin tipleri) tek bir ürüne
+  aitse o ürünün varsayılan yoğunluğundan hesaplanır; farklı ürünlerden geliyorsa, varsayılan yoksa ya da aday
+  yoksa yalnızca girilen birim gösterilir. Dolu tankta karışımın yoğunluğu (toplam kg / toplam litre) kullanılır
 
 ## C7: İzlenebilirlik ve eski veri
 - [ ] Tanka giriş hareketi, karıştığı tank materyalini gösterir; soy grafiği parti → tank materyali → dolum →

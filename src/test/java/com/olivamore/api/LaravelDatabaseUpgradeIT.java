@@ -79,7 +79,7 @@ class LaravelDatabaseUpgradeIT {
 		assertThat(db.columns("permissions")).doesNotContain("guard_name");
 		assertThat(db.columns("users")).doesNotContain("remember_token").contains("email_verified_at");
 		assertThat(jdbc.queryForList("select version from flyway_schema_history where version is not null "
-			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6");
+			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7");
 	}
 
 	@Test

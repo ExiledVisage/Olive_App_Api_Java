@@ -7,13 +7,18 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/** Tank cevabi: kapasite metrikleri, izinli urun/tipler, kurallar, bakiyeler ve icindeki aktif materyaller. */
+/**
+ * Tank cevabi: kapasite metrikleri, izinli urun/tipler, kurallar, bakiyeler ve icindeki aktif materyaller.
+ * Doluluk ve kalan kapasite tankin kapasite biriminde; {@code capacity_kg/litre} ve {@code filled_kg/litre} iki
+ * birimde, cevrilemiyorsa (yogunluk yok ya da belirsiz) null.
+ */
 record StorageUnitResponse(
 	Long id,
 	String name,
 	String code,
 	BigDecimal capacity,
 	MaterialUnit capacityUnit,
+	StorageUnitKind kind,
 	boolean isBlendTank,
 	boolean allowMultipleProductionProductTypes,
 	boolean allowMultipleProductionProducts,
@@ -23,6 +28,10 @@ record StorageUnitResponse(
 	Number remainingCapacity,
 	Number filledPercentage,
 	Number emptyPercentage,
+	Number capacityKg,
+	Number capacityLitre,
+	Number filledKg,
+	Number filledLitre,
 	List<AllowedProduct> allowedProductionProducts,
 	List<AllowedType> allowedProductionProductTypes,
 	List<AttributeRule> attributeRules,

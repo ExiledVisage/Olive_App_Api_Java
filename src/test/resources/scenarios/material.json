@@ -20,7 +20,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -38,7 +38,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -78,7 +78,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -96,7 +96,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -136,7 +136,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -154,7 +154,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -194,7 +194,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -212,7 +212,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -274,7 +274,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -292,7 +292,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -332,7 +332,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -350,7 +350,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -368,7 +368,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -386,7 +386,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -426,7 +426,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -444,7 +444,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -462,7 +462,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -480,7 +480,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -498,7 +498,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -516,7 +516,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -534,7 +534,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -552,7 +552,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -592,7 +592,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -610,7 +610,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -628,7 +628,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -646,7 +646,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -664,7 +664,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -682,7 +682,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -700,7 +700,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -718,7 +718,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -736,7 +736,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -754,7 +754,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -772,7 +772,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -790,7 +790,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -808,7 +808,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -826,7 +826,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -844,7 +844,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -862,7 +862,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -880,7 +880,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -898,7 +898,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -916,7 +916,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -934,7 +934,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -952,7 +952,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -970,7 +970,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -988,7 +988,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -1006,7 +1006,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -1024,7 +1024,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -1042,7 +1042,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -1060,7 +1060,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -1078,7 +1078,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -1096,7 +1096,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -1114,7 +1114,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -1132,7 +1132,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -1150,7 +1150,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -1168,7 +1168,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -1186,7 +1186,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -1204,7 +1204,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -1222,7 +1222,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -1240,7 +1240,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -1258,7 +1258,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -1276,7 +1276,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -1294,7 +1294,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -1312,7 +1312,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -1330,7 +1330,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -1370,7 +1370,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -1388,7 +1388,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -1406,7 +1406,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -1424,7 +1424,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -1442,7 +1442,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -1460,7 +1460,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -1500,7 +1500,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -1518,7 +1518,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -1580,7 +1580,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -1598,7 +1598,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -1638,7 +1638,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -1656,7 +1656,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -1718,7 +1718,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -1736,7 +1736,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -1798,7 +1798,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -1816,7 +1816,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -1878,7 +1878,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -1896,7 +1896,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -1936,7 +1936,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -1954,7 +1954,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -1994,7 +1994,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -2012,7 +2012,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -2074,7 +2074,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -2092,7 +2092,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -2154,7 +2154,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -2172,7 +2172,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -2212,7 +2212,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -2230,7 +2230,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -2270,7 +2270,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -2288,7 +2288,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -2350,7 +2350,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -2368,7 +2368,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -2408,7 +2408,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -2426,7 +2426,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -2444,7 +2444,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -2462,7 +2462,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -2480,7 +2480,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -2498,7 +2498,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -2516,7 +2516,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -2534,7 +2534,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -2552,7 +2552,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -2570,7 +2570,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -2588,7 +2588,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -2606,7 +2606,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -2624,7 +2624,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -2642,7 +2642,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -2660,7 +2660,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -2678,7 +2678,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -2696,7 +2696,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -2714,7 +2714,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -2732,7 +2732,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -2750,7 +2750,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -2768,7 +2768,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -2786,7 +2786,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -2804,7 +2804,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -2822,7 +2822,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -2840,7 +2840,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -2858,7 +2858,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -2876,7 +2876,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -2894,7 +2894,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -2912,7 +2912,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -2930,7 +2930,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -2948,7 +2948,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -2966,7 +2966,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -2984,7 +2984,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -3002,7 +3002,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -3020,7 +3020,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -3038,7 +3038,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -3056,7 +3056,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -3074,7 +3074,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -3092,7 +3092,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -3110,7 +3110,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -3128,7 +3128,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -3146,7 +3146,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -3164,7 +3164,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -3182,7 +3182,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -3200,7 +3200,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -3218,7 +3218,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -3236,7 +3236,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -3254,7 +3254,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -3272,7 +3272,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -3290,7 +3290,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -3308,7 +3308,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -3326,7 +3326,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -3344,7 +3344,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -3362,7 +3362,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -3380,7 +3380,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -3398,7 +3398,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -3416,7 +3416,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -3434,7 +3434,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -3452,7 +3452,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -3470,7 +3470,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -3488,7 +3488,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -3506,7 +3506,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -3524,7 +3524,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -3542,7 +3542,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -3560,7 +3560,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -3578,7 +3578,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -3596,7 +3596,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -3614,7 +3614,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -3632,7 +3632,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -3650,7 +3650,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -3668,7 +3668,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -3686,7 +3686,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -3704,7 +3704,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -3722,7 +3722,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -7370,7 +7370,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -7388,7 +7388,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -7446,7 +7446,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -7464,7 +7464,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -7522,7 +7522,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -7540,7 +7540,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -7598,7 +7598,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -7616,7 +7616,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -7714,7 +7714,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -7732,7 +7732,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -7862,7 +7862,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -7880,7 +7880,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -7988,7 +7988,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -8006,7 +8006,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -8118,7 +8118,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -8136,7 +8136,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -8244,7 +8244,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -8262,7 +8262,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -8388,7 +8388,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -8406,7 +8406,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -8478,7 +8478,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -8496,7 +8496,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -8572,7 +8572,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -8590,7 +8590,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -8716,7 +8716,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -8734,7 +8734,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -8878,7 +8878,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -8896,7 +8896,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -9004,7 +9004,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -9022,7 +9022,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -9130,7 +9130,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -9148,7 +9148,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -9256,7 +9256,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -9274,7 +9274,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -9400,7 +9400,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -9418,7 +9418,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -9526,7 +9526,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -9544,7 +9544,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -9652,7 +9652,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -9670,7 +9670,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -9778,7 +9778,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -9796,7 +9796,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -9958,7 +9958,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -9976,7 +9976,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -10084,7 +10084,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -10102,7 +10102,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -10210,7 +10210,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -10228,7 +10228,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -10336,7 +10336,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -10354,7 +10354,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -10480,7 +10480,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -10498,7 +10498,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -10606,7 +10606,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -10624,7 +10624,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -10750,7 +10750,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -10768,7 +10768,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -10876,7 +10876,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -10894,7 +10894,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -11017,7 +11017,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -11035,7 +11035,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -11075,7 +11075,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -11093,7 +11093,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -11133,7 +11133,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -11151,7 +11151,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -11191,7 +11191,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -11209,7 +11209,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -11271,7 +11271,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -11289,7 +11289,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -11329,7 +11329,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -11347,7 +11347,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -11365,7 +11365,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -11383,7 +11383,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -11423,7 +11423,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -11441,7 +11441,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -11459,7 +11459,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -11477,7 +11477,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -11495,7 +11495,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -11513,7 +11513,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -11531,7 +11531,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -11549,7 +11549,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -11589,7 +11589,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -11607,7 +11607,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -11625,7 +11625,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -11643,7 +11643,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -11661,7 +11661,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -11679,7 +11679,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -11697,7 +11697,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -11715,7 +11715,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -11733,7 +11733,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -11751,7 +11751,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -11769,7 +11769,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -11787,7 +11787,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -11805,7 +11805,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -11823,7 +11823,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -11841,7 +11841,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -11859,7 +11859,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -11877,7 +11877,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -11895,7 +11895,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -11913,7 +11913,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -11931,7 +11931,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -11949,7 +11949,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -11967,7 +11967,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -11985,7 +11985,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -12003,7 +12003,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -12021,7 +12021,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -12039,7 +12039,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -12057,7 +12057,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -12075,7 +12075,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -12093,7 +12093,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -12111,7 +12111,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -12129,7 +12129,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -12147,7 +12147,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -12165,7 +12165,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -12183,7 +12183,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -12201,7 +12201,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -12219,7 +12219,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -12237,7 +12237,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -12255,7 +12255,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -12273,7 +12273,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -12291,7 +12291,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -12309,7 +12309,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -12327,7 +12327,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -12367,7 +12367,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -12385,7 +12385,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -12403,7 +12403,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -12421,7 +12421,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -12439,7 +12439,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -12457,7 +12457,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -12497,7 +12497,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -12515,7 +12515,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -12577,7 +12577,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -12595,7 +12595,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -12635,7 +12635,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -12653,7 +12653,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -12715,7 +12715,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -12733,7 +12733,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -12795,7 +12795,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -12813,7 +12813,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -12875,7 +12875,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -12893,7 +12893,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -12933,7 +12933,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -12951,7 +12951,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -12991,7 +12991,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -13009,7 +13009,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -13071,7 +13071,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -13089,7 +13089,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -13151,7 +13151,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -13169,7 +13169,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -13209,7 +13209,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -13227,7 +13227,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -13267,7 +13267,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -13285,7 +13285,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -13347,7 +13347,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -13365,7 +13365,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -13405,7 +13405,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -13423,7 +13423,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -13441,7 +13441,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -13459,7 +13459,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -13477,7 +13477,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -13495,7 +13495,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -13513,7 +13513,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -13531,7 +13531,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -13549,7 +13549,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -13567,7 +13567,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -13585,7 +13585,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -13603,7 +13603,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -13621,7 +13621,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -13639,7 +13639,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -13657,7 +13657,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -13675,7 +13675,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -13693,7 +13693,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -13711,7 +13711,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -13729,7 +13729,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -13747,7 +13747,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -13765,7 +13765,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -13783,7 +13783,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -13801,7 +13801,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -13819,7 +13819,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -13837,7 +13837,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -13855,7 +13855,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -13873,7 +13873,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -13891,7 +13891,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -13909,7 +13909,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -13927,7 +13927,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -13945,7 +13945,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -13963,7 +13963,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -13981,7 +13981,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -13999,7 +13999,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -14017,7 +14017,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -14035,7 +14035,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -14053,7 +14053,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -14071,7 +14071,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -14089,7 +14089,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -14107,7 +14107,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -14125,7 +14125,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -14143,7 +14143,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -14161,7 +14161,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -14179,7 +14179,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -14197,7 +14197,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -14215,7 +14215,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -14233,7 +14233,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -14251,7 +14251,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -14269,7 +14269,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -14287,7 +14287,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -14305,7 +14305,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -14323,7 +14323,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -14341,7 +14341,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -14359,7 +14359,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -14377,7 +14377,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -14395,7 +14395,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -14413,7 +14413,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -14431,7 +14431,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -14449,7 +14449,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -14467,7 +14467,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -14485,7 +14485,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -14503,7 +14503,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -14521,7 +14521,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -14539,7 +14539,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -14557,7 +14557,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -14575,7 +14575,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -14593,7 +14593,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -14611,7 +14611,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -14629,7 +14629,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -14647,7 +14647,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -14665,7 +14665,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -14683,7 +14683,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -14701,7 +14701,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -14719,7 +14719,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -14766,7 +14766,7 @@
        "id": 6,
        "name": "Portakal Aroması",
        "unit": "LITRE",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 0.92
       },
       "storage_unit": {
        "id": 6,
@@ -14957,7 +14957,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -14975,7 +14975,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -15015,7 +15015,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -15033,7 +15033,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -15073,7 +15073,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -15091,7 +15091,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -15131,7 +15131,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -15149,7 +15149,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -15211,7 +15211,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -15229,7 +15229,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -15269,7 +15269,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -15287,7 +15287,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -15305,7 +15305,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -15323,7 +15323,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -15363,7 +15363,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -15381,7 +15381,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -15399,7 +15399,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -15417,7 +15417,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -15435,7 +15435,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -15453,7 +15453,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -15471,7 +15471,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -15489,7 +15489,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -15529,7 +15529,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -15547,7 +15547,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -15565,7 +15565,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -15583,7 +15583,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -15601,7 +15601,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -15619,7 +15619,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -15637,7 +15637,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -15655,7 +15655,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -15673,7 +15673,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -15691,7 +15691,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -15709,7 +15709,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -15727,7 +15727,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -15745,7 +15745,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -15763,7 +15763,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -15781,7 +15781,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -15799,7 +15799,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -15817,7 +15817,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -15835,7 +15835,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -15853,7 +15853,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -15871,7 +15871,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -15889,7 +15889,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -15907,7 +15907,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -15925,7 +15925,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -15943,7 +15943,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -15961,7 +15961,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -15979,7 +15979,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -15997,7 +15997,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -16015,7 +16015,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -16033,7 +16033,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -16051,7 +16051,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -16069,7 +16069,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -16087,7 +16087,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -16105,7 +16105,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -16123,7 +16123,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -16141,7 +16141,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -16159,7 +16159,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -16177,7 +16177,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -16195,7 +16195,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -16213,7 +16213,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -16231,7 +16231,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -16249,7 +16249,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -16267,7 +16267,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -16307,7 +16307,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -16325,7 +16325,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -16343,7 +16343,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -16361,7 +16361,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -16379,7 +16379,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -16397,7 +16397,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -16437,7 +16437,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -16455,7 +16455,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -16517,7 +16517,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -16535,7 +16535,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -16575,7 +16575,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -16593,7 +16593,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -16655,7 +16655,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -16673,7 +16673,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -16735,7 +16735,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -16753,7 +16753,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -16815,7 +16815,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -16833,7 +16833,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -16873,7 +16873,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -16891,7 +16891,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -16931,7 +16931,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -16949,7 +16949,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -17011,7 +17011,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -17029,7 +17029,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -17091,7 +17091,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -17109,7 +17109,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -17149,7 +17149,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -17167,7 +17167,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -17207,7 +17207,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -17225,7 +17225,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -17287,7 +17287,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -17305,7 +17305,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -17345,7 +17345,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -17363,7 +17363,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -17381,7 +17381,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -17399,7 +17399,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -17417,7 +17417,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -17435,7 +17435,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -17453,7 +17453,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -17471,7 +17471,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -17489,7 +17489,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -17507,7 +17507,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -17525,7 +17525,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -17543,7 +17543,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -17561,7 +17561,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -17579,7 +17579,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -17597,7 +17597,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -17615,7 +17615,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -17633,7 +17633,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -17651,7 +17651,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -17669,7 +17669,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -17687,7 +17687,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -17705,7 +17705,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -17723,7 +17723,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -17741,7 +17741,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -17759,7 +17759,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -17777,7 +17777,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -17795,7 +17795,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -17813,7 +17813,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -17831,7 +17831,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -17849,7 +17849,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -17867,7 +17867,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -17885,7 +17885,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -17903,7 +17903,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -17921,7 +17921,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -17939,7 +17939,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -17957,7 +17957,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -17975,7 +17975,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -17993,7 +17993,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -18011,7 +18011,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -18029,7 +18029,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -18047,7 +18047,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -18065,7 +18065,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -18083,7 +18083,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -18101,7 +18101,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -18119,7 +18119,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -18137,7 +18137,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -18155,7 +18155,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -18173,7 +18173,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -18191,7 +18191,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -18209,7 +18209,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -18227,7 +18227,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -18245,7 +18245,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -18263,7 +18263,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -18281,7 +18281,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -18299,7 +18299,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -18317,7 +18317,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -18335,7 +18335,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -18353,7 +18353,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -18371,7 +18371,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -18389,7 +18389,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -18407,7 +18407,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -18425,7 +18425,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -18443,7 +18443,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -18461,7 +18461,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -18479,7 +18479,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -18497,7 +18497,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -18515,7 +18515,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -18533,7 +18533,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -18551,7 +18551,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -18569,7 +18569,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -18587,7 +18587,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -18605,7 +18605,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -18623,7 +18623,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -18641,7 +18641,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -18659,7 +18659,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -18692,7 +18692,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -18710,7 +18710,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-02",
@@ -18750,7 +18750,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -18768,7 +18768,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261105-01",
@@ -18808,7 +18808,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -18826,7 +18826,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-02",
@@ -18866,7 +18866,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -18884,7 +18884,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261104-01",
@@ -18946,7 +18946,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -18964,7 +18964,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-02",
@@ -19004,7 +19004,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -19022,7 +19022,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261103-01",
@@ -19040,7 +19040,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -19058,7 +19058,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-02",
@@ -19098,7 +19098,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -19116,7 +19116,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261102-01",
@@ -19134,7 +19134,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -19152,7 +19152,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-02",
@@ -19170,7 +19170,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -19188,7 +19188,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261031-01",
@@ -19206,7 +19206,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -19224,7 +19224,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261030-01",
@@ -19264,7 +19264,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -19282,7 +19282,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-02",
@@ -19300,7 +19300,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -19318,7 +19318,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261029-01",
@@ -19336,7 +19336,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -19354,7 +19354,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-02",
@@ -19372,7 +19372,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -19390,7 +19390,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261028-01",
@@ -19408,7 +19408,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -19426,7 +19426,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261027-01",
@@ -19444,7 +19444,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -19462,7 +19462,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261026-01",
@@ -19480,7 +19480,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -19498,7 +19498,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261024-01",
@@ -19516,7 +19516,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -19534,7 +19534,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-02",
@@ -19552,7 +19552,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -19570,7 +19570,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261023-01",
@@ -19588,7 +19588,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -19606,7 +19606,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-02",
@@ -19624,7 +19624,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -19642,7 +19642,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261022-01",
@@ -19660,7 +19660,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -19678,7 +19678,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261021-01",
@@ -19696,7 +19696,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -19714,7 +19714,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-02",
@@ -19732,7 +19732,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -19750,7 +19750,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261020-01",
@@ -19768,7 +19768,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -19786,7 +19786,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261019-01",
@@ -19804,7 +19804,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -19822,7 +19822,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-02",
@@ -19840,7 +19840,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -19858,7 +19858,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261017-01",
@@ -19876,7 +19876,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -19894,7 +19894,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-02",
@@ -19912,7 +19912,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -19930,7 +19930,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261016-01",
@@ -19948,7 +19948,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -19966,7 +19966,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261015-01",
@@ -19984,7 +19984,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -20002,7 +20002,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261014-01",
@@ -20042,7 +20042,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -20060,7 +20060,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-02",
@@ -20078,7 +20078,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -20096,7 +20096,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261013-01",
@@ -20114,7 +20114,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -20132,7 +20132,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261012-01",
@@ -20172,7 +20172,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -20190,7 +20190,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-02",
@@ -20252,7 +20252,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -20270,7 +20270,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261010-01",
@@ -20310,7 +20310,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -20328,7 +20328,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261009-01",
@@ -20390,7 +20390,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -20408,7 +20408,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-02",
@@ -20470,7 +20470,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -20488,7 +20488,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261008-01",
@@ -20550,7 +20550,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -20568,7 +20568,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-02",
@@ -20608,7 +20608,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -20626,7 +20626,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261007-01",
@@ -20666,7 +20666,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -20684,7 +20684,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261006-01",
@@ -20746,7 +20746,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -20764,7 +20764,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-02",
@@ -20826,7 +20826,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -20844,7 +20844,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261005-01",
@@ -20884,7 +20884,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -20902,7 +20902,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261003-01",
@@ -20942,7 +20942,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -20960,7 +20960,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261002-01",
@@ -21022,7 +21022,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -21040,7 +21040,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-261001-01",
@@ -21080,7 +21080,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -21098,7 +21098,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260930-01",
@@ -21116,7 +21116,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -21134,7 +21134,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260929-01",
@@ -21152,7 +21152,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -21170,7 +21170,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260928-01",
@@ -21188,7 +21188,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -21206,7 +21206,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260926-01",
@@ -21224,7 +21224,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -21242,7 +21242,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260925-01",
@@ -21260,7 +21260,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -21278,7 +21278,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260924-01",
@@ -21296,7 +21296,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -21314,7 +21314,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260923-01",
@@ -21332,7 +21332,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -21350,7 +21350,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260922-01",
@@ -21368,7 +21368,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -21386,7 +21386,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260921-01",
@@ -21404,7 +21404,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -21422,7 +21422,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260919-01",
@@ -21440,7 +21440,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -21458,7 +21458,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260918-01",
@@ -21476,7 +21476,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -21494,7 +21494,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260917-01",
@@ -21512,7 +21512,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -21530,7 +21530,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260915-01",
@@ -21548,7 +21548,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -21566,7 +21566,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260914-01",
@@ -21584,7 +21584,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -21602,7 +21602,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260913-01",
@@ -21620,7 +21620,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -21638,7 +21638,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260911-01",
@@ -21656,7 +21656,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -21674,7 +21674,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260909-01",
@@ -21692,7 +21692,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -21710,7 +21710,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260908-01",
@@ -21728,7 +21728,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -21746,7 +21746,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260907-01",
@@ -21764,7 +21764,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -21782,7 +21782,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260905-01",
@@ -21800,7 +21800,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -21818,7 +21818,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260903-01",
@@ -21836,7 +21836,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -21854,7 +21854,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260902-01",
@@ -21872,7 +21872,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -21890,7 +21890,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260901-01",
@@ -21908,7 +21908,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -21926,7 +21926,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260831-01",
@@ -21944,7 +21944,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -21962,7 +21962,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260830-01",
@@ -21980,7 +21980,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -21998,7 +21998,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260829-01",
@@ -22016,7 +22016,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -22034,7 +22034,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260826-01",
@@ -22052,7 +22052,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -22070,7 +22070,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260825-01",
@@ -22088,7 +22088,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -22106,7 +22106,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260822-01",
@@ -22124,7 +22124,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -22142,7 +22142,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260821-01",
@@ -22160,7 +22160,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -22178,7 +22178,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260820-01",
@@ -22196,7 +22196,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -22214,7 +22214,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260817-01",
@@ -22232,7 +22232,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -22250,7 +22250,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260815-01",
@@ -22268,7 +22268,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -22286,7 +22286,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260813-01",
@@ -22304,7 +22304,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -22322,7 +22322,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260811-01",
@@ -22340,7 +22340,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -22358,7 +22358,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260805-01",
@@ -22376,7 +22376,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -22394,7 +22394,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "P-260804-01",
@@ -23035,7 +23035,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "SIM-GEM-002",
@@ -23053,7 +23053,7 @@
        "id": 5,
        "name": "Zeytin Pirinası",
        "unit": "KG",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 1.1
       },
       "storage_unit": null,
       "batch_code": "SIM-GEM-002",
@@ -23291,7 +23291,7 @@
        "id": 6,
        "name": "Portakal Aroması",
        "unit": "LITRE",
-       "density_kg_per_litre": null
+       "density_kg_per_litre": 0.92
       },
       "storage_unit": {
        "id": 6,
