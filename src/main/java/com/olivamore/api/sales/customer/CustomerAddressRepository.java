@@ -14,7 +14,7 @@ public interface CustomerAddressRepository extends JpaRepository<CustomerAddress
 
 	List<CustomerAddress> findByCustomerIdInOrderByIdAsc(Collection<Long> customerIds);
 
-	List<CustomerAddress> findByCustomerIdOrderByCreatedAtDesc(long customerId);
+	List<CustomerAddress> findByCustomerIdOrderByCreatedAtDescIdDesc(long customerId);
 
 	Optional<CustomerAddress> findFirstByCustomerIdOrderByIdDesc(long customerId);
 

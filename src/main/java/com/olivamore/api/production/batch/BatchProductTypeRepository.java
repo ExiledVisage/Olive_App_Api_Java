@@ -9,6 +9,6 @@ import java.util.List;
 @NoRepositoryBean
 interface BatchProductTypeRepository<T extends BatchProductType> extends JpaRepository<T, Long> {
 
-	List<T> findByProductionBatchIdInOrderBySortOrderAsc(Collection<Long> batchIds);
+	List<T> findByProductionBatchIdInOrderBySortOrderAscIdAsc(Collection<Long> batchIds);
 
 }

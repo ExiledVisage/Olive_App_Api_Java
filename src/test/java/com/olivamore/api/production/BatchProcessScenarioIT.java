@@ -23,11 +23,6 @@ class BatchProcessScenarioIT {
 	@Test
 	void scenario() throws Exception {
 		new ScenarioReplay("batch-process.json", port, jdbc)
-			// partinin prosesleri ve materyalleri ORDER BY'siz iliski: guncellenen satirin fiziksel yeri degisebilir
-			.unordered("parti tamamlandi", "data.processes")
-			.unordered("parti tamamlandi", "data.materials")
-			.unordered("parti atlanmis", "data.processes")
-			.unordered("parti atlanmis", "data.materials")
 			.run()
 			.assertPassed(110);
 	}

@@ -10,9 +10,9 @@ import java.util.List;
 
 interface ProductionStageRepository extends JpaRepository<ProductionStage, Long> {
 
-	List<ProductionStage> findByProductionLineIdOrderByStageOrderAsc(long lineId);
+	List<ProductionStage> findByProductionLineIdOrderByStageOrderAscIdAsc(long lineId);
 
-	List<ProductionStage> findByProductionLineIdInOrderByStageOrderAsc(Collection<Long> lineIds);
+	List<ProductionStage> findByProductionLineIdInOrderByStageOrderAscIdAsc(Collection<Long> lineIds);
 
 	@Query("select coalesce(max(s.stageOrder), 0) from ProductionStage s where s.productionLineId = :lineId")
 	int maxOrder(long lineId);

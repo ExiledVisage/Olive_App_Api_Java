@@ -25,7 +25,7 @@ import java.util.Map;
 @Component
 class ProductionBatchListing {
 
-	private static final Sort NEWEST_FIRST = Sort.by(Sort.Direction.DESC, "createdAt");
+	private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"));
 	private static final String DATE_FORMAT = "Y-m-d";
 	private static final DateTimeFormatter DAY = DateTimeFormatter.ofPattern("uuuu-MM-dd")
 		.withResolverStyle(ResolverStyle.STRICT);

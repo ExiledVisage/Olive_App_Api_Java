@@ -7,7 +7,7 @@ import java.util.List;
 
 interface ProductionLineRepository extends JpaRepository<ProductionLine, Long> {
 
-	List<ProductionLine> findAllByOrderByCreatedAtDesc();
+	List<ProductionLine> findAllByOrderByCreatedAtDescIdDesc();
 
 	@Query("""
 		select l from ProductionLine l

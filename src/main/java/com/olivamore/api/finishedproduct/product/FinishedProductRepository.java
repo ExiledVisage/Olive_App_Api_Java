@@ -18,10 +18,10 @@ public interface FinishedProductRepository extends JpaRepository<FinishedProduct
 	Optional<FinishedProduct> findWithRecipeById(long id);
 
 	@EntityGraph(attributePaths = "recipe")
-	List<FinishedProduct> findAllByOrderByCreatedAtDesc();
+	List<FinishedProduct> findAllByOrderByCreatedAtDescIdDesc();
 
 	@EntityGraph(attributePaths = "recipe")
-	List<FinishedProduct> findByActiveOrderByCreatedAtDesc(boolean active);
+	List<FinishedProduct> findByActiveOrderByCreatedAtDescIdDesc(boolean active);
 
 	boolean existsByRecipeId(long recipeId);
 

@@ -26,9 +26,6 @@ class FinishedProductStorageScenarioIT {
 			.clockAt("2026-11-07T12:00:00Z")
 			// transfer referansi rastgele UUID
 			.mask("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
-			// raflar, raf icerigi ve depo stogu ORDER BY'siz iliski: guncellenen satirin fiziksel yeri degisebilir
-			.unorderedEverywhere("slots", "contents", "stock")
-			.unordered("liste sonra", "data")
 			.run()
 			.assertPassed(93);
 	}

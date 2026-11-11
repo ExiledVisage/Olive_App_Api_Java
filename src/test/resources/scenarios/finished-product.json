@@ -9,141 +9,39 @@
    "response": {
     "data": [
      {
-      "id": 1,
-      "name": "Naturel Sızma Gemlik 0.3",
+      "id": 7,
+      "name": "Portakallı Ayvalık Blend",
       "version": 1,
       "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "description": "%50 Ayvalık, %35 Gemlik, %15 portakal aroması",
       "contents": [
        {
-        "id": 1,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 1,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.3,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.8",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
-      "contents": [
-       {
-        "id": 2,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 2,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.8,
-        "min_deviation": 0.1,
-        "max_deviation": null
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 3,
-      "name": "Naturel Sızma Ayvalık 0.4",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
-      "contents": [
-       {
-        "id": 3,
+        "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 3,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.4,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 4,
-      "name": "Naturel Sızma Ayvalık 0.9",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
-      "contents": [
-       {
-        "id": 4,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 4,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.9,
-        "min_deviation": 0.1,
-        "max_deviation": null
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 5,
-      "name": "Klasik Blend 0.5",
-      "version": 1,
-      "is_active": true,
-      "description": "%70 Gemlik, %30 Ayvalık karışımı",
-      "contents": [
-       {
-        "id": 5,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.7
+        "ratio": 0.5
        },
        {
-        "id": 6,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 0.3
+        "id": 10,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 0.35
+       },
+       {
+        "id": 11,
+        "production_product_type_id": 6,
+        "production_product_type_name": "Portakal Aroması",
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
        {
-        "id": 5,
+        "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.5,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
+        "value": 0.7,
+        "min_deviation": 0.1,
+        "max_deviation": null
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -183,39 +81,141 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 7,
-      "name": "Portakallı Ayvalık Blend",
+      "id": 5,
+      "name": "Klasik Blend 0.5",
       "version": 1,
       "is_active": true,
-      "description": "%50 Ayvalık, %35 Gemlik, %15 portakal aroması",
+      "description": "%70 Gemlik, %30 Ayvalık karışımı",
       "contents": [
        {
-        "id": 9,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 0.5
-       },
-       {
-        "id": 10,
+        "id": 5,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.35
+        "ratio": 0.7
        },
        {
-        "id": 11,
-        "production_product_type_id": 6,
-        "production_product_type_name": "Portakal Aroması",
-        "ratio": 0.15
+        "id": 6,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
        {
-        "id": 7,
+        "id": 5,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.7,
+        "value": 0.5,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 4,
+      "name": "Naturel Sızma Ayvalık 0.9",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+      "contents": [
+       {
+        "id": 4,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 4,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.9,
         "min_deviation": 0.1,
         "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 3,
+      "name": "Naturel Sızma Ayvalık 0.4",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+      "contents": [
+       {
+        "id": 3,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 3,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.4,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.8",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+      "contents": [
+       {
+        "id": 2,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 2,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.8,
+        "min_deviation": 0.1,
+        "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 1,
+      "name": "Naturel Sızma Gemlik 0.3",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "contents": [
+       {
+        "id": 1,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 1,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -234,33 +234,6 @@
    "response": {
     "data": [
      {
-      "id": 1,
-      "name": "Naturel Sızma Gemlik 0.3",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
-      "contents": [
-       {
-        "id": 1,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 1,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.3,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
       "id": 2,
       "name": "Naturel Sızma Gemlik 0.8",
       "version": 1,
@@ -282,6 +255,33 @@
         "value": 0.8,
         "min_deviation": 0.1,
         "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 1,
+      "name": "Naturel Sızma Gemlik 0.3",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "contents": [
+       {
+        "id": 1,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 1,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -300,141 +300,39 @@
    "response": {
     "data": [
      {
-      "id": 1,
-      "name": "Naturel Sızma Gemlik 0.3",
+      "id": 7,
+      "name": "Portakallı Ayvalık Blend",
       "version": 1,
       "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "description": "%50 Ayvalık, %35 Gemlik, %15 portakal aroması",
       "contents": [
        {
-        "id": 1,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 1,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.3,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.8",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
-      "contents": [
-       {
-        "id": 2,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 2,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.8,
-        "min_deviation": 0.1,
-        "max_deviation": null
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 3,
-      "name": "Naturel Sızma Ayvalık 0.4",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
-      "contents": [
-       {
-        "id": 3,
+        "id": 9,
         "production_product_type_id": 4,
         "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 3,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.4,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 4,
-      "name": "Naturel Sızma Ayvalık 0.9",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
-      "contents": [
-       {
-        "id": 4,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 4,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.9,
-        "min_deviation": 0.1,
-        "max_deviation": null
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 5,
-      "name": "Klasik Blend 0.5",
-      "version": 1,
-      "is_active": true,
-      "description": "%70 Gemlik, %30 Ayvalık karışımı",
-      "contents": [
-       {
-        "id": 5,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.7
+        "ratio": 0.5
        },
        {
-        "id": 6,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 0.3
+        "id": 10,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 0.35
+       },
+       {
+        "id": 11,
+        "production_product_type_id": 6,
+        "production_product_type_name": "Portakal Aroması",
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
        {
-        "id": 5,
+        "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.5,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
+        "value": 0.7,
+        "min_deviation": 0.1,
+        "max_deviation": null
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -474,39 +372,141 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 7,
-      "name": "Portakallı Ayvalık Blend",
+      "id": 5,
+      "name": "Klasik Blend 0.5",
       "version": 1,
       "is_active": true,
-      "description": "%50 Ayvalık, %35 Gemlik, %15 portakal aroması",
+      "description": "%70 Gemlik, %30 Ayvalık karışımı",
       "contents": [
        {
-        "id": 9,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 0.5
-       },
-       {
-        "id": 10,
+        "id": 5,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.35
+        "ratio": 0.7
        },
        {
-        "id": 11,
-        "production_product_type_id": 6,
-        "production_product_type_name": "Portakal Aroması",
-        "ratio": 0.15
+        "id": 6,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 0.3
        }
       ],
       "attribute_rules": [
        {
-        "id": 7,
+        "id": 5,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.7,
+        "value": 0.5,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 4,
+      "name": "Naturel Sızma Ayvalık 0.9",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+      "contents": [
+       {
+        "id": 4,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 4,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.9,
         "min_deviation": 0.1,
         "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 3,
+      "name": "Naturel Sızma Ayvalık 0.4",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+      "contents": [
+       {
+        "id": 3,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 3,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.4,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.8",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+      "contents": [
+       {
+        "id": 2,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 2,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.8,
+        "min_deviation": 0.1,
+        "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 1,
+      "name": "Naturel Sızma Gemlik 0.3",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "contents": [
+       {
+        "id": 1,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 1,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -525,52 +525,37 @@
    "response": {
     "data": [
      {
-      "id": 1,
-      "name": "Naturel Sızma Gemlik 0.3",
+      "id": 7,
+      "name": "Portakallı Ayvalık Blend",
       "version": 1,
       "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "description": "%50 Ayvalık, %35 Gemlik, %15 portakal aroması",
       "contents": [
        {
-        "id": 1,
+        "id": 9,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 0.5
+       },
+       {
+        "id": 10,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
+        "ratio": 0.35
+       },
+       {
+        "id": 11,
+        "production_product_type_id": 6,
+        "production_product_type_name": "Portakal Aroması",
+        "ratio": 0.15
        }
       ],
       "attribute_rules": [
        {
-        "id": 1,
+        "id": 7,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.3,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.8",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
-      "contents": [
-       {
-        "id": 2,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 2,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.8,
+        "value": 0.7,
         "min_deviation": 0.1,
         "max_deviation": null
        }
@@ -579,54 +564,33 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 3,
-      "name": "Naturel Sızma Ayvalık 0.4",
+      "id": 6,
+      "name": "Portakallı Zeytinyağı",
       "version": 1,
       "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+      "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
       "contents": [
        {
-        "id": 3,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
+        "id": 7,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 0.8
+       },
+       {
+        "id": 8,
+        "production_product_type_id": 6,
+        "production_product_type_name": "Portakal Aroması",
+        "ratio": 0.2
        }
       ],
       "attribute_rules": [
        {
-        "id": 3,
+        "id": 6,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.4,
+        "value": 0.6,
         "min_deviation": 0.05,
         "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 4,
-      "name": "Naturel Sızma Ayvalık 0.9",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
-      "contents": [
-       {
-        "id": 4,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 4,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.9,
-        "min_deviation": 0.1,
-        "max_deviation": null
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -666,31 +630,52 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 6,
-      "name": "Portakallı Zeytinyağı",
+      "id": 4,
+      "name": "Naturel Sızma Ayvalık 0.9",
       "version": 1,
       "is_active": true,
-      "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
+      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
       "contents": [
        {
-        "id": 7,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.8
-       },
-       {
-        "id": 8,
-        "production_product_type_id": 6,
-        "production_product_type_name": "Portakal Aroması",
-        "ratio": 0.2
+        "id": 4,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
        {
-        "id": 6,
+        "id": 4,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.6,
+        "value": 0.9,
+        "min_deviation": 0.1,
+        "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 3,
+      "name": "Naturel Sızma Ayvalık 0.4",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+      "contents": [
+       {
+        "id": 3,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 3,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.4,
         "min_deviation": 0.05,
         "max_deviation": 0.05
        }
@@ -699,39 +684,54 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 7,
-      "name": "Portakallı Ayvalık Blend",
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.8",
       "version": 1,
       "is_active": true,
-      "description": "%50 Ayvalık, %35 Gemlik, %15 portakal aroması",
+      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
       "contents": [
        {
-        "id": 9,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 0.5
-       },
-       {
-        "id": 10,
+        "id": 2,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.35
-       },
-       {
-        "id": 11,
-        "production_product_type_id": 6,
-        "production_product_type_name": "Portakal Aroması",
-        "ratio": 0.15
+        "ratio": 1.0
        }
       ],
       "attribute_rules": [
        {
-        "id": 7,
+        "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.7,
+        "value": 0.8,
         "min_deviation": 0.1,
         "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 1,
+      "name": "Naturel Sızma Gemlik 0.3",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "contents": [
+       {
+        "id": 1,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 1,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -750,39 +750,6 @@
    "response": {
     "data": [
      {
-      "id": 6,
-      "name": "Portakallı Zeytinyağı",
-      "version": 1,
-      "is_active": true,
-      "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
-      "contents": [
-       {
-        "id": 7,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.8
-       },
-       {
-        "id": 8,
-        "production_product_type_id": 6,
-        "production_product_type_name": "Portakal Aroması",
-        "ratio": 0.2
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 6,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.6,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
       "id": 7,
       "name": "Portakallı Ayvalık Blend",
       "version": 1,
@@ -816,6 +783,39 @@
         "value": 0.7,
         "min_deviation": 0.1,
         "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 6,
+      "name": "Portakallı Zeytinyağı",
+      "version": 1,
+      "is_active": true,
+      "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
+      "contents": [
+       {
+        "id": 7,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 0.8
+       },
+       {
+        "id": 8,
+        "production_product_type_id": 6,
+        "production_product_type_name": "Portakal Aroması",
+        "ratio": 0.2
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 6,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -2001,24 +2001,6 @@
    "response": {
     "data": [
      {
-      "id": 14,
-      "name": "Test Blend Yeni",
-      "version": 5,
-      "is_active": true,
-      "description": null,
-      "contents": [
-       {
-        "id": 22,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
       "id": 15,
       "name": "Klasik Blend 0.5",
       "version": 2,
@@ -2048,8 +2030,44 @@
         "max_deviation": 0.05
        }
       ],
-      "created_at": "2026-11-07T03:29:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 14,
+      "name": "Test Blend Yeni",
+      "version": 5,
+      "is_active": true,
+      "description": null,
+      "contents": [
+       {
+        "id": 22,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [],
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 10,
+      "name": "Muhendis Tarifi",
+      "version": 1,
+      "is_active": true,
+      "description": null,
+      "contents": [
+       {
+        "id": 17,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [],
+      "created_at": "2026-11-07T12:00:00Z",
+      "updated_at": "2026-11-07T12:00:00Z"
      },
      {
       "id": 9,
@@ -2078,86 +2096,8 @@
        }
       ],
       "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:12Z",
-      "updated_at": "2026-11-07T03:29:12Z"
-     },
-     {
-      "id": 10,
-      "name": "Muhendis Tarifi",
-      "version": 1,
-      "is_active": true,
-      "description": null,
-      "contents": [
-       {
-        "id": 17,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [],
-      "created_at": "2026-11-07T03:29:12Z",
-      "updated_at": "2026-11-07T03:29:12Z"
-     },
-     {
-      "id": 6,
-      "name": "Portakallı Zeytinyağı",
-      "version": 1,
-      "is_active": true,
-      "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
-      "contents": [
-       {
-        "id": 7,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 0.8
-       },
-       {
-        "id": 8,
-        "production_product_type_id": 6,
-        "production_product_type_name": "Portakal Aroması",
-        "ratio": 0.2
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 6,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.6,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 1,
-      "name": "Naturel Sızma Gemlik 0.3",
-      "version": 1,
-      "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
-      "contents": [
-       {
-        "id": 1,
-        "production_product_type_id": 3,
-        "production_product_type_name": "Gemlik Zeytinyağı",
-        "ratio": 1.0
-       }
-      ],
-      "attribute_rules": [
-       {
-        "id": 1,
-        "attribute_definition_id": 1,
-        "attribute_label": "Asitlik",
-        "value": 0.3,
-        "min_deviation": 0.05,
-        "max_deviation": 0.05
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
+      "created_at": "2026-11-07T12:00:00Z",
+      "updated_at": "2026-11-07T12:00:00Z"
      },
      {
       "id": 7,
@@ -2199,25 +2139,58 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.8",
+      "id": 6,
+      "name": "Portakallı Zeytinyağı",
       "version": 1,
       "is_active": true,
-      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
+      "description": "%80 Gemlik zeytinyağı, %20 portakal aroması",
       "contents": [
        {
-        "id": 2,
+        "id": 7,
         "production_product_type_id": 3,
         "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 0.8
+       },
+       {
+        "id": 8,
+        "production_product_type_id": 6,
+        "production_product_type_name": "Portakal Aroması",
+        "ratio": 0.2
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 6,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.6,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 4,
+      "name": "Naturel Sızma Ayvalık 0.9",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+      "contents": [
+       {
+        "id": 4,
+        "production_product_type_id": 4,
+        "production_product_type_name": "Ayvalık Zeytinyağı",
         "ratio": 1.0
        }
       ],
       "attribute_rules": [
        {
-        "id": 2,
+        "id": 4,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.8,
+        "value": 0.9,
         "min_deviation": 0.1,
         "max_deviation": null
        }
@@ -2253,27 +2226,54 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 4,
-      "name": "Naturel Sızma Ayvalık 0.9",
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.8",
       "version": 1,
       "is_active": true,
-      "description": "%100 Ayvalık zeytinyağı, 0.9 asitlik",
+      "description": "%100 Gemlik zeytinyağı, 0.8 asitlik",
       "contents": [
        {
-        "id": 4,
-        "production_product_type_id": 4,
-        "production_product_type_name": "Ayvalık Zeytinyağı",
+        "id": 2,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
         "ratio": 1.0
        }
       ],
       "attribute_rules": [
        {
-        "id": 4,
+        "id": 2,
         "attribute_definition_id": 1,
         "attribute_label": "Asitlik",
-        "value": 0.9,
+        "value": 0.8,
         "min_deviation": 0.1,
         "max_deviation": null
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 1,
+      "name": "Naturel Sızma Gemlik 0.3",
+      "version": 1,
+      "is_active": true,
+      "description": "%100 Gemlik zeytinyağı, 0.3 asitlik",
+      "contents": [
+       {
+        "id": 1,
+        "production_product_type_id": 3,
+        "production_product_type_name": "Gemlik Zeytinyağı",
+        "ratio": 1.0
+       }
+      ],
+      "attribute_rules": [
+       {
+        "id": 1,
+        "attribute_definition_id": 1,
+        "attribute_label": "Asitlik",
+        "value": 0.3,
+        "min_deviation": 0.05,
+        "max_deviation": 0.05
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
@@ -2356,8 +2356,8 @@
    "response": {
     "data": [
      {
-      "id": 19,
-      "name": "Portakallı Zeytinyağı 500ml",
+      "id": 22,
+      "name": "Portakallı Ayvalık Blend 500ml",
       "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
@@ -2365,82 +2365,34 @@
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
+       "id": 7,
+       "name": "Portakallı Ayvalık Blend",
        "version": 1
       },
       "components": [
        {
-        "id": 72,
+        "id": 84,
         "packaging_item_id": 2,
         "packaging_item_name": "Cam Şişe 500ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 73,
+        "id": 85,
         "packaging_item_id": 8,
         "packaging_item_name": "Metal Vidalı Kapak 28mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 74,
+        "id": 86,
         "packaging_item_id": 13,
         "packaging_item_name": "Ön Etiket 500ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 75,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 20,
-      "name": "Portakallı Zeytinyağı 750ml",
-      "volume_litre": 0.75,
-      "total_stock": 0,
-      "stored_stock": 0,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 76,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 77,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 78,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 79,
+        "id": 87,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -2500,43 +2452,43 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 22,
-      "name": "Portakallı Ayvalık Blend 500ml",
-      "volume_litre": 0.5,
+      "id": 20,
+      "name": "Portakallı Zeytinyağı 750ml",
+      "volume_litre": 0.75,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 7,
-       "name": "Portakallı Ayvalık Blend",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "components": [
        {
-        "id": 84,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
+        "id": 76,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 85,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "id": 77,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 86,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
+        "id": 78,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 87,
+        "id": 79,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -2548,179 +2500,52 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 4,
-      "name": "Naturel Sızma Gemlik 0.3 1L",
-      "volume_litre": 1.0,
-      "total_stock": 186,
-      "stored_stock": 186,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 13,
-        "packaging_item_id": 4,
-        "packaging_item_name": "Cam Şişe 1L",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 14,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 15,
-        "packaging_item_id": 15,
-        "packaging_item_name": "Ön Etiket 1L",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 16,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 7,
-        "slot_name": "D1",
-        "quantity": 42
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 23,
-        "slot_name": "L2",
-        "quantity": 144
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-20T13:38:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Naturel Sızma Ayvalık 0.4 750ml",
-      "volume_litre": 0.75,
-      "total_stock": 36,
-      "stored_stock": 36,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 40,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 41,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 42,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 43,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 21,
-        "slot_name": "B2",
-        "quantity": 36
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-03T20:35:00Z"
-     },
-     {
-      "id": 7,
-      "name": "Naturel Sızma Gemlik 0.8 500ml",
+      "id": 19,
+      "name": "Portakallı Zeytinyağı 500ml",
       "volume_litre": 0.5,
-      "total_stock": 132,
-      "stored_stock": 132,
+      "total_stock": 0,
+      "stored_stock": 0,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "components": [
        {
-        "id": 24,
+        "id": 72,
         "packaging_item_id": 2,
         "packaging_item_name": "Cam Şişe 500ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 25,
+        "id": 73,
         "packaging_item_id": 8,
         "packaging_item_name": "Metal Vidalı Kapak 28mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 26,
+        "id": 74,
         "packaging_item_id": 13,
         "packaging_item_name": "Ön Etiket 500ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 27,
+        "id": 75,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
         "quantity": 1
        }
       ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 132
-       }
-      ],
+      "locations": [],
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-10T00:46:00Z"
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 18,
@@ -2779,43 +2604,43 @@
       "updated_at": "2025-11-13T01:27:00Z"
      },
      {
-      "id": 8,
-      "name": "Naturel Sızma Gemlik 0.8 1L",
+      "id": 17,
+      "name": "Klasik Blend 0.5 1L",
       "volume_litre": 1.0,
-      "total_stock": 36,
-      "stored_stock": 36,
+      "total_stock": 144,
+      "stored_stock": 144,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
       },
       "components": [
        {
-        "id": 28,
+        "id": 64,
         "packaging_item_id": 4,
         "packaging_item_name": "Cam Şişe 1L",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 29,
+        "id": 65,
         "packaging_item_id": 9,
         "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 30,
+        "id": 66,
         "packaging_item_id": 15,
         "packaging_item_name": "Ön Etiket 1L",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 31,
+        "id": 67,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -2828,11 +2653,242 @@
         "storage_name": "Sevkiyat Deposu",
         "slot_id": 23,
         "slot_name": "L2",
-        "quantity": 36
+        "quantity": 144
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 16,
+      "name": "Klasik Blend 0.5 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 232,
+      "stored_stock": 232,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
+      },
+      "components": [
+       {
+        "id": 60,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 61,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 62,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 63,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 18,
+        "slot_name": "Y2",
+        "quantity": 170
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 62
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 15,
+      "name": "Klasik Blend 0.5 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 160,
+      "stored_stock": 160,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
+      },
+      "components": [
+       {
+        "id": 56,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 57,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 58,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 59,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 2,
+        "storage_name": "Soğuk Depo",
+        "slot_id": 9,
+        "slot_name": "A1",
+        "quantity": 160
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 14,
+      "name": "Naturel Sızma Ayvalık 0.9 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 68,
+      "stored_stock": 68,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 52,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 53,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 54,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 55,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 68
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 13,
+      "name": "Naturel Sızma Ayvalık 0.9 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 24,
+      "stored_stock": 24,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 48,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 49,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 50,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 51,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 16,
+        "slot_name": "K3",
+        "quantity": 24
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 12,
@@ -2898,320 +2954,12 @@
       "updated_at": "2026-11-03T20:35:00Z"
      },
      {
-      "id": 14,
-      "name": "Naturel Sızma Ayvalık 0.9 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 68,
-      "stored_stock": 68,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 52,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 53,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 54,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 55,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 68
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-10T00:46:00Z"
-     },
-     {
-      "id": 6,
-      "name": "Naturel Sızma Gemlik 0.8 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 28,
-      "stored_stock": 28,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 20,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 21,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 22,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 23,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 16,
-        "slot_name": "K3",
-        "quantity": 28
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-08T12:39:00Z"
-     },
-     {
-      "id": 13,
-      "name": "Naturel Sızma Ayvalık 0.9 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 24,
-      "stored_stock": 24,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 48,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 49,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 50,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 51,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 16,
-        "slot_name": "K3",
-        "quantity": 24
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-08T12:39:00Z"
-     },
-     {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.3 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 398,
-      "stored_stock": 398,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 5,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 6,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 7,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 8,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 17,
-        "slot_name": "Y1",
-        "quantity": 96
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 18,
-        "slot_name": "Y2",
-        "quantity": 102
-       },
-       {
-        "storage_id": 2,
-        "storage_name": "Soğuk Depo",
-        "slot_id": 11,
-        "slot_name": "B1",
-        "quantity": 200
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
-     },
-     {
-      "id": 3,
-      "name": "Naturel Sızma Gemlik 0.3 750ml",
+      "id": 11,
+      "name": "Naturel Sızma Ayvalık 0.4 750ml",
       "volume_litre": 0.75,
-      "total_stock": 732,
-      "stored_stock": 732,
+      "total_stock": 36,
+      "stored_stock": 36,
       "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 9,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 10,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 11,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 12,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 6,
-        "slot_name": "C1",
-        "quantity": 200
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 20,
-        "slot_name": "B1",
-        "quantity": 126
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 21,
-        "slot_name": "B2",
-        "quantity": 406
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
-     },
-     {
-      "id": 9,
-      "name": "Naturel Sızma Ayvalık 0.4 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 188,
-      "stored_stock": 140,
-      "awaiting_shipment_stock": 48,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
@@ -3221,28 +2969,28 @@
       },
       "components": [
        {
-        "id": 32,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
+        "id": 40,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 33,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "id": 41,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 34,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
+        "id": 42,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 35,
+        "id": 43,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -3251,15 +2999,15 @@
       ],
       "locations": [
        {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 3,
-        "slot_name": "A3",
-        "quantity": 140
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 21,
+        "slot_name": "B2",
+        "quantity": 36
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 10,
@@ -3353,6 +3101,230 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
+      "id": 9,
+      "name": "Naturel Sızma Ayvalık 0.4 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 188,
+      "stored_stock": 140,
+      "awaiting_shipment_stock": 48,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 32,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 33,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 34,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 35,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 3,
+        "slot_name": "A3",
+        "quantity": 140
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Naturel Sızma Gemlik 0.8 1L",
+      "volume_litre": 1.0,
+      "total_stock": 36,
+      "stored_stock": 36,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 28,
+        "packaging_item_id": 4,
+        "packaging_item_name": "Cam Şişe 1L",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 29,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 30,
+        "packaging_item_id": 15,
+        "packaging_item_name": "Ön Etiket 1L",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 31,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 23,
+        "slot_name": "L2",
+        "quantity": 36
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Naturel Sızma Gemlik 0.8 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 132,
+      "stored_stock": 132,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 24,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 25,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 26,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 27,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 132
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 6,
+      "name": "Naturel Sızma Gemlik 0.8 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 28,
+      "stored_stock": 28,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 20,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 21,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 22,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 23,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 16,
+        "slot_name": "K3",
+        "quantity": 28
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
+     },
+     {
       "id": 5,
       "name": "Naturel Sızma Gemlik 0.3 5L",
       "volume_litre": 5.0,
@@ -3423,6 +3395,209 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
+      "id": 4,
+      "name": "Naturel Sızma Gemlik 0.3 1L",
+      "volume_litre": 1.0,
+      "total_stock": 186,
+      "stored_stock": 186,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 13,
+        "packaging_item_id": 4,
+        "packaging_item_name": "Cam Şişe 1L",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 14,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 15,
+        "packaging_item_id": 15,
+        "packaging_item_name": "Ön Etiket 1L",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 16,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 7,
+        "slot_name": "D1",
+        "quantity": 42
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 23,
+        "slot_name": "L2",
+        "quantity": 144
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-20T13:38:00Z"
+     },
+     {
+      "id": 3,
+      "name": "Naturel Sızma Gemlik 0.3 750ml",
+      "volume_litre": 0.75,
+      "total_stock": 732,
+      "stored_stock": 732,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 9,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 10,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 11,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 12,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 6,
+        "slot_name": "C1",
+        "quantity": 200
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 20,
+        "slot_name": "B1",
+        "quantity": 126
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 21,
+        "slot_name": "B2",
+        "quantity": 406
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.3 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 398,
+      "stored_stock": 398,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 5,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 6,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 7,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 8,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 17,
+        "slot_name": "Y1",
+        "quantity": 96
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 18,
+        "slot_name": "Y2",
+        "quantity": 102
+       },
+       {
+        "storage_id": 2,
+        "storage_name": "Soğuk Depo",
+        "slot_id": 11,
+        "slot_name": "B1",
+        "quantity": 200
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
       "volume_litre": 0.25,
@@ -3484,181 +3659,6 @@
       ],
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T07:25:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Klasik Blend 0.5 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 160,
-      "stored_stock": 160,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 56,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 57,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 58,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 59,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 2,
-        "storage_name": "Soğuk Depo",
-        "slot_id": 9,
-        "slot_name": "A1",
-        "quantity": 160
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
-      "id": 16,
-      "name": "Klasik Blend 0.5 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 232,
-      "stored_stock": 232,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 60,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 61,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 62,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 63,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 18,
-        "slot_name": "Y2",
-        "quantity": 170
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 62
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
-      "id": 17,
-      "name": "Klasik Blend 0.5 1L",
-      "volume_litre": 1.0,
-      "total_stock": 144,
-      "stored_stock": 144,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 64,
-        "packaging_item_id": 4,
-        "packaging_item_name": "Cam Şişe 1L",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 65,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 66,
-        "packaging_item_id": 15,
-        "packaging_item_name": "Ön Etiket 1L",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 67,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 23,
-        "slot_name": "L2",
-        "quantity": 144
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },
@@ -3673,8 +3673,8 @@
    "response": {
     "data": [
      {
-      "id": 19,
-      "name": "Portakallı Zeytinyağı 500ml",
+      "id": 22,
+      "name": "Portakallı Ayvalık Blend 500ml",
       "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
@@ -3682,82 +3682,34 @@
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
+       "id": 7,
+       "name": "Portakallı Ayvalık Blend",
        "version": 1
       },
       "components": [
        {
-        "id": 72,
+        "id": 84,
         "packaging_item_id": 2,
         "packaging_item_name": "Cam Şişe 500ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 73,
+        "id": 85,
         "packaging_item_id": 8,
         "packaging_item_name": "Metal Vidalı Kapak 28mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 74,
+        "id": 86,
         "packaging_item_id": 13,
         "packaging_item_name": "Ön Etiket 500ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 75,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 20,
-      "name": "Portakallı Zeytinyağı 750ml",
-      "volume_litre": 0.75,
-      "total_stock": 0,
-      "stored_stock": 0,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 76,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 77,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 78,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 79,
+        "id": 87,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -3817,43 +3769,43 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 22,
-      "name": "Portakallı Ayvalık Blend 500ml",
-      "volume_litre": 0.5,
+      "id": 20,
+      "name": "Portakallı Zeytinyağı 750ml",
+      "volume_litre": 0.75,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 7,
-       "name": "Portakallı Ayvalık Blend",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "components": [
        {
-        "id": 84,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
+        "id": 76,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 85,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "id": 77,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 86,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
+        "id": 78,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 87,
+        "id": 79,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -3865,179 +3817,52 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 4,
-      "name": "Naturel Sızma Gemlik 0.3 1L",
-      "volume_litre": 1.0,
-      "total_stock": 186,
-      "stored_stock": 186,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 13,
-        "packaging_item_id": 4,
-        "packaging_item_name": "Cam Şişe 1L",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 14,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 15,
-        "packaging_item_id": 15,
-        "packaging_item_name": "Ön Etiket 1L",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 16,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 7,
-        "slot_name": "D1",
-        "quantity": 42
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 23,
-        "slot_name": "L2",
-        "quantity": 144
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-20T13:38:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Naturel Sızma Ayvalık 0.4 750ml",
-      "volume_litre": 0.75,
-      "total_stock": 36,
-      "stored_stock": 36,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 40,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 41,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 42,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 43,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 21,
-        "slot_name": "B2",
-        "quantity": 36
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-03T20:35:00Z"
-     },
-     {
-      "id": 7,
-      "name": "Naturel Sızma Gemlik 0.8 500ml",
+      "id": 19,
+      "name": "Portakallı Zeytinyağı 500ml",
       "volume_litre": 0.5,
-      "total_stock": 132,
-      "stored_stock": 132,
+      "total_stock": 0,
+      "stored_stock": 0,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "components": [
        {
-        "id": 24,
+        "id": 72,
         "packaging_item_id": 2,
         "packaging_item_name": "Cam Şişe 500ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 25,
+        "id": 73,
         "packaging_item_id": 8,
         "packaging_item_name": "Metal Vidalı Kapak 28mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 26,
+        "id": 74,
         "packaging_item_id": 13,
         "packaging_item_name": "Ön Etiket 500ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 27,
+        "id": 75,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
         "quantity": 1
        }
       ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 132
-       }
-      ],
+      "locations": [],
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-10T00:46:00Z"
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 18,
@@ -4096,43 +3921,43 @@
       "updated_at": "2025-11-13T01:27:00Z"
      },
      {
-      "id": 8,
-      "name": "Naturel Sızma Gemlik 0.8 1L",
+      "id": 17,
+      "name": "Klasik Blend 0.5 1L",
       "volume_litre": 1.0,
-      "total_stock": 36,
-      "stored_stock": 36,
+      "total_stock": 144,
+      "stored_stock": 144,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
       },
       "components": [
        {
-        "id": 28,
+        "id": 64,
         "packaging_item_id": 4,
         "packaging_item_name": "Cam Şişe 1L",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 29,
+        "id": 65,
         "packaging_item_id": 9,
         "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 30,
+        "id": 66,
         "packaging_item_id": 15,
         "packaging_item_name": "Ön Etiket 1L",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 31,
+        "id": 67,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -4145,11 +3970,242 @@
         "storage_name": "Sevkiyat Deposu",
         "slot_id": 23,
         "slot_name": "L2",
-        "quantity": 36
+        "quantity": 144
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 16,
+      "name": "Klasik Blend 0.5 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 232,
+      "stored_stock": 232,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
+      },
+      "components": [
+       {
+        "id": 60,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 61,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 62,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 63,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 18,
+        "slot_name": "Y2",
+        "quantity": 170
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 62
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 15,
+      "name": "Klasik Blend 0.5 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 160,
+      "stored_stock": 160,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
+      },
+      "components": [
+       {
+        "id": 56,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 57,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 58,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 59,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 2,
+        "storage_name": "Soğuk Depo",
+        "slot_id": 9,
+        "slot_name": "A1",
+        "quantity": 160
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 14,
+      "name": "Naturel Sızma Ayvalık 0.9 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 68,
+      "stored_stock": 68,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 52,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 53,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 54,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 55,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 68
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 13,
+      "name": "Naturel Sızma Ayvalık 0.9 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 24,
+      "stored_stock": 24,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 48,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 49,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 50,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 51,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 16,
+        "slot_name": "K3",
+        "quantity": 24
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 12,
@@ -4215,320 +4271,12 @@
       "updated_at": "2026-11-03T20:35:00Z"
      },
      {
-      "id": 14,
-      "name": "Naturel Sızma Ayvalık 0.9 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 68,
-      "stored_stock": 68,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 52,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 53,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 54,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 55,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 68
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-10T00:46:00Z"
-     },
-     {
-      "id": 6,
-      "name": "Naturel Sızma Gemlik 0.8 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 28,
-      "stored_stock": 28,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 20,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 21,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 22,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 23,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 16,
-        "slot_name": "K3",
-        "quantity": 28
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-08T12:39:00Z"
-     },
-     {
-      "id": 13,
-      "name": "Naturel Sızma Ayvalık 0.9 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 24,
-      "stored_stock": 24,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 48,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 49,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 50,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 51,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 16,
-        "slot_name": "K3",
-        "quantity": 24
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-08T12:39:00Z"
-     },
-     {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.3 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 398,
-      "stored_stock": 398,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 5,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 6,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 7,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 8,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 17,
-        "slot_name": "Y1",
-        "quantity": 96
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 18,
-        "slot_name": "Y2",
-        "quantity": 102
-       },
-       {
-        "storage_id": 2,
-        "storage_name": "Soğuk Depo",
-        "slot_id": 11,
-        "slot_name": "B1",
-        "quantity": 200
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
-     },
-     {
-      "id": 3,
-      "name": "Naturel Sızma Gemlik 0.3 750ml",
+      "id": 11,
+      "name": "Naturel Sızma Ayvalık 0.4 750ml",
       "volume_litre": 0.75,
-      "total_stock": 732,
-      "stored_stock": 732,
+      "total_stock": 36,
+      "stored_stock": 36,
       "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 9,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 10,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 11,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 12,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 6,
-        "slot_name": "C1",
-        "quantity": 200
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 20,
-        "slot_name": "B1",
-        "quantity": 126
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 21,
-        "slot_name": "B2",
-        "quantity": 406
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
-     },
-     {
-      "id": 9,
-      "name": "Naturel Sızma Ayvalık 0.4 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 188,
-      "stored_stock": 140,
-      "awaiting_shipment_stock": 48,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
@@ -4538,28 +4286,28 @@
       },
       "components": [
        {
-        "id": 32,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
+        "id": 40,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 33,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "id": 41,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 34,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
+        "id": 42,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 35,
+        "id": 43,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -4568,15 +4316,15 @@
       ],
       "locations": [
        {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 3,
-        "slot_name": "A3",
-        "quantity": 140
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 21,
+        "slot_name": "B2",
+        "quantity": 36
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 10,
@@ -4670,6 +4418,230 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
+      "id": 9,
+      "name": "Naturel Sızma Ayvalık 0.4 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 188,
+      "stored_stock": 140,
+      "awaiting_shipment_stock": 48,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 32,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 33,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 34,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 35,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 3,
+        "slot_name": "A3",
+        "quantity": 140
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Naturel Sızma Gemlik 0.8 1L",
+      "volume_litre": 1.0,
+      "total_stock": 36,
+      "stored_stock": 36,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 28,
+        "packaging_item_id": 4,
+        "packaging_item_name": "Cam Şişe 1L",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 29,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 30,
+        "packaging_item_id": 15,
+        "packaging_item_name": "Ön Etiket 1L",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 31,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 23,
+        "slot_name": "L2",
+        "quantity": 36
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Naturel Sızma Gemlik 0.8 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 132,
+      "stored_stock": 132,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 24,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 25,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 26,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 27,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 132
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 6,
+      "name": "Naturel Sızma Gemlik 0.8 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 28,
+      "stored_stock": 28,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 20,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 21,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 22,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 23,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 16,
+        "slot_name": "K3",
+        "quantity": 28
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
+     },
+     {
       "id": 5,
       "name": "Naturel Sızma Gemlik 0.3 5L",
       "volume_litre": 5.0,
@@ -4740,6 +4712,209 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
+      "id": 4,
+      "name": "Naturel Sızma Gemlik 0.3 1L",
+      "volume_litre": 1.0,
+      "total_stock": 186,
+      "stored_stock": 186,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 13,
+        "packaging_item_id": 4,
+        "packaging_item_name": "Cam Şişe 1L",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 14,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 15,
+        "packaging_item_id": 15,
+        "packaging_item_name": "Ön Etiket 1L",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 16,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 7,
+        "slot_name": "D1",
+        "quantity": 42
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 23,
+        "slot_name": "L2",
+        "quantity": 144
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-20T13:38:00Z"
+     },
+     {
+      "id": 3,
+      "name": "Naturel Sızma Gemlik 0.3 750ml",
+      "volume_litre": 0.75,
+      "total_stock": 732,
+      "stored_stock": 732,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 9,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 10,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 11,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 12,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 6,
+        "slot_name": "C1",
+        "quantity": 200
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 20,
+        "slot_name": "B1",
+        "quantity": 126
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 21,
+        "slot_name": "B2",
+        "quantity": 406
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.3 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 398,
+      "stored_stock": 398,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 5,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 6,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 7,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 8,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 17,
+        "slot_name": "Y1",
+        "quantity": 96
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 18,
+        "slot_name": "Y2",
+        "quantity": 102
+       },
+       {
+        "storage_id": 2,
+        "storage_name": "Soğuk Depo",
+        "slot_id": 11,
+        "slot_name": "B1",
+        "quantity": 200
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
       "volume_litre": 0.25,
@@ -4801,181 +4976,6 @@
       ],
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T07:25:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Klasik Blend 0.5 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 160,
-      "stored_stock": 160,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 56,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 57,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 58,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 59,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 2,
-        "storage_name": "Soğuk Depo",
-        "slot_id": 9,
-        "slot_name": "A1",
-        "quantity": 160
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
-      "id": 16,
-      "name": "Klasik Blend 0.5 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 232,
-      "stored_stock": 232,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 60,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 61,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 62,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 63,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 18,
-        "slot_name": "Y2",
-        "quantity": 170
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 62
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
-      "id": 17,
-      "name": "Klasik Blend 0.5 1L",
-      "volume_litre": 1.0,
-      "total_stock": 144,
-      "stored_stock": 144,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 64,
-        "packaging_item_id": 4,
-        "packaging_item_name": "Cam Şişe 1L",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 65,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 66,
-        "packaging_item_id": 15,
-        "packaging_item_name": "Ön Etiket 1L",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 67,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 23,
-        "slot_name": "L2",
-        "quantity": 144
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },
@@ -5431,8 +5431,8 @@
    "response": {
     "data": [
      {
-      "id": 19,
-      "name": "Portakallı Zeytinyağı 500ml",
+      "id": 22,
+      "name": "Portakallı Ayvalık Blend 500ml",
       "volume_litre": 0.5,
       "total_stock": 0,
       "stored_stock": 0,
@@ -5440,82 +5440,34 @@
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
+       "id": 7,
+       "name": "Portakallı Ayvalık Blend",
        "version": 1
       },
       "components": [
        {
-        "id": 72,
+        "id": 84,
         "packaging_item_id": 2,
         "packaging_item_name": "Cam Şişe 500ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 73,
+        "id": 85,
         "packaging_item_id": 8,
         "packaging_item_name": "Metal Vidalı Kapak 28mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 74,
+        "id": 86,
         "packaging_item_id": 13,
         "packaging_item_name": "Ön Etiket 500ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 75,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 20,
-      "name": "Portakallı Zeytinyağı 750ml",
-      "volume_litre": 0.75,
-      "total_stock": 0,
-      "stored_stock": 0,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 76,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 77,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 78,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 79,
+        "id": 87,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -5575,43 +5527,43 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 22,
-      "name": "Portakallı Ayvalık Blend 500ml",
-      "volume_litre": 0.5,
+      "id": 20,
+      "name": "Portakallı Zeytinyağı 750ml",
+      "volume_litre": 0.75,
       "total_stock": 0,
       "stored_stock": 0,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 7,
-       "name": "Portakallı Ayvalık Blend",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "components": [
        {
-        "id": 84,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
+        "id": 76,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 85,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "id": 77,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 86,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
+        "id": 78,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 87,
+        "id": 79,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -5623,179 +5575,52 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 4,
-      "name": "Naturel Sızma Gemlik 0.3 1L",
-      "volume_litre": 1.0,
-      "total_stock": 186,
-      "stored_stock": 186,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 13,
-        "packaging_item_id": 4,
-        "packaging_item_name": "Cam Şişe 1L",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 14,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 15,
-        "packaging_item_id": 15,
-        "packaging_item_name": "Ön Etiket 1L",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 16,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 7,
-        "slot_name": "D1",
-        "quantity": 42
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 23,
-        "slot_name": "L2",
-        "quantity": 144
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-20T13:38:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Naturel Sızma Ayvalık 0.4 750ml",
-      "volume_litre": 0.75,
-      "total_stock": 36,
-      "stored_stock": 36,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 40,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 41,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 42,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 43,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 21,
-        "slot_name": "B2",
-        "quantity": 36
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-03T20:35:00Z"
-     },
-     {
-      "id": 7,
-      "name": "Naturel Sızma Gemlik 0.8 500ml",
+      "id": 19,
+      "name": "Portakallı Zeytinyağı 500ml",
       "volume_litre": 0.5,
-      "total_stock": 132,
-      "stored_stock": 132,
+      "total_stock": 0,
+      "stored_stock": 0,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "components": [
        {
-        "id": 24,
+        "id": 72,
         "packaging_item_id": 2,
         "packaging_item_name": "Cam Şişe 500ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 25,
+        "id": 73,
         "packaging_item_id": 8,
         "packaging_item_name": "Metal Vidalı Kapak 28mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 26,
+        "id": 74,
         "packaging_item_id": 13,
         "packaging_item_name": "Ön Etiket 500ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 27,
+        "id": 75,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
         "quantity": 1
        }
       ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 132
-       }
-      ],
+      "locations": [],
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-10T00:46:00Z"
+      "updated_at": "2026-11-06T15:35:13Z"
      },
      {
       "id": 18,
@@ -5854,43 +5679,43 @@
       "updated_at": "2025-11-13T01:27:00Z"
      },
      {
-      "id": 8,
-      "name": "Naturel Sızma Gemlik 0.8 1L",
+      "id": 17,
+      "name": "Klasik Blend 0.5 1L",
       "volume_litre": 1.0,
-      "total_stock": 36,
-      "stored_stock": 36,
+      "total_stock": 144,
+      "stored_stock": 144,
       "awaiting_shipment_stock": null,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
       },
       "components": [
        {
-        "id": 28,
+        "id": 64,
         "packaging_item_id": 4,
         "packaging_item_name": "Cam Şişe 1L",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 29,
+        "id": 65,
         "packaging_item_id": 9,
         "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 30,
+        "id": 66,
         "packaging_item_id": 15,
         "packaging_item_name": "Ön Etiket 1L",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 31,
+        "id": 67,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -5903,11 +5728,242 @@
         "storage_name": "Sevkiyat Deposu",
         "slot_id": 23,
         "slot_name": "L2",
-        "quantity": 36
+        "quantity": 144
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 16,
+      "name": "Klasik Blend 0.5 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 232,
+      "stored_stock": 232,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
+      },
+      "components": [
+       {
+        "id": 60,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 61,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 62,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 63,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 18,
+        "slot_name": "Y2",
+        "quantity": 170
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 62
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 15,
+      "name": "Klasik Blend 0.5 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 160,
+      "stored_stock": 160,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 15,
+       "name": "Klasik Blend 0.5",
+       "version": 2
+      },
+      "components": [
+       {
+        "id": 56,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 57,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 58,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 59,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 2,
+        "storage_name": "Soğuk Depo",
+        "slot_id": 9,
+        "slot_name": "A1",
+        "quantity": 160
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 14,
+      "name": "Naturel Sızma Ayvalık 0.9 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 68,
+      "stored_stock": 68,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 52,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 53,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 54,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 55,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 68
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 13,
+      "name": "Naturel Sızma Ayvalık 0.9 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 24,
+      "stored_stock": 24,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 48,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 49,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 50,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 51,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 16,
+        "slot_name": "K3",
+        "quantity": 24
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
      },
      {
       "id": 12,
@@ -5973,320 +6029,12 @@
       "updated_at": "2026-11-03T20:35:00Z"
      },
      {
-      "id": 14,
-      "name": "Naturel Sızma Ayvalık 0.9 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 68,
-      "stored_stock": 68,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 52,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 53,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 54,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 55,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 68
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-10T00:46:00Z"
-     },
-     {
-      "id": 6,
-      "name": "Naturel Sızma Gemlik 0.8 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 28,
-      "stored_stock": 28,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 20,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 21,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 22,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 23,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 16,
-        "slot_name": "K3",
-        "quantity": 28
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-08T12:39:00Z"
-     },
-     {
-      "id": 13,
-      "name": "Naturel Sızma Ayvalık 0.9 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 24,
-      "stored_stock": 24,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 48,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 49,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 50,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 51,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 16,
-        "slot_name": "K3",
-        "quantity": 24
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-08T12:39:00Z"
-     },
-     {
-      "id": 2,
-      "name": "Naturel Sızma Gemlik 0.3 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 398,
-      "stored_stock": 398,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 5,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 6,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 7,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 8,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 17,
-        "slot_name": "Y1",
-        "quantity": 96
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 18,
-        "slot_name": "Y2",
-        "quantity": 102
-       },
-       {
-        "storage_id": 2,
-        "storage_name": "Soğuk Depo",
-        "slot_id": 11,
-        "slot_name": "B1",
-        "quantity": 200
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
-     },
-     {
-      "id": 3,
-      "name": "Naturel Sızma Gemlik 0.3 750ml",
+      "id": 11,
+      "name": "Naturel Sızma Ayvalık 0.4 750ml",
       "volume_litre": 0.75,
-      "total_stock": 732,
-      "stored_stock": 732,
+      "total_stock": 36,
+      "stored_stock": 36,
       "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "components": [
-       {
-        "id": 9,
-        "packaging_item_id": 3,
-        "packaging_item_name": "Cam Şişe 750ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 10,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 11,
-        "packaging_item_id": 14,
-        "packaging_item_name": "Ön Etiket 750ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 12,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 6,
-        "slot_name": "C1",
-        "quantity": 200
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 20,
-        "slot_name": "B1",
-        "quantity": 126
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 21,
-        "slot_name": "B2",
-        "quantity": 406
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
-     },
-     {
-      "id": 9,
-      "name": "Naturel Sızma Ayvalık 0.4 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 188,
-      "stored_stock": 140,
-      "awaiting_shipment_stock": 48,
       "unstored_stock": 0,
       "is_active": true,
       "recipe": {
@@ -6296,28 +6044,28 @@
       },
       "components": [
        {
-        "id": 32,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
+        "id": 40,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
         "packaging_item_type": "BOTTLE",
         "quantity": 1
        },
        {
-        "id": 33,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "id": 41,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
         "packaging_item_type": "CAP",
         "quantity": 1
        },
        {
-        "id": 34,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
+        "id": 42,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
         "packaging_item_type": "LABEL",
         "quantity": 1
        },
        {
-        "id": 35,
+        "id": 43,
         "packaging_item_id": 17,
         "packaging_item_name": "Arka Etiket (Genel)",
         "packaging_item_type": "LABEL",
@@ -6326,15 +6074,15 @@
       ],
       "locations": [
        {
-        "storage_id": 1,
-        "storage_name": "Ana Depo",
-        "slot_id": 3,
-        "slot_name": "A3",
-        "quantity": 140
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 21,
+        "slot_name": "B2",
+        "quantity": 36
        }
       ],
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T08:09:00Z"
+      "updated_at": "2026-11-03T20:35:00Z"
      },
      {
       "id": 10,
@@ -6428,6 +6176,230 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
+      "id": 9,
+      "name": "Naturel Sızma Ayvalık 0.4 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 188,
+      "stored_stock": 140,
+      "awaiting_shipment_stock": 48,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 32,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 33,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 34,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 35,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 3,
+        "slot_name": "A3",
+        "quantity": 140
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Naturel Sızma Gemlik 0.8 1L",
+      "volume_litre": 1.0,
+      "total_stock": 36,
+      "stored_stock": 36,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 28,
+        "packaging_item_id": 4,
+        "packaging_item_name": "Cam Şişe 1L",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 29,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 30,
+        "packaging_item_id": 15,
+        "packaging_item_name": "Ön Etiket 1L",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 31,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 23,
+        "slot_name": "L2",
+        "quantity": 36
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Naturel Sızma Gemlik 0.8 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 132,
+      "stored_stock": 132,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 24,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 25,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 26,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 27,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 19,
+        "slot_name": "Y3",
+        "quantity": 132
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-10T00:46:00Z"
+     },
+     {
+      "id": 6,
+      "name": "Naturel Sızma Gemlik 0.8 250ml",
+      "volume_litre": 0.25,
+      "total_stock": 28,
+      "stored_stock": 28,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 20,
+        "packaging_item_id": 1,
+        "packaging_item_name": "Cam Şişe 250ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 21,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 22,
+        "packaging_item_id": 12,
+        "packaging_item_name": "Ön Etiket 250ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 23,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 16,
+        "slot_name": "K3",
+        "quantity": 28
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-08T12:39:00Z"
+     },
+     {
       "id": 5,
       "name": "Naturel Sızma Gemlik 0.3 5L",
       "volume_litre": 5.0,
@@ -6498,6 +6470,209 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
+      "id": 4,
+      "name": "Naturel Sızma Gemlik 0.3 1L",
+      "volume_litre": 1.0,
+      "total_stock": 186,
+      "stored_stock": 186,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 13,
+        "packaging_item_id": 4,
+        "packaging_item_name": "Cam Şişe 1L",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 14,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 15,
+        "packaging_item_id": 15,
+        "packaging_item_name": "Ön Etiket 1L",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 16,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 7,
+        "slot_name": "D1",
+        "quantity": 42
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 23,
+        "slot_name": "L2",
+        "quantity": 144
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-10-20T13:38:00Z"
+     },
+     {
+      "id": 3,
+      "name": "Naturel Sızma Gemlik 0.3 750ml",
+      "volume_litre": 0.75,
+      "total_stock": 732,
+      "stored_stock": 732,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 9,
+        "packaging_item_id": 3,
+        "packaging_item_name": "Cam Şişe 750ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 10,
+        "packaging_item_id": 9,
+        "packaging_item_name": "Metal Vidalı Kapak 38mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 11,
+        "packaging_item_id": 14,
+        "packaging_item_name": "Ön Etiket 750ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 12,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 1,
+        "storage_name": "Ana Depo",
+        "slot_id": 6,
+        "slot_name": "C1",
+        "quantity": 200
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 20,
+        "slot_name": "B1",
+        "quantity": 126
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 21,
+        "slot_name": "B2",
+        "quantity": 406
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
+      "id": 2,
+      "name": "Naturel Sızma Gemlik 0.3 500ml",
+      "volume_litre": 0.5,
+      "total_stock": 398,
+      "stored_stock": 398,
+      "awaiting_shipment_stock": null,
+      "unstored_stock": 0,
+      "is_active": true,
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "components": [
+       {
+        "id": 5,
+        "packaging_item_id": 2,
+        "packaging_item_name": "Cam Şişe 500ml",
+        "packaging_item_type": "BOTTLE",
+        "quantity": 1
+       },
+       {
+        "id": 6,
+        "packaging_item_id": 8,
+        "packaging_item_name": "Metal Vidalı Kapak 28mm",
+        "packaging_item_type": "CAP",
+        "quantity": 1
+       },
+       {
+        "id": 7,
+        "packaging_item_id": 13,
+        "packaging_item_name": "Ön Etiket 500ml",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       },
+       {
+        "id": 8,
+        "packaging_item_id": 17,
+        "packaging_item_name": "Arka Etiket (Genel)",
+        "packaging_item_type": "LABEL",
+        "quantity": 1
+       }
+      ],
+      "locations": [
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 17,
+        "slot_name": "Y1",
+        "quantity": 96
+       },
+       {
+        "storage_id": 3,
+        "storage_name": "Sevkiyat Deposu",
+        "slot_id": 18,
+        "slot_name": "Y2",
+        "quantity": 102
+       },
+       {
+        "storage_id": 2,
+        "storage_name": "Soğuk Depo",
+        "slot_id": 11,
+        "slot_name": "B1",
+        "quantity": 200
+       }
+      ],
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T08:09:00Z"
+     },
+     {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
       "volume_litre": 0.25,
@@ -6559,181 +6734,6 @@
       ],
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T07:25:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Klasik Blend 0.5 250ml",
-      "volume_litre": 0.25,
-      "total_stock": 160,
-      "stored_stock": 160,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 56,
-        "packaging_item_id": 1,
-        "packaging_item_name": "Cam Şişe 250ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 57,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 58,
-        "packaging_item_id": 12,
-        "packaging_item_name": "Ön Etiket 250ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 59,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 2,
-        "storage_name": "Soğuk Depo",
-        "slot_id": 9,
-        "slot_name": "A1",
-        "quantity": 160
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
-      "id": 16,
-      "name": "Klasik Blend 0.5 500ml",
-      "volume_litre": 0.5,
-      "total_stock": 232,
-      "stored_stock": 232,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 60,
-        "packaging_item_id": 2,
-        "packaging_item_name": "Cam Şişe 500ml",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 61,
-        "packaging_item_id": 8,
-        "packaging_item_name": "Metal Vidalı Kapak 28mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 62,
-        "packaging_item_id": 13,
-        "packaging_item_name": "Ön Etiket 500ml",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 63,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 18,
-        "slot_name": "Y2",
-        "quantity": 170
-       },
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 19,
-        "slot_name": "Y3",
-        "quantity": 62
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
-     },
-     {
-      "id": 17,
-      "name": "Klasik Blend 0.5 1L",
-      "volume_litre": 1.0,
-      "total_stock": 144,
-      "stored_stock": 144,
-      "awaiting_shipment_stock": null,
-      "unstored_stock": 0,
-      "is_active": true,
-      "recipe": {
-       "id": 15,
-       "name": "Klasik Blend 0.5",
-       "version": 2
-      },
-      "components": [
-       {
-        "id": 64,
-        "packaging_item_id": 4,
-        "packaging_item_name": "Cam Şişe 1L",
-        "packaging_item_type": "BOTTLE",
-        "quantity": 1
-       },
-       {
-        "id": 65,
-        "packaging_item_id": 9,
-        "packaging_item_name": "Metal Vidalı Kapak 38mm",
-        "packaging_item_type": "CAP",
-        "quantity": 1
-       },
-       {
-        "id": 66,
-        "packaging_item_id": 15,
-        "packaging_item_name": "Ön Etiket 1L",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       },
-       {
-        "id": 67,
-        "packaging_item_id": 17,
-        "packaging_item_name": "Arka Etiket (Genel)",
-        "packaging_item_type": "LABEL",
-        "quantity": 1
-       }
-      ],
-      "locations": [
-       {
-        "storage_id": 3,
-        "storage_name": "Sevkiyat Deposu",
-        "slot_id": 23,
-        "slot_name": "L2",
-        "quantity": 144
-       }
-      ],
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-07T03:29:13Z"
      }
     ]
    },

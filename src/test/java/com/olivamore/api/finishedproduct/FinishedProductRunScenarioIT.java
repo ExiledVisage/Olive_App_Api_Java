@@ -24,10 +24,7 @@ class FinishedProductRunScenarioIT {
 	void scenario() throws Exception {
 		new ScenarioReplay("finished-product-run.json", port, jdbc)
 			.clockAt("2026-11-07T12:00:00Z")
-			// lotun kosulari ORDER BY'siz iliski: guncellenen satirin fiziksel yeri degisebilir
-			.unordered("lot 330 tamamlamadan sonra", "data.runs")
 			// ayni saniyede olusan kosular: tarih esitliginde sira tanimsiz
-			.unordered("liste sonra", "content")
 			.run()
 			.assertPassed(95);
 	}

@@ -146,7 +146,7 @@ public class BatchProcessResponses {
 	}
 
 	private Map<Long, List<FieldValueResponse>> fieldValues(List<Long> processIds) {
-		List<BatchProcessFieldValue> rows = fieldValues.findByBatchProcessIdIn(processIds);
+		List<BatchProcessFieldValue> rows = fieldValues.findByBatchProcessIdInOrderByIdAsc(processIds);
 		Map<Long, Field> fields = stages.fields(rows.stream().map(BatchProcessFieldValue::getProcessTypeFieldId)
 			.distinct().toList());
 		return rows.stream().collect(Collectors.groupingBy(BatchProcessFieldValue::getBatchProcessId, LinkedHashMap::new,

@@ -116,12 +116,13 @@ class DailySummaryService {
 
 	/** Giren ve biten o gunun; uretimdeki partiler tarihe bakmaz. */
 	Production production(LocalDate date) {
-		List<BatchRow> entered = jdbc.sql(BATCH_COLUMNS + " where b.received_at::date = :date order by b.received_at desc")
+		List<BatchRow> entered = jdbc.sql(BATCH_COLUMNS
+			+ " where b.received_at::date = :date order by b.received_at desc, b.id desc")
 			.param("date", date).query(Batch.class).list().stream().map(b -> b.row(null)).toList();
-		List<Batch> active = jdbc.sql(BATCH_COLUMNS + " where b.status = 'in_progress' order by b.received_at asc")
+		List<Batch> active = jdbc.sql(BATCH_COLUMNS + " where b.status = 'in_progress' order by b.received_at asc, b.id asc")
 			.query(Batch.class).list();
 		List<BatchRow> completed = jdbc
-			.sql(BATCH_COLUMNS + " where b.completed_at::date = :date order by b.completed_at desc")
+			.sql(BATCH_COLUMNS + " where b.completed_at::date = :date order by b.completed_at desc, b.id desc")
 			.param("date", date).query(Batch.class).list().stream().map(b -> b.row(null)).toList();
 		Map<Long, CurrentStage> stages = currentStages(active.stream().map(Batch::id).toList());
 		return new Production(entered, active.stream().map(b -> b.row(stages.get(b.id()))).toList(), completed);
@@ -166,16 +167,18 @@ class DailySummaryService {
 				p.submitted_at
 			from batch_processes p
 			where p.status = 'awaiting_approval'
-			order by p.submitted_at asc
+			order by p.submitted_at asc, p.id asc
 			""").query(AwaitingProcess.class).list();
 		return new Stages(completedToday, awaiting);
 	}
 
 	FillingRuns fillingRuns(LocalDate date) {
 		List<RunRow> completed = runs(jdbc
-			.sql(RUN_COLUMNS + " where r.status = 'completed' and r.completed_at::date = :date order by r.completed_at desc")
+			.sql(RUN_COLUMNS + " where r.status = 'completed' and r.completed_at::date = :date"
+				+ " order by r.completed_at desc, r.id desc")
 			.param("date", date).query(Run.class).list());
-		List<RunRow> inProgress = runs(jdbc.sql(RUN_COLUMNS + " where r.status = 'in_progress' order by r.started_at asc")
+		List<RunRow> inProgress = runs(jdbc.sql(RUN_COLUMNS
+			+ " where r.status = 'in_progress' order by r.started_at asc, r.id asc")
 			.query(Run.class).list());
 		List<RunRow> planned = runs(jdbc.sql(RUN_COLUMNS + " where r.status = 'planned' order by r.id asc")
 			.query(Run.class).list());
@@ -191,10 +194,10 @@ class DailySummaryService {
 		List<OrderRow> completed = orders(jdbc.sql(ORDER_COLUMNS + """
 			 where exists (select 1 from order_status_histories h
 				where h.order_id = o.id and h.to_status = 'shipped' and h.changed_at::date = :date)
-			order by o.order_date desc
+			order by o.order_date desc, o.id desc
 			""").param("date", date).query(Order.class).list());
 		List<OrderRow> open = orders(jdbc
-			.sql(ORDER_COLUMNS + " where o.status not in ('shipped', 'cancelled') order by o.order_date asc")
+			.sql(ORDER_COLUMNS + " where o.status not in ('shipped', 'cancelled') order by o.order_date asc, o.id asc")
 			.query(Order.class).list());
 		List<OrderRow> planned = orders(jdbc.sql(ORDER_COLUMNS + " where o.order_date::date = :date order by o.id asc")
 			.param("date", date).query(Order.class).list());
@@ -216,7 +219,7 @@ class DailySummaryService {
 					(select 1 from orders o where o.id = m.order_id and o.status = 'ready')) as awaiting_shipment_stock
 			from finished_products p
 			where p.is_active = true
-			order by p.name asc
+			order by p.name asc, p.id asc
 			""").query(StockRow.class).list();
 		List<OutOfStock> outOfStock = products.stream().filter(p -> p.total() <= 0)
 			.map(p -> new OutOfStock(p.id(), p.name(), p.total())).toList();

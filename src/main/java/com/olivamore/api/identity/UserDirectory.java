@@ -57,7 +57,7 @@ public class UserDirectory {
 	/** Rollerden birine sahip kullanicilar, {@code exceptUserId} haric, ada gore; roller id sirasinda. */
 	public List<UserWithRoles> withAnyRole(Collection<String> roles, long exceptUserId) {
 		List<User> users = jdbc.sql(
-				"select u.id, u.name, u.email from users u where " + HAS_ROLE + " and u.id <> :except order by u.name")
+				"select u.id, u.name, u.email from users u where " + HAS_ROLE + " and u.id <> :except order by u.name, u.id")
 			.param("roles", roles).param("except", exceptUserId).query(User.class).list();
 		if (users.isEmpty()) {
 			return List.of();

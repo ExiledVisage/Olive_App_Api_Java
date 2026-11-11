@@ -6,6 +6,6 @@ import java.util.List;
 
 interface AnalyticsReportRepository extends JpaRepository<AnalyticsReport, Long> {
 
-	List<AnalyticsReport> findByUserIdOrderByUpdatedAtDesc(long userId);
+	List<AnalyticsReport> findByUserIdOrderByUpdatedAtDescIdDesc(long userId);
 
 }

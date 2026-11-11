@@ -30,7 +30,7 @@ class ProductionProductTypeService {
 
 	@Transactional(readOnly = true)
 	List<ProductionProductTypeResponse> all() {
-		return repository.findAllByOrderByCreatedAtDesc().stream().map(ProductionProductTypeResponses::of).toList();
+		return repository.findAllByOrderByCreatedAtDescIdDesc().stream().map(ProductionProductTypeResponses::of).toList();
 	}
 
 	@Transactional(readOnly = true)

@@ -34,7 +34,7 @@ public class ProductionStageService {
 	@Transactional(readOnly = true)
 	List<ProductionStage> forLine(long lineId) {
 		ensureLine(lineId);
-		return repository.findByProductionLineIdOrderByStageOrderAsc(lineId);
+		return repository.findByProductionLineIdOrderByStageOrderAscIdAsc(lineId);
 	}
 
 	@Transactional(readOnly = true)

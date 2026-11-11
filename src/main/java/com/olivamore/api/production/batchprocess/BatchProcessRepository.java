@@ -9,7 +9,7 @@ public interface BatchProcessRepository extends JpaRepository<BatchProcess, Long
 
 	List<BatchProcess> findByProductionBatchId(long batchId);
 
-	List<BatchProcess> findByProductionBatchIdIn(Collection<Long> batchIds);
+	List<BatchProcess> findByProductionBatchIdInOrderByIdAsc(Collection<Long> batchIds);
 
 	List<BatchProcess> findByProductionBatchIdAndIdNot(long batchId, long id);
 

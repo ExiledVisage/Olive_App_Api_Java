@@ -28,7 +28,7 @@ class ProductSupplierService {
 	List<ProductSupplierResponse> all(Boolean isActive, String search) {
 		Map<Long, Long> counts = repository.countLots().stream().collect(Collectors.toMap(
 			ProductSupplierRepository.LotCount::getSupplierId, ProductSupplierRepository.LotCount::getTotal));
-		return repository.findAll(ProductSupplierRepository.matching(isActive, search), Sort.by("name")).stream()
+		return repository.findAll(ProductSupplierRepository.matching(isActive, search), Sort.by("name", "id")).stream()
 			.map(s -> ProductSupplierResponse.of(s, counts.getOrDefault(s.getId(), 0L), null))
 			.toList();
 	}

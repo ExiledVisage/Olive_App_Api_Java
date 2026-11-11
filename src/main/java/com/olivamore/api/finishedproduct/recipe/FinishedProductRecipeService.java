@@ -44,7 +44,7 @@ class FinishedProductRecipeService {
 	List<FinishedProductRecipe> active(String name) {
 		return name != null && !name.isEmpty() && !"0".equals(name)
 			? recipes.search(name)
-			: recipes.findByActiveTrueOrderByCreatedAtDesc();
+			: recipes.findByActiveTrueOrderByCreatedAtDescIdDesc();
 	}
 
 	/** Ayni addaki butun versiyonlar, yeniden eskiye. */

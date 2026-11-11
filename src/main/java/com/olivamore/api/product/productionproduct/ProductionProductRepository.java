@@ -15,7 +15,7 @@ interface ProductionProductRepository extends JpaRepository<ProductionProduct, L
 
 	}
 
-	List<ProductionProduct> findAllByOrderByCreatedAtDesc();
+	List<ProductionProduct> findAllByOrderByCreatedAtDescIdDesc();
 
 	boolean existsByKey(String key);
 

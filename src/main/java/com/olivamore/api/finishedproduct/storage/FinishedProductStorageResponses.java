@@ -8,6 +8,7 @@ import com.olivamore.api.finishedproduct.storage.SlotResponse.IdName;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.identity.UserDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +49,7 @@ class FinishedProductStorageResponses {
 
 	@Transactional(readOnly = true)
 	List<StorageResponse> list() {
-		return responses(storages.findAll());
+		return responses(storages.findAll(Sort.by("id")));
 	}
 
 	/** Raflar ve depo x urun stogu yuklu. */

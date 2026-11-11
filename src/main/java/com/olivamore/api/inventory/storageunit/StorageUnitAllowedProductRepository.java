@@ -11,7 +11,7 @@ interface StorageUnitAllowedProductRepository extends JpaRepository<StorageUnitA
 
 	List<StorageUnitAllowedProduct> findByStorageUnitId(long storageUnitId);
 
-	List<StorageUnitAllowedProduct> findByStorageUnitIdIn(Collection<Long> unitIds);
+	List<StorageUnitAllowedProduct> findByStorageUnitIdInOrderByIdAsc(Collection<Long> unitIds);
 
 	long countByStorageUnitId(long storageUnitId);
 

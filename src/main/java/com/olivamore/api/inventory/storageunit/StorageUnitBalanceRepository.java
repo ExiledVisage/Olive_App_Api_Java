@@ -11,9 +11,9 @@ import java.util.Optional;
 
 public interface StorageUnitBalanceRepository extends JpaRepository<StorageUnitBalance, Long> {
 
-	List<StorageUnitBalance> findByStorageUnitId(long storageUnitId);
+	List<StorageUnitBalance> findByStorageUnitIdOrderByIdAsc(long storageUnitId);
 
-	List<StorageUnitBalance> findByStorageUnitIdIn(Collection<Long> unitIds);
+	List<StorageUnitBalance> findByStorageUnitIdInOrderByIdAsc(Collection<Long> unitIds);
 
 	@Query("""
 		select b from StorageUnitBalance b

@@ -25,8 +25,6 @@ class CustomerScenarioIT {
 		new ScenarioReplay("customer.json", port, jdbc)
 			.clockAt("2026-11-07T12:00:00Z")
 			// adresler en yeniden eskiye: ayni saniyede eklenenlerde sira tanimsiz
-			.unordered("adresler sonra", "data")
-			.unordered("adresler son", "data")
 			.run()
 			.assertPassed(72);
 	}

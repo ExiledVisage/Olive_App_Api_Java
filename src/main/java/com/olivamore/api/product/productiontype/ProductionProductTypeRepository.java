@@ -13,7 +13,7 @@ interface ProductionProductTypeRepository extends JpaRepository<ProductionProduc
 	Optional<ProductionProductType> findById(Long id);
 
 	@EntityGraph(attributePaths = "product")
-	List<ProductionProductType> findAllByOrderByCreatedAtDesc();
+	List<ProductionProductType> findAllByOrderByCreatedAtDescIdDesc();
 
 	@EntityGraph(attributePaths = "product")
 	List<ProductionProductType> findByProductIdOrderByIdAsc(long productId);

@@ -13,7 +13,7 @@ interface BatchProcessFieldValueRepository extends JpaRepository<BatchProcessFie
 
 	List<BatchProcessFieldValue> findByBatchProcessId(long processId);
 
-	List<BatchProcessFieldValue> findByBatchProcessIdIn(Collection<Long> processIds);
+	List<BatchProcessFieldValue> findByBatchProcessIdInOrderByIdAsc(Collection<Long> processIds);
 
 	Optional<BatchProcessFieldValue> findByBatchProcessIdAndProcessTypeFieldId(long processId, long fieldId);
 

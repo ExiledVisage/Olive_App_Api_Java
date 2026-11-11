@@ -33,7 +33,7 @@ class AnalyticsReportService {
 
 	@Transactional(readOnly = true)
 	List<ReportResponse> list(long userId) {
-		return reports.findByUserIdOrderByUpdatedAtDesc(userId).stream().map(ReportResponse::of).toList();
+		return reports.findByUserIdOrderByUpdatedAtDescIdDesc(userId).stream().map(ReportResponse::of).toList();
 	}
 
 	@Transactional

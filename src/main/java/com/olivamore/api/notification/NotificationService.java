@@ -41,7 +41,7 @@ class NotificationService {
 	/** En yeni once. */
 	@Transactional(readOnly = true)
 	Page<UserNotification> page(long userId, boolean unread, Pageable pageable) {
-		PageRequest request = Pages.sorted(pageable, Sort.by(Sort.Direction.DESC, "createdAt"));
+		PageRequest request = Pages.sorted(pageable, Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id")));
 		return unread
 			? repository.findByUserIdAndReadAtIsNull(userId, request)
 			: repository.findByUserId(userId, request);

@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findFirstByEmail(String email);
 
 	/** {@code User::query()->latest()->get()}: Laravel'in SQL'inin aynisi (esit created_at sirasi dahil). */
-	@Query(value = "select * from users order by created_at desc", nativeQuery = true)
+	@Query(value = "select * from users order by created_at desc, id desc", nativeQuery = true)
 	List<User> latest();
 
 	@Query("select r.name from User u join u.roles r where u.id = :userId order by r.id")

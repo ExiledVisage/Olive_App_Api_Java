@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service
 class CustomerService {
 
-	private static final Sort NEWEST_FIRST = Sort.by(Sort.Direction.DESC, "createdAt");
+	private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"));
 
 	private final CustomerRepository customers;
 	private final CustomerAddressRepository addresses;
@@ -85,7 +85,7 @@ class CustomerService {
 	@Transactional(readOnly = true)
 	List<CustomerAddressResponse> addresses(long customerId) {
 		find(customerId);
-		return addresses.findByCustomerIdOrderByCreatedAtDesc(customerId).stream()
+		return addresses.findByCustomerIdOrderByCreatedAtDescIdDesc(customerId).stream()
 			.map(CustomerAddressResponse::of).toList();
 	}
 

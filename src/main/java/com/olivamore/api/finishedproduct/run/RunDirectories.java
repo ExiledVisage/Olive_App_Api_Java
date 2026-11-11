@@ -33,7 +33,7 @@ class RunDirectories implements MaterialRunDirectory, PackagingRunDirectory {
 			left join finished_products p on p.id = r.finished_product_id
 			where exists (select * from finished_product_run_materials m
 				where r.id = m.finished_product_run_id and m.source_material_id = :material)
-			order by r.created_at desc
+			order by r.created_at desc, r.id desc
 			""").param("material", materialId).query(MaterialRun.class).list();
 	}
 

@@ -24,8 +24,6 @@ class OrderScenarioIT {
 	void scenario() throws Exception {
 		new ScenarioReplay("order.json", port, jdbc)
 			.clockAt("2026-11-07T12:00:00Z")
-			// depo cevaplarinda raflar, raf icerigi ve stok ORDER BY'siz: guncellenen satirin yeri degisebilir
-			.unorderedEverywhere("slots", "contents", "stock")
 			.run()
 			.assertPassed(94);
 	}

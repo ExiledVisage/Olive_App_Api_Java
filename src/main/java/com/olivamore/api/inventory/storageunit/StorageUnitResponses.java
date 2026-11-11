@@ -51,7 +51,7 @@ class StorageUnitResponses {
 
 	/** En yeni once. */
 	List<StorageUnitResponse> all() {
-		return responses(units.findAll(Sort.by(Sort.Direction.DESC, "createdAt")));
+		return responses(units.findAll(Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"))));
 	}
 
 	StorageUnitResponse one(long id) {
@@ -59,7 +59,7 @@ class StorageUnitResponses {
 	}
 
 	List<StorageUnitResponse.Balance> balances(long unitId) {
-		List<StorageUnitBalance> rows = balances.findByStorageUnitId(unitId);
+		List<StorageUnitBalance> rows = balances.findByStorageUnitIdOrderByIdAsc(unitId);
 		Map<Long, MaterialQueries.Product> products = queries.products(
 			rows.stream().map(StorageUnitBalance::getProductionProductId).toList());
 		return rows.stream().map(b -> balance(b, products)).toList();
@@ -74,7 +74,7 @@ class StorageUnitResponses {
 		Map<Long, List<StorageUnitResponse.AllowedType>> types = allowedTypes(ids);
 		Map<Long, List<StorageUnitResponse.AttributeRule>> attributeRules = attributeRules(ids);
 		Map<Long, List<StorageUnitBalance>> balanceRows = new LinkedHashMap<>();
-		balances.findByStorageUnitIdIn(ids).forEach(
+		balances.findByStorageUnitIdInOrderByIdAsc(ids).forEach(
 			b -> balanceRows.computeIfAbsent(b.getStorageUnitId(), k -> new ArrayList<>()).add(b));
 		Map<Long, MaterialQueries.Product> balanceProducts = queries.products(balanceRows.values().stream()
 			.flatMap(List::stream).map(StorageUnitBalance::getProductionProductId).toList());
@@ -115,7 +115,7 @@ class StorageUnitResponses {
 	}
 
 	private Map<Long, List<StorageUnitResponse.AllowedProduct>> allowedProducts(List<Long> unitIds) {
-		List<StorageUnitAllowedProduct> rows = allowedProducts.findByStorageUnitIdIn(unitIds);
+		List<StorageUnitAllowedProduct> rows = allowedProducts.findByStorageUnitIdInOrderByIdAsc(unitIds);
 		Map<Long, MaterialQueries.Product> products = queries.products(
 			rows.stream().map(StorageUnitAllowedProduct::getProductionProductId).toList());
 		Map<Long, List<StorageUnitResponse.AllowedProduct>> out = new LinkedHashMap<>();
@@ -128,7 +128,7 @@ class StorageUnitResponses {
 	}
 
 	private Map<Long, List<StorageUnitResponse.AllowedType>> allowedTypes(List<Long> unitIds) {
-		List<StorageUnitAllowedType> rows = allowedTypes.findByStorageUnitIdIn(unitIds);
+		List<StorageUnitAllowedType> rows = allowedTypes.findByStorageUnitIdInOrderByIdAsc(unitIds);
 		Map<Long, MaterialQueries.ProductType> types = queries.productTypes(
 			rows.stream().map(StorageUnitAllowedType::getProductionProductTypeId).toList());
 		Map<Long, List<StorageUnitResponse.AllowedType>> out = new LinkedHashMap<>();
@@ -143,7 +143,7 @@ class StorageUnitResponses {
 	}
 
 	private Map<Long, List<StorageUnitResponse.AttributeRule>> attributeRules(List<Long> unitIds) {
-		List<StorageUnitAttributeRule> rows = rules.findByStorageUnitIdIn(unitIds);
+		List<StorageUnitAttributeRule> rows = rules.findByStorageUnitIdInOrderByIdAsc(unitIds);
 		Map<Long, MaterialResponse.Definition> definitions = materials.definitions(
 			rows.stream().map(StorageUnitAttributeRule::getDefinitionId).toList());
 		Map<Long, List<StorageUnitResponse.AttributeRule>> out = new LinkedHashMap<>();
@@ -161,6 +161,7 @@ class StorageUnitResponses {
 		List<LocatedMaterial> rows = jdbc.sql("""
 			select id, current_location_id from materials
 			where current_location_id in (:ids) and current_location_type = 'storage_unit' and status = 'active'
+			order by id
 			""").param("ids", unitIds).query(LocatedMaterial.class).list();
 		List<MaterialResponse> responses = materials.materials(rows.stream().map(LocatedMaterial::id).toList(), false);
 		Map<Long, List<MaterialResponse>> out = new LinkedHashMap<>();

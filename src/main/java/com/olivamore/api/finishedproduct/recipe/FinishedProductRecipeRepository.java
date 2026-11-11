@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public interface FinishedProductRecipeRepository extends JpaRepository<FinishedProductRecipe, Long> {
 
-	List<FinishedProductRecipe> findByActiveTrueOrderByCreatedAtDesc();
+	List<FinishedProductRecipe> findByActiveTrueOrderByCreatedAtDescIdDesc();
 
 	@Query("""
 		select r from FinishedProductRecipe r
 		where lower(r.name) like lower(concat('%', :name, '%')) and r.active = true
-		order by r.createdAt desc
+		order by r.createdAt desc, r.id desc
 		""")
 	List<FinishedProductRecipe> search(String name);
 

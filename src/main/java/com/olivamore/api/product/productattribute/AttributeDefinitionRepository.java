@@ -7,7 +7,7 @@ import java.util.Optional;
 
 interface AttributeDefinitionRepository extends JpaRepository<AttributeDefinition, Long> {
 
-	List<AttributeDefinition> findAllByOrderByLabelAsc();
+	List<AttributeDefinition> findAllByOrderByLabelAscIdAsc();
 
 	Optional<AttributeDefinition> findByAttributeKey(String attributeKey);
 

@@ -94,7 +94,7 @@ class AnalyticsQueries {
 				select pt.id, pt.name from production_batch_input_production_product_types i
 				join production_product_types pt on pt.id = i.production_product_type_id
 				where i.production_batch_id = b.id
-				order by i.sort_order limit 1
+				order by i.sort_order, i.id limit 1
 			) t on true
 			where b.received_at between :from and :to
 				and (cast(:supplier as bigint) is null or b.supplier_id = :supplier)
@@ -201,14 +201,14 @@ class AnalyticsQueries {
 			select e.id, e.production_stage_id, e.is_enabled, t.key as type_key
 			from production_stage_extensions e
 			left join stage_extension_types t on t.id = e.stage_extension_type_id
-			order by e.sort_order
+			order by e.sort_order, e.id
 			""").query(ExtensionRow.class).list().stream()
 			.collect(Collectors.groupingBy(ExtensionRow::productionStageId));
 		Map<Long, List<String>> inputs = jdbc.sql("""
 			select i.production_stage_extension_id, p.key as product_key
 			from production_stage_extension_input_production_products i
 			left join production_products p on p.id = i.production_product_id
-			order by i.sort_order
+			order by i.sort_order, i.id
 			""").query(ExtensionInput.class).list().stream()
 			.filter(i -> i.productKey() != null)
 			.collect(Collectors.groupingBy(ExtensionInput::productionStageExtensionId,

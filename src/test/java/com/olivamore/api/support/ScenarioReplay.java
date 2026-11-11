@@ -19,10 +19,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -44,8 +41,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  *       (sabit bearer degeri); {@code headers} verilmisse rate limit basliklari da karsilastirilir</li>
  *   <li>{@code sql} adimlari hazirlik icindir: sonucu (id) {@code save} anahtarina yazilir</li>
  *   <li>Yollardaki ve govdedeki {@code {X}} yer tutuculari saklanan id'lerle doldurulur</li>
- *   <li>Demo veriden ({@link #seededUntil}) yeni zaman damgalari, maskeler ({@link #mask}) ve siralamasi
- *       tanimsiz listeler ({@link #unordered}) karsilastirmada sabitlenir</li>
+ *   <li>Demo veriden ({@link #seededUntil}) yeni zaman damgalari ve maskeler ({@link #mask}) karsilastirmada
+ *       sabitlenir; listeler sirasiyla karsilastirilir</li>
  * </ul>
  * {@code -Dscenario.record=<klasor>} verilirse tutmayan adimlar gelen cevapla, atlanan hazirlik adimlari
  * cikarilarak senaryonun yeni hali o klasore yazilir (bilincli bir sozlesme degisikliginden sonra senaryoyu
@@ -65,8 +62,6 @@ public final class ScenarioReplay {
 	private Instant seededUntil = Instant.parse("2026-11-06T15:36:00Z");
 	private Instant clockAt;
 	private final List<String> firstLogins = new ArrayList<>();
-	private final Map<String, List<String>> unordered = new LinkedHashMap<>();
-	private final Set<String> unorderedKeys = new HashSet<>();
 	private final List<Pattern> masks = new ArrayList<>();
 
 	/** @param scenario {@code src/test/resources/scenarios} altindaki dosya adi, ornek {@code storage-unit.json} */
@@ -94,21 +89,6 @@ public final class ScenarioReplay {
 	/** Senaryo baslamadan bu sirayla giris yapilir (giris limiti sayaclari senaryodaki gibi baslasin). */
 	public ScenarioReplay loginFirst(String... emails) {
 		firstLogins.addAll(List.of(emails));
-		return this;
-	}
-
-	/**
-	 * Siralamasi tanimsiz liste ({@code ORDER BY}'siz iliski): bu adimda {@code path}'teki liste id'ye gore
-	 * siralanip karsilastirilir. {@code path} noktali yol, ornek {@code data.attribute_rules}.
-	 */
-	public ScenarioReplay unordered(String step, String path) {
-		unordered.computeIfAbsent(step, k -> new ArrayList<>()).add(path);
-		return this;
-	}
-
-	/** Butun adimlarda, her derinlikte bu anahtarlardaki listeler id'ye (yoksa {@code finished_product.id}) gore. */
-	public ScenarioReplay unorderedEverywhere(String... keys) {
-		unorderedKeys.addAll(List.of(keys));
 		return this;
 	}
 
@@ -213,11 +193,8 @@ public final class ScenarioReplay {
 		if (actual.status() != status) {
 			return "durum " + actual.status() + ", beklenen " + status + " " + cut(actual.body(), 1500);
 		}
-		String name = step.get("name").asString();
-		Object expected = sortLists(normalize(JSON.treeToValue(fillInstance(step.get("response"), ids), Object.class)),
-			name);
-		Object got = sortLists(normalize(actual.body().isEmpty() ? null : JSON.readValue(actual.body(), Object.class)),
-			name);
+		Object expected = normalize(JSON.treeToValue(fillInstance(step.get("response"), ids), Object.class));
+		Object got = normalize(actual.body().isEmpty() ? null : JSON.readValue(actual.body(), Object.class));
 		if (!expected.equals(got)) {
 			return String.join("; ", differences(expected, got, "", new ArrayList<>()));
 		}
@@ -328,60 +305,6 @@ public final class ScenarioReplay {
 			return new BigDecimal(n.toString()).stripTrailingZeros().toPlainString();
 		}
 		return value;
-	}
-
-	@SuppressWarnings("unchecked")
-	private Object sortLists(Object value, String step) {
-		for (String path : unordered.getOrDefault(step, List.of())) {
-			Object node = value;
-			String[] parts = path.split("\\.");
-			for (int i = 0; i < parts.length - 1 && node instanceof Map<?, ?>; i++) {
-				node = ((Map<String, Object>) node).get(parts[i]);
-			}
-			if (node instanceof Map<?, ?> map && map.get(parts[parts.length - 1]) instanceof List<?> list) {
-				List<Object> sorted = new ArrayList<>(list);
-				sorted.sort(Comparator.comparing(ScenarioReplay::sortKey));
-				((Map<String, Object>) map).put(parts[parts.length - 1], sorted);
-			}
-		}
-		if (!unorderedKeys.isEmpty()) {
-			sortKeyedLists(value);
-		}
-		return value;
-	}
-
-	@SuppressWarnings("unchecked")
-	private void sortKeyedLists(Object value) {
-		if (value instanceof Map<?, ?> map) {
-			for (Map.Entry<String, Object> e : ((Map<String, Object>) map).entrySet()) {
-				sortKeyedLists(e.getValue());
-				if (unorderedKeys.contains(e.getKey()) && e.getValue() instanceof List<?> list) {
-					List<Object> sorted = new ArrayList<>(list);
-					sorted.sort(Comparator.comparing(ScenarioReplay::sortKey));
-					e.setValue(sorted);
-				}
-			}
-		}
-		else if (value instanceof List<?> list) {
-			list.forEach(this::sortKeyedLists);
-		}
-	}
-
-	/** Elemanin id'si; yoksa {@code finished_product.id} (raf icerigi gibi id'siz satirlar). */
-	private static BigDecimal sortKey(Object element) {
-		Object id = null;
-		if (element instanceof Map<?, ?> m) {
-			id = m.get("id");
-			if (id == null && m.get("finished_product") instanceof Map<?, ?> product) {
-				id = product.get("id");
-			}
-		}
-		try {
-			return new BigDecimal(String.valueOf(id));
-		}
-		catch (NumberFormatException e) {
-			return BigDecimal.ZERO;
-		}
 	}
 
 	/** Ilk birkac farkli yol: {@code data.processes.3.status: beklenen=... gelen=...} */

@@ -9,89 +9,8 @@
    "response": {
     "content": [
      {
-      "id": 1,
-      "quantity": 100,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 2,
-      "quantity": 50,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.3 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 3,
-      "quantity": 200,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 4,
-       "name": "Naturel Sızma Gemlik 0.3 1L",
-       "volume_litre": 1.0
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 4,
-      "quantity": 100,
+      "id": 17,
+      "quantity": 10,
       "status": "planned",
       "allowed_transitions": [
        "in_progress",
@@ -100,304 +19,6 @@
       "note": null,
       "started_at": null,
       "completed_at": null,
-      "finished_product": {
-       "id": 3,
-       "name": "Naturel Sızma Gemlik 0.3 750ml",
-       "volume_litre": 0.75
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 5,
-      "quantity": 100,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 6,
-       "name": "Naturel Sızma Gemlik 0.8 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 2,
-       "name": "Dolum Tankı — Gemlik 0.8",
-       "code": "FILL-GEM-08"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 6,
-      "quantity": 100,
-      "status": "planned",
-      "allowed_transitions": [
-       "in_progress",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": null,
-      "completed_at": null,
-      "finished_product": {
-       "id": 8,
-       "name": "Naturel Sızma Gemlik 0.8 1L",
-       "volume_litre": 1.0
-      },
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 2,
-       "name": "Dolum Tankı — Gemlik 0.8",
-       "code": "FILL-GEM-08"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "quantity": 200,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 9,
-       "name": "Naturel Sızma Ayvalık 0.4 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 3,
-       "name": "Dolum Tankı — Ayvalık 0.4",
-       "code": "FILL-AVL-04"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 8,
-      "quantity": 100,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 10,
-       "name": "Naturel Sızma Ayvalık 0.4 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 3,
-       "name": "Dolum Tankı — Ayvalık 0.4",
-       "code": "FILL-AVL-04"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 9,
-      "quantity": 50,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 14,
-       "name": "Naturel Sızma Ayvalık 0.9 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 4,
-       "name": "Dolum Tankı — Ayvalık 0.9",
-       "code": "FILL-AVL-09"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 10,
-      "quantity": 200,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 15,
-       "name": "Klasik Blend 0.5 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 5,
-       "name": "Klasik Blend 0.5",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 5,
-       "name": "Dolum Tankı — Klasik Blend 0.5",
-       "code": "FILL-BLEND-50"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 11,
-      "quantity": 100,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 16,
-       "name": "Klasik Blend 0.5 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 5,
-       "name": "Klasik Blend 0.5",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 5,
-       "name": "Dolum Tankı — Klasik Blend 0.5",
-       "code": "FILL-BLEND-50"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 12,
-      "quantity": 100,
-      "status": "planned",
-      "allowed_transitions": [
-       "in_progress",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": null,
-      "completed_at": null,
-      "finished_product": {
-       "id": 17,
-       "name": "Klasik Blend 0.5 1L",
-       "volume_litre": 1.0
-      },
-      "recipe": {
-       "id": 5,
-       "name": "Klasik Blend 0.5",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 5,
-       "name": "Dolum Tankı — Klasik Blend 0.5",
-       "code": "FILL-BLEND-50"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 13,
-      "quantity": 100,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 18,
-       "name": "Portakallı Zeytinyağı 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 6,
-       "name": "Dolum Tankı — Portakallı Zeytinyağı",
-       "code": "FILL-ORANGE-60"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 14,
-      "quantity": 50,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 19,
-       "name": "Portakallı Zeytinyağı 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 6,
-       "name": "Portakallı Zeytinyağı",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 6,
-       "name": "Dolum Tankı — Portakallı Zeytinyağı",
-       "code": "FILL-ORANGE-60"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 15,
-      "quantity": 30,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
        "id": 5,
        "name": "Naturel Sızma Gemlik 0.3 5L",
@@ -446,16 +67,13 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 17,
-      "quantity": 10,
-      "status": "planned",
-      "allowed_transitions": [
-       "in_progress",
-       "cancelled"
-      ],
+      "id": 15,
+      "quantity": 30,
+      "status": "completed",
+      "allowed_transitions": [],
       "note": null,
-      "started_at": null,
-      "completed_at": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
        "id": 5,
        "name": "Naturel Sızma Gemlik 0.3 5L",
@@ -470,6 +88,388 @@
        "id": 9,
        "name": "Gemlik Dolum Tankı (Üretim)",
        "code": "FILL-GEM-11"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 14,
+      "quantity": 50,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 19,
+       "name": "Portakallı Zeytinyağı 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 6,
+       "name": "Dolum Tankı — Portakallı Zeytinyağı",
+       "code": "FILL-ORANGE-60"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 13,
+      "quantity": 100,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 18,
+       "name": "Portakallı Zeytinyağı 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 6,
+       "name": "Dolum Tankı — Portakallı Zeytinyağı",
+       "code": "FILL-ORANGE-60"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 12,
+      "quantity": 100,
+      "status": "planned",
+      "allowed_transitions": [
+       "in_progress",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": null,
+      "completed_at": null,
+      "finished_product": {
+       "id": 17,
+       "name": "Klasik Blend 0.5 1L",
+       "volume_litre": 1.0
+      },
+      "recipe": {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 5,
+       "name": "Dolum Tankı — Klasik Blend 0.5",
+       "code": "FILL-BLEND-50"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 11,
+      "quantity": 100,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 16,
+       "name": "Klasik Blend 0.5 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 5,
+       "name": "Dolum Tankı — Klasik Blend 0.5",
+       "code": "FILL-BLEND-50"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 10,
+      "quantity": 200,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 15,
+       "name": "Klasik Blend 0.5 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 5,
+       "name": "Dolum Tankı — Klasik Blend 0.5",
+       "code": "FILL-BLEND-50"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 9,
+      "quantity": 50,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 14,
+       "name": "Naturel Sızma Ayvalık 0.9 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 4,
+       "name": "Dolum Tankı — Ayvalık 0.9",
+       "code": "FILL-AVL-09"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 8,
+      "quantity": 100,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 10,
+       "name": "Naturel Sızma Ayvalık 0.4 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 3,
+       "name": "Dolum Tankı — Ayvalık 0.4",
+       "code": "FILL-AVL-04"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 7,
+      "quantity": 200,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 9,
+       "name": "Naturel Sızma Ayvalık 0.4 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 3,
+       "name": "Dolum Tankı — Ayvalık 0.4",
+       "code": "FILL-AVL-04"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 6,
+      "quantity": 100,
+      "status": "planned",
+      "allowed_transitions": [
+       "in_progress",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": null,
+      "completed_at": null,
+      "finished_product": {
+       "id": 8,
+       "name": "Naturel Sızma Gemlik 0.8 1L",
+       "volume_litre": 1.0
+      },
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 2,
+       "name": "Dolum Tankı — Gemlik 0.8",
+       "code": "FILL-GEM-08"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 5,
+      "quantity": 100,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 6,
+       "name": "Naturel Sızma Gemlik 0.8 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.8",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 2,
+       "name": "Dolum Tankı — Gemlik 0.8",
+       "code": "FILL-GEM-08"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 4,
+      "quantity": 100,
+      "status": "planned",
+      "allowed_transitions": [
+       "in_progress",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": null,
+      "completed_at": null,
+      "finished_product": {
+       "id": 3,
+       "name": "Naturel Sızma Gemlik 0.3 750ml",
+       "volume_litre": 0.75
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 3,
+      "quantity": 200,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 4,
+       "name": "Naturel Sızma Gemlik 0.3 1L",
+       "volume_litre": 1.0
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 2,
+      "quantity": 50,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 2,
+       "name": "Naturel Sızma Gemlik 0.3 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 1,
+      "quantity": 100,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
@@ -10165,63 +10165,8 @@
    "response": {
     "content": [
      {
-      "id": 2,
-      "quantity": 50,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.3 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 3,
-      "quantity": 200,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 4,
-       "name": "Naturel Sızma Gemlik 0.3 1L",
-       "volume_litre": 1.0
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 4,
-      "quantity": 100,
+      "id": 17,
+      "quantity": 10,
       "status": "planned",
       "allowed_transitions": [
        "in_progress",
@@ -10231,9 +10176,9 @@
       "started_at": null,
       "completed_at": null,
       "finished_product": {
-       "id": 3,
-       "name": "Naturel Sızma Gemlik 0.3 750ml",
-       "volume_litre": 0.75
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
       },
       "recipe": {
        "id": 1,
@@ -10241,97 +10186,16 @@
        "version": 1
       },
       "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 5,
-      "quantity": 100,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 6,
-       "name": "Naturel Sızma Gemlik 0.8 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 2,
-       "name": "Dolum Tankı — Gemlik 0.8",
-       "code": "FILL-GEM-08"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 6,
-      "quantity": 100,
-      "status": "planned",
-      "allowed_transitions": [
-       "in_progress",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": null,
-      "completed_at": null,
-      "finished_product": {
-       "id": 8,
-       "name": "Naturel Sızma Gemlik 0.8 1L",
-       "volume_litre": 1.0
-      },
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 2,
-       "name": "Dolum Tankı — Gemlik 0.8",
-       "code": "FILL-GEM-08"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "quantity": 200,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
        "id": 9,
-       "name": "Naturel Sızma Ayvalık 0.4 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 3,
-       "name": "Dolum Tankı — Ayvalık 0.4",
-       "code": "FILL-AVL-04"
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 8,
-      "quantity": 100,
+      "id": 16,
+      "quantity": 15,
       "status": "in_progress",
       "allowed_transitions": [
        "completed",
@@ -10341,45 +10205,155 @@
       "started_at": "2026-11-06T15:35:13Z",
       "completed_at": null,
       "finished_product": {
-       "id": 10,
-       "name": "Naturel Sızma Ayvalık 0.4 500ml",
-       "volume_litre": 0.5
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
       },
       "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
        "version": 1
       },
       "source_storage_unit": {
-       "id": 3,
-       "name": "Dolum Tankı — Ayvalık 0.4",
-       "code": "FILL-AVL-04"
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 9,
-      "quantity": 50,
+      "id": 15,
+      "quantity": 30,
       "status": "completed",
       "allowed_transitions": [],
       "note": null,
       "started_at": "2026-11-06T15:35:13Z",
       "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
-       "id": 14,
-       "name": "Naturel Sızma Ayvalık 0.9 500ml",
-       "volume_litre": 0.5
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
       },
       "recipe": {
-       "id": 4,
-       "name": "Naturel Sızma Ayvalık 0.9",
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
        "version": 1
       },
       "source_storage_unit": {
-       "id": 4,
-       "name": "Dolum Tankı — Ayvalık 0.9",
-       "code": "FILL-AVL-09"
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 14,
+      "quantity": 50,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 19,
+       "name": "Portakallı Zeytinyağı 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 6,
+       "name": "Dolum Tankı — Portakallı Zeytinyağı",
+       "code": "FILL-ORANGE-60"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 13,
+      "quantity": 100,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 18,
+       "name": "Portakallı Zeytinyağı 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 6,
+       "name": "Dolum Tankı — Portakallı Zeytinyağı",
+       "code": "FILL-ORANGE-60"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 12,
+      "quantity": 100,
+      "status": "planned",
+      "allowed_transitions": [
+       "in_progress",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": null,
+      "completed_at": null,
+      "finished_product": {
+       "id": 17,
+       "name": "Klasik Blend 0.5 1L",
+       "volume_litre": 1.0
+      },
+      "recipe": {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 5,
+       "name": "Dolum Tankı — Klasik Blend 0.5",
+       "code": "FILL-BLEND-50"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 11,
+      "quantity": 100,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 16,
+       "name": "Klasik Blend 0.5 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 5,
+       "name": "Dolum Tankı — Klasik Blend 0.5",
+       "code": "FILL-BLEND-50"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
@@ -10411,27 +10385,56 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 1,
-      "quantity": 100,
+      "id": 9,
+      "quantity": 50,
       "status": "completed",
       "allowed_transitions": [],
       "note": null,
       "started_at": "2026-11-06T15:35:13Z",
       "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3 250ml",
-       "volume_litre": 0.25
+       "id": 14,
+       "name": "Naturel Sızma Ayvalık 0.9 500ml",
+       "volume_litre": 0.5
       },
       "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
+       "id": 4,
+       "name": "Naturel Sızma Ayvalık 0.9",
        "version": 1
       },
       "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
+       "id": 4,
+       "name": "Dolum Tankı — Ayvalık 0.9",
+       "code": "FILL-AVL-09"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 8,
+      "quantity": 100,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 10,
+       "name": "Naturel Sızma Ayvalık 0.4 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
+       "id": 3,
+       "name": "Naturel Sızma Ayvalık 0.4",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 3,
+       "name": "Dolum Tankı — Ayvalık 0.4",
+       "code": "FILL-AVL-04"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
@@ -11407,63 +11410,8 @@
    "response": {
     "content": [
      {
-      "id": 2,
-      "quantity": 50,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
-      "finished_product": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.3 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 3,
-      "quantity": 200,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 4,
-       "name": "Naturel Sızma Gemlik 0.3 1L",
-       "volume_litre": 1.0
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 4,
-      "quantity": 100,
+      "id": 17,
+      "quantity": 10,
       "status": "planned",
       "allowed_transitions": [
        "in_progress",
@@ -11473,9 +11421,9 @@
       "started_at": null,
       "completed_at": null,
       "finished_product": {
-       "id": 3,
-       "name": "Naturel Sızma Gemlik 0.3 750ml",
-       "volume_litre": 0.75
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
       },
       "recipe": {
        "id": 1,
@@ -11483,41 +11431,99 @@
        "version": 1
       },
       "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 5,
-      "quantity": 100,
+      "id": 16,
+      "quantity": 15,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 15,
+      "quantity": 30,
       "status": "completed",
       "allowed_transitions": [],
       "note": null,
       "started_at": "2026-11-06T15:35:13Z",
       "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 14,
+      "quantity": 50,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 19,
+       "name": "Portakallı Zeytinyağı 500ml",
+       "volume_litre": 0.5
+      },
+      "recipe": {
        "id": 6,
-       "name": "Naturel Sızma Gemlik 0.8 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 2,
-       "name": "Naturel Sızma Gemlik 0.8",
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "source_storage_unit": {
-       "id": 2,
-       "name": "Dolum Tankı — Gemlik 0.8",
-       "code": "FILL-GEM-08"
+       "id": 6,
+       "name": "Dolum Tankı — Portakallı Zeytinyağı",
+       "code": "FILL-ORANGE-60"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
-      "id": 1,
+      "id": 13,
       "quantity": 100,
       "status": "completed",
       "allowed_transitions": [],
@@ -11525,19 +11531,19 @@
       "started_at": "2026-11-06T15:35:13Z",
       "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3 250ml",
+       "id": 18,
+       "name": "Portakallı Zeytinyağı 250ml",
        "volume_litre": 0.25
       },
       "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
+       "id": 6,
+       "name": "Portakallı Zeytinyağı",
        "version": 1
       },
       "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
+       "id": 6,
+       "name": "Dolum Tankı — Portakallı Zeytinyağı",
+       "code": "FILL-ORANGE-60"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"
@@ -13937,10 +13943,10 @@
        "quantity": 20,
        "is_incoming": false,
        "note": "Dolum Run #392",
-       "moved_at": "2026-11-07T04:05:16Z",
+       "moved_at": "2026-11-07T12:00:02Z",
        "finished_product_run_id": 392,
        "finished_product_name": "Naturel Sızma Gemlik 0.3 250ml",
-       "created_at": "2026-11-07T04:05:16Z"
+       "created_at": "2026-11-07T12:00:02Z"
       }
      ],
      "runs": [
@@ -13982,23 +13988,7 @@
        "quantity": 20,
        "finished_product_name": "Naturel Sızma Gemlik 0.3 250ml",
        "bottle_quantity": 20,
-       "completed_at": "2026-11-07T04:05:16Z"
-      },
-      {
-       "id": 395,
-       "status": "planned",
-       "quantity": 40,
-       "finished_product_name": "Klasik Blend 0.5 250ml",
-       "bottle_quantity": 40,
-       "completed_at": null
-      },
-      {
-       "id": 394,
-       "status": "planned",
-       "quantity": 8,
-       "finished_product_name": "Naturel Sızma Gemlik 0.3 250ml",
-       "bottle_quantity": 10,
-       "completed_at": null
+       "completed_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 393,
@@ -14006,6 +13996,14 @@
        "quantity": 12,
        "finished_product_name": "Naturel Sızma Gemlik 0.3 250ml",
        "bottle_quantity": 12,
+       "completed_at": null
+      },
+      {
+       "id": 395,
+       "status": "planned",
+       "quantity": 40,
+       "finished_product_name": "Klasik Blend 0.5 250ml",
+       "bottle_quantity": 40,
        "completed_at": null
       },
       {
@@ -14023,10 +14021,18 @@
        "finished_product_name": "Naturel Sızma Gemlik 0.8 250ml",
        "bottle_quantity": 16,
        "completed_at": null
+      },
+      {
+       "id": 394,
+       "status": "planned",
+       "quantity": 8,
+       "finished_product_name": "Naturel Sızma Gemlik 0.3 250ml",
+       "bottle_quantity": 10,
+       "completed_at": null
       }
      ],
      "created_at": "2026-10-12T12:25:00Z",
-     "updated_at": "2026-11-07T04:05:16Z"
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -15588,142 +15594,6 @@
    "response": {
     "content": [
      {
-      "id": 396,
-      "quantity": 8,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": null,
-      "started_at": "2026-11-07T04:05:17Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 9,
-       "name": "Naturel Sızma Ayvalık 0.4 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 3,
-       "name": "Dolum Tankı — Ayvalık 0.4",
-       "code": "FILL-AVL-04"
-      },
-      "created_at": "2026-11-07T04:05:15Z",
-      "updated_at": "2026-11-07T04:05:17Z"
-     },
-     {
-      "id": 392,
-      "quantity": 20,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-07T04:05:16Z",
-      "completed_at": "2026-11-07T04:05:16Z",
-      "finished_product": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-07T04:05:15Z",
-      "updated_at": "2026-11-07T04:05:16Z"
-     },
-     {
-      "id": 394,
-      "quantity": 10,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-07T04:05:16Z",
-      "completed_at": "2026-11-07T04:05:17Z",
-      "finished_product": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-07T04:05:15Z",
-      "updated_at": "2026-11-07T04:05:17Z"
-     },
-     {
-      "id": 393,
-      "quantity": 12,
-      "status": "in_progress",
-      "allowed_transitions": [
-       "completed",
-       "cancelled"
-      ],
-      "note": "aksam vardiyasi",
-      "started_at": "2026-11-07T04:05:17Z",
-      "completed_at": null,
-      "finished_product": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 1,
-       "name": "Naturel Sızma Gemlik 0.3",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 1,
-       "name": "Dolum Tankı — Gemlik 0.3",
-       "code": "FILL-GEM-03"
-      },
-      "created_at": "2026-11-07T04:05:15Z",
-      "updated_at": "2026-11-07T04:05:17Z"
-     },
-     {
-      "id": 395,
-      "quantity": 40,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-07T04:05:18Z",
-      "completed_at": "2026-11-07T04:05:18Z",
-      "finished_product": {
-       "id": 15,
-       "name": "Klasik Blend 0.5 250ml",
-       "volume_litre": 0.25
-      },
-      "recipe": {
-       "id": 5,
-       "name": "Klasik Blend 0.5",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 5,
-       "name": "Dolum Tankı — Klasik Blend 0.5",
-       "code": "FILL-BLEND-50"
-      },
-      "created_at": "2026-11-07T04:05:15Z",
-      "updated_at": "2026-11-07T04:05:18Z"
-     },
-     {
       "id": 397,
       "quantity": 16,
       "status": "cancelled",
@@ -15746,46 +15616,20 @@
        "name": "Dolum Tankı — Gemlik 0.8",
        "code": "FILL-GEM-08"
       },
-      "created_at": "2026-11-07T04:05:15Z",
-      "updated_at": "2026-11-07T04:05:18Z"
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:03Z"
      },
      {
-      "id": 8,
-      "quantity": 100,
+      "id": 396,
+      "quantity": 8,
       "status": "in_progress",
       "allowed_transitions": [
        "completed",
        "cancelled"
       ],
       "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
+      "started_at": "2026-11-07T12:00:03Z",
       "completed_at": null,
-      "finished_product": {
-       "id": 10,
-       "name": "Naturel Sızma Ayvalık 0.4 500ml",
-       "volume_litre": 0.5
-      },
-      "recipe": {
-       "id": 3,
-       "name": "Naturel Sızma Ayvalık 0.4",
-       "version": 1
-      },
-      "source_storage_unit": {
-       "id": 3,
-       "name": "Dolum Tankı — Ayvalık 0.4",
-       "code": "FILL-AVL-04"
-      },
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "quantity": 200,
-      "status": "completed",
-      "allowed_transitions": [],
-      "note": null,
-      "started_at": "2026-11-06T15:35:13Z",
-      "completed_at": "2026-11-06T15:35:13Z",
       "finished_product": {
        "id": 9,
        "name": "Naturel Sızma Ayvalık 0.4 250ml",
@@ -15800,6 +15644,168 @@
        "id": 3,
        "name": "Dolum Tankı — Ayvalık 0.4",
        "code": "FILL-AVL-04"
+      },
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:03Z"
+     },
+     {
+      "id": 395,
+      "quantity": 40,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-07T12:00:03Z",
+      "completed_at": "2026-11-07T12:00:03Z",
+      "finished_product": {
+       "id": 15,
+       "name": "Klasik Blend 0.5 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 5,
+       "name": "Klasik Blend 0.5",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 5,
+       "name": "Dolum Tankı — Klasik Blend 0.5",
+       "code": "FILL-BLEND-50"
+      },
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:03Z"
+     },
+     {
+      "id": 394,
+      "quantity": 10,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-07T12:00:02Z",
+      "completed_at": "2026-11-07T12:00:03Z",
+      "finished_product": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
+      },
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:03Z"
+     },
+     {
+      "id": 393,
+      "quantity": 12,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": "aksam vardiyasi",
+      "started_at": "2026-11-07T12:00:03Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
+      },
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:03Z"
+     },
+     {
+      "id": 392,
+      "quantity": 20,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-07T12:00:02Z",
+      "completed_at": "2026-11-07T12:00:02Z",
+      "finished_product": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3 250ml",
+       "volume_litre": 0.25
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 1,
+       "name": "Dolum Tankı — Gemlik 0.3",
+       "code": "FILL-GEM-03"
+      },
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:02Z"
+     },
+     {
+      "id": 16,
+      "quantity": 15,
+      "status": "in_progress",
+      "allowed_transitions": [
+       "completed",
+       "cancelled"
+      ],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": null,
+      "finished_product": {
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
+      },
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 15,
+      "quantity": 30,
+      "status": "completed",
+      "allowed_transitions": [],
+      "note": null,
+      "started_at": "2026-11-06T15:35:13Z",
+      "completed_at": "2026-11-06T15:35:13Z",
+      "finished_product": {
+       "id": 5,
+       "name": "Naturel Sızma Gemlik 0.3 5L",
+       "volume_litre": 5.0
+      },
+      "recipe": {
+       "id": 1,
+       "name": "Naturel Sızma Gemlik 0.3",
+       "version": 1
+      },
+      "source_storage_unit": {
+       "id": 9,
+       "name": "Gemlik Dolum Tankı (Üretim)",
+       "code": "FILL-GEM-11"
       },
       "created_at": "2026-11-06T15:35:13Z",
       "updated_at": "2026-11-06T15:35:13Z"

@@ -55,7 +55,7 @@ public class ProductionLineResources {
 
 	/** Hattin asamalari sirayla. */
 	public List<Long> stageIds(long lineId) {
-		return jdbc.sql("select id from production_stages where production_line_id = :line order by stage_order asc")
+		return jdbc.sql("select id from production_stages where production_line_id = :line order by stage_order asc, id asc")
 			.param("line", lineId).query(Long.class).list();
 	}
 
@@ -93,7 +93,7 @@ public class ProductionLineResources {
 		if (lineIds.isEmpty()) {
 			return List.of();
 		}
-		return jdbc.sql("select * from " + table + " where production_line_id in (:ids) order by sort_order asc")
+		return jdbc.sql("select * from " + table + " where production_line_id in (:ids) order by sort_order asc, id asc")
 			.param("ids", lineIds).query(LineProduct.class).list();
 	}
 

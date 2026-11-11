@@ -31,7 +31,7 @@ public class ProductionStageResponses {
 	/** Hatta gore, stage_order sirasinda. */
 	@Transactional(readOnly = true)
 	public Map<Long, List<ProductionStageResponse>> byLine(List<Long> lineIds, boolean extensions) {
-		return of(repository.findByProductionLineIdInOrderByStageOrderAsc(lineIds), extensions).stream()
+		return of(repository.findByProductionLineIdInOrderByStageOrderAscIdAsc(lineIds), extensions).stream()
 			.collect(Collectors.groupingBy(ProductionStageResponse::productionLineId));
 	}
 

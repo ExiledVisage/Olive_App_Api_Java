@@ -38,7 +38,7 @@ class FinishedProductRunResponses {
 	/** Ekleme ve durum cevabi: tank ve tarif icerigi yok. */
 	private static final Shape WRITTEN = new Shape(false, false, true);
 
-	private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc("createdAt"));
+	private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"));
 
 	private final FinishedProductRunRepository runs;
 	private final RecipeResources recipes;
@@ -53,7 +53,7 @@ class FinishedProductRunResponses {
 	/** En yeni once. */
 	@Transactional(readOnly = true)
 	List<FinishedProductRunResponse> list() {
-		return responses(runs.findAllByOrderByCreatedAtDesc(), LIST);
+		return responses(runs.findAllByOrderByCreatedAtDescIdDesc(), LIST);
 	}
 
 	@Transactional(readOnly = true)

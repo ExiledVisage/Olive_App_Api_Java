@@ -91,7 +91,7 @@ public class MaterialDirectory {
 		if (batchIds.isEmpty()) {
 			return List.of();
 		}
-		return jdbc.sql("select id, production_batch_id from materials where production_batch_id in (:ids)")
+		return jdbc.sql("select id, production_batch_id from materials where production_batch_id in (:ids) order by id")
 			.param("ids", batchIds).query(BatchMaterial.class).list();
 	}
 
@@ -100,12 +100,12 @@ public class MaterialDirectory {
 			.query(Long.class).single();
 	}
 
-	/** Proses tarafindan yaratilan materyaller, satir sirasiyla. */
+	/** Proses tarafindan yaratilan materyaller, id sirasiyla. */
 	public Map<Long, List<Long>> createdBy(Collection<Long> processIds) {
 		return links("created_by_batch_process_id", processIds);
 	}
 
-	/** Proses tarafindan kapatilan materyaller, satir sirasiyla. */
+	/** Proses tarafindan kapatilan materyaller, id sirasiyla. */
 	public Map<Long, List<Long>> closedBy(Collection<Long> processIds) {
 		return links("closed_by_batch_process_id", processIds);
 	}
@@ -115,7 +115,7 @@ public class MaterialDirectory {
 			return Collections.emptyMap();
 		}
 		List<ProcessLink> rows = jdbc.sql("select id, " + column + " as owner_id from materials where " + column
-			+ " in (:ids)").param("ids", processIds).query(ProcessLink.class).list();
+			+ " in (:ids) order by id").param("ids", processIds).query(ProcessLink.class).list();
 		return rows.stream().collect(Collectors.groupingBy(ProcessLink::ownerId, LinkedHashMap::new,
 			Collectors.mapping(ProcessLink::id, Collectors.toList())));
 	}

@@ -7,7 +7,7 @@ import java.util.List;
 
 interface ProcessTypeRepository extends JpaRepository<ProcessType, Long> {
 
-	List<ProcessType> findAllByOrderByCreatedAtDesc();
+	List<ProcessType> findAllByOrderByCreatedAtDescIdDesc();
 
 	boolean existsByName(String name);
 

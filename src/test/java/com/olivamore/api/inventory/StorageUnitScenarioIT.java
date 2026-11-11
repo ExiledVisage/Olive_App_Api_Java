@@ -23,10 +23,6 @@ class StorageUnitScenarioIT {
 	@Test
 	void scenario() throws Exception {
 		new ScenarioReplay("storage-unit.json", port, jdbc)
-			// tank kurallari ORDER BY'siz iliski: guncellenen satirin fiziksel yeri degisebilir
-			.unordered("kural ekle", "data.attribute_rules")
-			// izinli urunler de ORDER BY'siz
-			.unordered("izinli urun ekle", "data.allowed_production_products")
 			.run()
 			.assertPassed(54);
 	}

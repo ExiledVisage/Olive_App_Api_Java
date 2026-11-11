@@ -30,7 +30,7 @@ class SupplierService {
 	List<SupplierResponse> all(Boolean isActive, String search) {
 		Map<Long, Long> counts = suppliers.countBatches().stream().collect(Collectors.toMap(
 			SupplierRepository.BatchCount::getSupplierId, SupplierRepository.BatchCount::getTotal));
-		return suppliers.findAll(SupplierSpecifications.matching(isActive, search), Sort.by("name")).stream()
+		return suppliers.findAll(SupplierSpecifications.matching(isActive, search), Sort.by("name", "id")).stream()
 			.map(supplier -> SupplierResponse.of(supplier, counts.getOrDefault(supplier.getId(), 0L)))
 			.toList();
 	}

@@ -135,7 +135,7 @@ public class StageQueries {
 
 	private List<ProductType> batchTypes(String table, long batchId) {
 		List<Long> ids = jdbc.sql("select production_product_type_id from " + table
-				+ " where production_batch_id = :batch order by sort_order asc")
+				+ " where production_batch_id = :batch order by sort_order asc, id asc")
 			.param("batch", batchId).query(Long.class).list();
 		Map<Long, ProductDirectory.ProductType> types = products.productTypes(ids);
 		return ids.stream().filter(types::containsKey).map(id -> type(types.get(id))).toList();

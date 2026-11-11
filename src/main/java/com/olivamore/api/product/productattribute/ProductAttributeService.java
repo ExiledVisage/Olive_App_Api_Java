@@ -32,7 +32,7 @@ public class ProductAttributeService {
 
 	@Transactional(readOnly = true)
 	List<AttributeDefinitionResponse> definitions() {
-		return definitions.findAllByOrderByLabelAsc().stream().map(AttributeDefinitionResponse::of).toList();
+		return definitions.findAllByOrderByLabelAscIdAsc().stream().map(AttributeDefinitionResponse::of).toList();
 	}
 
 	@Transactional(readOnly = true)

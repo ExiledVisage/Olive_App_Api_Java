@@ -11,7 +11,7 @@ interface StorageUnitAllowedTypeRepository extends JpaRepository<StorageUnitAllo
 
 	List<StorageUnitAllowedType> findByStorageUnitId(long storageUnitId);
 
-	List<StorageUnitAllowedType> findByStorageUnitIdIn(Collection<Long> unitIds);
+	List<StorageUnitAllowedType> findByStorageUnitIdInOrderByIdAsc(Collection<Long> unitIds);
 
 	long countByStorageUnitId(long storageUnitId);
 

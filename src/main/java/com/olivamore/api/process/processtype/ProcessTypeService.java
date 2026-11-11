@@ -21,7 +21,7 @@ public class ProcessTypeService {
 
 	@Transactional(readOnly = true)
 	List<ProcessType> all() {
-		return repository.findAllByOrderByCreatedAtDesc();
+		return repository.findAllByOrderByCreatedAtDescIdDesc();
 	}
 
 	@Transactional(readOnly = true)

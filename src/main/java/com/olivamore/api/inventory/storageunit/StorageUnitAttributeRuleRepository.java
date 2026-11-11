@@ -12,7 +12,7 @@ public interface StorageUnitAttributeRuleRepository extends JpaRepository<Storag
 
 	List<StorageUnitAttributeRule> findByStorageUnitIdAndActiveTrue(long storageUnitId);
 
-	List<StorageUnitAttributeRule> findByStorageUnitIdIn(Collection<Long> unitIds);
+	List<StorageUnitAttributeRule> findByStorageUnitIdInOrderByIdAsc(Collection<Long> unitIds);
 
 	Optional<StorageUnitAttributeRule> findByStorageUnitIdAndDefinitionId(long storageUnitId, long definitionId);
 

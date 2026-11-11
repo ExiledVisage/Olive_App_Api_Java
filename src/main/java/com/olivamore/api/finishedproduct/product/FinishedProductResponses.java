@@ -46,8 +46,8 @@ class FinishedProductResponses {
 	/** En yeni once; tarif icerigi yok. */
 	@Transactional(readOnly = true)
 	List<FinishedProductResponse> list(Boolean isActive) {
-		List<FinishedProduct> rows = isActive == null ? products.findAllByOrderByCreatedAtDesc()
-			: products.findByActiveOrderByCreatedAtDesc(isActive);
+		List<FinishedProduct> rows = isActive == null ? products.findAllByOrderByCreatedAtDescIdDesc()
+			: products.findByActiveOrderByCreatedAtDescIdDesc(isActive);
 		return responses(rows, false, true, true);
 	}
 

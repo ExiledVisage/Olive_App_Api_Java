@@ -17,9 +17,9 @@ public interface PackagingItemRepository extends JpaRepository<PackagingItem, Lo
 
 	}
 
-	List<PackagingItem> findAllByOrderByCreatedAtDesc();
+	List<PackagingItem> findAllByOrderByCreatedAtDescIdDesc();
 
-	List<PackagingItem> findByActiveOrderByCreatedAtDesc(boolean active);
+	List<PackagingItem> findByActiveOrderByCreatedAtDescIdDesc(boolean active);
 
 	@Query(value = """
 		select packaging_item_id as itemId, count(*) as total,

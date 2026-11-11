@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 class OrderResponses {
 
 	private static final Sort NEWEST_FIRST =
-		Sort.by(Sort.Order.desc("orderDate"), Sort.Order.desc("createdAt"));
+		Sort.by(Sort.Order.desc("orderDate"), Sort.Order.desc("createdAt"), Sort.Order.desc("id"));
 
 	private final SalesOrderRepository orders;
 	private final OrderItemRepository items;

@@ -30,7 +30,7 @@ class ProductionLineService {
 
 	@Transactional(readOnly = true)
 	List<ProductionLine> all() {
-		return lines.findAllByOrderByCreatedAtDesc();
+		return lines.findAllByOrderByCreatedAtDescIdDesc();
 	}
 
 	@Transactional(readOnly = true)

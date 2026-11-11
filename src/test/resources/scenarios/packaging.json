@@ -8073,26 +8073,15 @@
    "response": {
     "data": [
      {
-      "id": 5,
-      "name": "Cam Şişe 5L",
-      "type": "BOTTLE",
-      "current_stock": 824,
-      "lot_count": 3,
-      "active_lot_count": 1,
+      "id": 17,
+      "name": "Arka Etiket (Genel)",
+      "type": "LABEL",
+      "current_stock": 2260,
+      "lot_count": 75,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Teneke Kapak 5L",
-      "type": "CAP",
-      "current_stock": 1024,
-      "lot_count": 3,
-      "active_lot_count": 1,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 16,
@@ -8106,48 +8095,37 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
-      "id": 1,
-      "name": "Cam Şişe 250ml",
-      "type": "BOTTLE",
-      "current_stock": 1334,
-      "lot_count": 41,
+      "id": 15,
+      "name": "Ön Etiket 1L",
+      "type": "LABEL",
+      "current_stock": 1563,
+      "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-10-30T16:37:00Z"
      },
      {
-      "id": 8,
-      "name": "Metal Vidalı Kapak 28mm",
-      "type": "CAP",
-      "current_stock": 3051,
-      "lot_count": 65,
+      "id": 14,
+      "name": "Ön Etiket 750ml",
+      "type": "LABEL",
+      "current_stock": 1786,
+      "lot_count": 7,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 6,
-      "name": "Teneke Kutu 2L",
-      "type": "BOTTLE",
-      "current_stock": 3150,
-      "lot_count": 3,
-      "active_lot_count": 3,
+      "id": 13,
+      "name": "Ön Etiket 500ml",
+      "type": "LABEL",
+      "current_stock": 3542,
+      "lot_count": 27,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "name": "Teneke Kutu 5L",
-      "type": "BOTTLE",
-      "current_stock": 2850,
-      "lot_count": 3,
-      "active_lot_count": 3,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 12,
@@ -8161,15 +8139,15 @@
       "updated_at": "2026-11-06T07:25:00Z"
      },
      {
-      "id": 17,
-      "name": "Arka Etiket (Genel)",
-      "type": "LABEL",
-      "current_stock": 2260,
-      "lot_count": 75,
-      "active_lot_count": 2,
+      "id": 11,
+      "name": "Teneke Kapak 5L",
+      "type": "CAP",
+      "current_stock": 1024,
+      "lot_count": 3,
+      "active_lot_count": 1,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 10,
@@ -8183,21 +8161,65 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
+      "id": 9,
+      "name": "Metal Vidalı Kapak 38mm",
+      "type": "CAP",
+      "current_stock": 74,
+      "lot_count": 12,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T03:08:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Metal Vidalı Kapak 28mm",
+      "type": "CAP",
+      "current_stock": 3051,
+      "lot_count": 65,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Teneke Kutu 5L",
+      "type": "BOTTLE",
+      "current_stock": 2850,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 6,
+      "name": "Teneke Kutu 2L",
+      "type": "BOTTLE",
+      "current_stock": 3150,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 5,
+      "name": "Cam Şişe 5L",
+      "type": "BOTTLE",
+      "current_stock": 824,
+      "lot_count": 3,
+      "active_lot_count": 1,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
+     },
+     {
       "id": 4,
       "name": "Cam Şişe 1L",
       "type": "BOTTLE",
       "current_stock": 1888,
-      "lot_count": 8,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-30T16:37:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Ön Etiket 1L",
-      "type": "LABEL",
-      "current_stock": 1563,
       "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
@@ -8216,28 +8238,6 @@
       "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 9,
-      "name": "Metal Vidalı Kapak 38mm",
-      "type": "CAP",
-      "current_stock": 74,
-      "lot_count": 12,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
-      "id": 14,
-      "name": "Ön Etiket 750ml",
-      "type": "LABEL",
-      "current_stock": 1786,
-      "lot_count": 7,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
       "id": 2,
       "name": "Cam Şişe 500ml",
       "type": "BOTTLE",
@@ -8249,15 +8249,15 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
-      "id": 13,
-      "name": "Ön Etiket 500ml",
-      "type": "LABEL",
-      "current_stock": 3542,
-      "lot_count": 27,
+      "id": 1,
+      "name": "Cam Şişe 250ml",
+      "type": "BOTTLE",
+      "current_stock": 1334,
+      "lot_count": 41,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T13:19:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      }
     ]
    },
@@ -8272,26 +8272,15 @@
    "response": {
     "data": [
      {
-      "id": 5,
-      "name": "Cam Şişe 5L",
-      "type": "BOTTLE",
-      "current_stock": 824,
-      "lot_count": 3,
-      "active_lot_count": 1,
+      "id": 17,
+      "name": "Arka Etiket (Genel)",
+      "type": "LABEL",
+      "current_stock": 2260,
+      "lot_count": 75,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Teneke Kapak 5L",
-      "type": "CAP",
-      "current_stock": 1024,
-      "lot_count": 3,
-      "active_lot_count": 1,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 16,
@@ -8305,48 +8294,37 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
-      "id": 1,
-      "name": "Cam Şişe 250ml",
-      "type": "BOTTLE",
-      "current_stock": 1334,
-      "lot_count": 41,
+      "id": 15,
+      "name": "Ön Etiket 1L",
+      "type": "LABEL",
+      "current_stock": 1563,
+      "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-10-30T16:37:00Z"
      },
      {
-      "id": 8,
-      "name": "Metal Vidalı Kapak 28mm",
-      "type": "CAP",
-      "current_stock": 3051,
-      "lot_count": 65,
+      "id": 14,
+      "name": "Ön Etiket 750ml",
+      "type": "LABEL",
+      "current_stock": 1786,
+      "lot_count": 7,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 6,
-      "name": "Teneke Kutu 2L",
-      "type": "BOTTLE",
-      "current_stock": 3150,
-      "lot_count": 3,
-      "active_lot_count": 3,
+      "id": 13,
+      "name": "Ön Etiket 500ml",
+      "type": "LABEL",
+      "current_stock": 3542,
+      "lot_count": 27,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "name": "Teneke Kutu 5L",
-      "type": "BOTTLE",
-      "current_stock": 2850,
-      "lot_count": 3,
-      "active_lot_count": 3,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 12,
@@ -8360,15 +8338,15 @@
       "updated_at": "2026-11-06T07:25:00Z"
      },
      {
-      "id": 17,
-      "name": "Arka Etiket (Genel)",
-      "type": "LABEL",
-      "current_stock": 2260,
-      "lot_count": 75,
-      "active_lot_count": 2,
+      "id": 11,
+      "name": "Teneke Kapak 5L",
+      "type": "CAP",
+      "current_stock": 1024,
+      "lot_count": 3,
+      "active_lot_count": 1,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 10,
@@ -8382,21 +8360,65 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
+      "id": 9,
+      "name": "Metal Vidalı Kapak 38mm",
+      "type": "CAP",
+      "current_stock": 74,
+      "lot_count": 12,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T03:08:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Metal Vidalı Kapak 28mm",
+      "type": "CAP",
+      "current_stock": 3051,
+      "lot_count": 65,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Teneke Kutu 5L",
+      "type": "BOTTLE",
+      "current_stock": 2850,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 6,
+      "name": "Teneke Kutu 2L",
+      "type": "BOTTLE",
+      "current_stock": 3150,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 5,
+      "name": "Cam Şişe 5L",
+      "type": "BOTTLE",
+      "current_stock": 824,
+      "lot_count": 3,
+      "active_lot_count": 1,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
+     },
+     {
       "id": 4,
       "name": "Cam Şişe 1L",
       "type": "BOTTLE",
       "current_stock": 1888,
-      "lot_count": 8,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-30T16:37:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Ön Etiket 1L",
-      "type": "LABEL",
-      "current_stock": 1563,
       "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
@@ -8415,28 +8437,6 @@
       "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 9,
-      "name": "Metal Vidalı Kapak 38mm",
-      "type": "CAP",
-      "current_stock": 74,
-      "lot_count": 12,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
-      "id": 14,
-      "name": "Ön Etiket 750ml",
-      "type": "LABEL",
-      "current_stock": 1786,
-      "lot_count": 7,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
       "id": 2,
       "name": "Cam Şişe 500ml",
       "type": "BOTTLE",
@@ -8448,15 +8448,15 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
-      "id": 13,
-      "name": "Ön Etiket 500ml",
-      "type": "LABEL",
-      "current_stock": 3542,
-      "lot_count": 27,
+      "id": 1,
+      "name": "Cam Şişe 250ml",
+      "type": "BOTTLE",
+      "current_stock": 1334,
+      "lot_count": 41,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T13:19:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      }
     ]
    },
@@ -8482,26 +8482,15 @@
    "response": {
     "data": [
      {
-      "id": 5,
-      "name": "Cam Şişe 5L",
-      "type": "BOTTLE",
-      "current_stock": 824,
-      "lot_count": 3,
-      "active_lot_count": 1,
+      "id": 17,
+      "name": "Arka Etiket (Genel)",
+      "type": "LABEL",
+      "current_stock": 2260,
+      "lot_count": 75,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Teneke Kapak 5L",
-      "type": "CAP",
-      "current_stock": 1024,
-      "lot_count": 3,
-      "active_lot_count": 1,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 16,
@@ -8515,48 +8504,37 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
-      "id": 1,
-      "name": "Cam Şişe 250ml",
-      "type": "BOTTLE",
-      "current_stock": 1334,
-      "lot_count": 41,
+      "id": 15,
+      "name": "Ön Etiket 1L",
+      "type": "LABEL",
+      "current_stock": 1563,
+      "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-10-30T16:37:00Z"
      },
      {
-      "id": 8,
-      "name": "Metal Vidalı Kapak 28mm",
-      "type": "CAP",
-      "current_stock": 3051,
-      "lot_count": 65,
+      "id": 14,
+      "name": "Ön Etiket 750ml",
+      "type": "LABEL",
+      "current_stock": 1786,
+      "lot_count": 7,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 6,
-      "name": "Teneke Kutu 2L",
-      "type": "BOTTLE",
-      "current_stock": 3150,
-      "lot_count": 3,
-      "active_lot_count": 3,
+      "id": 13,
+      "name": "Ön Etiket 500ml",
+      "type": "LABEL",
+      "current_stock": 3542,
+      "lot_count": 27,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "name": "Teneke Kutu 5L",
-      "type": "BOTTLE",
-      "current_stock": 2850,
-      "lot_count": 3,
-      "active_lot_count": 3,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 12,
@@ -8570,15 +8548,15 @@
       "updated_at": "2026-11-06T07:25:00Z"
      },
      {
-      "id": 17,
-      "name": "Arka Etiket (Genel)",
-      "type": "LABEL",
-      "current_stock": 2260,
-      "lot_count": 75,
-      "active_lot_count": 2,
+      "id": 11,
+      "name": "Teneke Kapak 5L",
+      "type": "CAP",
+      "current_stock": 1024,
+      "lot_count": 3,
+      "active_lot_count": 1,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 10,
@@ -8592,21 +8570,65 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
+      "id": 9,
+      "name": "Metal Vidalı Kapak 38mm",
+      "type": "CAP",
+      "current_stock": 74,
+      "lot_count": 12,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T03:08:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Metal Vidalı Kapak 28mm",
+      "type": "CAP",
+      "current_stock": 3051,
+      "lot_count": 65,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Teneke Kutu 5L",
+      "type": "BOTTLE",
+      "current_stock": 2850,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 6,
+      "name": "Teneke Kutu 2L",
+      "type": "BOTTLE",
+      "current_stock": 3150,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 5,
+      "name": "Cam Şişe 5L",
+      "type": "BOTTLE",
+      "current_stock": 824,
+      "lot_count": 3,
+      "active_lot_count": 1,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
+     },
+     {
       "id": 4,
       "name": "Cam Şişe 1L",
       "type": "BOTTLE",
       "current_stock": 1888,
-      "lot_count": 8,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-30T16:37:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Ön Etiket 1L",
-      "type": "LABEL",
-      "current_stock": 1563,
       "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
@@ -8625,28 +8647,6 @@
       "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 9,
-      "name": "Metal Vidalı Kapak 38mm",
-      "type": "CAP",
-      "current_stock": 74,
-      "lot_count": 12,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
-      "id": 14,
-      "name": "Ön Etiket 750ml",
-      "type": "LABEL",
-      "current_stock": 1786,
-      "lot_count": 7,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
       "id": 2,
       "name": "Cam Şişe 500ml",
       "type": "BOTTLE",
@@ -8658,15 +8658,15 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
-      "id": 13,
-      "name": "Ön Etiket 500ml",
-      "type": "LABEL",
-      "current_stock": 3542,
-      "lot_count": 27,
+      "id": 1,
+      "name": "Cam Şişe 250ml",
+      "type": "BOTTLE",
+      "current_stock": 1334,
+      "lot_count": 41,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T13:19:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      }
     ]
    },
@@ -8758,26 +8758,15 @@
    "response": {
     "data": [
      {
-      "id": 5,
-      "name": "Cam Şişe 5L",
-      "type": "BOTTLE",
-      "current_stock": 824,
-      "lot_count": 3,
-      "active_lot_count": 1,
+      "id": 17,
+      "name": "Arka Etiket (Genel)",
+      "type": "LABEL",
+      "current_stock": 2260,
+      "lot_count": 75,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
-     },
-     {
-      "id": 11,
-      "name": "Teneke Kapak 5L",
-      "type": "CAP",
-      "current_stock": 1024,
-      "lot_count": 3,
-      "active_lot_count": 1,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T02:13:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      },
      {
       "id": 16,
@@ -8791,48 +8780,37 @@
       "updated_at": "2026-11-06T02:13:00Z"
      },
      {
-      "id": 1,
-      "name": "Cam Şişe 250ml",
-      "type": "BOTTLE",
-      "current_stock": 1334,
-      "lot_count": 41,
+      "id": 15,
+      "name": "Ön Etiket 1L",
+      "type": "LABEL",
+      "current_stock": 1563,
+      "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-10-30T16:37:00Z"
      },
      {
-      "id": 8,
-      "name": "Metal Vidalı Kapak 28mm",
-      "type": "CAP",
-      "current_stock": 3051,
-      "lot_count": 65,
+      "id": 14,
+      "name": "Ön Etiket 750ml",
+      "type": "LABEL",
+      "current_stock": 1786,
+      "lot_count": 7,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 6,
-      "name": "Teneke Kutu 2L",
-      "type": "BOTTLE",
-      "current_stock": 3150,
-      "lot_count": 3,
-      "active_lot_count": 3,
+      "id": 13,
+      "name": "Ön Etiket 500ml",
+      "type": "LABEL",
+      "current_stock": 3542,
+      "lot_count": 27,
+      "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
-     },
-     {
-      "id": 7,
-      "name": "Teneke Kutu 5L",
-      "type": "BOTTLE",
-      "current_stock": 2850,
-      "lot_count": 3,
-      "active_lot_count": 3,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T15:35:13Z"
+      "updated_at": "2026-11-04T13:19:00Z"
      },
      {
       "id": 12,
@@ -8846,15 +8824,15 @@
       "updated_at": "2026-11-06T07:25:00Z"
      },
      {
-      "id": 17,
-      "name": "Arka Etiket (Genel)",
-      "type": "LABEL",
-      "current_stock": 2260,
-      "lot_count": 75,
-      "active_lot_count": 2,
+      "id": 11,
+      "name": "Teneke Kapak 5L",
+      "type": "CAP",
+      "current_stock": 1024,
+      "lot_count": 3,
+      "active_lot_count": 1,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-06T07:25:00Z"
+      "updated_at": "2026-11-06T02:13:00Z"
      },
      {
       "id": 10,
@@ -8868,21 +8846,65 @@
       "updated_at": "2026-11-06T15:35:13Z"
      },
      {
+      "id": 9,
+      "name": "Metal Vidalı Kapak 38mm",
+      "type": "CAP",
+      "current_stock": 74,
+      "lot_count": 12,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-04T03:08:00Z"
+     },
+     {
+      "id": 8,
+      "name": "Metal Vidalı Kapak 28mm",
+      "type": "CAP",
+      "current_stock": 3051,
+      "lot_count": 65,
+      "active_lot_count": 2,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T07:25:00Z"
+     },
+     {
+      "id": 7,
+      "name": "Teneke Kutu 5L",
+      "type": "BOTTLE",
+      "current_stock": 2850,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 6,
+      "name": "Teneke Kutu 2L",
+      "type": "BOTTLE",
+      "current_stock": 3150,
+      "lot_count": 3,
+      "active_lot_count": 3,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T15:35:13Z"
+     },
+     {
+      "id": 5,
+      "name": "Cam Şişe 5L",
+      "type": "BOTTLE",
+      "current_stock": 824,
+      "lot_count": 3,
+      "active_lot_count": 1,
+      "is_active": true,
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-06T02:13:00Z"
+     },
+     {
       "id": 4,
       "name": "Cam Şişe 1L",
       "type": "BOTTLE",
       "current_stock": 1888,
-      "lot_count": 8,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-10-30T16:37:00Z"
-     },
-     {
-      "id": 15,
-      "name": "Ön Etiket 1L",
-      "type": "LABEL",
-      "current_stock": 1563,
       "lot_count": 8,
       "active_lot_count": 2,
       "is_active": true,
@@ -8901,28 +8923,6 @@
       "updated_at": "2026-11-04T03:08:00Z"
      },
      {
-      "id": 9,
-      "name": "Metal Vidalı Kapak 38mm",
-      "type": "CAP",
-      "current_stock": 74,
-      "lot_count": 12,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
-      "id": 14,
-      "name": "Ön Etiket 750ml",
-      "type": "LABEL",
-      "current_stock": 1786,
-      "lot_count": 7,
-      "active_lot_count": 2,
-      "is_active": true,
-      "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T03:08:00Z"
-     },
-     {
       "id": 2,
       "name": "Cam Şişe 500ml",
       "type": "BOTTLE",
@@ -8934,15 +8934,15 @@
       "updated_at": "2026-11-04T13:19:00Z"
      },
      {
-      "id": 13,
-      "name": "Ön Etiket 500ml",
-      "type": "LABEL",
-      "current_stock": 3542,
-      "lot_count": 27,
+      "id": 1,
+      "name": "Cam Şişe 250ml",
+      "type": "BOTTLE",
+      "current_stock": 1334,
+      "lot_count": 41,
       "active_lot_count": 2,
       "is_active": true,
       "created_at": "2026-11-06T15:35:13Z",
-      "updated_at": "2026-11-04T13:19:00Z"
+      "updated_at": "2026-11-06T07:25:00Z"
      }
     ]
    },

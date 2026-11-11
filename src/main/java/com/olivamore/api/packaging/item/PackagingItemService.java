@@ -27,8 +27,8 @@ class PackagingItemService {
 	@Transactional(readOnly = true)
 	List<PackagingItemResponse> all(Boolean isActive) {
 		List<PackagingItem> items = isActive == null
-			? repository.findAllByOrderByCreatedAtDesc()
-			: repository.findByActiveOrderByCreatedAtDesc(isActive);
+			? repository.findAllByOrderByCreatedAtDescIdDesc()
+			: repository.findByActiveOrderByCreatedAtDescIdDesc(isActive);
 		Map<Long, PackagingItemRepository.LotCounts> counts = counts();
 		return items.stream().map(item -> response(item, counts)).toList();
 	}

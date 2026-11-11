@@ -51,7 +51,7 @@ public class ProcessResources {
 
 	/** Proses tipinin alanlari, sort_order sirasinda. */
 	public List<Field> fieldsOfType(long processTypeId) {
-		return jdbc.sql("select * from process_type_fields where process_type_id = :type order by sort_order asc")
+		return jdbc.sql("select * from process_type_fields where process_type_id = :type order by sort_order asc, id asc")
 			.param("type", processTypeId).query(Field.class).list();
 	}
 

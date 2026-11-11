@@ -14,7 +14,7 @@ public interface FinishedProductRunRepository extends JpaRepository<FinishedProd
 	Optional<FinishedProductRun> findWithDetailsById(long id);
 
 	@EntityGraph(attributePaths = {"product", "recipe"})
-	List<FinishedProductRun> findAllByOrderByCreatedAtDesc();
+	List<FinishedProductRun> findAllByOrderByCreatedAtDescIdDesc();
 
 	@Override
 	@EntityGraph(attributePaths = {"product", "recipe"})

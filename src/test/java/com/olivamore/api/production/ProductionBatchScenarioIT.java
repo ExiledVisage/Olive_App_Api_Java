@@ -25,8 +25,6 @@ class ProductionBatchScenarioIT {
 		new ScenarioReplay("production-batch.json", port, jdbc)
 			// varsayilan received_at "simdi": takvim sayimi senaryonun gunune bagli
 			.clockAt("2026-11-06T21:39:00Z")
-			// partinin prosesleri ve materyalleri ORDER BY'siz: satirlarin sirasi sorgu planina bagli
-			.unorderedEverywhere("processes", "materials")
 			.run()
 			.assertPassed(40);
 	}

@@ -35,7 +35,7 @@ public class ProductionProductService {
 
 	@Transactional(readOnly = true)
 	List<ProductionProduct> all() {
-		return repository.findAllByOrderByCreatedAtDesc();
+		return repository.findAllByOrderByCreatedAtDescIdDesc();
 	}
 
 	@Transactional(readOnly = true)

@@ -57,8 +57,8 @@ class ProductionBatchResponses {
 
 	List<ProductionBatchResponse> list(List<ProductionBatch> rows) {
 		List<Long> ids = rows.stream().map(ProductionBatch::getId).toList();
-		Map<Long, List<BatchType>> inputTypes = types(inputs.findByProductionBatchIdInOrderBySortOrderAsc(ids));
-		Map<Long, List<BatchType>> outputTypes = types(outputs.findByProductionBatchIdInOrderBySortOrderAsc(ids));
+		Map<Long, List<BatchType>> inputTypes = types(inputs.findByProductionBatchIdInOrderBySortOrderAscIdAsc(ids));
+		Map<Long, List<BatchType>> outputTypes = types(outputs.findByProductionBatchIdInOrderBySortOrderAscIdAsc(ids));
 		Map<Long, Line> lines = lines(rows.stream().map(ProductionBatch::getProductionLineId).distinct().toList());
 		Map<Long, BatchProcessResponse.UserSummary> creators = users.users(
 			present(rows.stream().map(ProductionBatch::getCreatedByUserId)));
@@ -87,7 +87,7 @@ class ProductionBatchResponses {
 	}
 
 	private Map<Long, List<BatchProcessResponse>> processes(List<Long> batchIds) {
-		List<BatchProcess> rows = processes.findByProductionBatchIdIn(batchIds);
+		List<BatchProcess> rows = processes.findByProductionBatchIdInOrderByIdAsc(batchIds);
 		List<BatchProcessResponse> responses = processResponses.ofBatchProcesses(rows);
 		Map<Long, List<BatchProcessResponse>> out = new LinkedHashMap<>();
 		responses.forEach(r -> out.computeIfAbsent(r.productionBatchId(), k -> new ArrayList<>()).add(r));

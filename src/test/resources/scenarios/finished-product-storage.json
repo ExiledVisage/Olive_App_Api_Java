@@ -15,26 +15,6 @@
       "is_active": true,
       "slots": [
        {
-        "id": 6,
-        "name": "C1",
-        "volume_litre": 0.75,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 200
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
         "id": 1,
         "name": "A1",
         "volume_litre": 0.25,
@@ -119,29 +99,29 @@
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
-        "id": 8,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 43,
-        "available": 7,
+        "id": 6,
+        "name": "C1",
+        "volume_litre": 0.75,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
           },
-          "quantity": 43
+          "quantity": 200
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-28T13:12:00Z"
+        "updated_at": "2026-11-04T03:40:00Z"
        },
        {
         "id": 7,
         "name": "D1",
-        "volume_litre": 1,
+        "volume_litre": 1.0,
         "max_quantity": 200,
         "current_quantity": 42,
         "available": 158,
@@ -157,18 +137,38 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 8,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 43,
+        "available": 7,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
+          },
+          "quantity": 43
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-28T13:12:00Z"
        }
       ],
       "stock": [
        {
-        "id": 29,
+        "id": 1,
         "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
+         "id": 1,
+         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "volume_litre": 0.25
         },
-        "quantity": 42,
-        "updated_at": "2026-10-19T20:34:00Z"
+        "quantity": 0,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
         "id": 2,
@@ -181,14 +181,14 @@
         "updated_at": "2026-10-02T22:19:00Z"
        },
        {
-        "id": 37,
+        "id": 3,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 140,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
         "id": 4,
@@ -201,66 +201,6 @@
         "updated_at": "2026-08-01T02:12:00Z"
        },
        {
-        "id": 43,
-        "finished_product": {
-         "id": 17,
-         "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-01T02:12:00Z"
-       },
-       {
-        "id": 7,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-25T05:58:00Z"
-       },
-       {
-        "id": 28,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 23,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 200,
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 11,
-        "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 43,
-        "updated_at": "2026-10-28T13:12:00Z"
-       },
-       {
-        "id": 1,
-        "finished_product": {
-         "id": 1,
-         "name": "Naturel Sızma Gemlik 0.3 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
         "id": 5,
         "finished_product": {
          "id": 2,
@@ -269,46 +209,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 16,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
-        "id": 34,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 3,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 140,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 31,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
        },
        {
         "id": 6,
@@ -321,6 +221,36 @@
         "updated_at": "2026-10-07T17:42:00Z"
        },
        {
+        "id": 7,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-25T05:58:00Z"
+       },
+       {
+        "id": 11,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 43,
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 16,
+        "finished_product": {
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-31T23:07:00Z"
+       },
+       {
         "id": 19,
         "finished_product": {
          "id": 10,
@@ -329,6 +259,76 @@
         },
         "quantity": 401,
         "updated_at": "2026-11-04T14:34:00Z"
+       },
+       {
+        "id": 23,
+        "finished_product": {
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 28,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 29,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 42,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 31,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 34,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 37,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 43,
+        "finished_product": {
+         "id": 17,
+         "name": "Klasik Blend 0.5 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-01T02:12:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -340,46 +340,6 @@
       "description": "Aromalı ve özel ürünler için soğuk hava deposu",
       "is_active": true,
       "slots": [
-       {
-        "id": 13,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 50,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
-          },
-          "quantity": 50
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2025-11-22T02:38:00Z"
-       },
-       {
-        "id": 11,
-        "name": "B1",
-        "volume_litre": 0.5,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 2,
-           "name": "Naturel Sızma Gemlik 0.3 500ml"
-          },
-          "quantity": 200
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-05T14:43:00Z"
-       },
        {
         "id": 9,
         "name": "A1",
@@ -421,6 +381,26 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
+        "id": 11,
+        "name": "B1",
+        "volume_litre": 0.5,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 2,
+           "name": "Naturel Sızma Gemlik 0.3 500ml"
+          },
+          "quantity": 200
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-05T14:43:00Z"
+       },
+       {
         "id": 12,
         "name": "B2",
         "volume_litre": 0.5,
@@ -439,49 +419,29 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-04T14:34:00Z"
+       },
+       {
+        "id": 13,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 50,
+        "available": 0,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
+          },
+          "quantity": 50
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2025-11-22T02:38:00Z"
        }
       ],
       "stock": [
-       {
-        "id": 41,
-        "finished_product": {
-         "id": 6,
-         "name": "Naturel Sızma Gemlik 0.8 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
-       },
-       {
-        "id": 40,
-        "finished_product": {
-         "id": 14,
-         "name": "Naturel Sızma Ayvalık 0.9 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-09-13T08:32:00Z"
-       },
-       {
-        "id": 10,
-        "finished_product": {
-         "id": 18,
-         "name": "Portakallı Zeytinyağı 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 52,
-        "updated_at": "2025-11-10T17:25:00Z"
-       },
-       {
-        "id": 45,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-07-27T16:34:00Z"
-       },
        {
         "id": 8,
         "finished_product": {
@@ -491,16 +451,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 14,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-28T13:12:00Z"
        },
        {
         "id": 9,
@@ -513,14 +463,44 @@
         "updated_at": "2026-08-18T01:25:00Z"
        },
        {
-        "id": 35,
+        "id": 10,
         "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
+         "id": 18,
+         "name": "Portakallı Zeytinyağı 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 52,
+        "updated_at": "2025-11-10T17:25:00Z"
+       },
+       {
+        "id": 12,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 50,
+        "updated_at": "2025-11-22T02:38:00Z"
+       },
+       {
+        "id": 14,
+        "finished_product": {
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
+         "volume_litre": 0.25
         },
         "quantity": 0,
-        "updated_at": "2026-10-04T08:03:00Z"
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 20,
+        "finished_product": {
+         "id": 10,
+         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T14:34:00Z"
        },
        {
         "id": 25,
@@ -533,6 +513,16 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
+        "id": 35,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-04T08:03:00Z"
+       },
+       {
         "id": 38,
         "finished_product": {
          "id": 13,
@@ -543,24 +533,34 @@
         "updated_at": "2026-10-04T08:03:00Z"
        },
        {
-        "id": 12,
+        "id": 40,
         "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 50,
-        "updated_at": "2025-11-22T02:38:00Z"
-       },
-       {
-        "id": 20,
-        "finished_product": {
-         "id": 10,
-         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "id": 14,
+         "name": "Naturel Sızma Ayvalık 0.9 500ml",
          "volume_litre": 0.5
         },
-        "quantity": 200,
-        "updated_at": "2026-11-04T14:34:00Z"
+        "quantity": 0,
+        "updated_at": "2026-09-13T08:32:00Z"
+       },
+       {
+        "id": 41,
+        "finished_product": {
+         "id": 6,
+         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 45,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-07-27T16:34:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -573,71 +573,24 @@
       "is_active": true,
       "slots": [
        {
-        "id": 22,
-        "name": "L1",
-        "volume_litre": 1,
-        "max_quantity": 600,
-        "current_quantity": 150,
-        "available": 450,
+        "id": 14,
+        "name": "K1",
+        "volume_litre": 0.25,
+        "max_quantity": 1500,
+        "current_quantity": 12,
+        "available": 1488,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 12,
-           "name": "Naturel Sızma Ayvalık 0.4 1L"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 150
+          "quantity": 12
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 21,
-        "name": "B2",
-        "volume_litre": 0.75,
-        "max_quantity": 600,
-        "current_quantity": 442,
-        "available": 158,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 11,
-           "name": "Naturel Sızma Ayvalık 0.4 750ml"
-          },
-          "quantity": 36
-         },
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 406
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 20,
-        "name": "B1",
-        "volume_litre": 0.75,
-        "max_quantity": 600,
-        "current_quantity": 126,
-        "available": 474,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 126
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-05T08:51:00Z"
+        "updated_at": "2026-11-06T09:21:00Z"
        },
        {
         "id": 15,
@@ -652,45 +605,38 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
-        "id": 23,
-        "name": "L2",
-        "volume_litre": 1,
-        "max_quantity": 600,
-        "current_quantity": 426,
-        "available": 174,
+        "id": 16,
+        "name": "K3",
+        "volume_litre": 0.25,
+        "max_quantity": 1500,
+        "current_quantity": 200,
+        "available": 1300,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 12,
-           "name": "Naturel Sızma Ayvalık 0.4 1L"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 102
+          "quantity": 148
          },
          {
           "finished_product": {
-           "id": 8,
-           "name": "Naturel Sızma Gemlik 0.8 1L"
+           "id": 13,
+           "name": "Naturel Sızma Ayvalık 0.9 250ml"
           },
-          "quantity": 36
+          "quantity": 24
          },
          {
           "finished_product": {
-           "id": 17,
-           "name": "Klasik Blend 0.5 1L"
+           "id": 6,
+           "name": "Naturel Sızma Gemlik 0.8 250ml"
           },
-          "quantity": 144
-         },
-         {
-          "finished_product": {
-           "id": 4,
-           "name": "Naturel Sızma Gemlik 0.3 1L"
-          },
-          "quantity": 144
+          "quantity": 28
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-31T23:55:00Z"
+        "updated_at": "2026-10-31T23:07:00Z"
        },
        {
         "id": 17,
@@ -730,13 +676,6 @@
         "contents": [
          {
           "finished_product": {
-           "id": 2,
-           "name": "Naturel Sızma Gemlik 0.3 500ml"
-          },
-          "quantity": 102
-         },
-         {
-          "finished_product": {
            "id": 10,
            "name": "Naturel Sızma Ayvalık 0.4 500ml"
           },
@@ -748,15 +687,171 @@
            "name": "Klasik Blend 0.5 500ml"
           },
           "quantity": 170
+         },
+         {
+          "finished_product": {
+           "id": 2,
+           "name": "Naturel Sızma Gemlik 0.3 500ml"
+          },
+          "quantity": 102
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
+        "id": 19,
+        "name": "Y3",
+        "volume_litre": 0.5,
+        "max_quantity": 1000,
+        "current_quantity": 326,
+        "available": 674,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 7,
+           "name": "Naturel Sızma Gemlik 0.8 500ml"
+          },
+          "quantity": 132
+         },
+         {
+          "finished_product": {
+           "id": 14,
+           "name": "Naturel Sızma Ayvalık 0.9 500ml"
+          },
+          "quantity": 68
+         },
+         {
+          "finished_product": {
+           "id": 16,
+           "name": "Klasik Blend 0.5 500ml"
+          },
+          "quantity": 62
+         },
+         {
+          "finished_product": {
+           "id": 10,
+           "name": "Naturel Sızma Ayvalık 0.4 500ml"
+          },
+          "quantity": 64
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-17T02:54:00Z"
+       },
+       {
+        "id": 20,
+        "name": "B1",
+        "volume_litre": 0.75,
+        "max_quantity": 600,
+        "current_quantity": 126,
+        "available": 474,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
+          },
+          "quantity": 126
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 21,
+        "name": "B2",
+        "volume_litre": 0.75,
+        "max_quantity": 600,
+        "current_quantity": 442,
+        "available": 158,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 11,
+           "name": "Naturel Sızma Ayvalık 0.4 750ml"
+          },
+          "quantity": 36
+         },
+         {
+          "finished_product": {
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
+          },
+          "quantity": 406
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 22,
+        "name": "L1",
+        "volume_litre": 1.0,
+        "max_quantity": 600,
+        "current_quantity": 150,
+        "available": 450,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 12,
+           "name": "Naturel Sızma Ayvalık 0.4 1L"
+          },
+          "quantity": 150
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 23,
+        "name": "L2",
+        "volume_litre": 1.0,
+        "max_quantity": 600,
+        "current_quantity": 426,
+        "available": 174,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 12,
+           "name": "Naturel Sızma Ayvalık 0.4 1L"
+          },
+          "quantity": 102
+         },
+         {
+          "finished_product": {
+           "id": 4,
+           "name": "Naturel Sızma Gemlik 0.3 1L"
+          },
+          "quantity": 144
+         },
+         {
+          "finished_product": {
+           "id": 8,
+           "name": "Naturel Sızma Gemlik 0.8 1L"
+          },
+          "quantity": 36
+         },
+         {
+          "finished_product": {
+           "id": 17,
+           "name": "Klasik Blend 0.5 1L"
+          },
+          "quantity": 144
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-31T23:55:00Z"
+       },
+       {
         "id": 24,
         "name": "T1",
-        "volume_litre": 5,
+        "volume_litre": 5.0,
         "max_quantity": 150,
         "current_quantity": 150,
         "available": 0,
@@ -774,43 +869,9 @@
         "updated_at": "2026-11-06T04:02:00Z"
        },
        {
-        "id": 16,
-        "name": "K3",
-        "volume_litre": 0.25,
-        "max_quantity": 1500,
-        "current_quantity": 200,
-        "available": 1300,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 13,
-           "name": "Naturel Sızma Ayvalık 0.9 250ml"
-          },
-          "quantity": 24
-         },
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 148
-         },
-         {
-          "finished_product": {
-           "id": 6,
-           "name": "Naturel Sızma Gemlik 0.8 250ml"
-          },
-          "quantity": 28
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
         "id": 25,
         "name": "T2",
-        "volume_litre": 5,
+        "volume_litre": 5.0,
         "max_quantity": 150,
         "current_quantity": 29,
         "available": 121,
@@ -826,99 +887,48 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-06T04:02:00Z"
-       },
-       {
-        "id": 14,
-        "name": "K1",
-        "volume_litre": 0.25,
-        "max_quantity": 1500,
-        "current_quantity": 12,
-        "available": 1488,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 12
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-06T09:21:00Z"
-       },
-       {
-        "id": 19,
-        "name": "Y3",
-        "volume_litre": 0.5,
-        "max_quantity": 1000,
-        "current_quantity": 326,
-        "available": 674,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 14,
-           "name": "Naturel Sızma Ayvalık 0.9 500ml"
-          },
-          "quantity": 68
-         },
-         {
-          "finished_product": {
-           "id": 10,
-           "name": "Naturel Sızma Ayvalık 0.4 500ml"
-          },
-          "quantity": 64
-         },
-         {
-          "finished_product": {
-           "id": 16,
-           "name": "Klasik Blend 0.5 500ml"
-          },
-          "quantity": 62
-         },
-         {
-          "finished_product": {
-           "id": 7,
-           "name": "Naturel Sızma Gemlik 0.8 500ml"
-          },
-          "quantity": 132
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-17T02:54:00Z"
        }
       ],
       "stock": [
        {
-        "id": 32,
+        "id": 13,
         "finished_product": {
-         "id": 6,
-         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 28,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 0,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
-        "id": 36,
+        "id": 15,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
-         "volume_litre": 0.25
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
         },
-        "quantity": 24,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 36,
+        "updated_at": "2026-11-02T20:24:00Z"
        },
        {
         "id": 17,
         "finished_product": {
          "id": 5,
          "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
+         "volume_litre": 5.0
         },
         "quantity": 179,
         "updated_at": "2026-11-06T04:02:00Z"
+       },
+       {
+        "id": 18,
+        "finished_product": {
+         "id": 10,
+         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 1319,
+        "updated_at": "2026-11-04T14:34:00Z"
        },
        {
         "id": 21,
@@ -931,11 +941,101 @@
         "updated_at": "2026-11-06T09:21:00Z"
        },
        {
+        "id": 22,
+        "finished_product": {
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 532,
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 24,
+        "finished_product": {
+         "id": 2,
+         "name": "Naturel Sızma Gemlik 0.3 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 198,
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 26,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 144,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 27,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 252,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 30,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 36,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 32,
+        "finished_product": {
+         "id": 6,
+         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 28,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 33,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 132,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 36,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 24,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 39,
+        "finished_product": {
+         "id": 14,
+         "name": "Naturel Sızma Ayvalık 0.9 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 68,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
         "id": 42,
         "finished_product": {
          "id": 17,
          "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
+         "volume_litre": 1.0
         },
         "quantity": 144,
         "updated_at": "2026-08-01T02:12:00Z"
@@ -951,26 +1051,6 @@
         "updated_at": "2026-08-25T05:58:00Z"
        },
        {
-        "id": 15,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 36,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 27,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 252,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
         "id": 46,
         "finished_product": {
          "id": 15,
@@ -979,86 +1059,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-07-17T16:17:00Z"
-       },
-       {
-        "id": 24,
-        "finished_product": {
-         "id": 2,
-         "name": "Naturel Sızma Gemlik 0.3 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 198,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 22,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 532,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 13,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 33,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 132,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 30,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 36,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 26,
-        "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
-        },
-        "quantity": 144,
-        "updated_at": "2026-10-19T20:34:00Z"
-       },
-       {
-        "id": 18,
-        "finished_product": {
-         "id": 10,
-         "name": "Naturel Sızma Ayvalık 0.4 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 1319,
-        "updated_at": "2026-11-04T14:34:00Z"
-       },
-       {
-        "id": 39,
-        "finished_product": {
-         "id": 14,
-         "name": "Naturel Sızma Ayvalık 0.9 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 68,
-        "updated_at": "2026-10-07T17:42:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -1081,26 +1081,6 @@
      "description": "Genel bitmiş ürün deposu",
      "is_active": true,
      "slots": [
-      {
-       "id": 6,
-       "name": "C1",
-       "volume_litre": 0.75,
-       "max_quantity": 200,
-       "current_quantity": 200,
-       "available": 0,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 3,
-          "name": "Naturel Sızma Gemlik 0.3 750ml"
-         },
-         "quantity": 200
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-11-04T03:40:00Z"
-      },
       {
        "id": 1,
        "name": "A1",
@@ -1186,29 +1166,29 @@
        "updated_at": "2026-11-04T14:34:00Z"
       },
       {
-       "id": 8,
-       "name": "E1",
-       "volume_litre": 5,
-       "max_quantity": 50,
-       "current_quantity": 43,
-       "available": 7,
+       "id": 6,
+       "name": "C1",
+       "volume_litre": 0.75,
+       "max_quantity": 200,
+       "current_quantity": 200,
+       "available": 0,
        "finished_product": null,
        "contents": [
         {
          "finished_product": {
-          "id": 5,
-          "name": "Naturel Sızma Gemlik 0.3 5L"
+          "id": 3,
+          "name": "Naturel Sızma Gemlik 0.3 750ml"
          },
-         "quantity": 43
+         "quantity": 200
         }
        ],
        "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-10-28T13:12:00Z"
+       "updated_at": "2026-11-04T03:40:00Z"
       },
       {
        "id": 7,
        "name": "D1",
-       "volume_litre": 1,
+       "volume_litre": 1.0,
        "max_quantity": 200,
        "current_quantity": 42,
        "available": 158,
@@ -1224,18 +1204,38 @@
        ],
        "created_at": "2026-11-06T15:35:14Z",
        "updated_at": "2026-11-02T20:24:00Z"
+      },
+      {
+       "id": 8,
+       "name": "E1",
+       "volume_litre": 5.0,
+       "max_quantity": 50,
+       "current_quantity": 43,
+       "available": 7,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 5,
+          "name": "Naturel Sızma Gemlik 0.3 5L"
+         },
+         "quantity": 43
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-10-28T13:12:00Z"
       }
      ],
      "stock": [
       {
-       "id": 29,
+       "id": 1,
        "finished_product": {
-        "id": 4,
-        "name": "Naturel Sızma Gemlik 0.3 1L",
-        "volume_litre": 1
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml",
+        "volume_litre": 0.25
        },
-       "quantity": 42,
-       "updated_at": "2026-10-19T20:34:00Z"
+       "quantity": 0,
+       "updated_at": "2026-11-05T08:51:00Z"
       },
       {
        "id": 2,
@@ -1248,14 +1248,14 @@
        "updated_at": "2026-10-02T22:19:00Z"
       },
       {
-       "id": 37,
+       "id": 3,
        "finished_product": {
-        "id": 13,
-        "name": "Naturel Sızma Ayvalık 0.9 250ml",
+        "id": 9,
+        "name": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25
        },
-       "quantity": 0,
-       "updated_at": "2026-10-07T17:41:00Z"
+       "quantity": 140,
+       "updated_at": "2026-11-05T08:51:00Z"
       },
       {
        "id": 4,
@@ -1268,66 +1268,6 @@
        "updated_at": "2026-08-01T02:12:00Z"
       },
       {
-       "id": 43,
-       "finished_product": {
-        "id": 17,
-        "name": "Klasik Blend 0.5 1L",
-        "volume_litre": 1
-       },
-       "quantity": 0,
-       "updated_at": "2026-08-01T02:12:00Z"
-      },
-      {
-       "id": 7,
-       "finished_product": {
-        "id": 16,
-        "name": "Klasik Blend 0.5 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 0,
-       "updated_at": "2026-08-25T05:58:00Z"
-      },
-      {
-       "id": 28,
-       "finished_product": {
-        "id": 12,
-        "name": "Naturel Sızma Ayvalık 0.4 1L",
-        "volume_litre": 1
-       },
-       "quantity": 0,
-       "updated_at": "2026-11-02T20:24:00Z"
-      },
-      {
-       "id": 23,
-       "finished_product": {
-        "id": 3,
-        "name": "Naturel Sızma Gemlik 0.3 750ml",
-        "volume_litre": 0.75
-       },
-       "quantity": 200,
-       "updated_at": "2026-11-04T03:40:00Z"
-      },
-      {
-       "id": 11,
-       "finished_product": {
-        "id": 5,
-        "name": "Naturel Sızma Gemlik 0.3 5L",
-        "volume_litre": 5
-       },
-       "quantity": 43,
-       "updated_at": "2026-10-28T13:12:00Z"
-      },
-      {
-       "id": 1,
-       "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 0,
-       "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
        "id": 5,
        "finished_product": {
         "id": 2,
@@ -1336,46 +1276,6 @@
        },
        "quantity": 0,
        "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
-       "id": 16,
-       "finished_product": {
-        "id": 11,
-        "name": "Naturel Sızma Ayvalık 0.4 750ml",
-        "volume_litre": 0.75
-       },
-       "quantity": 0,
-       "updated_at": "2026-10-31T23:07:00Z"
-      },
-      {
-       "id": 34,
-       "finished_product": {
-        "id": 7,
-        "name": "Naturel Sızma Gemlik 0.8 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 0,
-       "updated_at": "2026-10-07T17:42:00Z"
-      },
-      {
-       "id": 3,
-       "finished_product": {
-        "id": 9,
-        "name": "Naturel Sızma Ayvalık 0.4 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 140,
-       "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
-       "id": 31,
-       "finished_product": {
-        "id": 8,
-        "name": "Naturel Sızma Gemlik 0.8 1L",
-        "volume_litre": 1
-       },
-       "quantity": 0,
-       "updated_at": "2026-10-07T17:42:00Z"
       },
       {
        "id": 6,
@@ -1388,6 +1288,36 @@
        "updated_at": "2026-10-07T17:42:00Z"
       },
       {
+       "id": 7,
+       "finished_product": {
+        "id": 16,
+        "name": "Klasik Blend 0.5 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 0,
+       "updated_at": "2026-08-25T05:58:00Z"
+      },
+      {
+       "id": 11,
+       "finished_product": {
+        "id": 5,
+        "name": "Naturel Sızma Gemlik 0.3 5L",
+        "volume_litre": 5.0
+       },
+       "quantity": 43,
+       "updated_at": "2026-10-28T13:12:00Z"
+      },
+      {
+       "id": 16,
+       "finished_product": {
+        "id": 11,
+        "name": "Naturel Sızma Ayvalık 0.4 750ml",
+        "volume_litre": 0.75
+       },
+       "quantity": 0,
+       "updated_at": "2026-10-31T23:07:00Z"
+      },
+      {
        "id": 19,
        "finished_product": {
         "id": 10,
@@ -1396,6 +1326,76 @@
        },
        "quantity": 401,
        "updated_at": "2026-11-04T14:34:00Z"
+      },
+      {
+       "id": 23,
+       "finished_product": {
+        "id": 3,
+        "name": "Naturel Sızma Gemlik 0.3 750ml",
+        "volume_litre": 0.75
+       },
+       "quantity": 200,
+       "updated_at": "2026-11-04T03:40:00Z"
+      },
+      {
+       "id": 28,
+       "finished_product": {
+        "id": 12,
+        "name": "Naturel Sızma Ayvalık 0.4 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 0,
+       "updated_at": "2026-11-02T20:24:00Z"
+      },
+      {
+       "id": 29,
+       "finished_product": {
+        "id": 4,
+        "name": "Naturel Sızma Gemlik 0.3 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 42,
+       "updated_at": "2026-10-19T20:34:00Z"
+      },
+      {
+       "id": 31,
+       "finished_product": {
+        "id": 8,
+        "name": "Naturel Sızma Gemlik 0.8 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 0,
+       "updated_at": "2026-10-07T17:42:00Z"
+      },
+      {
+       "id": 34,
+       "finished_product": {
+        "id": 7,
+        "name": "Naturel Sızma Gemlik 0.8 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 0,
+       "updated_at": "2026-10-07T17:42:00Z"
+      },
+      {
+       "id": 37,
+       "finished_product": {
+        "id": 13,
+        "name": "Naturel Sızma Ayvalık 0.9 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 0,
+       "updated_at": "2026-10-07T17:41:00Z"
+      },
+      {
+       "id": 43,
+       "finished_product": {
+        "id": 17,
+        "name": "Klasik Blend 0.5 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 0,
+       "updated_at": "2026-08-01T02:12:00Z"
       }
      ],
      "created_at": "2026-11-06T15:35:14Z",
@@ -1417,46 +1417,6 @@
      "description": "Aromalı ve özel ürünler için soğuk hava deposu",
      "is_active": true,
      "slots": [
-      {
-       "id": 13,
-       "name": "E1",
-       "volume_litre": 5,
-       "max_quantity": 50,
-       "current_quantity": 50,
-       "available": 0,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 5,
-          "name": "Naturel Sızma Gemlik 0.3 5L"
-         },
-         "quantity": 50
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2025-11-22T02:38:00Z"
-      },
-      {
-       "id": 11,
-       "name": "B1",
-       "volume_litre": 0.5,
-       "max_quantity": 200,
-       "current_quantity": 200,
-       "available": 0,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 2,
-          "name": "Naturel Sızma Gemlik 0.3 500ml"
-         },
-         "quantity": 200
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-11-05T14:43:00Z"
-      },
       {
        "id": 9,
        "name": "A1",
@@ -1498,6 +1458,26 @@
        "updated_at": "2026-11-05T08:51:00Z"
       },
       {
+       "id": 11,
+       "name": "B1",
+       "volume_litre": 0.5,
+       "max_quantity": 200,
+       "current_quantity": 200,
+       "available": 0,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 2,
+          "name": "Naturel Sızma Gemlik 0.3 500ml"
+         },
+         "quantity": 200
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-05T14:43:00Z"
+      },
+      {
        "id": 12,
        "name": "B2",
        "volume_litre": 0.5,
@@ -1516,49 +1496,29 @@
        ],
        "created_at": "2026-11-06T15:35:14Z",
        "updated_at": "2026-11-04T14:34:00Z"
+      },
+      {
+       "id": 13,
+       "name": "E1",
+       "volume_litre": 5.0,
+       "max_quantity": 50,
+       "current_quantity": 50,
+       "available": 0,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 5,
+          "name": "Naturel Sızma Gemlik 0.3 5L"
+         },
+         "quantity": 50
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2025-11-22T02:38:00Z"
       }
      ],
      "stock": [
-      {
-       "id": 41,
-       "finished_product": {
-        "id": 6,
-        "name": "Naturel Sızma Gemlik 0.8 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 0,
-       "updated_at": "2026-10-07T17:41:00Z"
-      },
-      {
-       "id": 40,
-       "finished_product": {
-        "id": 14,
-        "name": "Naturel Sızma Ayvalık 0.9 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 0,
-       "updated_at": "2026-09-13T08:32:00Z"
-      },
-      {
-       "id": 10,
-       "finished_product": {
-        "id": 18,
-        "name": "Portakallı Zeytinyağı 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 52,
-       "updated_at": "2025-11-10T17:25:00Z"
-      },
-      {
-       "id": 45,
-       "finished_product": {
-        "id": 16,
-        "name": "Klasik Blend 0.5 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 0,
-       "updated_at": "2026-07-27T16:34:00Z"
-      },
       {
        "id": 8,
        "finished_product": {
@@ -1568,16 +1528,6 @@
        },
        "quantity": 0,
        "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
-       "id": 14,
-       "finished_product": {
-        "id": 9,
-        "name": "Naturel Sızma Ayvalık 0.4 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 0,
-       "updated_at": "2026-10-28T13:12:00Z"
       },
       {
        "id": 9,
@@ -1590,14 +1540,44 @@
        "updated_at": "2026-08-18T01:25:00Z"
       },
       {
-       "id": 35,
+       "id": 10,
        "finished_product": {
-        "id": 7,
-        "name": "Naturel Sızma Gemlik 0.8 500ml",
-        "volume_litre": 0.5
+        "id": 18,
+        "name": "Portakallı Zeytinyağı 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 52,
+       "updated_at": "2025-11-10T17:25:00Z"
+      },
+      {
+       "id": 12,
+       "finished_product": {
+        "id": 5,
+        "name": "Naturel Sızma Gemlik 0.3 5L",
+        "volume_litre": 5.0
+       },
+       "quantity": 50,
+       "updated_at": "2025-11-22T02:38:00Z"
+      },
+      {
+       "id": 14,
+       "finished_product": {
+        "id": 9,
+        "name": "Naturel Sızma Ayvalık 0.4 250ml",
+        "volume_litre": 0.25
        },
        "quantity": 0,
-       "updated_at": "2026-10-04T08:03:00Z"
+       "updated_at": "2026-10-28T13:12:00Z"
+      },
+      {
+       "id": 20,
+       "finished_product": {
+        "id": 10,
+        "name": "Naturel Sızma Ayvalık 0.4 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 200,
+       "updated_at": "2026-11-04T14:34:00Z"
       },
       {
        "id": 25,
@@ -1610,6 +1590,16 @@
        "updated_at": "2026-11-05T08:51:00Z"
       },
       {
+       "id": 35,
+       "finished_product": {
+        "id": 7,
+        "name": "Naturel Sızma Gemlik 0.8 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 0,
+       "updated_at": "2026-10-04T08:03:00Z"
+      },
+      {
        "id": 38,
        "finished_product": {
         "id": 13,
@@ -1620,24 +1610,34 @@
        "updated_at": "2026-10-04T08:03:00Z"
       },
       {
-       "id": 12,
+       "id": 40,
        "finished_product": {
-        "id": 5,
-        "name": "Naturel Sızma Gemlik 0.3 5L",
-        "volume_litre": 5
-       },
-       "quantity": 50,
-       "updated_at": "2025-11-22T02:38:00Z"
-      },
-      {
-       "id": 20,
-       "finished_product": {
-        "id": 10,
-        "name": "Naturel Sızma Ayvalık 0.4 500ml",
+        "id": 14,
+        "name": "Naturel Sızma Ayvalık 0.9 500ml",
         "volume_litre": 0.5
        },
-       "quantity": 200,
-       "updated_at": "2026-11-04T14:34:00Z"
+       "quantity": 0,
+       "updated_at": "2026-09-13T08:32:00Z"
+      },
+      {
+       "id": 41,
+       "finished_product": {
+        "id": 6,
+        "name": "Naturel Sızma Gemlik 0.8 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 0,
+       "updated_at": "2026-10-07T17:41:00Z"
+      },
+      {
+       "id": 45,
+       "finished_product": {
+        "id": 16,
+        "name": "Klasik Blend 0.5 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 0,
+       "updated_at": "2026-07-27T16:34:00Z"
       }
      ],
      "created_at": "2026-11-06T15:35:14Z",
@@ -1660,71 +1660,24 @@
      "is_active": true,
      "slots": [
       {
-       "id": 22,
-       "name": "L1",
-       "volume_litre": 1,
-       "max_quantity": 600,
-       "current_quantity": 150,
-       "available": 450,
+       "id": 14,
+       "name": "K1",
+       "volume_litre": 0.25,
+       "max_quantity": 1500,
+       "current_quantity": 12,
+       "available": 1488,
        "finished_product": null,
        "contents": [
         {
          "finished_product": {
-          "id": 12,
-          "name": "Naturel Sızma Ayvalık 0.4 1L"
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
          },
-         "quantity": 150
+         "quantity": 12
         }
        ],
        "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-11-02T20:24:00Z"
-      },
-      {
-       "id": 21,
-       "name": "B2",
-       "volume_litre": 0.75,
-       "max_quantity": 600,
-       "current_quantity": 442,
-       "available": 158,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 11,
-          "name": "Naturel Sızma Ayvalık 0.4 750ml"
-         },
-         "quantity": 36
-        },
-        {
-         "finished_product": {
-          "id": 3,
-          "name": "Naturel Sızma Gemlik 0.3 750ml"
-         },
-         "quantity": 406
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-11-04T03:40:00Z"
-      },
-      {
-       "id": 20,
-       "name": "B1",
-       "volume_litre": 0.75,
-       "max_quantity": 600,
-       "current_quantity": 126,
-       "available": 474,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 3,
-          "name": "Naturel Sızma Gemlik 0.3 750ml"
-         },
-         "quantity": 126
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-11-05T08:51:00Z"
+       "updated_at": "2026-11-06T09:21:00Z"
       },
       {
        "id": 15,
@@ -1739,45 +1692,38 @@
        "updated_at": "2026-11-05T08:51:00Z"
       },
       {
-       "id": 23,
-       "name": "L2",
-       "volume_litre": 1,
-       "max_quantity": 600,
-       "current_quantity": 426,
-       "available": 174,
+       "id": 16,
+       "name": "K3",
+       "volume_litre": 0.25,
+       "max_quantity": 1500,
+       "current_quantity": 200,
+       "available": 1300,
        "finished_product": null,
        "contents": [
         {
          "finished_product": {
-          "id": 12,
-          "name": "Naturel Sızma Ayvalık 0.4 1L"
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
          },
-         "quantity": 102
+         "quantity": 148
         },
         {
          "finished_product": {
-          "id": 8,
-          "name": "Naturel Sızma Gemlik 0.8 1L"
+          "id": 13,
+          "name": "Naturel Sızma Ayvalık 0.9 250ml"
          },
-         "quantity": 36
+         "quantity": 24
         },
         {
          "finished_product": {
-          "id": 17,
-          "name": "Klasik Blend 0.5 1L"
+          "id": 6,
+          "name": "Naturel Sızma Gemlik 0.8 250ml"
          },
-         "quantity": 144
-        },
-        {
-         "finished_product": {
-          "id": 4,
-          "name": "Naturel Sızma Gemlik 0.3 1L"
-         },
-         "quantity": 144
+         "quantity": 28
         }
        ],
        "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-10-31T23:55:00Z"
+       "updated_at": "2026-10-31T23:07:00Z"
       },
       {
        "id": 17,
@@ -1817,13 +1763,6 @@
        "contents": [
         {
          "finished_product": {
-          "id": 2,
-          "name": "Naturel Sızma Gemlik 0.3 500ml"
-         },
-         "quantity": 102
-        },
-        {
-         "finished_product": {
           "id": 10,
           "name": "Naturel Sızma Ayvalık 0.4 500ml"
          },
@@ -1835,15 +1774,171 @@
           "name": "Klasik Blend 0.5 500ml"
          },
          "quantity": 170
+        },
+        {
+         "finished_product": {
+          "id": 2,
+          "name": "Naturel Sızma Gemlik 0.3 500ml"
+         },
+         "quantity": 102
         }
        ],
        "created_at": "2026-11-06T15:35:14Z",
        "updated_at": "2026-11-04T14:34:00Z"
       },
       {
+       "id": 19,
+       "name": "Y3",
+       "volume_litre": 0.5,
+       "max_quantity": 1000,
+       "current_quantity": 326,
+       "available": 674,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 7,
+          "name": "Naturel Sızma Gemlik 0.8 500ml"
+         },
+         "quantity": 132
+        },
+        {
+         "finished_product": {
+          "id": 14,
+          "name": "Naturel Sızma Ayvalık 0.9 500ml"
+         },
+         "quantity": 68
+        },
+        {
+         "finished_product": {
+          "id": 16,
+          "name": "Klasik Blend 0.5 500ml"
+         },
+         "quantity": 62
+        },
+        {
+         "finished_product": {
+          "id": 10,
+          "name": "Naturel Sızma Ayvalık 0.4 500ml"
+         },
+         "quantity": 64
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-10-17T02:54:00Z"
+      },
+      {
+       "id": 20,
+       "name": "B1",
+       "volume_litre": 0.75,
+       "max_quantity": 600,
+       "current_quantity": 126,
+       "available": 474,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 3,
+          "name": "Naturel Sızma Gemlik 0.3 750ml"
+         },
+         "quantity": 126
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-05T08:51:00Z"
+      },
+      {
+       "id": 21,
+       "name": "B2",
+       "volume_litre": 0.75,
+       "max_quantity": 600,
+       "current_quantity": 442,
+       "available": 158,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 11,
+          "name": "Naturel Sızma Ayvalık 0.4 750ml"
+         },
+         "quantity": 36
+        },
+        {
+         "finished_product": {
+          "id": 3,
+          "name": "Naturel Sızma Gemlik 0.3 750ml"
+         },
+         "quantity": 406
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-04T03:40:00Z"
+      },
+      {
+       "id": 22,
+       "name": "L1",
+       "volume_litre": 1.0,
+       "max_quantity": 600,
+       "current_quantity": 150,
+       "available": 450,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 12,
+          "name": "Naturel Sızma Ayvalık 0.4 1L"
+         },
+         "quantity": 150
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-11-02T20:24:00Z"
+      },
+      {
+       "id": 23,
+       "name": "L2",
+       "volume_litre": 1.0,
+       "max_quantity": 600,
+       "current_quantity": 426,
+       "available": 174,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 12,
+          "name": "Naturel Sızma Ayvalık 0.4 1L"
+         },
+         "quantity": 102
+        },
+        {
+         "finished_product": {
+          "id": 4,
+          "name": "Naturel Sızma Gemlik 0.3 1L"
+         },
+         "quantity": 144
+        },
+        {
+         "finished_product": {
+          "id": 8,
+          "name": "Naturel Sızma Gemlik 0.8 1L"
+         },
+         "quantity": 36
+        },
+        {
+         "finished_product": {
+          "id": 17,
+          "name": "Klasik Blend 0.5 1L"
+         },
+         "quantity": 144
+        }
+       ],
+       "created_at": "2026-11-06T15:35:14Z",
+       "updated_at": "2026-10-31T23:55:00Z"
+      },
+      {
        "id": 24,
        "name": "T1",
-       "volume_litre": 5,
+       "volume_litre": 5.0,
        "max_quantity": 150,
        "current_quantity": 150,
        "available": 0,
@@ -1861,43 +1956,9 @@
        "updated_at": "2026-11-06T04:02:00Z"
       },
       {
-       "id": 16,
-       "name": "K3",
-       "volume_litre": 0.25,
-       "max_quantity": 1500,
-       "current_quantity": 200,
-       "available": 1300,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 13,
-          "name": "Naturel Sızma Ayvalık 0.9 250ml"
-         },
-         "quantity": 24
-        },
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 148
-        },
-        {
-         "finished_product": {
-          "id": 6,
-          "name": "Naturel Sızma Gemlik 0.8 250ml"
-         },
-         "quantity": 28
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-10-31T23:07:00Z"
-      },
-      {
        "id": 25,
        "name": "T2",
-       "volume_litre": 5,
+       "volume_litre": 5.0,
        "max_quantity": 150,
        "current_quantity": 29,
        "available": 121,
@@ -1913,99 +1974,48 @@
        ],
        "created_at": "2026-11-06T15:35:14Z",
        "updated_at": "2026-11-06T04:02:00Z"
-      },
-      {
-       "id": 14,
-       "name": "K1",
-       "volume_litre": 0.25,
-       "max_quantity": 1500,
-       "current_quantity": 12,
-       "available": 1488,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 12
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-11-06T09:21:00Z"
-      },
-      {
-       "id": 19,
-       "name": "Y3",
-       "volume_litre": 0.5,
-       "max_quantity": 1000,
-       "current_quantity": 326,
-       "available": 674,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 14,
-          "name": "Naturel Sızma Ayvalık 0.9 500ml"
-         },
-         "quantity": 68
-        },
-        {
-         "finished_product": {
-          "id": 10,
-          "name": "Naturel Sızma Ayvalık 0.4 500ml"
-         },
-         "quantity": 64
-        },
-        {
-         "finished_product": {
-          "id": 16,
-          "name": "Klasik Blend 0.5 500ml"
-         },
-         "quantity": 62
-        },
-        {
-         "finished_product": {
-          "id": 7,
-          "name": "Naturel Sızma Gemlik 0.8 500ml"
-         },
-         "quantity": 132
-        }
-       ],
-       "created_at": "2026-11-06T15:35:14Z",
-       "updated_at": "2026-10-17T02:54:00Z"
       }
      ],
      "stock": [
       {
-       "id": 32,
+       "id": 13,
        "finished_product": {
-        "id": 6,
-        "name": "Naturel Sızma Gemlik 0.8 250ml",
+        "id": 9,
+        "name": "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre": 0.25
        },
-       "quantity": 28,
-       "updated_at": "2026-10-07T17:41:00Z"
+       "quantity": 0,
+       "updated_at": "2026-11-05T08:51:00Z"
       },
       {
-       "id": 36,
+       "id": 15,
        "finished_product": {
-        "id": 13,
-        "name": "Naturel Sızma Ayvalık 0.9 250ml",
-        "volume_litre": 0.25
+        "id": 11,
+        "name": "Naturel Sızma Ayvalık 0.4 750ml",
+        "volume_litre": 0.75
        },
-       "quantity": 24,
-       "updated_at": "2026-10-07T17:41:00Z"
+       "quantity": 36,
+       "updated_at": "2026-11-02T20:24:00Z"
       },
       {
        "id": 17,
        "finished_product": {
         "id": 5,
         "name": "Naturel Sızma Gemlik 0.3 5L",
-        "volume_litre": 5
+        "volume_litre": 5.0
        },
        "quantity": 179,
        "updated_at": "2026-11-06T04:02:00Z"
+      },
+      {
+       "id": 18,
+       "finished_product": {
+        "id": 10,
+        "name": "Naturel Sızma Ayvalık 0.4 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 1319,
+       "updated_at": "2026-11-04T14:34:00Z"
       },
       {
        "id": 21,
@@ -2018,11 +2028,101 @@
        "updated_at": "2026-11-06T09:21:00Z"
       },
       {
+       "id": 22,
+       "finished_product": {
+        "id": 3,
+        "name": "Naturel Sızma Gemlik 0.3 750ml",
+        "volume_litre": 0.75
+       },
+       "quantity": 532,
+       "updated_at": "2026-11-05T08:51:00Z"
+      },
+      {
+       "id": 24,
+       "finished_product": {
+        "id": 2,
+        "name": "Naturel Sızma Gemlik 0.3 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 198,
+       "updated_at": "2026-11-05T08:51:00Z"
+      },
+      {
+       "id": 26,
+       "finished_product": {
+        "id": 4,
+        "name": "Naturel Sızma Gemlik 0.3 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 144,
+       "updated_at": "2026-10-19T20:34:00Z"
+      },
+      {
+       "id": 27,
+       "finished_product": {
+        "id": 12,
+        "name": "Naturel Sızma Ayvalık 0.4 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 252,
+       "updated_at": "2026-11-02T20:24:00Z"
+      },
+      {
+       "id": 30,
+       "finished_product": {
+        "id": 8,
+        "name": "Naturel Sızma Gemlik 0.8 1L",
+        "volume_litre": 1.0
+       },
+       "quantity": 36,
+       "updated_at": "2026-10-07T17:42:00Z"
+      },
+      {
+       "id": 32,
+       "finished_product": {
+        "id": 6,
+        "name": "Naturel Sızma Gemlik 0.8 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 28,
+       "updated_at": "2026-10-07T17:41:00Z"
+      },
+      {
+       "id": 33,
+       "finished_product": {
+        "id": 7,
+        "name": "Naturel Sızma Gemlik 0.8 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 132,
+       "updated_at": "2026-10-07T17:42:00Z"
+      },
+      {
+       "id": 36,
+       "finished_product": {
+        "id": 13,
+        "name": "Naturel Sızma Ayvalık 0.9 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 24,
+       "updated_at": "2026-10-07T17:41:00Z"
+      },
+      {
+       "id": 39,
+       "finished_product": {
+        "id": 14,
+        "name": "Naturel Sızma Ayvalık 0.9 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 68,
+       "updated_at": "2026-10-07T17:42:00Z"
+      },
+      {
        "id": 42,
        "finished_product": {
         "id": 17,
         "name": "Klasik Blend 0.5 1L",
-        "volume_litre": 1
+        "volume_litre": 1.0
        },
        "quantity": 144,
        "updated_at": "2026-08-01T02:12:00Z"
@@ -2038,26 +2138,6 @@
        "updated_at": "2026-08-25T05:58:00Z"
       },
       {
-       "id": 15,
-       "finished_product": {
-        "id": 11,
-        "name": "Naturel Sızma Ayvalık 0.4 750ml",
-        "volume_litre": 0.75
-       },
-       "quantity": 36,
-       "updated_at": "2026-11-02T20:24:00Z"
-      },
-      {
-       "id": 27,
-       "finished_product": {
-        "id": 12,
-        "name": "Naturel Sızma Ayvalık 0.4 1L",
-        "volume_litre": 1
-       },
-       "quantity": 252,
-       "updated_at": "2026-11-02T20:24:00Z"
-      },
-      {
        "id": 46,
        "finished_product": {
         "id": 15,
@@ -2066,86 +2146,6 @@
        },
        "quantity": 0,
        "updated_at": "2026-07-17T16:17:00Z"
-      },
-      {
-       "id": 24,
-       "finished_product": {
-        "id": 2,
-        "name": "Naturel Sızma Gemlik 0.3 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 198,
-       "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
-       "id": 22,
-       "finished_product": {
-        "id": 3,
-        "name": "Naturel Sızma Gemlik 0.3 750ml",
-        "volume_litre": 0.75
-       },
-       "quantity": 532,
-       "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
-       "id": 13,
-       "finished_product": {
-        "id": 9,
-        "name": "Naturel Sızma Ayvalık 0.4 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 0,
-       "updated_at": "2026-11-05T08:51:00Z"
-      },
-      {
-       "id": 33,
-       "finished_product": {
-        "id": 7,
-        "name": "Naturel Sızma Gemlik 0.8 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 132,
-       "updated_at": "2026-10-07T17:42:00Z"
-      },
-      {
-       "id": 30,
-       "finished_product": {
-        "id": 8,
-        "name": "Naturel Sızma Gemlik 0.8 1L",
-        "volume_litre": 1
-       },
-       "quantity": 36,
-       "updated_at": "2026-10-07T17:42:00Z"
-      },
-      {
-       "id": 26,
-       "finished_product": {
-        "id": 4,
-        "name": "Naturel Sızma Gemlik 0.3 1L",
-        "volume_litre": 1
-       },
-       "quantity": 144,
-       "updated_at": "2026-10-19T20:34:00Z"
-      },
-      {
-       "id": 18,
-       "finished_product": {
-        "id": 10,
-        "name": "Naturel Sızma Ayvalık 0.4 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 1319,
-       "updated_at": "2026-11-04T14:34:00Z"
-      },
-      {
-       "id": 39,
-       "finished_product": {
-        "id": 14,
-        "name": "Naturel Sızma Ayvalık 0.9 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 68,
-       "updated_at": "2026-10-07T17:42:00Z"
       }
      ],
      "created_at": "2026-11-06T15:35:14Z",
@@ -43921,26 +43921,6 @@
       "is_active": true,
       "slots": [
        {
-        "id": 6,
-        "name": "C1",
-        "volume_litre": 0.75,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 200
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
         "id": 1,
         "name": "A1",
         "volume_litre": 0.25,
@@ -44025,29 +44005,29 @@
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
-        "id": 8,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 43,
-        "available": 7,
+        "id": 6,
+        "name": "C1",
+        "volume_litre": 0.75,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
           },
-          "quantity": 43
+          "quantity": 200
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-28T13:12:00Z"
+        "updated_at": "2026-11-04T03:40:00Z"
        },
        {
         "id": 7,
         "name": "D1",
-        "volume_litre": 1,
+        "volume_litre": 1.0,
         "max_quantity": 200,
         "current_quantity": 42,
         "available": 158,
@@ -44063,18 +44043,38 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 8,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 43,
+        "available": 7,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
+          },
+          "quantity": 43
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-28T13:12:00Z"
        }
       ],
       "stock": [
        {
-        "id": 29,
+        "id": 1,
         "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
+         "id": 1,
+         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "volume_litre": 0.25
         },
-        "quantity": 42,
-        "updated_at": "2026-10-19T20:34:00Z"
+        "quantity": 0,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
         "id": 2,
@@ -44087,14 +44087,14 @@
         "updated_at": "2026-10-02T22:19:00Z"
        },
        {
-        "id": 37,
+        "id": 3,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 140,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
         "id": 4,
@@ -44107,66 +44107,6 @@
         "updated_at": "2026-08-01T02:12:00Z"
        },
        {
-        "id": 43,
-        "finished_product": {
-         "id": 17,
-         "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-01T02:12:00Z"
-       },
-       {
-        "id": 7,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-25T05:58:00Z"
-       },
-       {
-        "id": 28,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 23,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 200,
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 11,
-        "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 43,
-        "updated_at": "2026-10-28T13:12:00Z"
-       },
-       {
-        "id": 1,
-        "finished_product": {
-         "id": 1,
-         "name": "Naturel Sızma Gemlik 0.3 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
         "id": 5,
         "finished_product": {
          "id": 2,
@@ -44175,46 +44115,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 16,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
-        "id": 34,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 3,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 140,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 31,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
        },
        {
         "id": 6,
@@ -44227,6 +44127,36 @@
         "updated_at": "2026-10-07T17:42:00Z"
        },
        {
+        "id": 7,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-25T05:58:00Z"
+       },
+       {
+        "id": 11,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 43,
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 16,
+        "finished_product": {
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-31T23:07:00Z"
+       },
+       {
         "id": 19,
         "finished_product": {
          "id": 10,
@@ -44235,6 +44165,76 @@
         },
         "quantity": 401,
         "updated_at": "2026-11-04T14:34:00Z"
+       },
+       {
+        "id": 23,
+        "finished_product": {
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 28,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 29,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 42,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 31,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 34,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 37,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 43,
+        "finished_product": {
+         "id": 17,
+         "name": "Klasik Blend 0.5 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-01T02:12:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -44246,46 +44246,6 @@
       "description": "Aromalı ve özel ürünler için soğuk hava deposu",
       "is_active": true,
       "slots": [
-       {
-        "id": 13,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 50,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
-          },
-          "quantity": 50
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2025-11-22T02:38:00Z"
-       },
-       {
-        "id": 11,
-        "name": "B1",
-        "volume_litre": 0.5,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 2,
-           "name": "Naturel Sızma Gemlik 0.3 500ml"
-          },
-          "quantity": 200
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-05T14:43:00Z"
-       },
        {
         "id": 9,
         "name": "A1",
@@ -44327,6 +44287,26 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
+        "id": 11,
+        "name": "B1",
+        "volume_litre": 0.5,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 2,
+           "name": "Naturel Sızma Gemlik 0.3 500ml"
+          },
+          "quantity": 200
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-05T14:43:00Z"
+       },
+       {
         "id": 12,
         "name": "B2",
         "volume_litre": 0.5,
@@ -44345,49 +44325,29 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-04T14:34:00Z"
+       },
+       {
+        "id": 13,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 50,
+        "available": 0,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
+          },
+          "quantity": 50
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2025-11-22T02:38:00Z"
        }
       ],
       "stock": [
-       {
-        "id": 41,
-        "finished_product": {
-         "id": 6,
-         "name": "Naturel Sızma Gemlik 0.8 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
-       },
-       {
-        "id": 40,
-        "finished_product": {
-         "id": 14,
-         "name": "Naturel Sızma Ayvalık 0.9 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-09-13T08:32:00Z"
-       },
-       {
-        "id": 10,
-        "finished_product": {
-         "id": 18,
-         "name": "Portakallı Zeytinyağı 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 52,
-        "updated_at": "2025-11-10T17:25:00Z"
-       },
-       {
-        "id": 45,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-07-27T16:34:00Z"
-       },
        {
         "id": 8,
         "finished_product": {
@@ -44397,16 +44357,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 14,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-28T13:12:00Z"
        },
        {
         "id": 9,
@@ -44419,14 +44369,44 @@
         "updated_at": "2026-08-18T01:25:00Z"
        },
        {
-        "id": 35,
+        "id": 10,
         "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
+         "id": 18,
+         "name": "Portakallı Zeytinyağı 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 52,
+        "updated_at": "2025-11-10T17:25:00Z"
+       },
+       {
+        "id": 12,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 50,
+        "updated_at": "2025-11-22T02:38:00Z"
+       },
+       {
+        "id": 14,
+        "finished_product": {
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
+         "volume_litre": 0.25
         },
         "quantity": 0,
-        "updated_at": "2026-10-04T08:03:00Z"
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 20,
+        "finished_product": {
+         "id": 10,
+         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T14:34:00Z"
        },
        {
         "id": 25,
@@ -44439,6 +44419,16 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
+        "id": 35,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-04T08:03:00Z"
+       },
+       {
         "id": 38,
         "finished_product": {
          "id": 13,
@@ -44449,24 +44439,34 @@
         "updated_at": "2026-10-04T08:03:00Z"
        },
        {
-        "id": 12,
+        "id": 40,
         "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 50,
-        "updated_at": "2025-11-22T02:38:00Z"
-       },
-       {
-        "id": 20,
-        "finished_product": {
-         "id": 10,
-         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "id": 14,
+         "name": "Naturel Sızma Ayvalık 0.9 500ml",
          "volume_litre": 0.5
         },
-        "quantity": 200,
-        "updated_at": "2026-11-04T14:34:00Z"
+        "quantity": 0,
+        "updated_at": "2026-09-13T08:32:00Z"
+       },
+       {
+        "id": 41,
+        "finished_product": {
+         "id": 6,
+         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 45,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-07-27T16:34:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -44479,71 +44479,24 @@
       "is_active": true,
       "slots": [
        {
-        "id": 22,
-        "name": "L1",
-        "volume_litre": 1,
-        "max_quantity": 600,
-        "current_quantity": 150,
-        "available": 450,
+        "id": 14,
+        "name": "K1",
+        "volume_litre": 0.25,
+        "max_quantity": 1500,
+        "current_quantity": 12,
+        "available": 1488,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 12,
-           "name": "Naturel Sızma Ayvalık 0.4 1L"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 150
+          "quantity": 12
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 21,
-        "name": "B2",
-        "volume_litre": 0.75,
-        "max_quantity": 600,
-        "current_quantity": 442,
-        "available": 158,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 11,
-           "name": "Naturel Sızma Ayvalık 0.4 750ml"
-          },
-          "quantity": 36
-         },
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 406
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 20,
-        "name": "B1",
-        "volume_litre": 0.75,
-        "max_quantity": 600,
-        "current_quantity": 126,
-        "available": 474,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 126
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-05T08:51:00Z"
+        "updated_at": "2026-11-06T09:21:00Z"
        },
        {
         "id": 15,
@@ -44558,45 +44511,38 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
-        "id": 23,
-        "name": "L2",
-        "volume_litre": 1,
-        "max_quantity": 600,
-        "current_quantity": 426,
-        "available": 174,
+        "id": 16,
+        "name": "K3",
+        "volume_litre": 0.25,
+        "max_quantity": 1500,
+        "current_quantity": 200,
+        "available": 1300,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 12,
-           "name": "Naturel Sızma Ayvalık 0.4 1L"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 102
+          "quantity": 148
          },
          {
           "finished_product": {
-           "id": 8,
-           "name": "Naturel Sızma Gemlik 0.8 1L"
+           "id": 13,
+           "name": "Naturel Sızma Ayvalık 0.9 250ml"
           },
-          "quantity": 36
+          "quantity": 24
          },
          {
           "finished_product": {
-           "id": 17,
-           "name": "Klasik Blend 0.5 1L"
+           "id": 6,
+           "name": "Naturel Sızma Gemlik 0.8 250ml"
           },
-          "quantity": 144
-         },
-         {
-          "finished_product": {
-           "id": 4,
-           "name": "Naturel Sızma Gemlik 0.3 1L"
-          },
-          "quantity": 144
+          "quantity": 28
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-31T23:55:00Z"
+        "updated_at": "2026-10-31T23:07:00Z"
        },
        {
         "id": 17,
@@ -44636,13 +44582,6 @@
         "contents": [
          {
           "finished_product": {
-           "id": 2,
-           "name": "Naturel Sızma Gemlik 0.3 500ml"
-          },
-          "quantity": 102
-         },
-         {
-          "finished_product": {
            "id": 10,
            "name": "Naturel Sızma Ayvalık 0.4 500ml"
           },
@@ -44654,15 +44593,171 @@
            "name": "Klasik Blend 0.5 500ml"
           },
           "quantity": 170
+         },
+         {
+          "finished_product": {
+           "id": 2,
+           "name": "Naturel Sızma Gemlik 0.3 500ml"
+          },
+          "quantity": 102
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
+        "id": 19,
+        "name": "Y3",
+        "volume_litre": 0.5,
+        "max_quantity": 1000,
+        "current_quantity": 326,
+        "available": 674,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 7,
+           "name": "Naturel Sızma Gemlik 0.8 500ml"
+          },
+          "quantity": 132
+         },
+         {
+          "finished_product": {
+           "id": 14,
+           "name": "Naturel Sızma Ayvalık 0.9 500ml"
+          },
+          "quantity": 68
+         },
+         {
+          "finished_product": {
+           "id": 16,
+           "name": "Klasik Blend 0.5 500ml"
+          },
+          "quantity": 62
+         },
+         {
+          "finished_product": {
+           "id": 10,
+           "name": "Naturel Sızma Ayvalık 0.4 500ml"
+          },
+          "quantity": 64
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-17T02:54:00Z"
+       },
+       {
+        "id": 20,
+        "name": "B1",
+        "volume_litre": 0.75,
+        "max_quantity": 600,
+        "current_quantity": 126,
+        "available": 474,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
+          },
+          "quantity": 126
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 21,
+        "name": "B2",
+        "volume_litre": 0.75,
+        "max_quantity": 600,
+        "current_quantity": 442,
+        "available": 158,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 11,
+           "name": "Naturel Sızma Ayvalık 0.4 750ml"
+          },
+          "quantity": 36
+         },
+         {
+          "finished_product": {
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
+          },
+          "quantity": 406
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 22,
+        "name": "L1",
+        "volume_litre": 1.0,
+        "max_quantity": 600,
+        "current_quantity": 150,
+        "available": 450,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 12,
+           "name": "Naturel Sızma Ayvalık 0.4 1L"
+          },
+          "quantity": 150
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 23,
+        "name": "L2",
+        "volume_litre": 1.0,
+        "max_quantity": 600,
+        "current_quantity": 426,
+        "available": 174,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 12,
+           "name": "Naturel Sızma Ayvalık 0.4 1L"
+          },
+          "quantity": 102
+         },
+         {
+          "finished_product": {
+           "id": 4,
+           "name": "Naturel Sızma Gemlik 0.3 1L"
+          },
+          "quantity": 144
+         },
+         {
+          "finished_product": {
+           "id": 8,
+           "name": "Naturel Sızma Gemlik 0.8 1L"
+          },
+          "quantity": 36
+         },
+         {
+          "finished_product": {
+           "id": 17,
+           "name": "Klasik Blend 0.5 1L"
+          },
+          "quantity": 144
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-31T23:55:00Z"
+       },
+       {
         "id": 24,
         "name": "T1",
-        "volume_litre": 5,
+        "volume_litre": 5.0,
         "max_quantity": 150,
         "current_quantity": 150,
         "available": 0,
@@ -44680,43 +44775,9 @@
         "updated_at": "2026-11-06T04:02:00Z"
        },
        {
-        "id": 16,
-        "name": "K3",
-        "volume_litre": 0.25,
-        "max_quantity": 1500,
-        "current_quantity": 200,
-        "available": 1300,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 13,
-           "name": "Naturel Sızma Ayvalık 0.9 250ml"
-          },
-          "quantity": 24
-         },
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 148
-         },
-         {
-          "finished_product": {
-           "id": 6,
-           "name": "Naturel Sızma Gemlik 0.8 250ml"
-          },
-          "quantity": 28
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
         "id": 25,
         "name": "T2",
-        "volume_litre": 5,
+        "volume_litre": 5.0,
         "max_quantity": 150,
         "current_quantity": 29,
         "available": 121,
@@ -44732,99 +44793,48 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-06T04:02:00Z"
-       },
-       {
-        "id": 14,
-        "name": "K1",
-        "volume_litre": 0.25,
-        "max_quantity": 1500,
-        "current_quantity": 12,
-        "available": 1488,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 12
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-06T09:21:00Z"
-       },
-       {
-        "id": 19,
-        "name": "Y3",
-        "volume_litre": 0.5,
-        "max_quantity": 1000,
-        "current_quantity": 326,
-        "available": 674,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 14,
-           "name": "Naturel Sızma Ayvalık 0.9 500ml"
-          },
-          "quantity": 68
-         },
-         {
-          "finished_product": {
-           "id": 10,
-           "name": "Naturel Sızma Ayvalık 0.4 500ml"
-          },
-          "quantity": 64
-         },
-         {
-          "finished_product": {
-           "id": 16,
-           "name": "Klasik Blend 0.5 500ml"
-          },
-          "quantity": 62
-         },
-         {
-          "finished_product": {
-           "id": 7,
-           "name": "Naturel Sızma Gemlik 0.8 500ml"
-          },
-          "quantity": 132
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-17T02:54:00Z"
        }
       ],
       "stock": [
        {
-        "id": 32,
+        "id": 13,
         "finished_product": {
-         "id": 6,
-         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 28,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 0,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
-        "id": 36,
+        "id": 15,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
-         "volume_litre": 0.25
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
         },
-        "quantity": 24,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 36,
+        "updated_at": "2026-11-02T20:24:00Z"
        },
        {
         "id": 17,
         "finished_product": {
          "id": 5,
          "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
+         "volume_litre": 5.0
         },
         "quantity": 179,
         "updated_at": "2026-11-06T04:02:00Z"
+       },
+       {
+        "id": 18,
+        "finished_product": {
+         "id": 10,
+         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 1319,
+        "updated_at": "2026-11-04T14:34:00Z"
        },
        {
         "id": 21,
@@ -44837,11 +44847,101 @@
         "updated_at": "2026-11-06T09:21:00Z"
        },
        {
+        "id": 22,
+        "finished_product": {
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 532,
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 24,
+        "finished_product": {
+         "id": 2,
+         "name": "Naturel Sızma Gemlik 0.3 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 198,
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 26,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 144,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 27,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 252,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 30,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 36,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 32,
+        "finished_product": {
+         "id": 6,
+         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 28,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 33,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 132,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 36,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 24,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 39,
+        "finished_product": {
+         "id": 14,
+         "name": "Naturel Sızma Ayvalık 0.9 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 68,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
         "id": 42,
         "finished_product": {
          "id": 17,
          "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
+         "volume_litre": 1.0
         },
         "quantity": 144,
         "updated_at": "2026-08-01T02:12:00Z"
@@ -44857,26 +44957,6 @@
         "updated_at": "2026-08-25T05:58:00Z"
        },
        {
-        "id": 15,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 36,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 27,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 252,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
         "id": 46,
         "finished_product": {
          "id": 15,
@@ -44885,86 +44965,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-07-17T16:17:00Z"
-       },
-       {
-        "id": 24,
-        "finished_product": {
-         "id": 2,
-         "name": "Naturel Sızma Gemlik 0.3 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 198,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 22,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 532,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 13,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 33,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 132,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 30,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 36,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 26,
-        "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
-        },
-        "quantity": 144,
-        "updated_at": "2026-10-19T20:34:00Z"
-       },
-       {
-        "id": 18,
-        "finished_product": {
-         "id": 10,
-         "name": "Naturel Sızma Ayvalık 0.4 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 1319,
-        "updated_at": "2026-11-04T14:34:00Z"
-       },
-       {
-        "id": 39,
-        "finished_product": {
-         "id": 14,
-         "name": "Naturel Sızma Ayvalık 0.9 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 68,
-        "updated_at": "2026-10-07T17:42:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -45811,36 +45811,6 @@
      "is_active": true,
      "slots": [
       {
-       "id": 27,
-       "name": "T2",
-       "volume_litre": 0.25,
-       "max_quantity": 50,
-       "current_quantity": 0,
-       "available": 50,
-       "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml"
-       },
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:22Z"
-      },
-      {
-       "id": 28,
-       "name": "T3",
-       "volume_litre": 0.5,
-       "max_quantity": 40,
-       "current_quantity": 0,
-       "available": 40,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml"
-       },
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:22Z"
-      },
-      {
        "id": 26,
        "name": "T1",
        "volume_litre": 0.25,
@@ -45857,8 +45827,38 @@
          "quantity": 40
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
+      },
+      {
+       "id": 27,
+       "name": "T2",
+       "volume_litre": 0.25,
+       "max_quantity": 50,
+       "current_quantity": 0,
+       "available": 50,
+       "finished_product": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml"
+       },
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
+      },
+      {
+       "id": 28,
+       "name": "T3",
+       "volume_litre": 0.5,
+       "max_quantity": 40,
+       "current_quantity": 0,
+       "available": 40,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml"
+       },
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
       }
      ],
      "stock": [
@@ -45870,11 +45870,11 @@
         "volume_litre": 0.25
        },
        "quantity": 40,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:01Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -45905,21 +45905,6 @@
      "is_active": true,
      "slots": [
       {
-       "id": 28,
-       "name": "T3",
-       "volume_litre": 0.5,
-       "max_quantity": 40,
-       "current_quantity": 0,
-       "available": 40,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml"
-       },
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:22Z"
-      },
-      {
        "id": 26,
        "name": "T1",
        "volume_litre": 0.25,
@@ -45936,8 +45921,8 @@
          "quantity": 60
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
       },
       {
        "id": 27,
@@ -45959,8 +45944,23 @@
          "quantity": 30
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
+      },
+      {
+       "id": 28,
+       "name": "T3",
+       "volume_litre": 0.5,
+       "max_quantity": 40,
+       "current_quantity": 0,
+       "available": 40,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml"
+       },
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
       }
      ],
      "stock": [
@@ -45972,11 +45972,11 @@
         "volume_litre": 0.25
        },
        "quantity": 90,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:01Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -46133,44 +46133,6 @@
      "is_active": true,
      "slots": [
       {
-       "id": 28,
-       "name": "T3",
-       "volume_litre": 0.5,
-       "max_quantity": 40,
-       "current_quantity": 0,
-       "available": 40,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml"
-       },
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:22Z"
-      },
-      {
-       "id": 27,
-       "name": "T2",
-       "volume_litre": 0.25,
-       "max_quantity": 50,
-       "current_quantity": 30,
-       "available": 20,
-       "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml"
-       },
-       "contents": [
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 30
-        }
-       ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
-      },
-      {
        "id": 26,
        "name": "T1",
        "volume_litre": 0.25,
@@ -46194,8 +46156,46 @@
          "quantity": 25
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 27,
+       "name": "T2",
+       "volume_litre": 0.25,
+       "max_quantity": 50,
+       "current_quantity": 30,
+       "available": 20,
+       "finished_product": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml"
+       },
+       "contents": [
+        {
+         "finished_product": {
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
+         },
+         "quantity": 30
+        }
+       ],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
+      },
+      {
+       "id": 28,
+       "name": "T3",
+       "volume_litre": 0.5,
+       "max_quantity": 40,
+       "current_quantity": 0,
+       "available": 40,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml"
+       },
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
       }
      ],
      "stock": [
@@ -46207,7 +46207,7 @@
         "volume_litre": 0.25
        },
        "quantity": 90,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:01Z"
       },
       {
        "id": 48,
@@ -46217,11 +46217,11 @@
         "volume_litre": 0.25
        },
        "quantity": 25,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null,
@@ -46245,29 +46245,6 @@
      "is_active": true,
      "slots": [
       {
-       "id": 27,
-       "name": "T2",
-       "volume_litre": 0.25,
-       "max_quantity": 50,
-       "current_quantity": 30,
-       "available": 20,
-       "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml"
-       },
-       "contents": [
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 30
-        }
-       ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
-      },
-      {
        "id": 26,
        "name": "T1",
        "volume_litre": 0.25,
@@ -46291,8 +46268,31 @@
          "quantity": 25
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 27,
+       "name": "T2",
+       "volume_litre": 0.25,
+       "max_quantity": 50,
+       "current_quantity": 30,
+       "available": 20,
+       "finished_product": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml"
+       },
+       "contents": [
+        {
+         "finished_product": {
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
+         },
+         "quantity": 30
+        }
+       ],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:01Z"
       },
       {
        "id": 28,
@@ -46314,8 +46314,8 @@
          "quantity": 30
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
@@ -46327,7 +46327,7 @@
         "volume_litre": 0.25
        },
        "quantity": 90,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:01Z"
       },
       {
        "id": 48,
@@ -46337,7 +46337,7 @@
         "volume_litre": 0.25
        },
        "quantity": 25,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 49,
@@ -46347,11 +46347,11 @@
         "volume_litre": 0.5
        },
        "quantity": 30,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -46753,6 +46753,53 @@
       "is_active": true,
       "slots": [
        {
+        "id": 26,
+        "name": "T1",
+        "volume_litre": 0.25,
+        "max_quantity": 200,
+        "current_quantity": 75,
+        "available": 125,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
+          },
+          "quantity": 50
+         },
+         {
+          "finished_product": {
+           "id": 18,
+           "name": "Portakallı Zeytinyağı 250ml"
+          },
+          "quantity": 25
+         }
+        ],
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
+        "id": 27,
+        "name": null,
+        "volume_litre": 0.25,
+        "max_quantity": 50,
+        "current_quantity": 30,
+        "available": 20,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
+          },
+          "quantity": 30
+         }
+        ],
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
         "id": 28,
         "name": "T3",
         "volume_litre": 0.5,
@@ -46772,58 +46819,21 @@
           "quantity": 30
          }
         ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:23Z"
-       },
-       {
-        "id": 27,
-        "name": null,
-        "volume_litre": 0.25,
-        "max_quantity": 50,
-        "current_quantity": 30,
-        "available": 20,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 30
-         }
-        ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
-       },
-       {
-        "id": 26,
-        "name": "T1",
-        "volume_litre": 0.25,
-        "max_quantity": 200,
-        "current_quantity": 75,
-        "available": 125,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 18,
-           "name": "Portakallı Zeytinyağı 250ml"
-          },
-          "quantity": 25
-         },
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 50
-         }
-        ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
       "stock": [
+       {
+        "id": 47,
+        "finished_product": {
+         "id": 1,
+         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 80,
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
        {
         "id": 48,
         "finished_product": {
@@ -46832,7 +46842,7 @@
          "volume_litre": 0.25
         },
         "quantity": 25,
-        "updated_at": "2026-11-07T04:25:23Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 49,
@@ -46842,21 +46852,11 @@
          "volume_litre": 0.5
         },
         "quantity": 30,
-        "updated_at": "2026-11-07T04:25:23Z"
-       },
-       {
-        "id": 47,
-        "finished_product": {
-         "id": 1,
-         "name": "Naturel Sızma Gemlik 0.3 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 80,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
-      "created_at": "2026-11-07T04:25:22Z",
-      "updated_at": "2026-11-07T04:25:22Z"
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
      },
      "target_storage": {
       "id": 1,
@@ -46865,24 +46865,24 @@
       "is_active": true,
       "slots": [
        {
-        "id": 6,
-        "name": "C1",
-        "volume_litre": 0.75,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
+        "id": 1,
+        "name": "A1",
+        "volume_litre": 0.25,
+        "max_quantity": 500,
+        "current_quantity": 10,
+        "available": 490,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 200
+          "quantity": 10
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 2,
@@ -46957,29 +46957,29 @@
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
-        "id": 8,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 43,
-        "available": 7,
+        "id": 6,
+        "name": "C1",
+        "volume_litre": 0.75,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
           },
-          "quantity": 43
+          "quantity": 200
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-28T13:12:00Z"
+        "updated_at": "2026-11-04T03:40:00Z"
        },
        {
         "id": 7,
         "name": "D1",
-        "volume_litre": 1,
+        "volume_litre": 1.0,
         "max_quantity": 200,
         "current_quantity": 42,
         "available": 158,
@@ -46997,36 +46997,36 @@
         "updated_at": "2026-11-02T20:24:00Z"
        },
        {
-        "id": 1,
-        "name": "A1",
-        "volume_litre": 0.25,
-        "max_quantity": 500,
-        "current_quantity": 10,
-        "available": 490,
+        "id": 8,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 43,
+        "available": 7,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
           },
-          "quantity": 10
+          "quantity": 43
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-10-28T13:12:00Z"
        }
       ],
       "stock": [
        {
-        "id": 29,
+        "id": 1,
         "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
+         "id": 1,
+         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "volume_litre": 0.25
         },
-        "quantity": 42,
-        "updated_at": "2026-10-19T20:34:00Z"
+        "quantity": 10,
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 2,
@@ -47039,14 +47039,14 @@
         "updated_at": "2026-10-02T22:19:00Z"
        },
        {
-        "id": 37,
+        "id": 3,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 140,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
         "id": 4,
@@ -47059,56 +47059,6 @@
         "updated_at": "2026-08-01T02:12:00Z"
        },
        {
-        "id": 43,
-        "finished_product": {
-         "id": 17,
-         "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-01T02:12:00Z"
-       },
-       {
-        "id": 7,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-25T05:58:00Z"
-       },
-       {
-        "id": 28,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 23,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 200,
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 11,
-        "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 43,
-        "updated_at": "2026-10-28T13:12:00Z"
-       },
-       {
         "id": 5,
         "finished_product": {
          "id": 2,
@@ -47117,46 +47067,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 16,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
-        "id": 34,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 3,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 140,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 31,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
        },
        {
         "id": 6,
@@ -47169,6 +47079,36 @@
         "updated_at": "2026-10-07T17:42:00Z"
        },
        {
+        "id": 7,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-25T05:58:00Z"
+       },
+       {
+        "id": 11,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 43,
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 16,
+        "finished_product": {
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-31T23:07:00Z"
+       },
+       {
         "id": 19,
         "finished_product": {
          "id": 10,
@@ -47179,14 +47119,74 @@
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
-        "id": 1,
+        "id": 23,
         "finished_product": {
-         "id": 1,
-         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 28,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 29,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 42,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 31,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 34,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 37,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 10,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 43,
+        "finished_product": {
+         "id": 17,
+         "name": "Klasik Blend 0.5 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-01T02:12:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -47216,29 +47216,6 @@
       "is_active": true,
       "slots": [
        {
-        "id": 28,
-        "name": "T3",
-        "volume_litre": 0.5,
-        "max_quantity": 40,
-        "current_quantity": 30,
-        "available": 10,
-        "finished_product": {
-         "id": 19,
-         "name": "Portakallı Zeytinyağı 500ml"
-        },
-        "contents": [
-         {
-          "finished_product": {
-           "id": 19,
-           "name": "Portakallı Zeytinyağı 500ml"
-          },
-          "quantity": 30
-         }
-        ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:23Z"
-       },
-       {
         "id": 26,
         "name": "T1",
         "volume_litre": 0.25,
@@ -47262,8 +47239,8 @@
           "quantity": 5
          }
         ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 27,
@@ -47289,21 +47266,34 @@
           "quantity": 20
          }
         ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
+        "id": 28,
+        "name": "T3",
+        "volume_litre": 0.5,
+        "max_quantity": 40,
+        "current_quantity": 30,
+        "available": 10,
+        "finished_product": {
+         "id": 19,
+         "name": "Portakallı Zeytinyağı 500ml"
+        },
+        "contents": [
+         {
+          "finished_product": {
+           "id": 19,
+           "name": "Portakallı Zeytinyağı 500ml"
+          },
+          "quantity": 30
+         }
+        ],
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
       "stock": [
-       {
-        "id": 49,
-        "finished_product": {
-         "id": 19,
-         "name": "Portakallı Zeytinyağı 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 30,
-        "updated_at": "2026-11-07T04:25:23Z"
-       },
        {
         "id": 47,
         "finished_product": {
@@ -47312,7 +47302,7 @@
          "volume_litre": 0.25
         },
         "quantity": 80,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 48,
@@ -47322,11 +47312,21 @@
          "volume_litre": 0.25
         },
         "quantity": 25,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
+        "id": 49,
+        "finished_product": {
+         "id": 19,
+         "name": "Portakallı Zeytinyağı 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 30,
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
-      "created_at": "2026-11-07T04:25:22Z",
-      "updated_at": "2026-11-07T04:25:22Z"
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
      },
      "target_storage": {
       "id": 4,
@@ -47335,29 +47335,6 @@
       "is_active": true,
       "slots": [
        {
-        "id": 28,
-        "name": "T3",
-        "volume_litre": 0.5,
-        "max_quantity": 40,
-        "current_quantity": 30,
-        "available": 10,
-        "finished_product": {
-         "id": 19,
-         "name": "Portakallı Zeytinyağı 500ml"
-        },
-        "contents": [
-         {
-          "finished_product": {
-           "id": 19,
-           "name": "Portakallı Zeytinyağı 500ml"
-          },
-          "quantity": 30
-         }
-        ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:23Z"
-       },
-       {
         "id": 26,
         "name": "T1",
         "volume_litre": 0.25,
@@ -47381,8 +47358,8 @@
           "quantity": 5
          }
         ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 27,
@@ -47408,21 +47385,34 @@
           "quantity": 20
          }
         ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
+        "id": 28,
+        "name": "T3",
+        "volume_litre": 0.5,
+        "max_quantity": 40,
+        "current_quantity": 30,
+        "available": 10,
+        "finished_product": {
+         "id": 19,
+         "name": "Portakallı Zeytinyağı 500ml"
+        },
+        "contents": [
+         {
+          "finished_product": {
+           "id": 19,
+           "name": "Portakallı Zeytinyağı 500ml"
+          },
+          "quantity": 30
+         }
+        ],
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
       "stock": [
-       {
-        "id": 49,
-        "finished_product": {
-         "id": 19,
-         "name": "Portakallı Zeytinyağı 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 30,
-        "updated_at": "2026-11-07T04:25:23Z"
-       },
        {
         "id": 47,
         "finished_product": {
@@ -47431,7 +47421,7 @@
          "volume_litre": 0.25
         },
         "quantity": 80,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 48,
@@ -47441,11 +47431,21 @@
          "volume_litre": 0.25
         },
         "quantity": 25,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
+        "id": 49,
+        "finished_product": {
+         "id": 19,
+         "name": "Portakallı Zeytinyağı 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 30,
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
-      "created_at": "2026-11-07T04:25:22Z",
-      "updated_at": "2026-11-07T04:25:22Z"
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
      }
     }
    },
@@ -47495,27 +47495,31 @@
      "is_active": true,
      "slots": [
       {
-       "id": 28,
-       "name": "T3",
-       "volume_litre": 0.5,
-       "max_quantity": 40,
-       "current_quantity": 30,
-       "available": 10,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml"
-       },
+       "id": 26,
+       "name": "T1",
+       "volume_litre": 0.25,
+       "max_quantity": 200,
+       "current_quantity": 50,
+       "available": 150,
+       "finished_product": null,
        "contents": [
         {
          "finished_product": {
-          "id": 19,
-          "name": "Portakallı Zeytinyağı 500ml"
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
          },
-         "quantity": 30
+         "quantity": 45
+        },
+        {
+         "finished_product": {
+          "id": 18,
+          "name": "Portakallı Zeytinyağı 250ml"
+         },
+         "quantity": 5
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:23Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 27,
@@ -47541,47 +47545,43 @@
          "quantity": 20
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
-       "id": 26,
-       "name": "T1",
-       "volume_litre": 0.25,
-       "max_quantity": 200,
-       "current_quantity": 50,
-       "available": 150,
-       "finished_product": null,
+       "id": 28,
+       "name": "T3",
+       "volume_litre": 0.5,
+       "max_quantity": 40,
+       "current_quantity": 30,
+       "available": 10,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml"
+       },
        "contents": [
         {
          "finished_product": {
-          "id": 18,
-          "name": "Portakallı Zeytinyağı 250ml"
+          "id": 19,
+          "name": "Portakallı Zeytinyağı 500ml"
          },
-         "quantity": 5
-        },
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 45
+         "quantity": 30
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
       {
-       "id": 49,
+       "id": 47,
        "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml",
-        "volume_litre": 0.5
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml",
+        "volume_litre": 0.25
        },
-       "quantity": 30,
-       "updated_at": "2026-11-07T04:25:23Z"
+       "quantity": 75,
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 48,
@@ -47591,21 +47591,21 @@
         "volume_litre": 0.25
        },
        "quantity": 25,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
-       "id": 47,
+       "id": 49,
        "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml",
-        "volume_litre": 0.25
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml",
+        "volume_litre": 0.5
        },
-       "quantity": 75,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "quantity": 30,
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -47664,6 +47664,33 @@
      "is_active": true,
      "slots": [
       {
+       "id": 26,
+       "name": "T1",
+       "volume_litre": 0.25,
+       "max_quantity": 200,
+       "current_quantity": 50,
+       "available": 150,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
+         },
+         "quantity": 45
+        },
+        {
+         "finished_product": {
+          "id": 18,
+          "name": "Portakallı Zeytinyağı 250ml"
+         },
+         "quantity": 5
+        }
+       ],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
        "id": 27,
        "name": null,
        "volume_litre": 0.25,
@@ -47687,35 +47714,8 @@
          "quantity": 20
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 26,
-       "name": "T1",
-       "volume_litre": 0.25,
-       "max_quantity": 200,
-       "current_quantity": 50,
-       "available": 150,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 18,
-          "name": "Portakallı Zeytinyağı 250ml"
-         },
-         "quantity": 5
-        },
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 45
-        }
-       ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 28,
@@ -47729,21 +47729,11 @@
         "name": "Portakallı Zeytinyağı 500ml"
        },
        "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
-      {
-       "id": 48,
-       "finished_product": {
-        "id": 18,
-        "name": "Portakallı Zeytinyağı 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 25,
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
       {
        "id": 47,
        "finished_product": {
@@ -47752,7 +47742,17 @@
         "volume_litre": 0.25
        },
        "quantity": 75,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 48,
+       "finished_product": {
+        "id": 18,
+        "name": "Portakallı Zeytinyağı 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 25,
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 49,
@@ -47762,11 +47762,11 @@
         "volume_litre": 0.5
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null,
@@ -67657,6 +67657,33 @@
      "is_active": true,
      "slots": [
       {
+       "id": 26,
+       "name": "T1",
+       "volume_litre": 0.25,
+       "max_quantity": 200,
+       "current_quantity": 50,
+       "available": 150,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 1,
+          "name": "Naturel Sızma Gemlik 0.3 250ml"
+         },
+         "quantity": 45
+        },
+        {
+         "finished_product": {
+          "id": 18,
+          "name": "Portakallı Zeytinyağı 250ml"
+         },
+         "quantity": 5
+        }
+       ],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
        "id": 27,
        "name": null,
        "volume_litre": 0.25,
@@ -67680,35 +67707,8 @@
          "quantity": 20
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 26,
-       "name": "T1",
-       "volume_litre": 0.25,
-       "max_quantity": 200,
-       "current_quantity": 50,
-       "available": 150,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 18,
-          "name": "Portakallı Zeytinyağı 250ml"
-         },
-         "quantity": 5
-        },
-        {
-         "finished_product": {
-          "id": 1,
-          "name": "Naturel Sızma Gemlik 0.3 250ml"
-         },
-         "quantity": 45
-        }
-       ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 28,
@@ -67722,21 +67722,11 @@
         "name": "Portakallı Zeytinyağı 500ml"
        },
        "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
-      {
-       "id": 48,
-       "finished_product": {
-        "id": 18,
-        "name": "Portakallı Zeytinyağı 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 25,
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
       {
        "id": 47,
        "finished_product": {
@@ -67745,7 +67735,17 @@
         "volume_litre": 0.25
        },
        "quantity": 75,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 48,
+       "finished_product": {
+        "id": 18,
+        "name": "Portakallı Zeytinyağı 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 25,
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 49,
@@ -67755,11 +67755,11 @@
         "volume_litre": 0.5
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -67779,24 +67779,24 @@
       "is_active": true,
       "slots": [
        {
-        "id": 6,
-        "name": "C1",
-        "volume_litre": 0.75,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
+        "id": 1,
+        "name": "A1",
+        "volume_litre": 0.25,
+        "max_quantity": 500,
+        "current_quantity": 10,
+        "available": 490,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 200
+          "quantity": 10
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 2,
@@ -67871,29 +67871,29 @@
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
-        "id": 8,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 43,
-        "available": 7,
+        "id": 6,
+        "name": "C1",
+        "volume_litre": 0.75,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
           },
-          "quantity": 43
+          "quantity": 200
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-28T13:12:00Z"
+        "updated_at": "2026-11-04T03:40:00Z"
        },
        {
         "id": 7,
         "name": "D1",
-        "volume_litre": 1,
+        "volume_litre": 1.0,
         "max_quantity": 200,
         "current_quantity": 42,
         "available": 158,
@@ -67911,36 +67911,36 @@
         "updated_at": "2026-11-02T20:24:00Z"
        },
        {
-        "id": 1,
-        "name": "A1",
-        "volume_litre": 0.25,
-        "max_quantity": 500,
-        "current_quantity": 10,
-        "available": 490,
+        "id": 8,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 43,
+        "available": 7,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
           },
-          "quantity": 10
+          "quantity": 43
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-10-28T13:12:00Z"
        }
       ],
       "stock": [
        {
-        "id": 29,
+        "id": 1,
         "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
+         "id": 1,
+         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "volume_litre": 0.25
         },
-        "quantity": 42,
-        "updated_at": "2026-10-19T20:34:00Z"
+        "quantity": 10,
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 2,
@@ -67953,14 +67953,14 @@
         "updated_at": "2026-10-02T22:19:00Z"
        },
        {
-        "id": 37,
+        "id": 3,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 140,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
         "id": 4,
@@ -67973,56 +67973,6 @@
         "updated_at": "2026-08-01T02:12:00Z"
        },
        {
-        "id": 43,
-        "finished_product": {
-         "id": 17,
-         "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-01T02:12:00Z"
-       },
-       {
-        "id": 7,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-08-25T05:58:00Z"
-       },
-       {
-        "id": 28,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 23,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 200,
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 11,
-        "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 43,
-        "updated_at": "2026-10-28T13:12:00Z"
-       },
-       {
         "id": 5,
         "finished_product": {
          "id": 2,
@@ -68031,46 +67981,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 16,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
-        "id": 34,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 3,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 140,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 31,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:42:00Z"
        },
        {
         "id": 6,
@@ -68083,6 +67993,36 @@
         "updated_at": "2026-10-07T17:42:00Z"
        },
        {
+        "id": 7,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-25T05:58:00Z"
+       },
+       {
+        "id": 11,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 43,
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 16,
+        "finished_product": {
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-31T23:07:00Z"
+       },
+       {
         "id": 19,
         "finished_product": {
          "id": 10,
@@ -68093,14 +68033,74 @@
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
-        "id": 1,
+        "id": 23,
         "finished_product": {
-         "id": 1,
-         "name": "Naturel Sızma Gemlik 0.3 250ml",
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 28,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 29,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 42,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 31,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 34,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 37,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 10,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 43,
+        "finished_product": {
+         "id": 17,
+         "name": "Klasik Blend 0.5 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 0,
+        "updated_at": "2026-08-01T02:12:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -68112,46 +68112,6 @@
       "description": "Aromalı ve özel ürünler için soğuk hava deposu",
       "is_active": true,
       "slots": [
-       {
-        "id": 13,
-        "name": "E1",
-        "volume_litre": 5,
-        "max_quantity": 50,
-        "current_quantity": 50,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 5,
-           "name": "Naturel Sızma Gemlik 0.3 5L"
-          },
-          "quantity": 50
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2025-11-22T02:38:00Z"
-       },
-       {
-        "id": 11,
-        "name": "B1",
-        "volume_litre": 0.5,
-        "max_quantity": 200,
-        "current_quantity": 200,
-        "available": 0,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 2,
-           "name": "Naturel Sızma Gemlik 0.3 500ml"
-          },
-          "quantity": 200
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-05T14:43:00Z"
-       },
        {
         "id": 9,
         "name": "A1",
@@ -68193,6 +68153,26 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
+        "id": 11,
+        "name": "B1",
+        "volume_litre": 0.5,
+        "max_quantity": 200,
+        "current_quantity": 200,
+        "available": 0,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 2,
+           "name": "Naturel Sızma Gemlik 0.3 500ml"
+          },
+          "quantity": 200
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-05T14:43:00Z"
+       },
+       {
         "id": 12,
         "name": "B2",
         "volume_litre": 0.5,
@@ -68211,49 +68191,29 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-04T14:34:00Z"
+       },
+       {
+        "id": 13,
+        "name": "E1",
+        "volume_litre": 5.0,
+        "max_quantity": 50,
+        "current_quantity": 50,
+        "available": 0,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 5,
+           "name": "Naturel Sızma Gemlik 0.3 5L"
+          },
+          "quantity": 50
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2025-11-22T02:38:00Z"
        }
       ],
       "stock": [
-       {
-        "id": 41,
-        "finished_product": {
-         "id": 6,
-         "name": "Naturel Sızma Gemlik 0.8 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-07T17:41:00Z"
-       },
-       {
-        "id": 40,
-        "finished_product": {
-         "id": 14,
-         "name": "Naturel Sızma Ayvalık 0.9 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-09-13T08:32:00Z"
-       },
-       {
-        "id": 10,
-        "finished_product": {
-         "id": 18,
-         "name": "Portakallı Zeytinyağı 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 52,
-        "updated_at": "2025-11-10T17:25:00Z"
-       },
-       {
-        "id": 45,
-        "finished_product": {
-         "id": 16,
-         "name": "Klasik Blend 0.5 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 0,
-        "updated_at": "2026-07-27T16:34:00Z"
-       },
        {
         "id": 8,
         "finished_product": {
@@ -68263,16 +68223,6 @@
         },
         "quantity": 0,
         "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 14,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-10-28T13:12:00Z"
        },
        {
         "id": 9,
@@ -68285,14 +68235,44 @@
         "updated_at": "2026-08-18T01:25:00Z"
        },
        {
-        "id": 35,
+        "id": 10,
         "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
+         "id": 18,
+         "name": "Portakallı Zeytinyağı 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 52,
+        "updated_at": "2025-11-10T17:25:00Z"
+       },
+       {
+        "id": 12,
+        "finished_product": {
+         "id": 5,
+         "name": "Naturel Sızma Gemlik 0.3 5L",
+         "volume_litre": 5.0
+        },
+        "quantity": 50,
+        "updated_at": "2025-11-22T02:38:00Z"
+       },
+       {
+        "id": 14,
+        "finished_product": {
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
+         "volume_litre": 0.25
         },
         "quantity": 0,
-        "updated_at": "2026-10-04T08:03:00Z"
+        "updated_at": "2026-10-28T13:12:00Z"
+       },
+       {
+        "id": 20,
+        "finished_product": {
+         "id": 10,
+         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 200,
+        "updated_at": "2026-11-04T14:34:00Z"
        },
        {
         "id": 25,
@@ -68305,6 +68285,16 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
+        "id": 35,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-04T08:03:00Z"
+       },
+       {
         "id": 38,
         "finished_product": {
          "id": 13,
@@ -68315,24 +68305,34 @@
         "updated_at": "2026-10-04T08:03:00Z"
        },
        {
-        "id": 12,
+        "id": 40,
         "finished_product": {
-         "id": 5,
-         "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
-        },
-        "quantity": 50,
-        "updated_at": "2025-11-22T02:38:00Z"
-       },
-       {
-        "id": 20,
-        "finished_product": {
-         "id": 10,
-         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "id": 14,
+         "name": "Naturel Sızma Ayvalık 0.9 500ml",
          "volume_litre": 0.5
         },
-        "quantity": 200,
-        "updated_at": "2026-11-04T14:34:00Z"
+        "quantity": 0,
+        "updated_at": "2026-09-13T08:32:00Z"
+       },
+       {
+        "id": 41,
+        "finished_product": {
+         "id": 6,
+         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 0,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 45,
+        "finished_product": {
+         "id": 16,
+         "name": "Klasik Blend 0.5 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 0,
+        "updated_at": "2026-07-27T16:34:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
@@ -68345,71 +68345,24 @@
       "is_active": true,
       "slots": [
        {
-        "id": 22,
-        "name": "L1",
-        "volume_litre": 1,
-        "max_quantity": 600,
-        "current_quantity": 150,
-        "available": 450,
+        "id": 14,
+        "name": "K1",
+        "volume_litre": 0.25,
+        "max_quantity": 1500,
+        "current_quantity": 12,
+        "available": 1488,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 12,
-           "name": "Naturel Sızma Ayvalık 0.4 1L"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 150
+          "quantity": 12
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 21,
-        "name": "B2",
-        "volume_litre": 0.75,
-        "max_quantity": 600,
-        "current_quantity": 442,
-        "available": 158,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 11,
-           "name": "Naturel Sızma Ayvalık 0.4 750ml"
-          },
-          "quantity": 36
-         },
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 406
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-04T03:40:00Z"
-       },
-       {
-        "id": 20,
-        "name": "B1",
-        "volume_litre": 0.75,
-        "max_quantity": 600,
-        "current_quantity": 126,
-        "available": 474,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 3,
-           "name": "Naturel Sızma Gemlik 0.3 750ml"
-          },
-          "quantity": 126
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-05T08:51:00Z"
+        "updated_at": "2026-11-06T09:21:00Z"
        },
        {
         "id": 15,
@@ -68424,45 +68377,38 @@
         "updated_at": "2026-11-05T08:51:00Z"
        },
        {
-        "id": 23,
-        "name": "L2",
-        "volume_litre": 1,
-        "max_quantity": 600,
-        "current_quantity": 426,
-        "available": 174,
+        "id": 16,
+        "name": "K3",
+        "volume_litre": 0.25,
+        "max_quantity": 1500,
+        "current_quantity": 200,
+        "available": 1300,
         "finished_product": null,
         "contents": [
          {
           "finished_product": {
-           "id": 12,
-           "name": "Naturel Sızma Ayvalık 0.4 1L"
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
           },
-          "quantity": 102
+          "quantity": 148
          },
          {
           "finished_product": {
-           "id": 8,
-           "name": "Naturel Sızma Gemlik 0.8 1L"
+           "id": 13,
+           "name": "Naturel Sızma Ayvalık 0.9 250ml"
           },
-          "quantity": 36
+          "quantity": 24
          },
          {
           "finished_product": {
-           "id": 17,
-           "name": "Klasik Blend 0.5 1L"
+           "id": 6,
+           "name": "Naturel Sızma Gemlik 0.8 250ml"
           },
-          "quantity": 144
-         },
-         {
-          "finished_product": {
-           "id": 4,
-           "name": "Naturel Sızma Gemlik 0.3 1L"
-          },
-          "quantity": 144
+          "quantity": 28
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-31T23:55:00Z"
+        "updated_at": "2026-10-31T23:07:00Z"
        },
        {
         "id": 17,
@@ -68502,13 +68448,6 @@
         "contents": [
          {
           "finished_product": {
-           "id": 2,
-           "name": "Naturel Sızma Gemlik 0.3 500ml"
-          },
-          "quantity": 102
-         },
-         {
-          "finished_product": {
            "id": 10,
            "name": "Naturel Sızma Ayvalık 0.4 500ml"
           },
@@ -68520,15 +68459,171 @@
            "name": "Klasik Blend 0.5 500ml"
           },
           "quantity": 170
+         },
+         {
+          "finished_product": {
+           "id": 2,
+           "name": "Naturel Sızma Gemlik 0.3 500ml"
+          },
+          "quantity": 102
          }
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-04T14:34:00Z"
        },
        {
+        "id": 19,
+        "name": "Y3",
+        "volume_litre": 0.5,
+        "max_quantity": 1000,
+        "current_quantity": 326,
+        "available": 674,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 7,
+           "name": "Naturel Sızma Gemlik 0.8 500ml"
+          },
+          "quantity": 132
+         },
+         {
+          "finished_product": {
+           "id": 14,
+           "name": "Naturel Sızma Ayvalık 0.9 500ml"
+          },
+          "quantity": 68
+         },
+         {
+          "finished_product": {
+           "id": 16,
+           "name": "Klasik Blend 0.5 500ml"
+          },
+          "quantity": 62
+         },
+         {
+          "finished_product": {
+           "id": 10,
+           "name": "Naturel Sızma Ayvalık 0.4 500ml"
+          },
+          "quantity": 64
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-17T02:54:00Z"
+       },
+       {
+        "id": 20,
+        "name": "B1",
+        "volume_litre": 0.75,
+        "max_quantity": 600,
+        "current_quantity": 126,
+        "available": 474,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
+          },
+          "quantity": 126
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 21,
+        "name": "B2",
+        "volume_litre": 0.75,
+        "max_quantity": 600,
+        "current_quantity": 442,
+        "available": 158,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 11,
+           "name": "Naturel Sızma Ayvalık 0.4 750ml"
+          },
+          "quantity": 36
+         },
+         {
+          "finished_product": {
+           "id": 3,
+           "name": "Naturel Sızma Gemlik 0.3 750ml"
+          },
+          "quantity": 406
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-04T03:40:00Z"
+       },
+       {
+        "id": 22,
+        "name": "L1",
+        "volume_litre": 1.0,
+        "max_quantity": 600,
+        "current_quantity": 150,
+        "available": 450,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 12,
+           "name": "Naturel Sızma Ayvalık 0.4 1L"
+          },
+          "quantity": 150
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 23,
+        "name": "L2",
+        "volume_litre": 1.0,
+        "max_quantity": 600,
+        "current_quantity": 426,
+        "available": 174,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 12,
+           "name": "Naturel Sızma Ayvalık 0.4 1L"
+          },
+          "quantity": 102
+         },
+         {
+          "finished_product": {
+           "id": 4,
+           "name": "Naturel Sızma Gemlik 0.3 1L"
+          },
+          "quantity": 144
+         },
+         {
+          "finished_product": {
+           "id": 8,
+           "name": "Naturel Sızma Gemlik 0.8 1L"
+          },
+          "quantity": 36
+         },
+         {
+          "finished_product": {
+           "id": 17,
+           "name": "Klasik Blend 0.5 1L"
+          },
+          "quantity": 144
+         }
+        ],
+        "created_at": "2026-11-06T15:35:14Z",
+        "updated_at": "2026-10-31T23:55:00Z"
+       },
+       {
         "id": 24,
         "name": "T1",
-        "volume_litre": 5,
+        "volume_litre": 5.0,
         "max_quantity": 150,
         "current_quantity": 150,
         "available": 0,
@@ -68546,43 +68641,9 @@
         "updated_at": "2026-11-06T04:02:00Z"
        },
        {
-        "id": 16,
-        "name": "K3",
-        "volume_litre": 0.25,
-        "max_quantity": 1500,
-        "current_quantity": 200,
-        "available": 1300,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 13,
-           "name": "Naturel Sızma Ayvalık 0.9 250ml"
-          },
-          "quantity": 24
-         },
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 148
-         },
-         {
-          "finished_product": {
-           "id": 6,
-           "name": "Naturel Sızma Gemlik 0.8 250ml"
-          },
-          "quantity": 28
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-31T23:07:00Z"
-       },
-       {
         "id": 25,
         "name": "T2",
-        "volume_litre": 5,
+        "volume_litre": 5.0,
         "max_quantity": 150,
         "current_quantity": 29,
         "available": 121,
@@ -68598,99 +68659,48 @@
         ],
         "created_at": "2026-11-06T15:35:14Z",
         "updated_at": "2026-11-06T04:02:00Z"
-       },
-       {
-        "id": 14,
-        "name": "K1",
-        "volume_litre": 0.25,
-        "max_quantity": 1500,
-        "current_quantity": 12,
-        "available": 1488,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 12
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-11-06T09:21:00Z"
-       },
-       {
-        "id": 19,
-        "name": "Y3",
-        "volume_litre": 0.5,
-        "max_quantity": 1000,
-        "current_quantity": 326,
-        "available": 674,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 14,
-           "name": "Naturel Sızma Ayvalık 0.9 500ml"
-          },
-          "quantity": 68
-         },
-         {
-          "finished_product": {
-           "id": 10,
-           "name": "Naturel Sızma Ayvalık 0.4 500ml"
-          },
-          "quantity": 64
-         },
-         {
-          "finished_product": {
-           "id": 16,
-           "name": "Klasik Blend 0.5 500ml"
-          },
-          "quantity": 62
-         },
-         {
-          "finished_product": {
-           "id": 7,
-           "name": "Naturel Sızma Gemlik 0.8 500ml"
-          },
-          "quantity": 132
-         }
-        ],
-        "created_at": "2026-11-06T15:35:14Z",
-        "updated_at": "2026-10-17T02:54:00Z"
        }
       ],
       "stock": [
        {
-        "id": 32,
+        "id": 13,
         "finished_product": {
-         "id": 6,
-         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "id": 9,
+         "name": "Naturel Sızma Ayvalık 0.4 250ml",
          "volume_litre": 0.25
         },
-        "quantity": 28,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 0,
+        "updated_at": "2026-11-05T08:51:00Z"
        },
        {
-        "id": 36,
+        "id": 15,
         "finished_product": {
-         "id": 13,
-         "name": "Naturel Sızma Ayvalık 0.9 250ml",
-         "volume_litre": 0.25
+         "id": 11,
+         "name": "Naturel Sızma Ayvalık 0.4 750ml",
+         "volume_litre": 0.75
         },
-        "quantity": 24,
-        "updated_at": "2026-10-07T17:41:00Z"
+        "quantity": 36,
+        "updated_at": "2026-11-02T20:24:00Z"
        },
        {
         "id": 17,
         "finished_product": {
          "id": 5,
          "name": "Naturel Sızma Gemlik 0.3 5L",
-         "volume_litre": 5
+         "volume_litre": 5.0
         },
         "quantity": 179,
         "updated_at": "2026-11-06T04:02:00Z"
+       },
+       {
+        "id": 18,
+        "finished_product": {
+         "id": 10,
+         "name": "Naturel Sızma Ayvalık 0.4 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 1319,
+        "updated_at": "2026-11-04T14:34:00Z"
        },
        {
         "id": 21,
@@ -68703,11 +68713,101 @@
         "updated_at": "2026-11-06T09:21:00Z"
        },
        {
+        "id": 22,
+        "finished_product": {
+         "id": 3,
+         "name": "Naturel Sızma Gemlik 0.3 750ml",
+         "volume_litre": 0.75
+        },
+        "quantity": 532,
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 24,
+        "finished_product": {
+         "id": 2,
+         "name": "Naturel Sızma Gemlik 0.3 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 198,
+        "updated_at": "2026-11-05T08:51:00Z"
+       },
+       {
+        "id": 26,
+        "finished_product": {
+         "id": 4,
+         "name": "Naturel Sızma Gemlik 0.3 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 144,
+        "updated_at": "2026-10-19T20:34:00Z"
+       },
+       {
+        "id": 27,
+        "finished_product": {
+         "id": 12,
+         "name": "Naturel Sızma Ayvalık 0.4 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 252,
+        "updated_at": "2026-11-02T20:24:00Z"
+       },
+       {
+        "id": 30,
+        "finished_product": {
+         "id": 8,
+         "name": "Naturel Sızma Gemlik 0.8 1L",
+         "volume_litre": 1.0
+        },
+        "quantity": 36,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 32,
+        "finished_product": {
+         "id": 6,
+         "name": "Naturel Sızma Gemlik 0.8 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 28,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 33,
+        "finished_product": {
+         "id": 7,
+         "name": "Naturel Sızma Gemlik 0.8 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 132,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
+        "id": 36,
+        "finished_product": {
+         "id": 13,
+         "name": "Naturel Sızma Ayvalık 0.9 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 24,
+        "updated_at": "2026-10-07T17:41:00Z"
+       },
+       {
+        "id": 39,
+        "finished_product": {
+         "id": 14,
+         "name": "Naturel Sızma Ayvalık 0.9 500ml",
+         "volume_litre": 0.5
+        },
+        "quantity": 68,
+        "updated_at": "2026-10-07T17:42:00Z"
+       },
+       {
         "id": 42,
         "finished_product": {
          "id": 17,
          "name": "Klasik Blend 0.5 1L",
-         "volume_litre": 1
+         "volume_litre": 1.0
         },
         "quantity": 144,
         "updated_at": "2026-08-01T02:12:00Z"
@@ -68723,26 +68823,6 @@
         "updated_at": "2026-08-25T05:58:00Z"
        },
        {
-        "id": 15,
-        "finished_product": {
-         "id": 11,
-         "name": "Naturel Sızma Ayvalık 0.4 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 36,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
-        "id": 27,
-        "finished_product": {
-         "id": 12,
-         "name": "Naturel Sızma Ayvalık 0.4 1L",
-         "volume_litre": 1
-        },
-        "quantity": 252,
-        "updated_at": "2026-11-02T20:24:00Z"
-       },
-       {
         "id": 46,
         "finished_product": {
          "id": 15,
@@ -68751,113 +68831,10 @@
         },
         "quantity": 0,
         "updated_at": "2026-07-17T16:17:00Z"
-       },
-       {
-        "id": 24,
-        "finished_product": {
-         "id": 2,
-         "name": "Naturel Sızma Gemlik 0.3 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 198,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 22,
-        "finished_product": {
-         "id": 3,
-         "name": "Naturel Sızma Gemlik 0.3 750ml",
-         "volume_litre": 0.75
-        },
-        "quantity": 532,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 13,
-        "finished_product": {
-         "id": 9,
-         "name": "Naturel Sızma Ayvalık 0.4 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 0,
-        "updated_at": "2026-11-05T08:51:00Z"
-       },
-       {
-        "id": 33,
-        "finished_product": {
-         "id": 7,
-         "name": "Naturel Sızma Gemlik 0.8 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 132,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 30,
-        "finished_product": {
-         "id": 8,
-         "name": "Naturel Sızma Gemlik 0.8 1L",
-         "volume_litre": 1
-        },
-        "quantity": 36,
-        "updated_at": "2026-10-07T17:42:00Z"
-       },
-       {
-        "id": 26,
-        "finished_product": {
-         "id": 4,
-         "name": "Naturel Sızma Gemlik 0.3 1L",
-         "volume_litre": 1
-        },
-        "quantity": 144,
-        "updated_at": "2026-10-19T20:34:00Z"
-       },
-       {
-        "id": 18,
-        "finished_product": {
-         "id": 10,
-         "name": "Naturel Sızma Ayvalık 0.4 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 1319,
-        "updated_at": "2026-11-04T14:34:00Z"
-       },
-       {
-        "id": 39,
-        "finished_product": {
-         "id": 14,
-         "name": "Naturel Sızma Ayvalık 0.9 500ml",
-         "volume_litre": 0.5
-        },
-        "quantity": 68,
-        "updated_at": "2026-10-07T17:42:00Z"
        }
       ],
       "created_at": "2026-11-06T15:35:14Z",
       "updated_at": "2026-11-06T15:35:14Z"
-     },
-     {
-      "id": 5,
-      "name": "Pasif Depo",
-      "description": null,
-      "is_active": false,
-      "slots": [
-       {
-        "id": 29,
-        "name": "P1",
-        "volume_litre": 0.25,
-        "max_quantity": 10,
-        "current_quantity": 0,
-        "available": 10,
-        "finished_product": null,
-        "contents": [],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:22Z"
-       }
-      ],
-      "stock": [],
-      "created_at": "2026-11-07T04:25:22Z",
-      "updated_at": "2026-11-07T04:25:22Z"
      },
      {
       "id": 4,
@@ -68865,6 +68842,33 @@
       "description": null,
       "is_active": true,
       "slots": [
+       {
+        "id": 26,
+        "name": "T1",
+        "volume_litre": 0.25,
+        "max_quantity": 200,
+        "current_quantity": 50,
+        "available": 150,
+        "finished_product": null,
+        "contents": [
+         {
+          "finished_product": {
+           "id": 1,
+           "name": "Naturel Sızma Gemlik 0.3 250ml"
+          },
+          "quantity": 45
+         },
+         {
+          "finished_product": {
+           "id": 18,
+           "name": "Portakallı Zeytinyağı 250ml"
+          },
+          "quantity": 5
+         }
+        ],
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
        {
         "id": 27,
         "name": null,
@@ -68889,35 +68893,8 @@
           "quantity": 20
          }
         ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
-       },
-       {
-        "id": 26,
-        "name": "T1",
-        "volume_litre": 0.25,
-        "max_quantity": 200,
-        "current_quantity": 50,
-        "available": 150,
-        "finished_product": null,
-        "contents": [
-         {
-          "finished_product": {
-           "id": 18,
-           "name": "Portakallı Zeytinyağı 250ml"
-          },
-          "quantity": 5
-         },
-         {
-          "finished_product": {
-           "id": 1,
-           "name": "Naturel Sızma Gemlik 0.3 250ml"
-          },
-          "quantity": 45
-         }
-        ],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 28,
@@ -68931,21 +68908,11 @@
          "name": "Portakallı Zeytinyağı 500ml"
         },
         "contents": [],
-        "created_at": "2026-11-07T04:25:22Z",
-        "updated_at": "2026-11-07T04:25:24Z"
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
       "stock": [
-       {
-        "id": 48,
-        "finished_product": {
-         "id": 18,
-         "name": "Portakallı Zeytinyağı 250ml",
-         "volume_litre": 0.25
-        },
-        "quantity": 25,
-        "updated_at": "2026-11-07T04:25:24Z"
-       },
        {
         "id": 47,
         "finished_product": {
@@ -68954,7 +68921,17 @@
          "volume_litre": 0.25
         },
         "quantity": 75,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
+       },
+       {
+        "id": 48,
+        "finished_product": {
+         "id": 18,
+         "name": "Portakallı Zeytinyağı 250ml",
+         "volume_litre": 0.25
+        },
+        "quantity": 25,
+        "updated_at": "2026-11-07T12:00:02Z"
        },
        {
         "id": 49,
@@ -68964,11 +68941,34 @@
          "volume_litre": 0.5
         },
         "quantity": 0,
-        "updated_at": "2026-11-07T04:25:24Z"
+        "updated_at": "2026-11-07T12:00:02Z"
        }
       ],
-      "created_at": "2026-11-07T04:25:22Z",
-      "updated_at": "2026-11-07T04:25:22Z"
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
+     },
+     {
+      "id": 5,
+      "name": "Pasif Depo",
+      "description": null,
+      "is_active": false,
+      "slots": [
+       {
+        "id": 29,
+        "name": "P1",
+        "volume_litre": 0.25,
+        "max_quantity": 10,
+        "current_quantity": 0,
+        "available": 10,
+        "finished_product": null,
+        "contents": [],
+        "created_at": "2026-11-07T12:00:01Z",
+        "updated_at": "2026-11-07T12:00:01Z"
+       }
+      ],
+      "stock": [],
+      "created_at": "2026-11-07T12:00:01Z",
+      "updated_at": "2026-11-07T12:00:01Z"
      }
     ]
    },
@@ -69070,6 +69070,26 @@
      "is_active": true,
      "slots": [
       {
+       "id": 26,
+       "name": "T1",
+       "volume_litre": 0.25,
+       "max_quantity": 200,
+       "current_quantity": 5,
+       "available": 195,
+       "finished_product": null,
+       "contents": [
+        {
+         "finished_product": {
+          "id": 18,
+          "name": "Portakallı Zeytinyağı 250ml"
+         },
+         "quantity": 5
+        }
+       ],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
        "id": 27,
        "name": null,
        "volume_litre": 0.25,
@@ -69093,8 +69113,8 @@
          "quantity": 20
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 28,
@@ -69108,31 +69128,21 @@
         "name": "Portakallı Zeytinyağı 500ml"
        },
        "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 26,
-       "name": "T1",
-       "volume_litre": 0.25,
-       "max_quantity": 200,
-       "current_quantity": 5,
-       "available": 195,
-       "finished_product": null,
-       "contents": [
-        {
-         "finished_product": {
-          "id": 18,
-          "name": "Portakallı Zeytinyağı 250ml"
-         },
-         "quantity": 5
-        }
-       ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
+      {
+       "id": 47,
+       "finished_product": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 30,
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
       {
        "id": 48,
        "finished_product": {
@@ -69141,7 +69151,7 @@
         "volume_litre": 0.25
        },
        "quantity": 25,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 49,
@@ -69151,21 +69161,11 @@
         "volume_litre": 0.5
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 47,
-       "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 30,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -69188,21 +69188,6 @@
      "is_active": true,
      "slots": [
       {
-       "id": 28,
-       "name": "T3",
-       "volume_litre": 0.5,
-       "max_quantity": 40,
-       "current_quantity": 0,
-       "available": 40,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml"
-       },
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
        "id": 26,
        "name": "T1",
        "volume_litre": 0.25,
@@ -69219,8 +69204,8 @@
          "quantity": 5
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 27,
@@ -69239,11 +69224,36 @@
          "quantity": 20
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 28,
+       "name": "T3",
+       "volume_litre": 0.5,
+       "max_quantity": 40,
+       "current_quantity": 0,
+       "available": 40,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml"
+       },
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
+      {
+       "id": 47,
+       "finished_product": {
+        "id": 1,
+        "name": "Naturel Sızma Gemlik 0.3 250ml",
+        "volume_litre": 0.25
+       },
+       "quantity": 0,
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
       {
        "id": 48,
        "finished_product": {
@@ -69252,7 +69262,7 @@
         "volume_litre": 0.25
        },
        "quantity": 25,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 49,
@@ -69262,21 +69272,11 @@
         "volume_litre": 0.5
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 47,
-       "finished_product": {
-        "id": 1,
-        "name": "Naturel Sızma Gemlik 0.3 250ml",
-        "volume_litre": 0.25
-       },
-       "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -69299,21 +69299,6 @@
      "is_active": true,
      "slots": [
       {
-       "id": 28,
-       "name": "T3",
-       "volume_litre": 0.5,
-       "max_quantity": 40,
-       "current_quantity": 0,
-       "available": 40,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml"
-       },
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
        "id": 26,
        "name": "T1",
        "volume_litre": 0.25,
@@ -69330,8 +69315,8 @@
          "quantity": 5
         }
        ],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 27,
@@ -69342,21 +69327,26 @@
        "available": 50,
        "finished_product": null,
        "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 28,
+       "name": "T3",
+       "volume_litre": 0.5,
+       "max_quantity": 40,
+       "current_quantity": 0,
+       "available": 40,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml"
+       },
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
-      {
-       "id": 49,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
       {
        "id": 47,
        "finished_product": {
@@ -69365,7 +69355,7 @@
         "volume_litre": 0.25
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 48,
@@ -69375,11 +69365,21 @@
         "volume_litre": 0.25
        },
        "quantity": 5,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 49,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 0,
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -69402,6 +69402,30 @@
      "is_active": true,
      "slots": [
       {
+       "id": 26,
+       "name": "T1",
+       "volume_litre": 0.25,
+       "max_quantity": 200,
+       "current_quantity": 0,
+       "available": 200,
+       "finished_product": null,
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 27,
+       "name": null,
+       "volume_litre": 0.25,
+       "max_quantity": 50,
+       "current_quantity": 0,
+       "available": 50,
+       "finished_product": null,
+       "contents": [],
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
        "id": 28,
        "name": "T3",
        "volume_litre": 0.5,
@@ -69413,45 +69437,11 @@
         "name": "Portakallı Zeytinyağı 500ml"
        },
        "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 27,
-       "name": null,
-       "volume_litre": 0.25,
-       "max_quantity": 50,
-       "current_quantity": 0,
-       "available": 50,
-       "finished_product": null,
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
-      {
-       "id": 26,
-       "name": "T1",
-       "volume_litre": 0.25,
-       "max_quantity": 200,
-       "current_quantity": 0,
-       "available": 200,
-       "finished_product": null,
-       "contents": [],
-       "created_at": "2026-11-07T04:25:22Z",
-       "updated_at": "2026-11-07T04:25:24Z"
+       "created_at": "2026-11-07T12:00:01Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "stock": [
-      {
-       "id": 49,
-       "finished_product": {
-        "id": 19,
-        "name": "Portakallı Zeytinyağı 500ml",
-        "volume_litre": 0.5
-       },
-       "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
-      },
       {
        "id": 47,
        "finished_product": {
@@ -69460,7 +69450,7 @@
         "volume_litre": 0.25
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
       },
       {
        "id": 48,
@@ -69470,11 +69460,21 @@
         "volume_litre": 0.25
        },
        "quantity": 0,
-       "updated_at": "2026-11-07T04:25:24Z"
+       "updated_at": "2026-11-07T12:00:02Z"
+      },
+      {
+       "id": 49,
+       "finished_product": {
+        "id": 19,
+        "name": "Portakallı Zeytinyağı 500ml",
+        "volume_litre": 0.5
+       },
+       "quantity": 0,
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
-     "created_at": "2026-11-07T04:25:22Z",
-     "updated_at": "2026-11-07T04:25:22Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null

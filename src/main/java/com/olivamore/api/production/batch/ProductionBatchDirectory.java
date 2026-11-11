@@ -66,7 +66,7 @@ class ProductionBatchDirectory implements BatchDirectory {
 	public List<BatchOutput> batchOutputs(long batchId) {
 		List<OutputRow> rows = jdbc.sql("""
 			select production_product_type_id from production_batch_output_production_product_types
-			where production_batch_id = :batch order by sort_order asc
+			where production_batch_id = :batch order by sort_order asc, id asc
 			""").param("batch", batchId).query(OutputRow.class).list();
 		Map<Long, ProductDirectory.ProductType> types = products.productTypes(
 			rows.stream().map(OutputRow::productionProductTypeId).toList());

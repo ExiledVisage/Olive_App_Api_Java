@@ -25,9 +25,7 @@ class FinishedProductScenarioIT {
 		new ScenarioReplay("finished-product.json", port, jdbc)
 			.clockAt("2026-11-07T12:00:00Z")
 			// ayni saniyede olusan tarifler: tarih esitliginde sira tanimsiz
-			.unordered("tarif liste sonra", "data")
 			// demo urunleri ayni saniyede olustu: tarih esitliginde sira tanimsiz
-			.unordered("urun liste ?is_active=1", "data")
 			.run()
 			.assertPassed(79);
 	}
