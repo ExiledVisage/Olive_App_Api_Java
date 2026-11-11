@@ -1,5 +1,7 @@
 package com.olivamore.api.identity;
 
+import org.springframework.test.context.TestExecutionListeners;
+import com.olivamore.api.support.FreshDatabaseListener;
 import com.olivamore.api.TestcontainersConfiguration;
 import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
 import com.olivamore.api.support.TestAuth;
@@ -27,11 +29,13 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Laravel'in AuthThrottleTest'i (6 test) ve PermissionTest'in identity'ye ait kismi.
- * Kendi veritabanini kullanir (veri degistirir).
+ * Giris ve kayit limitleri; rol ve izin kontrolu (deneme ucu {@link ProbeController} ile). Ek controller
+ * yukledigi icin ayri context kullanir, veritabani yine her sinifta demo verinin temiz haliyle baslar.
  */
 @Import({TestcontainersConfiguration.class, IdentityAccessIT.ProbeController.class})
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "olive.test.context=identity-access")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestExecutionListeners(listeners = FreshDatabaseListener.class,
+	mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
 class IdentityAccessIT {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();
@@ -53,7 +57,7 @@ class IdentityAccessIT {
 		buckets.clear();
 	}
 
-	// ---- AuthThrottleTest --------------------------------------------------
+	// ---- giris ve kayit limitleri ------------------------------------------
 
 	@Test
 	void sameAccountIsLimitedToFiveAttempts() {
@@ -112,7 +116,7 @@ class IdentityAccessIT {
 			"password", "gizli-sifre-123", "password_confirmation", "gizli-sifre-123")).status).isEqualTo(429);
 	}
 
-	// ---- PermissionTest (identity) -----------------------------------------
+	// ---- rol ve izin kontrolu ----------------------------------------------
 
 	@Test
 	void adminRoleHasEveryPermission() {
@@ -158,7 +162,7 @@ class IdentityAccessIT {
 
 	@Test
 	void permissionViaRoleIsEnough() {
-		// food_engineer rolu customer.view iznine sahip (PermissionTest: gida muhendisi musteri tarafini gorur)
+		// food_engineer rolu customer.view iznine sahip (gida muhendisi musteri tarafini gorur)
 		assertThat(get("/api/test/needs-customer-view", login("muhendis@olivamore.com")).status).isEqualTo(200);
 	}
 

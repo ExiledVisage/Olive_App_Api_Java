@@ -475,9 +475,11 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
   `InputNormalizationFilter`, `PhpNumbers` kalkar)
 
 ## B7: Testler
-- [ ] Laravel'den yakalanmış fixture'lara bağlı `*ParityIT`'ler, uygulamanın kendi davranışını
-  tanımlayan normal testlere çevrilir
-- [ ] `src/test/resources/laravel/`, `reference/capture_*.py`, `reference/compare.py` kaldırılır
+- [x] Laravel'den yakalanmış fixture'lara bağlı `*ParityIT`'ler, uygulamanın kendi davranışını
+  tanımlayan normal testlere çevrilir: iş kuralları `*RulesIT`'lerde, uçtan uca senaryolar
+  `src/test/resources/scenarios/` + `*ScenarioIT`
+- [x] `src/test/resources/laravel/`, `reference/capture_*.py`, `reference/compare.py` kaldırılır
+- [x] HTTP testleri tek Spring context'ini ve konteyneri paylaşır, her sınıf temiz demo veriyle başlar
 
 ## B8: Demo veri
 - [ ] Demo fabrika akışının Java seeder'ları: veri bugünün tarihine göre üretilir
@@ -515,10 +517,16 @@ geçişinden önce yapılır.
 - [ ] Son tanktan ön dinlendirme tankına aktarım yapılamaz
 
 ## C2: Son tank
-- [ ] Tank ve ürün tipi başına tek aktif tank materyali olur
+- [ ] Tank ve ürün tipi başına tek aktif tank materyali olur; `materials` tablosunda tutulur, partisi boştur
 - [ ] Tanka giren materyal, giren miktar kadar o anda kapanır; kısmi girişte kalan kısım üretimde aktif kalır
 - [ ] Aynı tip yeniden girerse miktar aynı satıra eklenir, farklı tip yeni tank materyali açar
-- [ ] Sayısal özellikler ağırlıklı ortalamayla güncellenir; diğerleri aynıysa kalır, farklıysa boşalır
+- [ ] Sayısal özellikler kütleye göre ağırlıklı ortalamayla güncellenir (litre yoğunlukla kg'ye çevrilir);
+  diğerleri aynıysa kalır, farklıysa boşalır. Dolum ve çıkış ortalamayı değiştirmez
+- [ ] Ürünün zorunlu (`is_required`) özelliklerinden biri ölçülmemiş materyal son tanka giremez
+- [ ] Son tanka isteğe bağlı analiz girilebilir: ölçülen değer hesaplanan ortalamanın yerine geçer,
+  sonraki girişler bu değerden devam eder
+- [ ] Her tank ölçümü geçmişe yazılır: hesaplanan değer, ölçülen değer, fark, ölçen kişi ve zaman.
+  Sapma, hesabın ve ölçümlerin ne kadar tuttuğunu izlemek için saklanır
 - [ ] Tank materyali sıfırlanınca kapanır, sonraki giriş yeni bir tane açar
 - [ ] Tanktan çıkışta çocuk materyal açılmaz, tank materyali doğrudan azalır
 - [ ] Dolum, elle çıkış, tanktan tanka transfer ve sayım azalışı tipler arasında oransal düşer;
@@ -533,6 +541,10 @@ geçişinden önce yapılır.
 - [ ] Giriş özel "ön dinlendirme tankına aktarma" üretim aşamasıyla yapılır, aşama boşaltılana kadar açık bekler
 - [ ] Boşaltmadan önce üstüne yeni parti eklenebilir
 - [ ] Partiye işlenen analizler bu tankta çalışmaya devam eder
+- [ ] Tank sayfasından yalnızca son tanklara "Boşalt" yapılır; elle giriş, çıkış, sayım ve bu tanka transfer
+  yapılamaz
+- [ ] Yanlış aktarım boşaltmadan önce aşama iptal edilerek geri alınır, materyal partiye döner;
+  boşaltmadan sonra geri alma yoktur
 
 ## C4: Boşaltma
 - [ ] Tek işlemlik "Boşalt": hedef bir ya da birden çok son tank ve her biri için çekilen miktar girilir
@@ -543,6 +555,7 @@ geçişinden önce yapılır.
 ## C5: Tortu
 - [ ] Giren ile çekilen arasındaki fark kütle üzerinden hesaplanır, elle girilmez
 - [ ] Fark gerçek bir aktif çıktı materyali olur, ne yapılacağına fabrika karar verir
+- [ ] Birden çok parti varsa tortu, giriş payına göre parti başına ayrı materyal olarak açılır
 - [ ] Tortunun hangi ürün olacağı aşama ayarındaki çıktı ürünlerinden belirlenir, kodda sabit olmaz
 
 ## C6: Birimler
@@ -560,11 +573,7 @@ geçişinden önce yapılır.
 - [ ] Üretim aşamalarında sabitlenmiş eski `outbound` ve `transfer` ayarları geçişten önce canlı veride kontrol edilir
 
 ## C8: Geliştirme başlarken konuşulacaklar
-- [ ] Laboratuvar ölçümü son tanktaki hesaplanan ortalamanın yerine geçecek mi
-- [ ] Önerildi, netleşecek: tank materyali `materials` tablosunda tutulur
-- [ ] Önerildi, netleşecek: birden çok partinin tortusu parti başına ayrı materyal olarak oransal açılır
-- [ ] Önerildi, netleşecek: ön dinlendirme tankına tank sayfasından elle hareket yapılamaz
-- [ ] Önerildi, netleşecek: yanlış aktarımda aşama boşaltmadan önce iptal edilir, materyal partiye döner
+- [x] Hepsi 2026-11-11'de konuşuldu, kararlar C1-C7'de
 
 ---
 

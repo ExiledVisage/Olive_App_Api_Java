@@ -1,0 +1,852 @@
+{
+ "apk": "fake-apk-7",
+ "scenarios": [
+  {
+   "name": "surum yok",
+   "files": {},
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "29"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "28"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "normal",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "27"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "10",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=olivamore-1.0.6.apk",
+      "accept-ranges": "bytes",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "26"
+     },
+     "body": {
+      "base64": "ZmFrZS1hcGstNw=="
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {
+      "Range": "bytes=0-3"
+     },
+     "status": 206,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "4",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=olivamore-1.0.6.apk",
+      "accept-ranges": "bytes",
+      "content-range": "bytes 0-3/10",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "25"
+     },
+     "body": {
+      "base64": "ZmFrZQ=="
+     }
+    },
+    {
+     "method": "HEAD",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "10",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=olivamore-1.0.6.apk",
+      "accept-ranges": "bytes",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "24"
+     },
+     "body": {
+      "base64": ""
+     }
+    }
+   ]
+  },
+  {
+   "name": "php donusumleri 1",
+   "files": {
+    "version.json": "{\"version_code\": \"7abc\", \"version_name\": 106, \"size\": \"12.9\", \"notes\": 5, \"sha256\": null}"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "23"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "106",
+        "notes": 5,
+        "sha256": null,
+        "size": 12,
+        "published_at": null,
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "php donusumleri 2",
+   "files": {
+    "version.json": "{\"version_code\": 7.9, \"version_name\": true, \"size\": true, \"notes\": [\"a\", \"b\"], \"published_at\": {\"x\": 1}}"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "22"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1",
+        "notes": [
+         "a",
+         "b"
+        ],
+        "sha256": null,
+        "size": 1,
+        "published_at": {
+         "x": 1
+        },
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "surum adi yok",
+   "files": {
+    "version.json": "{\"version_code\": 7}"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "21"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "surum adi null",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": null}"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "20"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "bozuk json",
+   "files": {
+    "version.json": "{bozuk",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "19"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "18"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "json dizi",
+   "files": {
+    "version.json": "[7, \"1.0.6\"]"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "17"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "bom",
+   "files": {
+    "version.json": "﻿{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "16"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/version"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "klasor disi",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"../../../.env\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "15"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "ters bolu",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"..\\\\..\\\\olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "14"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "alt klasor adi",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"sub/olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "10",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=olivamore-1.0.6.apk",
+      "accept-ranges": "bytes",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "13"
+     },
+     "body": {
+      "base64": "ZmFrZS1hcGstNw=="
+     }
+    }
+   ]
+  },
+  {
+   "name": "apk yok",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"olivamore.apk\"}"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 404,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "12"
+     },
+     "body": {
+      "json": {
+       "title": "Not Found",
+       "status": 404,
+       "detail": "Yayinlanmis surum yok.",
+       "instance": "/api/app/download"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "dosya adi yok",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "10",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=olivamore-1.0.6.apk",
+      "accept-ranges": "bytes",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "11"
+     },
+     "body": {
+      "base64": "ZmFrZS1hcGstNw=="
+     }
+    }
+   ]
+  },
+  {
+   "name": "bosluklu surum adi",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0 beta\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "10",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=\"olivamore-1.0 beta.apk\"",
+      "accept-ranges": "bytes",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "10"
+     },
+     "body": {
+      "base64": "ZmFrZS1hcGstNw=="
+     }
+    }
+   ]
+  },
+  {
+   "name": "turkce surum adi",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0-\\u015f\\u0131k\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/vnd.android.package-archive",
+      "content-length": "10",
+      "cache-control": "public",
+      "last-modified": "Fri, 06 Nov 2026 18:18:21 GMT",
+      "content-disposition": "attachment; filename=olivamore-1.0-sik.apk; filename*=utf-8''olivamore-1.0-%C5%9F%C4%B1k.apk",
+      "accept-ranges": "bytes",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "9"
+     },
+     "body": {
+      "base64": "ZmFrZS1hcGstNw=="
+     }
+    }
+   ]
+  },
+  {
+   "name": "sinir",
+   "files": {
+    "version.json": "{\"version_code\": 7, \"version_name\": \"1.0.6\", \"notes\": \"Yeni rapor olusturucu\", \"sha256\": \"6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0\", \"size\": 10, \"published_at\": \"2026-09-19T10:00:00Z\", \"file\": \"olivamore.apk\"}",
+    "olivamore.apk": "fake-apk-7"
+   },
+   "requests": [
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "8"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "7"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "6"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "5"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "4"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "3"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "2"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "1"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 200,
+     "response_headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache, private",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "0"
+     },
+     "body": {
+      "json": {
+       "data": {
+        "version_code": 7,
+        "version_name": "1.0.6",
+        "notes": "Yeni rapor olusturucu",
+        "sha256": "6a40d3b9a3b2d2f4e7d1e2d0b7a7f3c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0",
+        "size": 10,
+        "published_at": "2026-09-19T10:00:00Z",
+        "download_url": "{base_url}/api/app/download"
+       }
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/version",
+     "headers": {},
+     "status": 429,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "0",
+      "retry-after": "60",
+      "cache-control": "no-cache, private"
+     },
+     "body": {
+      "json": {
+       "title": "Too Many Requests",
+       "status": 429,
+       "detail": "Too Many Attempts.",
+       "instance": "/api/app/version"
+      }
+     }
+    },
+    {
+     "method": "GET",
+     "path": "/api/app/download",
+     "headers": {},
+     "status": 429,
+     "response_headers": {
+      "content-type": "application/problem+json",
+      "x-ratelimit-limit": "30",
+      "x-ratelimit-remaining": "0",
+      "retry-after": "60",
+      "cache-control": "no-cache, private"
+     },
+     "body": {
+      "json": {
+       "title": "Too Many Requests",
+       "status": 429,
+       "detail": "Too Many Attempts.",
+       "instance": "/api/app/download"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

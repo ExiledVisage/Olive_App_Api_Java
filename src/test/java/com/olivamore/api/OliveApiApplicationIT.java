@@ -1,6 +1,6 @@
 package com.olivamore.api;
 
-import com.olivamore.api.support.LaravelReplay;
+import com.olivamore.api.support.ApiClient;
 import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
@@ -35,7 +35,7 @@ class OliveApiApplicationIT {
 
 	@Test
 	void unknownRouteIsProblemDetail() {
-		String token = TestAuth.accessToken(LaravelReplay.client(port), "admin@olivamore.com");
+		String token = TestAuth.accessToken(ApiClient.http(port), "admin@olivamore.com");
 		Response response = get("/api/yok-boyle-bir-yer?search=%20a%20", token);
 		assertThat(response.status()).isEqualTo(404);
 		assertThat(response.body()).contains("\"detail\":\"The route api/yok-boyle-bir-yer could not be found.\"",

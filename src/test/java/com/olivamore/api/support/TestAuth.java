@@ -18,7 +18,7 @@ public final class TestAuth {
 
 	/** Giris cevabinin tamami. */
 	public static JsonNode login(RestClient http, String email) {
-		LaravelReplay.Response response = LaravelReplay.call(http, "POST", "/api/auth/login", null,
+		ApiClient.Response response = ApiClient.call(http, "POST", "/api/auth/login", null,
 			JSON.createObjectNode().put("email", email).put("password", PASSWORD));
 		if (response.status() != 200) {
 			throw new IllegalStateException("Giris basarisiz: " + response.status() + " " + response.body());

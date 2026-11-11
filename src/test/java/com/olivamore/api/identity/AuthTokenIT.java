@@ -1,20 +1,18 @@
 package com.olivamore.api.identity;
 
+import com.olivamore.api.support.ApiIntegrationTest;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.gen.RSAKeyGenerator;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
-import com.olivamore.api.TestcontainersConfiguration;
 import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
-import com.olivamore.api.support.LaravelReplay;
-import com.olivamore.api.support.LaravelReplay.Response;
+import com.olivamore.api.support.ApiClient;
+import com.olivamore.api.support.ApiClient.Response;
 import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
@@ -43,8 +41,7 @@ import java.util.function.UnaryOperator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /** JWT access token, refresh token rotasyonu, tekrar kullanim, cikis, anahtar kontrolleri ve govde siniri. */
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "olive.test.context=auth-token")
+@ApiIntegrationTest
 class AuthTokenIT {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();
@@ -67,7 +64,7 @@ class AuthTokenIT {
 
 	@BeforeEach
 	void setUp() {
-		http = LaravelReplay.client(port);
+		http = ApiClient.http(port);
 		buckets.clear();
 	}
 
@@ -151,7 +148,7 @@ class AuthTokenIT {
 		JsonNode login = TestAuth.login(http, ADMIN);
 		String access = login.get(TestAuth.ACCESS_TOKEN).asString();
 
-		assertThat(LaravelReplay.call(http, "POST", "/api/auth/logout", access, null).status()).isEqualTo(200);
+		assertThat(ApiClient.call(http, "POST", "/api/auth/logout", access, null).status()).isEqualTo(200);
 
 		assertThat(me(access).status()).isEqualTo(401);
 		assertThat(refresh(login.get(TestAuth.REFRESH_TOKEN).asString()).status()).isEqualTo(401);
@@ -168,7 +165,7 @@ class AuthTokenIT {
 
 	@Test
 	void missingRefreshTokenIsAValidationError() {
-		Response response = LaravelReplay.call(http, "POST", "/api/auth/refresh", null, JSON.createObjectNode());
+		Response response = ApiClient.call(http, "POST", "/api/auth/refresh", null, JSON.createObjectNode());
 
 		assertThat(response.status()).isEqualTo(422);
 		assertThat(response.body()).contains("The refresh token field is required.");
@@ -217,33 +214,33 @@ class AuthTokenIT {
 
 	@Test
 	void publicEndpointsIgnoreAnInvalidToken() {
-		Response login = LaravelReplay.call(http, "POST", "/api/auth/login", "suresi.dolmus.token",
+		Response login = ApiClient.call(http, "POST", "/api/auth/login", "suresi.dolmus.token",
 			JSON.createObjectNode().put("email", ADMIN).put("password", TestAuth.PASSWORD));
 
 		assertThat(login.status()).as(login.body()).isEqualTo(200);
-		assertThat(LaravelReplay.call(http, "GET", "/api/app/version", "suresi.dolmus.token", null).status()).isNotEqualTo(401);
+		assertThat(ApiClient.call(http, "GET", "/api/app/version", "suresi.dolmus.token", null).status()).isNotEqualTo(401);
 	}
 
 	@Test
 	void roleChangesApplyToAnAlreadyIssuedToken() {
 		String email = "rol-" + UUID.randomUUID() + "@olivamore.com";
-		String access = JSON.readTree(LaravelReplay.call(http, "POST", "/api/auth/register", null, JSON.createObjectNode()
+		String access = JSON.readTree(ApiClient.call(http, "POST", "/api/auth/register", null, JSON.createObjectNode()
 			.put("name", "Rol").put("email", email).put("password", "gizli-sifre-123")
 			.put("password_confirmation", "gizli-sifre-123")).body()).get(TestAuth.ACCESS_TOKEN).asString();
 		long id = jdbc.queryForObject("select id from users where email = ?", Long.class, email);
-		assertThat(LaravelReplay.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(403);
+		assertThat(ApiClient.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(403);
 
 		jdbc.update("insert into user_roles (user_id, role_id) select ?, id from roles where name = 'admin'", id);
-		assertThat(LaravelReplay.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(200);
+		assertThat(ApiClient.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(200);
 
 		jdbc.update("delete from user_roles where user_id = ?", id);
-		assertThat(LaravelReplay.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(403);
+		assertThat(ApiClient.call(http, "GET", "/api/roles", access, null).status()).isEqualTo(403);
 	}
 
 	@Test
 	void deletedUsersTokenStopsWorking() {
 		String email = "silinen-" + UUID.randomUUID() + "@olivamore.com";
-		String access = JSON.readTree(LaravelReplay.call(http, "POST", "/api/auth/register", null, JSON.createObjectNode()
+		String access = JSON.readTree(ApiClient.call(http, "POST", "/api/auth/register", null, JSON.createObjectNode()
 			.put("name", "Silinen").put("email", email).put("password", "gizli-sifre-123")
 			.put("password_confirmation", "gizli-sifre-123")).body()).get(TestAuth.ACCESS_TOKEN).asString();
 		assertThat(me(access).status()).isEqualTo(200);
@@ -272,11 +269,11 @@ class AuthTokenIT {
 	}
 
 	private Response me(String token) {
-		return LaravelReplay.call(http, "GET", "/api/auth/me", token, null);
+		return ApiClient.call(http, "GET", "/api/auth/me", token, null);
 	}
 
 	private Response refresh(String token) {
-		return LaravelReplay.call(http, "POST", "/api/auth/refresh", null,
+		return ApiClient.call(http, "POST", "/api/auth/refresh", null,
 			JSON.createObjectNode().put(TestAuth.REFRESH_TOKEN, token));
 	}
 

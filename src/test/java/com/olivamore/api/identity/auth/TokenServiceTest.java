@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/** Refresh token ozeti ve Laravel'den kalan {@code $2y$} sifre uyumu. */
+/** Refresh token ozeti ve {@code $2y$} BCrypt hash'leri (canli veritabanindaki sifreler bu bicimde). */
 class TokenServiceTest {
 
 	@Test
@@ -14,14 +14,14 @@ class TokenServiceTest {
 	}
 
 	@Test
-	void passwordsAreLaravelCompatible() {
+	void passwordsUseBcrypt2yFormat() {
 		String hash = AuthService.hash("123");
 		assertThat(hash).startsWith("$2y$12$");
 		assertThat(IdentityWebConfig.PASSWORDS.matches("123", hash)).isTrue();
 	}
 
 	@Test
-	void passwordsLongerThan72BytesAreTruncatedLikePhp() {
+	void passwordsLongerThan72BytesAreTruncated() {
 		String first72 = "a".repeat(72);
 		String hash = AuthService.hash(first72 + "fazlasi");
 		assertThat(hash).startsWith("$2y$12$");

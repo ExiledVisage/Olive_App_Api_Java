@@ -1,14 +1,12 @@
 package com.olivamore.api.process;
 
-import com.olivamore.api.TestcontainersConfiguration;
+import com.olivamore.api.support.ApiIntegrationTest;
 import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
 import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,8 +19,7 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "olive.test.context=process-type")
+@ApiIntegrationTest
 class ProcessTypeApiIT {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();
@@ -114,6 +111,21 @@ class ProcessTypeApiIT {
 			""").json().get(TestAuth.ACCESS_TOKEN).asString();
 
 		assertThat(send(HttpMethod.GET, "/api/process-types/999999", noRole, null).status).isEqualTo(403);
+	}
+
+	@Test
+	void processTypeCanKeepItsOwnNameButNotTakeAnother() {
+		String name = jdbc.queryForObject("select name from process_types where id = 1", String.class);
+		String other = jdbc.queryForObject("select name from process_types where id = 2", String.class);
+
+		Response same = send(HttpMethod.PATCH, "/api/process-types/1", admin, JSON.createObjectNode().put("name", name)
+			.toString());
+		Response taken = send(HttpMethod.PATCH, "/api/process-types/1", admin, JSON.createObjectNode().put("name", other)
+			.toString());
+
+		assertThat(same.status).as(same.body).isEqualTo(200);
+		assertThat(taken.status).isEqualTo(422);
+		assertThat(taken.body).contains("The name has already been taken.");
 	}
 
 	private long create(String name, String description) {

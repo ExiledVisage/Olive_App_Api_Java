@@ -146,4 +146,8 @@ record CreateOrderRequest(
 - **Mesajlar:** `messages.properties`; anotasyonlarda `MessageKeys` (`{validation.required}`), `{attribute}` alanın adı.
 - **Rate limit:** `@Throttle("login")` (adlandırılmış, `NamedLimiter` bean'i) ya da `@Throttle(maxAttempts = 30, decayMinutes = 1)`.
 - **Silme:** `DeletionGuard.of("...").usedBy("...", n).check()`
-- **Doğrulama:** Laravel'den yakalanan davranış `reference/capture_*.py` ile, Java'ya `*ParityIT` ile tekrar oynatılır.
+- **Testler:** iş kuralları `*RulesIT` sınıflarında tek tek; uçtan uca API davranışı `src/test/resources/scenarios/*.json`
+  senaryolarında (`*ScenarioIT`, `ScenarioReplay`). HTTP testleri `@ApiIntegrationTest` ile tek Spring context'ini ve
+  Postgres konteynerini paylaşır, her sınıf demo verinin temiz haliyle başlar. Bilinçli bir sözleşme değişikliğinden
+  sonra senaryolar `-Dscenario.record=<klasör>` ile yeniden yazılabilir: tutmayan adımlar gelen cevapla güncellenir,
+  fark gözden geçirilip senaryo dosyasına alınır.

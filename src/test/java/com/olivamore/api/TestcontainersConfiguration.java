@@ -13,14 +13,12 @@ import java.nio.file.Path;
 
 /**
  * Integration testlerin veritabani: canli sistemle ayni Postgres surumu, "tek basina"
- * kurulumun aynisi. Bos veritabani acilir, Flyway semayi kurar (V1, V2), sonra
- * demo veri ({@code reference/seed-data.sql}) yuklenir: {@code --seed} komutunun yaptigi.
+ * kurulumun aynisi. Bos veritabani acilir, Flyway semayi kurar, sonra demo veri
+ * ({@code reference/seed-data.sql}) yuklenir: {@code --seed} komutunun yaptigi.
  * <p>
- * Konteyner Spring context'iyle birlikte onbellekte tutulur; ayni context'i kullanan
- * test siniflari ayni veritabanini paylasir. Veri degistiren testler kendi
- * transaction'larinda calisip geri almali ({@code @Transactional}); HTTP uzerinden yazan parity
- * testleri ise {@code @DirtiesContext} ile isaretlenir: bitince context (ve konteyner) kapanir,
- * sonraki sinif temiz seed'li yeni bir veritabaniyla baslar.
+ * Konteyner Spring context'iyle birlikte onbellekte tutulur. {@code @ApiIntegrationTest} siniflari ayni
+ * context'i ve veritabanini paylasir; her sinif {@code FreshDatabaseListener} ile demo verinin temiz haliyle
+ * baslar.
  */
 @TestConfiguration(proxyBeanMethods = false)
 public class TestcontainersConfiguration {

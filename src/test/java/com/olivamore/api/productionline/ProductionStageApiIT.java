@@ -1,14 +1,12 @@
 package com.olivamore.api.productionline;
 
-import com.olivamore.api.TestcontainersConfiguration;
+import com.olivamore.api.support.ApiIntegrationTest;
 import com.olivamore.api.shared.web.throttle.RateLimitBuckets;
 import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
@@ -19,9 +17,7 @@ import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-	properties = "olive.test.context=production-stage")
+@ApiIntegrationTest
 class ProductionStageApiIT {
 
 	private static final JsonMapper JSON = JsonMapper.builder().build();

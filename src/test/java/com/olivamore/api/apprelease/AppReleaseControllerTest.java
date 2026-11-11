@@ -11,20 +11,20 @@ class AppReleaseControllerTest {
 
 	@Test
 	void relativeReleasesPathIsResolvedAgainstWorkingDirectory() {
-		// Varsayilan "releases" ve laravel profilindeki "../..." goreli: uygulama acilmali
+		// Varsayilan "releases" ve "../..." gibi goreli yollar: uygulama acilmali
 		new AppReleaseController("releases");
-		new AppReleaseController("../Olive_Production_Tracking_App_Back/olive_oil_back/docker-data/app");
+		new AppReleaseController("../releases/app");
 		assertThat(Path.of("releases").toAbsolutePath()).isAbsolute();
 	}
 
 	@Test
-	void contentDispositionMatchesSymfony() {
-		// Laravel'den yakalanan basliklar (src/test/resources/laravel/app-release.json)
+	void contentDispositionFollowsRfc6266() {
+		// ayni basliklar scenarios/app-release.json icinde de
 		assertThat(AppReleaseController.disposition("olivamore-1.0.6.apk")).isEqualTo("attachment; filename=olivamore-1.0.6.apk");
 		assertThat(AppReleaseController.disposition("olivamore-1.0 beta.apk")).isEqualTo("attachment; filename=\"olivamore-1.0 beta.apk\"");
 		assertThat(AppReleaseController.disposition("olivamore-1.0-şık.apk"))
 			.isEqualTo("attachment; filename=olivamore-1.0-sik.apk; filename*=utf-8''olivamore-1.0-%C5%9F%C4%B1k.apk");
-		// Symfony: adda "/" varsa hata (500)
+		// adda "/" varsa hata
 		assertThatThrownBy(() -> AppReleaseController.disposition("olivamore-a/b.apk")).isInstanceOf(IllegalArgumentException.class);
 	}
 
