@@ -65,6 +65,17 @@ class StorageMovementController {
 			responses.written(transfer.out()), responses.written(transfer.in())));
 	}
 
+	/**
+	 * On dinlendirme tankinin bosaltilmasi (Boşalt): onay gerektirmez, tanklar arasi transfer yetkisiyle yapilir.
+	 */
+	@PostMapping("/api/storage-units/{id}/empty")
+	@PreAuthorize("hasAuthority('storage_movement.transfer')")
+	DataResponse<StorageMovementResponse.Emptying> empty(@PathVariable long id, @Valid @RequestBody EmptyRequest request) {
+		StorageMovementService.Emptying emptying = movements.empty(id, request);
+		return DataResponse.of(new StorageMovementResponse.Emptying(emptying.reference(),
+			responses.written(emptying.out()), responses.written(emptying.in()), responses.residues(emptying.residueIds())));
+	}
+
 	/** Son tankta azalis karisimdaki her materyal icin bir hareket: cevap liste. */
 	@PostMapping("/api/storage-movements/adjustment")
 	@PreAuthorize("hasAuthority('storage_movement.adjustment')")

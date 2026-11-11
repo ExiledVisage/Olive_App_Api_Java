@@ -3,6 +3,7 @@ package com.olivamore.api.production;
 import com.olivamore.api.support.Api;
 import com.olivamore.api.support.ApiClient.Response;
 import com.olivamore.api.support.ApiIntegrationTest;
+import com.olivamore.api.support.BatchFlow;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -16,20 +17,17 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.olivamore.api.support.Api.data;
-import static com.olivamore.api.support.Api.id;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Uretim asamalarinin kurallari, her test kendi partisiyle (hat 1, girdi tipi 1, tedarikci 1). Hattin asamalari:
- * 1 kantar tartimi (zorunlu alan: plaka), 2 ayiklama, 3 ikinci tartim, 4 veri istemeyen asama, 5 sikim (donusum),
- * 6 yag tartimi, 7 pirina tartimi, 8 analiz, 9 on dinlenme tankina giris (onayli).
+ * Uretim asamalarinin kurallari, her test kendi partisiyle; hattin asamalari {@link BatchFlow}'da. On dinlendirme
+ * tankinin akisi (dinlenme, iptal, bosaltma, tortu) {@code PreSettlingRulesIT}'te.
  */
 @ApiIntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BatchStageRulesIT {
 
-	private static final int PLATE_FIELD = 1;
-	private static final int SORTING_FIELD = 3;
+	private static final int PLATE_FIELD = BatchFlow.PLATE_FIELD;
 	private static final int RESTING_TANK = 7;
 
 	private final AtomicInteger codes = new AtomicInteger();
@@ -42,9 +40,12 @@ class BatchStageRulesIT {
 
 	Api api;
 
+	BatchFlow flow;
+
 	@BeforeAll
 	void setUp() {
 		api = Api.on(port);
+		flow = new BatchFlow(api, jdbc);
 	}
 
 	@Test
@@ -110,7 +111,7 @@ class BatchStageRulesIT {
 		Response unbalanced = complete(batch, 5, Map.of("input_quantity", 4800, "outputs", List.of(
 			Map.of("product_type_key", "olive_oil", "quantity", 900),
 			Map.of("production_product_id", 3, "quantity", 5000))));
-		Response balanced = complete(batch, 5, pressing());
+		Response balanced = complete(batch, 5, BatchFlow.pressing());
 
 		assertRule(unbalanced, "Kütle dengesi tutmuyor: girdi 4800 KG, aynı birimdeki çıktı toplamı 5000 KG. "
 			+ "Çıktı girdiden fazla olamaz.");
@@ -152,7 +153,7 @@ class BatchStageRulesIT {
 
 		assertThat(data(complete(batch, 9, resting())).get("status").asString()).isEqualTo("awaiting_approval");
 		assertThat(data(api.post(stage + "/approve", Map.of("note", "Tamam"))).get("status").asString())
-			.isEqualTo("completed");
+			.isEqualTo("resting");
 		assertThat(jdbc.queryForObject("select count(*) from materials where production_batch_id = ? and status = 'active'"
 			+ " and current_location_type = 'storage_unit' and current_location_id = ?", Long.class, batch, RESTING_TANK))
 			.isEqualTo(1);
@@ -172,59 +173,27 @@ class BatchStageRulesIT {
 	// ---- yardimcilar -------------------------------------------------------
 
 	private long batch() {
-		return id(api.post("/api/production-batches", Map.of("batch_code", "T-RULE-" + codes.incrementAndGet(),
-			"input_production_product_type_ids", List.of(1), "production_line_id", 1, "supplier_id", 1)));
+		return flow.batch("T-RULE-" + codes.incrementAndGet());
 	}
 
 	private String process(long batch, int stage) {
-		return "/api/batch-processes/" + jdbc.queryForObject("select id from batch_processes"
-			+ " where production_batch_id = ? and production_stage_id = ?", Long.class, batch, stage);
+		return flow.process(batch, stage);
 	}
 
 	private void fields(long batch, int stage, int field, String value) {
-		Response r = api.post(process(batch, stage) + "/sync-field-values",
-			Map.of("fields", List.of(Map.of("process_type_field_id", field, "value", value))));
-		assertThat(r.status()).as(r.body()).isEqualTo(200);
+		flow.fields(batch, stage, field, value);
 	}
 
 	private Response complete(long batch, int stage, Map<String, Object> operationData) {
-		return api.patch(process(batch, stage), Map.of("status", "completed", "operation_data", operationData));
+		return flow.complete(batch, stage, operationData);
 	}
 
-	/** Bu asamaya kadar (dahil) butun asamalari gecerli verilerle tamamlar. */
 	private void completeUpTo(long batch, int lastStage) {
-		for (int stage = 1; stage <= lastStage; stage++) {
-			Response r = switch (stage) {
-				case 1 -> {
-					fields(batch, 1, PLATE_FIELD, "16 ABC 123");
-					yield complete(batch, 1, Map.of("quantity", 5000, "unit", "KG"));
-				}
-				case 2 -> {
-					fields(batch, 2, SORTING_FIELD, "2.5");
-					yield complete(batch, 2, Map.of("x", 1));
-				}
-				case 3 -> complete(batch, 3, Map.of("quantity", 4800));
-				case 4 -> api.patch(process(batch, 4), Map.of("status", "completed"));
-				case 5 -> complete(batch, 5, pressing());
-				case 6 -> complete(batch, 6, Map.of("quantity", "899.75"));
-				case 7 -> complete(batch, 7, Map.of("quantity", 3400));
-				case 8 -> complete(batch, 8, Map.of("attributes", List.of(Map.of("attribute_key", "acidity",
-					"value", "0.31"))));
-				default -> throw new IllegalArgumentException("asama " + stage);
-			};
-			assertThat(r.status()).as("asama " + stage + ": " + r.body()).isEqualTo(200);
-		}
-	}
-
-	private static Map<String, Object> pressing() {
-		return Map.of("input_quantity", 4800, "outputs", List.of(
-			Map.of("product_type_key", "olive_oil", "quantity", "900.25"),
-			Map.of("production_product_id", 3, "quantity", 3500, "unit", "KG")));
+		flow.completeUpTo(batch, lastStage);
 	}
 
 	private static Map<String, Object> resting() {
-		return Map.of("quantity", "899.75", "storage_unit_id", RESTING_TANK, "input_quantity", 20,
-			"outputs", List.of(Map.of("production_product_id", 3, "quantity", "15.5")));
+		return Map.of("quantity", BatchFlow.OIL, "storage_unit_id", RESTING_TANK);
 	}
 
 	private List<BigDecimal> activeMaterials(long batch) {

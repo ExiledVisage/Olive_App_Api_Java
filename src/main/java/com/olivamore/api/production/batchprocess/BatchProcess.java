@@ -102,6 +102,13 @@ public class BatchProcess extends AuditedEntity {
 		close(ProcessStatus.COMPLETED, now);
 	}
 
+	/** On dinlendirme: urun tankta, asama tank bosaltilana kadar acik bekler. */
+	void rest(JsonNode data) {
+		operationData = data;
+		status = ProcessStatus.RESTING;
+		completedAt = null;
+	}
+
 	void skip(LocalDateTime now) {
 		markStarted(now);
 		close(ProcessStatus.SKIPPED, now);

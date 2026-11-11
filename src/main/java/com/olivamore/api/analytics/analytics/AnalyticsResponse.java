@@ -12,7 +12,7 @@ interface AnalyticsResponse {
 
 	/** Parti toplamlari ve toplamdan hesaplanan oranlar. */
 	record BatchTotals(int batchCount, double incomingKg, double pressedKg, double oilKg, double pomaceKg,
-		Double yieldPct, Double grossYieldPct, Double avgAcidity) {
+		double residueKg, Double yieldPct, Double grossYieldPct, Double avgAcidity) {
 	}
 
 	record OrderTotals(long bottleCount, double litres) {

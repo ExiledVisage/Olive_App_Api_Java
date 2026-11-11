@@ -38,4 +38,12 @@ public record StorageMovementResponse(
 		List<StorageMovementResponse> inMovements) {
 	}
 
+	/**
+	 * Bosaltma cevabi (200): her hedef ve parti materyali icin bir cikis ve bir giris hareketi; tanka giren ile
+	 * cekilen arasindaki farktan acilan tortu materyalleri (parti basina).
+	 */
+	public record Emptying(String transferReference, List<StorageMovementResponse> outMovements,
+		List<StorageMovementResponse> inMovements, List<MaterialResponse> residueMaterials) {
+	}
+
 }

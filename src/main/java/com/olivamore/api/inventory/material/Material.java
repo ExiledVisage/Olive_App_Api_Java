@@ -178,6 +178,12 @@ public class Material extends AuditedEntity {
 		currentLocationId = unitId;
 	}
 
+	/** Tanktan partisine geri doner (on dinlendirme girisinin iptali). */
+	public void returnToBatch() {
+		currentLocationType = LocationType.PRODUCTION_BATCH;
+		currentLocationId = productionBatchId;
+	}
+
 	/** Tanktan cikan miktar kapanir: konum silinir; proses verilirse kapatan proses o olur. */
 	public void close(MaterialStatus closedStatus, Long batchProcessId) {
 		status = closedStatus;

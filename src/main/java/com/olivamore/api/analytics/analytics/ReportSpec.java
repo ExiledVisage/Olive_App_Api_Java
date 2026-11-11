@@ -32,6 +32,7 @@ public final class ReportSpec {
 		new Metric("pressed_kg", "Sikilan zeytin", "kg", PRODUCTION, true),
 		new Metric("oil_kg", "Uretilen yag", "kg", PRODUCTION, true),
 		new Metric("pomace_kg", "Pirina", "kg", PRODUCTION, true),
+		new Metric("residue_kg", "Tortu", "kg", PRODUCTION, true),
 		new Metric("batch_count", "Parti sayisi", "adet", PRODUCTION, true),
 		new Metric("yield_pct", "Randiman", "%", PRODUCTION, false),
 		new Metric("avg_acidity", "Ortalama asitlik", "%", PRODUCTION, false),

@@ -22,8 +22,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tank kurallari, her test kendi tankiyla: kapasite, izinli urun ve tip, dolu tankta farkli tip, attribute kurallari
- * (gelen deger ve agirlikli ortalama), on dinlendirme tankinda kismi cikista materyal bolme, transfer, sayim
- * duzeltmesi, tank turu ve birim cevrimi; son tankin tip materyali {@code FinalTankRulesIT}'te. Demo veri: tip 3
+ * (gelen deger ve agirlikli ortalama), transfer, sayim duzeltmesi, tank turu, on dinlendirme tankinda elle hareket
+ * yasagi ve birim cevrimi; son tankin tip materyali {@code FinalTankRulesIT}'te, on dinlendirme akisi
+ * {@code PreSettlingRulesIT}'te. Demo veri: tip 3
  * Gemlik ve tip 4 Ayvalik zeytinyagi (urun 2, LITRE, kategori yogunlugu 0.916), tip 1 Gemlik zeytini (KG, yogunluk
  * yok), tip 6 baska urun; tanim 4 asitlik.
  */
@@ -118,31 +119,56 @@ class TankRulesIT {
 	}
 
 	@Test
-	void partialOutboundSplitsTheMaterialInAPreSettlingTank() {
-		long tank = tank(1000, Map.of("kind", "pre_settling"));
-		long material = materialOf(open(tank, GEMLIK, "100", "0.3"));
+	void preSettlingTankTakesNoManualMovements() {
+		long settling = tank(1000, Map.of("kind", "pre_settling"));
+		long last = tank(1000, Map.of());
+		open(last, GEMLIK, "100", null);
+		long batchMaterial = jdbc.queryForObject("select id from materials where status = 'active'"
+			+ " and current_location_type = 'production_batch' order by id limit 1", Long.class);
+		String rejected = "'" + code(settling) + "' bir ön dinlendirme tankı; elle giriş, çıkış, sayım ve transfer "
+			+ "yapılamaz. Giriş üretimdeki ön dinlendirme aşamasıyla, çıkış Boşalt ile yapılır.";
 
-		JsonNode moved = data(api.post("/api/storage-movements/outbound",
-			Map.of("storage_unit_id", tank, "material_id", material, "quantity", 40))).get(0).get("material");
+		assertRule(opening(settling, GEMLIK, "10", null), rejected);
+		assertRule(api.post("/api/storage-movements/inbound",
+			Map.of("storage_unit_id", settling, "material_id", batchMaterial, "quantity", 1)), rejected);
+		assertRule(api.post("/api/storage-movements/outbound", Map.of("storage_unit_id", settling, "quantity", 1)),
+			rejected);
+		assertRule(api.post("/api/storage-movements/adjustment", Map.of("storage_unit_id", settling, "quantity", 1,
+			"is_increase", false)), rejected);
+		assertRule(api.post("/api/storage-movements/adjustment", Map.of("storage_unit_id", settling, "quantity", 1,
+			"is_increase", true, "production_product_type_id", GEMLIK, "unit", "LITRE")), rejected);
+		assertRule(api.post("/api/storage-movements/transfer", Map.of("from_storage_unit_id", last,
+			"to_storage_unit_id", settling, "quantity", 10)), rejected);
+		assertRule(api.post("/api/storage-movements/transfer", Map.of("from_storage_unit_id", settling,
+			"to_storage_unit_id", last, "quantity", 10)), rejected);
+		assertThat(balance(settling)).isZero();
+		assertThat(balance(last)).isEqualByComparingTo("100");
+	}
 
-		assertThat(moved.get("parent_material_id").asLong()).isEqualTo(material);
-		assertThat(moved.get("status").asString()).isEqualTo("consumed");
-		assertThat(moved.get("quantity").decimalValue()).isEqualByComparingTo("40");
-		assertThat(quantity(material)).isEqualByComparingTo("60");
-		assertThat(status(material)).isEqualTo("active");
-		assertThat(balance(tank)).isEqualByComparingTo("60");
+	@Test
+	void preSettlingTankWorksWithASingleType() {
+		Response blend = api.post("/api/storage-units", Map.of("name", "Dinlenme", "code", "RULE-"
+			+ codes.incrementAndGet(), "capacity", 1000, "capacity_unit", "LITRE", "kind", "pre_settling",
+			"allow_multiple_production_product_types", true));
+		long tank = tank(1000, Map.of("is_blend_tank", true));
+		Response toPreSettling = api.patch("/api/storage-units/" + tank, Map.of("kind", "pre_settling"));
+		Response withFlagsOff = api.patch("/api/storage-units/" + tank, Map.of("kind", "pre_settling",
+			"is_blend_tank", false));
+		String rejected = "Ön dinlendirme tankı tek ürün tipiyle çalışır; blend ve birden çok ürün ya da ürün tipi "
+			+ "ayarları açılamaz.";
+
+		assertRule(blend, rejected);
+		assertRule(toPreSettling, rejected);
+		assertThat(withFlagsOff.status()).as(withFlagsOff.body()).isEqualTo(200);
+		assertRule(api.patch("/api/storage-units/" + tank, Map.of("allow_multiple_production_products", true)),
+			rejected);
 	}
 
 	@Test
 	void outboundCannotTakeMoreThanTheTankHas() {
-		long settling = tank(1000, Map.of("kind", "pre_settling"));
 		long last = tank(1000, Map.of());
-		long material = materialOf(open(settling, GEMLIK, "100", null));
 		open(last, GEMLIK, "100", null);
 
-		assertRule(api.post("/api/storage-movements/outbound",
-			Map.of("storage_unit_id", settling, "material_id", material, "quantity", "100.0001")),
-			"Material üzerinde yeterli miktar bulunmuyor.");
 		assertRule(api.post("/api/storage-movements/outbound", Map.of("storage_unit_id", last, "quantity", "100.0001")),
 			"Tankta yeterli miktar bulunmuyor.");
 	}
@@ -183,23 +209,6 @@ class TankRulesIT {
 		assertThat(same.status()).isEqualTo(422);
 		assertThat(same.json().get("errors").get("to_storage_unit_id").get(0).asString())
 			.isEqualTo("The to storage unit id field and from storage unit id must be different.");
-	}
-
-	@Test
-	void countAdjustmentDiscardsADecreaseAndCreatesMaterialOnIncrease() {
-		long tank = tank(1000, Map.of("kind", "pre_settling"));
-		long material = materialOf(open(tank, GEMLIK, "100", null));
-
-		JsonNode decrease = data(api.post("/api/storage-movements/adjustment",
-			Map.of("storage_unit_id", tank, "quantity", 20, "is_increase", false, "material_id", material))).get(0);
-		JsonNode increase = data(api.post("/api/storage-movements/adjustment", Map.of("storage_unit_id", tank,
-			"quantity", 5, "is_increase", true, "production_product_type_id", GEMLIK, "unit", "LITRE"))).get(0);
-
-		assertThat(decrease.get("movement_type").asString()).isEqualTo("ADJUSTMENT_OUT");
-		assertThat(decrease.get("material").get("status").asString()).isEqualTo("discarded");
-		assertThat(increase.get("movement_type").asString()).isEqualTo("ADJUSTMENT_IN");
-		assertThat(quantity(material)).isEqualByComparingTo("80");
-		assertThat(balance(tank)).isEqualByComparingTo("85");
 	}
 
 	@Test
@@ -247,17 +256,6 @@ class TankRulesIT {
 			+ "değiştirilebilir.");
 		assertThat(same.status()).as(same.body()).isEqualTo(200);
 		assertThat(data(api.get("/api/storage-units/" + tank)).get("kind").asString()).isEqualTo("final");
-	}
-
-	@Test
-	void finalTankCannotTransferToAPreSettlingTank() {
-		long from = tank(1000, Map.of());
-		long to = tank(1000, Map.of("kind", "pre_settling"));
-		long material = materialOf(open(from, GEMLIK, "100", null));
-
-		assertRule(api.post("/api/storage-movements/transfer", Map.of("from_storage_unit_id", from,
-			"to_storage_unit_id", to, "material_id", material, "quantity", 10)),
-			"Son tanktan ön dinlendirme tankına transfer yapılamaz.");
 	}
 
 	@Test
@@ -396,10 +394,6 @@ class TankRulesIT {
 
 	private BigDecimal quantity(long material) {
 		return jdbc.queryForObject("select quantity from materials where id = ?", BigDecimal.class, material);
-	}
-
-	private String status(long material) {
-		return jdbc.queryForObject("select status from materials where id = ?", String.class, material);
 	}
 
 	private BigDecimal balance(long tank) {

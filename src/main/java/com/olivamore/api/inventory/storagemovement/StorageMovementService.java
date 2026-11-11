@@ -1,6 +1,7 @@
 package com.olivamore.api.inventory.storagemovement;
 
 import com.olivamore.api.inventory.MixShares;
+import com.olivamore.api.inventory.PreSettlingTankEmptied;
 import com.olivamore.api.inventory.material.LocationType;
 import com.olivamore.api.inventory.material.Material;
 import com.olivamore.api.inventory.material.MaterialAttributeValue;
@@ -34,6 +35,7 @@ import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
@@ -44,6 +46,8 @@ import java.security.SecureRandom;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -60,8 +64,12 @@ import java.util.stream.Collectors;
  * Son tank (C2): tank ve urun tipi basina tek tank materyali. Giren materyal giren miktar kadar o anda kapanir,
  * miktar tipin tank materyaline eklenir (attribute'lar {@link TankMixAttributes}); giris hareketi tank materyalini
  * ve gelen materyali gosterir. Cikista cocuk materyal acilmaz: tank sayfasindaki cikis, transfer ve sayim azalisi
- * karisimdan oransal duser, uretim ve dolum verilen materyalden dogrudan duser. On dinlendirme tanki bugunku
- * davranista: parti materyalleri ayri durur, kismi cikis materyali boler.
+ * karisimdan oransal duser, uretim ve dolum verilen materyalden dogrudan duser.
+ * <p>
+ * On dinlendirme tanki (C3-C5): parti materyalleri ayri durur. Giris yalnizca uretimdeki on dinlendirme asamasiyla
+ * (parti bir tanka bir kez girer), cikis yalnizca Boşalt ile: girdiler kapanir, cekilen miktar son tanklara girer,
+ * kalan fark (kutle) tortu olarak uretime bildirilir ({@link PreSettlingTankEmptied}). Elle giris, cikis, sayim ve
+ * transfer yapilamaz; yanlis giris bosaltmadan once asama iptaliyle geri alinir.
  * <p>
  * Islemdeki tanklar transaction basinda satir kilidiyle kilitlenir (id sirasiyla); ayni tanka eszamanli iki
  * giris kapasiteyi birlikte asamaz. Uretim ayni islemde JDBC ile yazdigi icin her metot sonunda flush yapilir,
@@ -72,6 +80,9 @@ public class StorageMovementService {
 
 	/** materials.quantity 4 basamak: daha kucuk farklar gurultu. */
 	private static final BigDecimal QUANTITY_EPSILON = new BigDecimal("0.00005");
+
+	/** Bosaltmada cekilen, giren kutleyi en fazla bu oranda (olcum farki) asabilir; fazlasi reddedilir. */
+	private static final BigDecimal EMPTYING_TOLERANCE = new BigDecimal("0.005");
 
 	private static final String ALPHANUMERIC = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	private static final DateTimeFormatter REFERENCE_TIME = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
@@ -86,6 +97,7 @@ public class StorageMovementService {
 	private final StorageMovementRepository movements;
 	private final TankQueries queries;
 	private final TankMixAttributes mixAttributes;
+	private final ApplicationEventPublisher events;
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -93,7 +105,7 @@ public class StorageMovementService {
 	StorageMovementService(StorageUnitRepository units, StorageUnitBalanceRepository balances,
 		StorageUnitAllowance allowance, StorageUnitAttributeRuleRepository rules, MaterialRepository materials,
 		MaterialAttributeValueRepository attributeValues, StorageMovementRepository movements, TankQueries queries,
-		TankMixAttributes mixAttributes) {
+		TankMixAttributes mixAttributes, ApplicationEventPublisher events) {
 		this.units = units;
 		this.balances = balances;
 		this.allowance = allowance;
@@ -103,10 +115,15 @@ public class StorageMovementService {
 		this.movements = movements;
 		this.queries = queries;
 		this.mixAttributes = mixAttributes;
+		this.events = events;
 	}
 
 	/** Transfer sonucu: son tanktan cikista karisimdaki her tip icin bir cikis ve bir giris. */
 	record Transfer(String reference, List<StorageMovement> out, List<StorageMovement> in) {
+	}
+
+	/** Bosaltma sonucu: her hedef ve parti materyali icin bir cikis ve bir giris; acilan tortu materyalleri. */
+	record Emptying(String reference, List<StorageMovement> out, List<StorageMovement> in, List<Long> residueIds) {
 	}
 
 	/** Karisimdan cekilecek pay, materyalin biriminde. */
@@ -158,22 +175,18 @@ public class StorageMovementService {
 			request.note(), batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL, MovementType.IN);
 	}
 
-	/** Son tankta karisimdan oransal (karisimdaki her materyal icin bir hareket), diger tanklarda materyalden. */
+	/** Karisimdan oransal: karisimdaki her materyal icin bir hareket. */
 	@Transactional
 	List<StorageMovement> outbound(OutboundRequest request) {
 		ValidationErrors errors = new ValidationErrors();
 		checkUnit(errors, "storage_unit_id", request.storageUnitId());
-		checkMixMaterial(errors, request.storageUnitId(), request.materialId());
+		checkMixMaterial(errors, request.materialId());
 		checkBatchProcess(errors, request.batchProcessId());
 		errors.throwIfAny();
-		if (isFinal(request.storageUnitId())) {
-			BatchProcess batchProcess = resolveBatchProcess(request.batchProcessId());
-			return drainMix(request.storageUnitId(), request.materialId(), request.quantity(), batchProcess,
-				request.note(), batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL,
-				MovementType.OUT, MaterialStatus.CONSUMED);
-		}
-		return List.of(outbound(request.storageUnitId(), request.materialId(), request.quantity(),
-			request.batchProcessId(), request.note(), null));
+		BatchProcess batchProcess = resolveBatchProcess(request.batchProcessId());
+		return drainMix(request.storageUnitId(), request.materialId(), request.quantity(), batchProcess,
+			request.note(), batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL,
+			MovementType.OUT, MaterialStatus.CONSUMED);
 	}
 
 	@Transactional
@@ -184,20 +197,38 @@ public class StorageMovementService {
 		if (request.toStorageUnitId().equals(request.fromStorageUnitId())) {
 			errors.add("to_storage_unit_id", MessageKeys.DIFFERENT, "other", "from storage unit id");
 		}
-		checkMixMaterial(errors, request.fromStorageUnitId(), request.materialId());
+		checkMixMaterial(errors, request.materialId());
 		checkBatchProcess(errors, request.batchProcessId());
 		errors.throwIfAny();
-		if (isFinal(request.fromStorageUnitId())) {
-			return transferMix(request.fromStorageUnitId(), request.toStorageUnitId(), request.materialId(),
-				request.quantity(), resolveBatchProcess(request.batchProcessId()), request.note());
-		}
-		return transfer(request.fromStorageUnitId(), request.toStorageUnitId(), request.materialId(), request.quantity(),
-			request.batchProcessId(), request.note());
+		return transferMix(request.fromStorageUnitId(), request.toStorageUnitId(), request.materialId(),
+			request.quantity(), resolveBatchProcess(request.batchProcessId()), request.note());
 	}
 
 	/**
-	 * Artis yeni materyal (tip + birim zorunlu); azalis son tankta karisimdan oransal, diger tanklarda var olan
-	 * materyalden (material_id zorunlu).
+	 * On dinlendirme tankinin bosaltilmasi: hedef tanklarin her biri ayri satir ve dogrulama yolu
+	 * ({@code targets.N.storage_unit_id}); tank bulunamazsa 404.
+	 */
+	@Transactional
+	Emptying empty(long unitId, EmptyRequest request) {
+		if (!queries.unitExists(unitId)) {
+			throw new ModelNotFoundException("StorageUnit", unitId);
+		}
+		ValidationErrors errors = new ValidationErrors();
+		Set<Long> seen = new HashSet<>();
+		for (int i = 0; i < request.targets().size(); i++) {
+			Long targetId = request.targets().get(i).storageUnitId();
+			String path = "targets." + i + ".storage_unit_id";
+			checkUnit(errors, path, targetId);
+			if (!seen.add(targetId)) {
+				errors.add(path, MessageKeys.DISTINCT);
+			}
+		}
+		errors.throwIfAny();
+		return empty(unitId, request.targets(), request.note());
+	}
+
+	/**
+	 * Artis yeni materyal (tip + birim zorunlu); azalis karisimdan oransal (material_id istege bagli).
 	 */
 	@Transactional
 	List<StorageMovement> adjustment(AdjustmentRequest request) {
@@ -215,7 +246,7 @@ public class StorageMovementService {
 			errors.add("unit", MessageKeys.REQUIRED);
 		}
 		if (!increase) {
-			checkMixMaterial(errors, request.storageUnitId(), request.materialId());
+			checkMixMaterial(errors, request.materialId());
 		}
 		else if (request.materialId() != null) {
 			checkMaterial(errors, request.materialId());
@@ -228,12 +259,8 @@ public class StorageMovementService {
 				request.quantity(), request.unit().value(), request.attributeValues(), batchProcess, request.note(),
 				MovementSource.STORAGE_ADJUSTMENT, MovementType.ADJUSTMENT_IN));
 		}
-		if (isFinal(request.storageUnitId())) {
-			return drainMix(request.storageUnitId(), request.materialId(), request.quantity(), batchProcess,
-				request.note(), MovementSource.STORAGE_ADJUSTMENT, MovementType.ADJUSTMENT_OUT, MaterialStatus.DISCARDED);
-		}
-		return List.of(adjustmentDecrease(request.storageUnitId(), request.materialId(), request.quantity(),
-			batchProcess, request.note()));
+		return drainMix(request.storageUnitId(), request.materialId(), request.quantity(), batchProcess,
+			request.note(), MovementSource.STORAGE_ADJUSTMENT, MovementType.ADJUSTMENT_OUT, MaterialStatus.DISCARDED);
 	}
 
 	// ---- dogrulama --------------------------------------------------------
@@ -256,13 +283,10 @@ public class StorageMovementService {
 		}
 	}
 
-	/** Son tankta cikis karisimdan oldugu icin materyal istege bagli; diger tanklarda zorunlu. */
-	private void checkMixMaterial(ValidationErrors errors, Long unitId, Long materialId) {
+	/** Cikis karisimdan oldugu icin materyal istege bagli; verilirse var olmali. */
+	private void checkMixMaterial(ValidationErrors errors, Long materialId) {
 		if (materialId != null) {
 			checkMaterial(errors, materialId);
-		}
-		else if (queries.unitExists(unitId) && !isFinal(unitId)) {
-			errors.add("material_id", MessageKeys.REQUIRED);
 		}
 	}
 
@@ -311,75 +335,57 @@ public class StorageMovementService {
 	// Islemler (uretim ve dolum da kullanir)
 	// ======================================================================
 
-	/** Var olan bir materyalin (ya da bir kisminin) tanka alinmasi; son tankta tipin tank materyaline eklenir. */
+	/**
+	 * Partideki bir materyalin (ya da bir kisminin) son tanka alinmasi: tipin tank materyaline eklenir. Tanktaki
+	 * materyal bu yoldan cikamaz (son tanktan transfer, on dinlendirme tankindan Boşalt).
+	 */
 	@Transactional
 	public StorageMovement inbound(long unitId, long materialId, BigDecimal quantity, Long batchProcessId,
 		String note) {
 		assertPositiveQuantity(quantity);
 		StorageUnit unit = lock(unitId).get(unitId);
+		assertFinal(unit);
 		Material material = fresh(materialId);
+		assertActive(material);
+		assertNotInTank(material);
 		ProductType type = productType(material.getProductionProductTypeId());
 		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
 		MovementSource source = batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL;
-		if (isFinal(unit)) {
-			assertActive(material);
-		}
 		assertAccepts(unit, type, quantity, material.getUnit().value());
 		assertFits(unit, material, type, quantity);
-		if (isFinal(unit)) {
-			assertEnough(material, quantity);
-			Long previousTank = tankOf(material);
-			StorageMovement movement = enterMix(unit, material, quantity, type, batchProcess, null, source,
-				MovementType.IN, null, note);
-			material.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
-			if (previousTank != null) {
-				recalculate(previousTank, material);
-			}
-			flush();
-			return movement;
-		}
-		Material moving = extractPortion(material, quantity, batchProcess);
-		moving.moveToStorageUnit(unit.getId());
-		StorageMovement movement = createMovement(unit.getId(), moving, null, batchProcess, null, source,
-			MovementType.IN, null, quantity, note, null);
-		recalculate(unit.getId(), moving);
+		assertEnough(material, quantity);
+		StorageMovement movement = enterMix(unit, material, quantity, type, batchProcess, null, source,
+			MovementType.IN, null, note);
+		material.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
 		flush();
 		return movement;
 	}
 
 	/**
-	 * Verilen materyalden cikis, tuketilmis sayilir. Son tankta materyal dogrudan azalir; karisimin partisi
-	 * olmadigindan uretim icinden tank materyali uzerinde cikis yapilamaz. @param runId dolum kosusu; yoksa null
+	 * Verilen tank materyalinden cikis, tuketilmis sayilir; materyal dogrudan azalir. Karisimin partisi olmadigindan
+	 * uretim icinden tank materyali uzerinde cikis yapilamaz. @param runId dolum kosusu; yoksa null
 	 */
 	@Transactional
 	public StorageMovement outbound(long unitId, long materialId, BigDecimal quantity, Long batchProcessId,
 		String note, Long runId) {
 		assertPositiveQuantity(quantity);
 		StorageUnit unit = lock(unitId).get(unitId);
+		assertFinal(unit);
 		Material material = fresh(materialId);
 		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
 		MovementSource source = batchProcess != null ? MovementSource.BATCH_PROCESS : MovementSource.MANUAL;
 		assertMaterialInsideStorage(unit, material);
-		if (isFinal(unit)) {
-			assertNotMixFromProduction(material, batchProcess);
-			assertEnough(material, quantity);
-			material.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
-			StorageMovement movement = createMovement(unit.getId(), material, null, batchProcess, null, source,
-				MovementType.OUT, null, quantity, note, runId);
-			recalculate(unit.getId(), material);
-			flush();
-			return movement;
-		}
-		Material moving = extractPortion(material, quantity, batchProcess);
-		moving.close(MaterialStatus.CONSUMED, batchProcess == null ? null : batchProcess.id());
-		StorageMovement movement = createMovement(unit.getId(), moving, null, batchProcess, null, source,
+		assertNotMixFromProduction(material, batchProcess);
+		assertEnough(material, quantity);
+		material.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
+		StorageMovement movement = createMovement(unit.getId(), material, null, batchProcess, null, source,
 			MovementType.OUT, null, quantity, note, runId);
-		recalculate(unit.getId(), moving);
+		recalculate(unit.getId(), material);
 		flush();
 		return movement;
 	}
 
-	/** Verilen materyalin (ya da bir kisminin) transferi; hedef son tanksa tipin tank materyaline eklenir. */
+	/** Verilen tank materyalinin (ya da bir kisminin) son tanklar arasinda transferi. */
 	@Transactional
 	public Transfer transfer(long fromId, long toId, long materialId, BigDecimal quantity, Long batchProcessId,
 		String note) {
@@ -391,41 +397,252 @@ public class StorageMovementService {
 		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
 		ProductType type = productType(material.getProductionProductTypeId());
 		assertMaterialInsideStorage(from, material);
-		if (isFinal(from)) {
-			assertNotMixFromProduction(material, batchProcess);
-		}
+		assertNotMixFromProduction(material, batchProcess);
 		assertAccepts(to, type, quantity, material.getUnit().value());
 		assertFits(to, material, type, quantity);
+		assertEnough(material, quantity);
 		String reference = reference();
-		if (isFinal(from)) {
-			assertEnough(material, quantity);
-			StorageMovement out = createMovement(from.getId(), material, null, batchProcess, to.getId(),
-				MovementSource.INTERNAL_TRANSFER, MovementType.TRANSFER_OUT, reference, quantity, note, null);
-			StorageMovement in = enterMix(to, material, quantity, type, batchProcess, from.getId(),
-				MovementSource.INTERNAL_TRANSFER, MovementType.TRANSFER_IN, reference, note);
-			material.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
-			recalculate(from.getId(), material);
-			flush();
-			return new Transfer(reference, List.of(out), List.of(in));
-		}
-		Material moving = extractPortion(material, quantity, batchProcess);
-		StorageMovement out = createMovement(from.getId(), moving, null, batchProcess, to.getId(),
+		StorageMovement out = createMovement(from.getId(), material, null, batchProcess, to.getId(),
 			MovementSource.INTERNAL_TRANSFER, MovementType.TRANSFER_OUT, reference, quantity, note, null);
-		StorageMovement in;
-		if (isFinal(to)) {
-			in = enterMix(to, moving, quantity, type, batchProcess, from.getId(), MovementSource.INTERNAL_TRANSFER,
-				MovementType.TRANSFER_IN, reference, note);
-			moving.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
-		}
-		else {
-			moving.moveToStorageUnit(to.getId());
-			in = createMovement(to.getId(), moving, null, batchProcess, from.getId(), MovementSource.INTERNAL_TRANSFER,
-				MovementType.TRANSFER_IN, reference, quantity, note, null);
-			recalculate(to.getId(), moving);
-		}
-		recalculate(from.getId(), moving);
+		StorageMovement in = enterMix(to, material, quantity, type, batchProcess, from.getId(),
+			MovementSource.INTERNAL_TRANSFER, MovementType.TRANSFER_IN, reference, note);
+		material.drain(quantity, MaterialStatus.CONSUMED, batchProcessId);
+		recalculate(from.getId(), material);
 		flush();
 		return new Transfer(reference, List.of(out), List.of(in));
+	}
+
+	// ======================================================================
+	// On dinlendirme tanki
+	// ======================================================================
+
+	/**
+	 * On dinlendirme asamasinin girisi: partideki materyalin (ya da bir kisminin) tanka alinmasi. Parti materyali
+	 * ayri satir olarak kalir; parti ayni tanka bir kez girer. Tek urun tipi kurali tankin ayarindan (coklu tip bu
+	 * turde kapali).
+	 */
+	@Transactional
+	public StorageMovement enterPreSettling(long unitId, long materialId, BigDecimal quantity, long batchProcessId,
+		String note) {
+		assertPositiveQuantity(quantity);
+		StorageUnit unit = lock(unitId).get(unitId);
+		if (isFinal(unit)) {
+			throw new BusinessRuleException("'" + unit.getCode() + "' bir son tank; ön dinlendirme aşaması yalnızca "
+				+ "ön dinlendirme tankına giriş yapar.");
+		}
+		Material material = fresh(materialId);
+		assertActive(material);
+		assertNotInTank(material);
+		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
+		if (queries.batchInTank(unitId, batchProcess.productionBatchId())) {
+			String code = queries.batchCode(batchProcess.productionBatchId()).orElse("");
+			throw new BusinessRuleException("'" + code + "' partisi bu ön dinlendirme tankına zaten girdi. Miktar "
+				+ "yanlışsa aşamayı iptal edip yeniden gönderin.");
+		}
+		ProductType type = productType(material.getProductionProductTypeId());
+		assertAccepts(unit, type, quantity, material.getUnit().value());
+		assertFits(unit, material, type, quantity);
+		Material moving = extractPortion(material, quantity, batchProcess);
+		moving.moveToStorageUnit(unit.getId());
+		StorageMovement movement = createMovement(unit.getId(), moving, null, batchProcess, null,
+			MovementSource.BATCH_PROCESS, MovementType.IN, null, quantity, note, null);
+		recalculate(unit.getId(), moving);
+		flush();
+		return movement;
+	}
+
+	/**
+	 * Dinlenmedeki asamanin iptali: prosesin hala tankta duran materyalleri partiye doner (cikis hareketiyle).
+	 * Girerken bolunmus parca partideki materyale geri eklenir.
+	 */
+	@Transactional
+	public void cancelPreSettling(long batchProcessId, String note) {
+		BatchProcess batchProcess = resolveBatchProcess(batchProcessId);
+		for (TankQueries.PreSettlingEntry entry : queries.preSettlingEntries(batchProcessId)) {
+			StorageUnit unit = lock(entry.storageUnitId()).get(entry.storageUnitId());
+			Material material = fresh(entry.materialId());
+			if (material.getStatus() != MaterialStatus.ACTIVE || !Objects.equals(tankOf(material), unit.getId())) {
+				continue;
+			}
+			createMovement(unit.getId(), material, null, batchProcess, null, MovementSource.BATCH_PROCESS,
+				MovementType.OUT, null, material.getQuantity(), note, null);
+			returnToBatch(material, batchProcessId);
+			recalculate(unit.getId(), material);
+		}
+		flush();
+	}
+
+	/**
+	 * Boşalt: girdiler %100 kapanir, cekilen miktar hedef son tanklarin tip materyaline eklenir, fark (kutle) tortu
+	 * olur. Cekilen (kapasite biriminde) giren materyallere miktarlarina gore oransal dagilir, her hedefe istenen
+	 * paylarla. Cekilen giren kutleyi toleranstan fazla asarsa reddedilir; tolerans icindeyse girenin tamami cekilmis
+	 * sayilir. Kurallar (izinli tip, yogunluk, kapasite, olculmus olma, tank uyumu) her hedef icin; biri reddederse
+	 * hicbir sey yazilmaz.
+	 */
+	private Emptying empty(long unitId, List<EmptyRequest.Target> targets, String note) {
+		long[] ids = new long[targets.size() + 1];
+		ids[0] = unitId;
+		for (int t = 0; t < targets.size(); t++) {
+			ids[t + 1] = targets.get(t).storageUnitId();
+		}
+		Map<Long, StorageUnit> locked = lock(ids);
+		StorageUnit source = locked.get(unitId);
+		if (isFinal(source)) {
+			throw new BusinessRuleException("'" + source.getCode() + "' bir son tank; Boşalt yalnızca ön dinlendirme "
+				+ "tankında yapılır.");
+		}
+		List<StorageUnit> destinations = targets.stream().map(t -> locked.get(t.storageUnitId())).toList();
+		if (destinations.stream().anyMatch(d -> !isFinal(d))) {
+			throw new BusinessRuleException("Ön dinlendirme tankı yalnızca son tanklara boşaltılır.");
+		}
+		List<Material> contents = queries.activeMaterialIds(unitId).stream().map(this::fresh).toList();
+		if (contents.isEmpty()) {
+			throw new BusinessRuleException("Tank boş; boşaltılacak materyal yok.");
+		}
+		Map<Long, ProductType> types = queries.productTypes(
+			contents.stream().map(Material::getProductionProductTypeId).toList());
+		List<MixShares.Part> parts = contents.stream().map(m -> {
+			ProductType type = types.get(m.getProductionProductTypeId());
+			return new MixShares.Part(m.getQuantity(), m.getUnit().value(), type.density(), type.name());
+		}).toList();
+		String capacityUnit = source.getCapacityUnit().value();
+		List<BigDecimal> requested = targets.stream().map(EmptyRequest.Target::quantity).toList();
+		List<BigDecimal> taken = withdrawals(parts, requested, capacityUnit);
+		List<List<BigDecimal>> shares = distribute(taken, requested);
+		for (int t = 0; t < destinations.size(); t++) {
+			assertAcceptsShares(destinations.get(t), contents, types, shares.get(t));
+		}
+
+		Map<Long, Long> processes = restingProcesses(unitId, contents);
+		String reference = reference();
+		List<StorageMovement> out = new ArrayList<>();
+		List<StorageMovement> in = new ArrayList<>();
+		for (int t = 0; t < destinations.size(); t++) {
+			StorageUnit target = destinations.get(t);
+			for (int i = 0; i < contents.size(); i++) {
+				BigDecimal share = shares.get(t).get(i);
+				if (share.signum() <= 0) {
+					continue;
+				}
+				Material material = contents.get(i);
+				ProductType type = types.get(material.getProductionProductTypeId());
+				BatchProcess process = resolveBatchProcess(processes.get(material.getId()));
+				assertFits(target, material, type, share);
+				out.add(createMovement(unitId, material, null, process, target.getId(), MovementSource.INTERNAL_TRANSFER,
+					MovementType.TRANSFER_OUT, reference, share, note, null));
+				in.add(enterMix(target, material, share, type, process, unitId, MovementSource.INTERNAL_TRANSFER,
+					MovementType.TRANSFER_IN, reference, note));
+			}
+		}
+
+		List<PreSettlingTankEmptied.Entry> entries = new ArrayList<>();
+		for (int i = 0; i < contents.size(); i++) {
+			Material material = contents.get(i);
+			Long processId = processes.get(material.getId());
+			MixShares.Part part = parts.get(i);
+			BigDecimal residue = material.getQuantity().subtract(taken.get(i)).max(BigDecimal.ZERO);
+			material.close(MaterialStatus.CONSUMED, processId);
+			recalculate(unitId, material);
+			if (processId != null) {
+				BigDecimal residueKg = UnitConversion.convert(residue, part.unit(), UnitConversion.KG, part.density(),
+					part.typeName());
+				entries.add(new PreSettlingTankEmptied.Entry(material.getId(), material.getProductionBatchId(), processId,
+					Quantities.material(residueKg)));
+			}
+		}
+		flush();
+		events.publishEvent(new PreSettlingTankEmptied(unitId, entries));
+		flush();
+		List<Long> residueIds = queries.childrenCreatedBy(contents.stream().map(Material::getId).toList(),
+			entries.stream().map(PreSettlingTankEmptied.Entry::batchProcessId).distinct().toList());
+		return new Emptying(reference, out, in, residueIds);
+	}
+
+	/**
+	 * Her materyalden cekilen, kendi biriminde: istenen toplam (kapasite biriminde) giren kadar ya da azsa oransal;
+	 * fazlaysa kutle farki toleransi asmiyorsa girenin tamami, asiyorsa reddedilir.
+	 */
+	private static List<BigDecimal> withdrawals(List<MixShares.Part> parts, List<BigDecimal> requested,
+		String capacityUnit) {
+		BigDecimal total = requested.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+		BigDecimal inside = MixShares.total(parts, capacityUnit);
+		if (total.compareTo(inside) <= 0) {
+			return MixShares.split(parts, total, capacityUnit);
+		}
+		BigDecimal insideKg = MixShares.total(parts, UnitConversion.KG);
+		BigDecimal totalKg = total.multiply(insideKg).divide(inside, MathContext.DECIMAL128);
+		if (totalKg.subtract(insideKg).compareTo(insideKg.multiply(EMPTYING_TOLERANCE)) > 0) {
+			throw new BusinessRuleException("Çekilen miktar (" + plain(total) + " " + capacityUnit + ") tanktakinden ("
+				+ plain(Quantities.balance(inside)) + " " + capacityUnit + ") fazla; fark ölçüm toleransını (%"
+				+ plain(EMPTYING_TOLERANCE.movePointRight(2)) + ") aşıyor.");
+		}
+		return parts.stream().map(MixShares.Part::quantity).toList();
+	}
+
+	/** Her materyalden cekilenin hedeflere dagilimi, istenen miktarlarla oransal; yuvarlama farki son hedefe. */
+	private static List<List<BigDecimal>> distribute(List<BigDecimal> taken, List<BigDecimal> requested) {
+		BigDecimal total = requested.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+		List<List<BigDecimal>> shares = new ArrayList<>();
+		requested.forEach(r -> shares.add(new ArrayList<>()));
+		for (BigDecimal materialTaken : taken) {
+			BigDecimal given = BigDecimal.ZERO;
+			for (int t = 0; t < requested.size(); t++) {
+				BigDecimal share = t < requested.size() - 1
+					? Quantities.material(materialTaken.multiply(requested.get(t)).divide(total, MathContext.DECIMAL128))
+					: materialTaken.subtract(given);
+				given = given.add(share);
+				shares.get(t).add(share);
+			}
+		}
+		return shares;
+	}
+
+	/** Hedef son tank karisimdaki her tipi kabul etmeli ve paylarin toplami sigmali (kapasite biriminde). */
+	private void assertAcceptsShares(StorageUnit target, List<Material> contents, Map<Long, ProductType> types,
+		List<BigDecimal> shares) {
+		String capacityUnit = target.getCapacityUnit().value();
+		BigDecimal incoming = BigDecimal.ZERO;
+		for (int i = 0; i < contents.size(); i++) {
+			ProductType type = types.get(contents.get(i).getProductionProductTypeId());
+			assertProductionProductAllowed(target, type);
+			assertProductionProductTypeAllowed(target, type);
+			assertDensityDefined(type);
+			incoming = incoming.add(toUnit(shares.get(i), contents.get(i).getUnit().value(), capacityUnit, type));
+		}
+		assertCapacityFor(target, incoming);
+	}
+
+	/**
+	 * Materyali tanka sokan asama dinlenmedeyse (on dinlendirme asamasiyla girmis) o asama; eski (asamasiz) girisler
+	 * haritada yok, tortusuz kapanir.
+	 */
+	private Map<Long, Long> restingProcesses(long unitId, List<Material> contents) {
+		Map<Long, Long> entries = queries.entryProcesses(unitId, contents.stream().map(Material::getId).toList());
+		Set<Long> resting = queries.restingProcesses(entries.values());
+		Map<Long, Long> processes = new HashMap<>();
+		entries.forEach((materialId, processId) -> {
+			if (resting.contains(processId)) {
+				processes.put(materialId, processId);
+			}
+		});
+		return processes;
+	}
+
+	/** Girerken bolunmus parca (partideki materyal hala aktifse) ona geri eklenir; degilse kendisi partiye doner. */
+	private void returnToBatch(Material material, long batchProcessId) {
+		Material parent = material.getParentMaterialId() == null ? null
+			: materials.findById(material.getParentMaterialId()).map(m -> fresh(m.getId())).orElse(null);
+		boolean split = Objects.equals(material.getCreatedByBatchProcessId(), batchProcessId) && parent != null
+			&& parent.getStatus() == MaterialStatus.ACTIVE && parent.getCurrentLocationType() == LocationType.PRODUCTION_BATCH
+			&& Objects.equals(parent.getProductionProductTypeId(), material.getProductionProductTypeId())
+			&& parent.getUnit() == material.getUnit();
+		if (split) {
+			parent.add(material.getQuantity());
+			material.close(MaterialStatus.CONSUMED, batchProcessId);
+		}
+		else {
+			material.returnToBatch();
+		}
 	}
 
 	/**
@@ -475,6 +692,7 @@ public class StorageMovementService {
 		String note, MovementSource source, MovementType movementType, MaterialStatus closedStatus) {
 		assertPositiveQuantity(quantity);
 		StorageUnit unit = lock(unitId).get(unitId);
+		assertFinal(unit);
 		if (materialId != null) {
 			assertMaterialInsideStorage(unit, fresh(materialId));
 		}
@@ -490,26 +708,9 @@ public class StorageMovementService {
 		return written;
 	}
 
-	/** Sayim duzeltmesiyle dusulen miktar zayi (on dinlendirme tanki). */
-	private StorageMovement adjustmentDecrease(long unitId, long materialId, BigDecimal quantity,
-		BatchProcess batchProcess, String note) {
-		assertPositiveQuantity(quantity);
-		StorageUnit unit = lock(unitId).get(unitId);
-		Material material = fresh(materialId);
-		assertMaterialInsideStorage(unit, material);
-		Material moving = extractPortion(material, quantity, batchProcess);
-		moving.close(MaterialStatus.DISCARDED, batchProcess == null ? null : batchProcess.id());
-		StorageMovement movement = createMovement(unit.getId(), moving, null, batchProcess, null,
-			MovementSource.STORAGE_ADJUSTMENT, MovementType.ADJUSTMENT_OUT, null, quantity, note, null);
-		recalculate(unit.getId(), moving);
-		flush();
-		return movement;
-	}
-
 	/**
 	 * Acilis, yeni materyal girisi ve duzeltme artisi: materyal konumsuz yaratilir, attribute degerleri yazilir,
-	 * tank kurallari dogrulanir, sonra tanka yerlestirilir; son tankta tipin tank materyaline eklenip kapanir (hata
-	 * olursa hicbir kayit kalmaz).
+	 * tank kurallari dogrulanir, sonra tipin tank materyaline eklenip kapanir (hata olursa hicbir kayit kalmaz).
 	 */
 	private StorageMovement receiveNewMaterial(long unitId, ProductType type, BigDecimal quantity, String unitName,
 		List<AttributeValueInput> items, BatchProcess batchProcess, String note, MovementSource source,
@@ -519,6 +720,7 @@ public class StorageMovementService {
 			throw new BusinessRuleException("Ürün birimi ile işlem birimi uyuşmuyor.");
 		}
 		StorageUnit unit = lock(unitId).get(unitId);
+		assertFinal(unit);
 		assertAccepts(unit, type, quantity, unitName);
 
 		Material material = materials.save(new Material(batchProcess == null ? null : batchProcess.productionBatchId(),
@@ -528,17 +730,9 @@ public class StorageMovementService {
 		applyAttributeValues(material.getId(), type, items);
 
 		assertFits(unit, material, type, quantity);
-		if (isFinal(unit)) {
-			StorageMovement movement = enterMix(unit, material, quantity, type, batchProcess, null, source,
-				movementType, null, note);
-			material.drain(quantity, MaterialStatus.CONSUMED, batchProcess == null ? null : batchProcess.id());
-			flush();
-			return movement;
-		}
-		material.moveToStorageUnit(unit.getId());
-		StorageMovement movement = createMovement(unit.getId(), material, null, batchProcess, null, source,
-			movementType, null, quantity, note, null);
-		recalculate(unit.getId(), material);
+		StorageMovement movement = enterMix(unit, material, quantity, type, batchProcess, null, source,
+			movementType, null, note);
+		material.drain(quantity, MaterialStatus.CONSUMED, batchProcess == null ? null : batchProcess.id());
 		flush();
 		return movement;
 	}
@@ -659,6 +853,22 @@ public class StorageMovementService {
 			throw new BusinessRuleException("Seçilen material bu tankın içinde bulunmuyor.");
 		}
 		assertActive(material);
+	}
+
+	/** On dinlendirme tankinda elle giris, cikis, sayim ve transfer yoktur. */
+	private static void assertFinal(StorageUnit unit) {
+		if (!isFinal(unit)) {
+			throw new BusinessRuleException("'" + unit.getCode() + "' bir ön dinlendirme tankı; elle giriş, çıkış, sayım "
+				+ "ve transfer yapılamaz. Giriş üretimdeki ön dinlendirme aşamasıyla, çıkış Boşalt ile yapılır.");
+		}
+	}
+
+	/** Tanktaki materyal giris yoluyla baska tanka gecemez: son tanktan transfer, on dinlendirmeden Boşalt. */
+	private static void assertNotInTank(Material material) {
+		if (tankOf(material) != null) {
+			throw new BusinessRuleException("Seçilen material bir tankın içinde; tanktan çıkış transfer ya da "
+				+ "Boşalt ile yapılır.");
+		}
 	}
 
 	private static void assertActive(Material material) {
@@ -928,24 +1138,19 @@ public class StorageMovementService {
 		return locked;
 	}
 
-	/** Ayni tank ve son tanktan on dinlendirme tankina transfer reddedilir. */
+	/** Ayni tank reddedilir; transfer yalnizca son tanklar arasinda (on dinlendirme tankindan cikis Boşalt). */
 	private Map<Long, StorageUnit> lockForTransfer(long fromId, long toId) {
 		if (fromId == toId) {
 			throw new BusinessRuleException("Aynı tanktan aynı tanka transfer yapılamaz.");
 		}
 		Map<Long, StorageUnit> locked = lock(fromId, toId);
-		if (isFinal(locked.get(fromId)) && locked.get(toId).getKind() == StorageUnitKind.PRE_SETTLING) {
-			throw new BusinessRuleException("Son tanktan ön dinlendirme tankına transfer yapılamaz.");
-		}
+		assertFinal(locked.get(fromId));
+		assertFinal(locked.get(toId));
 		return locked;
 	}
 
 	private static boolean isFinal(StorageUnit unit) {
 		return unit.getKind() == StorageUnitKind.FINAL;
-	}
-
-	private boolean isFinal(long unitId) {
-		return units.findById(unitId).map(StorageMovementService::isFinal).orElse(false);
 	}
 
 	private static Long tankOf(Material material) {
@@ -982,6 +1187,11 @@ public class StorageMovementService {
 
 	private static long productIdOf(ProductType type) {
 		return type.productionProductId() == null ? 0 : type.productionProductId();
+	}
+
+	/** Sondaki sifirlar olmadan. */
+	private static String plain(BigDecimal value) {
+		return value.stripTrailingZeros().toPlainString();
 	}
 
 	private static String reference() {

@@ -2,6 +2,7 @@ package com.olivamore.api.production.batchprocess;
 
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
+import com.olivamore.api.inventory.PreSettlingTankEmptied;
 import com.olivamore.api.production.batch.ProductionBatch;
 import com.olivamore.api.production.batch.ProductionBatchRepository;
 import com.olivamore.api.production.batchprocess.BatchProcessFieldValue.Value;
@@ -24,10 +25,13 @@ import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.node.ObjectNode;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
@@ -37,6 +41,8 @@ import java.sql.Savepoint;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -50,6 +56,9 @@ import java.util.stream.Collectors;
  * <p>
  * Onay gerektiren asamada tamamlama "onay bekliyor"a gecer: isleyiciler gonderim aninda bir savepoint icinde denenip
  * geri alinir (kural hatasi isciye hemen doner), etki onayda islenir.
+ * <p>
+ * On dinlendirme asamasi tamamlanmaz, "dinlenmede" bekler: tank bosaltilinca ({@link PreSettlingTankEmptied}) ayni
+ * islemde tamamlanir; o zamana kadar yalnizca iptal edilebilir (waiting), urun partiye doner.
  */
 @Service
 class BatchProcessService {
@@ -97,7 +106,7 @@ class BatchProcessService {
 		authorize(process, status, actor);
 		JsonNode sent = OperationData.normalized(request.operationData());
 		ValidationErrors errors = new ValidationErrors();
-		if (status == ProcessStatus.AWAITING_APPROVAL) {
+		if (status == ProcessStatus.AWAITING_APPROVAL || status == ProcessStatus.RESTING) {
 			errors.add("status", MessageKeys.IN);
 		}
 		checkOperator(errors, request.operatorId());
@@ -150,7 +159,7 @@ class BatchProcessService {
 	private JsonNode checkOperationData(ValidationErrors errors, BatchProcess process, ProcessStatus status,
 		JsonNode data) {
 		if (status == ProcessStatus.COMPLETED && process.getStatus() != ProcessStatus.COMPLETED
-			&& process.getStatus() != ProcessStatus.AWAITING_APPROVAL) {
+			&& process.getStatus() != ProcessStatus.AWAITING_APPROVAL && process.getStatus() != ProcessStatus.RESTING) {
 			List<Extension> extensions = extensions(process);
 			operationRules.check(errors, extensions, data);
 			return operationRules.declaredOnly(extensions, data);
@@ -167,6 +176,10 @@ class BatchProcessService {
 		if (p.getStatus() == ProcessStatus.AWAITING_APPROVAL) {
 			throw new BusinessRuleException(
 				"'" + stageLabel(p) + "' aşaması onay bekliyor; yetkili onaylamalı ya da reddetmeli.");
+		}
+		if (p.getStatus() == ProcessStatus.RESTING) {
+			cancelResting(p, status);
+			return;
 		}
 		if (status != ProcessStatus.WAITING) {
 			assertPreviousStagesDone(p);
@@ -212,8 +225,58 @@ class BatchProcessService {
 		}
 		p.markStarted(now);
 		assertRequiredFieldsFilled(p);
-		handlers.dispatch(context(p), extensions(p), new OperationData(data));
-		p.finish(OperationData.forStorage(data), now);
+		List<Extension> extensions = extensions(p);
+		handlers.dispatch(context(p), extensions, new OperationData(data));
+		if (StageExtensions.rests(extensions)) {
+			p.rest(OperationData.forStorage(data));
+		}
+		else {
+			p.finish(OperationData.forStorage(data), now);
+		}
+	}
+
+	/** Dinlenmedeki asama yalnizca iptal edilir: tanktaki urun partiye doner, asama bekleyene doner. */
+	private void cancelResting(BatchProcess p, ProcessStatus status) {
+		if (status != ProcessStatus.WAITING) {
+			throw new BusinessRuleException("'" + stageLabel(p) + "' aşaması dinlenmede; ön dinlendirme tankı "
+				+ "boşaltılınca tamamlanır. Yanlış aktarımsa aşama iptal edilir (waiting).");
+		}
+		assertNoLaterStageStarted(p);
+		handlers.cancelPreSettling(p.getId());
+		p.reopen();
+	}
+
+	// ======================================================================
+	// On dinlendirme tankinin bosaltilmasi
+	// ======================================================================
+
+	/**
+	 * Tank bosaltildi (ayni islemde): her girdinin tortusu acilir, asama tamamlanir ve tortu (kg) asamanin verisine
+	 * {@code residue_kg} olarak yazilir.
+	 */
+	@EventListener
+	void completeResting(PreSettlingTankEmptied event) {
+		Map<Long, BigDecimal> residues = new LinkedHashMap<>();
+		for (PreSettlingTankEmptied.Entry entry : event.entries()) {
+			BatchProcess process = find(entry.batchProcessId());
+			if (process.getStatus() != ProcessStatus.RESTING) {
+				throw new IllegalStateException("Proses " + process.getId() + " dinlenmede degil: "
+					+ process.getStatus().value());
+			}
+			handlers.residue(context(process), extensions(process), entry.materialId(), entry.residueKg());
+			residues.merge(process.getId(), entry.residueKg(), BigDecimal::add);
+		}
+		LocalDateTime now = Timestamps.now();
+		Set<Long> batchIds = new LinkedHashSet<>();
+		residues.forEach((id, residueKg) -> {
+			BatchProcess process = find(id);
+			ObjectNode data = process.getOperationData() instanceof ObjectNode object ? object.deepCopy()
+				: JsonNodeFactory.instance.objectNode();
+			data.put("residue_kg", residueKg);
+			process.finish(data, now);
+			batchIds.add(process.getProductionBatchId());
+		});
+		batchIds.forEach(this::syncBatchStatus);
 	}
 
 	// ======================================================================
@@ -226,9 +289,8 @@ class BatchProcessService {
 		if (stage.requiresApproval()) {
 			return true;
 		}
-		boolean movesStock = queries.extensions(stage.id()).stream()
-			.anyMatch(e -> e.enabled() && "storage_movement".equals(e.key()));
-		return movesStock || stage.stageOrder() == queries.lastStageOrder(stage.productionLineId());
+		return StageExtensions.movesStock(queries.extensions(stage.id()))
+			|| stage.stageOrder() == queries.lastStageOrder(stage.productionLineId());
 	}
 
 	private void submitForApproval(BatchProcess p, JsonNode data, CurrentUser actor, LocalDateTime now) {
@@ -274,9 +336,13 @@ class BatchProcessService {
 		BatchProcess process = find(id);
 		assertAwaitingApproval(process);
 		assertPreviousStagesDone(process);
-		handlers.dispatch(context(process), extensions(process), new OperationData(process.getOperationData()));
+		List<Extension> extensions = extensions(process);
+		handlers.dispatch(context(process), extensions, new OperationData(process.getOperationData()));
 		recordReview(process, "approved", reviewer, note);
 		process.approve(reviewer.id(), Timestamps.now());
+		if (StageExtensions.rests(extensions)) {
+			process.rest(process.getOperationData());
+		}
 		syncBatchStatus(process.getProductionBatchId());
 	}
 
@@ -321,6 +387,10 @@ class BatchProcessService {
 		if (process.getStatus() == ProcessStatus.AWAITING_APPROVAL) {
 			throw new BusinessRuleException(
 				"Onay bekleyen aşamanın değerleri değiştirilemez. Yetkili reddederse aşama düzeltme için geri döner.");
+		}
+		if (process.getStatus() == ProcessStatus.RESTING) {
+			throw new BusinessRuleException(
+				"Dinlenmedeki aşamanın değerleri değiştirilemez. Düzeltmek için aşamayı iptal edin.");
 		}
 		Stage stage = stage(process);
 		Set<Long> allowed = stage.processTypeId() == null ? Set.of()
@@ -502,12 +572,15 @@ class BatchProcessService {
 	// Parti durumu
 	// ======================================================================
 
-	/** Proseslerden: basarisiz ya da suren varsa in_progress, hepsi bittiyse completed, hic baslamadiysa pending. */
+	/**
+	 * Proseslerden: basarisiz, suren ya da dinlenmede olan varsa in_progress, hepsi bittiyse completed, hic
+	 * baslamadiysa pending.
+	 */
 	void syncBatchStatus(long batchId) {
 		ProductionBatch batch = batches.findById(batchId).orElseThrow();
 		List<BatchProcess> rows = processes.findByProductionBatchId(batchId);
 		boolean running = rows.stream().anyMatch(p -> p.getStatus() == ProcessStatus.FAILED
-			|| p.getStatus() == ProcessStatus.IN_PROGRESS);
+			|| p.getStatus() == ProcessStatus.IN_PROGRESS || p.getStatus() == ProcessStatus.RESTING);
 		boolean finished = !rows.isEmpty() && rows.stream().allMatch(p -> p.getStatus() == ProcessStatus.COMPLETED
 			|| p.getStatus() == ProcessStatus.SKIPPED);
 		boolean started = rows.stream().anyMatch(p -> p.getStartedAt() != null);

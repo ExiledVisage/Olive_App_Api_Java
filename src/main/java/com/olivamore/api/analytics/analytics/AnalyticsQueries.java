@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 
 /**
  * Raporlarin SQL'i. Asamalar adlarindan degil gorevlerinden taninir: gelen zeytin (zeytin tartan ilk tartim), sikilan
- * zeytin (donusumun {@code input_quantity}'si), yag ve pirina (tartim), asitlik (yag analizi).
+ * zeytin (donusumun {@code input_quantity}'si), yag ve pirina (tartim), asitlik (yag analizi), tortu (on dinlendirme
+ * tankinin bosaltilmasinda asamaya yazilan {@code residue_kg}; pirinaya eklenmez).
  */
 @Component
 class AnalyticsQueries {
@@ -31,12 +32,13 @@ class AnalyticsQueries {
 	private static final String PRESSED = "pressed";
 	private static final String OIL = "oil";
 	private static final String POMACE = "pomace";
+	private static final String RESIDUE = "residue";
 	private static final String ACIDITY = "acidity";
 
-	/** Parti satiri: gelen, sikilan, yag, pirina, asitlik. */
+	/** Parti satiri: gelen, sikilan, yag, pirina, tortu, asitlik. */
 	record BatchRow(long batchId, LocalDateTime receivedAt, Long supplierId, String supplierName, String supplierCode,
 		Long fieldId, String fieldCode, Long productTypeId, String productTypeName, Double incoming, Double pressed,
-		Double oil, Double pomace, Double acidity) {
+		Double oil, Double pomace, Double residue, Double acidity) {
 	}
 
 	/** Iptal edilmemis siparisin kalemi. */
@@ -116,7 +118,7 @@ class AnalyticsQueries {
 			rows.add(new BatchRow(batch.id(), batch.receivedAt(), batch.supplierId(), batch.supplierName(),
 				batch.supplierCode(), batch.supplierFieldId(), batch.fieldCode(), batch.productTypeId(),
 				batch.productTypeName(), values.get(INCOMING), pressed, values.get(OIL), values.get(POMACE),
-				values.get(ACIDITY)));
+				values.get(RESIDUE), values.get(ACIDITY)));
 		}
 		return rows.stream().filter(r -> r.oil() != null && r.pressed() != null && r.pressed() > 0).toList();
 	}
@@ -156,6 +158,7 @@ class AnalyticsQueries {
 		JsonNode data = JSON.readTree(operationData);
 		return switch (role) {
 			case PRESSED -> data.get("input_quantity");
+			case RESIDUE -> data.get("residue_kg");
 			case ACIDITY -> acidity(data.get("attributes"));
 			default -> data.get("quantity");
 		};
@@ -246,6 +249,9 @@ class AnalyticsQueries {
 		}
 		if ("weighing".equals(type) && productKeys.contains("pomace")) {
 			return POMACE;
+		}
+		if ("pre_settling".equals(type)) {
+			return RESIDUE;
 		}
 		if ("analysis".equals(type) && productKeys.contains("olive_oil")) {
 			return ACIDITY;

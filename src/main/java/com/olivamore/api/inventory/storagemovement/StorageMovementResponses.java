@@ -36,6 +36,11 @@ public class StorageMovementResponses {
 		return movements(movements, true);
 	}
 
+	/** Bosaltmada acilan tortu materyalleri. */
+	public List<MaterialResponse> residues(List<Long> materialIds) {
+		return materials.materials(materialIds, false);
+	}
+
 	private List<StorageMovementResponse> movements(List<StorageMovement> movements, boolean withStorageUnit) {
 		Map<Long, MaterialResponse> materialResponses = materials.materials(
 			movements.stream().map(StorageMovement::getMaterialId).distinct().toList(), false).stream()

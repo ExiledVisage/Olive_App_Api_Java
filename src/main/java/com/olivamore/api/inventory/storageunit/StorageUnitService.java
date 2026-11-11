@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 
 /**
  * Tanklar, izinli urun ve tipler, attribute kurallari (yalnizca decimal attribute, min <= max; sonraki kuralda
- * hata olursa hepsi geri alinir), silme korumalari. Tank turu yalnizca tank bosken degisir.
+ * hata olursa hepsi geri alinir), silme korumalari. Tank turu yalnizca tank bosken degisir; on dinlendirme tanki tek
+ * urun tipiyle calisir (blend ve coklu urun/tip ayarlari acilamaz).
  */
 @Service
 class StorageUnitService {
@@ -52,7 +53,9 @@ class StorageUnitService {
 			errors.add("code", MessageKeys.UNIQUE);
 			errors.throwIfAny();
 		}
-		return units.save(new StorageUnit(request)).getId();
+		StorageUnit unit = new StorageUnit(request);
+		assertSingleTypeWhenPreSettling(unit);
+		return units.save(unit).getId();
 	}
 
 	@Transactional
@@ -71,6 +74,7 @@ class StorageUnitService {
 			}
 		}
 		unit.apply(request);
+		assertSingleTypeWhenPreSettling(unit);
 	}
 
 	/** Icinde aktif materyal ya da hareket kaydi olan tank silinmez (pasife alinir). */
@@ -157,6 +161,14 @@ class StorageUnitService {
 	}
 
 	// ---- yardimcilar -------------------------------------------------------
+
+	private static void assertSingleTypeWhenPreSettling(StorageUnit unit) {
+		if (unit.getKind() == StorageUnitKind.PRE_SETTLING
+			&& (unit.isBlendTank() || unit.isAllowMultipleTypes() || unit.isAllowMultipleProducts())) {
+			throw new BusinessRuleException("Ön dinlendirme tankı tek ürün tipiyle çalışır; blend ve birden çok "
+				+ "ürün ya da ürün tipi ayarları açılamaz.");
+		}
+	}
 
 	private static Set<Long> distinct(List<Long> values) {
 		return new LinkedHashSet<>(ValidationErrors.present(values));

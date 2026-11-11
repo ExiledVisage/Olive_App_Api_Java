@@ -29,7 +29,9 @@ public class StageQueries {
 
 	}
 
-	public record ProductType(Long id, Long productionProductId, String name, String code, String type, String unit) {
+	/** @param density etkin yogunluk (kg/L); yoksa null */
+	public record ProductType(Long id, Long productionProductId, String name, String code, String type, String unit,
+		BigDecimal density) {
 	}
 
 	public record OutputProduct(Long productionProductId, String productKey) {
@@ -120,7 +122,8 @@ public class StageQueries {
 	}
 
 	private static ProductType type(ProductDirectory.ProductType t) {
-		return new ProductType(t.id(), t.productionProductId(), t.name(), t.code(), t.type(), t.unit());
+		return new ProductType(t.id(), t.productionProductId(), t.name(), t.code(), t.type(), t.unit(),
+			t.effectiveDensity());
 	}
 
 	/** Partinin giris urun tipleri (sort_order). */

@@ -154,12 +154,10 @@ class FinalTankRulesIT {
 	@Test
 	void unmeasuredMaterialCannotEnterAFinalTank() {
 		long last = tank(1000, Map.of());
-		long settling = tank(1000, Map.of("kind", "pre_settling"));
 		jdbc.update("update production_product_attribute_definitions set is_required = true where id = ?", ACIDITY);
 		try {
 			assertRule(opening(last, GEMLIK, "10", "LITRE", null),
 				"Ölçülmemiş materyal son tanka giremez. Eksik zorunlu özellikler: Asitlik.");
-			assertThat(opening(settling, GEMLIK, "10", "LITRE", null).status()).isEqualTo(201);
 			assertThat(open(last, GEMLIK, "10", "0.3").status()).isEqualTo(201);
 		}
 		finally {
@@ -318,7 +316,9 @@ class FinalTankRulesIT {
 	void tankAnalysisIsOnlyForNumericValuesOfAFinalTank() {
 		long settling = tank(1000, Map.of("kind", "pre_settling"));
 		long last = tank(1000, Map.of());
-		long inSettling = materialOf(open(settling, GEMLIK, "100", "0.3"));
+		long inSettling = batchMaterial(GEMLIK, "100", "LITRE", "0.3");
+		jdbc.update("update materials set current_location_type = 'storage_unit', current_location_id = ? where id = ?",
+			settling, inSettling);
 		long mix = materialOf(open(last, GEMLIK, "100", "0.3"));
 
 		assertRule(measure(settling, inSettling, ACIDITY, "0.4"), "Tank analizi yalnızca son tanklarda yapılır.");

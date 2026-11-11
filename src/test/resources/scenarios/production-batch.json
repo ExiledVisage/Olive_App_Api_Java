@@ -1190,37 +1190,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -1237,41 +1216,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -1376,39 +1324,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [
          {
           "id": 7,
@@ -1467,7 +1383,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -1476,60 +1392,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -3093,37 +2956,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -3140,41 +2982,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -3277,39 +3088,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -3339,7 +3118,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -3348,60 +3127,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -4864,37 +4590,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -4911,41 +4616,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -5048,39 +4722,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -5110,7 +4752,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -5119,60 +4761,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -6635,37 +6224,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -6682,41 +6250,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -6819,39 +6356,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -6881,7 +6386,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -6890,60 +6395,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -8406,37 +7858,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -8453,41 +7884,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -8590,39 +7990,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -8652,7 +8020,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -8661,60 +8029,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -10195,37 +9510,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -10242,41 +9536,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -10379,39 +9642,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -10441,7 +9672,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -10450,60 +9681,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -11966,37 +11144,16 @@
          {
           "id": 16,
           "production_stage_id": 9,
-          "stage_extension_type_id": 2,
+          "stage_extension_type_id": 5,
           "is_required": true,
           "is_enabled": true,
           "sort_order": 1,
           "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
+           "id": 5,
+           "key": "pre_settling",
+           "name": "Pre-settling",
+           "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+           "fields": []
           },
           "input_production_products": [
            {
@@ -12013,41 +11170,10 @@
             }
            }
           ],
-          "output_production_products": []
-         },
-         {
-          "id": 28,
-          "production_stage_id": 9,
-          "stage_extension_type_id": 3,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 2,
-          "stage_extension_type": {
-           "id": 3,
-           "key": "material_transformation",
-           "name": "Material Transformation",
-           "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 28,
-            "production_stage_extension_id": 28,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
           "output_production_products": [
            {
             "id": 7,
-            "production_stage_extension_id": 28,
+            "production_stage_extension_id": 16,
             "production_product_id": 3,
             "sort_order": 1,
             "is_required": true,
@@ -12150,39 +11276,7 @@
           "updated_at": "2026-11-06T15:35:12Z"
          }
         ],
-        "extensions": [
-         {
-          "id": 13,
-          "production_stage_id": 10,
-          "stage_extension_type_id": 1,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 1,
-           "key": "weighing",
-           "name": "Weighing",
-           "description": "Bu asamada secilen urun tipi tartilir.",
-           "fields": []
-          },
-          "input_production_products": [
-           {
-            "id": 13,
-            "production_stage_extension_id": 13,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -12212,7 +11306,7 @@
          "id": 11,
          "name": "Tanklarda Toplama",
          "stage_order": 11,
-         "is_required": true
+         "is_required": false
         },
         "process_type": {
          "id": 11,
@@ -12221,60 +11315,7 @@
          "category": "storage"
         },
         "field_definitions": [],
-        "extensions": [
-         {
-          "id": 19,
-          "production_stage_id": 11,
-          "stage_extension_type_id": 2,
-          "is_required": true,
-          "is_enabled": true,
-          "sort_order": 1,
-          "stage_extension_type": {
-           "id": 2,
-           "key": "storage_movement",
-           "name": "Storage Movement",
-           "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-           "fields": [
-            {
-             "id": 1,
-             "stage_extension_type_id": 2,
-             "field_key": "action",
-             "label": "Hareket turu",
-             "data_type": "text",
-             "is_required": false,
-             "sort_order": 1,
-             "default_value_boolean": null,
-             "default_value_integer": null,
-             "default_value_decimal": null,
-             "default_value_text": null,
-             "default_value_json": null,
-             "options_json": [
-              "inbound",
-              "outbound",
-              "transfer"
-             ],
-             "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-            }
-           ]
-          },
-          "input_production_products": [
-           {
-            "id": 19,
-            "production_stage_extension_id": 19,
-            "production_product_id": 2,
-            "sort_order": 1,
-            "is_required": true,
-            "production_product": {
-             "id": 2,
-             "key": "olive_oil",
-             "name": "Zeytinyağı",
-             "description": "İşlenmiş zeytinyağı ürünü"
-            }
-           }
-          ],
-          "output_production_products": []
-         }
-        ],
+        "extensions": [],
         "field_values": [],
         "created_materials": [],
         "closed_materials": [],
@@ -13894,37 +12935,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -13941,41 +12961,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -14078,39 +13067,7 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
@@ -14140,7 +13097,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -14149,60 +13106,7 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
@@ -15040,8 +13944,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -15095,8 +13999,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -15166,8 +14070,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -15205,8 +14109,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -15334,8 +14238,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -15405,8 +14309,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -15476,8 +14380,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -15563,8 +14467,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -15602,37 +14506,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -15649,41 +14532,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -15700,8 +14552,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -15751,44 +14603,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -15813,7 +14633,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -15822,65 +14642,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -15934,13 +14701,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": [
@@ -15972,7 +14739,7 @@
      "created_by_user_id": 1,
      "status": "pending",
      "quantity_kg": null,
-     "received_at": "2026-11-06T21:40:33Z",
+     "received_at": "2026-11-06T21:39:00Z",
      "started_at": null,
      "completed_at": null,
      "note": null,
@@ -16172,8 +14939,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3290,
@@ -16227,8 +14994,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3291,
@@ -16298,8 +15065,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3292,
@@ -16337,8 +15104,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3293,
@@ -16466,8 +15233,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3294,
@@ -16537,8 +15304,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3295,
@@ -16608,8 +15375,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3296,
@@ -16695,8 +15462,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3297,
@@ -16734,37 +15501,16 @@
         {
          "id": 18,
          "production_stage_id": 33,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -16781,41 +15527,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 30,
-         "production_stage_id": 33,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 30,
-           "production_stage_extension_id": 30,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 9,
-           "production_stage_extension_id": 30,
+           "production_stage_extension_id": 18,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -16832,8 +15547,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3298,
@@ -16883,139 +15598,15 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 15,
-         "production_stage_id": 34,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 15,
-           "production_stage_extension_id": 15,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3299,
-       "production_batch_id": 275,
-       "production_stage_id": 35,
-       "operator_id": null,
-       "status": "waiting",
-       "started_at": null,
-       "completed_at": null,
-       "note": null,
-       "operation_data": null,
-       "requires_approval": null,
-       "submitted_at": null,
-       "approved_at": null,
-       "production_batch": {
-        "id": 275,
-        "batch_code": "T-TEST-2",
-        "status": "pending"
-       },
-       "operator": null,
-       "production_stage": {
-        "id": 35,
-        "name": "Tanklarda Toplama",
-        "stage_order": 11,
-        "is_required": true
-       },
-       "process_type": {
-        "id": 11,
-        "name": "Tanklarda Toplama",
-        "description": "Filtrelenmiş ürünün tanklarda toplanması",
-        "category": "storage"
-       },
-       "field_definitions": [],
-       "extensions": [
-        {
-         "id": 21,
-         "production_stage_id": 35,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 21,
-           "production_stage_extension_id": 21,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
-       "field_values": [],
-       "created_materials": [],
-       "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
-      },
-      {
-       "id": 3300,
        "production_batch_id": 275,
        "production_stage_id": 36,
        "operator_id": null,
@@ -17036,7 +15627,7 @@
        "production_stage": {
         "id": 36,
         "name": "Randıman Tespiti",
-        "stage_order": 12,
+        "stage_order": 11,
         "is_required": true
        },
        "process_type": {
@@ -17066,13 +15657,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": [
@@ -17331,8 +15922,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -17386,8 +15977,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -17457,8 +16048,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -17496,8 +16087,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -17625,8 +16216,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -17696,8 +16287,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -17767,8 +16358,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -17854,8 +16445,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -17893,37 +16484,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -17940,41 +16510,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -17991,8 +16530,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -18042,44 +16581,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -18104,7 +16611,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -18113,65 +16620,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -18225,13 +16679,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null
@@ -18467,8 +16921,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -18522,8 +16976,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -18593,8 +17047,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -18632,8 +17086,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -18761,8 +17215,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -18832,8 +17286,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -18903,8 +17357,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -18990,8 +17444,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -19029,37 +17483,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -19076,41 +17509,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -19127,8 +17529,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -19178,44 +17580,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -19240,7 +17610,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -19249,65 +17619,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -19361,13 +17678,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null
@@ -19596,8 +17913,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -19651,8 +17968,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -19722,8 +18039,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -19761,8 +18078,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -19890,8 +18207,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -19961,8 +18278,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -20032,8 +18349,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -20119,8 +18436,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -20158,37 +18475,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -20205,41 +18501,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -20256,8 +18521,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -20307,44 +18572,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -20369,7 +18602,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -20378,65 +18611,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -20490,13 +18670,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null
@@ -20729,8 +18909,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -20784,8 +18964,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -20855,8 +19035,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -20894,8 +19074,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -21023,8 +19203,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -21094,8 +19274,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -21165,8 +19345,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -21252,8 +19432,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -21291,37 +19471,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -21338,41 +19497,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -21389,8 +19517,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -21440,44 +19568,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -21502,7 +19598,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -21511,65 +19607,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -21623,13 +19666,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null
@@ -21870,8 +19913,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -21925,8 +19968,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -21996,8 +20039,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -22035,8 +20078,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -22164,8 +20207,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -22235,8 +20278,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -22306,8 +20349,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -22393,8 +20436,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -22432,37 +20475,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -22479,41 +20501,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -22530,8 +20521,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -22581,44 +20572,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -22643,7 +20602,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -22652,65 +20611,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -22764,13 +20670,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:33Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null
@@ -23017,8 +20923,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -23072,8 +20978,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -23143,8 +21049,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -23182,8 +21088,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -23311,8 +21217,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -23382,8 +21288,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -23453,8 +21359,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -23540,8 +21446,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -23579,37 +21485,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -23626,41 +21511,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -23677,8 +21531,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -23728,44 +21582,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -23790,7 +21612,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -23799,65 +21621,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -23911,13 +21680,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:34Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null
@@ -24182,8 +21951,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3278,
@@ -24237,8 +22006,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3279,
@@ -24308,8 +22077,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3280,
@@ -24347,8 +22116,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3281,
@@ -24476,8 +22245,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3282,
@@ -24547,8 +22316,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3283,
@@ -24618,8 +22387,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3284,
@@ -24705,8 +22474,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3285,
@@ -24744,37 +22513,16 @@
         {
          "id": 16,
          "production_stage_id": 9,
-         "stage_extension_type_id": 2,
+         "stage_extension_type_id": 5,
          "is_required": true,
          "is_enabled": true,
          "sort_order": 1,
          "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
+          "id": 5,
+          "key": "pre_settling",
+          "name": "Pre-settling",
+          "description": "Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.",
+          "fields": []
          },
          "input_production_products": [
           {
@@ -24791,41 +22539,10 @@
            }
           }
          ],
-         "output_production_products": []
-        },
-        {
-         "id": 28,
-         "production_stage_id": 9,
-         "stage_extension_type_id": 3,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 2,
-         "stage_extension_type": {
-          "id": 3,
-          "key": "material_transformation",
-          "name": "Material Transformation",
-          "description": "Bu asamada input urun tiplerinden output urun tipleri olusur.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 28,
-           "production_stage_extension_id": 28,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
          "output_production_products": [
           {
            "id": 7,
-           "production_stage_extension_id": 28,
+           "production_stage_extension_id": 16,
            "production_product_id": 3,
            "sort_order": 1,
            "is_required": true,
@@ -24842,8 +22559,8 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3286,
@@ -24893,44 +22610,12 @@
          "updated_at": "2026-11-06T15:35:12Z"
         }
        ],
-       "extensions": [
-        {
-         "id": 13,
-         "production_stage_id": 10,
-         "stage_extension_type_id": 1,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 1,
-          "key": "weighing",
-          "name": "Weighing",
-          "description": "Bu asamada secilen urun tipi tartilir.",
-          "fields": []
-         },
-         "input_production_products": [
-          {
-           "id": 13,
-           "production_stage_extension_id": 13,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3287,
@@ -24955,7 +22640,7 @@
         "id": 11,
         "name": "Tanklarda Toplama",
         "stage_order": 11,
-        "is_required": true
+        "is_required": false
        },
        "process_type": {
         "id": 11,
@@ -24964,65 +22649,12 @@
         "category": "storage"
        },
        "field_definitions": [],
-       "extensions": [
-        {
-         "id": 19,
-         "production_stage_id": 11,
-         "stage_extension_type_id": 2,
-         "is_required": true,
-         "is_enabled": true,
-         "sort_order": 1,
-         "stage_extension_type": {
-          "id": 2,
-          "key": "storage_movement",
-          "name": "Storage Movement",
-          "description": "Bu asamada secilen urun tipi storage unit tarafina tasinabilir.",
-          "fields": [
-           {
-            "id": 1,
-            "stage_extension_type_id": 2,
-            "field_key": "action",
-            "label": "Hareket turu",
-            "data_type": "text",
-            "is_required": false,
-            "sort_order": 1,
-            "default_value_boolean": null,
-            "default_value_integer": null,
-            "default_value_decimal": null,
-            "default_value_text": null,
-            "default_value_json": null,
-            "options_json": [
-             "inbound",
-             "outbound",
-             "transfer"
-            ],
-            "description": "Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer."
-           }
-          ]
-         },
-         "input_production_products": [
-          {
-           "id": 19,
-           "production_stage_extension_id": 19,
-           "production_product_id": 2,
-           "sort_order": 1,
-           "is_required": true,
-           "production_product": {
-            "id": 2,
-            "key": "olive_oil",
-            "name": "Zeytinyağı",
-            "description": "İşlenmiş zeytinyağı ürünü"
-           }
-          }
-         ],
-         "output_production_products": []
-        }
-       ],
+       "extensions": [],
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       },
       {
        "id": 3288,
@@ -25076,13 +22708,13 @@
        "field_values": [],
        "created_materials": [],
        "closed_materials": [],
-       "created_at": "2026-11-06T21:40:33Z",
-       "updated_at": "2026-11-06T21:40:33Z"
+       "created_at": "2026-11-06T21:39:00Z",
+       "updated_at": "2026-11-06T21:39:00Z"
       }
      ],
      "materials": [],
-     "created_at": "2026-11-06T21:40:33Z",
-     "updated_at": "2026-11-06T21:40:34Z"
+     "created_at": "2026-11-06T21:39:00Z",
+     "updated_at": "2026-11-06T21:39:00Z"
     }
    },
    "save": null

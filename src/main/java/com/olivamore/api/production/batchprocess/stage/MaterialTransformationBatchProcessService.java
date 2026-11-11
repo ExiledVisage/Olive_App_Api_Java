@@ -120,21 +120,7 @@ class MaterialTransformationBatchProcessService extends StageBatchProcessService
 				.findFirst()
 				.orElseThrow(() -> new BusinessRuleException("Seçilen çıkış ürün tipi bu aşama için uygun değil."));
 		}
-		long productId = outputProductId(extension, output);
-		List<ProductType> sameProduct = unique(batchOutputs.stream()
-			.filter(t -> Objects.equals(t.productionProductId(), productId)).toList());
-		List<ProductType> candidates = sameProduct.stream().filter(t -> sameText(t.type(), inputType.type())).toList();
-		if (candidates.isEmpty()) {
-			candidates = sameProduct.stream().filter(t -> t.type() == null).toList();
-		}
-		if (candidates.isEmpty()) {
-			throw new BusinessRuleException("Giriş ürünüyle uyumlu çıkış ürün tipi bulunamadı.");
-		}
-		if (candidates.size() > 1) {
-			throw new BusinessRuleException(
-				"Birden fazla uygun çıkış ürün tipi bulundu. production_product_type_id gönderilmelidir.");
-		}
-		return candidates.getFirst();
+		return matchingOutputType(process, outputProductId(extension, output), inputType);
 	}
 
 	private static long outputProductId(Extension extension, OperationData output) {

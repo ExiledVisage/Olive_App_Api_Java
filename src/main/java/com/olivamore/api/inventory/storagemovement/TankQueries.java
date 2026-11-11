@@ -50,6 +50,12 @@ class TankQueries {
 	record BatchOutput(Long productionProductTypeId, String name) {
 	}
 
+	record PreSettlingEntry(Long storageUnitId, Long materialId) {
+	}
+
+	private record EntryProcess(Long materialId, Long batchProcessId) {
+	}
+
 	private final JdbcClient jdbc;
 	private final ProductDirectory products;
 	private final BatchDirectory batches;
@@ -207,6 +213,57 @@ class TankQueries {
 				and current_location_id = :u and status = 'active' and unit = :n
 				and production_product_type_id in (:types)
 			""").param("u", unitId).param("n", unit).param("types", typeIds).query(BigDecimal.class).single();
+	}
+
+	/** Partinin tankta aktif materyali var mi. */
+	boolean batchInTank(long unitId, long batchId) {
+		return jdbc.sql("""
+			select count(*) from materials
+			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
+				and production_batch_id = :batch
+			""").param("unit", unitId).param("batch", batchId).query(Long.class).single() > 0;
+	}
+
+	/** Prosesin on dinlendirme tanklarina giris hareketleri: tank ve tanka giren materyal (id sirasiyla). */
+	List<PreSettlingEntry> preSettlingEntries(long batchProcessId) {
+		return jdbc.sql("""
+			select m.storage_unit_id, m.material_id from storage_movements m
+			join storage_units u on u.id = m.storage_unit_id
+			where m.batch_process_id = :process and m.movement_type = 'IN' and u.kind = 'pre_settling'
+			order by m.id
+			""").param("process", batchProcessId).query(PreSettlingEntry.class).list();
+	}
+
+	/** Materyalleri tanka sokan son giris hareketinin prosesi; prosessiz girenler haritada yok. */
+	Map<Long, Long> entryProcesses(long unitId, Collection<Long> materialIds) {
+		List<Long> present = ValidationErrors.present(materialIds);
+		if (present.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("""
+			select distinct on (material_id) material_id, batch_process_id from storage_movements
+			where storage_unit_id = :unit and material_id in (:ids) and movement_type = 'IN'
+				and batch_process_id is not null
+			order by material_id, id desc
+			""").param("unit", unitId).param("ids", present).query(EntryProcess.class).list().stream()
+			.collect(Collectors.toMap(EntryProcess::materialId, EntryProcess::batchProcessId));
+	}
+
+	/** Verilen proseslerden dinlenmede olanlar. */
+	Set<Long> restingProcesses(Collection<Long> batchProcessIds) {
+		return batches.batchProcesses(batchProcessIds).values().stream()
+			.filter(p -> "resting".equals(p.status())).map(BatchDirectory.BatchProcess::id).collect(Collectors.toSet());
+	}
+
+	/** Kapanan materyallerden verilen proseslerin actigi cocuklar (tortu), id sirasiyla. */
+	List<Long> childrenCreatedBy(Collection<Long> parentIds, Collection<Long> processIds) {
+		if (parentIds.isEmpty() || processIds.isEmpty()) {
+			return List.of();
+		}
+		return jdbc.sql("""
+			select id from materials where parent_material_id in (:parents) and created_by_batch_process_id in (:processes)
+			order by id
+			""").param("parents", parentIds).param("processes", processIds).query(Long.class).list();
 	}
 
 	/** Materyal bolunurken attribute degerleri cocuga kopyalanir; ayni sirayla ve yeni id'lerle. */

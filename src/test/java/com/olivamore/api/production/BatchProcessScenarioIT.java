@@ -8,7 +8,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * Uretim asamalari bastan sona: sira, tartim, donusum, analiz, depo hareketi, onay/red, geri alma.
+ * Uretim asamalari bastan sona: sira, tartim, donusum, analiz, on dinlendirme (dinlenme, iptal, Boşalt, tortu),
+ * onay/red, geri alma.
  * Senaryo: {@code scenarios/batch-process.json}.
  */
 @ApiIntegrationTest
@@ -23,8 +24,9 @@ class BatchProcessScenarioIT {
 	@Test
 	void scenario() throws Exception {
 		new ScenarioReplay("batch-process.json", port, jdbc)
+			.mask("TRF-\\d{14}-[A-Z0-9]{6}")
 			.run()
-			.assertPassed(110);
+			.assertPassed(129);
 	}
 
 }

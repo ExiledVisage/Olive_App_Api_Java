@@ -247,6 +247,7 @@ class AnalyticsService {
 			case "pressed_kg" -> totals.pressedKg();
 			case "oil_kg" -> totals.oilKg();
 			case "pomace_kg" -> totals.pomaceKg();
+			case "residue_kg" -> totals.residueKg();
 			case "batch_count" -> (double) totals.batchCount();
 			case "yield_pct" -> totals.yieldPct();
 			default -> totals.avgAcidity();
@@ -269,6 +270,7 @@ class AnalyticsService {
 		double pressed = 0;
 		double oil = 0;
 		double pomace = 0;
+		double residue = 0;
 		double aciditySum = 0;
 		int acidityCount = 0;
 		for (BatchRow r : rows) {
@@ -276,12 +278,14 @@ class AnalyticsService {
 			pressed += r.pressed() == null ? 0 : r.pressed();
 			oil += r.oil() == null ? 0 : r.oil();
 			pomace += r.pomace() == null ? 0 : r.pomace();
+			residue += r.residue() == null ? 0 : r.residue();
 			if (r.acidity() != null) {
 				aciditySum += r.acidity();
 				acidityCount++;
 			}
 		}
 		return new BatchTotals(rows.size(), round(incoming, 1), round(pressed, 1), round(oil, 1), round(pomace, 1),
+			round(residue, 1),
 			pressed > 0 ? round(oil / pressed * 100, 2) : null,
 			incoming > 0 ? round(oil / incoming * 100, 2) : null,
 			acidityCount == 0 ? null : round(aciditySum / acidityCount, 2));

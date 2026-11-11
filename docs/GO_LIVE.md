@@ -107,6 +107,34 @@ Liste fabrikadaki dinlenme tanklarıyla aynı olmalı. Yanlış eşleşen tankı
 tankının adına "dinlenme" eklenir. Son tanka giren parti materyali kapanır, yanlış türde kalan dinlenme tankı
 üretimdeki toplama aşamasını durdurur.
 
+Dinlenme tanklarında bekleyen materyaller yeni ön dinlendirme aşamasıyla girmediği için Boşalt'ta tortu
+hesaplanmadan kapanır (pirinaları zaten elle girildi). Sayıları önceden bilinir:
+
+```bash
+docker compose exec -T db sh -c 'psql -At -U "$POSTGRES_USER" -d "$POSTGRES_DB"' <<'SQL'
+select count(*) from materials m
+join storage_units u on u.id = m.current_location_id
+where m.current_location_type = 'storage_unit' and m.status = 'active'
+and concat_ws(' ', u.code, u.name, u.description) ~* 'd[iıİI]nlen';
+SQL
+```
+
+Java'da dinlenme tankından elle çıkış ya da transfer yapılamaz, çıkış yalnızca Boşalt ile. Dinlenme tankına giren ya
+da oradan çıkan depo hareketi uzantılı aşamalar (eski "ön dinlenme" ve "tanklarda toplama") geçişten sonra çalışmaz;
+listelenir ve geçişte yeni `pre_settling` uzantısına çevrilir ya da uzantısı kaldırılır:
+
+```bash
+docker compose exec -T db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"' <<'SQL'
+select l.name as hat, s.stage_order, s.name as asama, v.value_text as hareket
+from production_stage_extensions e
+join stage_extension_types t on t.id = e.stage_extension_type_id and t.key = 'storage_movement'
+join production_stages s on s.id = e.production_stage_id
+join production_lines l on l.id = s.production_line_id
+left join production_stage_extension_values v on v.production_stage_extension_id = e.id
+order by l.id, s.stage_order;
+SQL
+```
+
 ### 3. Yedek
 
 ```bash
@@ -136,9 +164,12 @@ uygular. **Bu migration'lar Laravel'in tablolarını değiştirir:**
   Spatie tabloları ile `guard_name` ve `remember_token` kolonları silinir.
 - `V6`: JSON kolonları `jsonb`'ye çevrilir. Tablolar yeniden yazılır, uygulama durmuşken çalışır; veri korunur.
 - `V7`: `storage_units`'a tank türü (`kind`) eklenir; metninde "dinlen" geçen tanklar ön dinlendirme
-  (`pre_settling`), diğerleri son tank (`final`) olur.
+  (`pre_settling`), diğerleri son tank (`final`) olur. Ön dinlendirme tanklarında blend ve çoklu ürün/tip ayarları
+  kapatılır (tek ürün tipiyle çalışır).
 - `V8`: `storage_movements`'a gelen materyal (`source_material_id`) ve son tank ölçüm geçmişi tablosu
   (`tank_measurements`) eklenir. Var olan satırlara dokunulmaz.
+- `V9`: `stage_extension_types`'a ön dinlendirme uzantısı (`pre_settling`) eklenir. Parti aşaması yeni bir durum
+  alabilir: `resting` (dinlenmede, tank boşaltılınca tamamlanır); kolon serbest metin olduğu için şema değişmez.
 
 Bu andan sonra Laravel aynı veritabanıyla çalışamaz.
 

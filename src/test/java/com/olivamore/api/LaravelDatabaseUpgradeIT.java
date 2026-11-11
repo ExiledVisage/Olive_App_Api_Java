@@ -81,7 +81,7 @@ class LaravelDatabaseUpgradeIT {
 		assertThat(db.columns("permissions")).doesNotContain("guard_name");
 		assertThat(db.columns("users")).doesNotContain("remember_token").contains("email_verified_at");
 		assertThat(jdbc.queryForList("select version from flyway_schema_history where version is not null "
-			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7", "8");
+			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7", "8", "9");
 	}
 
 	@Test
@@ -112,6 +112,9 @@ class LaravelDatabaseUpgradeIT {
 		long byCode = db.tank("Tank 2", "DİNLENME-02", null);
 		long byDescription = db.tank("Tank 3", "T-03", "dinlenme icin kullaniliyor");
 		long last = db.tank("Son Tank", "SON-01", "blend");
+		String mixing = "update storage_units set is_blend_tank = true, allow_multiple_production_product_types = true,"
+			+ " allow_multiple_production_products = true where id in (?, ?)";
+		db.jdbc.update(mixing, byName, last);
 
 		db.upgrade();
 
@@ -119,6 +122,33 @@ class LaravelDatabaseUpgradeIT {
 			.containsExactlyInAnyOrder(byName, byCode, byDescription);
 		assertThat(db.jdbc.queryForObject("select kind from storage_units where id = ?", String.class, last))
 			.isEqualTo("final");
+		// on dinlendirme tanki tek urun tipiyle calisir; son tankin ayarlari kalir
+		String flags = "select is_blend_tank or allow_multiple_production_product_types"
+			+ " or allow_multiple_production_products from storage_units where id = ?";
+		assertThat(db.jdbc.queryForObject(flags, Boolean.class, byName)).isFalse();
+		assertThat(db.jdbc.queryForObject(flags, Boolean.class, last)).isTrue();
+	}
+
+	@Test
+	void addsThePreSettlingStageExtensionToExistingTypes() {
+		Database db = laravelDatabase();
+		for (String key : List.of("weighing", "storage_movement", "material_transformation", "analysis")) {
+			db.jdbc.update("insert into stage_extension_types (key, name) values (?, ?)", key, key);
+		}
+
+		db.upgrade();
+
+		assertThat(db.jdbc.queryForList("select key from stage_extension_types order by id", String.class))
+			.containsExactly("weighing", "storage_movement", "material_transformation", "analysis", "pre_settling");
+	}
+
+	@Test
+	void emptyDatabaseGetsExtensionTypesFromTheSeed() {
+		Database db = laravelDatabase();
+
+		db.upgrade();
+
+		assertThat(db.count("stage_extension_types")).isZero();
 	}
 
 	@Test

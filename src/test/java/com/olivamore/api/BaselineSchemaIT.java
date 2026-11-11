@@ -14,6 +14,7 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.utility.MountableFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -27,7 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  *       ({@code reference/reference-data.sql}), ustune canli gecisteki gibi baseline 1 ve V2 sonrasi</li>
  * </ul>
  * Sema (kolon, constraint, index), her tablonun satir sayisi ve sequence degerleri
- * karsilastirilir. Kirilirsa migration'lar, seed ya da Laravel semasi birbirinden kopmus demektir.
+ * karsilastirilir. Kirilirsa migration'lar, seed ya da Laravel semasi birbirinden kopmus demektir. Seed'de bilerek
+ * degistirilen tablolarin satir sayilari ayrica sabitlenir ({@link #CHANGED_IN_SEED}).
  */
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -36,6 +38,16 @@ class BaselineSchemaIT {
 
 	/** Flyway'in kaydi iki kurulumda bilerek farkli (biri baseline'li). */
 	private static final String JAVA_TABLES = "('flyway_schema_history')";
+
+	/**
+	 * Demo hattin on dinlendirme akisi (C3-C5): hat 2 ve 3'te Tanklarda Toplama asamasi silindi, Filtreleme tartimi,
+	 * Toplama transferi ve Ön Dinlenme'deki elle pirina uzantilari kalkti, depo hareketi on dinlendirmeye dondu.
+	 */
+	private static final Map<String, Long> CHANGED_IN_SEED = Map.of(
+		"production_stages", 34L,
+		"production_stage_extensions", 21L,
+		"production_stage_extension_values", 0L,
+		"production_stage_extension_input_production_products", 21L);
 
 	private static final String COLUMNS = """
 		select table_name || '.' || column_name || ' ' || data_type
@@ -87,14 +99,14 @@ class BaselineSchemaIT {
 
 	@Test
 	void flywayBuiltTheSchemaFromScratch() {
-		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2-V8
+		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2-V9
 		List<String> history = app.queryForList(
 			"select version || ' ' || type || ' ' || success from flyway_schema_history order by installed_rank", String.class);
-		assertThat(history).hasSize(77).allMatch(h -> h.endsWith(" SQL true"));
+		assertThat(history).hasSize(78).allMatch(h -> h.endsWith(" SQL true"));
 		assertThat(history.getFirst()).isEqualTo("0.00 SQL true");
 		assertThat(history.get(69)).isEqualTo("0.69 SQL true");
 		assertThat(history.get(70)).isEqualTo("2 SQL true");
-		assertThat(history.getLast()).isEqualTo("8 SQL true");
+		assertThat(history.getLast()).isEqualTo("9 SQL true");
 	}
 
 	@Test
@@ -111,7 +123,8 @@ class BaselineSchemaIT {
 	void seedMatchesLaravelData() {
 		List<String> tables = laravel.queryForList(TABLES, String.class);
 		for (String table : tables) {
-			assertThat(count(app, table)).as(table).isEqualTo(count(laravel, table));
+			assertThat(count(app, table)).as(table)
+				.isEqualTo(CHANGED_IN_SEED.getOrDefault(table, count(laravel, table)));
 		}
 		assertThat(count(app, "production_batches")).isEqualTo(273);
 		assertThat(count(app, "orders")).isEqualTo(335);

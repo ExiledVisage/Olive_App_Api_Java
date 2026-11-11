@@ -16,7 +16,7 @@ import tools.jackson.databind.JsonNode;
 import java.math.BigDecimal;
 
 /**
- * Stok hareketlerinin diger modullere acik kismi: uretim asamasinin (depo hareketi uzantisi) yaptigi tank
+ * Stok hareketlerinin diger modullere acik kismi: uretim asamasinin (depo hareketi, on dinlendirme) yaptigi tank
  * girisi, cikisi ve transferi; dolum kosusunun tanktan cekisi; uretim isleyicilerinin (tartim, donusum, analiz)
  * materyal yazimlari. Kurallar ve bakiye {@code StorageMovementService}'te, tank sayfasindakiyle ayni. Proses
  * hareketleri {@code BATCH_PROCESS} kaynakli yazilir, bolunen materyal prosese baglanir; dolum kosusunun cikisi
@@ -63,6 +63,16 @@ public class StockOperations {
 	public void transfer(long fromUnitId, long toUnitId, long materialId, BigDecimal quantity, long batchProcessId,
 		String note) {
 		movements.transfer(fromUnitId, toUnitId, materialId, quantity, batchProcessId, note);
+	}
+
+	/** On dinlendirme asamasinin girisi: partideki materyal (ya da bir kismi) on dinlendirme tankina alinir. */
+	public void enterPreSettling(long unitId, long materialId, BigDecimal quantity, long batchProcessId, String note) {
+		movements.enterPreSettling(unitId, materialId, quantity, batchProcessId, note);
+	}
+
+	/** Dinlenmedeki asamanin iptali: prosesin tankta duran materyalleri partiye doner. */
+	public void cancelPreSettling(long batchProcessId, String note) {
+		movements.cancelPreSettling(batchProcessId, note);
 	}
 
 	/** Uretim prosesinin yarattigi, partinin icindeki materyal. @return materyal id */

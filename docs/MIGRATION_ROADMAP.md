@@ -537,27 +537,40 @@ geçişinden önce yapılır.
 - [x] Üretim içinden son tanktaki karışım materyali üzerinde çıkış ya da transfer yapılamaz (tek partisi yok)
 
 ## C3: Ön dinlendirme tankı
-- [ ] Materyaller birleşmez, parti başına satırlar korunur ve tank ekranında tek tek görünür
-- [ ] Tek ürün tipiyle çalışır: farklı partiler girebilir, farklı tip giremez; çoklu tip ayarı bu türde geçersizdir
-- [ ] Giriş özel "ön dinlendirme tankına aktarma" üretim aşamasıyla yapılır, aşama boşaltılana kadar açık bekler
-- [ ] Boşaltmadan önce üstüne yeni parti eklenebilir
-- [ ] Partiye işlenen analizler bu tankta çalışmaya devam eder
-- [ ] Tank sayfasından yalnızca son tanklara "Boşalt" yapılır; elle giriş, çıkış, sayım ve bu tanka transfer
-  yapılamaz
-- [ ] Yanlış aktarım boşaltmadan önce aşama iptal edilerek geri alınır, materyal partiye döner;
-  boşaltmadan sonra geri alma yoktur
+- [x] Materyaller birleşmez, parti başına satırlar korunur ve tank ekranında tek tek görünür
+- [x] Tek ürün tipiyle çalışır: farklı partiler girebilir, farklı tip giremez; blend ve çoklu ürün/tip ayarları bu
+  türde açılamaz (V7 canlıdaki dinlenme tanklarında kapatır)
+- [x] Giriş özel üretim aşamasıyla yapılır: yeni `pre_settling` uzantı tipi (V9). Giriş onaya düşer, onaylanınca aşama
+  `resting` (dinlenmede) durumunda bekler; parti üretimde sayılır, sonraki aşamalar bekler
+- [x] Bir parti aynı ön dinlendirme tankına bir kez girer; miktar yanlışsa aşama iptal edilip yeniden gönderilir
+- [x] Boşaltmadan önce üstüne yeni parti eklenebilir
+- [x] Partiye işlenen analizler bu tankta çalışmaya devam eder
+- [x] Ön dinlendirme tankında elle giriş, çıkış, sayım ve transfer (tanka ya da tanktan) yapılamaz; üretimdeki depo
+  hareketi uzantısı ve dolum da bu tanka dokunamaz. Çıkış yalnızca "Boşalt" ile
+- [x] Yanlış aktarım boşaltmadan önce aşama iptal edilerek (`resting` → `waiting`, geri açma izni) geri alınır,
+  materyal partiye döner (girerken bölünen parça partideki materyale geri eklenir); boşaltmadan sonra geri alma yoktur
+- [x] Demo hatta "Ön Dinlenme" aşamasının depo hareketi ve elle pirina girişi kalktı, yerine `pre_settling` uzantısı
+  geldi (çıktı ürünü Pirina). "Tanklarda Toplama" geçmişi olmayan hatlardan (2, 3) silindi; geçmişi olan hat 1'de
+  silinemediği için uzantısız ve isteğe bağlı kaldı. "Filtreleme"nin yağ tartımı kalktı: yağ Boşalt'ta son tanka
+  geçtiği için tartım partide sahte yağ materyali açardı; aşama alanlarıyla kalıyor
 
 ## C4: Boşaltma
-- [ ] Tek işlemlik "Boşalt": hedef bir ya da birden çok son tank ve her biri için çekilen miktar girilir
-- [ ] Girdi materyalleri %100 kapanır (materyal dönüşümü), tanka bağlı bütün aşamalar birlikte kapanır
-- [ ] Çekilen miktar hedef tankların tip materyaline eklenir
-- [ ] İşlem tek parçadır: bir hedef kabul etmezse hiçbir şey kapanmaz
+- [x] Tek işlemlik "Boşalt" (`POST /api/storage-units/{id}/empty`, `storage_movement.transfer` izni, onaysız):
+  hedef bir ya da birden çok son tank ve her biri için çekilen miktar (tankın kapasite biriminde) girilir
+- [x] Girdi materyalleri %100 kapanır, onları tanka sokan dinlenmedeki aşamalar aynı işlemde tamamlanır
+- [x] Çekilen miktar girdilere miktarlarına göre oransal, hedeflere istenen miktarlarla dağılır ve hedef tankların
+  tip materyaline eklenir (son tank kuralları: izinli tip, yoğunluk, kapasite, ölçülmüş olma, tank uyumu)
+- [x] İşlem tek parçadır: bir hedef kabul etmezse hiçbir şey kapanmaz
+- [x] Çekilen giren kütleyi %0,5'ten fazla aşarsa reddedilir; tolerans içindeyse girenin tamamı çekilmiş sayılır
 
 ## C5: Tortu
-- [ ] Giren ile çekilen arasındaki fark kütle üzerinden hesaplanır, elle girilmez
-- [ ] Fark gerçek bir aktif çıktı materyali olur, ne yapılacağına fabrika karar verir
-- [ ] Birden çok parti varsa tortu, giriş payına göre parti başına ayrı materyal olarak açılır
-- [ ] Tortunun hangi ürün olacağı aşama ayarındaki çıktı ürünlerinden belirlenir, kodda sabit olmaz
+- [x] Giren ile çekilen arasındaki fark kütle üzerinden hesaplanır, elle girilmez; fark sıfırsa tortu açılmaz
+- [x] Fark gerçek bir aktif çıktı materyali olur, ne yapılacağına fabrika karar verir
+- [x] Birden çok parti varsa tortu, giriş payına göre parti başına ayrı materyal olarak açılır (kapanan yağ
+  materyalinin çocuğu); kütle aşamanın verisine `residue_kg` olarak yazılır
+- [x] Tortunun hangi ürün olacağı aşama ayarındaki çıktı ürününden belirlenir, kodda sabit olmaz
+- [x] Analizde tortu ayrı kalem (`residue_kg`, "Tortu"); pres sonrası pirinaya eklenmez
+- [x] Ön dinlendirme aşamasıyla girmemiş (eski) materyaller Boşalt'ta tortusuz kapanır
 
 ## C6: Birimler
 - [x] Litre tanka kg ürün girebilir (ve tersi); birim farkı yoğunlukla çevrilir, ton birimi yoktur

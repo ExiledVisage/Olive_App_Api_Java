@@ -474,7 +474,7 @@ COPY public.production_stages (id, production_line_id, process_type_id, name, st
 8	1	8	Asitlik Analizi	8	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 9	1	9	Ön Dinlenme	9	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 10	1	10	Filtreleme	10	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
-11	1	11	Tanklarda Toplama	11	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
+11	1	11	Tanklarda Toplama	11	f	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 12	1	12	Randıman Tespiti	12	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 13	2	1	Kantarda Tartım	1	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 14	2	2	Ayıklama	2	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
@@ -486,8 +486,7 @@ COPY public.production_stages (id, production_line_id, process_type_id, name, st
 20	2	8	Asitlik Analizi	8	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 21	2	9	Ön Dinlenme	9	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 22	2	10	Filtreleme	10	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
-23	2	11	Tanklarda Toplama	11	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
-24	2	12	Randıman Tespiti	12	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
+24	2	12	Randıman Tespiti	11	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 25	3	1	Kantarda Tartım	1	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 26	3	2	Ayıklama	2	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 27	3	3	İkinci Tartım	3	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
@@ -498,8 +497,7 @@ COPY public.production_stages (id, production_line_id, process_type_id, name, st
 32	3	8	Asitlik Analizi	8	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 33	3	9	Ön Dinlenme	9	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 34	3	10	Filtreleme	10	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
-35	3	11	Tanklarda Toplama	11	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
-36	3	12	Randıman Tespiti	12	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
+36	3	12	Randıman Tespiti	11	t	f	2026-11-06 15:35:12	2026-11-06 15:35:12
 \.
 
 
@@ -22856,6 +22854,7 @@ COPY public.stage_extension_types (id, key, name, description, created_at, updat
 2	storage_movement	Storage Movement	Bu asamada secilen urun tipi storage unit tarafina tasinabilir.	2026-11-06 15:35:12	2026-11-06 15:35:12
 3	material_transformation	Material Transformation	Bu asamada input urun tiplerinden output urun tipleri olusur.	2026-11-06 15:35:12	2026-11-06 15:35:12
 4	analysis	Analysis	Bu asamada secilen urun tipi icin analiz islemleri yapilir.	2026-11-06 15:35:12	2026-11-06 15:35:12
+5	pre_settling	Pre-settling	Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.	2026-11-06 15:35:12	2026-11-06 15:35:12
 \.
 
 
@@ -22876,24 +22875,15 @@ COPY public.production_stage_extensions (id, production_stage_id, stage_extensio
 10	7	1	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 11	19	1	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 12	31	1	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-13	10	1	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-14	22	1	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-15	34	1	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-16	9	2	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-17	21	2	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-18	33	2	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-19	11	2	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-20	23	2	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-21	35	2	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
+16	9	5	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
+17	21	5	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
+18	33	5	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 22	8	4	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 23	20	4	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 24	32	4	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 25	5	3	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 26	17	3	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
 27	29	3	t	t	1	2026-11-06 15:35:12	2026-11-06 15:35:12
-28	9	3	t	t	2	2026-11-06 15:35:12	2026-11-06 15:35:12
-29	21	3	t	t	2	2026-11-06 15:35:12	2026-11-06 15:35:12
-30	33	3	t	t	2	2026-11-06 15:35:12	2026-11-06 15:35:12
 \.
 
 
@@ -22914,24 +22904,15 @@ COPY public.production_stage_extension_input_production_products (id, production
 10	10	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 11	11	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 12	12	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-13	13	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-14	14	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-15	15	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 16	16	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 17	17	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 18	18	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-19	19	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-20	20	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-21	21	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 22	22	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 23	23	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 24	24	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 25	25	1	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 26	26	1	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 27	27	1	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-28	28	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-29	29	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-30	30	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 \.
 
 
@@ -22946,9 +22927,9 @@ COPY public.production_stage_extension_output_production_products (id, productio
 4	26	3	2	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 5	27	2	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 6	27	3	2	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-7	28	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-8	29	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
-9	30	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
+7	16	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
+8	17	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
+9	18	3	1	t	2026-11-06 15:35:12	2026-11-06 15:35:12
 \.
 
 
@@ -22966,12 +22947,6 @@ COPY public.stage_extension_type_fields (id, stage_extension_type_id, field_key,
 --
 
 COPY public.production_stage_extension_values (id, production_stage_extension_id, stage_extension_type_field_id, value_boolean, value_integer, value_decimal, value_text, value_json, created_at, updated_at) FROM stdin;
-1	16	1	\N	\N	\N	inbound	\N	2026-11-06 15:35:12	2026-11-06 15:35:12
-2	17	1	\N	\N	\N	inbound	\N	2026-11-06 15:35:12	2026-11-06 15:35:12
-3	18	1	\N	\N	\N	inbound	\N	2026-11-06 15:35:12	2026-11-06 15:35:12
-4	19	1	\N	\N	\N	transfer	\N	2026-11-06 15:35:12	2026-11-06 15:35:12
-5	20	1	\N	\N	\N	transfer	\N	2026-11-06 15:35:12	2026-11-06 15:35:12
-6	21	1	\N	\N	\N	transfer	\N	2026-11-06 15:35:12	2026-11-06 15:35:12
 \.
 
 
@@ -26405,7 +26380,7 @@ SELECT pg_catalog.setval('public.stage_extension_type_fields_id_seq', 1, true);
 -- Name: stage_extension_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.stage_extension_types_id_seq', 4, true);
+SELECT pg_catalog.setval('public.stage_extension_types_id_seq', 5, true);
 
 
 --

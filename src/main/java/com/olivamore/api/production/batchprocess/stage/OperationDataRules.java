@@ -35,7 +35,8 @@ public class OperationDataRules {
 		"material_transformation", List.of("input_quantity", "input_material_id", "input_production_product_type_id", "outputs"),
 		"analysis", List.of("material_id", "attributes"),
 		"storage_movement", List.of("action", "material_id", "quantity", "note", "storage_unit_id", "from_storage_unit_id",
-			"to_storage_unit_id"));
+			"to_storage_unit_id"),
+		"pre_settling", List.of("material_id", "quantity", "note", "storage_unit_id"));
 
 	private static final Map<String, List<String>> ROW_FIELDS = Map.of(
 		"outputs", List.of("quantity", "unit", "production_product_type_id", "production_product_id", "product_type_key"),
@@ -64,6 +65,7 @@ public class OperationDataRules {
 				case "material_transformation" -> transformation(rules, c);
 				case "analysis" -> analysis(rules, c);
 				case "storage_movement" -> storageMovement(rules, c, extensions);
+				case "pre_settling" -> preSettling(rules, c);
 				default -> {
 				}
 			}
@@ -170,6 +172,14 @@ public class OperationDataRules {
 		rules.putIfAbsent("storage_unit_id", () -> c.unitId("storage_unit_id", !transfer));
 		rules.putIfAbsent("from_storage_unit_id", () -> c.unitId("from_storage_unit_id", transfer));
 		rules.putIfAbsent("to_storage_unit_id", () -> c.toUnit(transfer));
+	}
+
+	/** On dinlendirme tanki ve miktar zorunlu; materyal birden coksa secilir. */
+	private static void preSettling(Map<String, Runnable> rules, Check c) {
+		rules.putIfAbsent("material_id", () -> c.id("material_id", MATERIALS));
+		rules.putIfAbsent("quantity", () -> c.positive("quantity"));
+		rules.putIfAbsent("note", () -> c.stringAt(c.field("note"), ROOT + ".note"));
+		rules.putIfAbsent("storage_unit_id", () -> c.unitId("storage_unit_id", true));
 	}
 
 	private interface NodeCheck {

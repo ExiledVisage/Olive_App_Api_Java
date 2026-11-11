@@ -26,7 +26,7 @@ class StorageMovementScenarioIT {
 			// TRF-YmdHis-XXXXXX: zaman ve rastgele ek
 			.mask("TRF-\\d{14}-[A-Z0-9]{6}")
 			.run()
-			.assertPassed(61);
+			.assertPassed(62);
 	}
 
 }
