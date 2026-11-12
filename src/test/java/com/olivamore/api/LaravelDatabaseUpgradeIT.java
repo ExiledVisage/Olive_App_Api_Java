@@ -11,6 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -81,7 +82,8 @@ class LaravelDatabaseUpgradeIT {
 		assertThat(db.columns("permissions")).doesNotContain("guard_name");
 		assertThat(db.columns("users")).doesNotContain("remember_token").contains("email_verified_at");
 		assertThat(jdbc.queryForList("select version from flyway_schema_history where version is not null "
-			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7", "8", "9");
+			+ "order by installed_rank", String.class)).containsExactly("1", "2", "3", "4", "5", "6", "7", "8", "9",
+			"10");
 	}
 
 	@Test
@@ -149,6 +151,124 @@ class LaravelDatabaseUpgradeIT {
 		db.upgrade();
 
 		assertThat(db.count("stage_extension_types")).isZero();
+	}
+
+	@Test
+	void mergesActiveMaterialsOfAFinalTankIntoOneTankMaterialPerType() {
+		Database db = laravelDatabase();
+		long oil = db.product("olive_oil", null);
+		long gemlik = db.type(oil, "Gemlik", "LITRE", "0.9000");
+		long ayvalik = db.type(oil, "Ayvalik", "LITRE", "0.9000");
+		long acidity = db.definition(oil, "acidity", "decimal");
+		long cultivar = db.definition(oil, "cultivar", "string");
+		long peroxide = db.definition(oil, "peroxide", "integer");
+		long tank = db.tank("Son Tank", "SON-01", null);
+		long single = db.tank("Son Tank 2", "SON-02", null);
+		long resting = db.tank("Dinlenme Tanki", "DIN-01", null);
+		long first = db.material(tank, gemlik, "100", "LITRE", "BATCH_PROCESS");
+		long kilograms = db.material(tank, gemlik, "90", "KG", "BATCH_PROCESS");
+		long opening = db.material(tank, gemlik, "50", "LITRE", "STORAGE_OPENING");
+		long other = db.material(tank, ayvalik, "40", "LITRE", "BATCH_PROCESS");
+		long alone = db.material(single, gemlik, "70", "LITRE", "BATCH_PROCESS");
+		long settling = db.material(resting, gemlik, "30", "LITRE", "BATCH_PROCESS");
+		db.decimal(first, acidity, "0.30");
+		db.decimal(kilograms, acidity, "0.50");
+		db.decimal(opening, acidity, "0.20");
+		db.text(first, cultivar, "Gemlik");
+		db.text(kilograms, cultivar, "Gemlik");
+		db.text(opening, cultivar, "Gemlik");
+		db.integer(first, peroxide, 10);
+		db.integer(kilograms, peroxide, 13);
+		db.decimal(alone, acidity, "0.40");
+		db.text(alone, cultivar, "Edremit");
+		db.balance(tank, oil, "300", "LITRE");
+		db.balance(tank, oil, "90", "KG");
+
+		db.upgrade();
+
+		JdbcTemplate jdbc = db.jdbc;
+		long mix = db.tankMaterial(tank, gemlik);
+		// 90 kg / 0.9 = 100 L; (100 x 0.30 + 100 x 0.50 + 50 x 0.20) / 250 = 0.36; peroxide yalnizca ikisinde var
+		assertThat(jdbc.queryForMap("select quantity, unit, status, production_batch_id from materials where id = ?", mix))
+			.containsEntry("unit", "LITRE").containsEntry("status", "active").containsEntry("production_batch_id", null)
+			.hasEntrySatisfying("quantity", q -> assertThat((BigDecimal) q).isEqualByComparingTo("250"));
+		assertThat(db.decimalOf(mix, acidity)).isEqualByComparingTo("0.36");
+		assertThat(db.textOf(mix, cultivar)).isEqualTo("Gemlik");
+		assertThat(db.count("material_attribute_values where material_id = " + mix)).isEqualTo(2);
+		assertThat(jdbc.queryForList("select source_material_id || ' ' || quantity || ' ' || unit || ' ' || movement_type"
+			+ " || ' ' || transfer_reference from storage_movements where material_id = ? order by id", String.class, mix))
+			.containsExactly(first + " 100.00 LITRE TRANSFER_IN BIRLESTIRME", kilograms + " 100.00 LITRE TRANSFER_IN "
+				+ "BIRLESTIRME", opening + " 50.00 LITRE TRANSFER_IN BIRLESTIRME");
+		assertThat(jdbc.queryForList("select status || ' ' || coalesce(current_location_type, '-') from materials"
+			+ " where id in (?, ?, ?, ?, ?)", String.class, first, kilograms, opening, other, alone))
+			.containsOnly("consumed -");
+
+		long ayvalikMix = db.tankMaterial(tank, ayvalik);
+		assertThat(jdbc.queryForObject("select quantity from materials where id = ?", BigDecimal.class, ayvalikMix))
+			.isEqualByComparingTo("40");
+		// tek materyalli grup da tank materyaline cevrilir, degerleri aynen gecer
+		long singleMix = db.tankMaterial(single, gemlik);
+		assertThat(db.decimalOf(singleMix, acidity)).isEqualByComparingTo("0.40");
+		assertThat(db.textOf(singleMix, cultivar)).isEqualTo("Edremit");
+		// on dinlendirme tankina dokunulmaz
+		assertThat(jdbc.queryForObject("select status || ' ' || current_location_id from materials where id = ?",
+			String.class, settling)).isEqualTo("active " + resting);
+		assertThat(jdbc.queryForList("select current_quantity || ' ' || unit from storage_unit_balances"
+			+ " where storage_unit_id = ?", String.class, tank)).containsExactly("290.00 LITRE");
+	}
+
+	@Test
+	void movesOpenFillingsToTheTankMaterialAndLeavesFinishedOnesAlone() {
+		Database db = laravelDatabase();
+		long oil = db.product("olive_oil", null);
+		long gemlik = db.type(oil, "Gemlik", "LITRE", "0.9000");
+		long tank = db.tank("Son Tank", "SON-01", null);
+		long litres = db.material(tank, gemlik, "100", "LITRE", "BATCH_PROCESS");
+		long kilograms = db.material(tank, gemlik, "90", "KG", "BATCH_PROCESS");
+		long planned = db.run(tank, "planned");
+		long started = db.run(tank, "in_progress");
+		long completed = db.run(tank, "completed");
+		db.runMaterial(planned, litres, "30");
+		db.runMaterial(planned, kilograms, "18");
+		db.runMaterial(started, kilograms, "9");
+		db.runMaterial(completed, litres, "10");
+
+		db.upgrade();
+
+		long mix = db.tankMaterial(tank, gemlik);
+		String rows = "select source_material_id || ' ' || quantity_used from finished_product_run_materials"
+			+ " where finished_product_run_id = ?";
+		// 18 kg / 0.9 = 20 L, kosu basina toplanir
+		assertThat(db.jdbc.queryForList(rows, String.class, planned)).containsExactly(mix + " 50.0000");
+		assertThat(db.jdbc.queryForList(rows, String.class, started)).containsExactly(mix + " 10.0000");
+		assertThat(db.jdbc.queryForList(rows, String.class, completed)).containsExactly(litres + " 10.0000");
+	}
+
+	@Test
+	void stopsWhenAFinalTankHoldsUnitsThatCannotBeConverted() {
+		Database db = laravelDatabase();
+		long oil = db.product("olive_oil", null);
+		long gemlik = db.type(oil, "Gemlik", "LITRE", null);
+		long tank = db.tank("Son Tank", "SON-01", null);
+		db.material(tank, gemlik, "100", "LITRE", "BATCH_PROCESS");
+		db.material(tank, gemlik, "90", "KG", "BATCH_PROCESS");
+
+		db.assertUpgradeFails("yogunlugu tanimsiz oldugu icin birimi cevrilemeyen 1 materyal");
+		assertThat(db.count("materials where status = 'active' and origin_type <> 'TANK'")).isEqualTo(2);
+		assertThat(db.count("materials where origin_type = 'TANK'")).isZero();
+	}
+
+	@Test
+	void stopsWhenAnApprovalWaitsToMoveAMaterialThatWillBeMerged() {
+		Database db = laravelDatabase();
+		long oil = db.product("olive_oil", null);
+		long gemlik = db.type(oil, "Gemlik", "LITRE", "0.9000");
+		long tank = db.tank("Son Tank", "SON-01", null);
+		long material = db.material(tank, gemlik, "100", "LITRE", "BATCH_PROCESS");
+		db.awaitingStorageMovement("outbound", "{\"material_id\": " + material + ", \"quantity\": 10}");
+
+		db.assertUpgradeFails("onay bekleyen 1 depo hareketi");
+		assertThat(db.count("materials where origin_type = 'TANK'")).isZero();
 	}
 
 	@Test
@@ -247,6 +367,105 @@ class LaravelDatabaseUpgradeIT {
 		long tank(String name, String code, String description) {
 			return jdbc.queryForObject("insert into storage_units (name, code, capacity, capacity_unit, description) "
 				+ "values (?, ?, 1000, 'LITRE', ?) returning id", Long.class, name, code, description);
+		}
+
+		long product(String key, String defaultDensity) {
+			return jdbc.queryForObject("insert into production_products (key, name, default_density_kg_per_litre) "
+				+ "values (?, ?, ?) returning id", Long.class, key, key, decimal(defaultDensity));
+		}
+
+		long type(long product, String name, String unit, String density) {
+			return jdbc.queryForObject("insert into production_product_types (production_product_id, name, code, unit, "
+				+ "density_kg_per_litre) values (?, ?, ?, ?, ?) returning id", Long.class, product, name, name, unit,
+				decimal(density));
+		}
+
+		/** Urun-attribute eslemesi. */
+		long definition(long product, String key, String dataType) {
+			long attribute = jdbc.queryForObject("insert into attribute_definitions (attribute_key, label, data_type) "
+				+ "values (?, ?, ?) returning id", Long.class, key, key, dataType);
+			return jdbc.queryForObject("insert into production_product_attribute_definitions (production_product_id, "
+				+ "attribute_definition_id) values (?, ?) returning id", Long.class, product, attribute);
+		}
+
+		/** Laravel'in biraktigi gibi tankta duran aktif materyal. */
+		long material(long tank, long type, String quantity, String unit, String origin) {
+			return jdbc.queryForObject("insert into materials (production_product_type_id, origin_type, quantity, unit, "
+				+ "status, current_location_type, current_location_id) values (?, ?, ?, ?, 'active', 'storage_unit', ?) "
+				+ "returning id", Long.class, type, origin, new BigDecimal(quantity), unit, tank);
+		}
+
+		void decimal(long material, long definition, String value) {
+			jdbc.update("insert into material_attribute_values (material_id, production_product_attribute_definition_id, "
+				+ "value_decimal) values (?, ?, ?)", material, definition, new BigDecimal(value));
+		}
+
+		void integer(long material, long definition, long value) {
+			jdbc.update("insert into material_attribute_values (material_id, production_product_attribute_definition_id, "
+				+ "value_integer) values (?, ?, ?)", material, definition, value);
+		}
+
+		void text(long material, long definition, String value) {
+			jdbc.update("insert into material_attribute_values (material_id, production_product_attribute_definition_id, "
+				+ "value_text) values (?, ?, ?)", material, definition, value);
+		}
+
+		void balance(long tank, long product, String quantity, String unit) {
+			jdbc.update("insert into storage_unit_balances (storage_unit_id, production_product_id, current_quantity, "
+				+ "unit) values (?, ?, ?, ?)", tank, product, new BigDecimal(quantity), unit);
+		}
+
+		long run(long tank, String status) {
+			long recipe = jdbc.queryForObject("insert into finished_product_recipes (name) values ('Recete') returning id",
+				Long.class);
+			long product = jdbc.queryForObject("insert into finished_products (finished_product_recipe_id, name, "
+				+ "volume_litre) values (?, 'Sise', 1) returning id", Long.class, recipe);
+			return jdbc.queryForObject("insert into finished_product_runs (finished_product_id, finished_product_recipe_id, "
+				+ "quantity, status, source_storage_unit_id) values (?, ?, 10, ?, ?) returning id", Long.class, product,
+				recipe, status, tank);
+		}
+
+		void runMaterial(long run, long material, String quantity) {
+			jdbc.update("insert into finished_product_run_materials (finished_product_run_id, source_material_id, "
+				+ "quantity_used) values (?, ?, ?)", run, material, new BigDecimal(quantity));
+		}
+
+		/** Asamasi depo hareketi uzantili (tur sabit), onay bekleyen parti islemi. */
+		void awaitingStorageMovement(String action, String operationData) {
+			long line = jdbc.queryForObject("insert into production_lines (name) values ('Hat') returning id", Long.class);
+			long stage = jdbc.queryForObject("insert into production_stages (production_line_id, name, stage_order) "
+				+ "values (?, 'Toplama', 1) returning id", Long.class, line);
+			long batch = jdbc.queryForObject("insert into production_batches (batch_code, production_line_id) "
+				+ "values ('P-1', ?) returning id", Long.class, line);
+			long type = jdbc.queryForObject("insert into stage_extension_types (key, name) "
+				+ "values ('storage_movement', 'Depo hareketi') returning id", Long.class);
+			long field = jdbc.queryForObject("insert into stage_extension_type_fields (stage_extension_type_id, field_key, "
+				+ "label, data_type) values (?, 'action', 'Hareket', 'string') returning id", Long.class, type);
+			long extension = jdbc.queryForObject("insert into production_stage_extensions (production_stage_id, "
+				+ "stage_extension_type_id) values (?, ?) returning id", Long.class, stage, type);
+			jdbc.update("insert into production_stage_extension_values (production_stage_extension_id, "
+				+ "stage_extension_type_field_id, value_text) values (?, ?, ?)", extension, field, action);
+			jdbc.update("insert into batch_processes (production_batch_id, production_stage_id, status, operation_data) "
+				+ "values (?, ?, 'awaiting_approval', ?::json)", batch, stage, operationData);
+		}
+
+		long tankMaterial(long tank, long type) {
+			return jdbc.queryForObject("select id from materials where origin_type = 'TANK' and status = 'active' "
+				+ "and current_location_id = ? and production_product_type_id = ?", Long.class, tank, type);
+		}
+
+		BigDecimal decimalOf(long material, long definition) {
+			return jdbc.queryForObject("select value_decimal from material_attribute_values where material_id = ? "
+				+ "and production_product_attribute_definition_id = ?", BigDecimal.class, material, definition);
+		}
+
+		String textOf(long material, long definition) {
+			return jdbc.queryForObject("select value_text from material_attribute_values where material_id = ? "
+				+ "and production_product_attribute_definition_id = ?", String.class, material, definition);
+		}
+
+		private static BigDecimal decimal(String value) {
+			return value == null ? null : new BigDecimal(value);
 		}
 
 		long role(String name, String guard) {

@@ -10941,8 +10941,8 @@
      },
      "materials": [
       {
-       "id": 3,
-       "source_material_id": 1,
+       "id": 534,
+       "source_material_id": 2363,
        "quantity_used": 200.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -11058,8 +11058,8 @@
      },
      "materials": [
       {
-       "id": 4,
-       "source_material_id": 1,
+       "id": 535,
+       "source_material_id": 2363,
        "quantity_used": 75.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -11181,8 +11181,8 @@
      },
      "materials": [
       {
-       "id": 18,
-       "source_material_id": 7,
+       "id": 540,
+       "source_material_id": 2369,
        "quantity_used": 20.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -11190,8 +11190,8 @@
        "density_kg_per_litre": 0.916
       },
       {
-       "id": 19,
-       "source_material_id": 8,
+       "id": 541,
+       "source_material_id": 2370,
        "quantity_used": 5.0,
        "unit": "LITRE",
        "production_product_type_id": 6,
@@ -11930,8 +11930,8 @@
      },
      "materials": [
       {
-       "id": 536,
-       "source_material_id": 1,
+       "id": 546,
+       "source_material_id": 2363,
        "quantity_used": 5.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -11998,8 +11998,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": [
@@ -12045,8 +12045,8 @@
      },
      "materials": [
       {
-       "id": 537,
-       "source_material_id": 1,
+       "id": 547,
+       "source_material_id": 2363,
        "quantity_used": 3.045,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -12113,8 +12113,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": [
@@ -12159,8 +12159,8 @@
      },
      "materials": [
       {
-       "id": 538,
-       "source_material_id": 1,
+       "id": 548,
+       "source_material_id": 2363,
        "quantity_used": 2.55,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -12227,8 +12227,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": [
@@ -12272,8 +12272,8 @@
      },
      "materials": [
       {
-       "id": 539,
-       "source_material_id": 5,
+       "id": 549,
+       "source_material_id": 2367,
        "quantity_used": 7.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -12281,8 +12281,8 @@
        "density_kg_per_litre": 0.916
       },
       {
-       "id": 540,
-       "source_material_id": 6,
+       "id": 550,
+       "source_material_id": 2368,
        "quantity_used": 3.0,
        "unit": "LITRE",
        "production_product_type_id": 4,
@@ -12349,8 +12349,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": [
@@ -12395,8 +12395,8 @@
      },
      "materials": [
       {
-       "id": 541,
-       "source_material_id": 3,
+       "id": 551,
+       "source_material_id": 2365,
        "quantity_used": 2.04,
        "unit": "LITRE",
        "production_product_type_id": 4,
@@ -12463,8 +12463,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": [
@@ -12509,8 +12509,8 @@
      },
      "materials": [
       {
-       "id": 542,
-       "source_material_id": 2,
+       "id": 552,
+       "source_material_id": 2364,
        "quantity_used": 4.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -12577,8 +12577,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:02Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": [
@@ -12629,8 +12629,8 @@
      },
      "materials": [
       {
-       "id": 536,
-       "source_material_id": 1,
+       "id": 546,
+       "source_material_id": 2363,
        "quantity_used": 5.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -12697,8 +12697,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -13008,8 +13008,8 @@
      },
      "materials": [
       {
-       "id": 538,
-       "source_material_id": 1,
+       "id": 548,
+       "source_material_id": 2363,
        "quantity_used": 2.55,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -13100,8 +13100,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:15Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:01Z"
     }
    },
    "save": null
@@ -13328,7 +13328,7 @@
       "cancelled"
      ],
      "note": null,
-     "started_at": "2026-11-07T04:05:16Z",
+     "started_at": "2026-11-07T12:00:02Z",
      "completed_at": null,
      "finished_product": {
       "id": 1,
@@ -13342,8 +13342,8 @@
      },
      "materials": [
       {
-       "id": 536,
-       "source_material_id": 1,
+       "id": 546,
+       "source_material_id": 2363,
        "quantity_used": 5.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -13410,8 +13410,8 @@
        "actual_value": 0.31
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:16Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -13447,8 +13447,8 @@
      "status": "completed",
      "allowed_transitions": [],
      "note": null,
-     "started_at": "2026-11-07T04:05:16Z",
-     "completed_at": "2026-11-07T04:05:16Z",
+     "started_at": "2026-11-07T12:00:02Z",
+     "completed_at": "2026-11-07T12:00:02Z",
      "finished_product": {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
@@ -13461,8 +13461,8 @@
      },
      "materials": [
       {
-       "id": 536,
-       "source_material_id": 1,
+       "id": 546,
+       "source_material_id": 2363,
        "quantity_used": 5.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -13529,8 +13529,8 @@
        "actual_value": 0.31
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:16Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -13564,8 +13564,8 @@
      "status": "completed",
      "allowed_transitions": [],
      "note": null,
-     "started_at": "2026-11-07T04:05:16Z",
-     "completed_at": "2026-11-07T04:05:16Z",
+     "started_at": "2026-11-07T12:00:02Z",
+     "completed_at": "2026-11-07T12:00:02Z",
      "finished_product": {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
@@ -13591,8 +13591,8 @@
      },
      "materials": [
       {
-       "id": 536,
-       "source_material_id": 1,
+       "id": 546,
+       "source_material_id": 2363,
        "quantity_used": 5.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -13659,8 +13659,8 @@
        "actual_value": 0.31
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:16Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -13678,6 +13678,7 @@
      "code": "FILL-GEM-03",
      "capacity": 3000.0,
      "capacity_unit": "LITRE",
+     "kind": "final",
      "is_blend_tank": false,
      "allow_multiple_production_product_types": false,
      "allow_multiple_production_products": false,
@@ -13687,6 +13688,10 @@
      "remaining_capacity": 55,
      "filled_percentage": 98.17,
      "empty_percentage": 1.83,
+     "capacity_kg": 2748,
+     "capacity_litre": 3000,
+     "filled_kg": 2697.62,
+     "filled_litre": 2945,
      "allowed_production_products": [
       {
        "id": 1,
@@ -13747,7 +13752,7 @@
      ],
      "balances": [
       {
-       "id": 1,
+       "id": 804,
        "storage_unit_id": 1,
        "production_product_id": 2,
        "current_quantity": 2945.0,
@@ -13758,17 +13763,17 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T15:35:12Z",
-       "updated_at": "2026-11-07T04:05:16Z"
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "current_materials": [
       {
-       "id": 1,
+       "id": 2363,
        "production_batch_id": null,
        "production_product_type_id": 3,
        "parent_material_id": null,
-       "origin_type": "STORAGE_OPENING",
+       "origin_type": "TANK",
        "quantity": 2945.0,
        "unit": "LITRE",
        "status": "active",
@@ -13777,7 +13782,7 @@
        "source_production_stage_id": null,
        "created_by_batch_process_id": null,
        "closed_by_batch_process_id": null,
-       "note": "Açılış stoğu — Gemlik 0.30",
+       "note": null,
        "production_product_type": {
         "id": 3,
         "production_product_id": 2,
@@ -13795,8 +13800,8 @@
        },
        "attribute_values": [
         {
-         "id": 1,
-         "material_id": 1,
+         "id": 1279,
+         "material_id": 2363,
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
@@ -13814,21 +13819,16 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-06T15:35:12Z",
-         "updated_at": "2026-11-06T15:35:12Z"
+         "created_at": "2026-11-06T15:35:13Z",
+         "updated_at": "2026-11-06T15:35:13Z"
         }
        ],
-       "created_at": "2026-11-06T15:35:12Z",
-       "updated_at": "2026-11-07T04:05:16Z"
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-07T12:00:02Z"
       }
      ],
      "created_at": "2026-11-06T15:35:12Z",
-     "updated_at": "2026-11-06T15:35:12Z",
-     "filled_litre": 2945,
-     "filled_kg": 2697.62,
-     "capacity_kg": 2748,
-     "capacity_litre": 3000,
-     "kind": "final"
+     "updated_at": "2026-11-06T15:35:12Z"
     }
    },
    "save": null
@@ -14162,7 +14162,7 @@
       "cancelled"
      ],
      "note": null,
-     "started_at": "2026-11-07T04:05:16Z",
+     "started_at": "2026-11-07T12:00:02Z",
      "completed_at": null,
      "finished_product": {
       "id": 1,
@@ -14176,8 +14176,8 @@
      },
      "materials": [
       {
-       "id": 538,
-       "source_material_id": 1,
+       "id": 548,
+       "source_material_id": 2363,
        "quantity_used": 2.55,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -14268,8 +14268,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:16Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -14289,8 +14289,8 @@
      "status": "completed",
      "allowed_transitions": [],
      "note": null,
-     "started_at": "2026-11-07T04:05:16Z",
-     "completed_at": "2026-11-07T04:05:17Z",
+     "started_at": "2026-11-07T12:00:02Z",
+     "completed_at": "2026-11-07T12:00:02Z",
      "finished_product": {
       "id": 1,
       "name": "Naturel Sızma Gemlik 0.3 250ml",
@@ -14303,8 +14303,8 @@
      },
      "materials": [
       {
-       "id": 538,
-       "source_material_id": 1,
+       "id": 548,
+       "source_material_id": 2363,
        "quantity_used": 2.55,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -14395,8 +14395,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:17Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null,
@@ -14565,7 +14565,7 @@
       "cancelled"
      ],
      "note": "aksam vardiyasi",
-     "started_at": "2026-11-07T04:05:17Z",
+     "started_at": "2026-11-07T12:00:02Z",
      "completed_at": null,
      "finished_product": {
       "id": 1,
@@ -14579,8 +14579,8 @@
      },
      "materials": [
       {
-       "id": 537,
-       "source_material_id": 1,
+       "id": 547,
+       "source_material_id": 2363,
        "quantity_used": 3.045,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -14647,8 +14647,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:17Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -14676,8 +14676,8 @@
   },
   {
    "name": "R5 materyali azalt",
-   "sql": "update materials set quantity = 1 where id = 3 returning id",
-   "save": null
+   "sql": "update materials set quantity = 1 where id = (select id from materials where origin_type = 'TANK' and status = 'active' and current_location_id = 3 and production_product_type_id = 4) returning id",
+   "save": "M5"
   },
   {
    "name": "tank degisti baslat",
@@ -14697,7 +14697,7 @@
       "cancelled"
      ],
      "note": null,
-     "started_at": "2026-11-07T04:05:17Z",
+     "started_at": "2026-11-07T12:00:02Z",
      "completed_at": null,
      "finished_product": {
       "id": 9,
@@ -14711,8 +14711,8 @@
      },
      "materials": [
       {
-       "id": 541,
-       "source_material_id": 3,
+       "id": 551,
+       "source_material_id": 2365,
        "quantity_used": 2.04,
        "unit": "LITRE",
        "production_product_type_id": 4,
@@ -14779,8 +14779,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:17Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:02Z"
     }
    },
    "save": null
@@ -14794,16 +14794,16 @@
    },
    "status": 422,
    "response": {
-    "title": "Unprocessable Content",
+    "detail": "Koşu planlandıktan sonra tank içeriği değişmiş, tamamlanamıyor: Ayvalık Zeytinyağı #2365 içinde 1.0000 kaldı, 2.04 gerekiyor. Koşuyu iptal edip yeniden planlayın.",
+    "instance": "/api/finished-product-runs/396/status",
     "status": 422,
-    "detail": "Koşu planlandıktan sonra tank içeriği değişmiş, tamamlanamıyor: Ayvalık Zeytinyağı #3 içinde 1.0000 kaldı, 2.04 gerekiyor. Koşuyu iptal edip yeniden planlayın.",
-    "instance": "/api/finished-product-runs/{R5}/status"
+    "title": "Unprocessable Content"
    },
    "save": null
   },
   {
    "name": "R5 materyali tuket",
-   "sql": "update materials set status = 'consumed' where id = 3 returning id",
+   "sql": "update materials set status = 'consumed' where id = {M5} returning id",
    "save": null
   },
   {
@@ -14815,16 +14815,16 @@
    },
    "status": 422,
    "response": {
-    "title": "Unprocessable Content",
+    "detail": "Koşu planlandıktan sonra tank içeriği değişmiş, tamamlanamıyor: Ayvalık Zeytinyağı #2365 artık aktif değil (consumed). Koşuyu iptal edip yeniden planlayın.",
+    "instance": "/api/finished-product-runs/396/status",
     "status": 422,
-    "detail": "Koşu planlandıktan sonra tank içeriği değişmiş, tamamlanamıyor: Ayvalık Zeytinyağı #3 artık aktif değil (consumed). Koşuyu iptal edip yeniden planlayın.",
-    "instance": "/api/finished-product-runs/{R5}/status"
+    "title": "Unprocessable Content"
    },
    "save": null
   },
   {
    "name": "R5 materyali geri",
-   "sql": "update materials set quantity = 1950, status = 'active' where id = 3 returning id",
+   "sql": "update materials set quantity = 1950, status = 'active' where id = {M5} returning id",
    "save": null
   },
   {
@@ -14845,7 +14845,7 @@
       "cancelled"
      ],
      "note": null,
-     "started_at": "2026-11-07T04:05:18Z",
+     "started_at": "2026-11-07T12:00:03Z",
      "completed_at": null,
      "finished_product": {
       "id": 15,
@@ -14859,8 +14859,8 @@
      },
      "materials": [
       {
-       "id": 539,
-       "source_material_id": 5,
+       "id": 549,
+       "source_material_id": 2367,
        "quantity_used": 7.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -14868,8 +14868,8 @@
        "density_kg_per_litre": 0.916
       },
       {
-       "id": 540,
-       "source_material_id": 6,
+       "id": 550,
+       "source_material_id": 2368,
        "quantity_used": 3.0,
        "unit": "LITRE",
        "production_product_type_id": 4,
@@ -14936,8 +14936,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:18Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:03Z"
     }
    },
    "save": null
@@ -14957,8 +14957,8 @@
      "status": "completed",
      "allowed_transitions": [],
      "note": null,
-     "started_at": "2026-11-07T04:05:18Z",
-     "completed_at": "2026-11-07T04:05:18Z",
+     "started_at": "2026-11-07T12:00:03Z",
+     "completed_at": "2026-11-07T12:00:03Z",
      "finished_product": {
       "id": 15,
       "name": "Klasik Blend 0.5 250ml",
@@ -14971,8 +14971,8 @@
      },
      "materials": [
       {
-       "id": 539,
-       "source_material_id": 5,
+       "id": 549,
+       "source_material_id": 2367,
        "quantity_used": 7.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -14980,8 +14980,8 @@
        "density_kg_per_litre": 0.916
       },
       {
-       "id": 540,
-       "source_material_id": 6,
+       "id": 550,
+       "source_material_id": 2368,
        "quantity_used": 3.0,
        "unit": "LITRE",
        "production_product_type_id": 4,
@@ -15048,8 +15048,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:18Z"
+     "created_at": "2026-11-07T12:00:01Z",
+     "updated_at": "2026-11-07T12:00:03Z"
     }
    },
    "save": null
@@ -15067,6 +15067,7 @@
      "code": "FILL-BLEND-50",
      "capacity": 2000.0,
      "capacity_unit": "LITRE",
+     "kind": "final",
      "is_blend_tank": true,
      "allow_multiple_production_product_types": true,
      "allow_multiple_production_products": false,
@@ -15076,6 +15077,10 @@
      "remaining_capacity": 1110,
      "filled_percentage": 44.5,
      "empty_percentage": 55.5,
+     "capacity_kg": 1832,
+     "capacity_litre": 2000,
+     "filled_kg": 815.24,
+     "filled_litre": 890,
      "allowed_production_products": [
       {
        "id": 5,
@@ -15119,7 +15124,7 @@
      ],
      "balances": [
       {
-       "id": 5,
+       "id": 808,
        "storage_unit_id": 5,
        "production_product_id": 2,
        "current_quantity": 890.0,
@@ -15130,17 +15135,17 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-06T15:35:12Z",
-       "updated_at": "2026-11-07T04:05:18Z"
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-07T12:00:03Z"
       }
      ],
      "current_materials": [
       {
-       "id": 5,
+       "id": 2367,
        "production_batch_id": null,
        "production_product_type_id": 3,
        "parent_material_id": null,
-       "origin_type": "STORAGE_OPENING",
+       "origin_type": "TANK",
        "quantity": 623.0,
        "unit": "LITRE",
        "status": "active",
@@ -15149,7 +15154,7 @@
        "source_production_stage_id": null,
        "created_by_batch_process_id": null,
        "closed_by_batch_process_id": null,
-       "note": "Açılış stoğu — Blend Gemlik (%70)",
+       "note": null,
        "production_product_type": {
         "id": 3,
         "production_product_id": 2,
@@ -15167,8 +15172,8 @@
        },
        "attribute_values": [
         {
-         "id": 5,
-         "material_id": 5,
+         "id": 1283,
+         "material_id": 2367,
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
@@ -15186,19 +15191,19 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-06T15:35:12Z",
-         "updated_at": "2026-11-06T15:35:12Z"
+         "created_at": "2026-11-06T15:35:13Z",
+         "updated_at": "2026-11-06T15:35:13Z"
         }
        ],
-       "created_at": "2026-11-06T15:35:12Z",
-       "updated_at": "2026-11-07T04:05:18Z"
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-07T12:00:03Z"
       },
       {
-       "id": 6,
+       "id": 2368,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
-       "origin_type": "STORAGE_OPENING",
+       "origin_type": "TANK",
        "quantity": 267.0,
        "unit": "LITRE",
        "status": "active",
@@ -15207,7 +15212,7 @@
        "source_production_stage_id": null,
        "created_by_batch_process_id": null,
        "closed_by_batch_process_id": null,
-       "note": "Açılış stoğu — Blend Ayvalık (%30)",
+       "note": null,
        "production_product_type": {
         "id": 4,
         "production_product_id": 2,
@@ -15225,8 +15230,8 @@
        },
        "attribute_values": [
         {
-         "id": 6,
-         "material_id": 6,
+         "id": 1284,
+         "material_id": 2368,
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
@@ -15244,21 +15249,16 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-06T15:35:12Z",
-         "updated_at": "2026-11-06T15:35:12Z"
+         "created_at": "2026-11-06T15:35:13Z",
+         "updated_at": "2026-11-06T15:35:13Z"
         }
        ],
-       "created_at": "2026-11-06T15:35:12Z",
-       "updated_at": "2026-11-07T04:05:18Z"
+       "created_at": "2026-11-06T15:35:13Z",
+       "updated_at": "2026-11-07T12:00:03Z"
       }
      ],
      "created_at": "2026-11-06T15:35:12Z",
-     "updated_at": "2026-11-06T15:35:12Z",
-     "filled_litre": 890,
-     "filled_kg": 815.24,
-     "capacity_kg": 1832,
-     "capacity_litre": 2000,
-     "kind": "final"
+     "updated_at": "2026-11-06T15:35:12Z"
     }
    },
    "save": null
@@ -15297,7 +15297,7 @@
       "cancelled"
      ],
      "note": null,
-     "started_at": "2026-11-07T04:05:18Z",
+     "started_at": "2026-11-07T12:00:03Z",
      "completed_at": null,
      "finished_product": {
       "id": 3,
@@ -15311,8 +15311,8 @@
      },
      "materials": [
       {
-       "id": 4,
-       "source_material_id": 1,
+       "id": 535,
+       "source_material_id": 2363,
        "quantity_used": 75.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -15380,7 +15380,7 @@
       }
      ],
      "created_at": "2026-11-06T15:35:13Z",
-     "updated_at": "2026-11-07T04:05:18Z"
+     "updated_at": "2026-11-07T12:00:03Z"
     }
    },
    "save": null,
@@ -15432,8 +15432,8 @@
      },
      "materials": [
       {
-       "id": 542,
-       "source_material_id": 2,
+       "id": 552,
+       "source_material_id": 2364,
        "quantity_used": 4.0,
        "unit": "LITRE",
        "production_product_type_id": 3,
@@ -15500,8 +15500,8 @@
        "actual_value": null
       }
      ],
-     "created_at": "2026-11-07T04:05:15Z",
-     "updated_at": "2026-11-07T04:05:18Z"
+     "created_at": "2026-11-07T12:00:02Z",
+     "updated_at": "2026-11-07T12:00:03Z"
     }
    },
    "save": null

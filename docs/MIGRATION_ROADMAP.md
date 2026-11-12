@@ -585,10 +585,29 @@ geçişinden önce yapılır.
 ## C7: İzlenebilirlik ve eski veri
 - [x] Tanka giriş hareketi, karıştığı tank materyalini gösterir; soy grafiği parti → tank materyali → dolum →
   depo → sipariş şeklinde yürür
-- [ ] Tanklardaki mevcut aktif materyaller tank ve tip bazında birleştirilir, ortalamalar hesaplanır, eskiler kapanır
+- [x] Tank materyali hiç sıfırlanmayabildiği için soy grafiği zamanla sınırlanır (hareket sırasına göre): partiden
+  inilince tanka girmeden önceki dolum ve aktarımlar, aktarımdan geriye çıkılınca sonraki girişler görülmez; tank
+  materyalinin kendi grafiği sınırsız. Partiye düşen oransal pay (dolumun yüzde kaçı) şimdilik hesaplanmaz
+- [x] Materyal geçmişinde son tanka girişler de görülür (`tank_material_id`: karıştığı tank materyali); liste
+  süzgecinde `lineage=root` tank materyallerini getirmez, `lineage=tank` yalnızca onları getirir
+- [x] Tanklardaki mevcut aktif materyaller tank ve tip bazında birleştirilir, ortalamalar hesaplanır, eskiler kapanır
+  (`V10`): miktar tipin birimine çevrilip toplanır, attribute'lar çalışma anındaki giriş kuralıyla birleşir, her eski
+  materyal için `TRANSFER_IN` (`BIRLESTIRME`) yazılır (soy bu bağdan yürür), bakiyeler yeniden hesaplanır.
+  Zorunlu özelliği eksik materyaller de birleşir (eksik değer tank ölçümüyle girilir). Ön dinlendirme tanklarına
+  dokunulmaz. Demo veri (seed) `V10`'dan geçmiş haliyle güncellendi (Laravel verisi + migration'lar; yalnızca
+  materyal, depo hareketi, attribute değeri, dolum materyali ve bakiye tabloları, zaman damgaları seed günü);
+  `TankMaterialMergeIT` sonucu çalışma anındaki girişle karşılaştırır
+- [x] Planlanmış ve devam eden dolumların eski materyallere ayırdığı miktarlar tank materyaline taşınır (çevrilip
+  koşu başına toplanır); tamamlanmış dolumlar değişmez
+- [x] Veri tahmin edilmez: farklı birimler yoğunluksuz çevrilemiyorsa ya da birleşecek materyali taşıyan onay bekleyen
+  üretim çıkışı/transferi varsa `V10` durur; ikisi de GO_LIVE 2. adımda önceden kontrol edilir
 - [x] Canlıda dinlenme tankları yalnızca metinle belirtiliyor: V7, kodunda, adında ya da açıklamasında "dinlen"
   geçen tankları `pre_settling` yapar; liste geçişten önce GO_LIVE 2. adımda kontrol edilir
-- [ ] Üretim aşamalarında sabitlenmiş eski `outbound` ve `transfer` ayarları geçişten önce canlı veride kontrol edilir
+- [x] Üretim aşamalarında sabitlenmiş eski `outbound` ve `transfer` ayarları geçişten önce canlı veride kontrol edilir
+  (GO_LIVE 2. adım: sabit hareket türü ve hedef tankın türü)
+- [ ] **Hatırlatma:** C2'den sonra son tankta parti materyali kalmadığı için üretimdeki depo hareketi uzantısının
+  `outbound` ve `transfer` seçenekleri bir parti materyaline ulaşamaz (yalnızca `inbound` çalışır). Kaldırmak kolay,
+  şimdilik tutuluyor (kullanıcı kararı, 2026-11-12)
 
 ## C8: Geliştirme başlarken konuşulacaklar
 - [x] Hepsi 2026-11-11'de konuşuldu, kararlar C1-C7'de

@@ -697,9 +697,9 @@
           "origin_type": "BATCH_PROCESS",
           "quantity": 1320.0,
           "unit": "LITRE",
-          "status": "active",
-          "current_location_type": "storage_unit",
-          "current_location_id": 9,
+          "status": "consumed",
+          "current_location_type": null,
+          "current_location_id": null,
           "source_production_stage_id": 10,
           "created_by_batch_process_id": 29,
           "closed_by_batch_process_id": null,
@@ -1540,9 +1540,9 @@
         "origin_type": "BATCH_PROCESS",
         "quantity": 1320.0,
         "unit": "LITRE",
-        "status": "active",
-        "current_location_type": "storage_unit",
-        "current_location_id": 9,
+        "status": "consumed",
+        "current_location_type": null,
+        "current_location_id": null,
         "source_production_stage_id": 10,
         "created_by_batch_process_id": 29,
         "closed_by_batch_process_id": null,
@@ -1702,7 +1702,7 @@
          "production_product_type_id": 3,
          "quantity": 1320.0,
          "unit": "LITRE",
-         "status": "active"
+         "status": "consumed"
         },
         "attribute_values": [],
         "created_by_batch_process": {
@@ -1755,7 +1755,7 @@
          "production_product_type_id": 3,
          "quantity": 1320.0,
          "unit": "LITRE",
-         "status": "active"
+         "status": "consumed"
         },
         "attribute_values": [
          {

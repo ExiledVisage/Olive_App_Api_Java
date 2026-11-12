@@ -34,7 +34,7 @@ class MaterialService {
 	static final int MOVEMENT_LIMIT = 20;
 
 	private static final List<String> STATUSES = List.of("active", "consumed");
-	private static final List<String> LINEAGES = List.of("root", "root_raw", "root_opening", "derived");
+	private static final List<String> LINEAGES = List.of("root", "root_raw", "root_opening", "derived", "tank");
 
 	private final MaterialQueries queries;
 	private final JdbcClient jdbc;
@@ -52,9 +52,9 @@ class MaterialService {
 	}
 
 	/**
-	 * {@code status}: verilmezse active; active/consumed disinda hepsi. {@code lineage}: root | root_raw |
-	* root_opening | derived. {@code search}: materyal no (#12 ya da 12), not, urun tipi adi, parti kodu,
-	* tank adi/kodu.
+	 * {@code status}: verilmezse active; active/consumed disinda hepsi. {@code lineage}: root (son tankin tank
+	 * materyalleri haric) | root_raw | root_opening | derived | tank. {@code search}: materyal no (#12 ya da 12),
+	 * not, urun tipi adi, parti kodu, tank adi/kodu.
 	 */
 	MaterialListResponse index(String statusParam, String lineageParam, String searchParam) {
 		String status = statusParam == null ? "active" : statusParam;
@@ -90,7 +90,8 @@ class MaterialService {
 		}
 		if (lineage != null) {
 			switch (lineage) {
-				case "root" -> where.add("parent_material_id is null");
+				case "root" -> where.add("parent_material_id is null and origin_type <> 'TANK'");
+				case "tank" -> where.add("origin_type = 'TANK'");
 				case "root_raw" -> where.add("parent_material_id is null and origin_type = 'BATCH_PROCESS'");
 				case "root_opening" -> where.add("parent_material_id is null and origin_type = 'STORAGE_OPENING'");
 				default -> where.add("parent_material_id is not null");
@@ -207,15 +208,18 @@ class MaterialService {
 		}).toList();
 	}
 
-	/** Son 20 hareket (moved_at desc, id desc). */
+	/**
+	 * Son 20 hareket (moved_at desc, id desc): materyalin kendi hareketleri ve son tanka girisleri (hareket tank
+	 * materyalinin uzerinde; {@code tank_material_id} karistigi tank materyali).
+	 */
 	private List<MaterialDetailResponse.Movement> movements(long materialId) {
-		record Row(Long id, Long storageUnitId, Long counterpartyStorageUnitId, Long finishedProductRunId,
-			String movementType, BigDecimal quantity, String unit, LocalDateTime movedAt) {
+		record Row(Long id, Long materialId, Long storageUnitId, Long counterpartyStorageUnitId,
+			Long finishedProductRunId, String movementType, BigDecimal quantity, String unit, LocalDateTime movedAt) {
 		}
 		List<Row> rows = jdbc.sql("""
-			select id, storage_unit_id, counterparty_storage_unit_id, finished_product_run_id, movement_type, quantity,
-				unit, moved_at
-			from storage_movements where material_id = :id order by moved_at desc, id desc
+			select id, material_id, storage_unit_id, counterparty_storage_unit_id, finished_product_run_id,
+				movement_type, quantity, unit, moved_at
+			from storage_movements where material_id = :id or source_material_id = :id order by moved_at desc, id desc
 			""" + " limit " + MOVEMENT_LIMIT).param("id", materialId).query(Row.class).list();
 		List<Long> unitIds = new ArrayList<>(rows.stream().map(Row::storageUnitId).toList());
 		unitIds.addAll(rows.stream().map(Row::counterpartyStorageUnitId).toList());
@@ -224,7 +228,8 @@ class MaterialService {
 			Unit unit = lookup(units, r.storageUnitId());
 			Unit counterparty = lookup(units, r.counterpartyStorageUnitId());
 			return new MaterialDetailResponse.Movement(r.id(), r.finishedProductRunId(), r.movementType(), r.quantity(),
-				r.unit(), r.movedAt(), unit == null ? null : unit.name(), counterparty == null ? null : counterparty.name());
+				r.unit(), r.movedAt(), unit == null ? null : unit.name(), counterparty == null ? null : counterparty.name(),
+				r.materialId() == materialId ? null : r.materialId());
 		}).toList();
 	}
 

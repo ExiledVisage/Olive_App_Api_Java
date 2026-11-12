@@ -31,8 +31,9 @@ import static com.olivamore.api.inventory.material.MaterialResponses.lookup;
 /**
  * Materyalin soy grafi (DAG): koklere cikilir, oradan butun torunlara inilir (en fazla 400 dugum). Kenarlar
  * ebeveyn-cocuk ve son tanka giris (gelen materyal -> tank materyali); sonra dolum kosulari, depo yerlestirmeleri
- * ve (tek kosudan beslenen depolarda) siparisler eklenir. Dugumlere kokten en
- * uzun yol derinligi verilir.
+ * ve (tek kosudan beslenen depolarda) siparisler eklenir. Tank materyali hic sifirlanmayabildiginden kenarlari
+ * zamanla sinirlanir: partiden inilince girmeden onceki dolumlar, dolumdan cikilinca sonraki girisler gorulmez.
+ * Dugumlere kokten en uzun yol derinligi verilir.
  */
 @Service
 class MaterialLineageService {
@@ -66,7 +67,8 @@ class MaterialLineageService {
 
 	MaterialLineageResponse build(long id) {
 		MaterialRow material = queries.material(id).orElseThrow(() -> new ModelNotFoundException("Material", id));
-		List<MaterialRow> materials = collect(material);
+		Walk walk = collect(material);
+		List<MaterialRow> materials = walk.materials();
 		boolean truncated = materials.size() >= MAX_NODES;
 
 		Map<Long, ProductType> types = queries.productTypes(column(materials, MaterialRow::productionProductTypeId));
@@ -87,33 +89,94 @@ class MaterialLineageService {
 					stage == null ? null : stage.name(), Quantities.number(m.quantity()), m.unit()));
 			}
 		}
-		appendMovementLinks(materials, nodes, edges);
-		appendRuns(materials, nodes, edges);
+		appendMovementLinks(walk, nodes, edges);
+		appendRuns(walk, nodes, edges);
 		return new MaterialLineageResponse("material:" + material.id(), withDepths(nodes, edges), edges, truncated);
 	}
 
 	/**
-	 * Once yukari (ebeveyn ve son tankta tank materyaline giren materyaller), sonra bulunanlarin hepsinden asagi
-	 * (cocuklar ve girdigi tank materyalleri) genislik oncelikli; dongu korumali, odak her zaman listede. id sirasinda.
+	 * Bulunan materyaller ve tank materyallerinin zaman penceresi (hareket id'si; id'ler zamanla artar). Tank
+	 * materyaline asagi inildiyse ({@code after}) yalnizca bulunanlarin ilk girisinden sonraki dolum ve aktarimlari,
+	 * yukari cikildiysa ({@code before}) yalnizca bulunani beslemeden onceki girisleri gorulur. Odak sinirsizdir.
 	 */
-	private List<MaterialRow> collect(MaterialRow material) {
-		Map<Long, MaterialRow> found = new LinkedHashMap<>();
-		found.put(material.id(), material);
+	private static final class Walk {
+
+		private final long focus;
+		private final Map<Long, MaterialRow> found = new LinkedHashMap<>();
+		private final Map<Long, Long> after = new LinkedHashMap<>();
+		private final Map<Long, Long> before = new LinkedHashMap<>();
+
+		Walk(MaterialRow focus) {
+			this.focus = focus.id();
+			found.put(focus.id(), focus);
+		}
+
+		/** id sirasinda. */
+		List<MaterialRow> materials() {
+			return found.values().stream().sorted(Comparator.comparingLong(MaterialRow::id)).toList();
+		}
+
+		/** Tank materyalinden cikis (aktarim ya da dolum cekisi) gorulur mu; {@code null}: henuz cekilmemis. */
+		boolean allowsOut(long materialId, Long movementId) {
+			if (!bounded(materialId)) {
+				return true;
+			}
+			Long until = before.get(materialId);
+			if (until != null) {
+				return movementId != null && movementId <= until;
+			}
+			Long from = after.get(materialId);
+			return from == null || movementId == null || movementId > from;
+		}
+
+		/** Tank materyaline giris gorulur mu. */
+		boolean allowsIn(long materialId, long movementId) {
+			Long until = bounded(materialId) ? before.get(materialId) : null;
+			return until == null || movementId < until;
+		}
+
+		private boolean bounded(long materialId) {
+			MaterialRow row = found.get(materialId);
+			return materialId != focus && row != null && MaterialOrigin.TANK.value().equals(row.originType());
+		}
+
+	}
+
+	/**
+	 * Once yukari (ebeveyn ve son tankta tank materyaline giren materyaller), sonra bulunanlarin hepsinden asagi
+	 * (cocuklar ve girdigi tank materyalleri) genislik oncelikli; dongu korumali, odak her zaman listede. Tank
+	 * materyallerinde zaman penceresi uygulanir ({@link Walk}).
+	 */
+	private Walk collect(MaterialRow material) {
+		Walk walk = new Walk(material);
+		Map<Long, MaterialRow> found = walk.found;
 		List<Long> frontier = List.of(material.id());
 		while (!frontier.isEmpty() && found.size() < MAX_NODES) {
 			Set<Long> up = new LinkedHashSet<>();
 			frontier.stream().map(found::get).map(MaterialRow::parentMaterialId).filter(Objects::nonNull).forEach(up::add);
-			queries.linksTo(frontier).forEach(link -> up.add(link.sourceMaterialId()));
+			for (MaterialQueries.MovementLink link : queries.linksTo(frontier)) {
+				if (walk.allowsIn(link.materialId(), link.id())) {
+					up.add(link.sourceMaterialId());
+					walk.before.merge(link.sourceMaterialId(), link.id(), Math::max);
+				}
+			}
 			frontier = addAll(found, up);
 		}
 		frontier = new ArrayList<>(found.keySet());
 		while (!frontier.isEmpty() && found.size() < MAX_NODES) {
 			Set<Long> down = new LinkedHashSet<>();
 			queries.children(frontier).forEach(child -> down.add(child.id()));
-			queries.linksFrom(frontier).forEach(link -> down.add(link.materialId()));
+			for (MaterialQueries.MovementLink link : queries.linksFrom(frontier)) {
+				if (walk.allowsOut(link.sourceMaterialId(), link.id())) {
+					down.add(link.materialId());
+					if (!found.containsKey(link.materialId()) || walk.after.containsKey(link.materialId())) {
+						walk.after.merge(link.materialId(), link.id(), Math::min);
+					}
+				}
+			}
 			frontier = addAll(found, down);
 		}
-		return found.values().stream().sorted(Comparator.comparingLong(MaterialRow::id)).toList();
+		return walk;
 	}
 
 	/** Bulunmamis olanlar (sinira kadar) eklenir; eklenenlerin id'leri. */
@@ -128,15 +191,16 @@ class MaterialLineageService {
 		return added;
 	}
 
-	/** Giris hareketleri: gelen -> tank materyali, ayni cift icin miktarlar toplanir. */
-	private void appendMovementLinks(List<MaterialRow> materials, Map<String, Node> nodes, List<Edge> edges) {
+	/** Giris hareketleri: gelen -> tank materyali (pencere icinde), ayni cift icin miktarlar toplanir. */
+	private void appendMovementLinks(Walk walk, Map<String, Node> nodes, List<Edge> edges) {
 		record Pair(String from, String to, String label, String unit) {
 		}
 		Map<Pair, BigDecimal> totals = new LinkedHashMap<>();
-		for (MaterialQueries.MovementLink link : queries.linksFrom(materials.stream().map(MaterialRow::id).toList())) {
+		for (MaterialQueries.MovementLink link : queries.linksFrom(walk.found.keySet())) {
 			String from = "material:" + link.sourceMaterialId();
 			String to = "material:" + link.materialId();
-			if (!nodes.containsKey(from) || !nodes.containsKey(to)) {
+			if (!nodes.containsKey(from) || !nodes.containsKey(to) || !walk.allowsOut(link.sourceMaterialId(), link.id())
+				|| !walk.allowsIn(link.materialId(), link.id())) {
 				continue;
 			}
 			String label = "TRANSFER_IN".equals(link.movementType()) ? "Transfer" : "Tanka girdi";
@@ -146,12 +210,21 @@ class MaterialLineageService {
 			Quantities.number(quantity), pair.unit())));
 	}
 
-	/** Dolum kosusu dugumleri (kosu basina bir) ve materyal -> kosu kenarlari; sonra depo yerlestirmeleri. */
-	private void appendRuns(List<MaterialRow> materials, Map<String, Node> nodes, List<Edge> edges) {
+	/**
+	 * Dolum kosusu dugumleri (kosu basina bir) ve materyal -> kosu kenarlari; tank materyalinde yalnizca pencere
+	 * icindeki (cekis hareketine gore) kosular. Sonra depo yerlestirmeleri.
+	 */
+	private void appendRuns(Walk walk, Map<String, Node> nodes, List<Edge> edges) {
+		List<MaterialRow> materials = walk.materials();
+		List<Long> ids = materials.stream().map(MaterialRow::id).toList();
+		Map<String, Long> withdrawals = withdrawals(ids);
 		List<RunMaterial> runMaterials = jdbc.sql("""
 			select finished_product_run_id, source_material_id, quantity_used from finished_product_run_materials
 			where source_material_id in (:ids)
-			""").param("ids", materials.stream().map(MaterialRow::id).toList()).query(RunMaterial.class).list();
+			""").param("ids", ids).query(RunMaterial.class).list().stream()
+			.filter(rm -> walk.allowsOut(rm.sourceMaterialId(),
+				withdrawals.get(rm.sourceMaterialId() + ":" + rm.finishedProductRunId())))
+			.toList();
 		if (runMaterials.isEmpty()) {
 			return;
 		}
@@ -176,6 +249,18 @@ class MaterialLineageService {
 				source == null ? null : source.unit()));
 		}
 		appendPlacements(new ArrayList<>(nodes.keySet()), nodes, edges);
+	}
+
+	/** Materyalden kosu icin yapilan ilk cekis hareketi: "materyal:kosu" -> hareket id'si. */
+	private Map<String, Long> withdrawals(List<Long> materialIds) {
+		record Withdrawal(Long materialId, Long finishedProductRunId, Long id) {
+		}
+		return jdbc.sql("""
+			select material_id, finished_product_run_id, min(id) as id from storage_movements
+			where material_id in (:ids) and finished_product_run_id is not null
+			group by material_id, finished_product_run_id
+			""").param("ids", materialIds).query(Withdrawal.class).list().stream()
+			.collect(Collectors.toMap(w -> w.materialId() + ":" + w.finishedProductRunId(), Withdrawal::id));
 	}
 
 	/** Kosunun ciktisinin depo basina toplami (raf adlari alt satirda). */

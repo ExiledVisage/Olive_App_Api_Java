@@ -53,7 +53,8 @@ record MaterialDetailResponse(
 		String unit,
 		LocalDateTime movedAt,
 		String storageUnitName,
-		String counterpartyStorageUnitName) {
+		String counterpartyStorageUnitName,
+		Long tankMaterialId) {
 	}
 
 	record Run(Long id, String status, String finishedProductName, Integer bottleQuantity, Number quantityUsed,

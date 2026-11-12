@@ -99,14 +99,14 @@ class BaselineSchemaIT {
 
 	@Test
 	void flywayBuiltTheSchemaFromScratch() {
-		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2-V9
+		// Tek basina kurulum: Laravel'in 69 migration'i ve kayit tablosu (baseline degil), sonra V2-V10
 		List<String> history = app.queryForList(
 			"select version || ' ' || type || ' ' || success from flyway_schema_history order by installed_rank", String.class);
-		assertThat(history).hasSize(78).allMatch(h -> h.endsWith(" SQL true"));
+		assertThat(history).hasSize(79).allMatch(h -> h.endsWith(" SQL true"));
 		assertThat(history.getFirst()).isEqualTo("0.00 SQL true");
 		assertThat(history.get(69)).isEqualTo("0.69 SQL true");
 		assertThat(history.get(70)).isEqualTo("2 SQL true");
-		assertThat(history.getLast()).isEqualTo("9 SQL true");
+		assertThat(history.getLast()).isEqualTo("10 SQL true");
 	}
 
 	@Test

@@ -363,10 +363,10 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3621,
+     "id": 3657,
      "storage_unit_id": 1,
-     "material_id": 2367,
-     "source_material_id": 2366,
+     "material_id": 2363,
+     "source_material_id": 2379,
      "batch_process_id": null,
      "finished_product_run_id": null,
      "counterparty_storage_unit_id": null,
@@ -376,19 +376,19 @@
      "quantity": 12.35,
      "unit": "LITRE",
      "note": "Devir",
-     "moved_at": "2026-11-11T18:01:17Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 1,
       "name": "Dolum Tankı — Gemlik 0.3",
       "code": "FILL-GEM-03"
      },
      "material": {
-      "id": 2367,
+      "id": 2363,
       "production_batch_id": null,
       "production_product_type_id": 3,
       "parent_material_id": null,
       "origin_type": "TANK",
-      "quantity": 12.3457,
+      "quantity": 2962.3457,
       "unit": "LITRE",
       "status": "active",
       "current_location_type": "storage_unit",
@@ -414,16 +414,14 @@
       },
       "attribute_values": [
        {
-        "id": 1281,
-        "material_id": 2367,
+        "id": 1279,
+        "material_id": 2363,
         "production_product_attribute_definition_id": 4,
         "value_boolean": null,
         "value_integer": null,
-        "value_decimal": 0.25,
-        "value_text": "x",
-        "value_json": {
-         "a": 1
-        },
+        "value_decimal": 0.2998,
+        "value_text": null,
+        "value_json": null,
         "definition": {
          "id": 4,
          "production_product_id": 2,
@@ -435,17 +433,17 @@
          "sort_order": 1,
          "description": "Asitlik oranı"
         },
-        "created_at": "2026-11-11T18:01:17Z",
-        "updated_at": "2026-11-11T18:01:17Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-12T14:48:51Z"
        }
       ],
-      "created_at": "2026-11-11T18:01:17Z",
-      "updated_at": "2026-11-11T18:01:17Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": null,
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:17Z",
-     "updated_at": "2026-11-11T18:01:17Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": [
@@ -462,7 +460,7 @@
    "response": {
     "data": [
      {
-      "id": 1,
+      "id": 804,
       "storage_unit_id": 1,
       "production_product_id": 2,
       "current_quantity": 2962.35,
@@ -473,8 +471,8 @@
        "name": "Zeytinyağı",
        "description": "İşlenmiş zeytinyağı ürünü"
       },
-      "created_at": "2026-11-06T15:35:12Z",
-      "updated_at": "2026-11-06T21:27:40Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      }
     ]
    },
@@ -641,10 +639,10 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3622,
+     "id": 3658,
      "storage_unit_id": 16,
-     "material_id": 2370,
-     "source_material_id": 2369,
+     "material_id": 2382,
+     "source_material_id": 2381,
      "batch_process_id": null,
      "finished_product_run_id": null,
      "counterparty_storage_unit_id": null,
@@ -654,14 +652,14 @@
      "quantity": 1000.0,
      "unit": "LITRE",
      "note": null,
-     "moved_at": "2026-11-11T18:01:18Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 16,
       "name": "Ortalama",
       "code": "TEST-AVG"
      },
      "material": {
-      "id": 2370,
+      "id": 2382,
       "production_batch_id": null,
       "production_product_type_id": 3,
       "parent_material_id": null,
@@ -692,8 +690,8 @@
       },
       "attribute_values": [
        {
-        "id": 1284,
-        "material_id": 2370,
+        "id": 1296,
+        "material_id": 2382,
         "production_product_attribute_definition_id": 4,
         "value_boolean": null,
         "value_integer": null,
@@ -711,17 +709,17 @@
          "sort_order": 1,
          "description": "Asitlik oranı"
         },
-        "created_at": "2026-11-11T18:01:18Z",
-        "updated_at": "2026-11-11T18:01:18Z"
+        "created_at": "2026-11-12T14:48:51Z",
+        "updated_at": "2026-11-12T14:48:51Z"
        }
       ],
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": null,
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": null
@@ -745,10 +743,10 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3623,
+     "id": 3659,
      "storage_unit_id": 16,
-     "material_id": 2370,
-     "source_material_id": 2371,
+     "material_id": 2382,
+     "source_material_id": 2383,
      "batch_process_id": null,
      "finished_product_run_id": null,
      "counterparty_storage_unit_id": null,
@@ -758,14 +756,14 @@
      "quantity": 500.0,
      "unit": "LITRE",
      "note": null,
-     "moved_at": "2026-11-11T18:01:18Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 16,
       "name": "Ortalama",
       "code": "TEST-AVG"
      },
      "material": {
-      "id": 2370,
+      "id": 2382,
       "production_batch_id": null,
       "production_product_type_id": 3,
       "parent_material_id": null,
@@ -796,8 +794,8 @@
       },
       "attribute_values": [
        {
-        "id": 1284,
-        "material_id": 2370,
+        "id": 1296,
+        "material_id": 2382,
         "production_product_attribute_definition_id": 4,
         "value_boolean": null,
         "value_integer": null,
@@ -815,17 +813,17 @@
          "sort_order": 1,
          "description": "Asitlik oranı"
         },
-        "created_at": "2026-11-11T18:01:18Z",
-        "updated_at": "2026-11-11T18:01:18Z"
+        "created_at": "2026-11-12T14:48:51Z",
+        "updated_at": "2026-11-12T14:48:51Z"
        }
       ],
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": null,
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": null
@@ -949,13 +947,13 @@
         "sort_order": 1,
         "description": "Asitlik oranı"
        },
-       "created_at": "2026-11-11T18:01:17Z",
-       "updated_at": "2026-11-11T18:01:17Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ],
      "balances": [
       {
-       "id": 804,
+       "id": 816,
        "storage_unit_id": 16,
        "production_product_id": 2,
        "current_quantity": 1500.0,
@@ -966,13 +964,13 @@
         "name": "Zeytinyağı",
         "description": "İşlenmiş zeytinyağı ürünü"
        },
-       "created_at": "2026-11-11T18:01:18Z",
-       "updated_at": "2026-11-11T18:01:18Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ],
      "current_materials": [
       {
-       "id": 2370,
+       "id": 2382,
        "production_batch_id": null,
        "production_product_type_id": 3,
        "parent_material_id": null,
@@ -1003,8 +1001,8 @@
        },
        "attribute_values": [
         {
-         "id": 1284,
-         "material_id": 2370,
+         "id": 1296,
+         "material_id": 2382,
          "production_product_attribute_definition_id": 4,
          "value_boolean": null,
          "value_integer": null,
@@ -1022,16 +1020,16 @@
           "sort_order": 1,
           "description": "Asitlik oranı"
          },
-         "created_at": "2026-11-11T18:01:18Z",
-         "updated_at": "2026-11-11T18:01:18Z"
+         "created_at": "2026-11-12T14:48:51Z",
+         "updated_at": "2026-11-12T14:48:51Z"
         }
        ],
-       "created_at": "2026-11-11T18:01:18Z",
-       "updated_at": "2026-11-11T18:01:18Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ],
-     "created_at": "2026-11-11T18:01:17Z",
-     "updated_at": "2026-11-11T18:01:17Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": null
@@ -1148,9 +1146,9 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3624,
+     "id": 3660,
      "storage_unit_id": 17,
-     "material_id": 2375,
+     "material_id": 2387,
      "source_material_id": 11,
      "batch_process_id": null,
      "finished_product_run_id": null,
@@ -1161,14 +1159,14 @@
      "quantity": 600.5,
      "unit": "KG",
      "note": "Kismi",
-     "moved_at": "2026-11-11T18:01:18Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 17,
       "name": "Pirina",
       "code": "TEST-KG"
      },
      "material": {
-      "id": 2375,
+      "id": 2387,
       "production_batch_id": null,
       "production_product_type_id": 5,
       "parent_material_id": null,
@@ -1198,13 +1196,13 @@
        }
       },
       "attribute_values": [],
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": null,
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": [
@@ -1224,9 +1222,9 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3625,
+     "id": 3661,
      "storage_unit_id": 17,
-     "material_id": 2375,
+     "material_id": 2387,
      "source_material_id": 13,
      "batch_process_id": null,
      "finished_product_run_id": null,
@@ -1237,14 +1235,14 @@
      "quantity": 20.0,
      "unit": "KG",
      "note": null,
-     "moved_at": "2026-11-11T18:01:18Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 17,
       "name": "Pirina",
       "code": "TEST-KG"
      },
      "material": {
-      "id": 2375,
+      "id": 2387,
       "production_batch_id": null,
       "production_product_type_id": 5,
       "parent_material_id": null,
@@ -1274,13 +1272,13 @@
        }
       },
       "attribute_values": [],
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": null,
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": null
@@ -1359,10 +1357,10 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3626,
+     "id": 3662,
      "storage_unit_id": 13,
-     "material_id": 2377,
-     "source_material_id": 2376,
+     "material_id": 2389,
+     "source_material_id": 2388,
      "batch_process_id": 3276,
      "finished_product_run_id": null,
      "counterparty_storage_unit_id": null,
@@ -1372,14 +1370,14 @@
      "quantity": 100.0,
      "unit": "LITRE",
      "note": null,
-     "moved_at": "2026-11-11T18:01:18Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 13,
       "name": "Ayvalık Dolum Tankı",
       "code": "DOLUM-AYV-01"
      },
      "material": {
-      "id": 2377,
+      "id": 2389,
       "production_batch_id": null,
       "production_product_type_id": 4,
       "parent_material_id": null,
@@ -1410,8 +1408,8 @@
       },
       "attribute_values": [
        {
-        "id": 1289,
-        "material_id": 2377,
+        "id": 1301,
+        "material_id": 2389,
         "production_product_attribute_definition_id": 4,
         "value_boolean": null,
         "value_integer": null,
@@ -1429,12 +1427,12 @@
          "sort_order": 1,
          "description": "Asitlik oranı"
         },
-        "created_at": "2026-11-11T18:01:18Z",
-        "updated_at": "2026-11-11T18:01:18Z"
+        "created_at": "2026-11-12T14:48:51Z",
+        "updated_at": "2026-11-12T14:48:51Z"
        }
       ],
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": {
       "id": 3276,
@@ -1443,8 +1441,8 @@
       "status": "waiting"
      },
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": [
@@ -1464,10 +1462,10 @@
    "status": 201,
    "response": {
     "data": {
-     "id": 3627,
+     "id": 3663,
      "storage_unit_id": 13,
-     "material_id": 2377,
-     "source_material_id": 2378,
+     "material_id": 2389,
+     "source_material_id": 2390,
      "batch_process_id": null,
      "finished_product_run_id": null,
      "counterparty_storage_unit_id": null,
@@ -1477,14 +1475,14 @@
      "quantity": 0.5,
      "unit": "LITRE",
      "note": null,
-     "moved_at": "2026-11-11T18:01:18Z",
+     "moved_at": "2026-11-12T14:48:51Z",
      "storage_unit": {
       "id": 13,
       "name": "Ayvalık Dolum Tankı",
       "code": "DOLUM-AYV-01"
      },
      "material": {
-      "id": 2377,
+      "id": 2389,
       "production_batch_id": null,
       "production_product_type_id": 4,
       "parent_material_id": null,
@@ -1514,13 +1512,13 @@
        }
       },
       "attribute_values": [],
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      "batch_process": null,
      "counterparty_storage_unit": null,
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": null
@@ -1576,7 +1574,7 @@
      "attribute_rules": [],
      "balances": [
       {
-       "id": 805,
+       "id": 817,
        "storage_unit_id": 17,
        "production_product_id": 3,
        "current_quantity": 620.5,
@@ -1587,13 +1585,13 @@
         "name": "Pirina",
         "description": "Zeytin işleme sonrası oluşan yan ürün"
        },
-       "created_at": "2026-11-11T18:01:18Z",
-       "updated_at": "2026-11-11T18:01:18Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ],
      "current_materials": [
       {
-       "id": 2375,
+       "id": 2387,
        "production_batch_id": null,
        "production_product_type_id": 5,
        "parent_material_id": null,
@@ -1623,12 +1621,12 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T18:01:18Z",
-       "updated_at": "2026-11-11T18:01:18Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ],
-     "created_at": "2026-11-11T18:01:18Z",
-     "updated_at": "2026-11-11T18:01:18Z"
+     "created_at": "2026-11-12T14:48:51Z",
+     "updated_at": "2026-11-12T14:48:51Z"
     }
    },
    "save": null
@@ -1724,9 +1722,9 @@
    "response": {
     "data": [
      {
-      "id": 3628,
+      "id": 3664,
       "storage_unit_id": 13,
-      "material_id": 2377,
+      "material_id": 2389,
       "source_material_id": null,
       "batch_process_id": 3276,
       "finished_product_run_id": null,
@@ -1737,14 +1735,14 @@
       "quantity": 40.0,
       "unit": "LITRE",
       "note": "Dolum",
-      "moved_at": "2026-11-11T18:01:18Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "storage_unit": {
        "id": 13,
        "name": "Ayvalık Dolum Tankı",
        "code": "DOLUM-AYV-01"
       },
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -1774,8 +1772,8 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T18:01:18Z",
-       "updated_at": "2026-11-11T18:01:18Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": {
        "id": 3276,
@@ -1784,8 +1782,8 @@
        "status": "waiting"
       },
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T18:01:18Z",
-      "updated_at": "2026-11-11T18:01:18Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      }
     ]
    },
@@ -1866,30 +1864,30 @@
    "status": 200,
    "response": {
     "data": {
-     "transfer_reference": "TRF-20261111212907-OOGZVV",
+     "transfer_reference": "TRF-20261112144851-METPZH",
      "out_movements": [
       {
-       "id": 3629,
+       "id": 3665,
        "storage_unit_id": 13,
-       "material_id": 2377,
+       "material_id": 2389,
        "source_material_id": null,
        "batch_process_id": null,
        "finished_product_run_id": null,
        "counterparty_storage_unit_id": 11,
        "source_type": "INTERNAL_TRANSFER",
        "movement_type": "TRANSFER_OUT",
-       "transfer_reference": "TRF-20261111212907-OOGZVV",
+       "transfer_reference": "TRF-20261112144851-METPZH",
        "quantity": 10.25,
        "unit": "LITRE",
        "note": "Toplama",
-       "moved_at": "2026-11-11T21:29:07Z",
+       "moved_at": "2026-11-12T14:48:51Z",
        "storage_unit": {
         "id": 13,
         "name": "Ayvalık Dolum Tankı",
         "code": "DOLUM-AYV-01"
        },
        "material": {
-        "id": 2377,
+        "id": 2389,
         "production_batch_id": null,
         "production_product_type_id": 4,
         "parent_material_id": null,
@@ -1919,8 +1917,8 @@
          }
         },
         "attribute_values": [],
-        "created_at": "2026-11-11T21:29:07Z",
-        "updated_at": "2026-11-11T21:29:07Z"
+        "created_at": "2026-11-12T14:48:51Z",
+        "updated_at": "2026-11-12T14:48:51Z"
        },
        "batch_process": null,
        "counterparty_storage_unit": {
@@ -1928,38 +1926,38 @@
         "name": "Ayvalık Toplama Tankı",
         "code": "TOPLAMA-AYV-01"
        },
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:07Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ],
      "in_movements": [
       {
-       "id": 3630,
+       "id": 3666,
        "storage_unit_id": 11,
-       "material_id": 2379,
-       "source_material_id": 2377,
+       "material_id": 2373,
+       "source_material_id": 2389,
        "batch_process_id": null,
        "finished_product_run_id": null,
        "counterparty_storage_unit_id": 13,
        "source_type": "INTERNAL_TRANSFER",
        "movement_type": "TRANSFER_IN",
-       "transfer_reference": "TRF-20261111212907-OOGZVV",
+       "transfer_reference": "TRF-20261112144851-METPZH",
        "quantity": 10.25,
        "unit": "LITRE",
        "note": "Toplama",
-       "moved_at": "2026-11-11T21:29:07Z",
+       "moved_at": "2026-11-12T14:48:51Z",
        "storage_unit": {
         "id": 11,
         "name": "Ayvalık Toplama Tankı",
         "code": "TOPLAMA-AYV-01"
        },
        "material": {
-        "id": 2379,
+        "id": 2373,
         "production_batch_id": null,
         "production_product_type_id": 4,
         "parent_material_id": null,
         "origin_type": "TANK",
-        "quantity": 10.25,
+        "quantity": 309.232,
         "unit": "LITRE",
         "status": "active",
         "current_location_type": "storage_unit",
@@ -1984,8 +1982,8 @@
          }
         },
         "attribute_values": [],
-        "created_at": "2026-11-11T21:29:07Z",
-        "updated_at": "2026-11-11T21:29:07Z"
+        "created_at": "2026-11-06T15:35:13Z",
+        "updated_at": "2026-11-12T14:48:51Z"
        },
        "batch_process": null,
        "counterparty_storage_unit": {
@@ -1993,8 +1991,8 @@
         "name": "Ayvalık Dolum Tankı",
         "code": "DOLUM-AYV-01"
        },
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:07Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       }
      ]
     }
@@ -2055,7 +2053,7 @@
    "response": {
     "data": [
      {
-      "id": 16,
+      "id": 813,
       "storage_unit_id": 11,
       "production_product_id": 2,
       "current_quantity": 309.23,
@@ -2066,8 +2064,8 @@
        "name": "Zeytinyağı",
        "description": "İşlenmiş zeytinyağı ürünü"
       },
-      "created_at": "2025-11-08T00:00:00Z",
-      "updated_at": "2026-11-11T21:29:07Z"
+      "created_at": "2026-11-06T15:35:13Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      }
     ]
    },
@@ -2187,10 +2185,10 @@
    "response": {
     "data": [
      {
-      "id": 3631,
+      "id": 3667,
       "storage_unit_id": 13,
-      "material_id": 2377,
-      "source_material_id": 2380,
+      "material_id": 2389,
+      "source_material_id": 2391,
       "batch_process_id": 3276,
       "finished_product_run_id": null,
       "counterparty_storage_unit_id": null,
@@ -2200,14 +2198,14 @@
       "quantity": 20.0,
       "unit": "LITRE",
       "note": null,
-      "moved_at": "2026-11-11T21:29:08Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "storage_unit": {
        "id": 13,
        "name": "Ayvalık Dolum Tankı",
        "code": "DOLUM-AYV-01"
       },
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2237,8 +2235,8 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": {
        "id": 3276,
@@ -2247,8 +2245,8 @@
        "status": "waiting"
       },
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:08Z",
-      "updated_at": "2026-11-11T21:29:08Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      }
     ]
    },
@@ -2268,9 +2266,9 @@
    "response": {
     "data": [
      {
-      "id": 3632,
+      "id": 3668,
       "storage_unit_id": 13,
-      "material_id": 2377,
+      "material_id": 2389,
       "source_material_id": null,
       "batch_process_id": null,
       "finished_product_run_id": null,
@@ -2281,14 +2279,14 @@
       "quantity": 60.0,
       "unit": "LITRE",
       "note": null,
-      "moved_at": "2026-11-11T21:29:08Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "storage_unit": {
        "id": 13,
        "name": "Ayvalık Dolum Tankı",
        "code": "DOLUM-AYV-01"
       },
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2318,13 +2316,13 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:08Z",
-      "updated_at": "2026-11-11T21:29:08Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      }
     ]
    },
@@ -2339,7 +2337,7 @@
    "response": {
     "data": [
      {
-      "id": 806,
+      "id": 818,
       "storage_unit_id": 13,
       "production_product_id": 2,
       "current_quantity": 10.25,
@@ -2350,8 +2348,8 @@
        "name": "Zeytinyağı",
        "description": "İşlenmiş zeytinyağı ürünü"
       },
-      "created_at": "2026-11-11T21:29:07Z",
-      "updated_at": "2026-11-11T21:29:08Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      }
     ]
    },
@@ -2366,9 +2364,9 @@
    "response": {
     "content": [
      {
-      "id": 3632,
+      "id": 3668,
       "storage_unit_id": 13,
-      "material_id": 2377,
+      "material_id": 2389,
       "source_material_id": null,
       "batch_process_id": null,
       "finished_product_run_id": null,
@@ -2379,9 +2377,9 @@
       "quantity": 60.0,
       "unit": "LITRE",
       "note": null,
-      "moved_at": "2026-11-11T21:29:08Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2411,19 +2409,19 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:08Z",
-      "updated_at": "2026-11-11T21:29:08Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      {
-      "id": 3631,
+      "id": 3667,
       "storage_unit_id": 13,
-      "material_id": 2377,
-      "source_material_id": 2380,
+      "material_id": 2389,
+      "source_material_id": 2391,
       "batch_process_id": 3276,
       "finished_product_run_id": null,
       "counterparty_storage_unit_id": null,
@@ -2433,9 +2431,9 @@
       "quantity": 20.0,
       "unit": "LITRE",
       "note": null,
-      "moved_at": "2026-11-11T21:29:08Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2465,8 +2463,8 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": {
        "id": 3276,
@@ -2475,26 +2473,26 @@
        "status": "waiting"
       },
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:08Z",
-      "updated_at": "2026-11-11T21:29:08Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      {
-      "id": 3629,
+      "id": 3665,
       "storage_unit_id": 13,
-      "material_id": 2377,
+      "material_id": 2389,
       "source_material_id": null,
       "batch_process_id": null,
       "finished_product_run_id": null,
       "counterparty_storage_unit_id": 11,
       "source_type": "INTERNAL_TRANSFER",
       "movement_type": "TRANSFER_OUT",
-      "transfer_reference": "TRF-20261111212907-OOGZVV",
+      "transfer_reference": "TRF-20261112144851-METPZH",
       "quantity": 10.25,
       "unit": "LITRE",
       "note": "Toplama",
-      "moved_at": "2026-11-11T21:29:07Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2524,8 +2522,8 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": {
@@ -2533,13 +2531,13 @@
        "name": "Ayvalık Toplama Tankı",
        "code": "TOPLAMA-AYV-01"
       },
-      "created_at": "2026-11-11T21:29:07Z",
-      "updated_at": "2026-11-11T21:29:07Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      {
-      "id": 3628,
+      "id": 3664,
       "storage_unit_id": 13,
-      "material_id": 2377,
+      "material_id": 2389,
       "source_material_id": null,
       "batch_process_id": 3276,
       "finished_product_run_id": null,
@@ -2550,9 +2548,9 @@
       "quantity": 40.0,
       "unit": "LITRE",
       "note": "Dolum",
-      "moved_at": "2026-11-11T21:29:07Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2582,8 +2580,8 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": {
        "id": 3276,
@@ -2592,14 +2590,14 @@
        "status": "waiting"
       },
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:07Z",
-      "updated_at": "2026-11-11T21:29:07Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      {
-      "id": 3627,
+      "id": 3663,
       "storage_unit_id": 13,
-      "material_id": 2377,
-      "source_material_id": 2378,
+      "material_id": 2389,
+      "source_material_id": 2390,
       "batch_process_id": null,
       "finished_product_run_id": null,
       "counterparty_storage_unit_id": null,
@@ -2609,9 +2607,9 @@
       "quantity": 0.5,
       "unit": "LITRE",
       "note": null,
-      "moved_at": "2026-11-11T21:29:07Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2641,19 +2639,19 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": null,
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:07Z",
-      "updated_at": "2026-11-11T21:29:07Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      {
-      "id": 3626,
+      "id": 3662,
       "storage_unit_id": 13,
-      "material_id": 2377,
-      "source_material_id": 2376,
+      "material_id": 2389,
+      "source_material_id": 2388,
       "batch_process_id": 3276,
       "finished_product_run_id": null,
       "counterparty_storage_unit_id": null,
@@ -2663,9 +2661,9 @@
       "quantity": 100.0,
       "unit": "LITRE",
       "note": null,
-      "moved_at": "2026-11-11T21:29:07Z",
+      "moved_at": "2026-11-12T14:48:51Z",
       "material": {
-       "id": 2377,
+       "id": 2389,
        "production_batch_id": null,
        "production_product_type_id": 4,
        "parent_material_id": null,
@@ -2695,8 +2693,8 @@
         }
        },
        "attribute_values": [],
-       "created_at": "2026-11-11T21:29:07Z",
-       "updated_at": "2026-11-11T21:29:08Z"
+       "created_at": "2026-11-12T14:48:51Z",
+       "updated_at": "2026-11-12T14:48:51Z"
       },
       "batch_process": {
        "id": 3276,
@@ -2705,8 +2703,8 @@
        "status": "waiting"
       },
       "counterparty_storage_unit": null,
-      "created_at": "2026-11-11T21:29:07Z",
-      "updated_at": "2026-11-11T21:29:07Z"
+      "created_at": "2026-11-12T14:48:51Z",
+      "updated_at": "2026-11-12T14:48:51Z"
      },
      {
       "id": 3589,
@@ -31676,9 +31674,9 @@
        "origin_type": "BATCH_PROCESS",
        "quantity": 3.781,
        "unit": "LITRE",
-       "status": "active",
-       "current_location_type": "storage_unit",
-       "current_location_id": 8,
+       "status": "consumed",
+       "current_location_type": null,
+       "current_location_id": null,
        "source_production_stage_id": 10,
        "created_by_batch_process_id": 3221,
        "closed_by_batch_process_id": null,
@@ -31724,7 +31722,7 @@
         }
        ],
        "created_at": "2026-11-03T16:40:00Z",
-       "updated_at": "2026-11-06T14:54:00Z"
+       "updated_at": "2026-11-06T15:35:13Z"
       },
       "batch_process": {
        "id": 3225,
@@ -32457,7 +32455,8 @@
        "unit": "LITRE",
        "moved_at": "2026-11-04T23:40:00Z",
        "storage_unit_name": "Gemlik Ön Dinlenme Tankı",
-       "counterparty_storage_unit_name": null
+       "counterparty_storage_unit_name": null,
+       "tank_material_id": null
       }
      ],
      "runs": []
@@ -32500,12 +32499,12 @@
        "subtitle": "1.320 L",
        "quantity": 1320,
        "unit": "LITRE",
-       "status": "active",
+       "status": "consumed",
        "lineage_role": "derived",
        "origin_type": "BATCH_PROCESS",
        "batch_code": "SIM-GEM-002",
        "stage_name": "Filtreleme",
-       "storage_unit": "FILL-GEM-11",
+       "storage_unit": null,
        "is_focus": false,
        "depth": 1
       },
@@ -32544,6 +32543,23 @@
        "depth": 2
       },
       {
+       "key": "material:2372",
+       "kind": "material",
+       "id": 2372,
+       "title": "Gemlik Zeytinyağı",
+       "subtitle": "1.320 L",
+       "quantity": 1320,
+       "unit": "LITRE",
+       "status": "active",
+       "lineage_role": "tank",
+       "origin_type": "TANK",
+       "batch_code": null,
+       "stage_name": null,
+       "storage_unit": "FILL-GEM-11",
+       "is_focus": false,
+       "depth": 2
+      },
+      {
        "key": "material:25",
        "kind": "material",
        "id": 25,
@@ -32571,29 +32587,9 @@
        "depth": 2
       },
       {
-       "key": "run:16",
-       "kind": "finished_product_run",
-       "id": 16,
-       "title": "Naturel Sızma Gemlik 0.3 5L",
-       "subtitle": "15 adet",
-       "status": "in_progress",
-       "is_focus": false,
-       "depth": 2
-      },
-      {
-       "key": "run:17",
-       "kind": "finished_product_run",
-       "id": 17,
-       "title": "Naturel Sızma Gemlik 0.3 5L",
-       "subtitle": "10 adet",
-       "status": "planned",
-       "is_focus": false,
-       "depth": 2
-      },
-      {
-       "key": "material:2375",
+       "key": "material:2387",
        "kind": "material",
-       "id": 2375,
+       "id": 2387,
        "title": "Zeytin Pirinası",
        "subtitle": "620,5 kg",
        "quantity": 620.5,
@@ -32624,6 +32620,26 @@
        "title": "Soğuk Depo",
        "subtitle": "10 adet · E1",
        "status": null,
+       "is_focus": false,
+       "depth": 3
+      },
+      {
+       "key": "run:16",
+       "kind": "finished_product_run",
+       "id": 16,
+       "title": "Naturel Sızma Gemlik 0.3 5L",
+       "subtitle": "15 adet",
+       "status": "in_progress",
+       "is_focus": false,
+       "depth": 3
+      },
+      {
+       "key": "run:17",
+       "kind": "finished_product_run",
+       "id": 17,
+       "title": "Naturel Sızma Gemlik 0.3 5L",
+       "subtitle": "10 adet",
+       "status": "planned",
        "is_focus": false,
        "depth": 3
       }
@@ -32658,15 +32674,22 @@
        "unit": "LITRE"
       },
       {
+       "from": "material:10",
+       "to": "material:2372",
+       "label": "Transfer",
+       "quantity": 1320,
+       "unit": "LITRE"
+      },
+      {
        "from": "material:11",
-       "to": "material:2375",
+       "to": "material:2387",
        "label": "Tanka girdi",
        "quantity": 600.5,
        "unit": "KG"
       },
       {
        "from": "material:13",
-       "to": "material:2375",
+       "to": "material:2387",
        "label": "Tanka girdi",
        "quantity": 20,
        "unit": "KG"
@@ -32679,14 +32702,14 @@
        "unit": "LITRE"
       },
       {
-       "from": "material:10",
+       "from": "material:2372",
        "to": "run:16",
        "label": "Dolum",
        "quantity": 75,
        "unit": "LITRE"
       },
       {
-       "from": "material:10",
+       "from": "material:2372",
        "to": "run:17",
        "label": "Dolum",
        "quantity": 50,
