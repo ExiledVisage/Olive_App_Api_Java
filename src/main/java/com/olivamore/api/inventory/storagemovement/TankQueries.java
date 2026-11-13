@@ -66,6 +66,11 @@ class TankQueries {
 		this.batches = batches;
 	}
 
+	/** Transfer referansinin sira numarasi. */
+	long nextTransferNumber() {
+		return jdbc.sql("select nextval('transfer_references_seq')").query(Long.class).single();
+	}
+
 	Map<Long, ProductType> productTypes(Collection<Long> ids) {
 		return products.productTypes(ids).values().stream().collect(Collectors.toMap(ProductDirectory.ProductType::id,
 			t -> new ProductType(t.id(), t.productionProductId(), t.name(), t.unit(), t.effectiveDensity())));

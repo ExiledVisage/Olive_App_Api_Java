@@ -1585,7 +1585,7 @@
         "counterparty_storage_unit_id" : 8,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_IN",
-        "transfer_reference" : "TRF-20251121070600-QEA89N",
+        "transfer_reference" : "TRF-20251121070600-00000E",
         "quantity" : 451.65,
         "unit" : "LITRE",
         "note" : "Tank aktarımı",

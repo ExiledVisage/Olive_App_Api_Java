@@ -42,7 +42,6 @@ import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.security.SecureRandom;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,9 +83,7 @@ public class StorageMovementService {
 	/** Bosaltmada cekilen, giren kutleyi en fazla bu oranda (olcum farki) asabilir; fazlasi reddedilir. */
 	private static final BigDecimal EMPTYING_TOLERANCE = new BigDecimal("0.005");
 
-	private static final String ALPHANUMERIC = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	private static final DateTimeFormatter REFERENCE_TIME = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-	private static final SecureRandom RANDOM = new SecureRandom();
 
 	private final StorageUnitRepository units;
 	private final StorageUnitBalanceRepository balances;
@@ -1194,17 +1191,14 @@ public class StorageMovementService {
 		return value.stripTrailingZeros().toPlainString();
 	}
 
-	private static String reference() {
-		return "TRF-" + REFERENCE_TIME.format(Timestamps.now()) + "-" + random(6).toUpperCase(Locale.ROOT);
-	}
-
-	/** Harf ve rakam. */
-	private static String random(int length) {
-		StringBuilder out = new StringBuilder(length);
-		for (int i = 0; i < length; i++) {
-			out.append(ALPHANUMERIC.charAt(RANDOM.nextInt(ALPHANUMERIC.length())));
-		}
-		return out.toString();
+	/**
+	 * Transfer referansi: zaman ve {@code transfer_references_seq}'ten gelen sira numarasi (36 tabanli, en az 6
+	 * hane). Sira numarasi referansi tekil yapar; ayni veriden ayni referans uretilir.
+	 */
+	private String reference() {
+		String number = Long.toString(queries.nextTransferNumber(), Character.MAX_RADIX).toUpperCase(Locale.ROOT);
+		return "TRF-" + REFERENCE_TIME.format(Timestamps.now()) + "-" + "0".repeat(Math.max(0, 6 - number.length()))
+			+ number;
 	}
 
 }

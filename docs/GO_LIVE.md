@@ -278,6 +278,8 @@ uygular. **Bu migration'lar Laravel'in tablolarını değiştirir:**
   birleşir; her eski materyal için bir `TRANSFER_IN` (`BIRLESTIRME`) yazılır, eskiler kapanır. Etkilenen tankların
   bakiyeleri yeniden hesaplanır, açık dolumların ayırdığı miktarlar tank materyaline taşınır. Yoğunluk eksikse ya da
   birleşecek materyali taşıyan onay bekleyen çıkış/transfer varsa durur (2. adımdaki kontroller).
+- `V11`: transfer referansının sıra numarası için `transfer_references_seq` eklenir; yeni referanslar
+  `TRF-<zaman>-<sıra>` olur. Var olan referanslara dokunulmaz.
 
 Bu andan sonra Laravel aynı veritabanıyla çalışamaz.
 

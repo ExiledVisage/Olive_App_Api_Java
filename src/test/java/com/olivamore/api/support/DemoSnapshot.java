@@ -17,11 +17,13 @@ import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Testlerin demo verisi: JVM'de bir kez, sabit bitis gunu ve tohumla {@link DemoDataSeeder} calisir (uygulamanin
  * API'si uzerinden), sonuc tablo tablo bellege alinir (COPY). Her test sinifindan once veritabani bosaltilip bu
- * kopya geri yuklenir; sequence'ler de ayni yere doner. Boylece her sinif ayni demo veriyle, hizlica baslar.
+ * kopya geri yuklenir; sequence'ler de ayni yere doner. Boylece her sinif ayni demo veriyle, hizlica baslar. Kopya
+ * diske de yazilir ({@link DemoSnapshotCache}); uygulama kodu degismediyse sonraki calismalar seeder'i calistirmaz.
  */
 public final class DemoSnapshot {
 
@@ -39,13 +41,14 @@ public final class DemoSnapshot {
 		DataSource dataSource = context.getBean(DataSource.class);
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 		truncate(jdbc);
-		if (tables == null) {
+		if (tables == null && !loadCached()) {
 			Integer port = context.getEnvironment().getProperty("local.server.port", Integer.class);
 			if (port == null) {
 				throw new IllegalStateException("Demo veri calisan uygulama ister (RANDOM_PORT)");
 			}
 			context.getBean(DemoDataSeeder.class).seed(LAST_DAY, DemoDataSeeder.SEED, port);
 			capture(dataSource, jdbc);
+			cache().write(new DemoSnapshotCache.Snapshot(tables, sequences));
 			return;
 		}
 		try (Connection c = dataSource.getConnection()) {
@@ -108,7 +111,21 @@ public final class DemoSnapshot {
 			""", String.class);
 	}
 
-	private record Sequence(long value, boolean called) {
+	/** Diskteki kopya (ayni kod ve parametrelerle uretilmis) varsa onu alir. */
+	private static boolean loadCached() throws IOException {
+		Optional<DemoSnapshotCache.Snapshot> cached = cache().read();
+		cached.ifPresent(snapshot -> {
+			tables = snapshot.tables();
+			sequences = snapshot.sequences();
+		});
+		return cached.isPresent();
+	}
+
+	private static DemoSnapshotCache cache() {
+		return new DemoSnapshotCache(LAST_DAY, DemoDataSeeder.SEED);
+	}
+
+	record Sequence(long value, boolean called) {
 	}
 
 }
