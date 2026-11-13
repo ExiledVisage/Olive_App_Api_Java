@@ -17,6 +17,7 @@
 		<java.version>25</java.version>
 		<argLine></argLine>
 		<spring-modulith.version>2.1.1</spring-modulith.version>
+		<archunit.version>1.4.2</archunit.version>
 		<bucket4j.version>8.22.0</bucket4j.version>
 	</properties>
 	<dependencies>
@@ -129,6 +130,12 @@
 		<dependency>
 			<groupId>org.springframework.modulith</groupId>
 			<artifactId>spring-modulith-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit5</artifactId>
+			<version>${archunit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

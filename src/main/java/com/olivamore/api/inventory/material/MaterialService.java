@@ -213,16 +213,16 @@ class MaterialService {
 	 * materyalinin uzerinde; {@code tank_material_id} karistigi tank materyali).
 	 */
 	private List<MaterialDetailResponse.Movement> movements(long materialId) {
-		record Row(Long id, Long materialId, Long storageUnitId, Long counterpartyStorageUnitId,
+		record MovementRow(Long id, Long materialId, Long storageUnitId, Long counterpartyStorageUnitId,
 			Long finishedProductRunId, String movementType, BigDecimal quantity, String unit, LocalDateTime movedAt) {
 		}
-		List<Row> rows = jdbc.sql("""
+		List<MovementRow> rows = jdbc.sql("""
 			select id, material_id, storage_unit_id, counterparty_storage_unit_id, finished_product_run_id,
 				movement_type, quantity, unit, moved_at
 			from storage_movements where material_id = :id or source_material_id = :id order by moved_at desc, id desc
-			""" + " limit " + MOVEMENT_LIMIT).param("id", materialId).query(Row.class).list();
-		List<Long> unitIds = new ArrayList<>(rows.stream().map(Row::storageUnitId).toList());
-		unitIds.addAll(rows.stream().map(Row::counterpartyStorageUnitId).toList());
+			""" + " limit " + MOVEMENT_LIMIT).param("id", materialId).query(MovementRow.class).list();
+		List<Long> unitIds = new ArrayList<>(rows.stream().map(MovementRow::storageUnitId).toList());
+		unitIds.addAll(rows.stream().map(MovementRow::counterpartyStorageUnitId).toList());
 		Map<Long, Unit> units = queries.units(unitIds);
 		return rows.stream().map(r -> {
 			Unit unit = lookup(units, r.storageUnitId());
