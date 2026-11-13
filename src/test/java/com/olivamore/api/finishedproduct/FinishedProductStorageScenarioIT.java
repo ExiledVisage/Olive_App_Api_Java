@@ -27,7 +27,7 @@ class FinishedProductStorageScenarioIT {
 			// transfer referansi rastgele UUID
 			.mask("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
 			.run()
-			.assertPassed(93);
+			.assertPassed(94);
 	}
 
 }

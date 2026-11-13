@@ -23,8 +23,9 @@ class MaterialScenarioIT {
 	@Test
 	void scenario() throws Exception {
 		new ScenarioReplay("material.json", port, jdbc)
+			.mask("TRF-\\d{14}-[A-Z0-9]{6}")
 			.run()
-			.assertPassed(30);
+			.assertPassed(31);
 	}
 
 }

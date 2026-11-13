@@ -3,28 +3,28 @@ package com.olivamore.api.devdata;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.web.server.context.WebServerApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 /**
- * Bos veritabanini demo veriyle doldurur, sonra uygulamayi kapatir.
+ * Bos veritabanini demo veriyle doldurur ({@link DemoDataSeeder}, bugun biten bir yil), sonra uygulamayi kapatir.
  * <pre>
  * ./mvnw spring-boot:run -Dspring-boot.run.arguments=--seed           # veritabani bossa
  * ./mvnw spring-boot:run -Dspring-boot.run.arguments="--seed --fresh" # once her seyi sil
  * </pre>
- * Sema uygulama acilirken Flyway ile kurulmus olur (V1, V2); bu komut yalnizca veriyi yukler.
+ * Sema uygulama acilirken Flyway ile kurulmus olur; veri calisan uygulamanin API'si uzerinden yazilir.
  * Dolu veritabanina yuklemeyi reddeder. {@code --fresh} yalnizca yerel adreslerde calisir.
  */
 @Slf4j
@@ -36,10 +36,8 @@ class SeedCommand implements ApplicationRunner {
 
 	private final DataSource dataSource;
 	private final Flyway flyway;
+	private final DemoDataSeeder seeder;
 	private final ConfigurableApplicationContext context;
-
-	@Value("${olive.seed.file:reference/seed-data.sql}")
-	private Path seedFile;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -58,10 +56,6 @@ class SeedCommand implements ApplicationRunner {
 
 	private int seed(boolean fresh) throws Exception {
 		String url = jdbcUrl();
-		if (!Files.isRegularFile(seedFile)) {
-			log.error("Seed dosyasi bulunamadi: {} (calisma klasoru: {})", seedFile.toAbsolutePath(), Path.of("").toAbsolutePath());
-			return 1;
-		}
 		if (fresh) {
 			if (!isLocal(url)) {
 				log.error("--fresh yalnizca yerel veritabaninda calisir, durduruldu: {}", url);
@@ -73,13 +67,14 @@ class SeedCommand implements ApplicationRunner {
 			jdbc.execute("CREATE SCHEMA public");
 			flyway.migrate();
 		}
-		if (!SeedLoader.isEmpty(dataSource)) {
+		if (!seeder.isEmpty()) {
 			log.error("Veritabani bos degil, seed yuklenmedi: {}. Bastan kurmak icin: --seed --fresh", url);
 			return 1;
 		}
 		long started = System.currentTimeMillis();
-		long rows = SeedLoader.load(dataSource, seedFile);
-		log.info("Seed tamam: {} satir, {} ms ({} -> {})", rows, System.currentTimeMillis() - started, seedFile, url);
+		LocalDate today = LocalDate.now(ZoneOffset.UTC);
+		seeder.seed(today, DemoDataSeeder.SEED, ((WebServerApplicationContext) context).getWebServer().getPort());
+		log.info("Seed tamam: {} ile biten bir yil, {} ms ({})", today, System.currentTimeMillis() - started, url);
 		return 0;
 	}
 

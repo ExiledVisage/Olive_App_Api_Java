@@ -1,6 +1,3 @@
-# Faz 0: yakalanan Laravel cevaplari, reference-data.sql'den yeniden uretilir
-reference/responses/
-
 ### Maven ###
 target/
 .mvn/wrapper/maven-wrapper.jar

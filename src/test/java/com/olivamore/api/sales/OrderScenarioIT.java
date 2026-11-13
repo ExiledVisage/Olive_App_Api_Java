@@ -25,7 +25,7 @@ class OrderScenarioIT {
 		new ScenarioReplay("order.json", port, jdbc)
 			.clockAt("2026-11-07T12:00:00Z")
 			.run()
-			.assertPassed(94);
+			.assertPassed(98);
 	}
 
 }

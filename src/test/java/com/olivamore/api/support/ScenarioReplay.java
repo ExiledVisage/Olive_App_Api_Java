@@ -149,7 +149,11 @@ public final class ScenarioReplay {
 					System.out.println("[senaryo " + scenario + "] atlanan hazirlik adimi: " + name);
 					continue;
 				}
-				Long id = jdbc.queryForObject(fill(step.get("sql").asString(), ids), Long.class);
+				List<Long> found = jdbc.queryForList(fill(step.get("sql").asString(), ids), Long.class);
+				if (found.size() != 1) {
+					throw new IllegalStateException(scenario + " hazirlik adimi '" + name + "' tek satir dondurmedi: " + found);
+				}
+				Long id = found.getFirst();
 				if (key != null) {
 					ids.put(key, id);
 				}

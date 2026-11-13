@@ -6,7 +6,6 @@ Olive Production Tracking backend'i. Bu repo **tek başına** çalışır: Larav
 - Teknolojiler: [docs/TECH_STACK.md](docs/TECH_STACK.md)
 - Laravel API envanteri: [docs/laravel-reference/ENDPOINTS.md](docs/laravel-reference/ENDPOINTS.md)
 - Laravel'den bilinen farklar: [docs/laravel-reference/DEVIATIONS.md](docs/laravel-reference/DEVIATIONS.md)
-- Referans veri ve karşılaştırma araçları: [reference/README.md](reference/README.md)
 
 ## Gereksinimler
 
@@ -34,7 +33,7 @@ cp .env.example .env
 **Demo veri ve çalıştırma:**
 
 ```bash
-# Şemayı kurar (Flyway) ve demo veriyi yükler, sonra kapanır. Veritabanı boş olmalı.
+# Şemayı kurar (Flyway), bugün biten bir yıllık demo veriyi üretir, sonra kapanır. Veritabanı boş olmalı.
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--seed
 
 # Uygulama
@@ -58,10 +57,12 @@ Java'yı da konteynerde çalıştırmak için: `docker compose --profile contain
 
 ### Demo veri
 
-Laravel'in demo seeder'larının ürettiği fabrika akışı: 273 üretim partisi, 389 dolum koşusu,
-335 sipariş, 7 kullanıcı (şifreleri `123`, örn. `admin@olivamore.com`). Kaynak:
-`reference/seed-data.sql`. Veri 2025-11-06 – 2026-11-06 aralığına yayılmış durumda; Java
-seeder'ları gelince (yol haritası B4) bugünün tarihine göre üretilecek.
+Bugün biten bir yıllık demo fabrika (`devdata`): yaklaşık 290 üretim partisi, 480 dolum koşusu,
+335 sipariş, 7 kullanıcı (şifreleri `123`, örn. `admin@olivamore.com`). Tanımlar (ürünler, hatlar,
+tanklar, tarifler, müşteriler) `src/main/resources/devdata/master-data.sql`'den yüklenir; akış
+(partiler, ön dinlendirme ve Boşalt, dolum, depo, sipariş) gün gün, çalışan uygulamanın API'si
+üzerinden yürütülür, bu yüzden her zaman güncel iş kurallarına uyar. Ayrıntı: `DemoFactory`.
+Yükleme birkaç dakika sürer.
 
 ## Testler
 
@@ -70,9 +71,10 @@ seeder'ları gelince (yol haritası B4) bugünün tarihine göre üretilecek.
 ./mvnw verify    # + integration testleri (*IT), Docker gerekir
 ```
 
-Integration testleri Testcontainers ile boş bir Postgres 17 açar, Flyway şemayı kurar ve
-demo veri yüklenir; yani `--seed` ile aynı kurulum. `BaselineSchemaIT` sonucun Laravel'in
-veritabanıyla (şema, her tablonun satır sayısı, sequence'ler) aynı olduğunu doğrular.
+Integration testleri Testcontainers ile boş bir Postgres 17 açar ve Flyway şemayı kurar. Demo veri
+`--seed` ile aynı yoldan, 2026-11-06'da biten ve sabit tohumlu olarak bir kez üretilir, bellekte tutulur
+ve her test sınıfından önce geri yüklenir (`DemoSnapshot`). `BaselineSchemaIT` sıfırdan kurulan şemanın,
+Laravel şemasının canlı geçişteki gibi yükseltilmiş haliyle aynı olduğunu doğrular.
 
 ## Kod düzeni
 
@@ -93,7 +95,7 @@ com.olivamore.api
 ├── notification/    Bildirimler
 ├── analytics/       analytics, report, dailysummary
 ├── apprelease/      Mobil uygulama sürümleri
-└── devdata/         Demo veri yükleme (--seed)
+└── devdata/         Demo fabrika verisi (--seed)
 ```
 
 Her konu klasöründe Laravel adlarıyla `XxxController`, `XxxService`, `XxxResource` ve `XxxRequests`

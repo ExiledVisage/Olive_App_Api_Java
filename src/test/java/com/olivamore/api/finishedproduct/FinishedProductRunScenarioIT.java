@@ -26,7 +26,7 @@ class FinishedProductRunScenarioIT {
 			.clockAt("2026-11-07T12:00:00Z")
 			// ayni saniyede olusan kosular: tarih esitliginde sira tanimsiz
 			.run()
-			.assertPassed(95);
+			.assertPassed(104);
 	}
 
 }

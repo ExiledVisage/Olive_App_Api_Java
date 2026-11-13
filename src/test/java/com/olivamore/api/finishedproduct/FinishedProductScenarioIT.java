@@ -27,7 +27,7 @@ class FinishedProductScenarioIT {
 			// ayni saniyede olusan tarifler: tarih esitliginde sira tanimsiz
 			// demo urunleri ayni saniyede olustu: tarih esitliginde sira tanimsiz
 			.run()
-			.assertPassed(79);
+			.assertPassed(80);
 	}
 
 }

@@ -46,7 +46,7 @@ class ProblemDetailIT {
 		Response r = api.delete("/api/storage-units/13");
 
 		JsonNode body = problem(r, 422, "Unprocessable Content", "/api/storage-units/13");
-		assertThat(body.get("detail").asString()).startsWith("'DOLUM-AYV-01' tankının");
+		assertThat(body.get("detail").asString()).startsWith("'DOLUM-AYV-01' tankında");
 		assertThat(body.has("errors")).isFalse();
 	}
 

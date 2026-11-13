@@ -14,22 +14,20 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.utility.MountableFile;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Sifirdan kurulan veritabani ile Laravel veritabanindan yukseltilen veritabani ayni yere geliyor mu?
+ * Sifirdan kurulan veritabani ile Laravel veritabanindan yukseltilen veritabani ayni semaya geliyor mu?
  * <ul>
- *   <li><b>uygulama</b>: bos Postgres + butun migration'lar + seed ({@link TestcontainersConfiguration})</li>
- *   <li><b>laravel</b>: ayni konteynerde ayri bir veritabani: Laravel'in tam dokumu
- *       ({@code reference/reference-data.sql}), ustune canli gecisteki gibi baseline 1 ve V2 sonrasi</li>
+ *   <li><b>uygulama</b>: bos Postgres + butun migration'lar ({@link TestcontainersConfiguration})</li>
+ *   <li><b>laravel</b>: ayni konteynerde ayri bir veritabani: Laravel'in semasi ({@code laravel-schema.sql}), ustune
+ *       canli gecisteki gibi baseline 1 ve V2 sonrasi</li>
  * </ul>
- * Sema (kolon, constraint, index), her tablonun satir sayisi ve sequence degerleri
- * karsilastirilir. Kirilirsa migration'lar, seed ya da Laravel semasi birbirinden kopmus demektir. Seed'de bilerek
- * degistirilen tablolarin satir sayilari ayrica sabitlenir ({@link #CHANGED_IN_SEED}).
+ * Kolon, constraint ve index'ler karsilastirilir. Kirilirsa migration'lar ile Laravel semasi birbirinden kopmus
+ * demektir. Sunucu gecisinden sonra V0.xx birlestirilince bu test de kalkar.
  */
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -38,16 +36,6 @@ class BaselineSchemaIT {
 
 	/** Flyway'in kaydi iki kurulumda bilerek farkli (biri baseline'li). */
 	private static final String JAVA_TABLES = "('flyway_schema_history')";
-
-	/**
-	 * Demo hattin on dinlendirme akisi (C3-C5): hat 2 ve 3'te Tanklarda Toplama asamasi silindi, Filtreleme tartimi,
-	 * Toplama transferi ve Ön Dinlenme'deki elle pirina uzantilari kalkti, depo hareketi on dinlendirmeye dondu.
-	 */
-	private static final Map<String, Long> CHANGED_IN_SEED = Map.of(
-		"production_stages", 34L,
-		"production_stage_extensions", 21L,
-		"production_stage_extension_values", 0L,
-		"production_stage_extension_input_production_products", 21L);
 
 	private static final String COLUMNS = """
 		select table_name || '.' || column_name || ' ' || data_type
@@ -85,12 +73,12 @@ class BaselineSchemaIT {
 	JdbcTemplate laravel;
 
 	@BeforeAll
-	void loadLaravelReference() throws Exception {
+	void loadLaravelSchema() throws Exception {
 		app.execute("drop database if exists laravel");
 		app.execute("create database laravel");
-		postgres.copyFileToContainer(MountableFile.forHostPath("reference/reference-data.sql"), "/tmp/reference-data.sql");
+		postgres.copyFileToContainer(MountableFile.forClasspathResource("laravel-schema.sql"), "/tmp/laravel-schema.sql");
 		Container.ExecResult result = postgres.execInContainer("psql", "-q", "-v", "ON_ERROR_STOP=1",
-			"-U", postgres.getUsername(), "-d", "laravel", "-f", "/tmp/reference-data.sql");
+			"-U", postgres.getUsername(), "-d", "laravel", "-f", "/tmp/laravel-schema.sql");
 		assertThat(result.getExitCode()).as(result.getStderr()).isZero();
 		laravel = new JdbcTemplate(new DriverManagerDataSource(
 			postgres.getJdbcUrl().replace("/oliveapp", "/laravel"), postgres.getUsername(), postgres.getPassword()));
@@ -119,24 +107,6 @@ class BaselineSchemaIT {
 		assertThat(app.queryForList(TABLES, String.class)).hasSize(68);
 	}
 
-	@Test
-	void seedMatchesLaravelData() {
-		List<String> tables = laravel.queryForList(TABLES, String.class);
-		for (String table : tables) {
-			assertThat(count(app, table)).as(table)
-				.isEqualTo(CHANGED_IN_SEED.getOrDefault(table, count(laravel, table)));
-		}
-		assertThat(count(app, "production_batches")).isEqualTo(273);
-		assertThat(count(app, "orders")).isEqualTo(335);
-	}
-
-	@Test
-	void sequencesContinueAfterSeed() {
-		String query = "select sequencename || '=' || coalesce(last_value, 0) from pg_sequences where schemaname = 'public'";
-		assertThat(new TreeSet<>(app.queryForList(query, String.class)))
-			.containsExactlyElementsOf(new TreeSet<>(laravel.queryForList(query, String.class)));
-	}
-
 	/**
 	 * Laravel'in {@code check ("unit" in ('KG', 'LITRE'))} kisiti Postgres'te iki yazilisla saklanabiliyor:
 	 * migration'la kurulunca {@code ANY ((ARRAY['KG'::character varying, ...])::text[])}, pg_dump'tan
@@ -149,11 +119,6 @@ class BaselineSchemaIT {
 				.replaceAll("ANY \\(ARRAY\\[([^\\]]*)\\]\\)", "ANY ((ARRAY[$1])::text[])"));
 		}
 		return out;
-	}
-
-	private static long count(JdbcTemplate jdbc, String table) {
-		Long n = jdbc.queryForObject("select count(*) from public." + table, Long.class);
-		return n == null ? 0 : n;
 	}
 
 }

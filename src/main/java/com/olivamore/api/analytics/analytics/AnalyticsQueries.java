@@ -104,6 +104,7 @@ class AnalyticsQueries {
 					select 1 from production_batch_input_production_product_types i
 					where i.production_batch_id = b.id and i.production_product_type_id = :type))
 				and (cast(:field as bigint) is null or b.supplier_field_id = :field)
+			order by b.id
 			""").param("from", range.from()).param("to", range.to()).param("supplier", supplierId)
 			.param("type", productTypeId).param("field", fieldId).query(Batch.class).list();
 		if (batches.isEmpty()) {
@@ -131,6 +132,7 @@ class AnalyticsQueries {
 			select production_batch_id, production_stage_id, operation_data::text as operation_data
 			from batch_processes
 			where production_batch_id in (:batches) and production_stage_id in (:stages) and status = 'completed'
+			order by id
 			""").param("batches", batches.stream().map(Batch::id).toList()).param("stages", stageIds)
 			.query(Process.class).list().stream()
 			.collect(Collectors.groupingBy(Process::productionBatchId));

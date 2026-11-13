@@ -1,6 +1,7 @@
 package com.olivamore.api;
 
 import com.olivamore.api.support.ApiClient;
+import com.olivamore.api.support.FreshDatabaseListener;
 import com.olivamore.api.support.TestAuth;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.web.client.RestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestExecutionListeners(listeners = FreshDatabaseListener.class,
+	mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
 // Spring Boot testlerde metrik disa aktarimini kapatir; Prometheus endpoint'i icin aciliyor
 @AutoConfigureMetrics
 class OliveApiApplicationIT {

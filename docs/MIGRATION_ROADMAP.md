@@ -83,7 +83,7 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 - [x] **Modül sınırları:** aşağıdaki faz listesi Modulith paketlerine karşılık gelir
 - [x] **Referans cevaplar:** dondurulmuş veri üzerinde her GET endpoint'inin Laravel cevabı kaydedilir. Veri değiştiren endpoint'lerin referansları her modülün kendi fazında, veri geri yüklenerek alınır
 
-> Faz 0 çıktıları ve bulgular: [reference/README.md](../reference/README.md), endpoint envanteri (191 endpoint): [laravel-reference/ENDPOINTS.md](laravel-reference/ENDPOINTS.md)
+> Faz 0 çıktıları ve bulgular: `reference/` (B8'de kaldırıldı), endpoint envanteri (191 endpoint): [laravel-reference/ENDPOINTS.md](laravel-reference/ENDPOINTS.md)
 
 ## Faz 1: İskelet ve Ortak Altyapı
 
@@ -482,8 +482,15 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
 - [x] HTTP testleri tek Spring context'ini ve konteyneri paylaşır, her sınıf temiz demo veriyle başlar
 
 ## B8: Demo veri
-- [ ] Demo fabrika akışının Java seeder'ları: veri bugünün tarihine göre üretilir
-- [ ] `--seed` dökümü değil seeder'ları çalıştırır; `reference/` kaldırılır
+- [x] Demo fabrika akışının Java seeder'ları: veri bugünün tarihine göre üretilir. Tanımlar
+  `devdata/master-data.sql`'den (kullanıcı ve roller, ürünler, hatlar ve aşamalar, tanklar, tarifler, müşteriler,
+  depolar; stoklar sıfır), bir yıllık akış `DemoFactory` ile gün gün çalışan uygulamanın API'si üzerinden: partiler,
+  ön dinlendirme ve Boşalt (tortu), son tanklar arası aktarım, aylık tank analizi, ambalaj lotları, dolum, depoya
+  yerleştirme, siparişler. Asitlik mevsime göre (hasat düşük, hasat dışı yüksek), yağ asitliğine uyan tanklarda
+  toplanır; tankta yer yoksa o gün zeytin kabul edilmez. Aynı tohum ve bitiş günü aynı veriyi üretir
+- [x] `--seed` dökümü değil seeder'ları çalıştırır; `reference/` kaldırılır. Testler demo veriyi bir kez üretir
+  (bitiş 2026-11-06, sabit tohum), bellekte tutar ve her sınıftan önce geri yükler (`DemoSnapshot`);
+  `BaselineSchemaIT` yalnızca şemayı karşılaştırır (Laravel şeması `src/test/resources/laravel-schema.sql`)
 
 ## B9: Gözlemlenebilirlik
 - [ ] Detaylı Grafana dashboard'ları ve alarm kuralları
@@ -493,8 +500,8 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
 - [ ] `docs/` güncellenir; `docs/laravel-reference/` kaldırılır, koddaki Laravel açıklamaları temizlenir
 
 ## B11: Kabul kriteri
-- [ ] ArchUnit testi: `Php`, `Db`, `Row`, `RequestInput`, `LaravelValidator` ya da adında `Laravel`
-  geçen bir sınıf kullanılırsa build düşer
+- [x] ArchUnit testi: `Php`, `Db`, `Row`, `RequestInput`, `LaravelValidator` ya da adında `Laravel`
+  geçen bir sınıf kullanılırsa build düşer (`NoLaravelLeftoversTests`, yalnızca uygulama kodu taranır)
 
 **Bölüm B bu noktada biter: API'de Laravel'den kalan yapı yoktur ve bunu build doğrular.**
 
@@ -594,9 +601,7 @@ geçişinden önce yapılır.
   (`V10`): miktar tipin birimine çevrilip toplanır, attribute'lar çalışma anındaki giriş kuralıyla birleşir, her eski
   materyal için `TRANSFER_IN` (`BIRLESTIRME`) yazılır (soy bu bağdan yürür), bakiyeler yeniden hesaplanır.
   Zorunlu özelliği eksik materyaller de birleşir (eksik değer tank ölçümüyle girilir). Ön dinlendirme tanklarına
-  dokunulmaz. Demo veri (seed) `V10`'dan geçmiş haliyle güncellendi (Laravel verisi + migration'lar; yalnızca
-  materyal, depo hareketi, attribute değeri, dolum materyali ve bakiye tabloları, zaman damgaları seed günü);
-  `TankMaterialMergeIT` sonucu çalışma anındaki girişle karşılaştırır
+  dokunulmaz. `TankMaterialMergeIT` sonucu çalışma anındaki girişle karşılaştırır
 - [x] Planlanmış ve devam eden dolumların eski materyallere ayırdığı miktarlar tank materyaline taşınır (çevrilip
   koşu başına toplanır); tamamlanmış dolumlar değişmez
 - [x] Veri tahmin edilmez: farklı birimler yoğunluksuz çevrilemiyorsa ya da birleşecek materyali taşıyan onay bekleyen
