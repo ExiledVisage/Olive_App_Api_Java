@@ -27,6 +27,9 @@ import com.olivamore.api.inventory.storageunit.StorageUnitBalanceRepository;
 import com.olivamore.api.inventory.storageunit.StorageUnitKind;
 import com.olivamore.api.inventory.storageunit.StorageUnitRepository;
 import com.olivamore.api.product.UnitConversion;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.DistributionSummary;
+import io.micrometer.core.instrument.MeterRegistry;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.error.ValidationFailedException;
@@ -95,6 +98,8 @@ public class StorageMovementService {
 	private final TankQueries queries;
 	private final TankMixAttributes mixAttributes;
 	private final ApplicationEventPublisher events;
+	private final Counter emptied;
+	private final DistributionSummary residue;
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -102,7 +107,7 @@ public class StorageMovementService {
 	StorageMovementService(StorageUnitRepository units, StorageUnitBalanceRepository balances,
 		StorageUnitAllowance allowance, StorageUnitAttributeRuleRepository rules, MaterialRepository materials,
 		MaterialAttributeValueRepository attributeValues, StorageMovementRepository movements, TankQueries queries,
-		TankMixAttributes mixAttributes, ApplicationEventPublisher events) {
+		TankMixAttributes mixAttributes, ApplicationEventPublisher events, MeterRegistry meters) {
 		this.units = units;
 		this.balances = balances;
 		this.allowance = allowance;
@@ -113,6 +118,10 @@ public class StorageMovementService {
 		this.queries = queries;
 		this.mixAttributes = mixAttributes;
 		this.events = events;
+		this.emptied = Counter.builder("olive.tank.emptied").description("Ön dinlendirme tankı boşaltmaları (Boşalt)")
+			.register(meters);
+		this.residue = DistributionSummary.builder("olive.tank.residue").description("Boşaltmada parti başına tortu")
+			.baseUnit("kilograms").register(meters);
 	}
 
 	/** Transfer sonucu: son tanktan cikista karisimdaki her tip icin bir cikis ve bir giris. */
@@ -548,6 +557,8 @@ public class StorageMovementService {
 			}
 		}
 		flush();
+		emptied.increment();
+		entries.forEach(e -> residue.record(e.residueKg().doubleValue()));
 		events.publishEvent(new PreSettlingTankEmptied(unitId, entries));
 		flush();
 		List<Long> residueIds = queries.childrenCreatedBy(contents.stream().map(Material::getId).toList(),

@@ -493,7 +493,14 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
   `BaselineSchemaIT` yalnızca şemayı karşılaştırır (Laravel şeması `src/test/resources/laravel-schema.sql`)
 
 ## B9: Gözlemlenebilirlik
-- [ ] Detaylı Grafana dashboard'ları ve alarm kuralları
+- [x] "Olive API" dashboard'u: HTTP (endpoint başına istek, ortalama ve p95 yanıt süresi, p50/p95/p99), hatalar
+  (5xx oranı, 4xx durum kodları, aralıktaki hata tablosu), JVM (heap, GC, thread, CPU), Hikari havuzu (aktif, boş,
+  bekleyen, bağlantı alma süresi, zaman aşımı), açılış süresi (Flyway dahil) ve iş metrikleri
+- [x] İş metrikleri (Micrometer): `olive.tank.emptied` (Boşalt), `olive.tank.residue` (parti başına tortu kg),
+  `olive.filling.runs.completed` ve `olive.filling.bottles` (tamamlanan dolum ve şişe), `olive.business.rejections`
+  (iş kuralına takılan istek; etiket yalnızca yol kalıbı ve metot). Dashboard'daki her metriğin Prometheus
+  çıktısında olduğu `OliveApiApplicationIT`'te doğrulanır
+- [ ] Alarm kuralları ve bildirim kanalı sunucu geçişinde: sunucu düzeni ve bildirimin nereye gideceği belli olunca
 
 ## B10: Dokümantasyon
 - [x] springdoc-openapi ile API dokümantasyonu: `/swagger-ui.html` ve `/v3/api-docs` yalnızca `dev` profilinde

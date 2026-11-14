@@ -20,6 +20,8 @@ import com.olivamore.api.packaging.PackagingAllocations;
 import com.olivamore.api.packaging.PackagingAllocations.Need;
 import com.olivamore.api.packaging.PackagingAllocations.Selection;
 import com.olivamore.api.product.UnitConversion;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
@@ -65,12 +67,14 @@ class FinishedProductRunService {
 	private final RunQueries queries;
 	private final PackagingAllocations packaging;
 	private final StockOperations stock;
+	private final Counter completedRuns;
+	private final Counter filledBottles;
 
 	FinishedProductRunService(FinishedProductRunRepository runs, RunMaterialRepository runMaterials,
 		RunAttributeValueRepository attributeValues, FinishedProductRepository products,
 		FinishedProductComponentRepository components, RecipeContentRepository contents,
 			RecipeAttributeRuleRepository rules,
-		RunQueries queries, PackagingAllocations packaging, StockOperations stock) {
+		RunQueries queries, PackagingAllocations packaging, StockOperations stock, MeterRegistry meters) {
 		this.runs = runs;
 		this.runMaterials = runMaterials;
 		this.attributeValues = attributeValues;
@@ -81,6 +85,10 @@ class FinishedProductRunService {
 		this.queries = queries;
 		this.packaging = packaging;
 		this.stock = stock;
+		this.completedRuns = Counter.builder("olive.filling.runs.completed").description("Tamamlanan dolumlar")
+			.register(meters);
+		this.filledBottles = Counter.builder("olive.filling.bottles").description("Tamamlanan dolumlardaki sise adedi")
+			.baseUnit("bottles").register(meters);
 	}
 
 	// ---- planlama --------------------------------------------------------------
@@ -377,6 +385,8 @@ class FinishedProductRunService {
 				"Dolum Run #" + run.getId(), run.getId());
 		}
 		run.complete();
+		completedRuns.increment();
+		filledBottles.increment(bottles);
 	}
 
 	/** Kalem basina eldeki (aktif lot) adet yeter mi; tahsis varsa hala gecerli mi. */

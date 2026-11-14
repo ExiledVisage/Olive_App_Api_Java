@@ -103,40 +103,42 @@ class FillingRulesIT {
 
 	@Test
 	void blendOfLitreAndKilogramTypesIsDrawnByMassWhateverTheEntryOrder() {
-		// Ayvalik bu test icin kg birimli, yogunluk 0.9: 270 kg = 300 L, karisim %70 Gemlik + %30 Ayvalik (litreyle)
-		jdbc.update("update production_product_types set unit = 'KG', density_kg_per_litre = 0.9 where id = ?", AYVALIK);
-		try {
-			BigDecimal litres = jdbc.queryForObject("select volume_litre from finished_products where id = ?",
-				BigDecimal.class, BLEND).multiply(BigDecimal.TEN);
+		withKilogramAyvalik(() -> {
+			BigDecimal litres = blendLitres(10);
 			for (boolean gemlikFirst : List.of(true, false)) {
-				long tank = id(api.post("/api/storage-units", Map.of("name", "Dolum kurali", "code", "FILL-RULE-"
-					+ codes.incrementAndGet(), "capacity", 5000, "capacity_unit", "LITRE",
-					"allow_multiple_production_product_types", true)));
-				long gemlik;
-				long ayvalik;
-				if (gemlikFirst) {
-					gemlik = open(tank, GEMLIK, "700", "0.5");
-					ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
-				}
-				else {
-					ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
-					gemlik = open(tank, GEMLIK, "700", "0.5");
-				}
+				MixedTank tank = mixedTank("LITRE", gemlikFirst);
 
-				long run = id(plan(BLEND, 10, tank, null));
+				long run = id(plan(BLEND, 10, tank.id(), null));
 
 				// cekilen 2.5 L tankin kapasite biriminde; oran kutleyle, ham miktarla (700 / 970) degil: her
 				// materyalden ayni pay (2.5 / 1000), Gemlik 1.75 L, Ayvalik 0.75 L x 0.9 = 0.675 kg
-				assertThat(used(run, gemlik)).as("Gemlik once: " + gemlikFirst)
-					.isEqualByComparingTo(litres.multiply(new BigDecimal("0.7")));
-				assertThat(used(run, ayvalik)).as("Gemlik once: " + gemlikFirst)
-					.isEqualByComparingTo(litres.multiply(new BigDecimal("0.27")));
+				assertDrawnEvenly(run, tank, litres, "Gemlik once: " + gemlikFirst);
 			}
-		}
-		finally {
-			jdbc.update("update production_product_types set unit = 'LITRE', density_kg_per_litre = null where id = ?",
-				AYVALIK);
-		}
+		});
+	}
+
+	@Test
+	void kilogramTankReadsTheRequestedQuantityInKilogramsWhateverTheEntryOrder() {
+		withKilogramAyvalik(() -> {
+			BigDecimal litres = blendLitres(10);
+			// karisimin yogunlugu: (700 L x 0.916 + 270 kg) / (700 L + 300 L) = 0.9112 kg/L
+			BigDecimal kg = litres.multiply(new BigDecimal("0.9112"));
+			for (boolean gemlikFirst : List.of(true, false)) {
+				MixedTank tank = mixedTank("KG", gemlikFirst);
+				String as = "Gemlik once: " + gemlikFirst;
+
+				long computed = id(plan(BLEND, 10, tank.id(), null));
+				long given = id(plan(BLEND, 10, tank.id(), kg.toPlainString()));
+				Response litresAsKg = plan(BLEND, 10, tank.id(), litres.toPlainString());
+
+				assertDrawnEvenly(computed, tank, litres, as);
+				assertDrawnEvenly(given, tank, litres, as);
+				assertThat(detail(litresAsKg)).as(as)
+					.contains("= " + kg.stripTrailingZeros().toPlainString() + " kg yağ yeterli")
+					.contains("tanktan çekilecek miktar " + litres.stripTrailingZeros().toPlainString() + " kg")
+					.contains("fire toleransını aşıyor");
+			}
+		});
 	}
 
 	@Test
@@ -193,6 +195,45 @@ class FillingRulesIT {
 	}
 
 	// ---- yardimcilar -------------------------------------------------------
+
+	/** Karisik birimli tank: Gemlik 700 L ve Ayvalik 270 kg (asitlik 0.5), verilen sirayla girer. */
+	private record MixedTank(long id, long gemlik, long ayvalik) {
+	}
+
+	private MixedTank mixedTank(String capacityUnit, boolean gemlikFirst) {
+		long tank = id(api.post("/api/storage-units", Map.of("name", "Dolum kurali", "code", "FILL-RULE-"
+			+ codes.incrementAndGet(), "capacity", 5000, "capacity_unit", capacityUnit,
+			"allow_multiple_production_product_types", true)));
+		if (gemlikFirst) {
+			long gemlik = open(tank, GEMLIK, "700", "0.5");
+			return new MixedTank(tank, gemlik, open(tank, AYVALIK, "270", "KG", "0.5"));
+		}
+		long ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
+		return new MixedTank(tank, open(tank, GEMLIK, "700", "0.5"), ayvalik);
+	}
+
+	/** Her materyalden ayni pay: Gemlik %70 litre, Ayvalik %30 litre x 0.9 kg. */
+	private void assertDrawnEvenly(long run, MixedTank tank, BigDecimal litres, String as) {
+		assertThat(used(run, tank.gemlik())).as(as).isEqualByComparingTo(litres.multiply(new BigDecimal("0.7")));
+		assertThat(used(run, tank.ayvalik())).as(as).isEqualByComparingTo(litres.multiply(new BigDecimal("0.27")));
+	}
+
+	private BigDecimal blendLitres(int bottles) {
+		return jdbc.queryForObject("select volume_litre from finished_products where id = ?", BigDecimal.class, BLEND)
+			.multiply(BigDecimal.valueOf(bottles));
+	}
+
+	/** Ayvalik test suresince kg birimli, yogunluk 0.9 (270 kg = 300 L). */
+	private void withKilogramAyvalik(Runnable test) {
+		jdbc.update("update production_product_types set unit = 'KG', density_kg_per_litre = 0.9 where id = ?", AYVALIK);
+		try {
+			test.run();
+		}
+		finally {
+			jdbc.update("update production_product_types set unit = 'LITRE', density_kg_per_litre = null where id = ?",
+				AYVALIK);
+		}
+	}
 
 	/** Birden cok tipe izin veren tank; her tip icin bir acilis (asitlik ayni). */
 	private long tank(Map<Integer, String> contents, String acidity) {

@@ -6,6 +6,8 @@ import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import com.olivamore.api.shared.web.Pages;
 import com.olivamore.api.shared.web.WebConfig;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -40,6 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -52,13 +55,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = ApiExceptionHandlerTest.TestController.class,
 	excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com\\.olivamore\\.api\\.(?!shared\\.).*"))
 @Import({ApiExceptionHandler.class, ApiMessages.class, JacksonConfig.class, WebConfig.class,
-	ApiExceptionHandlerTest.TestController.class})
+	SimpleMeterRegistry.class, ApiExceptionHandlerTest.TestController.class})
 class ApiExceptionHandlerTest {
 
 	private static final String UNPROCESSABLE = "\"title\":\"Unprocessable Content\",\"status\":422";
 
 	@Autowired
 	MockMvc mvc;
+
+	@Autowired
+	MeterRegistry meters;
 
 	// ---- 422 ---------------------------------------------------------------
 
@@ -135,6 +141,8 @@ class ApiExceptionHandlerTest {
 			.andExpect(content().json("{" + UNPROCESSABLE + ",\"instance\":\"/test/business-rule\"" + """
 				,"detail":"Bu ürün tipi silinemez; kullanıldığı yerler: 3 ürün."}
 				""", true));
+		assertThat(meters.get("olive.business.rejections").tag("uri", "/test/business-rule").tag("method", "GET")
+			.counter().count()).isEqualTo(1);
 	}
 
 	// ---- 404 / 405 / 429 / 500 ---------------------------------------------

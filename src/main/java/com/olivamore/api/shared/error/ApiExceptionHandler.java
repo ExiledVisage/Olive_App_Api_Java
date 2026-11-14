@@ -3,6 +3,7 @@ package com.olivamore.api.shared.error;
 import com.olivamore.api.shared.json.Naming;
 import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.Violation;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSourceResolvable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.exc.MismatchedInputException;
@@ -51,9 +53,11 @@ public class ApiExceptionHandler {
 	private static final List<String> METHOD_ORDER = List.of("GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS");
 
 	private final ApiMessages messages;
+	private final MeterRegistry meters;
 
-	public ApiExceptionHandler(ApiMessages messages) {
+	public ApiExceptionHandler(ApiMessages messages, MeterRegistry meters) {
 		this.messages = messages;
+		this.meters = meters;
 	}
 
 	// ---- 422 ---------------------------------------------------------------
@@ -63,8 +67,12 @@ public class ApiExceptionHandler {
 		return unprocessable(e.violations());
 	}
 
+	/** Is kuralina takilan istekler endpoint (yol kalibi) ve metoda gore sayilir. */
 	@ExceptionHandler(BusinessRuleException.class)
-	ResponseEntity<ProblemDetail> businessRule(BusinessRuleException e) {
+	ResponseEntity<ProblemDetail> businessRule(BusinessRuleException e, HttpServletRequest request) {
+		Object uri = request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+		meters.counter("olive.business.rejections", "uri", uri == null ? "UNKNOWN" : uri.toString(),
+			"method", request.getMethod()).increment();
 		return problem(HttpStatus.UNPROCESSABLE_CONTENT, e.getMessage());
 	}
 
