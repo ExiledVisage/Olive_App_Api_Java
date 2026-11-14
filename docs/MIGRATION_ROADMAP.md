@@ -509,12 +509,12 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
   yaptığını anlatan açıklamalar kaldı; Laravel yalnızca canlı geçişle ilgili yerlerde geçer (V2-V11,
   `LaravelDatabaseUpgradeIT`, `BaselineSchemaIT`, GO_LIVE, deploy)
 - DEVIATIONS.md'den hâlâ geçerli kararlar README'ye taşındı (rate limit sayaçları, tank kilidi, sabit sıralama);
-  Laravel hatalarının düzeltmeleri `*RulesIT` ve senaryolarda tanımlı. Laravel'den birebir kopyalanmış, kapatılması
-  düşünülecek açık konular (karar verilmedi):
-  - `production-products/{id}/attribute-definitions` altındaki listeleme, ekleme, güncelleme ve silme izin istemiyor;
-    giriş yapan her kullanıcı kategorinin attribute tanımlarını değiştirebilir
-  - `PUT production-lines/{line}/stages/{stage}/extensions` başka bir hattın aşamasını da kabul ediyor
-  - `PATCH/DELETE finished-product-storages/{depo}/slots/{raf}` başka bir deponun rafını da kabul ediyor
+  Laravel hatalarının düzeltmeleri `*RulesIT` ve senaryolarda tanımlı. Laravel'den birebir kopyalanmış açık konular
+  kapatıldı (`CatalogRulesIT`, `StorageSlotRulesIT`):
+  - [x] `production-products/{id}/attribute-definitions`: okuma `production_product_type.view`, yazma
+    `production_product_type.manage` ister; başka kategorinin eşlemesi 404 (önceden 422)
+  - [x] `PUT production-lines/{line}/stages/{stage}/extensions`: aşama o hatta değilse 404
+  - [x] `PATCH/DELETE finished-product-storages/{depo}/slots/{raf}`: raf o depoda değilse 404
 
 ## B11: Kabul kriteri
 - [x] ArchUnit testi: `Php`, `Db`, `Row`, `RequestInput`, `LaravelValidator` ya da adında `Laravel`

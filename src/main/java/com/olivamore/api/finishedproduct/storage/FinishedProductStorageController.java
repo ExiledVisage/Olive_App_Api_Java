@@ -86,7 +86,7 @@ class FinishedProductStorageController {
 		return DataResponse.created(responses.slot(storages.createSlot(id, request)));
 	}
 
-	/** Raf baska bir depoya ait olsa da kabul edilir. */
+	/** Raf baska bir depoya aitse 404. */
 	@PatchMapping("/api/finished-product-storages/{id}/slots/{slot}")
 	@PreAuthorize("hasAuthority('finished_product_storage.manage')")
 	DataResponse<SlotResponse> updateSlot(@PathVariable long id, @PathVariable long slot,

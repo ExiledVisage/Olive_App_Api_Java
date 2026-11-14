@@ -568,12 +568,12 @@
     "method" : "GET",
     "path" : "/api/production-products/1/attribute-definitions/{M}",
     "body" : null,
-    "status" : 422,
+    "status" : 404,
     "response" : {
-      "title" : "Unprocessable Content",
-      "status" : 422,
-      "detail" : "Seçilen attribute definition bu ürün kategorisine ait değil.",
-      "instance" : "/api/production-products/1/attribute-definitions/{M}"
+      "detail" : "Bu attribute eşlemesi bu ürün kategorisine ait değil.",
+      "instance" : "/api/production-products/1/attribute-definitions/{M}",
+      "status" : 404,
+      "title" : "Not Found"
     },
     "save" : null
   }, {
@@ -1822,87 +1822,12 @@
         "input_production_product_ids" : [ 1 ]
       } ]
     },
-    "status" : 200,
+    "status" : 404,
     "response" : {
-      "data" : {
-        "id" : 1,
-        "production_line_id" : 1,
-        "process_type_id" : 1,
-        "name" : "Kantarda Tartım",
-        "stage_order" : 1,
-        "is_required" : true,
-        "requires_approval" : false,
-        "process_type" : {
-          "id" : 1,
-          "name" : "Kantarda Tartım",
-          "description" : "Gelen zeytinin ilk kantar tartımı",
-          "category" : "weighing",
-          "is_active" : true,
-          "fields" : [ {
-            "id" : 1,
-            "process_type_id" : 1,
-            "field_key" : "kamyon_plakasi",
-            "label" : "Kamyon Plakası",
-            "data_type" : "text",
-            "is_required" : true,
-            "unit" : null,
-            "sort_order" : 1,
-            "is_active" : true,
-            "options" : null,
-            "default_value" : null,
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          }, {
-            "id" : 2,
-            "process_type_id" : 1,
-            "field_key" : "tartim_fisi_no",
-            "label" : "Tartım Fişi No",
-            "data_type" : "text",
-            "is_required" : false,
-            "unit" : null,
-            "sort_order" : 2,
-            "is_active" : true,
-            "options" : null,
-            "default_value" : null,
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          } ],
-          "created_at" : "2025-11-06T07:00:00Z",
-          "updated_at" : "2025-11-06T07:00:00Z"
-        },
-        "extensions" : [ {
-          "id" : 31,
-          "production_stage_id" : 1,
-          "stage_extension_type_id" : 1,
-          "is_required" : false,
-          "is_enabled" : true,
-          "sort_order" : 1,
-          "stage_extension_type" : {
-            "id" : 1,
-            "key" : "weighing",
-            "name" : "Weighing",
-            "description" : "Bu asamada secilen urun tipi tartilir.",
-            "fields" : [ ]
-          },
-          "values" : [ ],
-          "input_production_products" : [ {
-            "id" : 30,
-            "production_stage_extension_id" : 31,
-            "production_product_id" : 1,
-            "sort_order" : 1,
-            "is_required" : true,
-            "production_product" : {
-              "id" : 1,
-              "key" : "olive",
-              "name" : "Zeytin",
-              "description" : "Ham zeytin ürünü"
-            }
-          } ],
-          "output_production_products" : [ ]
-        } ],
-        "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2025-11-06T07:00:00Z"
-      }
+      "detail" : "Stage not found for this production line.",
+      "instance" : "/api/production-lines/{L}/stages/1/extensions",
+      "status" : 404,
+      "title" : "Not Found"
     },
     "save" : null
   }, {

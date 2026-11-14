@@ -78,13 +78,10 @@ public class ProductionStageService {
 		shift(lineId, deleted + 1, last, -1);
 	}
 
-	/** Hat ve asama yoksa 404; asamanin bu hatta ait olmasi aranmaz. */
+	/** Hat ya da asama yoksa, ya da asama bu hatta degilse 404. */
 	@Transactional(readOnly = true)
 	public void ensureExists(long lineId, long stageId) {
-		ensureLine(lineId);
-		if (!repository.existsById(stageId)) {
-			throw new ModelNotFoundException("ProductionStage", stageId);
-		}
+		find(lineId, stageId);
 	}
 
 	private void reorder(ProductionStage stage, int requested) {

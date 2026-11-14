@@ -5,6 +5,7 @@ import com.olivamore.api.finishedproduct.product.FinishedProductRepository;
 import com.olivamore.api.finishedproduct.run.FinishedProductRunRepository;
 import com.olivamore.api.finishedproduct.support.Quantities;
 import com.olivamore.api.shared.error.BusinessRuleException;
+import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.DeletionGuard;
@@ -100,7 +101,7 @@ public class FinishedProductStorageService {
 	@Transactional
 	void deleteSlot(long storageId, long slotId) {
 		find(storageId);
-		StorageSlot slot = slots.findById(slotId).orElseThrow(() -> slotNotFound(slotId));
+		StorageSlot slot = inStorage(storageId, slots.findById(slotId).orElseThrow(() -> slotNotFound(slotId)));
 		if (slot.getCurrentQuantity() > 0) {
 			throw new BusinessRuleException("Bu slotta ürün bulunduğu için silinemez.");
 		}
@@ -112,12 +113,13 @@ public class FinishedProductStorageService {
 
 	/**
 	 * Kapasite kullanimin altina inemez, dolu rafin hacmi degismez, baska urun varken tek urune kilitlenemez;
-	 * {@code null} gonderilerek kilit kaldirilir. Raf baska depoya ait olsa da kabul edilir.
+	 * {@code null} gonderilerek kilit kaldirilir. Raf baska depoya aitse 404.
 	 */
 	@Transactional
 	void updateSlot(long storageId, long slotId, UpdateSlotRequest request) {
 		find(storageId);
-		StorageSlot slot = slots.findForUpdate(slotId).orElseThrow(() -> slotNotFound(slotId));
+		StorageSlot slot =
+			inStorage(storageId, slots.findForUpdate(slotId).orElseThrow(() -> slotNotFound(slotId)));
 		Long requestedLock = request.finishedProductId() == null ? null : request.finishedProductId().value();
 		if (requestedLock != null) {
 			assertProductExists(requestedLock);
@@ -403,6 +405,13 @@ public class FinishedProductStorageService {
 
 	private FinishedProductStorage find(long id) {
 		return storages.findById(id).orElseThrow(() -> new ModelNotFoundException("FinishedProductStorage", id));
+	}
+
+	private static StorageSlot inStorage(long storageId, StorageSlot slot) {
+		if (slot.getStorageId() != storageId) {
+			throw new HttpStatusException(404, "Bu slot bu depoya ait değil.");
+		}
+		return slot;
 	}
 
 	private static ModelNotFoundException slotNotFound(long slotId) {

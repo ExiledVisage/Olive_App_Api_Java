@@ -3,7 +3,7 @@ package com.olivamore.api.product.productattribute;
 import com.olivamore.api.product.ProductUsage;
 import com.olivamore.api.product.ProductUsageCounter;
 import com.olivamore.api.product.productionproduct.ProductionProductService;
-import com.olivamore.api.shared.error.BusinessRuleException;
+import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.persistence.DeletionGuard;
@@ -100,7 +100,7 @@ public class ProductAttributeService {
 		ProductAttribute mapping = mappings.findById(mappingId)
 			.orElseThrow(() -> new ModelNotFoundException("ProductionProductAttributeDefinition", mappingId));
 		if (mapping.getProductionProductId() != productId) {
-			throw new BusinessRuleException("Seçilen attribute definition bu ürün kategorisine ait değil.");
+			throw new HttpStatusException(404, "Bu attribute eşlemesi bu ürün kategorisine ait değil.");
 		}
 		return mapping;
 	}
