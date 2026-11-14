@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Silme oncesi referans kontrolu. Laravel'deki {@code GuardsDeletion} trait'inin karsiligi.
+ * Silme oncesi referans kontrolu: kayit baska yerde kullaniliyorsa silme 422 ile reddedilir.
  * <p>
  * FK restrict olan tablolarda kontrolsuz silme 500 doner; cascade olanlarda
  * gecmis kayitlar sessizce kaybolur. Kullanildigi her yer adiyla sayilir:
@@ -33,7 +33,7 @@ public final class DeletionGuard {
 		return new DeletionGuard(subject);
 	}
 
-	/** @param label Laravel'deki etiketin aynisi, ornegin "üretim partisi" */
+	/** @param label mesajda sayinin yanina yazilan kullanici yuzlu ad, ornegin "üretim partisi" */
 	public DeletionGuard usedBy(String label, long count) {
 		usages.put(label, count);
 		return this;

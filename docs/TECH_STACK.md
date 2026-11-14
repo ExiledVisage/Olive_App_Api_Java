@@ -11,6 +11,7 @@
 - SSE (MVC `SseEmitter`): tek yönlü canlı veri
 - Jackson 3
 - Validation
+- springdoc-openapi: Swagger UI ve OpenAPI dokümanı (yalnızca dev profilinde)
 
 ## Mimari
 - Spring Modulith (event'li modüller + Event Publication Registry)
@@ -38,6 +39,7 @@
 - JUnit 5 · Mockito · AssertJ
 - Testcontainers (@ServiceConnection)
 - Spring Modulith tests (verify + @ApplicationModuleTest)
+- ArchUnit
 - Surefire (*Test) / Failsafe (*IT)
 
 ## Operasyon
@@ -83,7 +85,6 @@ Seçilen teknolojilerin yerine ya da yanında kullanılabilecek seçenekler.
 | **Java Record** | Lombok (DTO'larda) | Immutable DTO'lar için dilin kendi özelliği, Lombok'a gerek bırakmaz. MapStruct record'ları destekler. |
 | **Liquibase** | Flyway | DB'den bağımsız (XML/YAML) migration ve rollback desteği. Tek DB (Postgres) kullanılacağı için Flyway daha sade kalır. |
 | **Keycloak / Spring Authorization Server** | Kendi JWT üretimi | SSO, sosyal giriş ya da birden çok uygulamanın ortak kimlik doğrulaması gerekirse. |
-| **springdoc-openapi** | (yanına) | Swagger UI ve OpenAPI dokümanı üretir. Ayrı bir frontend olduğu için API sözleşmesini netleştirir. |
 | **ShedLock** | (`@Scheduled`'in yanına) | Birden fazla instance çalışırken zamanlanmış işlerin (günlük özet vb.) tek bir instance'ta çalışmasını garanti eder. |
 | **MinIO / S3** | Lokal disk | Dosya depolama (AppRelease, APK vb.). Ölçeklenebilir ve instance'tan bağımsız. |
 | **Redis** | (yanına) | Cache, rate limiting ya da token blacklist gerekirse. |

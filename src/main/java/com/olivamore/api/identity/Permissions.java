@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Laravel {@code $user->can('izin')}: admin rolu her izne sahip ({@code Gate::before}), digerleri dogrudan ya da
- * rol uzerinden. Rota seviyesinde ayrilamayan (ayni endpointten gecen) yetkiler icin.
+ * Kodun icinden izin kontrolu: admin rolu her izne sahip, digerleri izne dogrudan ya da rol uzerinden sahip olur.
+ * Rota seviyesinde ayrilamayan (ayni endpointten gecen) yetkiler icin.
  */
 @Component
 public class Permissions {

@@ -6,11 +6,11 @@ import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 
 /**
- * Laravel'in {@code created_at} / {@code updated_at} degerleri: UTC, saniyeye kirpilmis.
+ * {@code created_at} / {@code updated_at} ve diger zaman damgalari icin simdiki an: UTC, saniyeye kirpilmis.
  * <p>
- * Kolonlar {@code timestamp(0) without time zone}. Laravel {@code now()}'u saniyeye kirpip
- * UTC duvar saati olarak yazar. Java'da milisaniyeli bir deger yazilsa PostgreSQL onu
- * <b>yuvarlar</b> (14:00:00.7 -> 14:00:01); bu yuzden her zaman buradan alinir.
+ * Kolonlar {@code timestamp(0) without time zone}: UTC duvar saati, saniye hassasiyetinde. Milisaniyeli bir
+ * deger yazilsa PostgreSQL onu kirpmaz, <b>yuvarlar</b> (14:00:00.7 -> 14:00:01); bu yuzden zaman her zaman
+ * buradan alinir.
  */
 public final class Timestamps {
 

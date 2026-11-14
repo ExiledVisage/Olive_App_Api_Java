@@ -1,5 +1,5 @@
 /**
- * Kimlik ve yetki: kullanicilar, roller, izinler (Spatie Laravel Permission tablolari), JWT access token'lar,
+ * Kimlik ve yetki: kullanicilar, roller, izinler (kullaniciya dogrudan ya da rol uzerinden), JWT access token'lar,
  * donen refresh token'lar, giris/kayit ve rate limit.
  * <p>
  * {@code /api/**} altindaki her endpoint giris ister (acik olanlar SecurityConfig'te). Diger moduller yetkiyi

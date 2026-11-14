@@ -1,11 +1,12 @@
 # Olive API (Java)
 
-Olive Production Tracking backend'i. Bu repo **tek başına** çalışır: Laravel gerekmez.
+Olive Production Tracking backend'i. Bu repo **tek başına** çalışır.
 
 - Yol haritası: [docs/MIGRATION_ROADMAP.md](docs/MIGRATION_ROADMAP.md)
 - Teknolojiler: [docs/TECH_STACK.md](docs/TECH_STACK.md)
-- Laravel API envanteri: [docs/laravel-reference/ENDPOINTS.md](docs/laravel-reference/ENDPOINTS.md)
-- Laravel'den bilinen farklar: [docs/laravel-reference/DEVIATIONS.md](docs/laravel-reference/DEVIATIONS.md)
+- Canlıya geçiş: [docs/GO_LIVE.md](docs/GO_LIVE.md)
+- API dokümantasyonu: uygulama `./mvnw spring-boot:run` ile (dev profili) açıkken
+  http://localhost:8081/swagger-ui.html (JSON: `/v3/api-docs`). Sunucuda kapalı.
 
 ## Gereksinimler
 
@@ -45,6 +46,7 @@ Veritabanını baştan kurmak için: `-Dspring-boot.run.arguments="--seed --fres
 | Adres | Ne |
 |---|---|
 | http://localhost:8081 | Java API |
+| http://localhost:8081/swagger-ui.html | API dokümantasyonu (dev profili) |
 | http://localhost:3000 | Grafana, `admin` / `admin`. "Olive API" dashboard'u |
 | http://localhost:9090 | Prometheus |
 | http://localhost:8025 | Mailpit |
@@ -80,8 +82,8 @@ Laravel şemasının canlı geçişteki gibi yükseltilmiş haliyle aynı olduğ
 
 ```
 com.olivamore.api
-├── shared/        Ortak altyapı (OPEN modül): Laravel uyumlu hatalar, validator, sayfalama, JSON,
-│                  model binding, rate limiting, silme koruması
+├── shared/        Ortak altyapı (OPEN modül): ProblemDetail hataları, doğrulama mesajları, sayfalama,
+│                  JSON, zaman damgaları, rate limiting, silme koruması, OpenAPI
 ├── identity/        auth, user, role, permission, security (JWT, refresh token, izin kontrolü)
 ├── product/         productionproduct, productiontype, attribute, productattribute
 ├── process/         processtype, processtypefield, stageextensiontype
@@ -98,8 +100,8 @@ com.olivamore.api
 └── devdata/         Demo fabrika verisi (--seed)
 ```
 
-Her konu klasöründe Laravel adlarıyla `XxxController`, `XxxService`, `XxxResource` ve `XxxRequests`
-(FormRequest kuralları) bulunur. Alt klasörler modülün içidir; başka bir modülün kullanabildiği sınıflar
+Her konu klasöründe `XxxController`, `XxxService`, entity ve repository'ler, istek record'ları
+(`CreateXxxRequest`, `UpdateXxxRequest`) ve cevaplar (`XxxResponse`, `XxxResponses`) bulunur. Alt klasörler modülün içidir; başka bir modülün kullanabildiği sınıflar
 yalnızca modül kökündedir (ör. `productionline.ProductionLineResources`, `process.ProcessResources`,
 `inventory.MaterialResources`). Spring Modulith bunu ve modüller arası döngü olmamasını `ModularityTests`
 ile doğrular.
@@ -153,3 +155,9 @@ record CreateOrderRequest(
   Postgres konteynerini paylaşır, her sınıf demo verinin temiz haliyle başlar. Bilinçli bir sözleşme değişikliğinden
   sonra senaryolar `-Dscenario.record=<klasör>` ile yeniden yazılabilir: tutmayan adımlar gelen cevapla güncellenir,
   fark gözden geçirilip senaryo dosyasına alınır.
+- **Rate limit sayaçları** bellekte (tek uygulama örneği). Birden fazla örnekle çalışılacaksa ortak bir depoya
+  (ör. Redis) taşınmalı.
+- **Eşzamanlılık:** stok hareketinde işlemdeki tank(lar) transaction başında `SELECT ... FOR UPDATE` ile kilitlenir
+  (transferde iki tank, id sırasıyla); aynı tanka eşzamanlı girişler tankı taşıramaz (`StorageMovementConcurrencyIT`).
+- **Sıra:** her liste sabit bir sıralamayla döner (eşitlikte id); sırası tanımsız sorgu, yeniden üretilen demo veride
+  kararsız teste dönüşür.

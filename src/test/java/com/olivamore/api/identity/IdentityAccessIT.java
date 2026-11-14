@@ -155,7 +155,7 @@ class IdentityAccessIT {
 
 	@Test
 	void adminPassesEveryPermissionCheck() {
-		// Gate::before: admin'in role_permissions kaydi olmasa da gecer
+		// Admin rolu, role_permissions kaydi olmasa da her izne sahiptir
 		assertThat(get("/api/test/needs-unknown-permission", login("admin@olivamore.com")).status).isEqualTo(200);
 		assertThat(get("/api/test/needs-unknown-permission", login("planner@olivamore.com")).status).isEqualTo(403);
 	}

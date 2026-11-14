@@ -7,10 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Laravel'in {@code ->middleware('throttle:...')}'i.
+ * Endpoint'e istek limiti koyar; limit asilinca 429 doner.
  * <ul>
  *   <li>{@code @Throttle("login")}: adlandirilmis limiter ({@link NamedLimiter} bean'i)</li>
- *   <li>{@code @Throttle(maxAttempts = 30, decayMinutes = 1)}: {@code throttle:30,1}; anahtar giris yapan
+ *   <li>{@code @Throttle(maxAttempts = 30, decayMinutes = 1)}: dakikada 30 istek; anahtar giris yapan
  *       kullanici, yoksa istemci adresi</li>
  * </ul>
  */

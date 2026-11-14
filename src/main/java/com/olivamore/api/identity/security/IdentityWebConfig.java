@@ -21,7 +21,7 @@ import java.util.Locale;
 @Configuration(proxyBeanMethods = false)
 public class IdentityWebConfig {
 
-	/** {@code BCRYPT_ROUNDS=12}, {@code $2y$}: Laravel ve Java birbirinin hash'ini dogrular. */
+	/** BCrypt, 12 tur, {@code $2y$} oneki: veritabanindaki mevcut sifre hash'leri bu bicimde. */
 	public static final BCryptPasswordEncoder PASSWORDS =
 		new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12);
 

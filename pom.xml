@@ -12,13 +12,17 @@
 	<artifactId>olive-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>olive-api</name>
-	<description>Olive Production Tracking API (Laravel'den Java'ya geçiş)</description>
+	<description>Olive Production Tracking API</description>
 	<properties>
 		<java.version>25</java.version>
 		<argLine></argLine>
 		<spring-modulith.version>2.1.1</spring-modulith.version>
 		<archunit.version>1.4.2</archunit.version>
 		<bucket4j.version>8.22.0</bucket4j.version>
+		<springdoc.version>3.2.0</springdoc.version>
+		<!-- ./mvnw spring-boot:run gelistirme profiliyle calisir (API dokumantasyonu acik);
+		     -Dspring-boot.run.profiles=... ile degistirilebilir -->
+		<spring-boot.run.profiles>dev</spring-boot.run.profiles>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -40,6 +44,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -168,7 +177,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- Surefire: *Test / *Tests (birim), Failsafe: *IT (integration, mvnw verify).
-			     Laravel'in saat dilimi UTC: uygulamada main() ayarliyor, testlerde burada. -->
+			     Saat dilimi UTC (veritabanindaki zamanlar UTC): uygulamada main() ayarliyor, testlerde burada. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

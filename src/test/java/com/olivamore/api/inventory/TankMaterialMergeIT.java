@@ -26,7 +26,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * V10'un eski veriyi birlestirme kurali, calisma anindaki son tank girisiyle ({@code TankMixAttributes}) ayni sonucu
  * verir: ayni materyaller bir tanka API'den tek tek girer, digerine eski haliyle (tankta duran parti materyalleri)
- * konup V10 calistirilir. Demo veri V10'dan gecmis haldedir (seed = Laravel verisi + migration'lar). Demo veri:
+ * konup V10 calistirilir. Demo veri butun migration'lardan sonra uretildigi icin son tanklari zaten tek tank
+ * materyalidir, V10 orada bir sey yapmaz. Demo veri:
  * tip 3 Gemlik zeytinyagi (LITRE, kategori yogunlugu 0.916); esleme 4 asitlik (decimal), 5 cesit (string).
  */
 @ApiIntegrationTest

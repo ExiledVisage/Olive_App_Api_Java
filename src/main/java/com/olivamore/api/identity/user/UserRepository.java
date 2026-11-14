@@ -13,10 +13,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	boolean existsByEmailAndIdNot(String email, long id);
 
-	/** Laravel {@code where('email', ...)}: PostgreSQL'de buyuk/kucuk harfe duyarli. */
+	/** E-posta buyuk/kucuk harfe duyarli karsilastirilir (PostgreSQL varsayilani). */
 	Optional<User> findFirstByEmail(String email);
 
-	/** {@code User::query()->latest()->get()}: Laravel'in SQL'inin aynisi (esit created_at sirasi dahil). */
+	/** En yeni kullanici once; ayni {@code created_at}'te buyuk id once. */
 	@Query(value = "select * from users order by created_at desc, id desc", nativeQuery = true)
 	List<User> latest();
 

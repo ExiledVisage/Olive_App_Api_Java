@@ -106,9 +106,9 @@ public class MaterialQueries {
 			.param("ids", present).query(MovementLink.class).list();
 	}
 
-	/** Materyalin cocuklari; sira verilmez (detay ekrani). */
+	/** Materyalin cocuklari, id sirasiyla (detay ekrani). */
 	public List<MaterialRow> childrenOf(long parentId) {
-		return jdbc.sql("select * from materials where parent_material_id in (:id)").param("id", List.of(parentId))
+		return jdbc.sql("select * from materials where parent_material_id = :id order by id").param("id", parentId)
 			.query(MaterialRow.class).list();
 	}
 

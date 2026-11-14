@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Laravel'in {@code RateLimiter::for('login', fn (Request $request) => [...])} tanimi.
+ * Adlandirilmis istek limiti: istege gore bir ya da birden cok {@link Limit} (orn. e-posta ve adres basina).
  * Bean olarak tanimlanir, endpoint'e {@code @Throttle("login")} ile baglanir.
  */
 public interface NamedLimiter {

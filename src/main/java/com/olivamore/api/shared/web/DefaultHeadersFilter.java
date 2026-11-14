@@ -9,9 +9,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 /**
- * Laravel (Symfony Response) her cevaba, baska bir deger verilmemisse
- * {@code Cache-Control: no-cache, private} yazar. Farkli deger isteyen endpoint (orn. APK indirme:
- * {@code public}) basligi kendisi ezer.
+ * API cevaplari onbelleklenmez: her cevaba varsayilan olarak {@code Cache-Control: no-cache, private} yazilir.
+ * Farkli deger isteyen endpoint (orn. APK indirme: {@code public}) basligi kendisi ezer.
  * <p>
  * WebConfig'te FilterRegistrationBean ile kaydedilir: bean olsaydi Spring Modulith insight proxy'lerdi.
  */

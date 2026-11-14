@@ -13,7 +13,7 @@ Evdeki WiFi kurulumu (`main` dalı, SQLite) bu geçişe dahil değil: Java yaln�
   `/sanctum/csrf-cookie`, `/storage/{path}`) uygulama tarafından kullanılmıyor.
 - Yerel proxy'de her `/api` yolu Java'ya gidiyor, Laravel'e giden istek yok.
 - Prova: sunucu compose dosyası (`deploy/compose.server.yaml`) yerelde Laravel'in veritabanına
-  bağlanıp ayağa kalktı; 15 ekranın cevabı Laravel'le aynı (rol izinlerinin sırası hariç: Laravel sırasız döndürüyor, DEVIATIONS 11).
+  bağlanıp ayağa kalktı; 15 ekranın cevabı Laravel'le aynı (rol izinlerinin sırası hariç: Laravel sırasız döndürüyor).
 
 ## Adımlar
 

@@ -62,12 +62,12 @@ public class MaterialDirectory {
 
 	public List<Material> activeInTank(long tankId) {
 		return jdbc.sql(COLUMNS + "where current_location_type = 'storage_unit' and current_location_id = :tank"
-			+ " and status = 'active'").param("tank", tankId).query(Material.class).list();
+			+ " and status = 'active' order by id").param("tank", tankId).query(Material.class).list();
 	}
 
 	public List<Material> activeOfBatch(long batchId) {
-		return jdbc.sql(COLUMNS + "where production_batch_id = :batch and status = 'active'").param("batch", batchId)
-			.query(Material.class).list();
+		return jdbc.sql(COLUMNS + "where production_batch_id = :batch and status = 'active' order by id")
+			.param("batch", batchId).query(Material.class).list();
 	}
 
 	/** Partinin verilen tiplerdeki aktif materyalleri. */

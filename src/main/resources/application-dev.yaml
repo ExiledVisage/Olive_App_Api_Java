@@ -1,0 +1,9 @@
+# Gelistirme profili (./mvnw spring-boot:run varsayilan olarak bununla calisir)
+
+# API dokumantasyonu: http://localhost:8081/swagger-ui.html (JSON: /v3/api-docs)
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+  paths-to-match: /api/**

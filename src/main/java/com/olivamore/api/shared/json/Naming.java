@@ -2,7 +2,7 @@ package com.olivamore.api.shared.json;
 
 import tools.jackson.databind.PropertyNamingStrategies;
 
-/** JSON alan adlari: Java'daki camelCase adlarin Laravel'deki snake_case karsiligi. */
+/** JSON alan adlari: Java'daki camelCase adlarin API'deki snake_case karsiligi. */
 public final class Naming {
 
 	private static final Snake SNAKE = new Snake();

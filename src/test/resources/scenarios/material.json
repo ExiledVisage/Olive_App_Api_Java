@@ -30321,17 +30321,17 @@
         "storage_unit" : null,
         "parent_material" : null,
         "child_materials" : [ {
-          "id" : 46,
-          "name" : "Zeytin Pirinası",
-          "quantity" : 5231.3,
-          "unit" : "KG",
-          "status" : "active"
-        }, {
           "id" : 45,
           "name" : "Gemlik Zeytinyağı",
           "quantity" : 1350.05,
           "unit" : "LITRE",
           "status" : "consumed"
+        }, {
+          "id" : 46,
+          "name" : "Zeytin Pirinası",
+          "quantity" : 5231.3,
+          "unit" : "KG",
+          "status" : "active"
         } ],
         "attribute_values" : [ ],
         "movements" : [ ],
@@ -36080,17 +36080,17 @@
         "storage_unit" : null,
         "parent_material" : null,
         "child_materials" : [ {
-          "id" : 90,
-          "name" : "Zeytin Pirinası",
-          "quantity" : 3893.5,
-          "unit" : "KG",
-          "status" : "active"
-        }, {
           "id" : 89,
           "name" : "Ayvalık Zeytinyağı",
           "quantity" : 1096.31,
           "unit" : "LITRE",
           "status" : "consumed"
+        }, {
+          "id" : 90,
+          "name" : "Zeytin Pirinası",
+          "quantity" : 3893.5,
+          "unit" : "KG",
+          "status" : "active"
         } ],
         "attribute_values" : [ ],
         "movements" : [ ],

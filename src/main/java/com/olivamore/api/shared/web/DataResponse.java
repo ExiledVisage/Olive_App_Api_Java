@@ -4,8 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Tek bir JsonResource'un cevabi: {@code {"data": {...}}}.
- * Laravel yeni olusturulan bir modelin Resource'unu 201 ile dondurur ({@code wasRecentlyCreated}).
+ * Tek bir kaydin cevabi: {@code {"data": {...}}}. Yeni olusturulan kayit {@link #created} ile 201 doner.
  */
 public record DataResponse<T>(T data) {
 

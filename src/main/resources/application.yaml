@@ -19,13 +19,17 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      # Sema Laravel'in: Hibernate dokunmaz, sadece entity'lerin semaya uydugunu dogrular.
+      # Semayi Flyway kurar: Hibernate dokunmaz, sadece entity'lerin semaya uydugunu dogrular.
       ddl-auto: validate
+    properties:
+      # jsonb kolonlari Jackson 3 ile: classpath'te Jackson 2 de var (springdoc'un swagger-core'u),
+      # Hibernate kendiliginden onu secer ve tools.jackson JsonNode'u okuyamaz
+      hibernate.type.json_format_mapper: jackson3
 
   flyway:
-    # Bos veritabaninda Laravel'in migration'lari (db/migration, V0.00-V0.69) ve V2
-    # calisir. Laravel'in olusturdugu mevcut bir veritabaninda sema
-    # surum 1 olarak kabul edilir; V0.xx'ler bunun altinda kaldigi icin calismaz.
+    # Bos veritabaninda butun migration'lar (db/migration: V0.00-V0.69 temel sema, V2 ve sonrasi)
+    # calisir. Laravel'in kurdugu canli veritabaninda (Flyway kaydi yok) mevcut sema surum 1
+    # olarak kabul edilir; V0.xx'ler bunun altinda kaldigi icin calismaz, V2 ve sonrasi uygulanir.
     baseline-on-migrate: true
     baseline-version: 1
 
@@ -44,12 +48,20 @@ spring:
       # compose.yaml'daki servisler uygulama kapaninca durmasin
       lifecycle-management: start-only
       start:
-        # Bazi servisler zaten calisiyor olsa da "up" calissin: eksik olanlari (orn. laravel
-        # profilindeki kopru ve proxy) baslatir, calisanlara dokunmaz
+        # Bazi servisler zaten calisiyor olsa da "up" calissin: eksik olanlari baslatir,
+        # calisanlara dokunmaz
         skip: never
 
 server:
   port: 8081
+
+# API dokumantasyonu (/v3/api-docs, /swagger-ui.html) varsayilan olarak kapali; yalnizca dev profilinde
+# acilir (application-dev.yaml, ./mvnw spring-boot:run). Sunucuda profil yok, kapali kalir.
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
 
 management:
   endpoints:

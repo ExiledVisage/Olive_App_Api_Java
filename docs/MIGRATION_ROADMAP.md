@@ -83,7 +83,7 @@ Tek seferde geçiş yapılmaz. Her modül şu sırayla taşınır:
 - [x] **Modül sınırları:** aşağıdaki faz listesi Modulith paketlerine karşılık gelir
 - [x] **Referans cevaplar:** dondurulmuş veri üzerinde her GET endpoint'inin Laravel cevabı kaydedilir. Veri değiştiren endpoint'lerin referansları her modülün kendi fazında, veri geri yüklenerek alınır
 
-> Faz 0 çıktıları ve bulgular: `reference/` (B8'de kaldırıldı), endpoint envanteri (191 endpoint): [laravel-reference/ENDPOINTS.md](laravel-reference/ENDPOINTS.md)
+> Faz 0 çıktıları ve bulgular: `reference/` (B8'de kaldırıldı), endpoint envanteri (191 endpoint) ve DEVIATIONS.md (B10'da kaldırıldı, git geçmişinde `docs/laravel-reference/`)
 
 ## Faz 1: İskelet ve Ortak Altyapı
 
@@ -496,8 +496,18 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
 - [ ] Detaylı Grafana dashboard'ları ve alarm kuralları
 
 ## B10: Dokümantasyon
-- [ ] springdoc-openapi ile API dokümantasyonu
-- [ ] `docs/` güncellenir; `docs/laravel-reference/` kaldırılır, koddaki Laravel açıklamaları temizlenir
+- [x] springdoc-openapi ile API dokümantasyonu: `/swagger-ui.html` ve `/v3/api-docs` yalnızca `dev` profilinde
+  (`./mvnw spring-boot:run` varsayılanı); sunucuda kapalı. Başlık ve Bearer JWT `OpenApiConfig`'te
+- [x] `docs/` güncellenir; `docs/laravel-reference/` kaldırılır, koddaki Laravel açıklamaları temizlenir. Kodun ne
+  yaptığını anlatan açıklamalar kaldı; Laravel yalnızca canlı geçişle ilgili yerlerde geçer (V2-V11,
+  `LaravelDatabaseUpgradeIT`, `BaselineSchemaIT`, GO_LIVE, deploy)
+- DEVIATIONS.md'den hâlâ geçerli kararlar README'ye taşındı (rate limit sayaçları, tank kilidi, sabit sıralama);
+  Laravel hatalarının düzeltmeleri `*RulesIT` ve senaryolarda tanımlı. Laravel'den birebir kopyalanmış, kapatılması
+  düşünülecek açık konular (karar verilmedi):
+  - `production-products/{id}/attribute-definitions` altındaki listeleme, ekleme, güncelleme ve silme izin istemiyor;
+    giriş yapan her kullanıcı kategorinin attribute tanımlarını değiştirebilir
+  - `PUT production-lines/{line}/stages/{stage}/extensions` başka bir hattın aşamasını da kabul ediyor
+  - `PATCH/DELETE finished-product-storages/{depo}/slots/{raf}` başka bir deponun rafını da kabul ediyor
 
 ## B11: Kabul kriteri
 - [x] ArchUnit testi: `Php`, `Db`, `Row`, `RequestInput`, `LaravelValidator` ya da adında `Laravel`
@@ -647,7 +657,7 @@ Bölüm B'nin kuralları kendi başlığında.
 - **Java hiçbir zaman Laravel'e bağımlı olmaz.** Varsayılan kurulum tek başına; Laravel'le ilgili her şey `laravel` profilinde ve geçiş dönemine ait dosyalarda durur.
 - **Geçiş süresince yeni özellik yok.** Laravel'e yeni özellik eklenirse Java'ya da eklenmesi gerekir. Zorunlu bir değişiklik olursa önce taşınmış tarafta yapılır.
 - **Şemanın sahibi geçiş boyunca Laravel'dir.** Laravel'in tablolarına Java migration yazmaz. Java yalnızca kendi altyapı tablolarını (Laravel'in kullanmadığı, örn. `event_publication`) ekleyebilir.
-- **Laravel'den her fark ya düzeltilir ya da [DEVIATIONS.md](laravel-reference/DEVIATIONS.md)'ye yazılır.**
+- **Laravel'den her fark ya düzeltilir ya da DEVIATIONS.md'ye yazılır** (B10'da kaldırıldı; hâlâ geçerli kararlar README'de, açık konular B10'da).
 - **İş mantığı yeniden tasarlanmaz, birebir taşınır.** İyileştirmeler Bölüm B'de ya da sonrasında yapılır. Aksi halde bir hatanın taşımadan mı yoksa yeni tasarımdan mı geldiği anlaşılmaz.
 - **Laravel `dev` branch'ine yeni commit gelirse** ilgili fazlar `ba61990` sonrasındaki farka bakılarak güncellenir.
 - **Her modülün workflow dokümanı** (`docs/workflow-*.md`) o fazın şartnamesi gibi kullanılır.
