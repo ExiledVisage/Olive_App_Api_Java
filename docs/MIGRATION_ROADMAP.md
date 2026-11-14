@@ -549,6 +549,9 @@ geçişinden önce yapılır.
 - [x] Tanktan çıkışta çocuk materyal açılmaz, tank materyali doğrudan azalır
 - [x] Dolum, elle çıkış, tanktan tanka transfer ve sayım azalışı tipler arasında oransal düşer;
   yuvarlama farkı son tipe yazılır
+- [x] Karışımdaki bütün oranlar kütleyle bulunur (dolum, çıkış, transfer, sayım azalışı, Boşalt, tarif oranı, tank
+  kuralı ve dolumdaki tahmini ortalama): sonuç materyallerin sırasına ya da birimine bağlı değildir. Çekilen miktar
+  tankın kapasite biriminde girilir, gerekirse karışımın yoğunluğuyla (toplam kg / toplam litre) çevrilir
 - [x] Transferde hedef tank karışımdaki her tipi kabul etmeli, biri reddedilirse transferin tamamı reddedilir
 - [x] Tank sayfasındaki giriş, çıkış, transfer ve sayım hareketleri normal tanklar için kalır
 - [x] Üretim içinden son tanktaki karışım materyali üzerinde çıkış ya da transfer yapılamaz (tek partisi yok)

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Component
 class TankQueries {
 
-	record TankMaterial(Long id, Long productionProductTypeId, BigDecimal quantity) {
+	record TankMaterial(Long id, Long productionProductTypeId, BigDecimal quantity, String unit) {
 	}
 
 	record DecimalValue(Long materialId, Long definitionId, BigDecimal valueDecimal) {
@@ -123,7 +123,7 @@ class TankQueries {
 	/** Tanktaki aktif materyaller. */
 	List<TankMaterial> activeMaterials(long unitId) {
 		return jdbc.sql("""
-			select id, production_product_type_id, quantity from materials
+			select id, production_product_type_id, quantity, unit from materials
 			where current_location_type = 'storage_unit' and current_location_id = :unit and status = 'active'
 			""").param("unit", unitId).query(TankMaterial.class).list();
 	}

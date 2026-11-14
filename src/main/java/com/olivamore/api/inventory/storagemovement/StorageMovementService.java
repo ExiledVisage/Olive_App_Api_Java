@@ -567,7 +567,7 @@ public class StorageMovementService {
 			return MixShares.split(parts, total, capacityUnit);
 		}
 		BigDecimal insideKg = MixShares.total(parts, UnitConversion.KG);
-		BigDecimal totalKg = total.multiply(insideKg).divide(inside, MathContext.DECIMAL128);
+		BigDecimal totalKg = MixShares.toKg(parts, total, capacityUnit);
 		if (totalKg.subtract(insideKg).compareTo(insideKg.multiply(EMPTYING_TOLERANCE)) > 0) {
 			throw new BusinessRuleException("Çekilen miktar (" + plain(total) + " " + capacityUnit + ") tanktakinden ("
 				+ plain(Quantities.balance(inside)) + " " + capacityUnit + ") fazla; fark ölçüm toleransını (%"
@@ -817,7 +817,8 @@ public class StorageMovementService {
 		if (isFinal(unit)) {
 			assertRequiredAttributes(incoming, type);
 		}
-		assertCompatibleWithTank(unit, incoming.getId(), type, quantity);
+		assertCompatibleWithTank(unit, incoming.getId(), type, toUnit(quantity, incoming.getUnit().value(),
+			UnitConversion.KG, type));
 	}
 
 	private void assertTypeIsBatchOutput(BatchProcess batchProcess, ProductType type) {
@@ -944,10 +945,10 @@ public class StorageMovementService {
 
 	/**
 	 * Tank bossa yalnizca attribute kurallari; doluysa once farkli urun (kategori) ve farkli tip kurallari.
-	 * @param incomingQuantity tanka fiilen girecek miktar (agirlikli ortalamada agirlik)
+	 * @param incomingKg tanka fiilen girecek miktarin kg karsiligi (agirlikli ortalamada agirlik, kutleyle)
 	 */
 	private void assertCompatibleWithTank(StorageUnit unit, long incomingId, ProductType incomingType,
-		BigDecimal incomingQuantity) {
+		BigDecimal incomingKg) {
 		flush();
 		List<TankMaterial> existing = queries.activeMaterials(unit.getId());
 		List<Long> typeIds = new ArrayList<>(existing.stream().map(TankMaterial::productionProductTypeId).toList());
@@ -967,12 +968,12 @@ public class StorageMovementService {
 				throw new BusinessRuleException("Bu tank doluyken farklı ürünler bir arada tutulamaz.");
 			}
 		}
-		assertAttributeRules(unit, incomingId, incomingType, existing, types, values, incomingQuantity);
+		assertAttributeRules(unit, incomingId, incomingType, existing, types, values, incomingKg);
 	}
 
 	private void assertAttributeRules(StorageUnit unit, long incomingId, ProductType incomingType,
 		List<TankMaterial> existing, Map<Long, ProductType> types, Map<Long, List<DecimalValue>> values,
-		BigDecimal incomingQuantity) {
+		BigDecimal incomingKg) {
 		List<StorageUnitAttributeRule> active = rules.findByStorageUnitIdAndActiveTrue(unit.getId());
 		if (active.isEmpty()) {
 			return;
@@ -1014,11 +1015,12 @@ public class StorageMovementService {
 						throw new BusinessRuleException(
 							"Tank içindeki mevcut material üzerinde gerekli attribute değeri bulunamadı.");
 					}
-					weighted = weighted.add(value.multiply(m.quantity()));
-					total = total.add(m.quantity());
+					BigDecimal kg = toUnit(m.quantity(), m.unit(), UnitConversion.KG, types.get(m.productionProductTypeId()));
+					weighted = weighted.add(value.multiply(kg));
+					total = total.add(kg);
 				}
-				weighted = weighted.add(incomingValue.multiply(incomingQuantity));
-				total = total.add(incomingQuantity);
+				weighted = weighted.add(incomingValue.multiply(incomingKg));
+				total = total.add(incomingKg);
 				if (total.signum() <= 0) {
 					throw new BusinessRuleException("Tank ortalaması hesaplanamadı.");
 				}

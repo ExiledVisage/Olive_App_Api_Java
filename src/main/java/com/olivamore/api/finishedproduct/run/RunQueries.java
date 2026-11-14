@@ -32,7 +32,7 @@ class RunQueries {
 
 	}
 
-	record Unit(Long id, String name, String code) {
+	record Unit(Long id, String name, String code, String capacityUnit) {
 	}
 
 	record MaterialAttribute(Long materialId, Long attributeDefinitionId, BigDecimal valueDecimal) {
@@ -84,7 +84,7 @@ class RunQueries {
 	}
 
 	private static Unit unit(MaterialDirectory.Tank tank) {
-		return new Unit(tank.id(), tank.name(), tank.code());
+		return new Unit(tank.id(), tank.name(), tank.code(), tank.capacityUnit());
 	}
 
 	boolean unitExists(long id) {

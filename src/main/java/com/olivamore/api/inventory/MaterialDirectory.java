@@ -22,7 +22,7 @@ public class MaterialDirectory {
 		String unit, String status, String currentLocationType, Long currentLocationId) {
 	}
 
-	public record Tank(Long id, String name, String code) {
+	public record Tank(Long id, String name, String code, String capacityUnit) {
 	}
 
 	public record BatchMaterial(Long id, Long productionBatchId) {
@@ -164,7 +164,7 @@ public class MaterialDirectory {
 		if (present.isEmpty()) {
 			return Map.of();
 		}
-		return jdbc.sql("select id, name, code from storage_units where id in (:ids)").param("ids", present)
+		return jdbc.sql("select id, name, code, capacity_unit from storage_units where id in (:ids)").param("ids", present)
 			.query(Tank.class).list().stream().collect(Collectors.toMap(Tank::id, Function.identity()));
 	}
 

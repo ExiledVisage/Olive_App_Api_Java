@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.within;
 
 /**
  * Dolum kurallari, her test kendi tankiyla: tarif orani toleransi (%2), tarifteki asitlik araligi, tanktan cekilen
- * yagin fire toleransi (%2), materyallerden oransal tuketim (kg ve litre tipler ortak birimde), tamamlanmada yag,
+ * yagin fire toleransi (%2), materyallerden oransal tuketim (kg ve litre tipler kutleyle), tamamlanmada yag,
  * ambalaj ve son urun stogu, durum gecisleri ve yetki.
  * Demo veri: urun 1 (tarif 1: %100 Gemlik, asitlik 0.3 +-0.05, 0.25 L, ambalaj kalemleri 1, 8, 12, 17),
  * urun 15 (tarif 5: %70 Gemlik + %30 Ayvalik, asitlik 0.5 +-0.05).
@@ -102,22 +102,36 @@ class FillingRulesIT {
 	}
 
 	@Test
-	void blendOfLitreAndKilogramTypesIsDrawnByItsConvertedShare() {
-		// Ayvalik bu test icin kg birimli, yogunluk 0.9: 270 kg = 300 L, karisim %70 Gemlik + %30 Ayvalik
+	void blendOfLitreAndKilogramTypesIsDrawnByMassWhateverTheEntryOrder() {
+		// Ayvalik bu test icin kg birimli, yogunluk 0.9: 270 kg = 300 L, karisim %70 Gemlik + %30 Ayvalik (litreyle)
 		jdbc.update("update production_product_types set unit = 'KG', density_kg_per_litre = 0.9 where id = ?", AYVALIK);
 		try {
-			long tank = tank(Map.of(GEMLIK, "700"), "0.5");
-			long gemlik = jdbc.queryForObject("select id from materials where current_location_type = 'storage_unit'"
-				+ " and current_location_id = ? and status = 'active'", Long.class, tank);
-			long ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
 			BigDecimal litres = jdbc.queryForObject("select volume_litre from finished_products where id = ?",
 				BigDecimal.class, BLEND).multiply(BigDecimal.TEN);
+			for (boolean gemlikFirst : List.of(true, false)) {
+				long tank = id(api.post("/api/storage-units", Map.of("name", "Dolum kurali", "code", "FILL-RULE-"
+					+ codes.incrementAndGet(), "capacity", 5000, "capacity_unit", "LITRE",
+					"allow_multiple_production_product_types", true)));
+				long gemlik;
+				long ayvalik;
+				if (gemlikFirst) {
+					gemlik = open(tank, GEMLIK, "700", "0.5");
+					ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
+				}
+				else {
+					ayvalik = open(tank, AYVALIK, "270", "KG", "0.5");
+					gemlik = open(tank, GEMLIK, "700", "0.5");
+				}
 
-			long run = id(plan(BLEND, 10, tank, null));
+				long run = id(plan(BLEND, 10, tank, null));
 
-			// oran ham miktarla (700 / 970) degil, litreyle (700 / 1000): Gemlik %70 litre, Ayvalik %30 litre x 0.9 kg
-			assertThat(used(run, gemlik)).isEqualByComparingTo(litres.multiply(new BigDecimal("0.7")));
-			assertThat(used(run, ayvalik)).isEqualByComparingTo(litres.multiply(new BigDecimal("0.27")));
+				// cekilen 2.5 L tankin kapasite biriminde; oran kutleyle, ham miktarla (700 / 970) degil: her
+				// materyalden ayni pay (2.5 / 1000), Gemlik 1.75 L, Ayvalik 0.75 L x 0.9 = 0.675 kg
+				assertThat(used(run, gemlik)).as("Gemlik once: " + gemlikFirst)
+					.isEqualByComparingTo(litres.multiply(new BigDecimal("0.7")));
+				assertThat(used(run, ayvalik)).as("Gemlik once: " + gemlikFirst)
+					.isEqualByComparingTo(litres.multiply(new BigDecimal("0.27")));
+			}
 		}
 		finally {
 			jdbc.update("update production_product_types set unit = 'LITRE', density_kg_per_litre = null where id = ?",
