@@ -1,9 +1,9 @@
 # Canlıya Geçiş (Faz 12)
 
 Droplet'teki (`161.35.54.96`) Laravel API'sinin yerine Java API'si geçer. Veritabanı aynı kalır:
-veri taşınmaz, Java Laravel'in `db` konteynerine bağlanır. Telefondaki uygulama aynı adrese
-(`:8001`) bağlanmaya devam eder, hiçbir şey fark etmez. Java JWT kullandığı için geçişte
-herkes yeniden giriş yapar; `JWT_PRIVATE_KEY` tanımlı olmadan uygulama başlamaz.
+veri taşınmaz, Java Laravel'in `db` konteynerine bağlanır. API aynı adreste (`:8001`) açılır, ama sözleşmesi
+Bölüm B'de değişti (JWT, sayfalama, ProblemDetail, ISO tarih, tank işlemleri). Telefondaki uygulama sürümde değil;
+Java'ya göre uyarlanana kadar çalışmaz, bu kabul edildi. `JWT_PRIVATE_KEY` tanımlı olmadan uygulama başlamaz.
 
 Evdeki WiFi kurulumu (`main` dalı, SQLite) bu geçişe dahil değil: Java yalnızca PostgreSQL ile çalışır.
 
@@ -292,8 +292,9 @@ curl -s -X POST http://localhost:8001/api/auth/login -H 'Content-Type: applicati
 docker compose -f compose.server.yaml logs -f api             # hata var mı
 ```
 
-Sonra telefondaki **Olivamore Dev** ile: giriş, parti listesi, bir prosesin detayı, tanklar,
-siparişler, günlük özet.
+Sonra aynı token'la birkaç okuma: parti listesi, bir prosesin detayı, tanklar, siparişler, günlük özet
+(`curl -H "Authorization: Bearer <token>" http://localhost:8001/api/...`). Telefon uygulaması uyarlanınca onunla da
+denenir.
 
 ### Geri dönüş (sorun çıkarsa)
 
