@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Sunucuda tek komutla guncelleme (Laravel'in deploy.sh'i ile ayni duzen).
+# Sunucuda tek komutla guncelleme (docs/SERVER.md).
 #
 #   cd /srv/olivamore/dev/olive_api_java/deploy && ./deploy.sh
 #

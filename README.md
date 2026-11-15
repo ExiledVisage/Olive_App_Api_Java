@@ -4,7 +4,7 @@ Olive Production Tracking backend'i. Bu repo **tek başına** çalışır.
 
 - Yol haritası: [docs/MIGRATION_ROADMAP.md](docs/MIGRATION_ROADMAP.md)
 - Teknolojiler: [docs/TECH_STACK.md](docs/TECH_STACK.md)
-- Canlıya geçiş: [docs/GO_LIVE.md](docs/GO_LIVE.md)
+- Sunucu kurulumu: [docs/SERVER.md](docs/SERVER.md)
 - API dokümantasyonu: uygulama `./mvnw spring-boot:run` ile (dev profili) açıkken
   http://localhost:8081/swagger-ui.html (JSON: `/v3/api-docs`). Sunucuda kapalı.
 
@@ -42,6 +42,13 @@ cp .env.example .env
 ```
 
 Veritabanını baştan kurmak için: `-Dspring-boot.run.arguments="--seed --fresh"` (yalnızca yerel adreslerde çalışır).
+Eski migration zinciriyle (V0.xx, V2-V11) kurulmuş bir veritabanında uygulama Flyway doğrulamasında durur, `--fresh`
+de çalışamaz; şema elle boşaltılıp seed yeniden yüklenir:
+
+```bash
+psql -U oliveapp -d oliveapp -c "DROP SCHEMA public CASCADE" -c "CREATE SCHEMA public"
+# Docker'daki PostgreSQL ise: docker compose exec postgres psql -U oliveapp -d oliveapp -c "..."
+```
 
 | Adres | Ne |
 |---|---|
@@ -66,6 +73,22 @@ tanklar, tarifler, müşteriler) `src/main/resources/devdata/master-data.sql`'de
 üzerinden yürütülür, bu yüzden her zaman güncel iş kurallarına uyar. Ayrıntı: `DemoFactory`.
 Yükleme birkaç dakika sürer.
 
+### Migration'lar
+
+Şema `src/main/resources/db/migration/` altında, modül klasörlerinde, tablo başına bir dosya (Flyway alt klasörleri
+de tarar). Sürüm `V<modül sırası>_<tablo sırası>`: `shared` 1, `identity` 2, `product` 3, `process` 4,
+`productionline` 5, `supplier` 6, `inventory` 7, `production` 8, `packaging` 9, `finishedproduct` 10, `sales` 11,
+`notification` 12, `analytics` 13. Örn. `identity/V2_03__create_permissions.sql`. Her dosyada tablonun kendisi,
+sequence'i, index ve constraint'leri, foreign key'leri ve kodda tanımlı referans satırları (izinler, admin rolü,
+aşama uzantı tipleri) vardır. Bir foreign key, iki tablodan sonra oluşanın dosyasındadır. Demo veri bunların
+üzerine `devdata/master-data.sql`'den gelir.
+
+Yeni migration (yeni tablo ya da var olan tabloda değişiklik) modülün klasörüne, bütün sürümlerden büyük bir
+sürümle eklenir: örn. `inventory/V14_01__create_tank_cleanings.sql`, `inventory/V14_02__add_cleaned_at_to_storage_units.sql`.
+Daha küçük bir sürüm (`inventory/V7_10__...`) dolu veritabanında sıra dışı sayılır ve uygulama açılmaz. Uygulanmış bir
+dosya değiştirilmez (Flyway checksum'ı tutmaz); geliştirme aşamasında bütün veritabanları sıfırlanacaksa
+(`--seed --fresh`, sunucuda `down -v`) tablonun kendi dosyası düzenlenebilir.
+
 ## Testler
 
 ```bash
@@ -75,8 +98,7 @@ Yükleme birkaç dakika sürer.
 
 Integration testleri Testcontainers ile boş bir Postgres 17 açar ve Flyway şemayı kurar. Demo veri
 `--seed` ile aynı yoldan, 2026-11-06'da biten ve sabit tohumlu olarak bir kez üretilir, bellekte tutulur
-ve her test sınıfından önce geri yüklenir (`DemoSnapshot`). `BaselineSchemaIT` sıfırdan kurulan şemanın,
-Laravel şemasının canlı geçişteki gibi yükseltilmiş haliyle aynı olduğunu doğrular.
+ve her test sınıfından önce geri yüklenir (`DemoSnapshot`).
 
 ## Kod düzeni
 

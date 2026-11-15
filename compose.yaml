@@ -1,4 +1,4 @@
-# Gelistirme ortami (tek basina, Laravel gerekmez).
+# Gelistirme ortami.
 #
 # Java uygulamasi bilgisayarda calisir (./mvnw spring-boot:run ya da IDE). Acilirken
 # spring-boot-docker-compose bu dosyayi otomatik baslatir (start-only: kapaninca durdurmaz).

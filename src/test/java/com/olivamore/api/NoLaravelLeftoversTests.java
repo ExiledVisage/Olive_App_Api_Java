@@ -14,8 +14,8 @@ import java.util.Set;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 /**
- * Bolum B'nin kabul kriteri: uygulama kodunda Laravel'den tasinmis yardimci yapilar kalmaz. Testler taranmaz;
- * canli gecis testleri adlarinda bilerek Laravel tasir.
+ * Bolum B'nin kabul kriteri: uygulama kodunda Laravel'den tasinmis yardimci yapilar kalmaz. Yalnizca uygulama
+ * kodu taranir, testler taranmaz.
  */
 @AnalyzeClasses(packagesOf = OliveApiApplication.class, importOptions = ImportOption.DoNotIncludeTests.class)
 class NoLaravelLeftoversTests {

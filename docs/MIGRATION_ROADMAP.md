@@ -91,7 +91,7 @@ Hiçbir iş mantığı içermez, sonraki her fazın üzerine kurulacağı temel.
 - [x] Spring Boot 4 projesi, Maven wrapper, Modulith iskeleti (Spring Boot 4.1.2, Modulith 2.1.1, paket `com.olivamore.api`)
 - [x] **Tek başına çalışma:** `compose.yaml` (isteğe bağlı Docker Postgres, Mailpit, Prometheus, Grafana) Laravel'e bağımlı değil. Veritabanı bilgisayardaki PostgreSQL ya da Docker'daki (`COMPOSE_PROFILES=docker-db`). `--seed`: boş veritabanına Flyway şemayı kurar, demo veri (`reference/seed-data.sql`) JDBC ile yüklenir, psql gerekmez. Yeni bilgisayar senaryosu temiz klonla denendi
 - [x] **Geçiş dönemi düzeni** (`compose.laravel.yaml`, `laravel` profili): reverse proxy (Caddy, `:8080`), Laravel'in veritabanına köprü (`127.0.0.1:5433`). Laravel'in compose'una dokunulmadı: köprü ve proxy onun Docker ağına katılıyor. Taşınan yollar `docker/proxy/java-routes.caddy`'ye eklenir, cevaplarda `X-Served-By` başlığı var
-- [x] **Flyway baseline:** Her migration ayrı bir dosya, Laravel'deki gibi tablo tablo: `db/migration/V0.01__create_users_table.sql` ... `V0.69__add_order_to_finished_product_stock_movements.sql` (+ `V0.00__create_migrations_table.sql`). SQL Laravel'in kendisine üretildi (`migrate --pretend`), yalnızca şema komutları alındı. Mevcut Laravel veritabanında şema sürüm 1 olarak kabul edilir (baseline), V0.xx'ler çalışmaz; boş veritabanında hepsi sırayla çalışır. (İlk hâli tek dosyaydı, `V1__baseline.sql`; okunabilirlik için bölündü.) `BaselineSchemaIT` Flyway + seed ile kurulan veritabanının Laravel'inkiyle şema (kolon, constraint, index), satır sayıları ve sequence'ler düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`)
+- [x] **Flyway baseline:** Her migration ayrı bir dosya, Laravel'deki gibi tablo tablo: `db/migration/V0.01__create_users_table.sql` ... `V0.69__add_order_to_finished_product_stock_movements.sql` (+ `V0.00__create_migrations_table.sql`). SQL Laravel'in kendisine üretildi (`migrate --pretend`), yalnızca şema komutları alındı. Mevcut Laravel veritabanında şema sürüm 1 olarak kabul edilir (baseline), V0.xx'ler çalışmaz; boş veritabanında hepsi sırayla çalışır. (İlk hâli tek dosyaydı, `V1__baseline.sql`; okunabilirlik için bölündü.) `BaselineSchemaIT` Flyway + seed ile kurulan veritabanının Laravel'inkiyle şema (kolon, constraint, index), satır sayıları ve sequence'ler düzeyinde aynı olduğunu doğrular. Geçiş bitene kadar Laravel tablolarındaki değişiklikler **sadece Laravel migration'larıyla** yapılır; Java sadece kendi altyapı tablolarını ekleyebilir (`V2`: Modulith `event_publication`). Sonra 12b'de hepsi tek `V1__init.sql`'e birleşti, `BaselineSchemaIT` kaldırıldı
 - [x] **Jackson:** snake_case; `Instant`/`LocalDateTime` → `2026-11-06T15:35:14.000000Z` (UTC, mikrosaniye); gelen metinler Laravel gibi kırpılır, boş metin null olur (`TrimStrings` + `ConvertEmptyStringsToNull`, şifre alanları hariç). Query parametreleri için aynısı `InputNormalizationFilter`'da
 - [x] **Ortak pagination** (`Listing`, `LaravelPaginator`): `per_page` yoksa sayfasız `{"data": [...]}`, varsa Laravel'in `data / links / meta` formatı. "..." penceresi, link URL'leri, `per_page` validation'ı ve geçersiz `page` davranışı Laravel'den yakalanan 11 fixture ile birebir test edildi
 - [x] **Global hata yönetimi** (`ApiExceptionHandler`): 422 validation (`(and N more errors)` özeti, alan sırası, tip hataları), `BusinessRuleException` (boş `errors` → `{}`), 404 model (`No query results for model [App\Models\Order] 1`), 404 route, 405, 500. Gövdeler Laravel'den yakalanan cevaplarla test edildi. **403 ve 401 Faz 2'de** (Spring Security ile)
@@ -355,7 +355,8 @@ Davranış değişmeden kod konu klasörlerine ayrıldı. Her klasörde Laravel 
 
 ## Faz 12: Canlıya Geçiş ve Laravel'in Kapatılması
 
-Tüm modüller dev'de bittiği için geçiş bir kerede yapılır. Adım adım komutlar: [GO_LIVE.md](GO_LIVE.md).
+Tüm modüller dev'de bittiği için geçiş bir kerede yapılır. Sonunda Laravel veritabanı taşınmadı: sunucu temiz
+kuruldu (bkz. 12b, kurulum [SERVER.md](SERVER.md)).
 
 **12a: Hazırlık (tamamlandı)**
 - [x] Route karşılaştırması: Laravel'in 196 API route'unun hepsi Java'da; API dışındakiler (`/`, `/up`, `/sanctum/csrf-cookie`, `/storage/{path}`) uygulamada kullanılmıyor
@@ -364,10 +365,12 @@ Tüm modüller dev'de bittiği için geçiş bir kerede yapılır. Adım adım k
 - [x] Şema karşılaştırma betiği: `deploy/compare-schema.sh` (yerel Laravel veritabanında "aynı", eklenen kolonda fark raporu)
 - [x] Prova: sunucu compose'u yerelde Laravel'in veritabanıyla ayağa kalktı, 15 ekran Laravel'le aynı
 
-**12b: Sunucuda geçiş (ertelendi; Bölüm B bittikten sonra yapılacak)**
+**12b: Sunucuda geçiş (tamamlandı, 2026-11-15, Bölüm B ve C'den sonra)**
 
-Sunucudaki Laravel -> Java değişimi bu yol haritasının parçası olmaktan çıktı. Kod geçişi tamamlanmış
-sayılır; hedef artık aşağıdaki Bölüm B.
+- [x] Sunucudaki veri sahte olduğu için Laravel veritabanı taşınmadı: droplet yeniden kuruldu, Java kendi
+  PostgreSQL'iyle (`deploy/compose.server.yaml`) ve demo veriyle (`--seed`) çalışıyor
+- [x] Laravel'e bağlı geçiş parçaları kaldırıldı: V0.xx ve V2-V11 tablo başına migration'lara dönüştü (B4), `GO_LIVE.md`,
+  `deploy/compare-schema.sh`, `LaravelDatabaseUpgradeIT`, `BaselineSchemaIT`, `TankMaterialMergeIT`, yerel proxy
 
 **Bölüm A bu noktada biter: API tamamen Java'da, davranış Laravel ile birebir aynı.**
 
@@ -448,14 +451,16 @@ Sıra:
   alıyor, limit kontrolünden önce çalışıyor; aşan istek reddedilir
 
 ## B4: Şema
-- [ ] Şemanın sahibi Java: yeni migration'lar Flyway ile yazılır. Canlı veritabanına da uygulanacakları için
-  veriyi koruyarak ileri yönlü çalışırlar
+- [x] Şemanın sahibi Java: yeni migration'lar Flyway ile yazılır, veriyi koruyarak ileri yönlü çalışır
 - [x] Laravel tabloları kaldırılır: `migrations`, `cache`, `cache_locks`, `jobs`, `sessions` vb.
 - [x] Spatie tabloları (`model_has_roles`, `model_has_permissions`, `role_has_permissions`) ve
   `App\Models\...` metinleri Java'ya göre yeniden tasarlanır
 - [x] `personal_access_tokens` kaldırılır (B3'te yapıldı)
-- [ ] **Sunucu geçişinden sonra:** V0.xx dosyaları temiz başlangıç migration'larıyla değiştirilir ve
-  `baseline-on-migrate` kaldırılır. Geçiş mevcut Laravel veritabanının üzerine yapıldığı için daha önce yapılamaz
+- [x] V0.xx ve V2-V11 yeniden yazıldı: modül klasörlerinde tablo başına bir migration (`identity/V2_03__create_permissions.sql`
+  gibi, sürüm `<modül>_<tablo>`), `baseline-on-migrate` kaldırıldı. Eski zincirle kurulan şemayla `pg_dump` çıktısı
+  birebir aynı. Kodda tanımlı referans satırları (izinler, admin rolü, aşama uzantı tipleri ve alanları) demo veriden
+  tablolarının migration'ına taşındı. Laravel'den veri taşıma kuralları (V5 Spatie, V6 jsonb, V7 "dinlen" eşleşmesi,
+  V10 birleştirme) taşınacak veri kalmadığı için düştü
 - [x] Modüller arası tablo okumaları kaldırılır: başka modülün tablosunu `JdbcClient` ile okuyan
   yerler o modülün public API'sini kullanır (`ProductCatalog`, `NudgeDirectory`, `OrderStockQueries`,
   `SupplierDeliveryService` vb.); `product` ile `productionline` arasındaki bağımlılık döngüsü çözülür
@@ -490,7 +495,7 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
   toplanır; tankta yer yoksa o gün zeytin kabul edilmez. Aynı tohum ve bitiş günü aynı veriyi üretir
 - [x] `--seed` dökümü değil seeder'ları çalıştırır; `reference/` kaldırılır. Testler demo veriyi bir kez üretir
   (bitiş 2026-11-06, sabit tohum), bellekte tutar ve her sınıftan önce geri yükler (`DemoSnapshot`);
-  `BaselineSchemaIT` yalnızca şemayı karşılaştırır (Laravel şeması `src/test/resources/laravel-schema.sql`)
+  `BaselineSchemaIT` yalnızca şemayı karşılaştırır (12b'de Laravel şemasıyla birlikte kaldırıldı)
 
 ## B9: Gözlemlenebilirlik
 - [x] "Olive API" dashboard'u: HTTP (endpoint başına istek, ortalama ve p95 yanıt süresi, p50/p95/p99), hatalar
@@ -500,14 +505,13 @@ ve tank/tarif kuralları bunlara dayanır. Karar: 2026-11-10.
   `olive.filling.runs.completed` ve `olive.filling.bottles` (tamamlanan dolum ve şişe), `olive.business.rejections`
   (iş kuralına takılan istek; etiket yalnızca yol kalıbı ve metot). Dashboard'daki her metriğin Prometheus
   çıktısında olduğu `OliveApiApplicationIT`'te doğrulanır
-- [ ] Alarm kuralları ve bildirim kanalı sunucu geçişinde: sunucu düzeni ve bildirimin nereye gideceği belli olunca
+- [ ] Alarm kuralları ve bildirim kanalı: bildirimin nereye gideceği belli olunca (sunucuda henüz Prometheus yok)
 
 ## B10: Dokümantasyon
 - [x] springdoc-openapi ile API dokümantasyonu: `/swagger-ui.html` ve `/v3/api-docs` yalnızca `dev` profilinde
   (`./mvnw spring-boot:run` varsayılanı); sunucuda kapalı. Başlık ve Bearer JWT `OpenApiConfig`'te
 - [x] `docs/` güncellenir; `docs/laravel-reference/` kaldırılır, koddaki Laravel açıklamaları temizlenir. Kodun ne
-  yaptığını anlatan açıklamalar kaldı; Laravel yalnızca canlı geçişle ilgili yerlerde geçer (V2-V11,
-  `LaravelDatabaseUpgradeIT`, `BaselineSchemaIT`, GO_LIVE, deploy)
+  yaptığını anlatan açıklamalar kaldı; canlı geçişle ilgili kalanlar da 12b'de kaldırıldı
 - DEVIATIONS.md'den hâlâ geçerli kararlar README'ye taşındı (rate limit sayaçları, tank kilidi, sabit sıralama);
   Laravel hatalarının düzeltmeleri `*RulesIT` ve senaryolarda tanımlı. Laravel'den birebir kopyalanmış açık konular
   kapatıldı (`CatalogRulesIT`, `StorageSlotRulesIT`):
@@ -610,6 +614,10 @@ geçişinden önce yapılır.
   yoksa yalnızca girilen birim gösterilir. Dolu tankta karışımın yoğunluğu (toplam kg / toplam litre) kullanılır
 
 ## C7: İzlenebilirlik ve eski veri
+
+Not (2026-11-15): sunucu temiz kuruldu, canlı veri taşınmadı. Aşağıdaki eski veri kuralları (V7 metin eşleşmesi,
+V10 birleştirme ve GO_LIVE kontrolleri) migration'lar yeniden yazılırken kaldırıldı (B4).
+
 - [x] Tanka giriş hareketi, karıştığı tank materyalini gösterir; soy grafiği parti → tank materyali → dolum →
   depo → sipariş şeklinde yürür
 - [x] Tank materyali hiç sıfırlanmayabildiği için soy grafiği zamanla sınırlanır (hareket sırasına göre): partiden
@@ -644,7 +652,7 @@ geçişinden önce yapılır.
 ```
 Bölüm A: Kod Geçişi (tamamlandı)
   Faz 0-11  Altyapı ve bütün modüller
-  Faz 12    Hazırlık yapıldı; sunucu geçişi kapatıldı
+  Faz 12    Sunucu temiz kuruldu, Laravel geçiş parçaları kaldırıldı
 
 Bölüm B: Tamamen Java Mimarisi
   B0 Temizlik

@@ -1,6 +1,7 @@
 package com.olivamore.api.support;
 
 import com.olivamore.api.devdata.DemoDataSeeder;
+import org.flywaydb.core.Flyway;
 import org.postgresql.PGConnection;
 import org.postgresql.copy.CopyManager;
 import org.springframework.context.ApplicationContext;
@@ -40,17 +41,21 @@ public final class DemoSnapshot {
 	public static synchronized void restore(ApplicationContext context) throws SQLException, IOException {
 		DataSource dataSource = context.getBean(DataSource.class);
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-		truncate(jdbc);
 		if (tables == null && !loadCached()) {
 			Integer port = context.getEnvironment().getProperty("local.server.port", Integer.class);
 			if (port == null) {
 				throw new IllegalStateException("Demo veri calisan uygulama ister (RANDOM_PORT)");
 			}
+			// --seed --fresh gibi: sema bastan kurulur, migration'larin referans satirlari (izinler vb.) kalir
+			jdbc.execute("drop schema public cascade");
+			jdbc.execute("create schema public");
+			context.getBean(Flyway.class).migrate();
 			context.getBean(DemoDataSeeder.class).seed(LAST_DAY, DemoDataSeeder.SEED, port);
 			capture(dataSource, jdbc);
 			cache().write(new DemoSnapshotCache.Snapshot(tables, sequences));
 			return;
 		}
+		truncate(jdbc);
 		try (Connection c = dataSource.getConnection()) {
 			boolean autoCommit = c.getAutoCommit();
 			c.setAutoCommit(false);

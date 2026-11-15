@@ -26,13 +26,6 @@ spring:
       # Hibernate kendiliginden onu secer ve tools.jackson JsonNode'u okuyamaz
       hibernate.type.json_format_mapper: jackson3
 
-  flyway:
-    # Bos veritabaninda butun migration'lar (db/migration: V0.00-V0.69 temel sema, V2 ve sonrasi)
-    # calisir. Laravel'in kurdugu canli veritabaninda (Flyway kaydi yok) mevcut sema surum 1
-    # olarak kabul edilir; V0.xx'ler bunun altinda kaldigi icin calismaz, V2 ve sonrasi uygulanir.
-    baseline-on-migrate: true
-    baseline-version: 1
-
   jackson:
     property-naming-strategy: SNAKE_CASE
 
