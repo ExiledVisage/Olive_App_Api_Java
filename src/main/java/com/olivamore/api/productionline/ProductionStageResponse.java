@@ -15,6 +15,7 @@ public record ProductionStageResponse(
 	int stageOrder,
 	boolean isRequired,
 	boolean requiresApproval,
+	boolean usesMachine,
 	ProcessTypeResponse processType,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	List<StageExtensionResponse> extensions,

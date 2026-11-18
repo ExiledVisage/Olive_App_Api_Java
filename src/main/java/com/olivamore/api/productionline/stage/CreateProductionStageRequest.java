@@ -20,7 +20,9 @@ record CreateProductionStageRequest(
 
 	Boolean isRequired,
 
-	Boolean requiresApproval) {
+	Boolean requiresApproval,
+
+	Boolean usesMachine) {
 
 	CreateProductionStageRequest {
 		name = Texts.trim(name);

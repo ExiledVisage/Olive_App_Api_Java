@@ -8,6 +8,7 @@ CREATE TABLE production_stages (
     stage_order integer NOT NULL,
     is_required boolean DEFAULT true NOT NULL,
     requires_approval boolean DEFAULT false NOT NULL,
+    uses_machine boolean DEFAULT false NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone
 );

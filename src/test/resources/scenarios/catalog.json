@@ -1314,6 +1314,7 @@
         "stage_order" : 1,
         "is_required" : true,
         "requires_approval" : false,
+        "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
         "created_at" : "2026-11-06T18:45:15Z",
@@ -1340,6 +1341,7 @@
         "stage_order" : 1,
         "is_required" : true,
         "requires_approval" : false,
+        "uses_machine" : false,
         "process_type" : {
           "id" : 13,
           "name" : "Test Proses",
@@ -1389,6 +1391,7 @@
         "stage_order" : 3,
         "is_required" : true,
         "requires_approval" : true,
+        "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
         "created_at" : "2026-11-06T18:45:15Z",
@@ -1413,6 +1416,7 @@
         "stage_order" : 3,
         "is_required" : true,
         "requires_approval" : false,
+        "uses_machine" : false,
         "process_type" : {
           "id" : 13,
           "name" : "Test Proses",
@@ -1493,6 +1497,7 @@
         "stage_order" : 1,
         "is_required" : true,
         "requires_approval" : false,
+        "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
         "created_at" : "2026-11-06T18:45:15Z",
@@ -1505,6 +1510,7 @@
         "stage_order" : 2,
         "is_required" : true,
         "requires_approval" : true,
+        "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
         "created_at" : "2026-11-06T18:45:15Z",
@@ -1517,6 +1523,7 @@
         "stage_order" : 3,
         "is_required" : true,
         "requires_approval" : false,
+        "uses_machine" : false,
         "process_type" : {
           "id" : 13,
           "name" : "Test Proses",
@@ -1572,6 +1579,7 @@
         "stage_order" : 1,
         "is_required" : true,
         "requires_approval" : true,
+        "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
         "created_at" : "2026-11-06T18:45:15Z",
@@ -1584,6 +1592,7 @@
         "stage_order" : 2,
         "is_required" : true,
         "requires_approval" : false,
+        "uses_machine" : false,
         "process_type" : {
           "id" : 13,
           "name" : "Test Proses",
@@ -1720,6 +1729,7 @@
         "stage_order" : 1,
         "is_required" : true,
         "requires_approval" : true,
+        "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ {
           "id" : 29,
@@ -1893,6 +1903,7 @@
           "stage_order" : 1,
           "is_required" : true,
           "requires_approval" : true,
+          "uses_machine" : false,
           "process_type" : null,
           "extensions" : [ {
             "id" : 29,
@@ -1990,6 +2001,7 @@
           "stage_order" : 2,
           "is_required" : true,
           "requires_approval" : false,
+          "uses_machine" : false,
           "process_type" : {
             "id" : 13,
             "name" : "Test Proses",
@@ -2106,6 +2118,7 @@
             "stage_order" : 1,
             "is_required" : true,
             "requires_approval" : true,
+            "uses_machine" : false,
             "process_type" : null,
             "created_at" : "2026-11-06T18:45:15Z",
             "updated_at" : "2026-11-06T18:45:16Z"
@@ -2117,6 +2130,7 @@
             "stage_order" : 2,
             "is_required" : true,
             "requires_approval" : false,
+            "uses_machine" : false,
             "process_type" : {
               "id" : 13,
               "name" : "Test Proses",
@@ -2204,6 +2218,7 @@
             "stage_order" : 1,
             "is_required" : true,
             "requires_approval" : true,
+            "uses_machine" : false,
             "process_type" : null,
             "created_at" : "2026-11-06T18:45:15Z",
             "updated_at" : "2026-11-06T18:45:16Z"
@@ -2215,6 +2230,7 @@
             "stage_order" : 2,
             "is_required" : true,
             "requires_approval" : false,
+            "uses_machine" : false,
             "process_type" : {
               "id" : 13,
               "name" : "Test Proses",

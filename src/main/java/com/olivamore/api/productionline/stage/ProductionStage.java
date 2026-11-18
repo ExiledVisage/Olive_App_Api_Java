@@ -38,6 +38,10 @@ class ProductionStage extends AuditedEntity {
 	@Column(nullable = false)
 	private boolean requiresApproval;
 
+	/** Asama makine iceriyor mu; hattin ilk makineli asamasi partinin gruplara bolundugu nokta. */
+	@Column(nullable = false)
+	private boolean usesMachine;
+
 	ProductionStage(long lineId, int order, CreateProductionStageRequest request) {
 		productionLineId = lineId;
 		stageOrder = order;
@@ -48,6 +52,9 @@ class ProductionStage extends AuditedEntity {
 		}
 		if (request.requiresApproval() != null) {
 			requiresApproval = request.requiresApproval();
+		}
+		if (request.usesMachine() != null) {
+			usesMachine = request.usesMachine();
 		}
 	}
 
@@ -66,6 +73,9 @@ class ProductionStage extends AuditedEntity {
 		}
 		if (request.requiresApproval() != null) {
 			requiresApproval = request.requiresApproval();
+		}
+		if (request.usesMachine() != null) {
+			usesMachine = request.usesMachine();
 		}
 	}
 

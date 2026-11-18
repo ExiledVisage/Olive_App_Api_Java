@@ -51,7 +51,8 @@ public class ProductionStageResponses {
 			: Map.of();
 		return stages.stream().map(stage -> new ProductionStageResponse(stage.getId(), stage.getProductionLineId(),
 			stage.getProcessTypeId(), stage.getName(), stage.getStageOrder(), stage.isRequired(),
-			stage.isRequiresApproval(), stage.getProcessTypeId() == null ? null : types.get(stage.getProcessTypeId()),
+			stage.isRequiresApproval(), stage.isUsesMachine(),
+			stage.getProcessTypeId() == null ? null : types.get(stage.getProcessTypeId()),
 			extensions ? byStage.getOrDefault(stage.getId(), List.of()) : null, stage.getCreatedAt(),
 			stage.getUpdatedAt())).toList();
 	}

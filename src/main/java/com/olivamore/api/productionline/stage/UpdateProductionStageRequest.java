@@ -18,7 +18,9 @@ record UpdateProductionStageRequest(
 
 	Boolean isRequired,
 
-	Boolean requiresApproval) {
+	Boolean requiresApproval,
+
+	Boolean usesMachine) {
 
 	UpdateProductionStageRequest {
 		name = Texts.trim(name);

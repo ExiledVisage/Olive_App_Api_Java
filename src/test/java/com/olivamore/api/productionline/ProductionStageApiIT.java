@@ -55,6 +55,15 @@ class ProductionStageApiIT {
 
 		assertThat(stage.get("is_required").asBoolean()).isTrue();
 		assertThat(stage.get("requires_approval").asBoolean()).isFalse();
+		assertThat(stage.get("uses_machine").asBoolean()).isFalse();
+	}
+
+	@Test
+	void usesMachineIsSetOnCreateAndChangedOnlyWhenSent() {
+		long id = create("Sikim", 1, ",\"uses_machine\":true").get("id").asLong();
+
+		assertThat(patch(id, "{\"name\":\"Sikim 2\"}").get("uses_machine").asBoolean()).isTrue();
+		assertThat(patch(id, "{\"uses_machine\":false}").get("uses_machine").asBoolean()).isFalse();
 	}
 
 	@Test
