@@ -1897,8 +1897,8 @@
           "name" : "Zeytinyağı",
           "description" : "İşlenmiş zeytinyağı ürünü"
         },
-        "created_at" : "2026-11-06T12:42:00Z",
-        "updated_at" : "2026-11-06T12:42:00Z"
+        "created_at" : "2026-11-06T12:51:00Z",
+        "updated_at" : "2026-11-06T12:51:00Z"
       } ]
     },
     "save" : null
@@ -12287,7 +12287,7 @@
         "counterparty_storage_unit_id" : 8,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_OUT",
-        "transfer_reference" : "TRF-20261102063100-UNGVIR",
+        "transfer_reference" : "TRF-20261102063100-00004Q",
         "quantity" : 1003.54,
         "unit" : "LITRE",
         "note" : "Dinlenme tamamlandı",
@@ -12342,10 +12342,10 @@
               "sort_order" : 1,
               "description" : "Asitlik oranı"
             },
-            "created_at" : "2026-10-31T15:06:00Z",
-            "updated_at" : "2026-10-31T15:06:00Z"
+            "created_at" : "2026-10-31T15:09:00Z",
+            "updated_at" : "2026-10-31T15:09:00Z"
           } ],
-          "created_at" : "2026-10-31T13:50:00Z",
+          "created_at" : "2026-10-31T13:53:00Z",
           "updated_at" : "2026-11-02T06:31:00Z"
         },
         "batch_process" : {
@@ -12371,7 +12371,7 @@
         "counterparty_storage_unit_id" : 8,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_OUT",
-        "transfer_reference" : "TRF-20261102063100-UNGVIR",
+        "transfer_reference" : "TRF-20261102063100-00004Q",
         "quantity" : 972.85,
         "unit" : "LITRE",
         "note" : "Dinlenme tamamlandı",
@@ -12426,10 +12426,10 @@
               "sort_order" : 1,
               "description" : "Asitlik oranı"
             },
-            "created_at" : "2026-10-31T10:19:00Z",
-            "updated_at" : "2026-10-31T10:19:00Z"
+            "created_at" : "2026-10-31T10:16:00Z",
+            "updated_at" : "2026-10-31T10:16:00Z"
           } ],
-          "created_at" : "2026-10-31T09:16:00Z",
+          "created_at" : "2026-10-31T09:13:00Z",
           "updated_at" : "2026-11-02T06:31:00Z"
         },
         "batch_process" : {
@@ -12455,7 +12455,7 @@
         "counterparty_storage_unit_id" : 8,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_OUT",
-        "transfer_reference" : "TRF-20261102063100-UNGVIR",
+        "transfer_reference" : "TRF-20261102063100-00004Q",
         "quantity" : 1283.48,
         "unit" : "LITRE",
         "note" : "Dinlenme tamamlandı",
@@ -12510,10 +12510,10 @@
               "sort_order" : 1,
               "description" : "Asitlik oranı"
             },
-            "created_at" : "2026-10-30T10:27:00Z",
-            "updated_at" : "2026-10-30T10:27:00Z"
+            "created_at" : "2026-10-30T10:26:00Z",
+            "updated_at" : "2026-10-30T10:26:00Z"
           } ],
-          "created_at" : "2026-10-30T09:26:00Z",
+          "created_at" : "2026-10-30T09:25:00Z",
           "updated_at" : "2026-11-02T06:31:00Z"
         },
         "batch_process" : {
@@ -12571,7 +12571,7 @@
         "counterparty_storage_unit_id" : 8,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_OUT",
-        "transfer_reference" : "TRF-20261102063100-UNGVIR",
+        "transfer_reference" : "TRF-20261102063100-00004Q",
         "quantity" : 1283.48,
         "unit" : "LITRE",
         "note" : "Dinlenme tamamlandı",
@@ -12626,10 +12626,10 @@
               "sort_order" : 1,
               "description" : "Asitlik oranı"
             },
-            "created_at" : "2026-10-30T10:27:00Z",
-            "updated_at" : "2026-10-30T10:27:00Z"
+            "created_at" : "2026-10-30T10:26:00Z",
+            "updated_at" : "2026-10-30T10:26:00Z"
           } ],
-          "created_at" : "2026-10-30T09:26:00Z",
+          "created_at" : "2026-10-30T09:25:00Z",
           "updated_at" : "2026-11-02T06:31:00Z"
         },
         "batch_process" : {
@@ -12659,7 +12659,7 @@
         "quantity" : 1020.34,
         "unit" : "LITRE",
         "note" : null,
-        "moved_at" : "2026-10-31T15:55:00Z",
+        "moved_at" : "2026-10-31T15:58:00Z",
         "material" : {
           "id" : 1176,
           "production_batch_id" : 282,
@@ -12710,10 +12710,10 @@
               "sort_order" : 1,
               "description" : "Asitlik oranı"
             },
-            "created_at" : "2026-10-31T15:06:00Z",
-            "updated_at" : "2026-10-31T15:06:00Z"
+            "created_at" : "2026-10-31T15:09:00Z",
+            "updated_at" : "2026-10-31T15:09:00Z"
           } ],
-          "created_at" : "2026-10-31T13:50:00Z",
+          "created_at" : "2026-10-31T13:53:00Z",
           "updated_at" : "2026-11-02T06:31:00Z"
         },
         "batch_process" : {
@@ -12723,8 +12723,8 @@
           "status" : "completed"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-10-31T15:55:00Z",
-        "updated_at" : "2026-10-31T15:55:00Z"
+        "created_at" : "2026-10-31T15:58:00Z",
+        "updated_at" : "2026-10-31T15:58:00Z"
       }, {
         "id" : 1704,
         "storage_unit_id" : 7,
@@ -12739,7 +12739,7 @@
         "quantity" : 989.13,
         "unit" : "LITRE",
         "note" : null,
-        "moved_at" : "2026-10-31T11:05:00Z",
+        "moved_at" : "2026-10-31T11:02:00Z",
         "material" : {
           "id" : 1173,
           "production_batch_id" : 281,
@@ -12790,10 +12790,10 @@
               "sort_order" : 1,
               "description" : "Asitlik oranı"
             },
-            "created_at" : "2026-10-31T10:19:00Z",
-            "updated_at" : "2026-10-31T10:19:00Z"
+            "created_at" : "2026-10-31T10:16:00Z",
+            "updated_at" : "2026-10-31T10:16:00Z"
           } ],
-          "created_at" : "2026-10-31T09:16:00Z",
+          "created_at" : "2026-10-31T09:13:00Z",
           "updated_at" : "2026-11-02T06:31:00Z"
         },
         "batch_process" : {
@@ -12803,8 +12803,8 @@
           "status" : "completed"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-10-31T11:05:00Z",
-        "updated_at" : "2026-10-31T11:05:00Z"
+        "created_at" : "2026-10-31T11:02:00Z",
+        "updated_at" : "2026-10-31T11:02:00Z"
       } ],
       "page" : {
         "size" : 3,
@@ -12841,7 +12841,7 @@
         "status" : "active",
         "origin_type" : "BATCH_PROCESS",
         "note" : null,
-        "created_at" : "2026-11-06T09:44:00Z",
+        "created_at" : "2026-11-06T09:53:00Z",
         "quantity_breakdown" : {
           "initial" : 1344.84,
           "split_out" : 0,
@@ -12883,7 +12883,7 @@
           "movement_type" : "IN",
           "quantity" : 1344.84,
           "unit" : "LITRE",
-          "moved_at" : "2026-11-06T12:42:00Z",
+          "moved_at" : "2026-11-06T12:51:00Z",
           "storage_unit_name" : "Gemlik Ön Dinlenme Tankı",
           "counterparty_storage_unit_name" : null,
           "tank_material_id" : null

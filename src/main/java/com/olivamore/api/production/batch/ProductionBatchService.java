@@ -80,7 +80,8 @@ class ProductionBatchService {
 
 		ProductionBatch batch = batches.save(new ProductionBatch(request.batchCode(), lineId, request.supplierId(),
 			request.supplierFieldId(), user.id(), request.status() == null ? BatchStatus.PENDING : request.status(),
-			request.quantityKg(), receivedAt != null ? receivedAt : Timestamps.now(), startedAt, completedAt, request.note()));
+			request.quantityKg(), request.truckPlate(), request.weighingSlipNo(),
+			receivedAt != null ? receivedAt : Timestamps.now(), startedAt, completedAt, request.note()));
 		long id = batch.getId();
 		for (int i = 0; i < inputTypes.size(); i++) {
 			inputs.save(new BatchInputType(id, inputTypes.get(i).id(), i));
@@ -123,6 +124,10 @@ class ProductionBatchService {
 			batch.changeStatus(request.status());
 		}
 		Patch.ifPresent(request.quantityKg(), batch::changeQuantityKg);
+		if (request.truckPlate() != null) {
+			batch.changeTruckPlate(request.truckPlate());
+		}
+		Patch.ifPresent(request.weighingSlipNo(), batch::changeWeighingSlipNo);
 		Patch.ifPresent(receivedAt, batch::changeReceivedAt);
 		Patch.ifPresent(startedAt, batch::changeStartedAt);
 		Patch.ifPresent(completedAt, batch::changeCompletedAt);

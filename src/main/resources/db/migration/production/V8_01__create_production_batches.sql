@@ -7,6 +7,8 @@ CREATE TABLE production_batches (
     created_by_user_id bigint,
     status character varying(255) DEFAULT 'pending'::character varying NOT NULL,
     quantity_kg numeric(14,4),
+    truck_plate character varying(255),
+    weighing_slip_no character varying(255),
     received_at timestamp(0) without time zone,
     started_at timestamp(0) without time zone,
     completed_at timestamp(0) without time zone,

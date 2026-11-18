@@ -12,7 +12,7 @@ import java.util.Map;
 public interface SupplierDeliverySource {
 
 	record BatchDelivery(Long id, String batchCode, String status, LocalDateTime receivedAt, Long supplierFieldId,
-		BigDecimal quantityKg) {
+		BigDecimal quantityKg, String truckPlate, String weighingSlipNo) {
 	}
 
 	record WeighIn(Long id, Long batchId, String quantityJson, LocalDateTime completedAt) {

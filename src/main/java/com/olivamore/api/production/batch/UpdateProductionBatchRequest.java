@@ -8,7 +8,10 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-/** {@code null} gelen {@code batch_code} ve {@code status} degismez; digerleri {@code null} ile temizlenebilir. */
+/**
+ * {@code null} gelen {@code batch_code}, {@code status} ve {@code truck_plate} degismez (plaka bosaltilamaz);
+ * digerleri {@code null} ile temizlenebilir.
+ */
 record UpdateProductionBatchRequest(
 	@Size(max = 255, message = MessageKeys.SIZE_MAX)
 	String batchCode,
@@ -16,6 +19,11 @@ record UpdateProductionBatchRequest(
 	BatchStatus status,
 
 	Patch<@DecimalMin(value = "0", message = MessageKeys.MIN) BigDecimal> quantityKg,
+
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
+	String truckPlate,
+
+	Patch<@Size(max = 255, message = MessageKeys.SIZE_MAX) String> weighingSlipNo,
 
 	Patch<Long> supplierId,
 
@@ -31,6 +39,8 @@ record UpdateProductionBatchRequest(
 
 	UpdateProductionBatchRequest {
 		batchCode = Texts.trim(batchCode);
+		truckPlate = Texts.trim(truckPlate);
+		weighingSlipNo = Texts.trim(weighingSlipNo);
 		note = Texts.trim(note);
 	}
 

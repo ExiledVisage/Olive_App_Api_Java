@@ -21,6 +21,7 @@ Yeni tablo yok. Dev veritabanı sıfırlandığı için ilgili `create` dosyalar
 | `production_batches` | `parent_batch_id bigint NULL` (FK aynı tablo, `ON DELETE RESTRICT`, index) | Grubun bağlı olduğu teslimat. Boşsa satır teslimattır. |
 | `production_stages` | `uses_machine boolean DEFAULT false NOT NULL` | Aşama makine içerir mi. Seed'de Sıkım ve Filtreleme `true`. |
 | `batch_processes` | `inherited_from_process_id bigint NULL` (FK `batch_processes`) | Grupta "ana partide yapıldı" diye geçilen aşama; ana partinin satırını gösterir. |
+| `production_batches` | `truck_plate`, `weighing_slip_no` | Teslimatın kamyon plakası (zorunlu) ve kantar fişi. Kantarda Tartım'ın alanları değil, teslimatın sabit bilgisi; gruplar ana partiden okur. |
 
 Ayrı tablo yerine aynı tabloda bağlantı: grubun bugünkü partinin her şeyine ihtiyacı var (aşamalar, materyaller,
 girdi/çıktı türleri, raporlar); hepsi `production_batches.id`'ye bağlı ve olduğu gibi çalışır.
@@ -33,7 +34,9 @@ girdi/çıktı türleri, raporlar); hepsi `production_batches.id`'ye bağlı ve 
 | 11 | B-001-1 | 10 | 300 | in_progress |
 | 12 | B-001-2 | 10 | 300 | pending |
 
-Ayrılmamış kilo saklanmaz: `1000 − (300 + 300) = 400`.
+Ayrılmamış kilo saklanmaz: ana partinin zeytin materyalinin miktarıdır. Bölmede bu materyalden pay ayrılır ve gruba
+yeni bir materyal olarak aktarılır (ana materyali teslimatın zeytini); örnekte `1000 − (300 + 300) = 400`. Ana parti
+kalanı yeniden tartarsa kalan kendiliğinden güncellenir.
 
 ## Aşamaların paylaşımı
 
@@ -63,14 +66,18 @@ Bölme noktası, `stage_order` sırasıyla `uses_machine = true` olan ilk aşama
 
 **Kilo**
 
-- Oluşturmada kilo girildiyse Kantarda Tartım o kiloyla tamamlanır; İkinci Tartım yine zorunlu.
+- Oluşturmada kilo girildiyse Kantarda Tartım o kiloyla tamamlanır ve zeytin materyali oluşur (kantarda zorunlu alan
+  yok, plaka partide); İkinci Tartım yine zorunlu.
 - Kilo elle girilip tartılmadıysa ilk bölmede sorulur: "Teslimatın kilosu tartılmadı. Ayırmadan önce tartmak ister
   misin?" Evet: ana partinin Kantarda Tartım'ı beklemeye alınır, sonucu teslimat kilosu olur.
-- Kalan kilo = teslimat kilosu − grupların ayırırken girilen kiloları. Ayırma kalanı aşamaz; "Kalanın hepsi" kısayolu
+- Kalan kilo = ana partinin zeytin materyali. Ayırma kalanı aşamaz; "Kalanın hepsi" kısayolu
   var. İki kullanıcı aynı anda bölerse ana parti satırı kilitlenir.
-- Grupta bir tartım ayrılan kilodan farklı çıkarsa sorulur: "Ayrılan 600, tartılan 550. Ayrılan kilo 550 olarak
-  düzeltilsin mi?" Evet: grubun `quantity_kg`'ı güncellenir, fark ana partinin kalanına döner. Grup makine aşamasına
-  girene kadar; fazla çıkarsa ana partide yeterli kalan olmalı.
+- Grupta bir tartım ayrılan kilodan farklı çıkarsa:
+  - eksikse (550) tartım kaydedilir, sorulur: "50 kg ana partiye dönsün mü?" Evet: ana partinin zeytini 50 artar,
+    grubun `quantity_kg`'ı 550 olur. Hayır: fark fire.
+  - fazlaysa (650) tartım reddedilmez, sorulur: "50 kg ana partiden alınsın mı?" Evet: fark ana partiden gruba
+    aktarılır, tartım kaydedilir. Ana partide yetmezse tartım bugünkü gibi reddedilir (tartım miktarı artıramaz).
+  - Grup makine aşamasına girene kadar.
 - Teslimat kilosu, ayrılmış toplamın altına indirilemez.
 
 **Grup nereden başlar**
@@ -81,8 +88,8 @@ Bölme penceresinde tek soru: "Bu grup nereden başlasın?" Seçenekler ana part
 - Kantarda Tartım · Ayıklama · İkinci Tartım · Kaldığı yerden (Transfer)
 
 Seçilenden önceki aşamalar `skipped` + `inherited_from_process_id`; seçilen ve sonrası `waiting`. Aradan atlama yok.
-Ana partinin henüz yapmadığı aşamaları grup zorunlu olarak yapar. Gruptaki Kantarda Tartım formu plaka ve fiş no ile
-ana partiden önceden doldurulur.
+Ana partinin henüz yapmadığı aşamaları grup zorunlu olarak yapar. Grupta tekrarlanan Kantarda Tartım yalnız kiloyu
+ölçer; plaka ve fiş teslimatın, ana partiden okunur.
 
 **Grubun aldıkları**
 

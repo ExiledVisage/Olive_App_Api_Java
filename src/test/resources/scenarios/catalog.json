@@ -746,7 +746,7 @@
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'Kantarda Tartım' proses tipi silinemez; kullanıldığı yerler: 3 üretim aşaması, 578 girilmiş ölçüm.",
+      "detail" : "'Kantarda Tartım' proses tipi silinemez; kullanıldığı yerler: 3 üretim aşaması.",
       "instance" : "/api/process-types/1",
       "status" : 422,
       "title" : "Unprocessable Content"
@@ -1041,12 +1041,12 @@
   }, {
     "name" : "kullanilan alani sil",
     "method" : "DELETE",
-    "path" : "/api/process-types/1/fields/1",
+    "path" : "/api/process-types/2/fields/3",
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'Kamyon Plakası' alanı silinemez; kullanıldığı yerler: 289 girilmiş ölçüm. Artık kullanılmayacaksa is_active alanını false yapın.",
-      "instance" : "/api/process-types/1/fields/1",
+      "detail" : "'Ayıklanan Yabancı Madde' alanı silinemez; kullanıldığı yerler: 289 girilmiş ölçüm. Artık kullanılmayacaksa is_active alanını false yapın.",
+      "instance" : "/api/process-types/2/fields/3",
       "status" : 422,
       "title" : "Unprocessable Content"
     },

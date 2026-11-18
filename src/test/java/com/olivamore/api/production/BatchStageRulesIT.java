@@ -27,7 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BatchStageRulesIT {
 
-	private static final int PLATE_FIELD = BatchFlow.PLATE_FIELD;
 	private static final int RESTING_TANK = 7;
 
 	private final AtomicInteger codes = new AtomicInteger();
@@ -60,16 +59,23 @@ class BatchStageRulesIT {
 	@Test
 	void requiredFieldsMustBeFilledBeforeCompletion() {
 		long batch = batch();
+		assertThat(complete(batch, 1, Map.of("quantity", 5000)).status()).isEqualTo(200);
+		Long field = jdbc.queryForObject("insert into process_type_fields (process_type_id, field_key, label, data_type,"
+			+ " is_required, sort_order, is_active) values (2, 'test_zorunlu', 'Test Zorunlu', 'text', true, 9, true)"
+			+ " returning id", Long.class);
+		try {
+			Response r = complete(batch, 2, Map.of("x", 1));
 
-		Response r = complete(batch, 1, Map.of("quantity", 5000));
-
-		assertRule(r, "Zorunlu alanlar doldurulmadan aşama tamamlanamaz: Kamyon Plakası.");
+			assertRule(r, "Zorunlu alanlar doldurulmadan aşama tamamlanamaz: Test Zorunlu.");
+		}
+		finally {
+			jdbc.update("delete from process_type_fields where id = ?", field);
+		}
 	}
 
 	@Test
 	void weighingCreatesTheBatchMaterialInTheProductUnit() {
 		long batch = batch();
-		fields(batch, 1, PLATE_FIELD, "16 ABC 123");
 
 		assertRule(complete(batch, 1, Map.of("quantity", 5000, "unit", "LITRE")),
 			"Tartım birimi ürün birimi ile uyuşmuyor.");
@@ -162,7 +168,6 @@ class BatchStageRulesIT {
 	@Test
 	void plannerCannotCompleteAStage() {
 		long batch = batch();
-		fields(batch, 1, PLATE_FIELD, "16 ABC 123");
 
 		Response r = api.as("planner@olivamore.com").patch(process(batch, 1),
 			Map.of("status", "completed", "operation_data", Map.of("quantity", 5000)));
@@ -178,10 +183,6 @@ class BatchStageRulesIT {
 
 	private String process(long batch, int stage) {
 		return flow.process(batch, stage);
-	}
-
-	private void fields(long batch, int stage, int field, String value) {
-		flow.fields(batch, stage, field, value);
 	}
 
 	private Response complete(long batch, int stage, Map<String, Object> operationData) {

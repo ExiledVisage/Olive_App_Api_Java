@@ -19,6 +19,8 @@ record ProductionBatchResponse(
 	Long createdByUserId,
 	BatchStatus status,
 	BigDecimal quantityKg,
+	String truckPlate,
+	String weighingSlipNo,
 	LocalDateTime receivedAt,
 	LocalDateTime startedAt,
 	LocalDateTime completedAt,

@@ -11,12 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Demo hattin (hat 1, girdi tipi 1 Gemlik zeytini, tedarikci 1) asamalarini API'den yuruten yardimci: 1 kantar tartimi
- * (zorunlu alan: plaka), 2 ayiklama, 3 ikinci tartim, 4 veri istemeyen asama, 5 sikim (donusum), 6 yag tartimi,
+ * (plaka partide), 2 ayiklama, 3 ikinci tartim, 4 veri istemeyen asama, 5 sikim (donusum), 6 yag tartimi,
  * 7 pirina tartimi, 8 analiz, 9 on dinlendirme (onayli, dinlenmede bekler).
  */
 public final class BatchFlow {
 
-	public static final int PLATE_FIELD = 1;
 	public static final int SORTING_FIELD = 3;
 	/** 6. asamada tartilan yag (LITRE). */
 	public static final String OIL = "899.75";
@@ -31,7 +30,7 @@ public final class BatchFlow {
 
 	public long batch(String code) {
 		return id(api.post("/api/production-batches", Map.of("batch_code", code,
-			"input_production_product_type_ids", List.of(1), "production_line_id", 1, "supplier_id", 1)));
+			"input_production_product_type_ids", List.of(1), "production_line_id", 1, "supplier_id", 1, "truck_plate", "35 ABC 123")));
 	}
 
 	public String process(long batch, int stage) {
@@ -53,10 +52,7 @@ public final class BatchFlow {
 	public void completeUpTo(long batch, int lastStage) {
 		for (int stage = 1; stage <= lastStage; stage++) {
 			Response r = switch (stage) {
-				case 1 -> {
-					fields(batch, 1, PLATE_FIELD, "16 ABC 123");
-					yield complete(batch, 1, Map.of("quantity", 5000, "unit", "KG"));
-				}
+				case 1 -> complete(batch, 1, Map.of("quantity", 5000, "unit", "KG"));
 				case 2 -> {
 					fields(batch, 2, SORTING_FIELD, "2.5");
 					yield complete(batch, 2, Map.of("x", 1));

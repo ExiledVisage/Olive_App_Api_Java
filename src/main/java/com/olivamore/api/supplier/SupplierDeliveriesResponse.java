@@ -17,6 +17,8 @@ record SupplierDeliveriesResponse(List<Delivery> data, Summary summary) {
 		String fieldCode,
 		List<String> productTypeNames,
 		BigDecimal declaredQuantityKg,
+		String truckPlate,
+		String weighingSlipNo,
 		JsonNode weighedQuantityKg,
 		LocalDateTime weighedAt,
 		List<WeighInField> weighInFields) {

@@ -58,7 +58,8 @@ class SupplierDeliveryService {
 				? null : JSON.readTree(weighIn.quantityJson());
 			total = total.add(number(quantity));
 			deliveries.add(new Delivery(batch.id(), batch.batchCode(), batch.status(), batch.receivedAt(),
-				field == null ? null : field.code(), names.getOrDefault(batch.id(), List.of()), batch.quantityKg(), quantity,
+				field == null ? null : field.code(), names.getOrDefault(batch.id(), List.of()), batch.quantityKg(),
+				batch.truckPlate(), batch.weighingSlipNo(), quantity,
 				weighIn == null ? null : weighIn.completedAt(),
 				weighIn == null ? List.of() : fields.getOrDefault(weighIn.id(), List.of())));
 		}

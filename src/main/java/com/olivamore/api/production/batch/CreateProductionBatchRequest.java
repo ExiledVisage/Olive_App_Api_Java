@@ -11,7 +11,10 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 
-/** Yeni parti: {@code status} verilmezse pending, {@code received_at} verilmezse simdi. Tarihler serviste. */
+/**
+ * Yeni parti: {@code status} verilmezse pending, {@code received_at} verilmezse simdi. Tarihler serviste. Plaka
+ * teslimatin sabit bilgisi, zorunlu.
+ */
 record CreateProductionBatchRequest(
 	@NotBlank(message = MessageKeys.REQUIRED)
 	@Size(max = 255, message = MessageKeys.SIZE_MAX)
@@ -28,6 +31,13 @@ record CreateProductionBatchRequest(
 	@DecimalMin(value = "0", message = MessageKeys.MIN)
 	BigDecimal quantityKg,
 
+	@NotBlank(message = MessageKeys.REQUIRED)
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
+	String truckPlate,
+
+	@Size(max = 255, message = MessageKeys.SIZE_MAX)
+	String weighingSlipNo,
+
 	Long supplierId,
 
 	Long supplierFieldId,
@@ -42,6 +52,8 @@ record CreateProductionBatchRequest(
 
 	CreateProductionBatchRequest {
 		batchCode = Texts.trim(batchCode);
+		truckPlate = Texts.trim(truckPlate);
+		weighingSlipNo = Texts.trim(weighingSlipNo);
 		note = Texts.trim(note);
 	}
 

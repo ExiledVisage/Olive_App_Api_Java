@@ -198,7 +198,7 @@ final class DemoFactory {
 		Map<String, Object> body = body("batch_code", "P-" + day.format(CODE_DATE) + "-" + "%02d".formatted(sequence),
 			"production_line_id", line, "input_production_product_type_ids", List.of(ids.type(cultivar.olive)),
 			"supplier_id", source.supplierId(), "supplier_field_id", random.nextDouble() < 0.7 ? source.fieldId() : null,
-			"quantity_kg", kg);
+			"quantity_kg", kg, "truck_plate", plate(), "weighing_slip_no", "TF-" + day.format(CODE_DATE) + between(100, 999));
 		long id = DemoApi.id(api.post(PRODUCTION, "/api/production-batches", body));
 		return new Batch(id, day, sequence, cultivar, ids.stages(line), kg);
 	}
@@ -217,8 +217,6 @@ final class DemoFactory {
 		if (!later(5, 20)) {
 			return false;
 		}
-		fields(operator, batch, stages.get(0), Map.of(ids.field("kamyon_plakasi"), plate(),
-			ids.field("tartim_fisi_no"), "TF-" + batch.day.format(CODE_DATE) + between(100, 999)));
 		complete(operator, batch, stages.get(0), body("quantity", batch.kg, "unit", "KG"));
 
 		BigDecimal foreign = scale(batch.kg.multiply(decimal(0.004, 0.015)), 1);

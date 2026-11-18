@@ -73,8 +73,8 @@ class ProductionBatchResponses {
 		for (ProductionBatch b : rows) {
 			out.add(new ProductionBatchResponse(b.getId(), b.getBatchCode(), b.getProductionLineId(), b.getSupplierId(),
 				b.getSupplierFieldId(), suppliers.get(b.getSupplierId()), fields.get(b.getSupplierFieldId()),
-				b.getCreatedByUserId(), b.getStatus(), b.getQuantityKg(), b.getReceivedAt(), b.getStartedAt(),
-				b.getCompletedAt(), b.getNote(), inputTypes.getOrDefault(b.getId(), List.of()),
+				b.getCreatedByUserId(), b.getStatus(), b.getQuantityKg(), b.getTruckPlate(), b.getWeighingSlipNo(),
+				b.getReceivedAt(), b.getStartedAt(), b.getCompletedAt(), b.getNote(), inputTypes.getOrDefault(b.getId(), List.of()),
 				outputTypes.getOrDefault(b.getId(), List.of()), lines.get(b.getProductionLineId()),
 				creators.get(b.getCreatedByUserId()), processMap.getOrDefault(b.getId(), List.of()),
 				materialMap.getOrDefault(b.getId(), List.of()), b.getCreatedAt(), b.getUpdatedAt()));

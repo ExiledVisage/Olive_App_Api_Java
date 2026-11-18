@@ -49,7 +49,7 @@ class SupplierDeliveryReadModel implements SupplierDeliverySource {
 	@Override
 	public List<BatchDelivery> batches(long supplierId) {
 		return jdbc.sql("""
-			select id, batch_code, status, received_at, supplier_field_id, quantity_kg
+			select id, batch_code, status, received_at, supplier_field_id, quantity_kg, truck_plate, weighing_slip_no
 			from production_batches where supplier_id = ?
 			order by received_at desc, id desc
 			""").param(supplierId).query(BatchDelivery.class).list();

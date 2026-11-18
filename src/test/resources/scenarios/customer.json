@@ -1633,9 +1633,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 9,
-          "total_quantity" : 9276,
-          "last_order_date" : "2026-11-01"
+          "order_count" : 10,
+          "total_quantity" : 9948,
+          "last_order_date" : "2026-11-06"
         }, {
           "recipe" : {
             "id" : 3,
@@ -1794,8 +1794,8 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 9,
-          "total_quantity" : 11832,
+          "order_count" : 8,
+          "total_quantity" : 10482,
           "last_order_date" : "2026-11-06"
         }, {
           "recipe" : {
@@ -1813,8 +1813,8 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 12,
-          "total_quantity" : 6390,
+          "order_count" : 10,
+          "total_quantity" : 5442,
           "last_order_date" : "2026-11-06"
         }, {
           "recipe" : {
@@ -1936,9 +1936,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 12,
-          "total_quantity" : 18570,
-          "last_order_date" : "2026-10-09"
+          "order_count" : 13,
+          "total_quantity" : 19884,
+          "last_order_date" : "2026-11-06"
         }, {
           "recipe" : {
             "id" : 2,
@@ -3574,9 +3574,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 9,
-          "total_quantity" : 9276,
-          "last_order_date" : "2026-11-01"
+          "order_count" : 10,
+          "total_quantity" : 9948,
+          "last_order_date" : "2026-11-06"
         }, {
           "recipe" : {
             "id" : 3,

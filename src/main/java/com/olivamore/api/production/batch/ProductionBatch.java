@@ -45,6 +45,11 @@ public class ProductionBatch extends AuditedEntity {
 
 	private BigDecimal quantityKg;
 
+	/** Teslimatin kamyon plakasi; kantar fisinin numarasi istege bagli. */
+	private String truckPlate;
+
+	private String weighingSlipNo;
+
 	private LocalDateTime receivedAt;
 
 	private LocalDateTime startedAt;
@@ -54,8 +59,8 @@ public class ProductionBatch extends AuditedEntity {
 	private String note;
 
 	ProductionBatch(String batchCode, long productionLineId, Long supplierId, Long supplierFieldId, long createdByUserId,
-		BatchStatus status, BigDecimal quantityKg, LocalDateTime receivedAt, LocalDateTime startedAt,
-		LocalDateTime completedAt, String note) {
+		BatchStatus status, BigDecimal quantityKg, String truckPlate, String weighingSlipNo, LocalDateTime receivedAt,
+		LocalDateTime startedAt, LocalDateTime completedAt, String note) {
 		this.batchCode = batchCode;
 		this.productionLineId = productionLineId;
 		this.supplierId = supplierId;
@@ -63,6 +68,8 @@ public class ProductionBatch extends AuditedEntity {
 		this.createdByUserId = createdByUserId;
 		this.status = status;
 		this.quantityKg = scaled(quantityKg);
+		this.truckPlate = truckPlate;
+		this.weighingSlipNo = weighingSlipNo;
 		this.receivedAt = receivedAt;
 		this.startedAt = startedAt;
 		this.completedAt = completedAt;
@@ -84,6 +91,14 @@ public class ProductionBatch extends AuditedEntity {
 
 	void changeQuantityKg(BigDecimal value) {
 		quantityKg = scaled(value);
+	}
+
+	void changeTruckPlate(String value) {
+		truckPlate = value;
+	}
+
+	void changeWeighingSlipNo(String value) {
+		weighingSlipNo = value;
 	}
 
 	void changeReceivedAt(LocalDateTime value) {

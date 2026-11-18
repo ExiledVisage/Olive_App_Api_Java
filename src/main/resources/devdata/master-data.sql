@@ -232,8 +232,6 @@ insert into process_types (id, name, description, category, is_active) values
 	(12, 'Randıman Tespiti', 'Girdi ve çıktı oranlarına göre randıman hesabı', 'yield_analysis', true);
 
 insert into process_type_fields (id, process_type_id, field_key, label, data_type, is_required, unit, sort_order, is_active, options, default_value) values
-	(1, 1, 'kamyon_plakasi', 'Kamyon Plakası', 'text', true, NULL, 1, true, NULL, NULL),
-	(2, 1, 'tartim_fisi_no', 'Tartım Fişi No', 'text', false, NULL, 2, true, NULL, NULL),
 	(3, 2, 'yabanci_madde', 'Ayıklanan Yabancı Madde', 'decimal', false, 'kg', 1, true, NULL, NULL),
 	(4, 5, 'malakasyon_suresi', 'Malakasyon Süresi', 'integer', false, 'dk', 1, true, NULL, NULL),
 	(5, 5, 'malakasyon_sicakligi', 'Malakasyon Sıcaklığı', 'decimal', false, '°C', 2, true, NULL, NULL),
