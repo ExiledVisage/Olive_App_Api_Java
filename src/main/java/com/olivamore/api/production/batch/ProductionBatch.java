@@ -16,7 +16,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
-/** Uretim partisi; {@code quantity_kg} kolon olcegine (4 basamak) cevrilerek yazilir. */
+/**
+ * Uretim partisi; {@code quantity_kg} kolon olcegine (4 basamak) cevrilerek yazilir. {@code parent_batch_id} doluysa
+ * parti bir teslimatin grubudur: teslimat makine oncesi asamalari yapar, grup makineli asamalari.
+ */
 @Entity
 @Table(name = "production_batches")
 @Getter
@@ -29,6 +32,8 @@ public class ProductionBatch extends AuditedEntity {
 
 	@Column(nullable = false)
 	private String batchCode;
+
+	private Long parentBatchId;
 
 	@Column(nullable = false)
 	private Long productionLineId;
@@ -74,6 +79,29 @@ public class ProductionBatch extends AuditedEntity {
 		this.startedAt = startedAt;
 		this.completedAt = completedAt;
 		this.note = note;
+	}
+
+	/** Teslimatin grubu: hat, tedarikci, tarla, plaka, fis ve varis teslimattan. */
+	static ProductionBatch groupOf(ProductionBatch delivery, String code, BigDecimal quantityKg, long userId,
+		String note) {
+		ProductionBatch group = new ProductionBatch(code, delivery.productionLineId, delivery.supplierId,
+			delivery.supplierFieldId, userId, BatchStatus.PENDING, quantityKg, delivery.truckPlate, delivery.weighingSlipNo,
+			delivery.receivedAt, null, null, note);
+		group.parentBatchId = delivery.id;
+		return group;
+	}
+
+	public boolean isGroup() {
+		return parentBatchId != null;
+	}
+
+	/** Teslimattan gelen bilgiler gruba yazilir. */
+	void copyDeliveryInfo(ProductionBatch delivery) {
+		supplierId = delivery.supplierId;
+		supplierFieldId = delivery.supplierFieldId;
+		truckPlate = delivery.truckPlate;
+		weighingSlipNo = delivery.weighingSlipNo;
+		receivedAt = delivery.receivedAt;
 	}
 
 	void changeSupplier(Long supplier, Long field) {

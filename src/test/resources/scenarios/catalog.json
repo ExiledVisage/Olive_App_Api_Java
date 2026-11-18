@@ -406,7 +406,7 @@
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'Gemlik Zeytini' ürün tipi silinemez; kullanıldığı yerler: 206 materyal, 207 parti girdisi.",
+      "detail" : "'Gemlik Zeytini' ürün tipi silinemez; kullanıldığı yerler: 412 materyal, 413 parti girdisi.",
       "instance" : "/api/production-product-types/1",
       "status" : 422,
       "title" : "Unprocessable Content"
@@ -1273,7 +1273,7 @@
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'Zeytinyağı Üretim Hattı' hattı silinemez; kullanıldığı yerler: 148 üretim partisi.",
+      "detail" : "'Zeytinyağı Üretim Hattı' hattı silinemez; kullanıldığı yerler: 296 üretim partisi.",
       "instance" : "/api/production-lines/1",
       "status" : 422,
       "title" : "Unprocessable Content"

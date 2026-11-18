@@ -50,7 +50,7 @@ class SupplierDeliveryReadModel implements SupplierDeliverySource {
 	public List<BatchDelivery> batches(long supplierId) {
 		return jdbc.sql("""
 			select id, batch_code, status, received_at, supplier_field_id, quantity_kg, truck_plate, weighing_slip_no
-			from production_batches where supplier_id = ?
+			from production_batches where supplier_id = ? and parent_batch_id is null
 			order by received_at desc, id desc
 			""").param(supplierId).query(BatchDelivery.class).list();
 	}

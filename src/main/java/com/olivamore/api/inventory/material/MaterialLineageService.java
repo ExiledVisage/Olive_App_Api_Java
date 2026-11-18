@@ -274,6 +274,7 @@ class MaterialLineageService {
 			select finished_product_run_id, finished_product_storage_id, finished_product_storage_slot_id,
 				finished_product_id, quantity, order_id
 			from finished_product_stock_movements where finished_product_run_id in (:ids) and movement_type = 'stock_in'
+			order by id
 			""").param("ids", runIds).query(StockMove.class).list();
 		Map<Long, String> storages = names("finished_product_storages",
 			column(movements, StockMove::finishedProductStorageId));

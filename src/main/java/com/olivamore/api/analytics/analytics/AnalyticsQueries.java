@@ -49,8 +49,9 @@ class AnalyticsQueries {
 	record CustomerNames(long id, String companyName, String name) {
 	}
 
-	private record Batch(long id, LocalDateTime receivedAt, Long supplierId, String supplierName, String supplierCode,
-		Long supplierFieldId, String fieldCode, Long productTypeId, String productTypeName) {
+	private record Batch(long id, Long parentBatchId, BigDecimal quantityKg, LocalDateTime receivedAt, Long supplierId,
+		String supplierName, String supplierCode, Long supplierFieldId, String fieldCode, Long productTypeId,
+		String productTypeName) {
 	}
 
 	private record Process(long productionBatchId, long productionStageId, String operationData) {
@@ -83,10 +84,13 @@ class AnalyticsQueries {
 			.query(CustomerNames.class).optional();
 	}
 
-	/** Aralikta gelmis, yagi tartilmis ve sikilan miktari olan partiler. */
+	/**
+	 * Aralikta gelmis, yagi tartilmis ve sikilan miktari olan partiler. Gruplara bolunmus teslimat yerine gruplari
+	 * sayilir; grubun gelen kilosu kendi kantari yoksa teslimatin kantarindan payi ({@link #deliveryShares}).
+	 */
 	List<BatchRow> batches(Range range, Long supplierId, Long productTypeId, Long fieldId) {
 		List<Batch> batches = jdbc.sql("""
-			select b.id, b.received_at, b.supplier_id, b.supplier_field_id,
+			select b.id, b.parent_batch_id, b.quantity_kg, b.received_at, b.supplier_id, b.supplier_field_id,
 				(select s.name from suppliers s where s.id = b.supplier_id) as supplier_name,
 				(select s.code from suppliers s where s.id = b.supplier_id) as supplier_code,
 				(select f.code from supplier_fields f where f.id = b.supplier_field_id) as field_code,
@@ -104,6 +108,7 @@ class AnalyticsQueries {
 					select 1 from production_batch_input_production_product_types i
 					where i.production_batch_id = b.id and i.production_product_type_id = :type))
 				and (cast(:field as bigint) is null or b.supplier_field_id = :field)
+				and not exists (select 1 from production_batches g where g.parent_batch_id = b.id)
 			order by b.id
 			""").param("from", range.from()).param("to", range.to()).param("supplier", supplierId)
 			.param("type", productTypeId).param("field", fieldId).query(Batch.class).list();
@@ -111,10 +116,14 @@ class AnalyticsQueries {
 			return List.of();
 		}
 		Map<Long, Role> roles = stageRoles();
-		Map<Long, List<Process>> processes = completedProcesses(batches, roles.keySet());
+		Map<Long, List<Process>> processes = completedProcesses(batches.stream().map(Batch::id).toList(), roles.keySet());
+		Map<Long, Double> deliveryShare = deliveryShares(batches, roles);
 		List<BatchRow> rows = new ArrayList<>();
 		for (Batch batch : batches) {
 			Map<String, Double> values = roleValues(processes.getOrDefault(batch.id(), List.of()), roles);
+			if (values.get(INCOMING) == null && deliveryShare.containsKey(batch.id())) {
+				values.put(INCOMING, deliveryShare.get(batch.id()));
+			}
 			Double pressed = values.get(PRESSED) != null ? values.get(PRESSED) : values.get(INCOMING);
 			rows.add(new BatchRow(batch.id(), batch.receivedAt(), batch.supplierId(), batch.supplierName(),
 				batch.supplierCode(), batch.supplierFieldId(), batch.fieldCode(), batch.productTypeId(),
@@ -124,8 +133,36 @@ class AnalyticsQueries {
 		return rows.stream().filter(r -> r.oil() != null && r.pressed() != null && r.pressed() > 0).toList();
 	}
 
-	private Map<Long, List<Process>> completedProcesses(List<Batch> batches, Set<Long> stageIds) {
-		if (stageIds.isEmpty()) {
+	/**
+	 * Kendi kantari olmayan grubun gelen kilosu: teslimatin kantar kilosundan, ayrilan kilosunun teslimatin butun
+	 * gruplarina ayrilan kiloya orani kadar.
+	 */
+	private Map<Long, Double> deliveryShares(List<Batch> batches, Map<Long, Role> roles) {
+		List<Batch> groups = batches.stream().filter(b -> b.parentBatchId() != null && b.quantityKg() != null).toList();
+		if (groups.isEmpty()) {
+			return Map.of();
+		}
+		List<Long> deliveries = groups.stream().map(Batch::parentBatchId).distinct().toList();
+		Map<Long, List<Process>> deliveryProcesses = completedProcesses(deliveries, roles.keySet());
+		Map<Long, BigDecimal> allocated = new LinkedHashMap<>();
+		jdbc.sql("select parent_batch_id, sum(quantity_kg) as total from production_batches"
+				+ " where parent_batch_id in (:ids) group by parent_batch_id")
+			.param("ids", deliveries).query((rs, n) -> Map.entry(rs.getLong(1), rs.getBigDecimal(2))).list()
+			.forEach(e -> allocated.put(e.getKey(), e.getValue()));
+		Map<Long, Double> shares = new LinkedHashMap<>();
+		for (Batch group : groups) {
+			Double weighed = roleValues(deliveryProcesses.getOrDefault(group.parentBatchId(), List.of()), roles)
+				.get(INCOMING);
+			BigDecimal total = allocated.get(group.parentBatchId());
+			if (weighed != null && total != null && total.signum() > 0) {
+				shares.put(group.id(), weighed * group.quantityKg().doubleValue() / total.doubleValue());
+			}
+		}
+		return shares;
+	}
+
+	private Map<Long, List<Process>> completedProcesses(List<Long> batchIds, Set<Long> stageIds) {
+		if (stageIds.isEmpty() || batchIds.isEmpty()) {
 			return Map.of();
 		}
 		return jdbc.sql("""
@@ -133,7 +170,7 @@ class AnalyticsQueries {
 			from batch_processes
 			where production_batch_id in (:batches) and production_stage_id in (:stages) and status = 'completed'
 			order by id
-			""").param("batches", batches.stream().map(Batch::id).toList()).param("stages", stageIds)
+			""").param("batches", batchIds).param("stages", stageIds)
 			.query(Process.class).list().stream()
 			.collect(Collectors.groupingBy(Process::productionBatchId));
 	}

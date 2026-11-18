@@ -3,6 +3,7 @@
 CREATE TABLE production_batches (
     id bigint NOT NULL,
     batch_code character varying(255) NOT NULL,
+    parent_batch_id bigint,
     production_line_id bigint NOT NULL,
     created_by_user_id bigint,
     status character varying(255) DEFAULT 'pending'::character varying NOT NULL,
@@ -38,12 +39,19 @@ ALTER TABLE ONLY production_batches
 
 CREATE INDEX production_batches_created_by_user_id_index ON production_batches USING btree (created_by_user_id);
 
+CREATE INDEX production_batches_parent_batch_id_index ON production_batches USING btree (parent_batch_id);
+
 CREATE INDEX production_batches_production_line_id_status_index ON production_batches
     USING btree (production_line_id, status);
 
 ALTER TABLE ONLY production_batches
     ADD CONSTRAINT production_batches_created_by_user_id_foreign FOREIGN KEY (created_by_user_id)
         REFERENCES users(id) ON DELETE SET NULL;
+
+-- Grubun teslimati (ana parti); bos ise satir teslimattir
+ALTER TABLE ONLY production_batches
+    ADD CONSTRAINT production_batches_parent_batch_id_foreign FOREIGN KEY (parent_batch_id)
+        REFERENCES production_batches(id) ON DELETE RESTRICT;
 
 ALTER TABLE ONLY production_batches
     ADD CONSTRAINT production_batches_production_line_id_foreign FOREIGN KEY (production_line_id)

@@ -10,6 +10,7 @@ import java.util.List;
 /** Parti: hat, giris/cikis tipleri, prosesler ve materyallerle. */
 record ProductionBatchResponse(
 	Long id,
+	Long parentBatchId,
 	String batchCode,
 	Long productionLineId,
 	Long supplierId,

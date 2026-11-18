@@ -1,6 +1,6 @@
 # Teslimatı gruplara bölme
 
-Durum: tasarım tamam (2026-11-18), kod yok.
+Durum: API'de bölme ve raporlar yapıldı; kilo düzeltme, grup silme, detay alanları ve Flutter kaldı.
 
 Gelen bir zeytin teslimatı (örn. 1000 kg) gruplara bölünür; her grup üretime ayrı zamanda girer. Teslimatın
 tamamını tek seferde işlemek de bir gruptur: "Hepsini tekte başlat" kalan kilonun tamamıyla tek grup açar.
@@ -139,8 +139,10 @@ Materyal: ana partinin zeytini mevcut materyal bölmeyle (ana materyal → çocu
 
 ## Uygulama sırası
 
-1. Veritabanı sütunları, seed, bölme servisi ve kuralları, durum hesabı, testler.
-2. API yanıtı, `kind` filtresi, kilo düzeltme.
-3. Raporlar.
+1. ✔ Veritabanı sütunları, seed, bölme servisi ve kuralları, durum hesabı, testler (`BatchGroupsIT`).
+2. API yanıtı (`groups[]`, `remaining_kg`), `kind` filtresi, kilo düzeltme, başlamamış grubun silinmesi (kilosu
+   teslimata döner; bugün materyali olduğu için silinemiyor), elle girilen kilonun ilk bölmede yeniden tartılması.
+3. ✔ Raporlar: analiz (grubun gelen kilosu teslimat kantarından payı), günlük özet, takvim, tedarikçi teslimatları.
+   Soyağacında teslimat kodu kaldı.
 4. Flutter: model ve servis, detay sayfası ve bölme penceresi, aşama ekranı, listeler.
 5. Sonra: bekleyen kilo için uyarı kuralı (örn. "ayrılmamış kilo 24 saati geçti").

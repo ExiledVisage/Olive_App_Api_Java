@@ -75,7 +75,7 @@ class BatchStageRulesIT {
 
 	@Test
 	void weighingCreatesTheBatchMaterialInTheProductUnit() {
-		long batch = batch();
+		long batch = delivery();
 
 		assertRule(complete(batch, 1, Map.of("quantity", 5000, "unit", "LITRE")),
 			"Tartım birimi ürün birimi ile uyuşmuyor.");
@@ -100,7 +100,7 @@ class BatchStageRulesIT {
 
 	@Test
 	void completedStageThatCreatedRecordsCannotBeReopened() {
-		long batch = batch();
+		long batch = delivery();
 		completeUpTo(batch, 1);
 
 		Response r = api.patch(process(batch, 1), Map.of("status", "waiting"));
@@ -179,6 +179,11 @@ class BatchStageRulesIT {
 
 	private long batch() {
 		return flow.batch("T-RULE-" + codes.incrementAndGet());
+	}
+
+	/** Kantari kendisi yapan (zeytin materyalini olusturan) tartilmamis teslimat. */
+	private long delivery() {
+		return flow.delivery("T-RULE-" + codes.incrementAndGet());
 	}
 
 	private String process(long batch, int stage) {

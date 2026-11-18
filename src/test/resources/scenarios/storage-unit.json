@@ -1578,8 +1578,8 @@
       "content" : [ {
         "id" : 141,
         "storage_unit_id" : 15,
-        "material_id" : 128,
-        "source_material_id" : 124,
+        "material_id" : 154,
+        "source_material_id" : 150,
         "batch_process_id" : null,
         "finished_product_run_id" : null,
         "counterparty_storage_unit_id" : 8,
@@ -1591,7 +1591,7 @@
         "note" : "Tank aktarımı",
         "moved_at" : "2025-11-21T07:06:00Z",
         "material" : {
-          "id" : 128,
+          "id" : 154,
           "production_batch_id" : null,
           "production_product_type_id" : 3,
           "parent_material_id" : null,
@@ -1622,7 +1622,7 @@
           },
           "attribute_values" : [ {
             "id" : 52,
-            "material_id" : 128,
+            "material_id" : 154,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
             "value_integer" : null,

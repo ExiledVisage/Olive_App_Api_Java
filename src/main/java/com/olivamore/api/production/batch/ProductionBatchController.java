@@ -26,12 +26,14 @@ class ProductionBatchController {
 	private final ProductionBatchService batches;
 	private final ProductionBatchResponses responses;
 	private final ProductionBatchListing listing;
+	private final BatchGroupService groups;
 
 	ProductionBatchController(ProductionBatchService batches, ProductionBatchResponses responses,
-		ProductionBatchListing listing) {
+		ProductionBatchListing listing, BatchGroupService groups) {
 		this.batches = batches;
 		this.responses = responses;
 		this.listing = listing;
+		this.groups = groups;
 	}
 
 	/** {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); en yeni once; page/size ile sayfali. */
@@ -62,6 +64,14 @@ class ProductionBatchController {
 	DataResponse<ProductionBatchResponse> store(@Valid @RequestBody CreateProductionBatchRequest request,
 		@AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.of(responses.detail(batches.create(request, user)));
+	}
+
+	/** Teslimattan grup ayirir; cevap yeni grup. */
+	@PostMapping("/api/production-batches/{id}/groups")
+	@PreAuthorize("hasAuthority('production_batch.create')")
+	DataResponse<ProductionBatchResponse> split(@PathVariable long id, @Valid @RequestBody CreateBatchGroupRequest request,
+		@AuthenticationPrincipal CurrentUser user) {
+		return DataResponse.of(responses.detail(groups.split(id, request, user)));
 	}
 
 	@PatchMapping("/api/production-batches/{id}")

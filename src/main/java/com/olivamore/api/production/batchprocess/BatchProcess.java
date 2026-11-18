@@ -57,6 +57,9 @@ public class BatchProcess extends AuditedEntity {
 
 	private LocalDateTime approvedAt;
 
+	/** Grupta: bu asama teslimatta yapildi, grup gecti; teslimatin satiri. */
+	private Long inheritedFromProcessId;
+
 	public BatchProcess(long productionBatchId, long productionStageId) {
 		this.productionBatchId = productionBatchId;
 		this.productionStageId = productionStageId;
@@ -78,8 +81,22 @@ public class BatchProcess extends AuditedEntity {
 		completedAt = value;
 	}
 
+	/** Teslimatta yapilmis asama: grupta baslamadan gecilir (grup bununla baslamis sayilmaz). */
+	public void inherit(long deliveryProcessId, LocalDateTime now) {
+		status = ProcessStatus.SKIPPED;
+		inheritedFromProcessId = deliveryProcessId;
+		completedAt = now;
+	}
+
+	/** Teslimatin zeytini tamamen gruplara ayrildi: bekleyen asama islenecek bir sey tasimaz. */
+	public void skipUnneeded(LocalDateTime now) {
+		status = ProcessStatus.SKIPPED;
+		completedAt = now;
+	}
+
 	void reopen() {
 		status = ProcessStatus.WAITING;
+		inheritedFromProcessId = null;
 		startedAt = null;
 		completedAt = null;
 		operationData = null;

@@ -137,6 +137,26 @@ public class Material extends AuditedEntity {
 		return child;
 	}
 
+	/**
+	 * Teslimatin zeytininden grubun payi: pay grubun partisinde yeni materyal olur (ana materyali bu), bu materyalin
+	 * miktari duser; kalan yoksa tuketilmis sayilir.
+	 */
+	public Material allocateTo(long batchId, BigDecimal portion) {
+		Material child = splitOff(portion, null);
+		child.createdByBatchProcessId = null;
+		child.productionBatchId = batchId;
+		child.currentLocationType = LocationType.PRODUCTION_BATCH;
+		child.currentLocationId = batchId;
+		BigDecimal remaining = quantity.subtract(portion);
+		if (remaining.compareTo(CONSUMED_BELOW) <= 0) {
+			status = MaterialStatus.CONSUMED;
+		}
+		else {
+			quantity = Quantities.material(remaining);
+		}
+		return child;
+	}
+
 	/** Tartimda olculen miktar; konumu yoksa partiye yerlesir, proses notu varsa yazilir. */
 	public void recordWeighing(BigDecimal measured, MaterialUnit measuredUnit, long stageId, long batchId,
 		String processNote) {

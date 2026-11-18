@@ -29,7 +29,7 @@ public class ProductionLineResources {
 	}
 
 	public record Stage(Long id, Long productionLineId, Long processTypeId, String name, int stageOrder,
-		boolean isRequired, boolean requiresApproval) {
+		boolean isRequired, boolean requiresApproval, boolean usesMachine) {
 	}
 
 	public record Line(Long id, String name, String description) {
@@ -51,6 +51,12 @@ public class ProductionLineResources {
 		}
 		return jdbc.sql("select * from production_stages where id in (:ids)").param("ids", present)
 			.query(Stage.class).list().stream().collect(Collectors.toMap(Stage::id, Function.identity()));
+	}
+
+	/** Hattin asamalari sirayla. */
+	public List<Stage> lineStages(long lineId) {
+		return jdbc.sql("select * from production_stages where production_line_id = :line order by stage_order asc, id asc")
+			.param("line", lineId).query(Stage.class).list();
 	}
 
 	/** Hattin asamalari sirayla. */

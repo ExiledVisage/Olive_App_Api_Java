@@ -71,8 +71,8 @@ class ProductionBatchResponses {
 
 		List<ProductionBatchResponse> out = new ArrayList<>();
 		for (ProductionBatch b : rows) {
-			out.add(new ProductionBatchResponse(b.getId(), b.getBatchCode(), b.getProductionLineId(), b.getSupplierId(),
-				b.getSupplierFieldId(), suppliers.get(b.getSupplierId()), fields.get(b.getSupplierFieldId()),
+			out.add(new ProductionBatchResponse(b.getId(), b.getParentBatchId(), b.getBatchCode(),
+				b.getProductionLineId(), b.getSupplierId(), b.getSupplierFieldId(), suppliers.get(b.getSupplierId()), fields.get(b.getSupplierFieldId()),
 				b.getCreatedByUserId(), b.getStatus(), b.getQuantityKg(), b.getTruckPlate(), b.getWeighingSlipNo(),
 				b.getReceivedAt(), b.getStartedAt(), b.getCompletedAt(), b.getNote(), inputTypes.getOrDefault(b.getId(), List.of()),
 				outputTypes.getOrDefault(b.getId(), List.of()), lines.get(b.getProductionLineId()),

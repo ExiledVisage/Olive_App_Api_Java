@@ -11,17 +11,17 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -29,17 +29,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -48,58 +48,58 @@
             }
           } ],
           "completed_today" : [ {
-            "id" : 287,
-            "batch_code" : "P-261103-02",
+            "id" : 574,
+            "batch_code" : "P-261103-02-1",
             "status" : "completed",
-            "quantity_kg" : 2670.0,
+            "quantity_kg" : 2656.4,
             "supplier" : "Güneş Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-03T12:09:00Z",
-            "started_at" : "2026-11-03T12:15:00Z",
+            "started_at" : "2026-11-03T13:27:00Z",
             "completed_at" : "2026-11-04T13:32:00Z",
             "current_stage" : null
           }, {
-            "id" : 286,
-            "batch_code" : "P-261103-01",
+            "id" : 572,
+            "batch_code" : "P-261103-01-1",
             "status" : "completed",
-            "quantity_kg" : 3345.0,
+            "quantity_kg" : 3312.8,
             "supplier" : "Güneş Tarım",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-03T07:09:00Z",
-            "started_at" : "2026-11-03T07:25:00Z",
+            "started_at" : "2026-11-03T08:26:00Z",
             "completed_at" : "2026-11-04T12:32:00Z",
             "current_stage" : null
           }, {
-            "id" : 285,
-            "batch_code" : "P-261102-02",
+            "id" : 570,
+            "batch_code" : "P-261102-02-1",
             "status" : "completed",
-            "quantity_kg" : 3015.0,
+            "quantity_kg" : 2990.1,
             "supplier" : "Yılmaz Çiftliği",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-02T11:44:00Z",
-            "started_at" : "2026-11-02T12:03:00Z",
+            "started_at" : "2026-11-02T13:00:00Z",
             "completed_at" : "2026-11-04T11:20:00Z",
             "current_stage" : null
           }, {
-            "id" : 284,
-            "batch_code" : "P-261102-01",
+            "id" : 568,
+            "batch_code" : "P-261102-01-1",
             "status" : "completed",
-            "quantity_kg" : 6930.0,
+            "quantity_kg" : 6856.9,
             "supplier" : "Öztürk Bahçeleri",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-02T07:04:00Z",
-            "started_at" : "2026-11-02T07:12:00Z",
+            "started_at" : "2026-11-02T08:16:00Z",
             "completed_at" : "2026-11-04T09:54:00Z",
             "current_stage" : null
           }, {
-            "id" : 283,
-            "batch_code" : "P-261101-01",
+            "id" : 566,
+            "batch_code" : "P-261101-01-1",
             "status" : "completed",
-            "quantity_kg" : 7635.0,
+            "quantity_kg" : 7582.0,
             "supplier" : "Polat Zeytincilik",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-01T07:06:00Z",
-            "started_at" : "2026-11-01T07:24:00Z",
+            "started_at" : "2026-11-01T08:26:00Z",
             "completed_at" : "2026-11-04T08:14:00Z",
             "current_stage" : null
           } ]
@@ -274,10 +274,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -285,29 +285,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -315,17 +315,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -336,7 +336,7 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 8,
+          "completed_today" : 12,
           "awaiting_approval" : [ ]
         },
         "filling_runs" : {
@@ -504,17 +504,17 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -522,17 +522,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -685,17 +685,17 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -703,17 +703,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -882,17 +882,17 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -900,17 +900,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1046,10 +1046,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -1057,29 +1057,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1087,17 +1087,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1108,7 +1108,7 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 8,
+          "completed_today" : 12,
           "awaiting_approval" : [ ]
         },
         "filling_runs" : {
@@ -1276,10 +1276,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -1287,29 +1287,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1317,17 +1317,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1338,7 +1338,7 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 8,
+          "completed_today" : 12,
           "awaiting_approval" : [ ]
         },
         "filling_runs" : {
@@ -1506,10 +1506,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -1517,29 +1517,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1547,17 +1547,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1568,7 +1568,7 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 8,
+          "completed_today" : 12,
           "awaiting_approval" : [ ]
         },
         "filling_runs" : {
@@ -1736,10 +1736,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -1747,29 +1747,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1777,17 +1777,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -1798,7 +1798,7 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 8,
+          "completed_today" : 12,
           "awaiting_approval" : [ ]
         }
       }
@@ -2028,10 +2028,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -2039,29 +2039,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2069,17 +2069,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2090,7 +2090,7 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 8,
+          "completed_today" : 12,
           "awaiting_approval" : [ ]
         },
         "filling_runs" : {
@@ -2258,17 +2258,17 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2276,17 +2276,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2295,58 +2295,58 @@
             }
           } ],
           "completed_today" : [ {
-            "id" : 287,
-            "batch_code" : "P-261103-02",
+            "id" : 574,
+            "batch_code" : "P-261103-02-1",
             "status" : "completed",
-            "quantity_kg" : 2670.0,
+            "quantity_kg" : 2656.4,
             "supplier" : "Güneş Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-03T12:09:00Z",
-            "started_at" : "2026-11-03T12:15:00Z",
+            "started_at" : "2026-11-03T13:27:00Z",
             "completed_at" : "2026-11-04T13:32:00Z",
             "current_stage" : null
           }, {
-            "id" : 286,
-            "batch_code" : "P-261103-01",
+            "id" : 572,
+            "batch_code" : "P-261103-01-1",
             "status" : "completed",
-            "quantity_kg" : 3345.0,
+            "quantity_kg" : 3312.8,
             "supplier" : "Güneş Tarım",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-03T07:09:00Z",
-            "started_at" : "2026-11-03T07:25:00Z",
+            "started_at" : "2026-11-03T08:26:00Z",
             "completed_at" : "2026-11-04T12:32:00Z",
             "current_stage" : null
           }, {
-            "id" : 285,
-            "batch_code" : "P-261102-02",
+            "id" : 570,
+            "batch_code" : "P-261102-02-1",
             "status" : "completed",
-            "quantity_kg" : 3015.0,
+            "quantity_kg" : 2990.1,
             "supplier" : "Yılmaz Çiftliği",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-02T11:44:00Z",
-            "started_at" : "2026-11-02T12:03:00Z",
+            "started_at" : "2026-11-02T13:00:00Z",
             "completed_at" : "2026-11-04T11:20:00Z",
             "current_stage" : null
           }, {
-            "id" : 284,
-            "batch_code" : "P-261102-01",
+            "id" : 568,
+            "batch_code" : "P-261102-01-1",
             "status" : "completed",
-            "quantity_kg" : 6930.0,
+            "quantity_kg" : 6856.9,
             "supplier" : "Öztürk Bahçeleri",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-02T07:04:00Z",
-            "started_at" : "2026-11-02T07:12:00Z",
+            "started_at" : "2026-11-02T08:16:00Z",
             "completed_at" : "2026-11-04T09:54:00Z",
             "current_stage" : null
           }, {
-            "id" : 283,
-            "batch_code" : "P-261101-01",
+            "id" : 566,
+            "batch_code" : "P-261101-01-1",
             "status" : "completed",
-            "quantity_kg" : 7635.0,
+            "quantity_kg" : 7582.0,
             "supplier" : "Polat Zeytincilik",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-01T07:06:00Z",
-            "started_at" : "2026-11-01T07:24:00Z",
+            "started_at" : "2026-11-01T08:26:00Z",
             "completed_at" : "2026-11-04T08:14:00Z",
             "current_stage" : null
           } ]
@@ -2538,17 +2538,17 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2556,17 +2556,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3176,
+              "batch_process_id" : 4332,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2706,10 +2706,10 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 290,
+            "id" : 579,
             "batch_code" : "P-261106-02",
             "status" : "pending",
-            "quantity_kg" : 5185.0,
+            "quantity_kg" : null,
             "supplier" : "Kurt Bahçeleri",
             "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T15:01:00Z",
@@ -2717,29 +2717,29 @@
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 289,
+            "id" : 577,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
             "quantity_kg" : 7115.0,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 288,
-            "batch_code" : "P-261105-01",
+            "id" : 576,
+            "batch_code" : "P-261105-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7700.0,
+            "quantity_kg" : 7627.0,
             "supplier" : "Ali Güneş",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-05T07:04:00Z",
-            "started_at" : "2026-11-05T07:23:00Z",
+            "started_at" : "2026-11-05T08:21:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3165,
+              "batch_process_id" : 4317,
               "name" : "Asitlik Analizi",
               "order" : 8,
               "status" : "completed",
@@ -2747,17 +2747,17 @@
               "total_count" : 11
             }
           }, {
-            "id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 578,
+            "batch_code" : "P-261106-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 7115.0,
+            "quantity_kg" : 7052.8,
             "supplier" : "Koç Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
             "received_at" : "2026-11-06T07:10:00Z",
-            "started_at" : "2026-11-06T07:30:00Z",
+            "started_at" : "2026-11-06T08:51:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3175,
+              "batch_process_id" : 4331,
               "name" : "Pirina Tartımı",
               "order" : 7,
               "status" : "awaiting_approval",
@@ -2768,17 +2768,17 @@
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 6,
+          "completed_today" : 10,
           "awaiting_approval" : [ {
-            "id" : 3175,
-            "production_batch_id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 4331,
+            "production_batch_id" : 578,
+            "batch_code" : "P-261106-01-1",
             "stage_name" : "Pirina Tartımı",
             "submitted_at" : "2026-11-06T10:00:00Z"
           }, {
-            "id" : 3176,
-            "production_batch_id" : 289,
-            "batch_code" : "P-261106-01",
+            "id" : 4332,
+            "production_batch_id" : 578,
+            "batch_code" : "P-261106-01-1",
             "stage_name" : "Asitlik Analizi",
             "submitted_at" : "2026-11-06T10:00:00Z"
           } ]

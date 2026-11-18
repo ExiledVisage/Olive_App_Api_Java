@@ -14,6 +14,7 @@ CREATE TABLE batch_processes (
     submitted_at timestamp(0) without time zone,
     approved_by_user_id bigint,
     approved_at timestamp(0) without time zone,
+    inherited_from_process_id bigint,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone
 );
@@ -43,6 +44,11 @@ CREATE INDEX batch_processes_production_batch_id_status_index ON batch_processes
 ALTER TABLE ONLY batch_processes
     ADD CONSTRAINT batch_processes_approved_by_user_id_foreign FOREIGN KEY (approved_by_user_id)
         REFERENCES users(id) ON DELETE SET NULL;
+
+-- Grupta ana partide yapildigi icin gecilen asama: ana partinin satiri
+ALTER TABLE ONLY batch_processes
+    ADD CONSTRAINT batch_processes_inherited_from_process_id_foreign
+        FOREIGN KEY (inherited_from_process_id) REFERENCES batch_processes(id) ON DELETE RESTRICT;
 
 ALTER TABLE ONLY batch_processes
     ADD CONSTRAINT batch_processes_operator_id_foreign FOREIGN KEY (operator_id)

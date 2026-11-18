@@ -85,6 +85,14 @@ public class StockOperations {
 		return id;
 	}
 
+	/** Teslimatin materyalinden grubun payi grubun partisine aktarilir. @return grubun materyali */
+	@Transactional
+	public long allocateToBatch(long materialId, long batchId, BigDecimal portion) {
+		long id = materials.save(material(materialId).allocateTo(batchId, portion)).getId();
+		entityManager.flush();
+		return id;
+	}
+
 	/** Tartimda olculen miktar kaydedilir. */
 	@Transactional
 	public void recordWeighing(long materialId, BigDecimal quantity, String unit, long stageId, long batchId,

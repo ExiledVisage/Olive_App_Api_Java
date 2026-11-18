@@ -43,6 +43,10 @@ class DailySummaryService {
 		from production_batches b
 		""";
 
+	/** Gruplara bolunmemis parti (grup ya da grupsuz teslimat). */
+	private static final String NOT_SPLIT =
+		"not exists (select 1 from production_batches g where g.parent_batch_id = b.id)";
+
 	private static final String RUN_COLUMNS = """
 		select r.id, r.status, r.quantity, r.finished_product_id, r.started_at, r.completed_at,
 			(select p.name from finished_products p where p.id = r.finished_product_id) as finished_product,
@@ -114,15 +118,21 @@ class DailySummaryService {
 		this.jdbc = jdbc;
 	}
 
-	/** Giren ve biten o gunun; uretimdeki partiler tarihe bakmaz. */
+	/**
+	 * Giren ve biten o gunun; uretimdeki partiler tarihe bakmaz. Giren teslimatlar; uretimde gruplar ve ayrilmamis
+	 * zeytini olan teslimatlar; biten gruplar ve bolunmemis partiler.
+	 */
 	Production production(LocalDate date) {
 		List<BatchRow> entered = jdbc.sql(BATCH_COLUMNS
-			+ " where b.received_at::date = :date order by b.received_at desc, b.id desc")
+			+ " where b.parent_batch_id is null and b.received_at::date = :date order by b.received_at desc, b.id desc")
 			.param("date", date).query(Batch.class).list().stream().map(b -> b.row(null)).toList();
-		List<Batch> active = jdbc.sql(BATCH_COLUMNS + " where b.status = 'in_progress' order by b.received_at asc, b.id asc")
+		List<Batch> active = jdbc.sql(BATCH_COLUMNS + " where b.status = 'in_progress' and (" + NOT_SPLIT
+				+ " or exists (select 1 from materials m where m.production_batch_id = b.id and m.status = 'active'"
+				+ " and m.current_location_type = 'production_batch')) order by b.received_at asc, b.id asc")
 			.query(Batch.class).list();
 		List<BatchRow> completed = jdbc
-			.sql(BATCH_COLUMNS + " where b.completed_at::date = :date order by b.completed_at desc, b.id desc")
+			.sql(BATCH_COLUMNS + " where " + NOT_SPLIT + " and b.completed_at::date = :date"
+				+ " order by b.completed_at desc, b.id desc")
 			.param("date", date).query(Batch.class).list().stream().map(b -> b.row(null)).toList();
 		Map<Long, CurrentStage> stages = currentStages(active.stream().map(Batch::id).toList());
 		return new Production(entered, active.stream().map(b -> b.row(stages.get(b.id()))).toList(), completed);

@@ -3,6 +3,7 @@ package com.olivamore.api.production.batchprocess;
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
 import com.olivamore.api.inventory.PreSettlingTankEmptied;
+import com.olivamore.api.production.batch.BatchStatus;
 import com.olivamore.api.production.batch.ProductionBatch;
 import com.olivamore.api.production.batch.ProductionBatchRepository;
 import com.olivamore.api.production.batchprocess.BatchProcessFieldValue.Value;
@@ -127,6 +128,21 @@ class BatchProcessService {
 			applyStatus(process, status, data, actor);
 		}
 		syncBatchStatus(batchId);
+	}
+
+	/**
+	 * Parti olusturulurken girilen kiloyla kantar tartimi: isleyicilerden gecer (materyal olusur), yetki sorulmaz;
+	 * olusturan operator olur.
+	 */
+	@Transactional
+	void completeOnCreation(long id, JsonNode data, CurrentUser actor) {
+		BatchProcess process = find(id);
+		ValidationErrors errors = new ValidationErrors();
+		JsonNode declared = checkOperationData(errors, process, ProcessStatus.COMPLETED, OperationData.normalized(data));
+		errors.throwIfAny();
+		process.changeOperator(actor.id());
+		applyStatus(process, ProcessStatus.COMPLETED, declared, actor);
+		syncBatchStatus(process.getProductionBatchId());
 	}
 
 	/** Tamamlama, atlama ve kapanmis asamayi geri acma ayri yetkiler; kurallardan once (403). */
@@ -574,16 +590,22 @@ class BatchProcessService {
 
 	/**
 	 * Proseslerden: basarisiz, suren ya da dinlenmede olan varsa in_progress, hepsi bittiyse completed, hic
-	 * baslamadiysa pending.
+	 * baslamadiysa pending. Teslimat (hattin yalniz makine oncesi asamalari onda) gruplarini da sayar: biri suruyorsa
+	 * in_progress; butun gruplari bitmis ve ayrilmamis zeytin kalmamissa completed (kalan yoksa teslimatin bekleyen
+	 * asamalari islenecek bir sey tasimaz). Grubun durumu degisince teslimatinki de yeniden hesaplanir.
 	 */
 	void syncBatchStatus(long batchId) {
 		ProductionBatch batch = batches.findById(batchId).orElseThrow();
 		List<BatchProcess> rows = processes.findByProductionBatchId(batchId);
+		List<ProductionBatch> groups = batches.findByParentBatchIdOrderByIdAsc(batchId);
 		boolean running = rows.stream().anyMatch(p -> p.getStatus() == ProcessStatus.FAILED
-			|| p.getStatus() == ProcessStatus.IN_PROGRESS || p.getStatus() == ProcessStatus.RESTING);
-		boolean finished = !rows.isEmpty() && rows.stream().allMatch(p -> p.getStatus() == ProcessStatus.COMPLETED
-			|| p.getStatus() == ProcessStatus.SKIPPED);
-		boolean started = rows.stream().anyMatch(p -> p.getStartedAt() != null);
+			|| p.getStatus() == ProcessStatus.IN_PROGRESS || p.getStatus() == ProcessStatus.RESTING)
+			|| groups.stream().anyMatch(g -> g.getStatus() == BatchStatus.IN_PROGRESS);
+		boolean finished = isDelivery(batch, rows) ? deliveryDone(batchId, groups)
+			: !rows.isEmpty() && rows.stream().allMatch(p -> p.getStatus() == ProcessStatus.COMPLETED
+				|| p.getStatus() == ProcessStatus.SKIPPED);
+		boolean started = rows.stream().anyMatch(p -> p.getStartedAt() != null)
+			|| groups.stream().anyMatch(g -> g.getStartedAt() != null);
 		LocalDateTime now = Timestamps.now();
 		if (!running && finished) {
 			batch.markCompleted(now);
@@ -594,6 +616,19 @@ class BatchProcessService {
 		else {
 			batch.markPending();
 		}
+		if (batch.isGroup()) {
+			syncBatchStatus(batch.getParentBatchId());
+		}
+	}
+
+	/** Hattin bir kismi (makine oncesi asamalari) acilmis teslimat; grup ve makinesiz hat butun asamalari tasir. */
+	private boolean isDelivery(ProductionBatch batch, List<BatchProcess> rows) {
+		return !batch.isGroup() && rows.size() < queries.lastStageOrder(batch.getProductionLineId());
+	}
+
+	private boolean deliveryDone(long batchId, List<ProductionBatch> groups) {
+		return !groups.isEmpty() && groups.stream().allMatch(g -> g.getStatus() == BatchStatus.COMPLETED)
+			&& queries.activeMaterials(batchId).isEmpty();
 	}
 
 	// ======================================================================

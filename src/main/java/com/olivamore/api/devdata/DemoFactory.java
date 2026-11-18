@@ -178,7 +178,7 @@ final class DemoFactory {
 			refused++;
 			return true;
 		}
-		Batch batch = register(day, sequence, cultivar);
+		Batch batch = register(day, sequence, cultivar, true);
 		if (batch == null || !walk(batch, season)) {
 			return false;
 		}
@@ -187,7 +187,8 @@ final class DemoFactory {
 		return true;
 	}
 
-	private Batch register(LocalDate day, int sequence, Cultivar cultivar) {
+	/** Kilo verilirse (kantarda tartildi) kantar asamasi o kiloyla tamamlanir. */
+	private Batch register(LocalDate day, int sequence, Cultivar cultivar, boolean weighed) {
 		if (!later(0, 10)) {
 			return null;
 		}
@@ -198,7 +199,8 @@ final class DemoFactory {
 		Map<String, Object> body = body("batch_code", "P-" + day.format(CODE_DATE) + "-" + "%02d".formatted(sequence),
 			"production_line_id", line, "input_production_product_type_ids", List.of(ids.type(cultivar.olive)),
 			"supplier_id", source.supplierId(), "supplier_field_id", random.nextDouble() < 0.7 ? source.fieldId() : null,
-			"quantity_kg", kg, "truck_plate", plate(), "weighing_slip_no", "TF-" + day.format(CODE_DATE) + between(100, 999));
+			"quantity_kg", weighed ? kg : null, "truck_plate", plate(),
+			"weighing_slip_no", "TF-" + day.format(CODE_DATE) + between(100, 999));
 		long id = DemoApi.id(api.post(PRODUCTION, "/api/production-batches", body));
 		return new Batch(id, day, sequence, cultivar, ids.stages(line), kg);
 	}
@@ -206,18 +208,20 @@ final class DemoFactory {
 	/** Son gun kayit acilir ama tartim yapilmaz: bekleyen parti. */
 	private void registerOnly(LocalDate day, int sequence) {
 		if (at(day.atTime(15, 0))) {
-			register(day, sequence, Cultivar.GEMLIK);
+			register(day, sequence, Cultivar.GEMLIK, false);
 		}
 	}
 
-	/** Kantardan on dinlendirmeye: her asama gercek veriyle; kapanis saatine gelinirse yarida kalir (false). */
+	/**
+	 * Kantardan on dinlendirmeye: her asama gercek veriyle; kapanis saatine gelinirse yarida kalir (false). Kantar
+	 * kayitta tartildi; Ikinci Tartim'dan sonra zeytinin hepsi tek gruba ayrilir, makineli asamalar grupta.
+	 */
 	private boolean walk(Batch batch, Season season) {
 		String operator = OPERATORS.get(random.nextInt(OPERATORS.size()));
 		List<Long> stages = batch.stages;
 		if (!later(5, 20)) {
 			return false;
 		}
-		complete(operator, batch, stages.get(0), body("quantity", batch.kg, "unit", "KG"));
 
 		BigDecimal foreign = scale(batch.kg.multiply(decimal(0.004, 0.015)), 1);
 		if (!later(25, 50)) {
@@ -231,6 +235,8 @@ final class DemoFactory {
 			return false;
 		}
 		complete(operator, batch, stages.get(2), body("quantity", sorted));
+		batch.group(DemoApi.id(api.post(PRODUCTION, "/api/production-batches/" + batch.id + "/groups",
+			body("all_remaining", true))));
 		if (!later(10, 20)) {
 			return false;
 		}
@@ -877,7 +883,8 @@ final class DemoFactory {
 	}
 
 	private static final class Batch {
-		private final long id;
+		/** Teslimat; bolununce makineli asamalari yapan grubu. */
+		private long id;
 		private final LocalDate day;
 		private final int sequence;
 		private final Cultivar cultivar;
@@ -892,6 +899,10 @@ final class DemoFactory {
 			this.cultivar = cultivar;
 			this.stages = stages;
 			this.kg = kg;
+		}
+
+		void group(long groupId) {
+			id = groupId;
 		}
 	}
 

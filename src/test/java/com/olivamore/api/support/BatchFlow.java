@@ -10,7 +10,8 @@ import static com.olivamore.api.support.Api.id;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Demo hattin (hat 1, girdi tipi 1 Gemlik zeytini, tedarikci 1) asamalarini API'den yuruten yardimci: 1 kantar tartimi
+ * Demo hattin (hat 1, girdi tipi 1 Gemlik zeytini, tedarikci 1) asamalarini API'den yuruten yardimci; parti
+ * {@link #batch} ile acilan grup: 1 kantar tartimi
  * (plaka partide), 2 ayiklama, 3 ikinci tartim, 4 veri istemeyen asama, 5 sikim (donusum), 6 yag tartimi,
  * 7 pirina tartimi, 8 analiz, 9 on dinlendirme (onayli, dinlenmede bekler).
  */
@@ -28,9 +29,28 @@ public final class BatchFlow {
 		this.jdbc = jdbc;
 	}
 
-	public long batch(String code) {
+	/** Tartilmamis teslimat (kantar bekliyor). */
+	public long delivery(String code) {
 		return id(api.post("/api/production-batches", Map.of("batch_code", code,
-			"input_production_product_type_ids", List.of(1), "production_line_id", 1, "supplier_id", 1, "truck_plate", "35 ABC 123")));
+			"input_production_product_type_ids", List.of(1), "production_line_id", 1, "supplier_id", 1,
+			"truck_plate", "35 ABC 123")));
+	}
+
+	/** Kantarda {@code kg} ile tartilmis teslimat. */
+	public long weighedDelivery(String code, Object kg) {
+		return id(api.post("/api/production-batches", Map.of("batch_code", code,
+			"input_production_product_type_ids", List.of(1), "production_line_id", 1, "supplier_id", 1,
+			"truck_plate", "35 ABC 123", "quantity_kg", kg)));
+	}
+
+	/**
+	 * Butun asamalari kendisi yapacak grup: 5000 kg'lik teslimatin hepsi, Kantarda Tartim'dan baslar (teslimatin
+	 * kantari gecilmez). Asama kurallari bu grupta denenir.
+	 */
+	public long batch(String code) {
+		long delivery = weighedDelivery(code, 5000);
+		return id(api.post("/api/production-batches/" + delivery + "/groups",
+			Map.of("all_remaining", true, "start_stage_id", 1)));
 	}
 
 	public String process(long batch, int stage) {

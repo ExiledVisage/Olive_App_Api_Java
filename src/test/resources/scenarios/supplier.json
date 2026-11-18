@@ -475,7 +475,7 @@
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'Ahmet Kaya' tedarikçisi silinemez; kullanıldığı yerler: 15 üretim partisi. Pasife alabilirsiniz.",
+      "detail" : "'Ahmet Kaya' tedarikçisi silinemez; kullanıldığı yerler: 30 üretim partisi. Pasife alabilirsiniz.",
       "instance" : "/api/suppliers/10",
       "status" : 422,
       "title" : "Unprocessable Content"

@@ -3,7 +3,9 @@ package com.olivamore.api.production.batch;
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.production.batch.BatchQueries.LineProductRow;
 import com.olivamore.api.production.batch.BatchQueries.ProductType;
+import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.production.batchprocess.BatchProcess;
+import com.olivamore.api.production.batchprocess.BatchProcessLifecycle;
 import com.olivamore.api.production.batchprocess.BatchProcessRepository;
 import com.olivamore.api.production.batchprocess.ProcessStatus;
 import com.olivamore.api.shared.error.BusinessRuleException;
@@ -17,6 +19,7 @@ import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -30,7 +33,8 @@ import java.util.Set;
 
 /**
  * Partiler. Girdiler hattin kabul ettigi kategori/cesitlerden, ayni "type"ta olmali; ciktilar hattin cikti
- * urunlerinden girdinin cesidine gore cozulur; hattin her asamasi icin bekleyen bir proses acilir.
+ * urunlerinden girdinin cesidine gore cozulur; hattin makine oncesi asamalari icin bekleyen prosesler acilir (makineli
+ * asamalar teslimatin gruplarinda, {@link BatchGroupService}). Kilo girildiyse kantar tartimi o kiloyla tamamlanir.
  */
 @Service
 class ProductionBatchService {
@@ -42,14 +46,17 @@ class ProductionBatchService {
 	private final BatchOutputTypeRepository outputs;
 	private final BatchProcessRepository processes;
 	private final BatchQueries queries;
+	private final BatchProcessLifecycle lifecycle;
 
 	ProductionBatchService(ProductionBatchRepository batches, BatchInputTypeRepository inputs,
-		BatchOutputTypeRepository outputs, BatchProcessRepository processes, BatchQueries queries) {
+		BatchOutputTypeRepository outputs, BatchProcessRepository processes, BatchQueries queries,
+		BatchProcessLifecycle lifecycle) {
 		this.batches = batches;
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.processes = processes;
 		this.queries = queries;
+		this.lifecycle = lifecycle;
 	}
 
 	/** @return yeni parti id */
@@ -89,8 +96,12 @@ class ProductionBatchService {
 		for (int i = 0; i < outputTypes.size(); i++) {
 			outputs.save(new BatchOutputType(id, outputTypes.get(i).id(), i));
 		}
-		for (long stageId : queries.stageIds(lineId)) {
-			processes.save(new BatchProcess(id, stageId));
+		List<ProductionLineResources.Stage> stages = StagePlan.of(queries.lineStages(lineId)).delivery();
+		List<BatchProcess> opened = stages.stream().map(s -> processes.save(new BatchProcess(id, s.id()))).toList();
+		BigDecimal kg = request.quantityKg();
+		if (kg != null && kg.signum() > 0 && !stages.isEmpty()
+			&& queries.weighingTypes().contains(stages.getFirst().processTypeId())) {
+			lifecycle.completeWeighing(opened.getFirst().getId(), kg, user);
 		}
 		return id;
 	}
@@ -99,6 +110,10 @@ class ProductionBatchService {
 	@Transactional
 	void update(long id, UpdateProductionBatchRequest request) {
 		ProductionBatch batch = find(id);
+		if (batch.isGroup() && touchesDeliveryInfo(request)) {
+			throw new BusinessRuleException("'" + batch.getBatchCode() + "' bir teslimatın grubu; tedarikçi, tarla, plaka, fiş, "
+				+ "varış ve kilo teslimattan gelir.");
+		}
 		ValidationErrors errors = new ValidationErrors();
 		if (request.batchCode() != null && batches.existsByBatchCodeAndIdNot(request.batchCode(), id)) {
 			errors.add("batch_code", MessageKeys.UNIQUE);
@@ -132,6 +147,12 @@ class ProductionBatchService {
 		Patch.ifPresent(startedAt, batch::changeStartedAt);
 		Patch.ifPresent(completedAt, batch::changeCompletedAt);
 		Patch.ifPresent(request.note(), batch::changeNote);
+		batches.findByParentBatchIdOrderByIdAsc(id).forEach(group -> group.copyDeliveryInfo(batch));
+	}
+
+	private static boolean touchesDeliveryInfo(UpdateProductionBatchRequest request) {
+		return request.supplierId() != null || request.supplierFieldId() != null || request.receivedAt() != null
+			|| request.truckPlate() != null || request.weighingSlipNo() != null || request.quantityKg() != null;
 	}
 
 	/** Yalnizca hic baslamamis parti silinir (proses, materyal ya da stok hareketi varsa 422). */
@@ -140,6 +161,7 @@ class ProductionBatchService {
 		ProductionBatch batch = find(id);
 		DeletionGuard.of("'" + batch.getBatchCode() + "' partisi")
 			.usedBy("başlamış proses", processes.countByProductionBatchIdAndStatusNot(id, ProcessStatus.WAITING))
+			.usedBy("grup", batches.countByParentBatchId(id))
 			.usedBy("materyal", queries.materialCount(id))
 			.usedBy("stok hareketi", queries.movementCount(id))
 			.check("Başlamış bir parti silinmez; iptal etmek için durumunu cancelled yapın.");

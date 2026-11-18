@@ -1,6 +1,7 @@
 package com.olivamore.api.production.batch;
 
 import com.olivamore.api.inventory.MaterialDirectory;
+import com.olivamore.api.process.ProcessResources;
 import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.supplier.SupplierDirectory;
@@ -13,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Parti kurallari ve cevabi icin baska modullerin tablolarindan okumalar. */
@@ -49,14 +51,16 @@ class BatchQueries {
 	private final ProductionLineResources lineResources;
 	private final SupplierDirectory supplierDirectory;
 	private final MaterialDirectory materialDirectory;
+	private final ProcessResources processResources;
 
 	BatchQueries(JdbcClient jdbc, ProductDirectory productDirectory, ProductionLineResources lineResources,
-		SupplierDirectory supplierDirectory, MaterialDirectory materialDirectory) {
+		SupplierDirectory supplierDirectory, MaterialDirectory materialDirectory, ProcessResources processResources) {
 		this.jdbc = jdbc;
 		this.productDirectory = productDirectory;
 		this.lineResources = lineResources;
 		this.supplierDirectory = supplierDirectory;
 		this.materialDirectory = materialDirectory;
+		this.processResources = processResources;
 	}
 
 	boolean lineExists(long id) {
@@ -128,6 +132,23 @@ class BatchQueries {
 		return lineResources.stageIds(lineId);
 	}
 
+	List<ProductionLineResources.Stage> lineStages(long lineId) {
+		return lineResources.lineStages(lineId);
+	}
+
+	/** Tartim kategorisindeki proses tipleri. */
+	Set<Long> weighingTypes() {
+		return processResources.processTypeIdsInCategory("weighing");
+	}
+
+	/** Partinin kendisinde duran (tanka alinmamis) aktif materyalleri. */
+	List<MaterialDirectory.Material> activeMaterialsInBatch(long batchId) {
+		return materialDirectory.activeOfBatch(batchId).stream()
+			.filter(m -> "production_batch".equals(m.currentLocationType())
+				&& Long.valueOf(batchId).equals(m.currentLocationId()))
+			.toList();
+	}
+
 	Map<Long, Supplier> suppliers(Collection<Long> ids) {
 		return supplierDirectory.suppliers(ids).values().stream().collect(Collectors.toMap(
 			SupplierDirectory.Supplier::id, s -> new Supplier(s.id(), s.name(), s.code())));
@@ -157,12 +178,13 @@ class BatchQueries {
 		return materialDirectory.countMovementsOf(processIds);
 	}
 
-	/** Gun -> parti sayisi (varis gunu, dahil). */
+	/** Gun -> teslimat sayisi (varis gunu, dahil; gruplar sayilmaz). */
 	Map<String, Long> calendar(LocalDate from, LocalDate to) {
 		Map<String, Long> days = new LinkedHashMap<>();
 		jdbc.sql("""
 			select date(received_at) as day, count(*) as total from production_batches
-			where received_at is not null and received_at::date >= :from and received_at::date <= :to
+			where parent_batch_id is null and received_at is not null and received_at::date >= :from
+				and received_at::date <= :to
 			group by day order by day asc
 			""").param("from", from).param("to", to).query(DayCount.class).list()
 			.forEach(row -> days.put(row.day().toString(), row.total()));
