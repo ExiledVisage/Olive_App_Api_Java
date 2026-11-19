@@ -34,7 +34,9 @@ class ProductionBatchDirectory implements BatchDirectory {
 		if (present.isEmpty()) {
 			return Map.of();
 		}
-		return jdbc.sql("select id, batch_code, status from production_batches where id in (:ids)")
+		return jdbc.sql("select b.id, b.batch_code, b.status, d.batch_code as delivery_batch_code"
+				+ " from production_batches b left join production_batches d on d.id = b.parent_batch_id"
+				+ " where b.id in (:ids)")
 			.param("ids", present).query(Batch.class).list().stream().collect(Collectors.toMap(Batch::id, Function.identity()));
 	}
 

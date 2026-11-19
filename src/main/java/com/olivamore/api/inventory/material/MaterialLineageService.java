@@ -357,7 +357,8 @@ class MaterialLineageService {
 		return new MaterialNode("material:" + m.id(), "material", m.id(),
 			type != null && type.name() != null ? type.name() : "Materyal", formatQuantity(m),
 			Quantities.number(m.quantity()), m.unit(), m.status(), MaterialService.lineageRole(m), m.originType(),
-			batch == null ? null : batch.batchCode(), stage == null ? null : stage.name(),
+			batch == null ? null : batch.batchCode(), batch == null ? null : batch.deliveryBatchCode(),
+			stage == null ? null : stage.name(),
 			"storage_unit".equals(m.currentLocationType()) && unit != null ? unit.code() : null, focus, 0);
 	}
 

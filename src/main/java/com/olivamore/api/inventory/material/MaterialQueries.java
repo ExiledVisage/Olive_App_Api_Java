@@ -35,7 +35,7 @@ public class MaterialQueries {
 	public record Product(Long id, String key, String name, String description, BigDecimal defaultDensityKgPerLitre) {
 	}
 
-	public record Batch(Long id, String batchCode, String status) {
+	public record Batch(Long id, String batchCode, String status, String deliveryBatchCode) {
 	}
 
 	public record BatchProcess(Long id, Long productionBatchId, Long productionStageId, String status) {
@@ -125,7 +125,7 @@ public class MaterialQueries {
 
 	public Map<Long, Batch> batches(Collection<Long> ids) {
 		return this.batches.batches(ids).values().stream().collect(Collectors.toMap(BatchDirectory.Batch::id,
-			b -> new Batch(b.id(), b.batchCode(), b.status())));
+			b -> new Batch(b.id(), b.batchCode(), b.status(), b.deliveryBatchCode())));
 	}
 
 	public Map<Long, BatchProcess> batchProcesses(Collection<Long> ids) {

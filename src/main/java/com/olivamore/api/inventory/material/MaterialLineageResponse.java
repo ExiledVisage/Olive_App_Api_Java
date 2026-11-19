@@ -17,13 +17,13 @@ record MaterialLineageResponse(String focus, List<Node> nodes, List<Edge> edges,
 	}
 
 	record MaterialNode(String key, String kind, Long id, String title, String subtitle, Number quantity, String unit,
-		String status, String lineageRole, String originType, String batchCode, String stageName, String storageUnit,
-		boolean isFocus, int depth) implements Node {
+		String status, String lineageRole, String originType, String batchCode, String deliveryBatchCode, String stageName,
+		String storageUnit, boolean isFocus, int depth) implements Node {
 
 		@Override
 		public Node withDepth(int value) {
 			return new MaterialNode(key, kind, id, title, subtitle, quantity, unit, status, lineageRole, originType,
-				batchCode, stageName, storageUnit, isFocus, value);
+				batchCode, deliveryBatchCode, stageName, storageUnit, isFocus, value);
 		}
 
 	}

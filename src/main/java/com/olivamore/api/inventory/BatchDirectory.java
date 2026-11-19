@@ -8,7 +8,8 @@ import java.util.Optional;
 /** Materyal cevaplarinin ve tank kurallarinin istedigi parti bilgileri; uretim modulu uygular. */
 public interface BatchDirectory {
 
-	record Batch(Long id, String batchCode, String status) {
+	/** {@code deliveryBatchCode} grubun teslimatinin kodu; teslimatta bos. */
+	record Batch(Long id, String batchCode, String status, String deliveryBatchCode) {
 	}
 
 	record BatchProcess(Long id, Long productionBatchId, Long productionStageId, String status) {

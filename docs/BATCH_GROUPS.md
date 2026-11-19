@@ -1,7 +1,7 @@
 # Teslimatı gruplara bölme
 
 Durum: API tarafı yapıldı (bölme, raporlar, detay alanları, `kind` filtresi, kilo düzeltme, grup silme, kantarın
-yeniden yapılması); soyağacında teslimat kodu ve Flutter kaldı.
+yeniden yapılması, soyağacında teslimat kodu); Flutter kaldı.
 
 Gelen bir zeytin teslimatı (örn. 1000 kg) gruplara bölünür; her grup üretime ayrı zamanda girer. Teslimatın
 tamamını tek seferde işlemek de bir gruptur: "Hepsini tekte başlat" kalan kilonun tamamıyla tek grup açar.
@@ -134,7 +134,7 @@ Ana partinin henüz yapmadığı aşamaları grup zorunlu olarak yapar. Grupta t
 | `SupplierDeliveryReadModel` | Yalnız `parent_batch_id IS NULL`; aksi halde kilo çift sayılır. |
 | `DailySummaryService` | "Bugün gelenler" teslimatlar; "işlemde olanlar" ana partiler (makine öncesi) ve gruplar. |
 | Takvim (`/calendar`) | Teslimat günü sayımı yalnız teslimatlar. |
-| `MaterialLineageService` | Grup kodunun yanında teslimat kodu. Teslimat firesi = ana parti + grupların ayıklamaları. |
+| `MaterialLineageService` | ✔ Grup kodunun yanında teslimat kodu (`delivery_batch_code`). Teslimat firesi = ana parti + grupların ayıklamaları. |
 
 Materyal: ana partinin zeytini mevcut materyal bölmeyle (ana materyal → çocuk materyal) gruplara pay edilir.
 
@@ -153,6 +153,6 @@ Materyal: ana partinin zeytini mevcut materyal bölmeyle (ana materyal → çocu
 2. ✔ API yanıtı (`groups[]`, `remaining_kg`), `kind` filtresi, kilo düzeltme, grup silme, kantarın yeniden
    yapılması, oluşturmada tartılmış teslimatın silinmesi.
 3. ✔ Raporlar: analiz (grubun gelen kilosu teslimat kantarından payı), günlük özet, takvim, tedarikçi teslimatları.
-   Soyağacında teslimat kodu kaldı.
+   ✔ Soyağacında teslimat kodu.
 4. Flutter: model ve servis, detay sayfası ve bölme penceresi, aşama ekranı, listeler.
 5. Sonra: bekleyen kilo için uyarı kuralı (örn. "ayrılmamış kilo 24 saati geçti").

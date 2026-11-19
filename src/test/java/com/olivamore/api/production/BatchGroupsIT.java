@@ -330,6 +330,22 @@ class BatchGroupsIT {
 		assertThat(r.json().get("detail").asString()).contains("başlamış proses");
 	}
 
+	@Test
+	void theLineageShowsTheDeliveryOfAGroup() {
+		String code = code();
+		long delivery = flow.weighedDelivery(code, 1000);
+		long group = id(split(delivery, Map.of("quantity_kg", 300)));
+		long share = jdbc.queryForObject("select id from materials where production_batch_id = ?", Long.class, group);
+
+		JsonNode nodes = data(api.get("/api/materials/" + share + "/lineage")).get("nodes");
+
+		Map<String, String> deliveryCodes = new HashMap<>();
+		nodes.forEach(n -> deliveryCodes.put(n.get("key").asString(),
+			n.get("delivery_batch_code").isNull() ? null : n.get("delivery_batch_code").asString()));
+		assertThat(deliveryCodes).containsEntry("material:" + share, code);
+		assertThat(deliveryCodes.values()).containsNull();
+	}
+
 	// ---- yardimcilar -------------------------------------------------------
 
 	private Response correct(long group, int kg) {
