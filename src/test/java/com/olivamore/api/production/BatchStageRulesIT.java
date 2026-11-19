@@ -102,6 +102,8 @@ class BatchStageRulesIT {
 	void completedStageThatCreatedRecordsCannotBeReopened() {
 		long batch = delivery();
 		completeUpTo(batch, 1);
+		// Islenmemis kantar geri alinabilir; zeytinden grup ayrilinca alinamaz
+		api.post("/api/production-batches/" + batch + "/groups", Map.of("quantity_kg", 100));
 
 		Response r = api.patch(process(batch, 1), Map.of("status", "waiting"));
 

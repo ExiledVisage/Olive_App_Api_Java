@@ -68,6 +68,11 @@ public class StageExtensions {
 	}
 
 	/** Dinlenmedeki asamanin iptali: tanktaki urun partiye doner. */
+	/** Teslimatin kantar tartimi geri alinir: yarattigi materyal silinir. */
+	public void undoWeighing(long batchProcessId) {
+		weighing.undo(batchProcessId);
+	}
+
 	public void cancelPreSettling(long batchProcessId) {
 		preSettling.cancel(batchProcessId);
 	}

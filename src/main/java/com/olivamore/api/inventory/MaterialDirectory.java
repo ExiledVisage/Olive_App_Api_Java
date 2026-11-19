@@ -142,6 +142,20 @@ public class MaterialDirectory {
 			Collectors.mapping(ProcessLink::id, Collectors.toList())));
 	}
 
+	/**
+	 * Prosesin yarattigi materyaller hic islenmemis: hepsi aktif ve partide; cocugu, stok hareketi, analiz degeri yok.
+	 */
+	public boolean untouchedCreatedBy(long processId) {
+		return jdbc.sql("""
+			select count(*) from materials m
+			where m.created_by_batch_process_id = :id
+				and (m.status <> 'active' or m.current_location_type is distinct from 'production_batch'
+					or exists (select 1 from materials c where c.parent_material_id = m.id)
+					or exists (select 1 from storage_movements s where s.material_id = m.id or s.source_material_id = m.id)
+					or exists (select 1 from material_attribute_values v where v.material_id = m.id))
+			""").param("id", processId).query(Long.class).single() == 0;
+	}
+
 	public long countCreatedBy(long processId) {
 		return jdbc.sql("select count(*) from materials where created_by_batch_process_id = :id").param("id", processId)
 			.query(Long.class).single();

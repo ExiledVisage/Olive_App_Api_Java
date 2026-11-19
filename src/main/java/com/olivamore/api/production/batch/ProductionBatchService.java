@@ -158,13 +158,19 @@ class ProductionBatchService {
 			|| request.truckPlate() != null || request.weighingSlipNo() != null || request.quantityKg() != null;
 	}
 
-	/** Yalnizca hic baslamamis parti silinir (proses, materyal ya da stok hareketi varsa 422). */
+	/**
+	 * Yalnizca hic baslamamis parti silinir (proses, materyal ya da stok hareketi varsa 422). Teslimatin islenmemis
+	 * kantar tartimi baslamis sayilmaz: geri alinir, zeytini silinir. Grup baslamamissa silinir, payi teslimata doner.
+	 */
 	@Transactional
 	void delete(long id) {
 		ProductionBatch batch = find(id);
 		if (batch.isGroup()) {
 			groups.dissolve(batch);
 			return;
+		}
+		if (batches.countByParentBatchId(id) == 0) {
+			lifecycle.undoOriginWeighing(id);
 		}
 		DeletionGuard.of("'" + batch.getBatchCode() + "' partisi")
 			.usedBy("başlamış proses", processes.countByProductionBatchIdAndStatusNot(id, ProcessStatus.WAITING))

@@ -168,6 +168,15 @@ public class StageQueries {
 		return materials.activeOfBatchAndType(batchId, typeId).map(StageQueries::material);
 	}
 
+	public boolean untouchedCreatedBy(long processId) {
+		return materials.untouchedCreatedBy(processId);
+	}
+
+	public boolean isWeighing(Stage stage) {
+		return stage.processTypeId() != null
+			&& process.processTypeIdsInCategory("weighing").contains(stage.processTypeId());
+	}
+
 	public long materialsCreatedBy(long processId) {
 		return materials.countCreatedBy(processId);
 	}

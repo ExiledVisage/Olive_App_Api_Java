@@ -1,7 +1,7 @@
 # Teslimatı gruplara bölme
 
-Durum: API'de bölme, raporlar, detay alanları, `kind` filtresi, kilo düzeltme ve grup silme yapıldı; elle girilen
-kilonun yeniden tartımı ve Flutter kaldı.
+Durum: API tarafı yapıldı (bölme, raporlar, detay alanları, `kind` filtresi, kilo düzeltme, grup silme, kantarın
+yeniden yapılması); soyağacında teslimat kodu ve Flutter kaldı.
 
 Gelen bir zeytin teslimatı (örn. 1000 kg) gruplara bölünür; her grup üretime ayrı zamanda girer. Teslimatın
 tamamını tek seferde işlemek de bir gruptur: "Hepsini tekte başlat" kalan kilonun tamamıyla tek grup açar.
@@ -70,7 +70,10 @@ Bölme noktası, `stage_order` sırasıyla `uses_machine = true` olan ilk aşama
 - Oluşturmada kilo girildiyse Kantarda Tartım o kiloyla tamamlanır ve zeytin materyali oluşur (kantarda zorunlu alan
   yok, plaka partide); İkinci Tartım yine zorunlu.
 - Kilo elle girilip tartılmadıysa ilk bölmede sorulur: "Teslimatın kilosu tartılmadı. Ayırmadan önce tartmak ister
-  misin?" Evet: ana partinin Kantarda Tartım'ı beklemeye alınır, sonucu teslimat kilosu olur.
+  misin?" Evet: ana partinin Kantarda Tartım'ı beklemeye alınır (`PATCH` proses `status: waiting`), sonucu teslimat
+  kilosu olur.
+- Kantarda Tartım, teslimatın grubu yoksa, sonraki aşamalar başlamamışsa ve zeytini işlenmemişse geri açılabilir;
+  yarattığı zeytin materyali silinir. Kantarın sonucu her zaman teslimatın `quantity_kg`'ı olur.
 - Kalan kilo = ana partinin zeytin materyali. Ayırma kalanı aşamaz; "Kalanın hepsi" kısayolu
   var. İki kullanıcı aynı anda bölerse ana parti satırı kilitlenir.
 - Grupta bir tartım ayrılan kilodan farklı çıkarsa:
@@ -108,6 +111,7 @@ Ana partinin henüz yapmadığı aşamaları grup zorunlu olarak yapar. Grupta t
 
 **Silme**
 
+- Yalnız oluşturmada (ya da kantarda) tartılmış, başka aşaması başlamamış teslimat silinir; kantar geri alınır.
 - Grubu olan ana parti silinmez. Başlamamış grup silinebilir (teslimattan devralınan aşamalar başlamış sayılmaz);
   kilosu kalana döner, teslimatta kendiliğinden atlanan aşamalar yeniden bekler.
 
@@ -146,8 +150,8 @@ Materyal: ana partinin zeytini mevcut materyal bölmeyle (ana materyal → çocu
 ## Uygulama sırası
 
 1. ✔ Veritabanı sütunları, seed, bölme servisi ve kuralları, durum hesabı, testler (`BatchGroupsIT`).
-2. ✔ API yanıtı (`groups[]`, `remaining_kg`), `kind` filtresi, kilo düzeltme, grup silme. Kalan: elle girilen kilonun
-   ilk bölmede yeniden tartılması ve oluşturmada tartılmış teslimatın silinmesi.
+2. ✔ API yanıtı (`groups[]`, `remaining_kg`), `kind` filtresi, kilo düzeltme, grup silme, kantarın yeniden
+   yapılması, oluşturmada tartılmış teslimatın silinmesi.
 3. ✔ Raporlar: analiz (grubun gelen kilosu teslimat kantarından payı), günlük özet, takvim, tedarikçi teslimatları.
    Soyağacında teslimat kodu kaldı.
 4. Flutter: model ve servis, detay sayfası ve bölme penceresi, aşama ekranı, listeler.

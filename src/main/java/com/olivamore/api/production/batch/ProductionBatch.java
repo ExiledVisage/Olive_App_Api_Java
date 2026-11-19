@@ -117,6 +117,11 @@ public class ProductionBatch extends AuditedEntity {
 		status = value;
 	}
 
+	/** Teslimatin kantar tartimi teslimat kilosu olur. */
+	public void recordWeighedKg(BigDecimal value) {
+		quantityKg = scaled(value);
+	}
+
 	void changeQuantityKg(BigDecimal value) {
 		quantityKg = scaled(value);
 	}

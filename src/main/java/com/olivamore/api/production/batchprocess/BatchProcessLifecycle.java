@@ -21,6 +21,11 @@ public class BatchProcessLifecycle {
 		service.completeOnCreation(processId, JsonNodeFactory.instance.objectNode().put("quantity", quantity), actor);
 	}
 
+	/** Silinecek teslimatin kantar tartimi, geri alinabiliyorsa, geri alinir. */
+	public void undoOriginWeighing(long batchId) {
+		service.undoOriginWeighing(batchId);
+	}
+
 	/** Grubu degisen teslimat ya da yeni grup icin. */
 	public void syncBatchStatus(long batchId) {
 		service.syncBatchStatus(batchId);

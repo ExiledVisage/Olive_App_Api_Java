@@ -26,7 +26,7 @@ class BatchProcessScenarioIT {
 		new ScenarioReplay("batch-process.json", port, jdbc)
 			.mask("TRF-\\d{14}-[A-Z0-9]{6}")
 			.run()
-			.assertPassed(130);
+			.assertPassed(132);
 	}
 
 }

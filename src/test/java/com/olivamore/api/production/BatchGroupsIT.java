@@ -282,6 +282,54 @@ class BatchGroupsIT {
 		assertThat(r.json().get("detail").asString()).contains("grubu").contains("1 başlamış proses");
 	}
 
+	@Test
+	void theKantarCanBeRedoneAndItsResultBecomesTheDeliveryKg() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+
+		Response reopen = api.patch(flow.process(delivery, 1), Map.of("status", "waiting"));
+		assertThat(reopen.status()).as(reopen.body()).isEqualTo(200);
+		assertThat(oliveOf(delivery)).isEmpty();
+		Response weigh = flow.complete(delivery, 1, Map.of("quantity", 950));
+		assertThat(weigh.status()).as(weigh.body()).isEqualTo(200);
+
+		assertThat(oliveOf(delivery)).containsExactly(new BigDecimal("950.0000"));
+		assertThat(data(api.get("/api/production-batches/" + delivery)).get("quantity_kg").decimalValue())
+			.isEqualByComparingTo("950");
+	}
+
+	@Test
+	void theKantarIsFixedOnceTheDeliveryHasGroups() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		split(delivery, Map.of("quantity_kg", 300));
+
+		Response r = api.patch(flow.process(delivery, 1), Map.of("status", "waiting"));
+
+		assertThat(r.status()).isEqualTo(422);
+		assertThat(r.json().get("detail").asString()).contains("materyal");
+	}
+
+	@Test
+	void aDeliveryWeighedOnlyAtCreationIsDeleted() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+
+		Response r = api.delete("/api/production-batches/" + delivery);
+
+		assertThat(r.status()).as(r.body()).isEqualTo(204);
+		assertThat(jdbc.queryForObject("select count(*) from materials where production_batch_id = ?", Long.class,
+			delivery)).isZero();
+	}
+
+	@Test
+	void aDeliveryWithLaterStagesDoneIsNotDeleted() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		flow.completeUpTo(delivery, 2);
+
+		Response r = api.delete("/api/production-batches/" + delivery);
+
+		assertThat(r.status()).isEqualTo(422);
+		assertThat(r.json().get("detail").asString()).contains("başlamış proses");
+	}
+
 	// ---- yardimcilar -------------------------------------------------------
 
 	private Response correct(long group, int kg) {

@@ -45,6 +45,11 @@ class WeighingBatchProcessService extends StageBatchProcessService {
 			process.note());
 	}
 
+	/** Geri alinan tartimin yarattigi (islenmemis) materyaller silinir. */
+	void undo(long processId) {
+		stock.deleteCreatedBy(processId);
+	}
+
 	private ProductType productType(StageProcess process, Extension extension, OperationData data) {
 		List<ProductType> candidates = candidateTypes(process, extension);
 		Long selected = data.id("production_product_type_id");

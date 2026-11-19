@@ -110,6 +110,13 @@ public class StockOperations {
 		entityManager.flush();
 	}
 
+	/** Geri alinan kantar tartiminin yarattigi (islenmemis) materyaller silinir. */
+	@Transactional
+	public void deleteCreatedBy(long batchProcessId) {
+		materials.deleteAll(materials.findByCreatedByBatchProcessId(batchProcessId));
+		entityManager.flush();
+	}
+
 	/** Tartimda olculen miktar kaydedilir. */
 	@Transactional
 	public void recordWeighing(long materialId, BigDecimal quantity, String unit, long stageId, long batchId,

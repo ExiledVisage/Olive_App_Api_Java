@@ -204,7 +204,12 @@ class BatchProcessService {
 		switch (status) {
 			case WAITING -> {
 				assertNoLaterStageStarted(p);
-				assertNoSideEffectsToUndo(p, "waiting");
+				if (isUndoableWeighing(p)) {
+					handlers.undoWeighing(p.getId());
+				}
+				else {
+					assertNoSideEffectsToUndo(p, "waiting");
+				}
 				p.reopen();
 			}
 			case IN_PROGRESS -> {
@@ -243,6 +248,7 @@ class BatchProcessService {
 		assertRequiredFieldsFilled(p);
 		List<Extension> extensions = extensions(p);
 		handlers.dispatch(context(p), extensions, new OperationData(data));
+		recordDeliveryKg(p, data);
 		if (StageExtensions.rests(extensions)) {
 			p.rest(OperationData.forStorage(data));
 		}
@@ -542,6 +548,60 @@ class BatchProcessService {
 
 	private static String labels(List<BatchProcess> rows, Map<Long, Stage> stages) {
 		return rows.stream().map(s -> stages.get(s.getProductionStageId()).label()).collect(Collectors.joining(", "));
+	}
+
+	/**
+	 * Teslimatin zeytinini yaratan tartim (kantar) geri alinabilir: grubu yok, stok hareketi yok, yarattigi materyal
+	 * islenmemis. Sonraki asamalarin baslamamis olmasi ayrica aranir.
+	 */
+	private boolean isUndoableWeighing(BatchProcess p) {
+		if (p.getStatus() != ProcessStatus.COMPLETED || !isOriginWeighing(p)) {
+			return false;
+		}
+		ProductionBatch batch = batches.findById(p.getProductionBatchId()).orElseThrow();
+		return !batch.isGroup() && batches.countByParentBatchId(batch.getId()) == 0
+			&& queries.materialsCreatedBy(p.getId()) > 0 && queries.movementsOf(p.getId()) == 0
+			&& queries.untouchedCreatedBy(p.getId());
+	}
+
+	/** Teslimatin zeytinini yaratan tartim teslimat kilosu olur. */
+	private void recordDeliveryKg(BatchProcess p, JsonNode data) {
+		if (!isOriginWeighing(p) || queries.materialsCreatedBy(p.getId()) == 0) {
+			return;
+		}
+		ProductionBatch batch = batches.findById(p.getProductionBatchId()).orElseThrow();
+		BigDecimal quantity = new OperationData(data).quantity("quantity");
+		if (!batch.isGroup() && quantity != null) {
+			batch.recordWeighedKg(quantity);
+		}
+	}
+
+	/**
+	 * Silinecek teslimatin kantar tartimi geri alinir: sonraki asama baslamamis, grubu yok ve zeytini islenmemisse
+	 * materyal silinir, asama bekleyene doner. Geri alinamiyorsa dokunulmaz (silme kurali karar verir).
+	 */
+	void undoOriginWeighing(long batchId) {
+		for (BatchProcess p : processes.findByProductionBatchId(batchId)) {
+			if (isUndoableWeighing(p) && !laterStageStarted(p)) {
+				handlers.undoWeighing(p.getId());
+				p.reopen();
+			}
+		}
+	}
+
+	private boolean laterStageStarted(BatchProcess process) {
+		Map<Long, Stage> stages = siblingStages(process);
+		int order = stages.get(process.getProductionStageId()).stageOrder();
+		return siblings(process, stages).stream()
+			.anyMatch(s -> stages.get(s.getProductionStageId()).stageOrder() > order
+				&& s.getStatus() != ProcessStatus.WAITING);
+	}
+
+	/** Partinin ilk asamasi olan tartim (kantar). */
+	private boolean isOriginWeighing(BatchProcess p) {
+		Stage stage = stage(p);
+		return queries.isWeighing(stage) && siblingStages(p).values().stream()
+			.allMatch(s -> s.stageOrder() >= stage.stageOrder());
 	}
 
 	/** Tamamlanirken materyal ya da stok hareketi uretmis proses geri alinamaz. */
