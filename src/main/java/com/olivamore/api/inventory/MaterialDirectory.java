@@ -81,10 +81,32 @@ public class MaterialDirectory {
 			.param("batch", batchId).param("types", present).query(Material.class).list();
 	}
 
+	/** Partinin kendisinde duran son materyal, durumuna bakmadan (tamamen ayrilmis teslimat zeytini dahil). */
+	public Optional<Material> lastInBatch(long batchId) {
+		return jdbc.sql(COLUMNS + "where production_batch_id = :batch and current_location_type = 'production_batch'"
+				+ " and current_location_id = :batch order by id desc limit 1")
+			.param("batch", batchId).query(Material.class).optional();
+	}
+
 	public Optional<Material> activeOfBatchAndType(long batchId, long typeId) {
 		return jdbc.sql(COLUMNS + "where production_batch_id = :batch and production_product_type_id = :type"
 				+ " and status = 'active' limit 1")
 			.param("batch", batchId).param("type", typeId).query(Material.class).optional();
+	}
+
+	/** Parti -> partinin kendisinde duran (tanka alinmamis) aktif materyal toplami; materyali olmayan haritada yok. */
+	public Map<Long, BigDecimal> activeQuantityInBatches(Collection<Long> batchIds) {
+		if (batchIds.isEmpty()) {
+			return Map.of();
+		}
+		Map<Long, BigDecimal> out = new LinkedHashMap<>();
+		jdbc.sql("select production_batch_id, sum(quantity) from materials where production_batch_id in (:ids)"
+				+ " and status = 'active' and current_location_type = 'production_batch'"
+				+ " and current_location_id = production_batch_id group by production_batch_id")
+			.param("ids", batchIds)
+			.query((rs, n) -> Map.entry(rs.getLong(1), rs.getBigDecimal(2))).list()
+			.forEach(e -> out.put(e.getKey(), e.getValue()));
+		return out;
 	}
 
 	public List<BatchMaterial> ofBatches(Collection<Long> batchIds) {

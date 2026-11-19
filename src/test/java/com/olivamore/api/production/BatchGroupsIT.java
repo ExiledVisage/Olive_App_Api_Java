@@ -173,7 +173,128 @@ class BatchGroupsIT {
 		assertThat(r.json().get("detail").asString()).contains("1 grup");
 	}
 
+	@Test
+	void theDeliveryShowsItsGroupsAndTheRemainingKg() {
+		String code = code();
+		long delivery = flow.weighedDelivery(code, 1000);
+		long group = id(split(delivery, Map.of("quantity_kg", 300)));
+
+		JsonNode parent = data(api.get("/api/production-batches/" + delivery));
+
+		assertThat(parent.get("allocated_kg").decimalValue()).isEqualByComparingTo("300");
+		assertThat(parent.get("remaining_kg").decimalValue()).isEqualByComparingTo("700");
+		assertThat(parent.get("groups")).hasSize(1);
+		JsonNode summary = parent.get("groups").get(0);
+		assertThat(summary.get("id").asLong()).isEqualTo(group);
+		assertThat(summary.get("quantity_kg").decimalValue()).isEqualByComparingTo("300");
+		assertThat(summary.get("status").asString()).isEqualTo("pending");
+		assertThat(summary.get("current_stage").get("production_stage_id").asLong()).isEqualTo(2);
+		assertThat(summary.get("current_stage").get("status").asString()).isEqualTo("waiting");
+
+		JsonNode child = data(api.get("/api/production-batches/" + group));
+		assertThat(child.get("parent_batch_code").asString()).isEqualTo(code);
+		assertThat(child.get("remaining_kg").isNull()).isTrue();
+		assertThat(child.get("groups").isNull()).isTrue();
+	}
+
+	@Test
+	void theListSeparatesDeliveriesFromProcessableBatches() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		long group = id(split(delivery, Map.of("quantity_kg", 300)));
+
+		assertThat(listIds("delivery")).contains(delivery).doesNotContain(group);
+		assertThat(listIds("processable")).contains(group).doesNotContain(delivery);
+		Response wrong = api.get("/api/production-batches?kind=group");
+		assertThat(wrong.status()).isEqualTo(422);
+		assertThat(wrong.body()).contains("kind");
+	}
+
+	@Test
+	void aLighterGroupReturnsTheDifferenceAndReopensTheDelivery() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		long group = id(split(delivery, Map.of("quantity_kg", 600)));
+		split(delivery, Map.of("all_remaining", true));
+
+		JsonNode corrected = data(correct(group, 550));
+
+		assertThat(corrected.get("quantity_kg").decimalValue()).isEqualByComparingTo("550");
+		assertThat(oliveOf(group)).containsExactly(new BigDecimal("550.0000"));
+		JsonNode parent = data(api.get("/api/production-batches/" + delivery));
+		assertThat(parent.get("remaining_kg").decimalValue()).isEqualByComparingTo("50");
+		assertThat(parent.get("allocated_kg").decimalValue()).isEqualByComparingTo("950");
+		assertThat(stageStatuses(parent)).as("zeytin dondu: atlanan asamalar yeniden bekler")
+			.containsExactly("1:completed", "2:waiting", "3:waiting", "4:waiting");
+	}
+
+	@Test
+	void aHeavierGroupTakesTheDifferenceFromTheDelivery() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		long group = id(split(delivery, Map.of("quantity_kg", 600)));
+
+		correct(group, 650);
+
+		assertThat(oliveOf(group)).containsExactly(new BigDecimal("650.0000"));
+		assertThat(oliveOf(delivery)).containsExactly(new BigDecimal("350.0000"));
+		assertRule(correct(group, 1100), "Grubun payı 450 kg artırılamaz: teslimatta ayrılmamış 350 kg zeytin var.");
+		correct(group, 1000);
+		assertThat(oliveOf(delivery)).isEmpty();
+		assertThat(stageStatuses(data(api.get("/api/production-batches/" + delivery))))
+			.containsExactly("1:completed", "2:skipped", "3:skipped", "4:skipped");
+	}
+
+	@Test
+	void theAllocationIsFixedOnceTheGroupReachesTheMachine() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		long group = id(split(delivery, Map.of("all_remaining", true)));
+
+		assertRule(correct(delivery, 900), "bir teslimat; ayrılan kilo yalnız grupta düzeltilir.");
+		jdbc.update("update batch_processes set status = 'in_progress', started_at = now()"
+			+ " where production_batch_id = ? and production_stage_id = 5", group);
+		assertRule(correct(group, 900), "makineli aşamaya girdi; ayrılan kilo artık düzeltilmez.");
+	}
+
+	@Test
+	void anUnstartedGroupIsDeletedAndItsOlivesGoBack() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		long kept = id(split(delivery, Map.of("quantity_kg", 600, "start_stage_id", 1)));
+		long removed = id(split(delivery, Map.of("all_remaining", true)));
+
+		Response r = api.delete("/api/production-batches/" + removed);
+
+		assertThat(r.status()).as(r.body()).isEqualTo(204);
+		assertThat(oliveOf(delivery)).containsExactly(new BigDecimal("400.0000"));
+		JsonNode parent = data(api.get("/api/production-batches/" + delivery));
+		assertThat(parent.get("groups")).hasSize(1);
+		assertThat(parent.get("groups").get(0).get("id").asLong()).isEqualTo(kept);
+		assertThat(stageStatuses(parent)).containsExactly("1:completed", "2:waiting", "3:waiting", "4:waiting");
+	}
+
+	@Test
+	void aStartedGroupIsNotDeleted() {
+		long delivery = flow.weighedDelivery(code(), 1000);
+		long group = id(split(delivery, Map.of("all_remaining", true)));
+		jdbc.update("update batch_processes set status = 'in_progress', started_at = now()"
+			+ " where production_batch_id = ? and production_stage_id = 2", group);
+
+		Response r = api.delete("/api/production-batches/" + group);
+
+		assertThat(r.status()).isEqualTo(422);
+		assertThat(r.json().get("detail").asString()).contains("grubu").contains("1 başlamış proses");
+	}
+
 	// ---- yardimcilar -------------------------------------------------------
+
+	private Response correct(long group, int kg) {
+		return api.post("/api/production-batches/" + group + "/allocation", new HashMap<>(Map.of("quantity_kg", kg)));
+	}
+
+	private List<Long> listIds(String kind) {
+		Response r = api.get("/api/production-batches?kind=" + kind);
+		assertThat(r.status()).as(r.body()).isEqualTo(200);
+		List<Long> out = new java.util.ArrayList<>();
+		r.json().get("content").forEach(b -> out.add(b.get("id").asLong()));
+		return out;
+	}
 
 	private String code() {
 		return "T-GRUP-" + codes.incrementAndGet();

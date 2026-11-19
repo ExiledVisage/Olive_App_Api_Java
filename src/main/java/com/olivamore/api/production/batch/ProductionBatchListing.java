@@ -20,13 +20,19 @@ import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-/** Parti listesi ({@code received_from}/{@code received_to}: varis gunu, dahil) ve takvimi. En yeni once. */
+/**
+ * Parti listesi ({@code received_from}/{@code received_to}: varis gunu, dahil; {@code kind}: delivery |
+ * processable) ve takvimi. En yeni once.
+ */
 @Component
 class ProductionBatchListing {
 
 	private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"));
 	private static final String DATE_FORMAT = "Y-m-d";
+	private static final String DELIVERY = "delivery";
+	private static final String PROCESSABLE = "processable";
 	private static final DateTimeFormatter DAY = DateTimeFormatter.ofPattern("uuuu-MM-dd")
 		.withResolverStyle(ResolverStyle.STRICT);
 
@@ -40,12 +46,15 @@ class ProductionBatchListing {
 		this.queries = queries;
 	}
 
-	PagedModel<ProductionBatchResponse> list(String receivedFrom, String receivedTo, Pageable pageable) {
+	PagedModel<ProductionBatchResponse> list(String receivedFrom, String receivedTo, String kind, Pageable pageable) {
 		ValidationErrors errors = new ValidationErrors();
 		LocalDate from = day(errors, "received_from", receivedFrom);
 		LocalDate to = day(errors, "received_to", receivedTo);
+		if (kind != null && !DELIVERY.equals(kind) && !PROCESSABLE.equals(kind)) {
+			errors.add("kind", MessageKeys.IN);
+		}
 		errors.throwIfAny();
-		Specification<ProductionBatch> specification = received(from, to);
+		Specification<ProductionBatch> specification = received(from, to).and(kind(kind));
 		return Pages.of(pageable, requested -> {
 			Page<ProductionBatch> rows = batches.findAll(specification, Pages.sorted(requested, NEWEST_FIRST));
 			return new PageImpl<>(responses.list(rows.getContent()), rows.getPageable(), rows.getTotalElements());
@@ -75,6 +84,20 @@ class ProductionBatchListing {
 			}
 			return cb.and(predicates.toArray(Predicate[]::new));
 		};
+	}
+
+	/** Teslimat: grup degil. Islenen: grup ya da makineli asamasi olmayan hattin partisi. */
+	private Specification<ProductionBatch> kind(String kind) {
+		if (kind == null) {
+			return Specification.unrestricted();
+		}
+		if (DELIVERY.equals(kind)) {
+			return (root, query, cb) -> cb.isNull(root.get("parentBatchId"));
+		}
+		Set<Long> machineLines = queries.linesWithMachine();
+		return (root, query, cb) -> machineLines.isEmpty() ? cb.conjunction()
+			: cb.or(cb.isNotNull(root.get("parentBatchId")),
+				cb.not(root.get("productionLineId").in(machineLines)));
 	}
 
 	private static LocalDate requiredDay(ValidationErrors errors, String field, String value) {

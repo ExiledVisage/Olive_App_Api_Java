@@ -36,13 +36,18 @@ class ProductionBatchController {
 		this.groups = groups;
 	}
 
-	/** {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); en yeni once; page/size ile sayfali. */
+	/**
+	 * {@code ?received_from}, {@code ?received_to} (varis gunu, dahil); {@code ?kind=delivery} teslimatlar,
+	 * {@code ?kind=processable} makineli asamalari yurutulen partiler (gruplar ve bolunmeyen hattin teslimatlari);
+	 * en yeni once; page/size ile sayfali.
+	 */
 	@GetMapping("/api/production-batches")
 	@PreAuthorize("hasAuthority('production_batch.view')")
 	PagedModel<ProductionBatchResponse> index(
 		@RequestParam(name = "received_from", required = false) String receivedFrom,
-		@RequestParam(name = "received_to", required = false) String receivedTo, Pageable pageable) {
-		return listing.list(receivedFrom, receivedTo, pageable);
+		@RequestParam(name = "received_to", required = false) String receivedTo,
+		@RequestParam(required = false) String kind, Pageable pageable) {
+		return listing.list(receivedFrom, receivedTo, kind, pageable);
 	}
 
 	/** Gun -> parti sayisi (varis gunu); bos aralikta {@code {}}. */
@@ -72,6 +77,15 @@ class ProductionBatchController {
 	DataResponse<ProductionBatchResponse> split(@PathVariable long id, @Valid @RequestBody CreateBatchGroupRequest request,
 		@AuthenticationPrincipal CurrentUser user) {
 		return DataResponse.of(responses.detail(groups.split(id, request, user)));
+	}
+
+	/** Grubun payi tartilan kiloya gore duzeltilir; cevap grup. */
+	@PostMapping("/api/production-batches/{id}/allocation")
+	@PreAuthorize("hasAuthority('production_batch.update')")
+	DataResponse<ProductionBatchResponse> correct(@PathVariable long id,
+		@Valid @RequestBody CorrectBatchGroupRequest request) {
+		groups.correct(id, request);
+		return DataResponse.of(responses.detail(id));
 	}
 
 	@PatchMapping("/api/production-batches/{id}")

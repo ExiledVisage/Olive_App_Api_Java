@@ -93,6 +93,23 @@ public class StockOperations {
 		return id;
 	}
 
+	/** Teslimat ile grubu arasinda zeytin aktarimi (grubun payi duzeltilir). */
+	@Transactional
+	public void shiftQuantity(long fromMaterialId, long toMaterialId, BigDecimal amount) {
+		material(fromMaterialId).giveAway(amount);
+		material(toMaterialId).receive(amount);
+		entityManager.flush();
+	}
+
+	/** Silinen grubun payi teslimatin zeytinine doner; grubun materyali silinir. */
+	@Transactional
+	public void returnAllocation(long groupMaterialId, long deliveryMaterialId) {
+		Material share = material(groupMaterialId);
+		material(deliveryMaterialId).receive(share.getQuantity());
+		materials.delete(share);
+		entityManager.flush();
+	}
+
 	/** Tartimda olculen miktar kaydedilir. */
 	@Transactional
 	public void recordWeighing(long materialId, BigDecimal quantity, String unit, long stageId, long batchId,

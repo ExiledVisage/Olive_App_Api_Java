@@ -10,6 +10,7 @@ import com.olivamore.api.production.batchprocess.ProcessStatus;
 import com.olivamore.api.productionline.ProductionLineResources.Stage;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.time.Timestamps;
 import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
@@ -80,7 +81,7 @@ class BatchGroupService {
 			.collect(Collectors.toMap(BatchProcess::getProductionStageId, Function.identity()));
 		assertNothingRunning(plan, own);
 		Stage start = startStage(request.startStageId(), plan, own);
-		MaterialDirectory.Material olive = olive(deliveryId);
+		MaterialDirectory.Material olive = olive(deliveryId, "Teslimatta ayrılacak zeytin yok; önce kantarda tartılmalı.");
 		BigDecimal portion = all ? olive.quantity() : request.quantityKg();
 		if (!all) {
 			assertMeasured(lastDone(plan, own));
@@ -136,14 +137,116 @@ class BatchGroupService {
 		}
 	}
 
-	/** Teslimatin partide duran tek aktif materyali (tartilmis zeytin). */
-	private MaterialDirectory.Material olive(long deliveryId) {
-		List<MaterialDirectory.Material> active = queries.activeMaterialsInBatch(deliveryId);
+	/**
+	 * Grubun payi tartima gore duzeltilir: grubun zeytini istenen kiloya gelir, fark teslimatin zeytinine doner ya da
+	 * ondan alinir; {@code quantity_kg} ayni farkla degisir. Grup makineli asamaya girene kadar. Tamamen ayrilmis
+	 * teslimata zeytin donerse kendiliginden atlanan asamalari yeniden bekler.
+	 */
+	@Transactional
+	void correct(long groupId, CorrectBatchGroupRequest request) {
+		ProductionBatch group = batches.findById(groupId)
+			.orElseThrow(() -> new ModelNotFoundException("ProductionBatch", groupId));
+		if (!group.isGroup()) {
+			throw new BusinessRuleException("'" + group.getBatchCode() + "' bir teslimat; ayrılan kilo yalnız grupta "
+				+ "düzeltilir.");
+		}
+		long deliveryId = group.getParentBatchId();
+		batches.lockById(deliveryId);
+		StagePlan plan = StagePlan.of(queries.lineStages(group.getProductionLineId()));
+		Set<Long> machineStages = plan.group().stream().map(Stage::id).collect(Collectors.toSet());
+		boolean machineStarted = processes.findByProductionBatchId(groupId).stream()
+			.anyMatch(p -> machineStages.contains(p.getProductionStageId()) && p.getStatus() != ProcessStatus.WAITING);
+		if (machineStarted) {
+			throw new BusinessRuleException("'" + group.getBatchCode() + "' makineli aşamaya girdi; ayrılan kilo artık "
+				+ "düzeltilmez.");
+		}
+		MaterialDirectory.Material olive = olive(groupId, "Grupta zeytin yok; ayrılan kilo düzeltilemez.");
+		BigDecimal difference = request.quantityKg().subtract(olive.quantity());
+		if (difference.abs().compareTo(EPSILON) <= 0) {
+			return;
+		}
+		List<BatchProcess> own = processes.findByProductionBatchId(deliveryId);
+		if (difference.signum() > 0) {
+			takeFromDelivery(deliveryId, olive, difference, own);
+		}
+		else {
+			returnToDelivery(deliveryId, olive, difference.negate(), own);
+		}
+		group.changeQuantityKg(group.getQuantityKg().add(difference));
+		lifecycle.syncBatchStatus(groupId);
+	}
+
+	private void takeFromDelivery(long deliveryId, MaterialDirectory.Material olive, BigDecimal amount,
+		List<BatchProcess> own) {
+		List<MaterialDirectory.Material> rest = queries.activeMaterialsInBatch(deliveryId);
+		BigDecimal available = rest.size() == 1 ? rest.getFirst().quantity() : BigDecimal.ZERO;
+		if (amount.subtract(available).compareTo(EPSILON) > 0) {
+			throw new BusinessRuleException("Grubun payı " + plain(amount) + " kg artırılamaz: teslimatta ayrılmamış "
+				+ plain(available) + " kg zeytin var.");
+		}
+		stock.shiftQuantity(rest.getFirst().id(), olive.id(), amount);
+		if (available.subtract(amount).compareTo(EPSILON) <= 0) {
+			LocalDateTime now = Timestamps.now();
+			own.stream().filter(p -> p.getStatus() == ProcessStatus.WAITING).forEach(p -> p.skipUnneeded(now));
+		}
+	}
+
+	private void returnToDelivery(long deliveryId, MaterialDirectory.Material olive, BigDecimal amount,
+		List<BatchProcess> own) {
+		MaterialDirectory.Material rest = queries.lastMaterialInBatch(deliveryId)
+			.orElseThrow(() -> new BusinessRuleException("Teslimatın zeytini bulunamadı; fark teslimata dönemez."));
+		boolean wasEmpty = !"active".equals(rest.status());
+		stock.shiftQuantity(olive.id(), rest.id(), amount);
+		if (wasEmpty) {
+			reopenUnneeded(own);
+		}
+	}
+
+	/**
+	 * Baslamamis grup silinir: payi teslimatin zeytinine doner, teslimatta kendiliginden atlanan asamalar yeniden
+	 * bekler. Teslimattan devralinan asamalar baslamis sayilmaz.
+	 */
+	@Transactional
+	void dissolve(ProductionBatch group) {
+		long groupId = group.getId();
+		long deliveryId = group.getParentBatchId();
+		batches.lockById(deliveryId);
+		long started = processes.findByProductionBatchId(groupId).stream()
+			.filter(p -> p.getStatus() != ProcessStatus.WAITING && p.getInheritedFromProcessId() == null).count();
+		List<MaterialDirectory.Material> active = queries.activeMaterialsInBatch(groupId);
+		long share = active.size() == 1 ? 1 : 0;
+		DeletionGuard.of("'" + group.getBatchCode() + "' grubu")
+			.usedBy("başlamış proses", started)
+			.usedBy("işlenmiş materyal", queries.materialCount(groupId) - share)
+			.usedBy("stok hareketi", queries.movementCount(groupId))
+			.check("Başlamış bir grup silinmez; iptal etmek için durumunu cancelled yapın.");
+		if (share == 1) {
+			MaterialDirectory.Material rest = queries.lastMaterialInBatch(deliveryId)
+				.orElseThrow(() -> new BusinessRuleException("Teslimatın zeytini bulunamadı; grup silinemez."));
+			boolean wasEmpty = !"active".equals(rest.status());
+			stock.returnAllocation(active.getFirst().id(), rest.id());
+			if (wasEmpty) {
+				reopenUnneeded(processes.findByProductionBatchId(deliveryId));
+			}
+		}
+		batches.delete(group);
+		batches.flush();
+		lifecycle.syncBatchStatus(deliveryId);
+	}
+
+	/** Teslimata zeytin dondu: kendiliginden atlanan asamalari yeniden bekler. */
+	private static void reopenUnneeded(List<BatchProcess> deliveryProcesses) {
+		deliveryProcesses.stream().filter(BatchProcess::isSkippedAsUnneeded).forEach(BatchProcess::reopenUnneeded);
+	}
+
+	/** Partinin kendisinde duran tek aktif materyal (zeytin). */
+	private MaterialDirectory.Material olive(long batchId, String missing) {
+		List<MaterialDirectory.Material> active = queries.activeMaterialsInBatch(batchId);
 		if (active.isEmpty()) {
-			throw new BusinessRuleException("Teslimatta ayrılacak zeytin yok; önce kantarda tartılmalı.");
+			throw new BusinessRuleException(missing);
 		}
 		if (active.size() > 1) {
-			throw new BusinessRuleException("Teslimatta birden fazla materyal var; ayrılacak zeytin belirlenemedi.");
+			throw new BusinessRuleException("Partide birden fazla materyal var; zeytin belirlenemedi.");
 		}
 		return active.getFirst();
 	}

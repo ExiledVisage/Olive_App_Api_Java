@@ -6,6 +6,8 @@ import com.olivamore.api.production.batch.BatchQueries.LineProductRow;
 import com.olivamore.api.production.batch.BatchQueries.LineRow;
 import com.olivamore.api.production.batch.BatchQueries.MaterialLink;
 import com.olivamore.api.production.batch.ProductionBatchResponse.BatchType;
+import com.olivamore.api.production.batch.ProductionBatchResponse.CurrentStage;
+import com.olivamore.api.production.batch.ProductionBatchResponse.Group;
 import com.olivamore.api.production.batch.ProductionBatchResponse.Line;
 import com.olivamore.api.production.batch.ProductionBatchResponse.LineProduct;
 import com.olivamore.api.production.batchprocess.BatchProcess;
@@ -16,11 +18,13 @@ import com.olivamore.api.production.batchprocess.ProcessResponseQueries;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -68,18 +72,61 @@ class ProductionBatchResponses {
 			present(rows.stream().map(ProductionBatch::getSupplierFieldId)));
 		Map<Long, List<BatchProcessResponse>> processMap = processes(ids);
 		Map<Long, List<MaterialResponse>> materialMap = materials(ids);
+		Splits splits = splits(rows);
 
 		List<ProductionBatchResponse> out = new ArrayList<>();
 		for (ProductionBatch b : rows) {
-			out.add(new ProductionBatchResponse(b.getId(), b.getParentBatchId(), b.getBatchCode(),
-				b.getProductionLineId(), b.getSupplierId(), b.getSupplierFieldId(), suppliers.get(b.getSupplierId()), fields.get(b.getSupplierFieldId()),
-				b.getCreatedByUserId(), b.getStatus(), b.getQuantityKg(), b.getTruckPlate(), b.getWeighingSlipNo(),
-				b.getReceivedAt(), b.getStartedAt(), b.getCompletedAt(), b.getNote(), inputTypes.getOrDefault(b.getId(), List.of()),
+			boolean splittable = splits.splittable(b);
+			List<Group> groups = splittable ? splits.groups().getOrDefault(b.getId(), List.of()) : null;
+			out.add(new ProductionBatchResponse(b.getId(), b.getParentBatchId(),
+				splits.parentCodes().get(b.getParentBatchId()), b.getBatchCode(), b.getProductionLineId(),
+				b.getSupplierId(), b.getSupplierFieldId(), suppliers.get(b.getSupplierId()),
+				fields.get(b.getSupplierFieldId()), b.getCreatedByUserId(), b.getStatus(), b.getQuantityKg(),
+				splittable ? allocated(groups) : null,
+				splittable ? splits.remaining().getOrDefault(b.getId(), BigDecimal.ZERO) : null,
+				b.getTruckPlate(), b.getWeighingSlipNo(), b.getReceivedAt(), b.getStartedAt(), b.getCompletedAt(),
+				b.getNote(), inputTypes.getOrDefault(b.getId(), List.of()),
 				outputTypes.getOrDefault(b.getId(), List.of()), lines.get(b.getProductionLineId()),
 				creators.get(b.getCreatedByUserId()), processMap.getOrDefault(b.getId(), List.of()),
-				materialMap.getOrDefault(b.getId(), List.of()), b.getCreatedAt(), b.getUpdatedAt()));
+				materialMap.getOrDefault(b.getId(), List.of()), groups, b.getCreatedAt(), b.getUpdatedAt()));
 		}
 		return out;
+	}
+
+	/** Bolme bilgisi: makineli hatlar, teslimatlarin gruplari ve kalan zeytini, gruplarin teslimat kodu. */
+	private record Splits(Set<Long> machineLines, Map<Long, List<Group>> groups, Map<Long, BigDecimal> remaining,
+		Map<Long, String> parentCodes) {
+
+		/** Bolunebilen hattaki teslimat. */
+		boolean splittable(ProductionBatch batch) {
+			return !batch.isGroup() && machineLines.contains(batch.getProductionLineId());
+		}
+	}
+
+	private Splits splits(List<ProductionBatch> rows) {
+		Set<Long> machineLines = queries.linesWithMachine();
+		List<Long> deliveryIds = rows.stream()
+			.filter(b -> !b.isGroup() && machineLines.contains(b.getProductionLineId()))
+			.map(ProductionBatch::getId).toList();
+		List<ProductionBatch> children = deliveryIds.isEmpty() ? List.of()
+			: batches.findByParentBatchIdInOrderByIdAsc(deliveryIds);
+		Map<Long, BatchQueries.CurrentStage> stages = queries.currentStages(
+			children.stream().map(ProductionBatch::getId).toList());
+		Map<Long, List<Group>> groups = new LinkedHashMap<>();
+		for (ProductionBatch g : children) {
+			BatchQueries.CurrentStage stage = stages.get(g.getId());
+			groups.computeIfAbsent(g.getParentBatchId(), k -> new ArrayList<>()).add(new Group(g.getId(),
+				g.getBatchCode(), g.getQuantityKg(), g.getStatus(), g.getStartedAt(), g.getCompletedAt(),
+				stage == null ? null : new CurrentStage(stage.productionStageId(), stage.name(), stage.status())));
+		}
+		List<Long> parentIds = present(rows.stream().map(ProductionBatch::getParentBatchId));
+		Map<Long, String> parentCodes = batches.findAllById(parentIds).stream()
+			.collect(Collectors.toMap(ProductionBatch::getId, ProductionBatch::getBatchCode));
+		return new Splits(machineLines, groups, queries.remainingOlives(deliveryIds), parentCodes);
+	}
+
+	private static BigDecimal allocated(List<Group> groups) {
+		return groups.stream().map(Group::quantityKg).filter(Objects::nonNull).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 	private static List<Long> present(Stream<Long> ids) {

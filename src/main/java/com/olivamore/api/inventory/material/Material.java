@@ -157,6 +157,28 @@ public class Material extends AuditedEntity {
 		return child;
 	}
 
+	/** Grubun payi duzeltilirken veren taraf: kalan yoksa tuketilmis sayilir. */
+	public void giveAway(BigDecimal amount) {
+		BigDecimal remaining = quantity.subtract(amount);
+		if (remaining.compareTo(CONSUMED_BELOW) <= 0) {
+			status = MaterialStatus.CONSUMED;
+		}
+		else {
+			quantity = Quantities.material(remaining);
+		}
+	}
+
+	/** Grubun payi duzeltilirken alan taraf: tamamen ayrilip tuketilmis teslimat zeytini yeniden etkinlesir. */
+	public void receive(BigDecimal amount) {
+		if (status == MaterialStatus.CONSUMED) {
+			status = MaterialStatus.ACTIVE;
+			quantity = Quantities.material(amount);
+		}
+		else {
+			add(amount);
+		}
+	}
+
 	/** Tartimda olculen miktar; konumu yoksa partiye yerlesir, proses notu varsa yazilir. */
 	public void recordWeighing(BigDecimal measured, MaterialUnit measuredUnit, long stageId, long batchId,
 		String processNote) {

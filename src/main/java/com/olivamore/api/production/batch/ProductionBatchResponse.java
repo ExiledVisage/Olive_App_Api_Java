@@ -7,10 +7,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/** Parti: hat, giris/cikis tipleri, prosesler ve materyallerle. */
+/**
+ * Parti: hat, giris/cikis tipleri, prosesler ve materyallerle. {@code allocated_kg}, {@code remaining_kg} ve
+ * {@code groups} yalniz bolunebilen hattaki teslimatta dolu; {@code parent_batch_code} yalniz grupta.
+ */
 record ProductionBatchResponse(
 	Long id,
 	Long parentBatchId,
+	String parentBatchCode,
 	String batchCode,
 	Long productionLineId,
 	Long supplierId,
@@ -20,6 +24,8 @@ record ProductionBatchResponse(
 	Long createdByUserId,
 	BatchStatus status,
 	BigDecimal quantityKg,
+	BigDecimal allocatedKg,
+	BigDecimal remainingKg,
 	String truckPlate,
 	String weighingSlipNo,
 	LocalDateTime receivedAt,
@@ -32,8 +38,17 @@ record ProductionBatchResponse(
 	BatchProcessResponse.UserSummary createdByUser,
 	List<BatchProcessResponse> processes,
 	List<MaterialResponse> materials,
+	List<Group> groups,
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
+
+	/** Teslimatin grubu; {@code current_stage} ilk bitmemis asama, hepsi bittiyse bos. */
+	record Group(Long id, String batchCode, BigDecimal quantityKg, BatchStatus status, LocalDateTime startedAt,
+		LocalDateTime completedAt, CurrentStage currentStage) {
+	}
+
+	record CurrentStage(Long productionStageId, String name, String status) {
+	}
 
 	record BatchType(Long id, Long productionBatchId, Long productionProductTypeId, int sortOrder,
 		BatchQueries.ProductType productionProductType) {

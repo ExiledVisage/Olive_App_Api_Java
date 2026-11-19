@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,5 +25,7 @@ public interface ProductionBatchRepository extends JpaRepository<ProductionBatch
 	List<ProductionBatch> findByParentBatchIdOrderByIdAsc(long parentBatchId);
 
 	long countByParentBatchId(long parentBatchId);
+
+	List<ProductionBatch> findByParentBatchIdInOrderByIdAsc(Collection<Long> parentBatchIds);
 
 }

@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -63,6 +64,12 @@ public class ProductionLineResources {
 	public List<Long> stageIds(long lineId) {
 		return jdbc.sql("select id from production_stages where production_line_id = :line order by stage_order asc, id asc")
 			.param("line", lineId).query(Long.class).list();
+	}
+
+	/** Makineli asamasi olan (teslimati gruplara bolunen) hatlar. */
+	public Set<Long> linesWithMachine() {
+		return Set.copyOf(jdbc.sql("select distinct production_line_id from production_stages where uses_machine")
+			.query(Long.class).list());
 	}
 
 	public int lastStageOrder(long lineId) {

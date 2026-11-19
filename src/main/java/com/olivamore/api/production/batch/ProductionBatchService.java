@@ -48,10 +48,13 @@ class ProductionBatchService {
 	private final BatchQueries queries;
 	private final BatchProcessLifecycle lifecycle;
 
+	private final BatchGroupService groups;
+
 	ProductionBatchService(ProductionBatchRepository batches, BatchInputTypeRepository inputs,
 		BatchOutputTypeRepository outputs, BatchProcessRepository processes, BatchQueries queries,
-		BatchProcessLifecycle lifecycle) {
+		BatchProcessLifecycle lifecycle, BatchGroupService groups) {
 		this.batches = batches;
+		this.groups = groups;
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.processes = processes;
@@ -159,6 +162,10 @@ class ProductionBatchService {
 	@Transactional
 	void delete(long id) {
 		ProductionBatch batch = find(id);
+		if (batch.isGroup()) {
+			groups.dissolve(batch);
+			return;
+		}
 		DeletionGuard.of("'" + batch.getBatchCode() + "' partisi")
 			.usedBy("başlamış proses", processes.countByProductionBatchIdAndStatusNot(id, ProcessStatus.WAITING))
 			.usedBy("grup", batches.countByParentBatchId(id))

@@ -9,6 +9,7 @@
       "content" : [ {
         "id" : 576,
         "parent_batch_id" : 575,
+        "parent_batch_code" : "P-261105-01",
         "batch_code" : "P-261105-01-1",
         "production_line_id" : 3,
         "supplier_id" : 27,
@@ -26,6 +27,8 @@
         "created_by_user_id" : 5,
         "status" : "in_progress",
         "quantity_kg" : 7627.0,
+        "allocated_kg" : null,
+        "remaining_kg" : null,
         "truck_plate" : "07 YYF 240",
         "weighing_slip_no" : "TF-261105645",
         "received_at" : "2026-11-05T07:04:00Z",
@@ -1241,11 +1244,13 @@
           "created_at" : "2026-11-05T09:30:00Z",
           "updated_at" : "2026-11-05T09:53:00Z"
         } ],
+        "groups" : null,
         "created_at" : "2026-11-05T08:08:00Z",
         "updated_at" : "2026-11-05T08:21:00Z"
       }, {
         "id" : 575,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "P-261105-01",
         "production_line_id" : 3,
         "supplier_id" : 27,
@@ -1263,6 +1268,8 @@
         "created_by_user_id" : 5,
         "status" : "in_progress",
         "quantity_kg" : 7700.0,
+        "allocated_kg" : 7627.0,
+        "remaining_kg" : 0,
         "truck_plate" : "07 YYF 240",
         "weighing_slip_no" : "TF-261105645",
         "received_at" : "2026-11-05T07:04:00Z",
@@ -1687,6 +1694,19 @@
           "closed_by_batch_process" : null,
           "created_at" : "2026-11-05T07:04:00Z",
           "updated_at" : "2026-11-05T08:08:00Z"
+        } ],
+        "groups" : [ {
+          "id" : 576,
+          "batch_code" : "P-261105-01-1",
+          "quantity_kg" : 7627.0,
+          "status" : "in_progress",
+          "started_at" : "2026-11-05T08:21:00Z",
+          "completed_at" : null,
+          "current_stage" : {
+            "production_stage_id" : 33,
+            "name" : "Ön Dinlenme",
+            "status" : "resting"
+          }
         } ],
         "created_at" : "2026-11-05T07:04:00Z",
         "updated_at" : "2026-11-05T07:04:00Z"
@@ -1709,6 +1729,7 @@
       "content" : [ {
         "id" : 575,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "P-261105-01",
         "production_line_id" : 3,
         "supplier_id" : 27,
@@ -1726,6 +1747,8 @@
         "created_by_user_id" : 5,
         "status" : "in_progress",
         "quantity_kg" : 7700.0,
+        "allocated_kg" : 7627.0,
+        "remaining_kg" : 0,
         "truck_plate" : "07 YYF 240",
         "weighing_slip_no" : "TF-261105645",
         "received_at" : "2026-11-05T07:04:00Z",
@@ -2151,11 +2174,25 @@
           "created_at" : "2026-11-05T07:04:00Z",
           "updated_at" : "2026-11-05T08:08:00Z"
         } ],
+        "groups" : [ {
+          "id" : 576,
+          "batch_code" : "P-261105-01-1",
+          "quantity_kg" : 7627.0,
+          "status" : "in_progress",
+          "started_at" : "2026-11-05T08:21:00Z",
+          "completed_at" : null,
+          "current_stage" : {
+            "production_stage_id" : 33,
+            "name" : "Ön Dinlenme",
+            "status" : "resting"
+          }
+        } ],
         "created_at" : "2026-11-05T07:04:00Z",
         "updated_at" : "2026-11-05T07:04:00Z"
       }, {
         "id" : 574,
         "parent_batch_id" : 573,
+        "parent_batch_code" : "P-261103-02",
         "batch_code" : "P-261103-02-1",
         "production_line_id" : 1,
         "supplier_id" : 15,
@@ -2173,6 +2210,8 @@
         "created_by_user_id" : 5,
         "status" : "completed",
         "quantity_kg" : 2656.4,
+        "allocated_kg" : null,
+        "remaining_kg" : null,
         "truck_plate" : "13 MGV 540",
         "weighing_slip_no" : "TF-261103121",
         "received_at" : "2026-11-03T12:09:00Z",
@@ -3578,6 +3617,7 @@
           "created_at" : "2026-11-04T06:35:00Z",
           "updated_at" : "2026-11-04T06:35:00Z"
         } ],
+        "groups" : null,
         "created_at" : "2026-11-03T13:09:00Z",
         "updated_at" : "2026-11-04T13:32:00Z"
       } ],
@@ -3723,6 +3763,7 @@
       "data" : {
         "id" : 273,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "P-260220-01",
         "production_line_id" : 1,
         "supplier_id" : 12,
@@ -3740,6 +3781,8 @@
         "created_by_user_id" : 5,
         "status" : "completed",
         "quantity_kg" : 2970.0,
+        "allocated_kg" : 2950.0,
+        "remaining_kg" : 0,
         "truck_plate" : "63 YFC 899",
         "weighing_slip_no" : "TF-260220677",
         "received_at" : "2026-02-20T07:09:00Z",
@@ -4165,6 +4208,15 @@
           "created_at" : "2026-02-20T07:09:00Z",
           "updated_at" : "2026-02-20T08:00:00Z"
         } ],
+        "groups" : [ {
+          "id" : 274,
+          "batch_code" : "P-260220-01-1",
+          "quantity_kg" : 2950.0,
+          "status" : "completed",
+          "started_at" : "2026-02-20T08:10:00Z",
+          "completed_at" : "2026-02-22T09:12:00Z",
+          "current_stage" : null
+        } ],
         "created_at" : "2026-02-20T07:09:00Z",
         "updated_at" : "2026-02-22T09:12:00Z"
       }
@@ -4431,6 +4483,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : 1,
@@ -4448,6 +4501,8 @@
         "created_by_user_id" : 1,
         "status" : "in_progress",
         "quantity_kg" : 1234.5679,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-06T10:15:30Z",
@@ -4849,6 +4904,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -4869,6 +4925,7 @@
       "data" : {
         "id" : 581,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-2",
         "production_line_id" : 3,
         "supplier_id" : null,
@@ -4878,6 +4935,8 @@
         "created_by_user_id" : 1,
         "status" : "pending",
         "quantity_kg" : null,
+        "allocated_kg" : 0,
+        "remaining_kg" : 0,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-06T21:39:00Z",
@@ -5194,6 +5253,7 @@
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
         "materials" : [ ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -5230,6 +5290,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : 1,
@@ -5247,6 +5308,8 @@
         "created_by_user_id" : 1,
         "status" : "in_progress",
         "quantity_kg" : 1234.5679,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-06T10:15:30Z",
@@ -5648,6 +5711,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -5668,6 +5732,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : 1,
@@ -5685,6 +5750,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -6086,6 +6153,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -6103,6 +6171,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : 2,
@@ -6116,6 +6185,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -6517,6 +6588,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -6534,6 +6606,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : 2,
@@ -6551,6 +6624,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -6952,6 +7027,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -6984,6 +7060,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : null,
@@ -6993,6 +7070,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -7394,6 +7473,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -7411,6 +7491,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "P-261105-02",
         "production_line_id" : 1,
         "supplier_id" : null,
@@ -7420,6 +7501,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -7821,6 +7904,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -7839,6 +7923,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : null,
@@ -7848,6 +7933,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -8249,6 +8336,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -8300,6 +8388,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : null,
@@ -8309,6 +8398,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -8710,6 +8801,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }
@@ -8772,6 +8864,7 @@
       "data" : {
         "id" : 580,
         "parent_batch_id" : null,
+        "parent_batch_code" : null,
         "batch_code" : "T-TEST-1",
         "production_line_id" : 1,
         "supplier_id" : null,
@@ -8781,6 +8874,8 @@
         "created_by_user_id" : 1,
         "status" : "completed",
         "quantity_kg" : 10.0,
+        "allocated_kg" : 0,
+        "remaining_kg" : 1234.5679,
         "truck_plate" : "35 ABC 123",
         "weighing_slip_no" : null,
         "received_at" : "2026-11-07T00:00:00Z",
@@ -9182,6 +9277,7 @@
           "created_at" : "2026-11-06T21:39:00Z",
           "updated_at" : "2026-11-06T21:39:00Z"
         } ],
+        "groups" : [ ],
         "created_at" : "2026-11-06T21:39:00Z",
         "updated_at" : "2026-11-06T21:39:00Z"
       }

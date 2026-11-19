@@ -94,6 +94,17 @@ public class BatchProcess extends AuditedEntity {
 		completedAt = now;
 	}
 
+	/** {@link #skipUnneeded} ile atlanmis (kullanici atlamasi baslama zamani yazar). */
+	public boolean isSkippedAsUnneeded() {
+		return status == ProcessStatus.SKIPPED && startedAt == null && inheritedFromProcessId == null;
+	}
+
+	/** Teslimata zeytin dondu: kendiliginden atlanan asama yeniden bekler. */
+	public void reopenUnneeded() {
+		status = ProcessStatus.WAITING;
+		completedAt = null;
+	}
+
 	void reopen() {
 		status = ProcessStatus.WAITING;
 		inheritedFromProcessId = null;

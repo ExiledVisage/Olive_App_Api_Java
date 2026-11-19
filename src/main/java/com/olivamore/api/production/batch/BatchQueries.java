@@ -8,6 +8,7 @@ import com.olivamore.api.supplier.SupplierDirectory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /** Parti kurallari ve cevabi icin baska modullerin tablolarindan okumalar. */
@@ -44,6 +46,10 @@ class BatchQueries {
 	}
 
 	record DayCount(LocalDate day, long total) {
+	}
+
+	/** Grubun ilk bitmemis asamasi. */
+	record CurrentStage(Long productionBatchId, Long productionStageId, String name, String status) {
 	}
 
 	private final JdbcClient jdbc;
@@ -179,6 +185,36 @@ class BatchQueries {
 	}
 
 	/** Gun -> teslimat sayisi (varis gunu, dahil; gruplar sayilmaz). */
+	Optional<MaterialDirectory.Material> lastMaterialInBatch(long batchId) {
+		return materialDirectory.lastInBatch(batchId);
+	}
+
+	Set<Long> linesWithMachine() {
+		return lineResources.linesWithMachine();
+	}
+
+	/** Teslimat -> partide duran zeytin (ayrilmamis kilo). */
+	Map<Long, BigDecimal> remainingOlives(Collection<Long> deliveryIds) {
+		return materialDirectory.activeQuantityInBatches(deliveryIds);
+	}
+
+	/** Grup -> asama sirasinda ilk bitmemis (tamamlanmamis, atlanmamis) asama; hepsi bittiyse haritada yok. */
+	Map<Long, CurrentStage> currentStages(Collection<Long> batchIds) {
+		if (batchIds.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("""
+			select distinct on (bp.production_batch_id) bp.production_batch_id, s.id as production_stage_id,
+				coalesce(s.name, t.name) as name, bp.status
+			from batch_processes bp
+			join production_stages s on s.id = bp.production_stage_id
+			left join process_types t on t.id = s.process_type_id
+			where bp.production_batch_id in (:ids) and bp.status not in ('completed', 'skipped')
+			order by bp.production_batch_id, s.stage_order, s.id
+			""").param("ids", batchIds).query(CurrentStage.class).list().stream()
+			.collect(Collectors.toMap(CurrentStage::productionBatchId, Function.identity()));
+	}
+
 	Map<String, Long> calendar(LocalDate from, LocalDate to) {
 		Map<String, Long> days = new LinkedHashMap<>();
 		jdbc.sql("""

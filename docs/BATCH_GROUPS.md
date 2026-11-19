@@ -1,6 +1,7 @@
 # Teslimatı gruplara bölme
 
-Durum: API'de bölme ve raporlar yapıldı; kilo düzeltme, grup silme, detay alanları ve Flutter kaldı.
+Durum: API'de bölme, raporlar, detay alanları, `kind` filtresi, kilo düzeltme ve grup silme yapıldı; elle girilen
+kilonun yeniden tartımı ve Flutter kaldı.
 
 Gelen bir zeytin teslimatı (örn. 1000 kg) gruplara bölünür; her grup üretime ayrı zamanda girer. Teslimatın
 tamamını tek seferde işlemek de bir gruptur: "Hepsini tekte başlat" kalan kilonun tamamıyla tek grup açar.
@@ -78,6 +79,9 @@ Bölme noktası, `stage_order` sırasıyla `uses_machine = true` olan ilk aşama
   - fazlaysa (650) tartım reddedilmez, sorulur: "50 kg ana partiden alınsın mı?" Evet: fark ana partiden gruba
     aktarılır, tartım kaydedilir. Ana partide yetmezse tartım bugünkü gibi reddedilir (tartım miktarı artıramaz).
   - Grup makine aşamasına girene kadar.
+  - Uygulama soruyu tartımı tamamlamadan önce sorar; evet derse önce `POST /api/production-batches/{grup}/allocation`
+    `{quantity_kg: <tartılan>}` çağrılır (fark teslimata döner ya da ondan alınır, `quantity_kg` aynı farkla değişir),
+    sonra tartım tamamlanır. Tamamen ayrılmış teslimata zeytin dönerse kendiliğinden atlanan aşamaları yeniden bekler.
 - Teslimat kilosu, ayrılmış toplamın altına indirilemez.
 
 **Grup nereden başlar**
@@ -104,17 +108,19 @@ Ana partinin henüz yapmadığı aşamaları grup zorunlu olarak yapar. Grupta t
 
 **Silme**
 
-- Grubu olan ana parti silinmez. Başlamamış grup silinebilir; kilosu kalana döner.
+- Grubu olan ana parti silinmez. Başlamamış grup silinebilir (teslimattan devralınan aşamalar başlamış sayılmaz);
+  kilosu kalana döner, teslimatta kendiliğinden atlanan aşamalar yeniden bekler.
 
 ## API
 
 | İstek | Açıklama | İzin |
 |---|---|---|
 | `POST /api/production-batches/{id}/groups` | `{quantity_kg \| all_remaining, start_stage_id \| null, note}` → yeni grup id | `production_batch.create` |
-| `GET /api/production-batches/{id}` | ek alanlar: `parent_batch_id`, `parent_batch_code`, `allocated_kg`, `remaining_kg`, `groups[]` (id, kod, kg, durum, başlama, bitiş, şu anki aşama) | mevcut |
-| `GET /api/production-batches` | `kind` filtresi: `delivery` / `processable` / boş | mevcut |
+| `GET /api/production-batches/{id}` | ek alanlar: `parent_batch_id`, `parent_batch_code` (grupta), `allocated_kg`, `remaining_kg`, `groups[]` (id, `batch_code`, `quantity_kg`, `status`, `started_at`, `completed_at`, `current_stage` {`production_stage_id`, `name`, `status`}); son üçü yalnız bölünebilen hattaki teslimatta dolu, diğerlerinde `null` | mevcut |
+| `GET /api/production-batches` | `kind` filtresi: `delivery` (grup olmayanlar), `processable` (gruplar ve makineli aşaması olmayan hattın partileri), boş = hepsi | mevcut |
 
-Kilo düzeltme için uç nokta ve aşama ekranlarındaki `uses_machine` alanı uygulama sırasında belirlenir.
+| `POST /api/production-batches/{id}/allocation` | grupta: `{quantity_kg}` grubun yeni payı; fark teslimatla paylaşılır; makineli aşamaya girene kadar | `production_batch.update` |
+| `DELETE /api/production-batches/{id}` | grupta: başlamamışsa silinir, payı teslimata döner | `production_batch.delete` |
 
 ## Raporlar
 
@@ -140,8 +146,8 @@ Materyal: ana partinin zeytini mevcut materyal bölmeyle (ana materyal → çocu
 ## Uygulama sırası
 
 1. ✔ Veritabanı sütunları, seed, bölme servisi ve kuralları, durum hesabı, testler (`BatchGroupsIT`).
-2. API yanıtı (`groups[]`, `remaining_kg`), `kind` filtresi, kilo düzeltme, başlamamış grubun silinmesi (kilosu
-   teslimata döner; bugün materyali olduğu için silinemiyor), elle girilen kilonun ilk bölmede yeniden tartılması.
+2. ✔ API yanıtı (`groups[]`, `remaining_kg`), `kind` filtresi, kilo düzeltme, grup silme. Kalan: elle girilen kilonun
+   ilk bölmede yeniden tartılması ve oluşturmada tartılmış teslimatın silinmesi.
 3. ✔ Raporlar: analiz (grubun gelen kilosu teslimat kantarından payı), günlük özet, takvim, tedarikçi teslimatları.
    Soyağacında teslimat kodu kaldı.
 4. Flutter: model ve servis, detay sayfası ve bölme penceresi, aşama ekranı, listeler.
