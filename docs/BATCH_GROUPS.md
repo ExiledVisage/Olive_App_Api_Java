@@ -1,7 +1,7 @@
 # Teslimatı gruplara bölme
 
 Durum: API tarafı yapıldı (bölme, raporlar, detay alanları, `kind` filtresi, kilo düzeltme, grup silme, kantarın
-yeniden yapılması, soyağacında teslimat kodu); Flutter kaldı.
+yeniden yapılması, soyağacında teslimat kodu); Flutter yazıldı (`feat/java-api`), kullanıcı testi bekliyor.
 
 Gelen bir zeytin teslimatı (örn. 1000 kg) gruplara bölünür; her grup üretime ayrı zamanda girer. Teslimatın
 tamamını tek seferde işlemek de bir gruptur: "Hepsini tekte başlat" kalan kilonun tamamıyla tek grup açar.
@@ -154,5 +154,5 @@ Materyal: ana partinin zeytini mevcut materyal bölmeyle (ana materyal → çocu
    yapılması, oluşturmada tartılmış teslimatın silinmesi.
 3. ✔ Raporlar: analiz (grubun gelen kilosu teslimat kantarından payı), günlük özet, takvim, tedarikçi teslimatları.
    ✔ Soyağacında teslimat kodu.
-4. Flutter: model ve servis, detay sayfası ve bölme penceresi, aşama ekranı, listeler.
+4. ✔ Flutter: model ve servis, detay sayfası ve bölme penceresi, aşama ekranı, listeler (test bekliyor).
 5. Sonra: bekleyen kilo için uyarı kuralı (örn. "ayrılmamış kilo 24 saati geçti").
