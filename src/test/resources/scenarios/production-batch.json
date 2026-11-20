@@ -1707,7 +1707,7 @@
             "name" : "Ön Dinlenme",
             "status" : "resting"
           },
-          "split_stage_name" : "Sıkım Ünitesine Transfer"
+          "split_stage_name" : "İkinci Tartım"
         } ],
         "created_at" : "2026-11-05T07:04:00Z",
         "updated_at" : "2026-11-05T07:04:00Z"
@@ -2187,7 +2187,7 @@
             "name" : "Ön Dinlenme",
             "status" : "resting"
           },
-          "split_stage_name" : "Sıkım Ünitesine Transfer"
+          "split_stage_name" : "İkinci Tartım"
         } ],
         "created_at" : "2026-11-05T07:04:00Z",
         "updated_at" : "2026-11-05T07:04:00Z"
@@ -4218,7 +4218,7 @@
           "started_at" : "2026-02-20T08:10:00Z",
           "completed_at" : "2026-02-22T09:12:00Z",
           "current_stage" : null,
-          "split_stage_name" : "Sıkım Ünitesine Transfer"
+          "split_stage_name" : "İkinci Tartım"
         } ],
         "created_at" : "2026-02-20T07:09:00Z",
         "updated_at" : "2026-02-22T09:12:00Z"

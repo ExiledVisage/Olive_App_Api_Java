@@ -220,8 +220,9 @@ class BatchQueries {
 	}
 
 	/**
-	 * Gruplarin ayrildigi asama: grup olusturuldugunda teslimatta en son biten (tamamlanan ya da atlanan) asama.
-	 * Teslimat bolmeden sonra da ilerleyebildigi icin zamanla sinirlanir.
+	 * Gruplarin ayrildigi asama: grup olusturuldugunda teslimatta en son biten (tamamlanan ya da kullanicinin
+	 * atladigi) asama. Teslimat bolmeden sonra da ilerleyebildigi icin zamanla sinirlanir. Kalanin hepsi ayrilinca
+	 * gereksiz kalan asamalar ayni anda baslamadan atlanir ({@code started_at} bos); onlar sayilmaz.
 	 */
 	Map<Long, String> splitStages(Collection<Long> groupIds) {
 		if (groupIds.isEmpty()) {
@@ -233,8 +234,8 @@ class BatchQueries {
 			join batch_processes bp on bp.production_batch_id = g.parent_batch_id
 			join production_stages s on s.id = bp.production_stage_id
 			left join process_types t on t.id = s.process_type_id
-			where g.id in (:ids) and bp.status in ('completed', 'skipped') and bp.completed_at is not null
-				and bp.completed_at <= g.created_at
+			where g.id in (:ids) and bp.completed_at is not null and bp.completed_at <= g.created_at
+				and (bp.status = 'completed' or (bp.status = 'skipped' and bp.started_at is not null))
 			order by g.id, s.stage_order desc, s.id desc
 			""").param("ids", groupIds).query(SplitStage.class).list().stream()
 			.collect(Collectors.toMap(SplitStage::groupId, SplitStage::name));

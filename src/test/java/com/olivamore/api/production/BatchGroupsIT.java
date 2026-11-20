@@ -100,9 +100,13 @@ class BatchGroupsIT {
 		assertThat(group.get("quantity_kg").decimalValue()).isEqualByComparingTo("1000");
 		assertThat(stageStatuses(group)).startsWith("1:skipped", "2:skipped", "3:waiting");
 		assertThat(oliveOf(delivery)).isEmpty();
-		assertThat(stageStatuses(data(api.get("/api/production-batches/" + delivery))))
+		JsonNode parent = data(api.get("/api/production-batches/" + delivery));
+		assertThat(stageStatuses(parent))
 			.as("zeytin kalmadi: teslimatin bekleyen asamalari islenmez")
 			.containsExactly("1:completed", "2:completed", "3:skipped", "4:skipped");
+		assertThat(parent.get("groups").get(0).get("split_stage_name").asString())
+			.as("ayni anda atlanan gereksiz asamalar ayrilma asamasi sayilmaz")
+			.isEqualTo(parent.get("processes").get(1).get("production_stage").get("name").asString());
 	}
 
 	@Test
