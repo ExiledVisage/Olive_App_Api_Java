@@ -43,8 +43,9 @@ record ProductionBatchResponse(
 	LocalDateTime updatedAt) {
 
 	/** Teslimatin grubu; {@code current_stage} ilk bitmemis asama, hepsi bittiyse bos. */
+	/** {@code splitStageName}: grubun ayrildigi an teslimatin son biten asamasi; kantardan once ayrildiysa null. */
 	record Group(Long id, String batchCode, BigDecimal quantityKg, BatchStatus status, LocalDateTime startedAt,
-		LocalDateTime completedAt, CurrentStage currentStage) {
+		LocalDateTime completedAt, CurrentStage currentStage, String splitStageName) {
 	}
 
 	record CurrentStage(Long productionStageId, String name, String status) {

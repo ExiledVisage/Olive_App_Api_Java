@@ -190,6 +190,9 @@ class BatchGroupsIT {
 		assertThat(summary.get("status").asString()).isEqualTo("pending");
 		assertThat(summary.get("current_stage").get("production_stage_id").asLong()).isEqualTo(2);
 		assertThat(summary.get("current_stage").get("status").asString()).isEqualTo("waiting");
+		// Kantardan sonra ayrildi: teslimatin o an son biten asamasi.
+		assertThat(summary.get("split_stage_name").asString())
+			.isEqualTo(parent.get("processes").get(0).get("production_stage").get("name").asString());
 
 		JsonNode child = data(api.get("/api/production-batches/" + group));
 		assertThat(child.get("parent_batch_code").asString()).isEqualTo(code);

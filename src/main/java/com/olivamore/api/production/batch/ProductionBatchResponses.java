@@ -110,14 +110,16 @@ class ProductionBatchResponses {
 			.map(ProductionBatch::getId).toList();
 		List<ProductionBatch> children = deliveryIds.isEmpty() ? List.of()
 			: batches.findByParentBatchIdInOrderByIdAsc(deliveryIds);
-		Map<Long, BatchQueries.CurrentStage> stages = queries.currentStages(
-			children.stream().map(ProductionBatch::getId).toList());
+		List<Long> childIds = children.stream().map(ProductionBatch::getId).toList();
+		Map<Long, BatchQueries.CurrentStage> stages = queries.currentStages(childIds);
+		Map<Long, String> splitStages = queries.splitStages(childIds);
 		Map<Long, List<Group>> groups = new LinkedHashMap<>();
 		for (ProductionBatch g : children) {
 			BatchQueries.CurrentStage stage = stages.get(g.getId());
 			groups.computeIfAbsent(g.getParentBatchId(), k -> new ArrayList<>()).add(new Group(g.getId(),
 				g.getBatchCode(), g.getQuantityKg(), g.getStatus(), g.getStartedAt(), g.getCompletedAt(),
-				stage == null ? null : new CurrentStage(stage.productionStageId(), stage.name(), stage.status())));
+				stage == null ? null : new CurrentStage(stage.productionStageId(), stage.name(), stage.status()),
+				splitStages.get(g.getId())));
 		}
 		List<Long> parentIds = present(rows.stream().map(ProductionBatch::getParentBatchId));
 		Map<Long, String> parentCodes = batches.findAllById(parentIds).stream()

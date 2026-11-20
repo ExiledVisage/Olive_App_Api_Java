@@ -48,6 +48,10 @@ class BatchQueries {
 	record DayCount(LocalDate day, long total) {
 	}
 
+	/** Grubun ayrildigi an teslimatin son biten asamasi. */
+	record SplitStage(Long groupId, String name) {
+	}
+
 	/** Grubun ilk bitmemis asamasi. */
 	record CurrentStage(Long productionBatchId, Long productionStageId, String name, String status) {
 	}
@@ -213,6 +217,27 @@ class BatchQueries {
 			order by bp.production_batch_id, s.stage_order, s.id
 			""").param("ids", batchIds).query(CurrentStage.class).list().stream()
 			.collect(Collectors.toMap(CurrentStage::productionBatchId, Function.identity()));
+	}
+
+	/**
+	 * Gruplarin ayrildigi asama: grup olusturuldugunda teslimatta en son biten (tamamlanan ya da atlanan) asama.
+	 * Teslimat bolmeden sonra da ilerleyebildigi icin zamanla sinirlanir.
+	 */
+	Map<Long, String> splitStages(Collection<Long> groupIds) {
+		if (groupIds.isEmpty()) {
+			return Map.of();
+		}
+		return jdbc.sql("""
+			select distinct on (g.id) g.id as group_id, coalesce(s.name, t.name) as name
+			from production_batches g
+			join batch_processes bp on bp.production_batch_id = g.parent_batch_id
+			join production_stages s on s.id = bp.production_stage_id
+			left join process_types t on t.id = s.process_type_id
+			where g.id in (:ids) and bp.status in ('completed', 'skipped') and bp.completed_at is not null
+				and bp.completed_at <= g.created_at
+			order by g.id, s.stage_order desc, s.id desc
+			""").param("ids", groupIds).query(SplitStage.class).list().stream()
+			.collect(Collectors.toMap(SplitStage::groupId, SplitStage::name));
 	}
 
 	Map<String, Long> calendar(LocalDate from, LocalDate to) {
