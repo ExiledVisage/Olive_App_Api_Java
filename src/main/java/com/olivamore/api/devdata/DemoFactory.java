@@ -284,20 +284,9 @@ final class DemoFactory {
 		return true;
 	}
 
-	/** On dinlendirmeden sonraki asamalar: filtreleme ve randiman. */
+	/** Boşalt'tan sonra: filtreleme tankta kapandi, kalan randiman. */
 	private void finish(Batch batch) {
 		String operator = OPERATORS.get(random.nextInt(OPERATORS.size()));
-		if (!later(5, 15)) {
-			return;
-		}
-		machine(operator, batch, batch.stages.get(7), "start");
-		if (!later(20, 40)) {
-			return;
-		}
-		machine(operator, batch, batch.stages.get(7), "finish");
-		fields(operator, batch, batch.stages.get(7), Map.of(ids.field("filtre_tipi"),
-			FILTERS.get(random.nextInt(FILTERS.size()))));
-		complete(operator, batch, batch.stages.get(7), null);
 		if (!later(10, 20)) {
 			return;
 		}
@@ -345,6 +334,14 @@ final class DemoFactory {
 		if (targets == null || !later(0, 5)) {
 			return false;
 		}
+		// Filtreleme tankta: filtre tipi gruplarin filtreleme asamasina yazilir, kronometre tanktan baslar,
+		// Boşalt bitirir. Gun bitse de bosaltilir: filtreleme surerken tanka giris olmaz.
+		String filter = FILTERS.get(random.nextInt(FILTERS.size()));
+		for (Batch batch : tank.entries) {
+			fields(PRODUCTION, batch, batch.stages.get(7), Map.of(ids.field("filtre_tipi"), filter));
+		}
+		api.post(PRODUCTION, "/api/storage-units/" + tankId + "/filtering/start", Map.of());
+		later(20, 40);
 		api.post(PRODUCTION, "/api/storage-units/" + tankId + "/empty", body("targets",
 			targets.entrySet().stream().map(e -> body("storage_unit_id", e.getKey(), "quantity", e.getValue())).toList(),
 			"note", "Dinlenme tamamlandı"));

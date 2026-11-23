@@ -9,142 +9,260 @@
       "data" : {
         "date" : "2026-11-04",
         "production" : {
-          "entered_today" : [ ],
-          "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+          "entered_today" : [ {
+            "id" : 507,
+            "batch_code" : "P-261104-02",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 4295.0,
+            "supplier" : "Arslan Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T12:20:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 505,
+            "batch_code" : "P-261104-01",
+            "status" : "in_progress",
+            "quantity_kg" : 6400.0,
+            "supplier" : "Kemal Şahin",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T07:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          } ],
+          "in_production" : [ {
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 0,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 20,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ {
-            "id" : 440,
+            "id" : 434,
             "status" : "completed",
-            "quantity" : 1500,
-            "finished_product_id" : 2,
-            "finished_product" : "Naturel Sızma Gemlik 0.3 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Gemlik Dolum Tankı",
-            "started_at" : "2026-11-04T13:22:00Z",
-            "completed_at" : "2026-11-04T14:27:00Z"
-          }, {
-            "id" : 439,
-            "status" : "completed",
-            "quantity" : 2000,
-            "finished_product_id" : 9,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 250ml",
-            "volume_litre" : 0.25,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-04T09:12:00Z",
-            "completed_at" : "2026-11-04T11:48:00Z"
-          } ],
-          "in_progress" : [ {
-            "id" : 444,
-            "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-04T13:42:00Z",
+            "completed_at" : "2026-11-04T15:47:00Z"
+          }, {
+            "id" : 433,
+            "status" : "completed",
+            "quantity" : 120,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
+            "started_at" : "2026-11-04T10:54:00Z",
+            "completed_at" : "2026-11-04T11:58:00Z"
+          } ],
+          "in_progress" : [ {
+            "id" : 438,
+            "status" : "in_progress",
+            "quantity" : 372,
+            "finished_product_id" : 5,
+            "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
+            "volume_litre" : 5.0,
+            "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
-          "completed_today" : [ ],
-          "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
+          "completed_today" : [ {
             "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
+            "status" : "shipped",
             "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
+            "order_date" : "2026-11-02",
             "item_count" : 3
-          }, {
+          } ],
+          "open" : [ {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 317,
-            "status" : "shipped",
-            "customer" : "Hakan Güneş",
+            "id" : 321,
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-04",
             "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -183,195 +301,274 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 520,
-            "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 18,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 19,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -411,21 +608,111 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
@@ -433,35 +720,39 @@
         },
         "stages" : {
           "completed_today" : 0,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
-          "completed_today" : [ ],
-          "in_progress" : [ {
-            "id" : 444,
-            "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
+          "completed_today" : [ {
+            "id" : 381,
+            "status" : "completed",
+            "quantity" : 800,
+            "finished_product_id" : 8,
+            "finished_product" : "Naturel Sızma Gemlik 0.8 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Gemlik Dolum Tankı (Üretim)",
+            "started_at" : "2026-09-29T09:38:00Z",
+            "completed_at" : "2026-09-29T12:02:00Z"
           } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+          "in_progress" : [ {
+            "id" : 438,
+            "status" : "in_progress",
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
@@ -469,62 +760,68 @@
         "orders" : {
           "completed_today" : [ ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 286,
+            "id" : 287,
             "status" : "shipped",
-            "customer" : "Ayşe Karaca",
+            "customer" : "Selin Aydın",
             "order_date" : "2026-09-29",
-            "item_count" : 2
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -563,224 +860,242 @@
         "date" : "2026-01-29",
         "production" : {
           "entered_today" : [ {
-            "id" : 213,
+            "id" : 207,
             "batch_code" : "P-260129-01",
             "status" : "completed",
-            "quantity_kg" : 5540.0,
-            "supplier" : "Erdoğan Çiftliği",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-29T07:09:00Z",
-            "started_at" : "2026-01-29T07:09:00Z",
-            "completed_at" : "2026-02-01T08:07:00Z",
+            "quantity_kg" : 2010.0,
+            "supplier" : "Osman Çetin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-01-29T07:07:00Z",
+            "started_at" : "2026-01-29T07:07:00Z",
+            "completed_at" : "2026-01-31T12:45:00Z",
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 212,
-            "batch_code" : "P-260128-02-1",
-            "status" : "completed",
-            "quantity_kg" : 3736.7,
-            "supplier" : "Yılmaz Çiftliği",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-28T12:18:00Z",
-            "started_at" : "2026-01-28T13:39:00Z",
-            "completed_at" : "2026-01-29T15:47:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 210,
-            "batch_code" : "P-260128-01-1",
-            "status" : "completed",
-            "quantity_kg" : 7091.6,
-            "supplier" : "Güneş Çiftliği",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-28T07:04:00Z",
-            "started_at" : "2026-01-28T08:19:00Z",
-            "completed_at" : "2026-01-29T14:30:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 208,
-            "batch_code" : "P-260127-02-1",
-            "status" : "completed",
-            "quantity_kg" : 2943.8,
-            "supplier" : "Arslan Tarım",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-27T11:48:00Z",
-            "started_at" : "2026-01-27T13:25:00Z",
-            "completed_at" : "2026-01-29T12:44:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 202,
-            "batch_code" : "P-260126-01-1",
-            "status" : "completed",
-            "quantity_kg" : 7543.1,
-            "supplier" : "Kemal Şahin",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-26T07:03:00Z",
-            "started_at" : "2026-01-26T08:12:00Z",
-            "completed_at" : "2026-01-29T11:11:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 206,
-            "batch_code" : "P-260127-01-1",
-            "status" : "completed",
-            "quantity_kg" : 2537.1,
-            "supplier" : "Öztürk Zeytincilik",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-27T07:00:00Z",
-            "started_at" : "2026-01-27T08:09:00Z",
-            "completed_at" : "2026-01-29T09:50:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 204,
-            "batch_code" : "P-260126-02-1",
-            "status" : "completed",
-            "quantity_kg" : 7557.8,
-            "supplier" : "Güneş Tarım",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-01-26T12:06:00Z",
-            "started_at" : "2026-01-26T13:28:00Z",
-            "completed_at" : "2026-01-29T08:10:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 28,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 10,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ {
-            "id" : 142,
+            "id" : 136,
             "status" : "completed",
-            "quantity" : 1224,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-01-29T13:09:00Z",
-            "completed_at" : "2026-01-29T15:57:00Z"
-          }, {
-            "id" : 141,
-            "status" : "completed",
-            "quantity" : 378,
-            "finished_product_id" : 4,
-            "finished_product" : "Naturel Sızma Gemlik 0.3 1L",
-            "volume_litre" : 1.0,
-            "source_storage_unit" : "Gemlik Dolum Tankı",
-            "started_at" : "2026-01-29T10:29:00Z",
-            "completed_at" : "2026-01-29T11:54:00Z"
-          } ],
-          "in_progress" : [ {
-            "id" : 444,
-            "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 216,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-01-29T13:18:00Z",
+            "completed_at" : "2026-01-29T15:04:00Z"
+          }, {
+            "id" : 135,
+            "status" : "completed",
+            "quantity" : 384,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
+            "started_at" : "2026-01-29T09:42:00Z",
+            "completed_at" : "2026-01-29T12:09:00Z"
+          } ],
+          "in_progress" : [ {
+            "id" : 438,
+            "status" : "in_progress",
+            "quantity" : 372,
+            "finished_product_id" : 5,
+            "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
+            "volume_litre" : 5.0,
+            "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
-          "completed_today" : [ {
-            "id" : 64,
-            "status" : "shipped",
-            "customer" : "Burak Öztürk",
-            "order_date" : "2026-01-25",
-            "item_count" : 3
-          } ],
+          "completed_today" : [ ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 68,
+            "id" : 75,
             "status" : "shipped",
-            "customer" : "Oğuz Erdoğan",
+            "customer" : "Ali Koç",
             "order_date" : "2026-01-29",
-            "item_count" : 3
+            "item_count" : 1
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -820,21 +1135,111 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
@@ -842,35 +1247,29 @@
         },
         "stages" : {
           "completed_today" : 0,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
@@ -878,56 +1277,62 @@
         "orders" : {
           "completed_today" : [ ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -966,195 +1371,274 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 520,
-            "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 18,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 19,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -1194,195 +1678,274 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 520,
-            "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 18,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 19,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -1422,195 +1985,274 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 520,
-            "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 18,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 19,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -1650,80 +2292,153 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 520,
-            "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 18,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 19,
+          "awaiting_approval" : [ ]
         }
       }
     },
@@ -1741,117 +2456,123 @@
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -1891,16 +2612,16 @@
         "date" : "2026-11-06",
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -1940,195 +2661,274 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
-          }, {
-            "id" : 520,
-            "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 18,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 19,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -2166,142 +2966,260 @@
       "data" : {
         "date" : "2026-11-04",
         "production" : {
-          "entered_today" : [ ],
-          "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+          "entered_today" : [ {
+            "id" : 507,
+            "batch_code" : "P-261104-02",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 4295.0,
+            "supplier" : "Arslan Zeytincilik",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T12:20:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 505,
+            "batch_code" : "P-261104-01",
+            "status" : "in_progress",
+            "quantity_kg" : 6400.0,
+            "supplier" : "Kemal Şahin",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T07:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          } ],
+          "in_production" : [ {
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
           "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 0,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "completed_today" : 20,
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ {
-            "id" : 440,
+            "id" : 434,
             "status" : "completed",
-            "quantity" : 1500,
-            "finished_product_id" : 2,
-            "finished_product" : "Naturel Sızma Gemlik 0.3 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Gemlik Dolum Tankı",
-            "started_at" : "2026-11-04T13:22:00Z",
-            "completed_at" : "2026-11-04T14:27:00Z"
-          }, {
-            "id" : 439,
-            "status" : "completed",
-            "quantity" : 2000,
-            "finished_product_id" : 9,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 250ml",
-            "volume_litre" : 0.25,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-04T09:12:00Z",
-            "completed_at" : "2026-11-04T11:48:00Z"
-          } ],
-          "in_progress" : [ {
-            "id" : 444,
-            "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-04T13:42:00Z",
+            "completed_at" : "2026-11-04T15:47:00Z"
+          }, {
+            "id" : 433,
+            "status" : "completed",
+            "quantity" : 120,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
+            "started_at" : "2026-11-04T10:54:00Z",
+            "completed_at" : "2026-11-04T11:58:00Z"
+          } ],
+          "in_progress" : [ {
+            "id" : 438,
+            "status" : "in_progress",
+            "quantity" : 372,
+            "finished_product_id" : 5,
+            "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
+            "volume_litre" : 5.0,
+            "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
-          "completed_today" : [ ],
-          "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
+          "completed_today" : [ {
             "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
+            "status" : "shipped",
             "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
+            "order_date" : "2026-11-02",
             "item_count" : 3
-          }, {
+          } ],
+          "open" : [ {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 317,
-            "status" : "shipped",
-            "customer" : "Hakan Güneş",
+            "id" : 321,
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-04",
             "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -2357,21 +3275,111 @@
         "production" : {
           "entered_today" : [ ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3406,
-              "name" : "Randıman Tespiti",
-              "order" : 9,
-              "status" : "awaiting_approval",
-              "done_count" : 8,
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
+            "batch_code" : "P-261105-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3350,
+              "name" : "Sıkım",
+              "order" : 5,
+              "status" : "completed",
+              "done_count" : 5,
               "total_count" : 9
             }
           } ],
@@ -2379,35 +3387,29 @@
         },
         "stages" : {
           "completed_today" : 0,
-          "awaiting_approval" : [ {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
-          } ]
+          "awaiting_approval" : [ ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
@@ -2415,56 +3417,62 @@
         "orders" : {
           "completed_today" : [ ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,
@@ -2507,207 +3515,286 @@
         "date" : "2026-11-06",
         "production" : {
           "entered_today" : [ {
-            "id" : 525,
+            "id" : 517,
             "batch_code" : "P-261106-03",
             "status" : "pending",
             "quantity_kg" : null,
-            "supplier" : "Koç Zeytincilik",
+            "supplier" : "Aydın Tarım",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T15:04:00Z",
+            "received_at" : "2026-11-06T15:06:00Z",
             "started_at" : null,
             "completed_at" : null,
             "current_stage" : null
           }, {
-            "id" : 523,
+            "id" : 515,
+            "batch_code" : "P-261106-02",
+            "status" : "in_progress",
+            "quantity_kg" : 5125.0,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T12:03:00Z",
+            "completed_at" : null,
+            "current_stage" : null
+          }, {
+            "id" : 513,
             "batch_code" : "P-261106-01",
             "status" : "in_progress",
-            "quantity_kg" : 3100.0,
-            "supplier" : "Ali Aslan",
-            "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T07:09:00Z",
+            "quantity_kg" : 5700.0,
+            "supplier" : "Güneş Tarım",
+            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T07:10:00Z",
             "completed_at" : null,
             "current_stage" : null
           } ],
           "in_production" : [ {
-            "id" : 524,
-            "batch_code" : "P-261106-01-1",
+            "id" : 506,
+            "batch_code" : "P-261104-01-1",
             "status" : "in_progress",
-            "quantity_kg" : 3069.4,
-            "supplier" : "Ali Aslan",
+            "quantity_kg" : 6326.6,
+            "supplier" : "Kemal Şahin",
             "production_line" : "Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-06T07:09:00Z",
-            "started_at" : "2026-11-06T08:24:00Z",
+            "received_at" : "2026-11-04T07:03:00Z",
+            "started_at" : "2026-11-04T08:39:00Z",
             "completed_at" : null,
             "current_stage" : {
-              "batch_process_id" : 3404,
-              "name" : "Ön Dinlenme",
-              "order" : 7,
-              "status" : "awaiting_approval",
+              "batch_process_id" : 3286,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
               "done_count" : 6,
               "total_count" : 9
             }
-          } ],
-          "completed_today" : [ {
-            "id" : 522,
-            "batch_code" : "P-261105-02-1",
-            "status" : "completed",
-            "quantity_kg" : 8131.8,
-            "supplier" : "Polat Zeytincilik",
-            "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T12:00:00Z",
-            "started_at" : "2026-11-05T13:31:00Z",
-            "completed_at" : "2026-11-06T14:03:00Z",
-            "current_stage" : null
           }, {
-            "id" : 520,
+            "id" : 508,
+            "batch_code" : "P-261104-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4252.2,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-04T12:20:00Z",
+            "started_at" : "2026-11-04T13:38:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3299,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 510,
             "batch_code" : "P-261105-01-1",
-            "status" : "completed",
-            "quantity_kg" : 8563.4,
-            "supplier" : "Kılıç Bahçeleri",
+            "status" : "in_progress",
+            "quantity_kg" : 5843.6,
+            "supplier" : "Arslan Zeytincilik",
+            "production_line" : "Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T07:04:00Z",
+            "started_at" : "2026-11-05T08:41:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3312,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 512,
+            "batch_code" : "P-261105-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 4611.3,
+            "supplier" : "İbrahim Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-05T11:48:00Z",
+            "started_at" : "2026-11-05T13:04:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3325,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 514,
+            "batch_code" : "P-261106-01-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5619.8,
+            "supplier" : "Güneş Tarım",
             "production_line" : "Ayvalık Zeytinyağı Üretim Hattı",
-            "received_at" : "2026-11-05T07:10:00Z",
-            "started_at" : "2026-11-05T08:20:00Z",
-            "completed_at" : "2026-11-06T12:32:00Z",
-            "current_stage" : null
-          } ]
+            "received_at" : "2026-11-06T07:10:00Z",
+            "started_at" : "2026-11-06T08:42:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3338,
+              "name" : "Asitlik Analizi",
+              "order" : 6,
+              "status" : "completed",
+              "done_count" : 6,
+              "total_count" : 9
+            }
+          }, {
+            "id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "status" : "in_progress",
+            "quantity_kg" : 5049.5,
+            "supplier" : "Osman Şahin",
+            "production_line" : "Gemlik Zeytinyağı Üretim Hattı",
+            "received_at" : "2026-11-06T12:03:00Z",
+            "started_at" : "2026-11-06T13:39:00Z",
+            "completed_at" : null,
+            "current_stage" : {
+              "batch_process_id" : 3349,
+              "name" : "Sıkım Ünitesine Transfer",
+              "order" : 4,
+              "status" : "awaiting_approval",
+              "done_count" : 3,
+              "total_count" : 9
+            }
+          } ],
+          "completed_today" : [ ]
         },
         "stages" : {
-          "completed_today" : 16,
+          "completed_today" : 17,
           "awaiting_approval" : [ {
-            "id" : 3404,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Ön Dinlenme",
+            "id" : 3349,
+            "production_batch_id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "stage_name" : "Sıkım Ünitesine Transfer",
             "submitted_at" : "2026-11-06T10:00:00Z"
           }, {
-            "id" : 3405,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Filtreleme",
+            "id" : 3350,
+            "production_batch_id" : 516,
+            "batch_code" : "P-261106-02-1",
+            "stage_name" : "Sıkım",
             "submitted_at" : "2026-11-06T10:00:00Z"
-          }, {
-            "id" : 3406,
-            "production_batch_id" : 524,
-            "batch_code" : "P-261106-01-1",
-            "stage_name" : "Randıman Tespiti",
-            "submitted_at" : "2026-11-06T15:09:00Z"
           } ]
         },
         "filling_runs" : {
           "completed_today" : [ ],
           "in_progress" : [ {
-            "id" : 444,
+            "id" : 438,
             "status" : "in_progress",
-            "quantity" : 504,
-            "finished_product_id" : 10,
-            "finished_product" : "Naturel Sızma Ayvalık 0.4 500ml",
-            "volume_litre" : 0.5,
-            "source_storage_unit" : "Ayvalık Dolum Tankı",
-            "started_at" : "2026-11-06T10:22:00Z",
-            "completed_at" : null
-          } ],
-          "planned" : [ {
-            "id" : 443,
-            "status" : "planned",
-            "quantity" : 258,
+            "quantity" : 372,
             "finished_product_id" : 5,
             "finished_product" : "Naturel Sızma Gemlik 0.3 5L",
             "volume_litre" : 5.0,
             "source_storage_unit" : "Gemlik Dolum Tankı",
+            "started_at" : "2026-11-06T10:51:00Z",
+            "completed_at" : null
+          } ],
+          "planned" : [ {
+            "id" : 437,
+            "status" : "planned",
+            "quantity" : 534,
+            "finished_product_id" : 12,
+            "finished_product" : "Naturel Sızma Ayvalık 0.4 1L",
+            "volume_litre" : 1.0,
+            "source_storage_unit" : "Ayvalık Dolum Tankı",
             "started_at" : null,
             "completed_at" : null
           } ]
         },
         "orders" : {
           "completed_today" : [ {
-            "id" : 316,
+            "id" : 320,
             "status" : "shipped",
-            "customer" : "Ahmet Yılmaz",
+            "customer" : "Fatma Kaya",
             "order_date" : "2026-11-03",
-            "item_count" : 1
+            "item_count" : 2
           } ],
           "open" : [ {
-            "id" : 318,
-            "status" : "stock_check",
-            "customer" : "Mehmet Demir",
-            "order_date" : "2026-11-05",
-            "item_count" : 3
-          }, {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-04",
+            "item_count" : 3
           }, {
             "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
+            "status" : "ready",
+            "customer" : "Ayşe Karaca",
+            "order_date" : "2026-11-05",
+            "item_count" : 2
+          }, {
+            "id" : 323,
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
             "order_date" : "2026-11-06",
             "item_count" : 3
           }, {
-            "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ],
           "planned_today" : [ {
-            "id" : 319,
-            "status" : "draft",
-            "customer" : "Oğuz Erdoğan",
-            "order_date" : "2026-11-06",
-            "item_count" : 2
-          }, {
-            "id" : 320,
-            "status" : "confirmed",
-            "customer" : "Merve Şahin",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
-            "id" : 321,
-            "status" : "stock_check",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 1
-          }, {
-            "id" : 322,
-            "status" : "in_production",
-            "customer" : "Zeynep Arslan",
-            "order_date" : "2026-11-06",
-            "item_count" : 3
-          }, {
             "id" : 323,
-            "status" : "ready",
-            "customer" : "Selin Aydın",
+            "status" : "draft",
+            "customer" : "Hakan Güneş",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
+          }, {
+            "id" : 324,
+            "status" : "confirmed",
+            "customer" : "Ayşe Karaca",
             "order_date" : "2026-11-06",
             "item_count" : 2
+          }, {
+            "id" : 325,
+            "status" : "stock_check",
+            "customer" : "Elif Doğan",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 326,
+            "status" : "in_production",
+            "customer" : "Mehmet Demir",
+            "order_date" : "2026-11-06",
+            "item_count" : 2
+          }, {
+            "id" : 327,
+            "status" : "ready",
+            "customer" : "Can Polat",
+            "order_date" : "2026-11-06",
+            "item_count" : 3
           } ]
         },
         "stock" : {
           "out_of_stock" : [ {
-            "id" : 17,
-            "name" : "Klasik Blend 0.5 1L",
-            "total_stock" : 0
-          }, {
             "id" : 13,
             "name" : "Naturel Sızma Ayvalık 0.9 250ml",
             "total_stock" : 0
           }, {
             "id" : 14,
             "name" : "Naturel Sızma Ayvalık 0.9 500ml",
+            "total_stock" : 0
+          }, {
+            "id" : 7,
+            "name" : "Naturel Sızma Gemlik 0.8 500ml",
             "total_stock" : 0
           }, {
             "id" : 21,

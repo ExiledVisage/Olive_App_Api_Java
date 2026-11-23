@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /** Proses detayi, alan degerleri, durum gecisleri ve onay/red; cevaplar detay iliskileriyle, 200. */
 @RestController
 class BatchProcessController {
@@ -46,6 +48,21 @@ class BatchProcessController {
 		@AuthenticationPrincipal CurrentUser user) {
 		processes.update(id, request, user);
 		return detail(id);
+	}
+
+	/** On dinlendirme tankinda dinlenmedeki gruplar ve tankta yapilan asamalari (filtreleme). */
+	@GetMapping("/api/storage-units/{id}/resting-batches")
+	@PreAuthorize("hasAuthority('storage_unit.view')")
+	DataResponse<List<BatchProcessService.RestingBatch>> restingBatches(@PathVariable long id) {
+		return DataResponse.of(processes.restingBatches(id));
+	}
+
+	/** Tanktaki gruplarin filtrelemesi birlikte baslar; Boşalt bitirir. Yetki Boşalt'inkiyle ayni. */
+	@PostMapping("/api/storage-units/{id}/filtering/start")
+	@PreAuthorize("hasAuthority('storage_movement.transfer')")
+	DataResponse<List<BatchProcessService.RestingBatch>> startFiltering(@PathVariable long id) {
+		processes.startTankFiltering(id);
+		return DataResponse.of(processes.restingBatches(id));
 	}
 
 	/** Kronometreli asamada makine baslar; asama da baslamis olur. */

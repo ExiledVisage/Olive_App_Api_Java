@@ -147,6 +147,7 @@ class BatchProcessService {
 	void startMachine(long id) {
 		BatchProcess process = find(id);
 		assertTimer(process);
+		assertNotTankStage(process);
 		if (!isOpen(process)) {
 			throw new BusinessRuleException("'" + stageLabel(process) + "' aşaması açık değil; kronometre başlatılamaz.");
 		}
@@ -163,6 +164,7 @@ class BatchProcessService {
 	void finishMachine(long id) {
 		BatchProcess process = find(id);
 		assertTimer(process);
+		assertNotTankStage(process);
 		if (process.getMachineStartedAt() == null) {
 			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında kronometre başlatılmadı.");
 		}
@@ -334,6 +336,8 @@ class BatchProcessService {
 			throw new BusinessRuleException("'" + stageLabel(p) + "' aşaması dinlenmede; ön dinlendirme tankı "
 				+ "boşaltılınca tamamlanır. Yanlış aktarımsa aşama iptal edilir (waiting).");
 		}
+		// Tankta baslamis filtreleme bu grup icin geri alinir; tanktaki diger gruplarin filtrelemesi surer
+		tankStage(p).filter(s -> s.getStatus() == ProcessStatus.IN_PROGRESS).ifPresent(BatchProcess::reopen);
 		assertNoLaterStageStarted(p);
 		handlers.cancelPreSettling(p.getId());
 		p.reopen();
@@ -345,7 +349,8 @@ class BatchProcessService {
 
 	/**
 	 * Tank bosaltildi (ayni islemde): her girdinin tortusu acilir, asama tamamlanir ve tortu (kg) asamanin verisine
-	 * {@code residue_kg} olarak yazilir.
+	 * {@code residue_kg} olarak yazilir. Tankta yapilan filtreleme (on dinlenmeden sonraki kronometreli asama) da
+	 * biter: kronometre Boşalt aninda durur, asama tamamlanir. Filtreleme baslatilmadiysa bosaltma reddedilir.
 	 */
 	@EventListener
 	void completeResting(PreSettlingTankEmptied event) {
@@ -369,7 +374,110 @@ class BatchProcessService {
 			process.finish(data, now);
 			batchIds.add(process.getProductionBatchId());
 		});
+		for (Long id : residues.keySet()) {
+			tankStage(find(id)).ifPresent(stage -> finishTankStage(stage, now));
+		}
 		batchIds.forEach(this::syncBatchStatus);
+	}
+
+	private void finishTankStage(BatchProcess stage, LocalDateTime now) {
+		if (stage.getStatus() == ProcessStatus.COMPLETED || stage.getStatus() == ProcessStatus.SKIPPED) {
+			return;
+		}
+		if (stage.getMachineStartedAt() == null) {
+			throw new BusinessRuleException("'" + stageLabel(stage) + "' başlatılmadı; tank boşaltılmadan önce tank "
+				+ "sayfasından filtrelemeyi başlatın.");
+		}
+		stage.finishMachine(now);
+		assertRequiredFieldsFilled(stage);
+		stage.finish(OperationData.forStorage(stage.getOperationData()), now);
+	}
+
+	// ======================================================================
+	// Tankta filtreleme
+	// ======================================================================
+
+	/**
+	 * Tankta dinlenmedeki grup.
+	 * @param quantity tanka giren (girisin miktari, tankin biriminde)
+	 * @param filteringProcessId tankta yapilan asama (filtreleme); hatta yoksa null
+	 */
+	record RestingBatch(long batchProcessId, long productionBatchId, String batchCode, BigDecimal quantity,
+		LocalDateTime enteredAt, Long filteringProcessId, String filteringStageName, LocalDateTime filteringStartedAt) {
+	}
+
+	@Transactional(readOnly = true)
+	List<RestingBatch> restingBatches(long unitId) {
+		return processes.findRestingIn(unitId).stream().map(p -> {
+			Optional<BatchProcess> stage = tankStage(p);
+			JsonNode quantity = p.getOperationData() == null ? null : p.getOperationData().get("quantity");
+			return new RestingBatch(p.getId(), p.getProductionBatchId(),
+				batches.findById(p.getProductionBatchId()).map(ProductionBatch::getBatchCode).orElse(null),
+				OperationData.decimal(quantity), p.getApprovedAt() != null ? p.getApprovedAt() : p.getSubmittedAt(),
+				stage.map(BatchProcess::getId).orElse(null), stage.map(this::stageLabel).orElse(null),
+				stage.map(BatchProcess::getMachineStartedAt).orElse(null));
+		}).toList();
+	}
+
+	/** Tanktaki butun gruplarin filtreleme asamasi ayni anda baslar (kronometre); Boşalt bitirir. */
+	@Transactional
+	void startTankFiltering(long unitId) {
+		List<BatchProcess> resting = processes.findRestingIn(unitId);
+		if (resting.isEmpty()) {
+			throw new BusinessRuleException("Tankta dinlenmede grup yok; filtreleme başlatılamaz.");
+		}
+		List<BatchProcess> stages = resting.stream().map(this::tankStage).flatMap(Optional::stream).toList();
+		if (stages.isEmpty()) {
+			throw new BusinessRuleException("Tanktaki grupların hattında ön dinlenmeden sonra kronometreli aşama yok.");
+		}
+		if (stages.stream().anyMatch(s -> s.getMachineStartedAt() != null)) {
+			throw new BusinessRuleException("Bu tankta filtreleme zaten başladı; Boşalt ile biter.");
+		}
+		LocalDateTime now = Timestamps.now();
+		for (BatchProcess stage : stages) {
+			stage.startMachine(now);
+			syncBatchStatus(stage.getProductionBatchId());
+		}
+	}
+
+	/** Filtreleme surerken tanka yeni grup girmez: Boşalt'ta kapanacak gruplar baslangicta belli olur. */
+	private void assertTankNotFiltering(BatchProcess process, List<Extension> extensions, JsonNode data) {
+		if (!StageExtensions.rests(extensions) || data == null) {
+			return;
+		}
+		Long unitId = new OperationData(data).id("storage_unit_id");
+		if (unitId == null) {
+			return;
+		}
+		boolean filtering = processes.findRestingIn(unitId).stream()
+			.filter(p -> !p.getId().equals(process.getId()))
+			.map(this::tankStage).flatMap(Optional::stream)
+			.anyMatch(s -> s.getMachineStartedAt() != null);
+		if (filtering) {
+			throw new BusinessRuleException("Bu tankta filtreleme sürüyor; tanka giriş Boşalt'tan sonra yapılabilir.");
+		}
+	}
+
+	/** On dinlenme asamasindan hemen sonraki asama kronometreliyse: o asama tankta yapilir (filtreleme). */
+	private Optional<BatchProcess> tankStage(BatchProcess preSettling) {
+		Map<Long, Stage> stages = siblingStages(preSettling);
+		int order = stages.get(preSettling.getProductionStageId()).stageOrder();
+		return siblings(preSettling, stages).stream()
+			.filter(s -> stages.get(s.getProductionStageId()).stageOrder() > order)
+			.findFirst()
+			.filter(s -> StageExtensions.timed(extensions(s)));
+	}
+
+	/** Tankta yapilan asamanin kronometresi tank sayfasindan baslar, Boşalt ile biter. */
+	private void assertNotTankStage(BatchProcess process) {
+		Map<Long, Stage> stages = siblingStages(process);
+		int order = stages.get(process.getProductionStageId()).stageOrder();
+		List<BatchProcess> before = siblings(process, stages).stream()
+			.filter(s -> stages.get(s.getProductionStageId()).stageOrder() < order).toList();
+		if (!before.isEmpty() && StageExtensions.rests(extensions(before.getLast()))) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' ön dinlendirme tankında yapılır; "
+				+ "kronometre tank sayfasından başlatılır, Boşalt ile biter.");
+		}
 	}
 
 	// ======================================================================
@@ -389,6 +497,7 @@ class BatchProcessService {
 	private void submitForApproval(BatchProcess p, JsonNode data, CurrentUser actor, LocalDateTime now) {
 		p.markStarted(now);
 		assertRequiredFieldsFilled(p);
+		assertTankNotFiltering(p, extensions(p), data);
 		dryRun(p, data).submit(OperationData.forStorage(data), actor.id(), now);
 	}
 
@@ -430,6 +539,7 @@ class BatchProcessService {
 		assertAwaitingApproval(process);
 		assertPreviousStagesDone(process);
 		List<Extension> extensions = extensions(process);
+		assertTankNotFiltering(process, extensions, process.getOperationData());
 		handlers.dispatch(context(process), extensions, new OperationData(process.getOperationData()));
 		recordReview(process, "approved", reviewer, note);
 		process.approve(reviewer.id(), Timestamps.now());

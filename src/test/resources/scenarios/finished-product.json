@@ -1620,8 +1620,8 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 15,
-          "slot_name" : "K2",
+          "slot_id" : 14,
+          "slot_name" : "K1",
           "quantity" : 14
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -2148,8 +2148,8 @@
         "id" : 17,
         "name" : "Klasik Blend 0.5 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 0,
-        "stored_stock" : 0,
+        "total_stock" : 7,
+        "stored_stock" : 7,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -2183,15 +2183,21 @@
           "packaging_item_type" : "LABEL",
           "quantity" : 1
         } ],
-        "locations" : [ ],
+        "locations" : [ {
+          "storage_id" : 3,
+          "storage_name" : "Sevkiyat Deposu",
+          "slot_id" : 23,
+          "slot_name" : "L2",
+          "quantity" : 7
+        } ],
         "created_at" : "2025-11-06T07:00:00Z",
         "updated_at" : "2026-11-07T12:00:01Z"
       }, {
         "id" : 16,
         "name" : "Klasik Blend 0.5 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 19,
-        "stored_stock" : 19,
+        "total_stock" : 5,
+        "stored_stock" : 5,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -2228,9 +2234,9 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 19,
-          "slot_name" : "Y3",
-          "quantity" : 19
+          "slot_id" : 17,
+          "slot_name" : "Y1",
+          "quantity" : 5
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
         "updated_at" : "2026-11-07T12:00:01Z"
@@ -2276,8 +2282,8 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 15,
-          "slot_name" : "K2",
+          "slot_id" : 14,
+          "slot_name" : "K1",
           "quantity" : 14
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -2370,9 +2376,9 @@
         "id" : 12,
         "name" : "Naturel Sızma Ayvalık 0.4 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 952,
-        "stored_stock" : 952,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 541,
+        "stored_stock" : 7,
+        "awaiting_shipment_stock" : 534,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2406,33 +2412,21 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 7,
-          "slot_name" : "D1",
-          "quantity" : 122
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 22,
           "slot_name" : "L1",
-          "quantity" : 600
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 23,
-          "slot_name" : "L2",
-          "quantity" : 230
+          "quantity" : 7
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T12:48:00Z"
+        "updated_at" : "2026-11-04T11:58:00Z"
       }, {
         "id" : 11,
         "name" : "Naturel Sızma Ayvalık 0.4 750ml",
         "volume_litre" : 0.75,
-        "total_stock" : 861,
-        "stored_stock" : 717,
-        "awaiting_shipment_stock" : 144,
+        "total_stock" : 1211,
+        "stored_stock" : 617,
+        "awaiting_shipment_stock" : 594,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2470,29 +2464,23 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 6,
           "slot_name" : "C1",
-          "quantity" : 21
+          "quantity" : 103
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 20,
           "slot_name" : "B1",
-          "quantity" : 600
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 21,
-          "slot_name" : "B2",
-          "quantity" : 96
+          "quantity" : 514
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T14:55:00Z"
+        "updated_at" : "2026-11-05T11:19:00Z"
       }, {
         "id" : 10,
         "name" : "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1708,
-        "stored_stock" : 1708,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 1656,
+        "stored_stock" : 132,
+        "awaiting_shipment_stock" : 1524,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2526,39 +2514,21 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 5,
-          "slot_name" : "B2",
-          "quantity" : 10
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 995
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 18,
-          "slot_name" : "Y2",
-          "quantity" : 505
-        }, {
           "storage_id" : 2,
           "storage_name" : "Soğuk Depo",
           "slot_id" : 11,
           "slot_name" : "B1",
-          "quantity" : 198
+          "quantity" : 132
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T08:36:00Z"
+        "updated_at" : "2026-11-01T08:37:00Z"
       }, {
         "id" : 9,
         "name" : "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 2131,
-        "stored_stock" : 2131,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 2335,
+        "stored_stock" : 2299,
+        "awaiting_shipment_stock" : 36,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2596,7 +2566,7 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 115
+          "quantity" : 488
         }, {
           "storage_id" : 1,
           "storage_name" : "Ana Depo",
@@ -2608,34 +2578,40 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 3,
           "slot_name" : "A3",
-          "quantity" : 178
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 14,
-          "slot_name" : "K1",
-          "quantity" : 799
+          "quantity" : 500
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 184
+          "quantity" : 60
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 355
+          "quantity" : 152
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 9,
+          "slot_name" : "A1",
+          "quantity" : 300
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
+          "quantity" : 299
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-06T08:25:00Z"
+        "updated_at" : "2026-11-03T08:45:00Z"
       }, {
         "id" : 8,
         "name" : "Naturel Sızma Gemlik 0.8 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 21,
-        "stored_stock" : 21,
+        "total_stock" : 10,
+        "stored_stock" : 10,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -2670,26 +2646,20 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 7,
-          "slot_name" : "D1",
-          "quantity" : 1
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 23,
-          "slot_name" : "L2",
-          "quantity" : 20
+          "slot_id" : 22,
+          "slot_name" : "L1",
+          "quantity" : 10
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-03T08:32:00Z"
+        "updated_at" : "2026-10-08T08:29:00Z"
       }, {
         "id" : 7,
         "name" : "Naturel Sızma Gemlik 0.8 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 7,
-        "stored_stock" : 7,
+        "total_stock" : 0,
+        "stored_stock" : 0,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -2723,27 +2693,15 @@
           "packaging_item_type" : "LABEL",
           "quantity" : 1
         } ],
-        "locations" : [ {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 5
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 11,
-          "slot_name" : "B1",
-          "quantity" : 2
-        } ],
+        "locations" : [ ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-03T08:32:00Z"
+        "updated_at" : "2026-10-06T08:14:00Z"
       }, {
         "id" : 6,
         "name" : "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 9,
-        "stored_stock" : 9,
+        "total_stock" : 16,
+        "stored_stock" : 16,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -2778,33 +2736,27 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 1,
-          "slot_name" : "A1",
-          "quantity" : 5
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 3
+          "quantity" : 15
         }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 16,
-          "slot_name" : "K3",
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
           "quantity" : 1
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-09-27T08:36:00Z"
+        "updated_at" : "2026-10-05T08:25:00Z"
       }, {
         "id" : 5,
         "name" : "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre" : 5.0,
-        "total_stock" : 142,
-        "stored_stock" : 142,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 400,
+        "stored_stock" : 28,
+        "awaiting_shipment_stock" : 372,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2836,22 +2788,16 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 8,
           "slot_name" : "E1",
-          "quantity" : 50
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 25,
-          "slot_name" : "T2",
-          "quantity" : 92
+          "quantity" : 28
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T09:38:00Z"
+        "updated_at" : "2026-11-06T08:19:00Z"
       }, {
         "id" : 4,
         "name" : "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 427,
-        "stored_stock" : 427,
+        "total_stock" : 842,
+        "stored_stock" : 842,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -2890,23 +2836,29 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 7,
           "slot_name" : "D1",
-          "quantity" : 77
+          "quantity" : 200
+        }, {
+          "storage_id" : 3,
+          "storage_name" : "Sevkiyat Deposu",
+          "slot_id" : 22,
+          "slot_name" : "L1",
+          "quantity" : 49
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 23,
           "slot_name" : "L2",
-          "quantity" : 350
+          "quantity" : 593
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T11:39:00Z"
+        "updated_at" : "2026-11-01T15:10:00Z"
       }, {
         "id" : 3,
         "name" : "Naturel Sızma Gemlik 0.3 750ml",
         "volume_litre" : 0.75,
-        "total_stock" : 499,
-        "stored_stock" : 499,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 189,
+        "stored_stock" : 33,
+        "awaiting_shipment_stock" : 156,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2944,23 +2896,23 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 6,
           "slot_name" : "C1",
-          "quantity" : 139
+          "quantity" : 16
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 21,
-          "slot_name" : "B2",
-          "quantity" : 360
+          "slot_id" : 20,
+          "slot_name" : "B1",
+          "quantity" : 17
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-27T12:48:00Z"
+        "updated_at" : "2026-11-06T08:19:00Z"
       }, {
         "id" : 2,
         "name" : "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1762,
-        "stored_stock" : 1690,
-        "awaiting_shipment_stock" : 72,
+        "total_stock" : 2339,
+        "stored_stock" : 2339,
+        "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -2998,28 +2950,46 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 4,
           "slot_name" : "B1",
-          "quantity" : 286
+          "quantity" : 300
+        }, {
+          "storage_id" : 1,
+          "storage_name" : "Ana Depo",
+          "slot_id" : 5,
+          "slot_name" : "B2",
+          "quantity" : 300
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 18,
           "slot_name" : "Y2",
-          "quantity" : 423
+          "quantity" : 495
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 19,
           "slot_name" : "Y3",
-          "quantity" : 981
+          "quantity" : 1000
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 11,
+          "slot_name" : "B1",
+          "quantity" : 44
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 12,
+          "slot_name" : "B2",
+          "quantity" : 200
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-04T14:27:00Z"
+        "updated_at" : "2026-11-03T14:53:00Z"
       }, {
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 4124,
-        "stored_stock" : 4124,
+        "total_stock" : 2235,
+        "stored_stock" : 2235,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -3058,40 +3028,28 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 380
+          "quantity" : 12
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 698
+          "quantity" : 1471
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 1302
+          "quantity" : 529
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 1144
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 9,
-          "slot_name" : "A1",
-          "quantity" : 300
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 10,
-          "slot_name" : "A2",
-          "quantity" : 300
+          "quantity" : 223
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T16:25:00Z"
+        "updated_at" : "2026-11-05T14:35:00Z"
       } ]
     },
     "save" : null
@@ -3316,8 +3274,8 @@
         "id" : 17,
         "name" : "Klasik Blend 0.5 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 0,
-        "stored_stock" : 0,
+        "total_stock" : 7,
+        "stored_stock" : 7,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -3351,15 +3309,21 @@
           "packaging_item_type" : "LABEL",
           "quantity" : 1
         } ],
-        "locations" : [ ],
+        "locations" : [ {
+          "storage_id" : 3,
+          "storage_name" : "Sevkiyat Deposu",
+          "slot_id" : 23,
+          "slot_name" : "L2",
+          "quantity" : 7
+        } ],
         "created_at" : "2025-11-06T07:00:00Z",
         "updated_at" : "2026-11-07T12:00:01Z"
       }, {
         "id" : 16,
         "name" : "Klasik Blend 0.5 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 19,
-        "stored_stock" : 19,
+        "total_stock" : 5,
+        "stored_stock" : 5,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -3396,9 +3360,9 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 19,
-          "slot_name" : "Y3",
-          "quantity" : 19
+          "slot_id" : 17,
+          "slot_name" : "Y1",
+          "quantity" : 5
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
         "updated_at" : "2026-11-07T12:00:01Z"
@@ -3444,8 +3408,8 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 15,
-          "slot_name" : "K2",
+          "slot_id" : 14,
+          "slot_name" : "K1",
           "quantity" : 14
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -3538,9 +3502,9 @@
         "id" : 12,
         "name" : "Naturel Sızma Ayvalık 0.4 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 952,
-        "stored_stock" : 952,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 541,
+        "stored_stock" : 7,
+        "awaiting_shipment_stock" : 534,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -3574,33 +3538,21 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 7,
-          "slot_name" : "D1",
-          "quantity" : 122
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 22,
           "slot_name" : "L1",
-          "quantity" : 600
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 23,
-          "slot_name" : "L2",
-          "quantity" : 230
+          "quantity" : 7
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T12:48:00Z"
+        "updated_at" : "2026-11-04T11:58:00Z"
       }, {
         "id" : 11,
         "name" : "Naturel Sızma Ayvalık 0.4 750ml",
         "volume_litre" : 0.75,
-        "total_stock" : 861,
-        "stored_stock" : 717,
-        "awaiting_shipment_stock" : 144,
+        "total_stock" : 1211,
+        "stored_stock" : 617,
+        "awaiting_shipment_stock" : 594,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -3638,29 +3590,23 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 6,
           "slot_name" : "C1",
-          "quantity" : 21
+          "quantity" : 103
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 20,
           "slot_name" : "B1",
-          "quantity" : 600
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 21,
-          "slot_name" : "B2",
-          "quantity" : 96
+          "quantity" : 514
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T14:55:00Z"
+        "updated_at" : "2026-11-05T11:19:00Z"
       }, {
         "id" : 10,
         "name" : "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1708,
-        "stored_stock" : 1708,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 1656,
+        "stored_stock" : 132,
+        "awaiting_shipment_stock" : 1524,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -3694,39 +3640,21 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 5,
-          "slot_name" : "B2",
-          "quantity" : 10
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 995
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 18,
-          "slot_name" : "Y2",
-          "quantity" : 505
-        }, {
           "storage_id" : 2,
           "storage_name" : "Soğuk Depo",
           "slot_id" : 11,
           "slot_name" : "B1",
-          "quantity" : 198
+          "quantity" : 132
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T08:36:00Z"
+        "updated_at" : "2026-11-01T08:37:00Z"
       }, {
         "id" : 9,
         "name" : "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 2131,
-        "stored_stock" : 2131,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 2335,
+        "stored_stock" : 2299,
+        "awaiting_shipment_stock" : 36,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -3764,7 +3692,7 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 115
+          "quantity" : 488
         }, {
           "storage_id" : 1,
           "storage_name" : "Ana Depo",
@@ -3776,34 +3704,40 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 3,
           "slot_name" : "A3",
-          "quantity" : 178
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 14,
-          "slot_name" : "K1",
-          "quantity" : 799
+          "quantity" : 500
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 184
+          "quantity" : 60
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 355
+          "quantity" : 152
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 9,
+          "slot_name" : "A1",
+          "quantity" : 300
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
+          "quantity" : 299
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-06T08:25:00Z"
+        "updated_at" : "2026-11-03T08:45:00Z"
       }, {
         "id" : 8,
         "name" : "Naturel Sızma Gemlik 0.8 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 21,
-        "stored_stock" : 21,
+        "total_stock" : 10,
+        "stored_stock" : 10,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -3838,26 +3772,20 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 7,
-          "slot_name" : "D1",
-          "quantity" : 1
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 23,
-          "slot_name" : "L2",
-          "quantity" : 20
+          "slot_id" : 22,
+          "slot_name" : "L1",
+          "quantity" : 10
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-03T08:32:00Z"
+        "updated_at" : "2026-10-08T08:29:00Z"
       }, {
         "id" : 7,
         "name" : "Naturel Sızma Gemlik 0.8 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 7,
-        "stored_stock" : 7,
+        "total_stock" : 0,
+        "stored_stock" : 0,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -3891,27 +3819,15 @@
           "packaging_item_type" : "LABEL",
           "quantity" : 1
         } ],
-        "locations" : [ {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 5
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 11,
-          "slot_name" : "B1",
-          "quantity" : 2
-        } ],
+        "locations" : [ ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-03T08:32:00Z"
+        "updated_at" : "2026-10-06T08:14:00Z"
       }, {
         "id" : 6,
         "name" : "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 9,
-        "stored_stock" : 9,
+        "total_stock" : 16,
+        "stored_stock" : 16,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -3946,33 +3862,27 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 1,
-          "slot_name" : "A1",
-          "quantity" : 5
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 3
+          "quantity" : 15
         }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 16,
-          "slot_name" : "K3",
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
           "quantity" : 1
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-09-27T08:36:00Z"
+        "updated_at" : "2026-10-05T08:25:00Z"
       }, {
         "id" : 5,
         "name" : "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre" : 5.0,
-        "total_stock" : 142,
-        "stored_stock" : 142,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 400,
+        "stored_stock" : 28,
+        "awaiting_shipment_stock" : 372,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -4004,22 +3914,16 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 8,
           "slot_name" : "E1",
-          "quantity" : 50
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 25,
-          "slot_name" : "T2",
-          "quantity" : 92
+          "quantity" : 28
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T09:38:00Z"
+        "updated_at" : "2026-11-06T08:19:00Z"
       }, {
         "id" : 4,
         "name" : "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 427,
-        "stored_stock" : 427,
+        "total_stock" : 842,
+        "stored_stock" : 842,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -4058,23 +3962,29 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 7,
           "slot_name" : "D1",
-          "quantity" : 77
+          "quantity" : 200
+        }, {
+          "storage_id" : 3,
+          "storage_name" : "Sevkiyat Deposu",
+          "slot_id" : 22,
+          "slot_name" : "L1",
+          "quantity" : 49
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 23,
           "slot_name" : "L2",
-          "quantity" : 350
+          "quantity" : 593
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T11:39:00Z"
+        "updated_at" : "2026-11-01T15:10:00Z"
       }, {
         "id" : 3,
         "name" : "Naturel Sızma Gemlik 0.3 750ml",
         "volume_litre" : 0.75,
-        "total_stock" : 499,
-        "stored_stock" : 499,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 189,
+        "stored_stock" : 33,
+        "awaiting_shipment_stock" : 156,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -4112,23 +4022,23 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 6,
           "slot_name" : "C1",
-          "quantity" : 139
+          "quantity" : 16
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 21,
-          "slot_name" : "B2",
-          "quantity" : 360
+          "slot_id" : 20,
+          "slot_name" : "B1",
+          "quantity" : 17
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-27T12:48:00Z"
+        "updated_at" : "2026-11-06T08:19:00Z"
       }, {
         "id" : 2,
         "name" : "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1762,
-        "stored_stock" : 1690,
-        "awaiting_shipment_stock" : 72,
+        "total_stock" : 2339,
+        "stored_stock" : 2339,
+        "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -4166,28 +4076,46 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 4,
           "slot_name" : "B1",
-          "quantity" : 286
+          "quantity" : 300
+        }, {
+          "storage_id" : 1,
+          "storage_name" : "Ana Depo",
+          "slot_id" : 5,
+          "slot_name" : "B2",
+          "quantity" : 300
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 18,
           "slot_name" : "Y2",
-          "quantity" : 423
+          "quantity" : 495
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 19,
           "slot_name" : "Y3",
-          "quantity" : 981
+          "quantity" : 1000
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 11,
+          "slot_name" : "B1",
+          "quantity" : 44
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 12,
+          "slot_name" : "B2",
+          "quantity" : 200
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-04T14:27:00Z"
+        "updated_at" : "2026-11-03T14:53:00Z"
       }, {
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 4124,
-        "stored_stock" : 4124,
+        "total_stock" : 2235,
+        "stored_stock" : 2235,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -4226,40 +4154,28 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 380
+          "quantity" : 12
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 698
+          "quantity" : 1471
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 1302
+          "quantity" : 529
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 1144
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 9,
-          "slot_name" : "A1",
-          "quantity" : 300
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 10,
-          "slot_name" : "A2",
-          "quantity" : 300
+          "quantity" : 223
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T16:25:00Z"
+        "updated_at" : "2026-11-05T14:35:00Z"
       } ]
     },
     "save" : null
@@ -4284,8 +4200,8 @@
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 4124,
-        "stored_stock" : 4124,
+        "total_stock" : 2235,
+        "stored_stock" : 2235,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -4330,40 +4246,28 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 380
+          "quantity" : 12
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 698
+          "quantity" : 1471
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 1302
+          "quantity" : 529
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 1144
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 9,
-          "slot_name" : "A1",
-          "quantity" : 300
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 10,
-          "slot_name" : "A2",
-          "quantity" : 300
+          "quantity" : 223
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T16:25:00Z"
+        "updated_at" : "2026-11-05T14:35:00Z"
       }
     },
     "save" : null
@@ -4378,9 +4282,9 @@
         "id" : 9,
         "name" : "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 2131,
-        "stored_stock" : 2131,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 2335,
+        "stored_stock" : 2299,
+        "awaiting_shipment_stock" : 36,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -4424,7 +4328,7 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 115
+          "quantity" : 488
         }, {
           "storage_id" : 1,
           "storage_name" : "Ana Depo",
@@ -4436,28 +4340,34 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 3,
           "slot_name" : "A3",
-          "quantity" : 178
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 14,
-          "slot_name" : "K1",
-          "quantity" : 799
+          "quantity" : 500
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 184
+          "quantity" : 60
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 355
+          "quantity" : 152
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 9,
+          "slot_name" : "A1",
+          "quantity" : 300
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
+          "quantity" : 299
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-06T08:25:00Z"
+        "updated_at" : "2026-11-03T08:45:00Z"
       }
     },
     "save" : null
@@ -4472,9 +4382,9 @@
         "id" : 10,
         "name" : "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1708,
-        "stored_stock" : 1708,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 1656,
+        "stored_stock" : 132,
+        "awaiting_shipment_stock" : 1524,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -4514,32 +4424,14 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 5,
-          "slot_name" : "B2",
-          "quantity" : 10
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 995
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 18,
-          "slot_name" : "Y2",
-          "quantity" : 505
-        }, {
           "storage_id" : 2,
           "storage_name" : "Soğuk Depo",
           "slot_id" : 11,
           "slot_name" : "B1",
-          "quantity" : 198
+          "quantity" : 132
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T08:36:00Z"
+        "updated_at" : "2026-11-01T08:37:00Z"
       }
     },
     "save" : null
@@ -4903,8 +4795,8 @@
         "id" : 17,
         "name" : "Klasik Blend 0.5 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 0,
-        "stored_stock" : 0,
+        "total_stock" : 7,
+        "stored_stock" : 7,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -4938,15 +4830,21 @@
           "packaging_item_type" : "LABEL",
           "quantity" : 1
         } ],
-        "locations" : [ ],
+        "locations" : [ {
+          "storage_id" : 3,
+          "storage_name" : "Sevkiyat Deposu",
+          "slot_id" : 23,
+          "slot_name" : "L2",
+          "quantity" : 7
+        } ],
         "created_at" : "2025-11-06T07:00:00Z",
         "updated_at" : "2026-11-07T12:00:01Z"
       }, {
         "id" : 16,
         "name" : "Klasik Blend 0.5 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 19,
-        "stored_stock" : 19,
+        "total_stock" : 5,
+        "stored_stock" : 5,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -4983,9 +4881,9 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 19,
-          "slot_name" : "Y3",
-          "quantity" : 19
+          "slot_id" : 17,
+          "slot_name" : "Y1",
+          "quantity" : 5
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
         "updated_at" : "2026-11-07T12:00:01Z"
@@ -5031,8 +4929,8 @@
         "locations" : [ {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 15,
-          "slot_name" : "K2",
+          "slot_id" : 14,
+          "slot_name" : "K1",
           "quantity" : 14
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -5125,9 +5023,9 @@
         "id" : 12,
         "name" : "Naturel Sızma Ayvalık 0.4 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 952,
-        "stored_stock" : 952,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 541,
+        "stored_stock" : 7,
+        "awaiting_shipment_stock" : 534,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5161,33 +5059,21 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 7,
-          "slot_name" : "D1",
-          "quantity" : 122
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 22,
           "slot_name" : "L1",
-          "quantity" : 600
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 23,
-          "slot_name" : "L2",
-          "quantity" : 230
+          "quantity" : 7
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T12:48:00Z"
+        "updated_at" : "2026-11-04T11:58:00Z"
       }, {
         "id" : 11,
         "name" : "Naturel Sızma Ayvalık 0.4 750ml",
         "volume_litre" : 0.75,
-        "total_stock" : 861,
-        "stored_stock" : 717,
-        "awaiting_shipment_stock" : 144,
+        "total_stock" : 1211,
+        "stored_stock" : 617,
+        "awaiting_shipment_stock" : 594,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5225,29 +5111,23 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 6,
           "slot_name" : "C1",
-          "quantity" : 21
+          "quantity" : 103
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 20,
           "slot_name" : "B1",
-          "quantity" : 600
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 21,
-          "slot_name" : "B2",
-          "quantity" : 96
+          "quantity" : 514
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T14:55:00Z"
+        "updated_at" : "2026-11-05T11:19:00Z"
       }, {
         "id" : 10,
         "name" : "Naturel Sızma Ayvalık 0.4 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1708,
-        "stored_stock" : 1708,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 1656,
+        "stored_stock" : 132,
+        "awaiting_shipment_stock" : 1524,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5281,39 +5161,21 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 5,
-          "slot_name" : "B2",
-          "quantity" : 10
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 995
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 18,
-          "slot_name" : "Y2",
-          "quantity" : 505
-        }, {
           "storage_id" : 2,
           "storage_name" : "Soğuk Depo",
           "slot_id" : 11,
           "slot_name" : "B1",
-          "quantity" : 198
+          "quantity" : 132
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T08:36:00Z"
+        "updated_at" : "2026-11-01T08:37:00Z"
       }, {
         "id" : 9,
         "name" : "Naturel Sızma Ayvalık 0.4 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 2131,
-        "stored_stock" : 2131,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 2335,
+        "stored_stock" : 2299,
+        "awaiting_shipment_stock" : 36,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5351,7 +5213,7 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 115
+          "quantity" : 488
         }, {
           "storage_id" : 1,
           "storage_name" : "Ana Depo",
@@ -5363,34 +5225,40 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 3,
           "slot_name" : "A3",
-          "quantity" : 178
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 14,
-          "slot_name" : "K1",
-          "quantity" : 799
+          "quantity" : 500
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 184
+          "quantity" : 60
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 355
+          "quantity" : 152
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 9,
+          "slot_name" : "A1",
+          "quantity" : 300
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
+          "quantity" : 299
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-06T08:25:00Z"
+        "updated_at" : "2026-11-03T08:45:00Z"
       }, {
         "id" : 8,
         "name" : "Naturel Sızma Gemlik 0.8 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 21,
-        "stored_stock" : 21,
+        "total_stock" : 10,
+        "stored_stock" : 10,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -5425,26 +5293,20 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 7,
-          "slot_name" : "D1",
-          "quantity" : 1
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 23,
-          "slot_name" : "L2",
-          "quantity" : 20
+          "slot_id" : 22,
+          "slot_name" : "L1",
+          "quantity" : 10
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-03T08:32:00Z"
+        "updated_at" : "2026-10-08T08:29:00Z"
       }, {
         "id" : 7,
         "name" : "Naturel Sızma Gemlik 0.8 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 7,
-        "stored_stock" : 7,
+        "total_stock" : 0,
+        "stored_stock" : 0,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -5478,27 +5340,15 @@
           "packaging_item_type" : "LABEL",
           "quantity" : 1
         } ],
-        "locations" : [ {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 17,
-          "slot_name" : "Y1",
-          "quantity" : 5
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 11,
-          "slot_name" : "B1",
-          "quantity" : 2
-        } ],
+        "locations" : [ ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-03T08:32:00Z"
+        "updated_at" : "2026-10-06T08:14:00Z"
       }, {
         "id" : 6,
         "name" : "Naturel Sızma Gemlik 0.8 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 9,
-        "stored_stock" : 9,
+        "total_stock" : 16,
+        "stored_stock" : 16,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -5533,33 +5383,27 @@
           "quantity" : 1
         } ],
         "locations" : [ {
-          "storage_id" : 1,
-          "storage_name" : "Ana Depo",
-          "slot_id" : 1,
-          "slot_name" : "A1",
-          "quantity" : 5
-        }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 3
+          "quantity" : 15
         }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 16,
-          "slot_name" : "K3",
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 10,
+          "slot_name" : "A2",
           "quantity" : 1
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-09-27T08:36:00Z"
+        "updated_at" : "2026-10-05T08:25:00Z"
       }, {
         "id" : 5,
         "name" : "Naturel Sızma Gemlik 0.3 5L",
         "volume_litre" : 5.0,
-        "total_stock" : 142,
-        "stored_stock" : 142,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 400,
+        "stored_stock" : 28,
+        "awaiting_shipment_stock" : 372,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5591,22 +5435,16 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 8,
           "slot_name" : "E1",
-          "quantity" : 50
-        }, {
-          "storage_id" : 3,
-          "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 25,
-          "slot_name" : "T2",
-          "quantity" : 92
+          "quantity" : 28
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T09:38:00Z"
+        "updated_at" : "2026-11-06T08:19:00Z"
       }, {
         "id" : 4,
         "name" : "Naturel Sızma Gemlik 0.3 1L",
         "volume_litre" : 1.0,
-        "total_stock" : 427,
-        "stored_stock" : 427,
+        "total_stock" : 842,
+        "stored_stock" : 842,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -5645,23 +5483,29 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 7,
           "slot_name" : "D1",
-          "quantity" : 77
+          "quantity" : 200
+        }, {
+          "storage_id" : 3,
+          "storage_name" : "Sevkiyat Deposu",
+          "slot_id" : 22,
+          "slot_name" : "L1",
+          "quantity" : 49
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 23,
           "slot_name" : "L2",
-          "quantity" : 350
+          "quantity" : 593
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-05T11:39:00Z"
+        "updated_at" : "2026-11-01T15:10:00Z"
       }, {
         "id" : 3,
         "name" : "Naturel Sızma Gemlik 0.3 750ml",
         "volume_litre" : 0.75,
-        "total_stock" : 499,
-        "stored_stock" : 499,
-        "awaiting_shipment_stock" : null,
+        "total_stock" : 189,
+        "stored_stock" : 33,
+        "awaiting_shipment_stock" : 156,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5699,23 +5543,23 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 6,
           "slot_name" : "C1",
-          "quantity" : 139
+          "quantity" : 16
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
-          "slot_id" : 21,
-          "slot_name" : "B2",
-          "quantity" : 360
+          "slot_id" : 20,
+          "slot_name" : "B1",
+          "quantity" : 17
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-27T12:48:00Z"
+        "updated_at" : "2026-11-06T08:19:00Z"
       }, {
         "id" : 2,
         "name" : "Naturel Sızma Gemlik 0.3 500ml",
         "volume_litre" : 0.5,
-        "total_stock" : 1762,
-        "stored_stock" : 1690,
-        "awaiting_shipment_stock" : 72,
+        "total_stock" : 2339,
+        "stored_stock" : 2339,
+        "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
         "recipe" : {
@@ -5753,28 +5597,46 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 4,
           "slot_name" : "B1",
-          "quantity" : 286
+          "quantity" : 300
+        }, {
+          "storage_id" : 1,
+          "storage_name" : "Ana Depo",
+          "slot_id" : 5,
+          "slot_name" : "B2",
+          "quantity" : 300
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 18,
           "slot_name" : "Y2",
-          "quantity" : 423
+          "quantity" : 495
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 19,
           "slot_name" : "Y3",
-          "quantity" : 981
+          "quantity" : 1000
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 11,
+          "slot_name" : "B1",
+          "quantity" : 44
+        }, {
+          "storage_id" : 2,
+          "storage_name" : "Soğuk Depo",
+          "slot_id" : 12,
+          "slot_name" : "B2",
+          "quantity" : 200
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-04T14:27:00Z"
+        "updated_at" : "2026-11-03T14:53:00Z"
       }, {
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 4124,
-        "stored_stock" : 4124,
+        "total_stock" : 2235,
+        "stored_stock" : 2235,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -5813,40 +5675,28 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 380
+          "quantity" : 12
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 14,
           "slot_name" : "K1",
-          "quantity" : 698
+          "quantity" : 1471
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 15,
           "slot_name" : "K2",
-          "quantity" : 1302
+          "quantity" : 529
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
           "slot_id" : 16,
           "slot_name" : "K3",
-          "quantity" : 1144
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 9,
-          "slot_name" : "A1",
-          "quantity" : 300
-        }, {
-          "storage_id" : 2,
-          "storage_name" : "Soğuk Depo",
-          "slot_id" : 10,
-          "slot_name" : "A2",
-          "quantity" : 300
+          "quantity" : 223
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T16:25:00Z"
+        "updated_at" : "2026-11-05T14:35:00Z"
       } ]
     },
     "save" : null,
@@ -6239,8 +6089,8 @@
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 4124,
-        "stored_stock" : 4124,
+        "total_stock" : 2235,
+        "stored_stock" : 2235,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 0,
         "is_active" : true,
@@ -6275,7 +6125,7 @@
           "quantity" : 1
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-10-31T16:25:00Z"
+        "updated_at" : "2026-11-05T14:35:00Z"
       }
     },
     "save" : null
@@ -6289,7 +6139,7 @@
     },
     "status" : 422,
     "response" : {
-      "detail" : "'Naturel Sızma Gemlik 0.3 250ml' ürününün fabrikada 4124 şişesi var; hacmi değiştirilemez. Farklı hacim için yeni ürün tanımlayın.",
+      "detail" : "'Naturel Sızma Gemlik 0.3 250ml' ürününün fabrikada 2235 şişesi var; hacmi değiştirilemez. Farklı hacim için yeni ürün tanımlayın.",
       "instance" : "/api/finished-products/1",
       "status" : 422,
       "title" : "Unprocessable Content"

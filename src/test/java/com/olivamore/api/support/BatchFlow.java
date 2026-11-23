@@ -108,6 +108,12 @@ public final class BatchFlow {
 	}
 
 	/** Pirina kalan ciktidir: hesaplanan 4800 - 900.25 = 3899.75, girilen 3500 (sapma -0.1025). */
+	/** Tanktaki gruplarin filtrelemesini (asama 10) baslatir; Boşalt'tan once gerekir. */
+	public void startFiltering(long tank) {
+		Response r = api.post("/api/storage-units/" + tank + "/filtering/start", Map.of());
+		assertThat(r.status()).as(r.body()).isEqualTo(200);
+	}
+
 	public static Map<String, Object> pressing() {
 		return Map.of("input_quantity", 4800, "outputs", List.of(
 			Map.of("product_type_key", "olive_oil", "quantity", OIL),

@@ -235,12 +235,12 @@
           "id" : 1,
           "type" : "nudge",
           "title" : "Sipariş hazırlanmayı bekliyor",
-          "body" : "Sipariş #323 - Selin Aydın • musteri bekliyor",
+          "body" : "Sipariş #321 - Ayşe Karaca • musteri bekliyor",
           "subject_type" : "order",
-          "subject_id" : 323,
+          "subject_id" : 321,
           "is_read" : false,
           "read_at" : null,
-          "created_at" : "2026-11-07T12:00:01Z",
+          "created_at" : "2026-11-07T12:00:00Z",
           "sent_by" : {
             "id" : 1,
             "name" : "Olivamore Admin"
@@ -283,12 +283,12 @@
           "id" : 2,
           "type" : "nudge",
           "title" : "Dolum koşusu bekliyor",
-          "body" : "Naturel Sızma Gemlik 0.3 5L - 258 adet",
+          "body" : "Naturel Sızma Ayvalık 0.4 1L - 534 adet",
           "subject_type" : "finished_product_run",
-          "subject_id" : 443,
+          "subject_id" : 437,
           "is_read" : false,
           "read_at" : null,
-          "created_at" : "2026-11-07T12:00:01Z",
+          "created_at" : "2026-11-07T12:00:00Z",
           "sent_by" : {
             "id" : 7,
             "name" : "Gıda Mühendisi"
@@ -378,10 +378,10 @@
           "title" : "Aşama onay bekliyor",
           "body" : "P-261106-03 - Sıkım Ünitesine Transfer",
           "subject_type" : "batch_process",
-          "subject_id" : 3410,
+          "subject_id" : 3358,
           "is_read" : false,
           "read_at" : null,
-          "created_at" : "2026-11-07T12:00:01Z",
+          "created_at" : "2026-11-07T12:00:00Z",
           "sent_by" : {
             "id" : 7,
             "name" : "Gıda Mühendisi"
@@ -440,7 +440,7 @@
         "subject_id" : 1,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 1,
           "name" : "Olivamore Admin"
@@ -449,12 +449,12 @@
         "id" : 2,
         "type" : "nudge",
         "title" : "Dolum koşusu bekliyor",
-        "body" : "Naturel Sızma Gemlik 0.3 5L - 258 adet",
+        "body" : "Naturel Sızma Ayvalık 0.4 1L - 534 adet",
         "subject_type" : "finished_product_run",
-        "subject_id" : 443,
+        "subject_id" : 437,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 7,
           "name" : "Gıda Mühendisi"
@@ -463,12 +463,12 @@
         "id" : 1,
         "type" : "nudge",
         "title" : "Sipariş hazırlanmayı bekliyor",
-        "body" : "Sipariş #323 - Selin Aydın • musteri bekliyor",
+        "body" : "Sipariş #321 - Ayşe Karaca • musteri bekliyor",
         "subject_type" : "order",
-        "subject_id" : 323,
+        "subject_id" : 321,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 1,
           "name" : "Olivamore Admin"
@@ -499,7 +499,7 @@
         "subject_id" : 1,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 1,
           "name" : "Olivamore Admin"
@@ -508,12 +508,12 @@
         "id" : 2,
         "type" : "nudge",
         "title" : "Dolum koşusu bekliyor",
-        "body" : "Naturel Sızma Gemlik 0.3 5L - 258 adet",
+        "body" : "Naturel Sızma Ayvalık 0.4 1L - 534 adet",
         "subject_type" : "finished_product_run",
-        "subject_id" : 443,
+        "subject_id" : 437,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 7,
           "name" : "Gıda Mühendisi"
@@ -522,12 +522,12 @@
         "id" : 1,
         "type" : "nudge",
         "title" : "Sipariş hazırlanmayı bekliyor",
-        "body" : "Sipariş #323 - Selin Aydın • musteri bekliyor",
+        "body" : "Sipariş #321 - Ayşe Karaca • musteri bekliyor",
         "subject_type" : "order",
-        "subject_id" : 323,
+        "subject_id" : 321,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 1,
           "name" : "Olivamore Admin"
@@ -553,12 +553,12 @@
         "id" : 2,
         "type" : "nudge",
         "title" : "Dolum koşusu bekliyor",
-        "body" : "Naturel Sızma Gemlik 0.3 5L - 258 adet",
+        "body" : "Naturel Sızma Ayvalık 0.4 1L - 534 adet",
         "subject_type" : "finished_product_run",
-        "subject_id" : 443,
+        "subject_id" : 437,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 7,
           "name" : "Gıda Mühendisi"
@@ -649,12 +649,12 @@
         "id" : 1,
         "type" : "nudge",
         "title" : "Sipariş hazırlanmayı bekliyor",
-        "body" : "Sipariş #323 - Selin Aydın • musteri bekliyor",
+        "body" : "Sipariş #321 - Ayşe Karaca • musteri bekliyor",
         "subject_type" : "order",
-        "subject_id" : 323,
+        "subject_id" : 321,
         "is_read" : true,
         "read_at" : "2026-11-07T12:00:01Z",
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 1,
           "name" : "Olivamore Admin"
@@ -674,12 +674,12 @@
         "id" : 1,
         "type" : "nudge",
         "title" : "Sipariş hazırlanmayı bekliyor",
-        "body" : "Sipariş #323 - Selin Aydın • musteri bekliyor",
+        "body" : "Sipariş #321 - Ayşe Karaca • musteri bekliyor",
         "subject_type" : "order",
-        "subject_id" : 323,
+        "subject_id" : 321,
         "is_read" : true,
         "read_at" : "2026-11-07T12:00:01Z",
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 1,
           "name" : "Olivamore Admin"
@@ -802,10 +802,10 @@
         "title" : "Aşama onay bekliyor",
         "body" : "P-261106-03 - Sıkım Ünitesine Transfer",
         "subject_type" : "batch_process",
-        "subject_id" : 3410,
+        "subject_id" : 3358,
         "is_read" : false,
         "read_at" : null,
-        "created_at" : "2026-11-07T12:00:01Z",
+        "created_at" : "2026-11-07T12:00:00Z",
         "sent_by" : {
           "id" : 7,
           "name" : "Gıda Mühendisi"

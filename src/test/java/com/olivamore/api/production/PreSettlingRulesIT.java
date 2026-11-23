@@ -119,6 +119,7 @@ class PreSettlingRulesIT {
 		long oilB = oil(b);
 		flow.rest(a, tank, BatchFlow.OIL);
 		flow.rest(b, tank, BatchFlow.OIL);
+		flow.startFiltering(tank);
 
 		// 1800.5 L girdi, 1700 L cekildi: parti basina 850 L (hedeflere 1000:700 oraninda), 50.25 L fark
 		JsonNode emptied = data(empty(tank, Map.of(first, "1000", second, "700")));
@@ -153,6 +154,7 @@ class PreSettlingRulesIT {
 		long last = tank("final");
 		long batch = batchUpToAnalysis();
 		flow.rest(batch, tank, BatchFlow.OIL);
+		flow.startFiltering(tank);
 
 		assertRule(empty(tank, Map.of(last, "905")), "Çekilen miktar (905 LITRE) tanktakinden (900.25 LITRE) fazla; "
 			+ "fark ölçüm toleransını (%0.5) aşıyor.");
@@ -167,6 +169,46 @@ class PreSettlingRulesIT {
 	}
 
 	@Test
+	void filteringStartsFromTheTankAndEndsWithTheEmptying() {
+		long tank = tank("pre_settling");
+		long last = tank("final");
+		long a = batchUpToAnalysis();
+		long b = batchUpToAnalysis();
+		long late = batchUpToAnalysis();
+		flow.rest(a, tank, "400");
+		flow.rest(b, tank, "400");
+
+		JsonNode resting = data(api.get("/api/storage-units/" + tank + "/resting-batches"));
+		assertThat(resting).hasSize(2);
+		assertThat(resting.get(0).get("batch_code").asString()).isEqualTo(batchCode(a));
+		assertThat(resting.get(0).get("filtering_process_id").asLong()).isEqualTo(processId(a, 10));
+		assertThat(resting.get(0).get("filtering_started_at").isNull()).isTrue();
+		assertRule(api.post(flow.process(a, 10) + "/machine/start", Map.of()), "'Filtreleme' ön dinlendirme tankında "
+			+ "yapılır; kronometre tank sayfasından başlatılır, Boşalt ile biter.");
+		assertRule(empty(tank, Map.of(last, "700")), "'Filtreleme' başlatılmadı; tank boşaltılmadan önce tank "
+			+ "sayfasından filtrelemeyi başlatın.");
+
+		JsonNode started = data(api.post("/api/storage-units/" + tank + "/filtering/start", Map.of()));
+		assertThat(started.get(1).get("filtering_started_at").isNull()).isFalse();
+		assertThat(stageStatus(a, 10)).isEqualTo("in_progress");
+		assertRule(api.post("/api/storage-units/" + tank + "/filtering/start", Map.of()),
+			"Bu tankta filtreleme zaten başladı; Boşalt ile biter.");
+		assertRule(flow.complete(late, 9, Map.of("quantity", "400", "storage_unit_id", tank)),
+			"Bu tankta filtreleme sürüyor; tanka giriş Boşalt'tan sonra yapılabilir.");
+
+		// Yanlis aktarim iptal: o grubun filtrelemesi geri alinir, digerininki surer
+		assertThat(api.patch(flow.process(a, 9), Map.of("status", "waiting")).status()).isEqualTo(200);
+		assertThat(stageStatus(a, 10)).isEqualTo("waiting");
+
+		assertThat(empty(tank, Map.of(last, "390")).status()).isEqualTo(200);
+		assertThat(stageStatus(b, 9)).isEqualTo("completed");
+		assertThat(stageStatus(b, 10)).isEqualTo("completed");
+		assertThat(jdbc.queryForObject("select machine_finished_at is not null from batch_processes where id = ?",
+			Boolean.class, processId(b, 10))).isTrue();
+		assertThat(stageStatus(a, 10)).isEqualTo("waiting");
+	}
+
+	@Test
 	void emptyingIsAllOrNothing() {
 		long tank = tank("pre_settling");
 		long accepting = tank("final");
@@ -176,6 +218,7 @@ class PreSettlingRulesIT {
 		assertThat(allowed.status()).as(allowed.body()).isEqualTo(200);
 		long batch = batchUpToAnalysis();
 		flow.rest(batch, tank, BatchFlow.OIL);
+		flow.startFiltering(tank);
 
 		assertRule(empty(tank, Map.of(accepting, "400", ayvalikOnly, "400")),
 			"Seçilen tank bu spesifik ürünü kabul etmiyor.");
@@ -198,6 +241,7 @@ class PreSettlingRulesIT {
 			+ " from production_batches order by id limit 1 returning id", Long.class, GEMLIK_OIL, tank);
 		long batch = batchUpToAnalysis();
 		flow.rest(batch, tank, BatchFlow.OIL);
+		flow.startFiltering(tank);
 
 		// 999.75 L girdi, 900 L cekildi: payi 100 / 999.75 olan eski materyalin farki tortu olmaz
 		assertThat(empty(tank, Map.of(last, "900")).status()).isEqualTo(200);
