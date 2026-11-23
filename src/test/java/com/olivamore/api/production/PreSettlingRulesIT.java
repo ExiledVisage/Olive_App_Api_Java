@@ -209,6 +209,37 @@ class PreSettlingRulesIT {
 	}
 
 	@Test
+	void yieldIsTheFilteredOilOverThePressedOlive() {
+		long tank = tank("pre_settling");
+		long last = tank("final");
+		long batch = batchUpToAnalysis();
+		flow.rest(batch, tank, BatchFlow.OIL);
+		String yield = flow.process(batch, 12) + "/yield";
+
+		JsonNode before = data(api.get(yield));
+		assertThat(before.get("olive_kg").decimalValue()).isEqualByComparingTo("4800");
+		assertThat(before.get("filtered_oil_kg").isNull()).isTrue();
+		assertThat(before.get("yield_percent").isNull()).isTrue();
+
+		flow.startFiltering(tank);
+		assertThat(empty(tank, Map.of(last, "890")).status()).isEqualTo(200);
+
+		// 890 L x 0.916 = 815.24 kg; 815.24 / 4800 = %16.98
+		JsonNode after = data(api.get(yield));
+		assertThat(after.get("filtered_oil_kg").decimalValue()).isEqualByComparingTo("815.24");
+		assertThat(after.get("yield_percent").decimalValue()).isEqualByComparingTo("16.98");
+
+		JsonNode sent = data(flow.complete(batch, 12, Map.of("yield_percent", 17)));
+		assertThat(sent.get("status").asString()).isEqualTo("awaiting_approval");
+		JsonNode stored = sent.get("operation_data");
+		assertThat(stored.get("yield_percent").decimalValue()).isEqualByComparingTo("17");
+		assertThat(stored.get("calculated_yield_percent").decimalValue()).isEqualByComparingTo("16.98");
+		assertThat(stored.get("deviation_ratio").decimalValue()).isEqualByComparingTo("0.0012");
+		assertRule(flow.complete(batchUpToAnalysis(), 12, Map.of("yield_percent", 17)),
+			"'Randıman Tespiti' aşamasına geçilemez; önceki aşamalar tamamlanmadı: Ön Dinlenme, Filtreleme.");
+	}
+
+	@Test
 	void emptyingIsAllOrNothing() {
 		long tank = tank("pre_settling");
 		long accepting = tank("final");

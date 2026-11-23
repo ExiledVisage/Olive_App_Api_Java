@@ -36,7 +36,8 @@ public class OperationDataRules {
 		"analysis", List.of("material_id", "attributes"),
 		"storage_movement", List.of("action", "material_id", "quantity", "note", "storage_unit_id", "from_storage_unit_id",
 			"to_storage_unit_id"),
-		"pre_settling", List.of("material_id", "quantity", "note", "storage_unit_id"));
+		"pre_settling", List.of("material_id", "quantity", "note", "storage_unit_id"),
+		"yield", List.of("yield_percent"));
 
 	private static final Map<String, List<String>> ROW_FIELDS = Map.of(
 		"outputs", List.of("quantity", "unit", "production_product_type_id", "production_product_id", "product_type_key"),
@@ -66,6 +67,7 @@ public class OperationDataRules {
 				case "analysis" -> analysis(rules, c);
 				case "storage_movement" -> storageMovement(rules, c, extensions);
 				case "pre_settling" -> preSettling(rules, c);
+				case "yield" -> rules.putIfAbsent("yield_percent", () -> c.positive("yield_percent"));
 				default -> {
 				}
 			}

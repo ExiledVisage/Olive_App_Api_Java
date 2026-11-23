@@ -34,4 +34,5 @@ insert into stage_extension_types (id, key, name, description) values
 	(3, 'material_transformation', 'Material Transformation', 'Bu asamada input urun tiplerinden output urun tipleri olusur.'),
 	(4, 'analysis', 'Analysis', 'Bu asamada secilen urun tipi icin analiz islemleri yapilir.'),
 	(5, 'pre_settling', 'Pre-settling', 'Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.'),
-	(6, 'timer', 'Timer', 'Bu asamada makine suresi kronometreyle olculur; makine bitirilmeden asama tamamlanmaz.');
+	(6, 'timer', 'Timer', 'Bu asamada makine suresi kronometreyle olculur; makine bitirilmeden asama tamamlanmaz.'),
+	(7, 'yield', 'Yield', 'Bu asamada randiman hesaplanir: on dinlendirmeden son tanka giden yag / sikima giren zeytin x 100 (kg); elle degistirilirse hesaplanan deger ve sapma orani kaydedilir.');

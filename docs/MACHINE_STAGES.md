@@ -1,6 +1,8 @@
 # Uretim asamalari: sikim, filtreleme, otomatik hesaplar
 
-Durum (2026-11-23): 1 yag KG, 2 kronometre, 3 sikim/ayiklama, 4 filtreleme tankta yapildi; sirada 5 randiman.
+Durum (2026-11-23): 1-5 yapildi (yag KG, kronometre, sikim/ayiklama, filtreleme tankta, randiman); sirada 6 deploy.
+Randiman: `yield` uzantisi (seed: Randiman Tespiti); `GET /api/batch-processes/{id}/yield` hesap, tamamlamada
+`yield_percent` + `calculated_yield_percent`, `deviation_ratio`, `filtered_oil_kg`, `olive_kg`.
 Tankta filtreleme: on dinlenmeden hemen sonraki kronometreli asama; `POST /api/storage-units/{id}/filtering/start`
 baslatir, Boşalt bitirir ve asamayi kapatir; filtreleme surerken tanka giris yok; `GET .../resting-batches`.
 Kalan cikti: material_transformation uzantisinin `remainder_product` ayari (seed: pomace); sunucu ciktiya

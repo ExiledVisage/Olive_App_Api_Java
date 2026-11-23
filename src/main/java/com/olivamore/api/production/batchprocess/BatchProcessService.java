@@ -419,6 +419,11 @@ class BatchProcessService {
 		}).toList();
 	}
 
+	@Transactional(readOnly = true)
+	StageExtensions.YieldCalculation yieldCalculation(long id) {
+		return handlers.yieldOf(find(id).getProductionBatchId());
+	}
+
 	/** Tanktaki butun gruplarin filtreleme asamasi ayni anda baslar (kronometre); Boşalt bitirir. */
 	@Transactional
 	void startTankFiltering(long unitId) {

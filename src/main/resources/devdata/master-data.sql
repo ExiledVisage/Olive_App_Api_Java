@@ -233,8 +233,7 @@ insert into process_type_fields (id, process_type_id, field_key, label, data_typ
 	(4, 5, 'malakasyon_suresi', 'Malakasyon Süresi', 'integer', false, 'dk', 1, true, NULL, NULL),
 	(5, 5, 'malakasyon_sicakligi', 'Malakasyon Sıcaklığı', 'decimal', false, '°C', 2, true, NULL, NULL),
 	(6, 8, 'numune_no', 'Laboratuvar Numune No', 'text', false, NULL, 1, true, NULL, NULL),
-	(7, 10, 'filtre_tipi', 'Filtre Tipi', 'text', false, NULL, 1, true, NULL, NULL),
-	(8, 12, 'randiman', 'Randıman', 'decimal', false, '%', 1, true, NULL, NULL);
+	(7, 10, 'filtre_tipi', 'Filtre Tipi', 'text', false, NULL, 1, true, NULL, NULL);
 
 insert into production_lines (id, name, description) values
 	(1, 'Zeytinyağı Üretim Hattı', 'Zeytinin zeytinyağına ve pirinaya dönüştüğü üretim hattı'),
@@ -305,7 +304,10 @@ insert into production_stage_extensions (id, production_stage_id, stage_extensio
 	(30, 29, 6, true, true, 2),
 	(31, 10, 6, true, true, 1),
 	(32, 22, 6, true, true, 1),
-	(33, 34, 6, true, true, 1);
+	(33, 34, 6, true, true, 1),
+	(34, 12, 7, true, true, 1),
+	(35, 24, 7, true, true, 1),
+	(36, 36, 7, true, true, 1);
 
 -- Sikimda pirina kalan ciktidir: girdi zeytin - zeytinyagi
 insert into production_stage_extension_values (id, production_stage_extension_id, stage_extension_type_field_id, value_text) values

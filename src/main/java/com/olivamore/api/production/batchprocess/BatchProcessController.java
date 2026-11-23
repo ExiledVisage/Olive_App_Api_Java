@@ -1,6 +1,7 @@
 package com.olivamore.api.production.batchprocess;
 
 import com.olivamore.api.identity.CurrentUser;
+import com.olivamore.api.production.batchprocess.stage.StageExtensions;
 import com.olivamore.api.shared.web.DataResponse;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -63,6 +64,13 @@ class BatchProcessController {
 	DataResponse<List<BatchProcessService.RestingBatch>> startFiltering(@PathVariable long id) {
 		processes.startTankFiltering(id);
 		return DataResponse.of(processes.restingBatches(id));
+	}
+
+	/** Partinin randiman hesabi: sikima giren zeytin, son tanka giden yag (kg) ve oran; bilinmeyen null. */
+	@GetMapping("/api/batch-processes/{id}/yield")
+	@PreAuthorize("hasAuthority('batch_process.view')")
+	DataResponse<StageExtensions.YieldCalculation> yieldCalculation(@PathVariable long id) {
+		return DataResponse.of(processes.yieldCalculation(id));
 	}
 
 	/** Kronometreli asamada makine baslar; asama da baslamis olur. */

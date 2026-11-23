@@ -31,6 +31,10 @@ final class DemoApi {
 		return call(user, HttpMethod.POST, path, body);
 	}
 
+	JsonNode get(String user, String path) {
+		return call(user, HttpMethod.GET, path, null);
+	}
+
 	JsonNode patch(String user, String path, Object body) {
 		return call(user, HttpMethod.PATCH, path, body);
 	}

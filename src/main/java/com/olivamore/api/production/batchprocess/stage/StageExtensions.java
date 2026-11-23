@@ -16,15 +16,28 @@ public class StageExtensions {
 	private final AnalysisBatchProcessService analysis;
 	private final StorageMovementBatchProcessService storageMovement;
 	private final PreSettlingBatchProcessService preSettling;
+	private final YieldBatchProcessService yield;
 
 	StageExtensions(WeighingBatchProcessService weighing, MaterialTransformationBatchProcessService transformation,
 		AnalysisBatchProcessService analysis, StorageMovementBatchProcessService storageMovement,
-		PreSettlingBatchProcessService preSettling) {
+		PreSettlingBatchProcessService preSettling, YieldBatchProcessService yield) {
 		this.weighing = weighing;
 		this.transformation = transformation;
 		this.analysis = analysis;
 		this.storageMovement = storageMovement;
 		this.preSettling = preSettling;
+		this.yield = yield;
+	}
+
+	/**
+	 * Partinin randiman hesabi (kg): sikima giren zeytin, son tanka giden yag, oran (%); bilinmeyen null.
+	 */
+	public record YieldCalculation(BigDecimal oliveKg, BigDecimal filteredOilKg, BigDecimal yieldPercent) {
+	}
+
+	public YieldCalculation yieldOf(long batchId) {
+		YieldBatchProcessService.Calculation c = yield.calculate(batchId);
+		return new YieldCalculation(c.oliveKg(), c.filteredOilKg(), c.yieldPercent());
 	}
 
 	/** Etkin uzantilarin anahtarlari, sort_order sirasinda. */
@@ -66,6 +79,7 @@ public class StageExtensions {
 				case "analysis" -> analysis.analysis(process, extensions, data);
 				case "storage_movement" -> storageMovement.storageMovement(process, extensions, data);
 				case "pre_settling" -> preSettling.preSettling(process, extensions, data);
+				case "yield" -> yield.yield(process, extensions, data);
 				default -> {
 				}
 			}

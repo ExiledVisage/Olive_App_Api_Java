@@ -3,6 +3,7 @@ package com.olivamore.api.devdata;
 import com.olivamore.api.shared.time.Timestamps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
+import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -290,9 +291,18 @@ final class DemoFactory {
 		if (!later(10, 20)) {
 			return;
 		}
-		BigDecimal yield = batch.oil.multiply(BigDecimal.valueOf(100)).divide(batch.kg, 2, RoundingMode.HALF_UP);
-		fields(operator, batch, batch.stages.get(8), Map.of(ids.field("randiman"), yield.toPlainString()));
-		complete(operator, batch, batch.stages.get(8), null);
+		// Randiman sunucuda hesaplanir; arada bir laboratuvar sonucuyla elle biraz duzeltilir (sapma)
+		long stage = process(batch, batch.stages.get(8));
+		JsonNode calculated = api.get(operator, "/api/batch-processes/" + stage + "/yield").get("data")
+			.get("yield_percent");
+		BigDecimal yield = calculated == null || calculated.isNull() ? null : calculated.decimalValue();
+		if (yield == null) {
+			return;
+		}
+		if (random.nextDouble() < 0.15) {
+			yield = yield.add(decimal(-0.4, 0.4)).setScale(2, RoundingMode.HALF_UP);
+		}
+		complete(operator, batch, batch.stages.get(8), body("yield_percent", yield));
 		if (later(15, 60)) {
 			api.post(ADMIN, "/api/batch-processes/" + process(batch, batch.stages.get(8)) + "/approve", Map.of());
 		}

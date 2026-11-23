@@ -150,6 +150,38 @@ public class StageQueries {
 		return new Material(m.id(), m.productionBatchId(), m.productionProductTypeId(), m.quantity(), m.unit());
 	}
 
+	/** Partinin sikima giren zeytini (tamamlanmis donusumun girdisi, kg); sikim yoksa null. */
+	public BigDecimal pressedOliveKg(long batchId) {
+		return jdbc.sql("""
+			select (bp.operation_data ->> 'input_quantity')::numeric from batch_processes bp
+			where bp.production_batch_id = :batch and bp.status = 'completed' and exists (
+				select 1 from production_stage_extensions e
+				join stage_extension_types t on t.id = e.stage_extension_type_id
+				where e.production_stage_id = bp.production_stage_id and e.is_enabled
+					and t.key = 'material_transformation')
+			order by bp.id limit 1
+			""").param("batch", batchId).query(BigDecimal.class).optional().orElse(null);
+	}
+
+	/**
+	 * Partinin on dinlendirme tankindan Boşalt'ta son tanka giden yagi (cikis hareketleri, kg; litre yogunlukla);
+	 * bosaltma yoksa null.
+	 */
+	public BigDecimal filteredOilKg(long batchId) {
+		return jdbc.sql("""
+			select sum(case when sm.unit = 'LITRE'
+					then sm.quantity * coalesce(nullif(t.density_kg_per_litre, 0), p.default_density_kg_per_litre)
+					else sm.quantity end)
+			from storage_movements sm
+			join batch_processes bp on bp.id = sm.batch_process_id
+			join storage_units u on u.id = sm.storage_unit_id
+			join materials m on m.id = sm.material_id
+			join production_product_types t on t.id = m.production_product_type_id
+			join production_products p on p.id = t.production_product_id
+			where bp.production_batch_id = :batch and sm.movement_type = 'TRANSFER_OUT' and u.kind = 'pre_settling'
+			""").param("batch", batchId).query(BigDecimal.class).optional().orElse(null);
+	}
+
 	public Optional<Material> material(long id) {
 		return materials.material(id).map(StageQueries::material);
 	}
