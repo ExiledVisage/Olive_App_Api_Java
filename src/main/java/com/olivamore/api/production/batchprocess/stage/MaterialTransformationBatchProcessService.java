@@ -7,12 +7,19 @@ import com.olivamore.api.production.batchprocess.stage.StageQueries.OutputProduc
 import com.olivamore.api.production.batchprocess.stage.StageQueries.ProductType;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import org.springframework.stereotype.Service;
+import tools.jackson.databind.node.ObjectNode;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/** Girdi materyali (yoksa tipinden yaratilir) tuketilir, ciktilar yaratilir; ayni birimdeki ciktilar girdiyi asamaz. */
+/**
+ * Girdi materyali (yoksa tipinden yaratilir) tuketilir, ciktilar yaratilir; ayni birimdeki ciktilar girdiyi asamaz.
+ * Uzantida kalan cikti ({@code remainder_product}) tanimliysa o ciktinin hesaplanan degeri (girdi - ayni birimdeki
+ * diger ciktilar) ve girilen degerin ondan sapma orani ciktinin verisine yazilir.
+ */
 @Service
 class MaterialTransformationBatchProcessService extends StageBatchProcessService {
 
@@ -34,6 +41,7 @@ class MaterialTransformationBatchProcessService extends StageBatchProcessService
 		if (outputs.isEmpty()) {
 			throw new BusinessRuleException("Transformation işlemi için en az bir output gerekir.");
 		}
+		List<Output> resolved = new ArrayList<>();
 		BigDecimal sameUnitTotal = BigDecimal.ZERO;
 		for (OperationData output : outputs) {
 			ProductType type = outputType(process, inputType, extension, output);
@@ -45,11 +53,14 @@ class MaterialTransformationBatchProcessService extends StageBatchProcessService
 			if (!Objects.equals(unit, type.unit())) {
 				throw new BusinessRuleException("Output unit ürün birimi ile uyuşmuyor.");
 			}
-			if (Objects.equals(unit, input.unit())) {
+			boolean sameUnit = Objects.equals(unit, input.unit());
+			if (sameUnit) {
 				sameUnitTotal = sameUnitTotal.add(quantity);
 			}
+			resolved.add(new Output(output, type, quantity, sameUnit));
 			createMaterial(process, type.id(), input.id(), quantity, unit);
 		}
+		recordRemainder(extension, resolved, inputQuantity);
 
 		if (sameUnitTotal.signum() > 0 && sameUnitTotal.subtract(inputQuantity).compareTo(QUANTITY_EPSILON) > 0) {
 			throw new BusinessRuleException("Kütle dengesi tutmuyor: girdi " + plain(inputQuantity) + " " + input.unit() + ", "
@@ -60,6 +71,39 @@ class MaterialTransformationBatchProcessService extends StageBatchProcessService
 			throw new BusinessRuleException("Input quantity, seçilen material miktarından büyük olamaz.");
 		}
 		stock.consumeInput(input.id(), inputQuantity, process.id(), process.note());
+	}
+
+	private record Output(OperationData data, ProductType type, BigDecimal quantity, boolean sameUnit) {
+	}
+
+	/**
+	 * Kalan cikti: hesaplanan = girdi - ayni birimdeki diger ciktilar; sapma = (girilen - hesaplanan) / hesaplanan.
+	 * Girdiyle ayni birimde degilse ya da hesaplanan sifirin altindaysa (kutle dengesi zaten reddeder) yazilmaz.
+	 */
+	private static void recordRemainder(Extension extension, List<Output> outputs, BigDecimal inputQuantity) {
+		String key = extension.values().stream().filter(v -> "remainder_product".equals(v.fieldKey()))
+			.map(StageQueries.ExtensionValue::valueText).filter(Objects::nonNull).map(String::strip)
+			.filter(v -> !v.isEmpty()).findFirst().orElse(null);
+		if (key == null) {
+			return;
+		}
+		List<Long> remainderProducts = extension.outputProducts().stream()
+			.filter(o -> key.equals(o.productKey())).map(OutputProduct::productionProductId).toList();
+		for (Output output : outputs) {
+			if (!output.sameUnit() || !remainderProducts.contains(output.type().productionProductId())
+				|| !(output.data().root() instanceof ObjectNode node)) {
+				continue;
+			}
+			BigDecimal others = outputs.stream().filter(o -> o != output && o.sameUnit())
+				.map(Output::quantity).reduce(BigDecimal.ZERO, BigDecimal::add);
+			BigDecimal calculated = inputQuantity.subtract(others);
+			if (calculated.signum() <= 0) {
+				continue;
+			}
+			node.put("calculated_quantity", calculated);
+			node.put("deviation_ratio", output.quantity().subtract(calculated)
+				.divide(calculated, 4, RoundingMode.HALF_UP));
+		}
 	}
 
 	/** Partide uygun aktif materyal varsa o (secilen ya da tek), yoksa urun tipinden yeni girdi materyali. */

@@ -230,7 +230,6 @@ final class DemoFactory {
 		if (!later(25, 50)) {
 			return false;
 		}
-		fields(operator, batch, stages.get(1), Map.of(ids.field("yabanci_madde"), foreign.toPlainString()));
 		complete(operator, batch, stages.get(1), null);
 
 		BigDecimal sorted = scale(batch.kg.subtract(foreign), 1);
@@ -245,8 +244,12 @@ final class DemoFactory {
 		}
 		complete(operator, batch, stages.get(3), null);
 
+		// Pirina kalan ciktidir (zeytin - yag); arada bir tahmini elle biraz dusurulur (sapma orani)
 		BigDecimal oil = scale(sorted.multiply(decimal(0.15, 0.205)), 2);
-		BigDecimal pomace = scale(sorted.multiply(decimal(0.68, 0.76)), 1);
+		BigDecimal pomace = sorted.subtract(oil);
+		if (random.nextDouble() < 0.2) {
+			pomace = scale(pomace.multiply(decimal(0.97, 0.995)), 1);
+		}
 		machine(operator, batch, stages.get(4), "start");
 		if (!later(40, 70)) {
 			return false;
@@ -258,34 +261,26 @@ final class DemoFactory {
 			body("product_type_key", "olive_oil", "quantity", oil),
 			body("production_product_id", ids.pomaceProduct(), "quantity", pomace, "unit", "KG"))));
 
-		batch.oil = scale(oil.multiply(decimal(0.996, 0.999)), 2);
-		if (!later(10, 20)) {
-			return false;
-		}
-		complete(operator, batch, stages.get(5), body("quantity", batch.oil));
-		if (!later(5, 15)) {
-			return false;
-		}
-		complete(operator, batch, stages.get(6), body("quantity", scale(pomace.multiply(decimal(0.985, 0.998)), 1)));
+		batch.oil = oil;
 
 		BigDecimal acidity = batch.cultivar.acidity(season, this);
 		if (!later(30, 90)) {
 			return false;
 		}
-		fields(operator, batch, stages.get(7), Map.of(ids.field("numune_no"),
+		fields(operator, batch, stages.get(5), Map.of(ids.field("numune_no"),
 			"LAB-" + batch.day.format(CODE_DATE) + "-" + "%02d".formatted(batch.sequence)));
-		complete(operator, batch, stages.get(7), body("attributes",
+		complete(operator, batch, stages.get(5), body("attributes",
 			List.of(body("attribute_key", "acidity", "value", acidity))));
 
 		if (!later(10, 30)) {
 			return false;
 		}
-		complete(operator, batch, stages.get(8), body("quantity", batch.oil,
+		complete(operator, batch, stages.get(6), body("quantity", batch.oil,
 			"storage_unit_id", ids.tank(batch.cultivar.restingTank)));
 		if (!later(15, 45)) {
 			return false;
 		}
-		api.post(ADMIN, "/api/batch-processes/" + process(batch, stages.get(8)) + "/approve", Map.of());
+		api.post(ADMIN, "/api/batch-processes/" + process(batch, stages.get(6)) + "/approve", Map.of());
 		return true;
 	}
 
@@ -295,22 +290,22 @@ final class DemoFactory {
 		if (!later(5, 15)) {
 			return;
 		}
-		machine(operator, batch, batch.stages.get(9), "start");
+		machine(operator, batch, batch.stages.get(7), "start");
 		if (!later(20, 40)) {
 			return;
 		}
-		machine(operator, batch, batch.stages.get(9), "finish");
-		fields(operator, batch, batch.stages.get(9), Map.of(ids.field("filtre_tipi"),
+		machine(operator, batch, batch.stages.get(7), "finish");
+		fields(operator, batch, batch.stages.get(7), Map.of(ids.field("filtre_tipi"),
 			FILTERS.get(random.nextInt(FILTERS.size()))));
-		complete(operator, batch, batch.stages.get(9), null);
+		complete(operator, batch, batch.stages.get(7), null);
 		if (!later(10, 20)) {
 			return;
 		}
 		BigDecimal yield = batch.oil.multiply(BigDecimal.valueOf(100)).divide(batch.kg, 2, RoundingMode.HALF_UP);
-		fields(operator, batch, batch.stages.get(10), Map.of(ids.field("randiman"), yield.toPlainString()));
-		complete(operator, batch, batch.stages.get(10), null);
+		fields(operator, batch, batch.stages.get(8), Map.of(ids.field("randiman"), yield.toPlainString()));
+		complete(operator, batch, batch.stages.get(8), null);
 		if (later(15, 60)) {
-			api.post(ADMIN, "/api/batch-processes/" + process(batch, batch.stages.get(10)) + "/approve", Map.of());
+			api.post(ADMIN, "/api/batch-processes/" + process(batch, batch.stages.get(8)) + "/approve", Map.of());
 		}
 	}
 

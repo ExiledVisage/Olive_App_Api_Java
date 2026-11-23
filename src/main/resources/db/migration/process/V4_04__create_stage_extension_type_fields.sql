@@ -43,4 +43,5 @@ ALTER TABLE ONLY stage_extension_type_fields
 -- Kodda tanimli referans satirlari
 
 insert into stage_extension_type_fields (id, stage_extension_type_id, field_key, label, data_type, is_required, sort_order, default_value_boolean, default_value_integer, default_value_decimal, default_value_text, default_value_json, options_json, description) values
-	(1, 2, 'action', 'Hareket turu', 'text', false, 1, null, null, null, NULL, NULL, '["inbound", "outbound", "transfer"]', 'Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer.');
+	(1, 2, 'action', 'Hareket turu', 'text', false, 1, null, null, null, NULL, NULL, '["inbound", "outbound", "transfer"]', 'Doldurulursa isci bu asamada hareket turunu secemez; her zaman bu tur uygulanir. Bos birakilirsa isci secer.'),
+	(2, 3, 'remainder_product', 'Kalan cikti', 'text', false, 1, null, null, null, NULL, NULL, NULL, 'Cikti urununun anahtari (ornek: pomace). Bu cikti girdi eksi ayni birimdeki diger ciktilar olarak hesaplanir; elle degistirilirse hesaplanan deger ve sapma orani kaydedilir.');

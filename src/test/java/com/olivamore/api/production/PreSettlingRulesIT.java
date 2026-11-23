@@ -71,7 +71,7 @@ class PreSettlingRulesIT {
 		flow.rest(batch, tank, "500");
 
 		assertThat(batchStatus(batch)).isEqualTo("in_progress");
-		assertThat(quantity(oil)).isEqualByComparingTo("399.75");
+		assertThat(quantity(oil)).isEqualByComparingTo("400.25");
 		assertThat(tankMaterials(tank)).hasSize(1);
 		assertRule(api.patch(flow.process(batch, 10), Map.of("status", "in_progress")),
 			"'Filtreleme' aşamasına geçilemez; önceki aşamalar tamamlanmadı: Ön Dinlenme.");
@@ -120,7 +120,7 @@ class PreSettlingRulesIT {
 		flow.rest(a, tank, BatchFlow.OIL);
 		flow.rest(b, tank, BatchFlow.OIL);
 
-		// 1799.5 L girdi, 1700 L cekildi: parti basina 850 L (hedeflere 1000:700 oraninda), 49.75 L fark
+		// 1800.5 L girdi, 1700 L cekildi: parti basina 850 L (hedeflere 1000:700 oraninda), 50.25 L fark
 		JsonNode emptied = data(empty(tank, Map.of(first, "1000", second, "700")));
 
 		assertThat(emptied.get("out_movements")).hasSize(4);
@@ -133,12 +133,12 @@ class PreSettlingRulesIT {
 		assertThat(withdrawn(tank, oilA)).isEqualByComparingTo("850");
 		for (long batch : List.of(a, b)) {
 			assertThat(stageStatus(batch, 9)).isEqualTo("completed");
-			// 49.75 L x 0.916 kg/L
-			assertThat(residueKg(batch)).isEqualByComparingTo("45.571");
+			// 50.25 L x 0.916 kg/L
+			assertThat(residueKg(batch)).isEqualByComparingTo("46.029");
 			Map<String, Object> residue = jdbc.queryForMap("select m.quantity, m.unit, m.parent_material_id,"
 				+ " t.production_product_id from materials m join production_product_types t"
 				+ " on t.id = m.production_product_type_id where m.parent_material_id = ?", batch == a ? oilA : oilB);
-			assertThat((BigDecimal) residue.get("quantity")).isEqualByComparingTo("45.571");
+			assertThat((BigDecimal) residue.get("quantity")).isEqualByComparingTo("46.029");
 			assertThat(residue.get("unit")).isEqualTo("KG");
 			assertThat(((Number) residue.get("production_product_id")).intValue()).isEqualTo(POMACE);
 		}
@@ -154,11 +154,11 @@ class PreSettlingRulesIT {
 		long batch = batchUpToAnalysis();
 		flow.rest(batch, tank, BatchFlow.OIL);
 
-		assertRule(empty(tank, Map.of(last, "905")), "Çekilen miktar (905 LITRE) tanktakinden (899.75 LITRE) fazla; "
+		assertRule(empty(tank, Map.of(last, "905")), "Çekilen miktar (905 LITRE) tanktakinden (900.25 LITRE) fazla; "
 			+ "fark ölçüm toleransını (%0.5) aşıyor.");
 		assertThat(stageStatus(batch, 9)).isEqualTo("resting");
 
-		// %0.47 fazla: olcum farki, girenin tamami cekilmis sayilir ve tortu acilmaz
+		// %0.42 fazla: olcum farki, girenin tamami cekilmis sayilir ve tortu acilmaz
 		assertThat(empty(tank, Map.of(last, "904")).status()).isEqualTo(200);
 		assertThat(balance(last)).isEqualByComparingTo(BatchFlow.OIL);
 		assertThat(residueKg(batch)).isZero();

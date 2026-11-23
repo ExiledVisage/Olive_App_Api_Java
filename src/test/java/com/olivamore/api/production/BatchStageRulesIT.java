@@ -166,15 +166,28 @@ class BatchStageRulesIT {
 		assertRule(unbalanced, "Kütle dengesi tutmuyor: girdi 4800 KG, aynı birimdeki çıktı toplamı 5900 KG. "
 			+ "Çıktı girdiden fazla olamaz.");
 		assertThat(balanced.status()).as(balanced.body()).isEqualTo(200);
-		// girdi tukendi; cikti yag (litre) ve pirina (kg)
+		// girdi tukendi; cikti yag ve pirina (kg)
 		assertThat(activeMaterials(batch)).containsExactlyInAnyOrder(new BigDecimal("900.2500"),
 			new BigDecimal("3500.0000"));
 	}
 
 	@Test
+	void remainderOutputKeepsTheCalculatedQuantityAndTheDeviation() {
+		long batch = batch();
+		completeUpTo(batch, 5);
+
+		JsonNode outputs = data(api.get(process(batch, 5))).get("operation_data").get("outputs");
+
+		// pirina kalan cikti: 4800 - 900.25 = 3899.75 hesaplandi, 3500 girildi
+		assertThat(outputs.get(0).has("calculated_quantity")).isFalse();
+		assertThat(outputs.get(1).get("calculated_quantity").decimalValue()).isEqualByComparingTo("3899.75");
+		assertThat(outputs.get(1).get("deviation_ratio").decimalValue()).isEqualByComparingTo("-0.1025");
+	}
+
+	@Test
 	void analysisWritesTheAttributeOnTheMaterial() {
 		long batch = batch();
-		completeUpTo(batch, 7);
+		completeUpTo(batch, 5);
 
 		Response r = complete(batch, 8, Map.of("attributes", List.of(Map.of("attribute_key", "acidity", "value", "0.31"))));
 

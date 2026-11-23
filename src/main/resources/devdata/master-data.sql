@@ -223,8 +223,6 @@ insert into process_types (id, name, description, category, is_active) values
 	(3, 'İkinci Tartım', 'Ayıklama sonrası ikinci kantar tartımı', 'weighing', true),
 	(4, 'Sıkım Ünitesine Transfer', 'Zeytinin sıkım ünitesine taşınması', 'transfer', true),
 	(5, 'Sıkım', 'Zeytinin sıkım işleminden geçirilmesi', 'machine_process', true),
-	(6, 'Zeytinyağı Tartımı', 'Elde edilen yağın ağırlık olarak tartılması', 'weighing', true),
-	(7, 'Pirina Tartımı', 'Oluşan pirinanın tartılması', 'weighing', true),
 	(8, 'Asitlik Analizi', 'Asitlik ve kalite değerlerinin belirlenmesi', 'quality', true),
 	(9, 'Ön Dinlenme', 'Ürünün ön dinlenme tanklarına alınması', 'storage', true),
 	(10, 'Filtreleme', 'Filtreleme işlemlerinin uygulanması', 'machine', true),
@@ -232,7 +230,6 @@ insert into process_types (id, name, description, category, is_active) values
 	(12, 'Randıman Tespiti', 'Girdi ve çıktı oranlarına göre randıman hesabı', 'yield_analysis', true);
 
 insert into process_type_fields (id, process_type_id, field_key, label, data_type, is_required, unit, sort_order, is_active, options, default_value) values
-	(3, 2, 'yabanci_madde', 'Ayıklanan Yabancı Madde', 'decimal', false, 'kg', 1, true, NULL, NULL),
 	(4, 5, 'malakasyon_suresi', 'Malakasyon Süresi', 'integer', false, 'dk', 1, true, NULL, NULL),
 	(5, 5, 'malakasyon_sicakligi', 'Malakasyon Sıcaklığı', 'decimal', false, '°C', 2, true, NULL, NULL),
 	(6, 8, 'numune_no', 'Laboratuvar Numune No', 'text', false, NULL, 1, true, NULL, NULL),
@@ -264,34 +261,28 @@ insert into production_stages (id, production_line_id, process_type_id, name, st
 	(3, 1, 3, 'İkinci Tartım', 3, true, false, false),
 	(4, 1, 4, 'Sıkım Ünitesine Transfer', 4, true, false, false),
 	(5, 1, 5, 'Sıkım', 5, true, false, true),
-	(6, 1, 6, 'Zeytinyağı Tartımı', 6, true, false, false),
-	(7, 1, 7, 'Pirina Tartımı', 7, true, false, false),
-	(8, 1, 8, 'Asitlik Analizi', 8, true, false, false),
-	(9, 1, 9, 'Ön Dinlenme', 9, true, false, false),
-	(10, 1, 10, 'Filtreleme', 10, true, false, true),
-	(12, 1, 12, 'Randıman Tespiti', 11, true, false, false),
+	(8, 1, 8, 'Asitlik Analizi', 6, true, false, false),
+	(9, 1, 9, 'Ön Dinlenme', 7, true, false, false),
+	(10, 1, 10, 'Filtreleme', 8, true, false, true),
+	(12, 1, 12, 'Randıman Tespiti', 9, true, false, false),
 	(13, 2, 1, 'Kantarda Tartım', 1, true, false, false),
 	(14, 2, 2, 'Ayıklama', 2, true, false, false),
 	(15, 2, 3, 'İkinci Tartım', 3, true, false, false),
 	(16, 2, 4, 'Sıkım Ünitesine Transfer', 4, true, false, false),
 	(17, 2, 5, 'Sıkım', 5, true, false, true),
-	(18, 2, 6, 'Zeytinyağı Tartımı', 6, true, false, false),
-	(19, 2, 7, 'Pirina Tartımı', 7, true, false, false),
-	(20, 2, 8, 'Asitlik Analizi', 8, true, false, false),
-	(21, 2, 9, 'Ön Dinlenme', 9, true, false, false),
-	(22, 2, 10, 'Filtreleme', 10, true, false, true),
-	(24, 2, 12, 'Randıman Tespiti', 11, true, false, false),
+	(20, 2, 8, 'Asitlik Analizi', 6, true, false, false),
+	(21, 2, 9, 'Ön Dinlenme', 7, true, false, false),
+	(22, 2, 10, 'Filtreleme', 8, true, false, true),
+	(24, 2, 12, 'Randıman Tespiti', 9, true, false, false),
 	(25, 3, 1, 'Kantarda Tartım', 1, true, false, false),
 	(26, 3, 2, 'Ayıklama', 2, true, false, false),
 	(27, 3, 3, 'İkinci Tartım', 3, true, false, false),
 	(28, 3, 4, 'Sıkım Ünitesine Transfer', 4, true, false, false),
 	(29, 3, 5, 'Sıkım', 5, true, false, true),
-	(30, 3, 6, 'Zeytinyağı Tartımı', 6, true, false, false),
-	(31, 3, 7, 'Pirina Tartımı', 7, true, false, false),
-	(32, 3, 8, 'Asitlik Analizi', 8, true, false, false),
-	(33, 3, 9, 'Ön Dinlenme', 9, true, false, false),
-	(34, 3, 10, 'Filtreleme', 10, true, false, true),
-	(36, 3, 12, 'Randıman Tespiti', 11, true, false, false);
+	(32, 3, 8, 'Asitlik Analizi', 6, true, false, false),
+	(33, 3, 9, 'Ön Dinlenme', 7, true, false, false),
+	(34, 3, 10, 'Filtreleme', 8, true, false, true),
+	(36, 3, 12, 'Randıman Tespiti', 9, true, false, false);
 
 insert into production_stage_extensions (id, production_stage_id, stage_extension_type_id, is_required, is_enabled, sort_order) values
 	(1, 1, 1, true, true, 1),
@@ -300,12 +291,6 @@ insert into production_stage_extensions (id, production_stage_id, stage_extensio
 	(4, 3, 1, true, true, 1),
 	(5, 15, 1, true, true, 1),
 	(6, 27, 1, true, true, 1),
-	(7, 6, 1, true, true, 1),
-	(8, 18, 1, true, true, 1),
-	(9, 30, 1, true, true, 1),
-	(10, 7, 1, true, true, 1),
-	(11, 19, 1, true, true, 1),
-	(12, 31, 1, true, true, 1),
 	(16, 9, 5, true, true, 1),
 	(17, 21, 5, true, true, 1),
 	(18, 33, 5, true, true, 1),
@@ -322,6 +307,12 @@ insert into production_stage_extensions (id, production_stage_id, stage_extensio
 	(32, 22, 6, true, true, 1),
 	(33, 34, 6, true, true, 1);
 
+-- Sikimda pirina kalan ciktidir: girdi zeytin - zeytinyagi
+insert into production_stage_extension_values (id, production_stage_extension_id, stage_extension_type_field_id, value_text) values
+	(1, 25, 2, 'pomace'),
+	(2, 26, 2, 'pomace'),
+	(3, 27, 2, 'pomace');
+
 insert into production_stage_extension_input_production_products (id, production_stage_extension_id, production_product_id, sort_order, is_required) values
 	(1, 1, 1, 1, true),
 	(2, 2, 1, 1, true),
@@ -329,12 +320,6 @@ insert into production_stage_extension_input_production_products (id, production
 	(4, 4, 1, 1, true),
 	(5, 5, 1, 1, true),
 	(6, 6, 1, 1, true),
-	(7, 7, 2, 1, true),
-	(8, 8, 2, 1, true),
-	(9, 9, 2, 1, true),
-	(10, 10, 3, 1, true),
-	(11, 11, 3, 1, true),
-	(12, 12, 3, 1, true),
 	(16, 16, 2, 1, true),
 	(17, 17, 2, 1, true),
 	(18, 18, 2, 1, true),

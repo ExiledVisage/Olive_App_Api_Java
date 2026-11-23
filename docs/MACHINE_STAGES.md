@@ -1,6 +1,8 @@
 # Uretim asamalari: sikim, filtreleme, otomatik hesaplar
 
-Durum: plan (2026-11-22), kod yazilmadi. API ve Flutter birlikte.
+Durum (2026-11-23): 1 yag KG, 2 kronometre, 3 sikim/ayiklama yapildi; sirada 4 filtreleme Boşalt'ta, 5 randiman.
+Kalan cikti: material_transformation uzantisinin `remainder_product` ayari (seed: pomace); sunucu ciktiya
+`calculated_quantity` ve `deviation_ratio` yazar.
 
 ## Bugun ne var (seed hatti)
 

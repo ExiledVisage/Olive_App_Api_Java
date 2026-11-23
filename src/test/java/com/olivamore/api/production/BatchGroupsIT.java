@@ -70,7 +70,7 @@ class BatchGroupsIT {
 		assertThat(group.get("batch_code").asString()).endsWith("-1");
 		assertThat(group.get("status").asString()).isEqualTo("pending");
 		assertThat(stageStatuses(group)).startsWith("1:skipped", "2:waiting", "3:waiting", "4:waiting", "5:waiting")
-			.hasSize(11);
+			.hasSize(9);
 		assertThat(jdbc.queryForObject("select inherited_from_process_id from batch_processes"
 			+ " where production_batch_id = ? and production_stage_id = 1", Long.class, group.get("id").asLong()))
 			.isEqualTo(processId(delivery, 1));

@@ -11,15 +11,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Demo hattin (hat 1, girdi tipi 1 Gemlik zeytini, tedarikci 1) asamalarini API'den yuruten yardimci; parti
- * {@link #batch} ile acilan grup: 1 kantar tartimi
- * (plaka partide), 2 ayiklama, 3 ikinci tartim, 4 veri istemeyen asama, 5 sikim (donusum), 6 yag tartimi,
- * 7 pirina tartimi, 8 analiz, 9 on dinlendirme (onayli, dinlenmede bekler).
+ * {@link #batch} ile acilan grup. Asama id'leri: 1 kantar tartimi (plaka partide), 2 ayiklama (veri yok),
+ * 3 ikinci tartim, 4 veri istemeyen asama, 5 sikim (donusum; yag ve kalan cikti pirina), 8 analiz, 9 on dinlendirme
+ * (onayli, dinlenmede bekler), 10 filtreleme, 12 randiman.
  */
 public final class BatchFlow {
 
-	public static final int SORTING_FIELD = 3;
-	/** 6. asamada tartilan yag (LITRE). */
-	public static final String OIL = "899.75";
+	/** Sikimda cikan yag. */
+	public static final String OIL = "900.25";
+
+	/** {@link #completeUpTo} sirasi: hattin asama id'leri. */
+	private static final List<Integer> STAGES = List.of(1, 2, 3, 4, 5, 8);
 
 	private final Api api;
 	private final JdbcTemplate jdbc;
@@ -76,23 +78,18 @@ public final class BatchFlow {
 		}
 	}
 
-	/** Bu asamaya kadar (dahil) butun asamalari gecerli verilerle tamamlar. */
+	/** Bu asama id'sine kadar (dahil) hattaki butun asamalari gecerli verilerle tamamlar. */
 	public void completeUpTo(long batch, int lastStage) {
-		for (int stage = 1; stage <= lastStage; stage++) {
+		for (int stage : STAGES.stream().filter(s -> s <= lastStage).toList()) {
 			Response r = switch (stage) {
 				case 1 -> complete(batch, 1, Map.of("quantity", 5000, "unit", "KG"));
-				case 2 -> {
-					fields(batch, 2, SORTING_FIELD, "2.5");
-					yield complete(batch, 2, Map.of("x", 1));
-				}
+				case 2 -> complete(batch, 2, Map.of("x", 1));
 				case 3 -> complete(batch, 3, Map.of("quantity", 4800));
 				case 4 -> api.patch(process(batch, 4), Map.of("status", "completed"));
 				case 5 -> {
 					runMachine(batch, 5);
 					yield complete(batch, 5, pressing());
 				}
-				case 6 -> complete(batch, 6, Map.of("quantity", OIL));
-				case 7 -> complete(batch, 7, Map.of("quantity", 3400));
 				case 8 -> complete(batch, 8, Map.of("attributes", List.of(Map.of("attribute_key", "acidity",
 					"value", "0.31"))));
 				default -> throw new IllegalArgumentException("asama " + stage);
@@ -110,9 +107,10 @@ public final class BatchFlow {
 		assertThat(approved.json().get("data").get("status").asString()).isEqualTo("resting");
 	}
 
+	/** Pirina kalan ciktidir: hesaplanan 4800 - 900.25 = 3899.75, girilen 3500 (sapma -0.1025). */
 	public static Map<String, Object> pressing() {
 		return Map.of("input_quantity", 4800, "outputs", List.of(
-			Map.of("product_type_key", "olive_oil", "quantity", "900.25"),
+			Map.of("product_type_key", "olive_oil", "quantity", OIL),
 			Map.of("production_product_id", 3, "quantity", 3500, "unit", "KG")));
 	}
 

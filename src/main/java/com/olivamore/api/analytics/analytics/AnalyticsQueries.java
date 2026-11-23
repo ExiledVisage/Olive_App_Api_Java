@@ -69,6 +69,13 @@ class AnalyticsQueries {
 	private record ExtensionInput(long productionStageExtensionId, String productKey) {
 	}
 
+	/** Cikti satirini urun anahtarina cevirmek icin: tip id -> urun anahtari, birim, yogunluk; urun id -> anahtar. */
+	private record OutputKeys(Map<Long, TypeKey> types, Map<Long, String> products) {
+	}
+
+	private record TypeKey(long id, String productKey, String unit, BigDecimal density) {
+	}
+
 	private final JdbcClient jdbc;
 
 	AnalyticsQueries(JdbcClient jdbc) {
@@ -85,7 +92,7 @@ class AnalyticsQueries {
 	}
 
 	/**
-	 * Aralikta gelmis, yagi tartilmis ve sikilan miktari olan partiler. Gruplara bolunmus teslimat yerine gruplari
+	 * Aralikta gelmis, yagi bilinen ve sikilan miktari olan partiler. Gruplara bolunmus teslimat yerine gruplari
 	 * sayilir; grubun gelen kilosu kendi kantari yoksa teslimatin kantarindan payi ({@link #deliveryShares}).
 	 */
 	List<BatchRow> batches(Range range, Long supplierId, Long productTypeId, Long fieldId) {
@@ -118,9 +125,10 @@ class AnalyticsQueries {
 		Map<Long, Role> roles = stageRoles();
 		Map<Long, List<Process>> processes = completedProcesses(batches.stream().map(Batch::id).toList(), roles.keySet());
 		Map<Long, Double> deliveryShare = deliveryShares(batches, roles);
+		OutputKeys keys = outputKeys();
 		List<BatchRow> rows = new ArrayList<>();
 		for (Batch batch : batches) {
-			Map<String, Double> values = roleValues(processes.getOrDefault(batch.id(), List.of()), roles);
+			Map<String, Double> values = roleValues(processes.getOrDefault(batch.id(), List.of()), roles, keys);
 			if (values.get(INCOMING) == null && deliveryShare.containsKey(batch.id())) {
 				values.put(INCOMING, deliveryShare.get(batch.id()));
 			}
@@ -151,8 +159,8 @@ class AnalyticsQueries {
 			.forEach(e -> allocated.put(e.getKey(), e.getValue()));
 		Map<Long, Double> shares = new LinkedHashMap<>();
 		for (Batch group : groups) {
-			Double weighed = roleValues(deliveryProcesses.getOrDefault(group.parentBatchId(), List.of()), roles)
-				.get(INCOMING);
+			Double weighed = roleValues(deliveryProcesses.getOrDefault(group.parentBatchId(), List.of()), roles,
+				new OutputKeys(Map.of(), Map.of())).get(INCOMING);
 			BigDecimal total = allocated.get(group.parentBatchId());
 			if (weighed != null && total != null && total.signum() > 0) {
 				shares.put(group.id(), weighed * group.quantityKg().doubleValue() / total.doubleValue());
@@ -175,8 +183,8 @@ class AnalyticsQueries {
 			.collect(Collectors.groupingBy(Process::productionBatchId));
 	}
 
-	/** Asama sirasiyla: her gorev icin dolu ilk deger. */
-	private static Map<String, Double> roleValues(List<Process> processes, Map<Long, Role> roles) {
+	/** Asama sirasiyla: her gorev icin dolu ilk deger. Sikimin ciktilari yag ve pirinayi verir. */
+	private static Map<String, Double> roleValues(List<Process> processes, Map<Long, Role> roles, OutputKeys keys) {
 		Map<String, Double> values = new LinkedHashMap<>();
 		processes.stream()
 			.sorted(Comparator.comparingInt(p -> roles.get(p.productionStageId()).order()))
@@ -186,8 +194,63 @@ class AnalyticsQueries {
 				if (value != null && !value.isNull() && values.get(role) == null) {
 					values.put(role, number(value));
 				}
+				if (PRESSED.equals(role) && process.operationData() != null) {
+					outputs(JSON.readTree(process.operationData()).get("outputs"), keys)
+						.forEach((output, kg) -> values.putIfAbsent(output, kg));
+				}
 			});
 		return values;
+	}
+
+	/** Sikim ciktilarinin kilosu: zeytinyagi {@code oil}, pirina {@code pomace}; litre yogunlukla kiloya cevrilir. */
+	private static Map<String, Double> outputs(JsonNode outputs, OutputKeys keys) {
+		Map<String, Double> totals = new LinkedHashMap<>();
+		if (outputs == null || !outputs.isArray()) {
+			return totals;
+		}
+		for (JsonNode output : outputs.values()) {
+			JsonNode quantity = output.get("quantity");
+			if (quantity == null || quantity.isNull()) {
+				continue;
+			}
+			TypeKey type = id(output.get("production_product_type_id")) == null ? null
+				: keys.types().get(id(output.get("production_product_type_id")));
+			String productKey = type != null ? type.productKey()
+				: id(output.get("production_product_id")) != null ? keys.products().get(id(output.get("production_product_id")))
+				: text(output.get("product_type_key"));
+			String role = "olive_oil".equals(productKey) ? OIL : "pomace".equals(productKey) ? POMACE : null;
+			if (role == null) {
+				continue;
+			}
+			double kg = number(quantity);
+			String unit = text(output.get("unit")) != null ? text(output.get("unit")) : type == null ? null : type.unit();
+			if ("LITRE".equals(unit) && type != null && type.density() != null) {
+				kg *= type.density().doubleValue();
+			}
+			totals.merge(role, kg, Double::sum);
+		}
+		return totals;
+	}
+
+	private static Long id(JsonNode value) {
+		return value == null || value.isNull() ? null : (long) number(value);
+	}
+
+	private static String text(JsonNode value) {
+		return value != null && value.isString() ? value.asString() : null;
+	}
+
+	private OutputKeys outputKeys() {
+		Map<Long, TypeKey> types = jdbc.sql("""
+			select t.id, p.key as product_key, t.unit,
+				coalesce(nullif(t.density_kg_per_litre, 0), p.default_density_kg_per_litre) as density
+			from production_product_types t join production_products p on p.id = t.production_product_id
+			""").query(TypeKey.class).list().stream().collect(Collectors.toMap(TypeKey::id, t -> t));
+		Map<Long, String> products = new LinkedHashMap<>();
+		jdbc.sql("select id, key from production_products where key is not null")
+			.query((rs, n) -> Map.entry(rs.getLong(1), rs.getString(2))).list()
+			.forEach(e -> products.put(e.getKey(), e.getValue()));
+		return new OutputKeys(types, products);
 	}
 
 	private static JsonNode value(String role, String operationData) {
