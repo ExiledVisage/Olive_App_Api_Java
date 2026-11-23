@@ -65,6 +65,8 @@ insert into role_permissions (role_id, permission_id) values
 	(1, 53),
 	(1, 54),
 	(1, 55),
+	(1, 56),
+	(1, 57),
 	(2, 1),
 	(2, 4),
 	(2, 6),
@@ -92,6 +94,7 @@ insert into role_permissions (role_id, permission_id) values
 	(2, 47),
 	(2, 48),
 	(2, 51),
+	(2, 56),
 	(3, 1),
 	(3, 2),
 	(3, 3),
@@ -119,6 +122,7 @@ insert into role_permissions (role_id, permission_id) values
 	(3, 52),
 	(3, 53),
 	(3, 54),
+	(3, 56),
 	(4, 1),
 	(4, 9),
 	(4, 11),
@@ -135,6 +139,7 @@ insert into role_permissions (role_id, permission_id) values
 	(4, 34),
 	(4, 35),
 	(4, 36),
+	(4, 56),
 	(5, 4),
 	(5, 6),
 	(5, 7),
@@ -163,7 +168,8 @@ insert into role_permissions (role_id, permission_id) values
 	(6, 40),
 	(6, 41),
 	(6, 45),
-	(6, 49);
+	(6, 49),
+	(6, 56);
 
 insert into users (id, name, email, password) values
 	(1, 'Olivamore Admin', 'admin@olivamore.com', '$2y$12$.1wjegORyxIF82qFmEsE7.rjgzakb4Lv3dY4FwMw0kNwQctzJWvFy'),
@@ -314,6 +320,55 @@ insert into production_stage_extension_values (id, production_stage_extension_id
 	(1, 25, 2, 'pomace'),
 	(2, 26, 2, 'pomace'),
 	(3, 27, 2, 'pomace');
+
+-- Makineler (docs/MACHINES.md): sikimi olusturan makine tipleri, olcum alanlari; her tipten bir makine, tek parca
+insert into machine_types (id, key, name, description, sort_order) values
+	(1, 'kirici', 'Kırıcı', 'Zeytini çekirdeğiyle birlikte ezip hamur haline getirir.', 1),
+	(2, 'malaksor', 'Malaksör', 'Hamuru ılık ortamda yavaşça karıştırır; yağ damlacıkları birleşir. Randımanı ve aromayı en çok etkileyen adım.', 2),
+	(3, 'dekantor', 'Dekantör', 'Yatay santrifüj: hamuru yağ, karasu ve pirinaya ayırır.', 3),
+	(4, 'separator', 'Separatör', 'Dikey santrifüj: yağda kalan suyu ve ince tortuyu ayırır, yağı berraklaştırır.', 4);
+
+insert into machine_type_fields (id, machine_type_id, field_key, label, data_type, unit, is_required, sort_order,
+	min_value, max_value) values
+	(1, 1, 'elek_capi', 'Elek Çapı', 'decimal', 'mm', false, 1, 3, 10),
+	(2, 1, 'devir', 'Devir', 'integer', 'rpm', false, 2, null, null),
+	(3, 1, 'hamur_sicakligi', 'Hamur Sıcaklığı', 'decimal', '°C', false, 3, 5, 40),
+	(4, 2, 'sicaklik', 'Sıcaklık', 'decimal', '°C', true, 1, 15, 35),
+	(5, 2, 'devir', 'Devir', 'integer', 'rpm', false, 2, null, null),
+	(6, 2, 'inert_gaz', 'İnert Gaz', 'boolean', null, false, 3, null, null),
+	(7, 3, 'devir', 'Devir', 'integer', 'rpm', false, 1, 2000, 4500),
+	(8, 3, 'debi', 'Debi', 'decimal', 'kg/saat', false, 2, null, null),
+	(9, 3, 'su_ilavesi', 'Su İlavesi', 'decimal', '%', false, 3, 0, 50),
+	(10, 4, 'devir', 'Devir', 'integer', 'rpm', false, 1, null, null),
+	(11, 4, 'yikama_suyu_sicakligi', 'Yıkama Suyu Sıcaklığı', 'decimal', '°C', false, 2, 15, 40),
+	(12, 3, 'diferansiyel_devir', 'Diferansiyel Devir', 'decimal', 'rpm', false, 4, 0, 50),
+	(13, 3, 'su_sicakligi', 'Su Sıcaklığı', 'decimal', '°C', false, 5, 10, 40),
+	(14, 3, 'yag_cikis_sicakligi', 'Yağ Çıkış Sıcaklığı', 'decimal', '°C', false, 6, 10, 40),
+	(15, 1, 'besleme_debisi', 'Besleme Debisi', 'decimal', 'kg/saat', false, 4, 0, null),
+	(16, 2, 'ceket_suyu_sicakligi', 'Ceket Suyu Sıcaklığı', 'decimal', '°C', false, 4, 20, 50),
+	(17, 2, 'hazne_dolulugu', 'Hazne Doluluğu', 'decimal', 'kg', false, 5, 0, null),
+	(18, 2, 'mikro_talk', 'Mikro Talk İlavesi', 'decimal', '%', false, 6, 0, 3),
+	(19, 4, 'su_ilavesi', 'Su İlavesi', 'decimal', 'l/saat', false, 3, 0, null),
+	(20, 4, 'yag_cikis_sicakligi', 'Yağ Çıkış Sıcaklığı', 'decimal', '°C', false, 4, 10, 40),
+	(21, 4, 'bosaltma_araligi', 'Boşaltma Aralığı', 'integer', 'dk', false, 5, 1, null);
+
+-- Makine bilgisi (scope machine): calismada degil makine kaydinda girilir
+insert into machine_type_fields (id, machine_type_id, field_key, label, data_type, scope, unit, is_required,
+	sort_order, min_value, max_value) values
+	(22, 1, 'kirici_tipi', 'Kırıcı Tipi (çekiçli / diskli)', 'text', 'machine', null, false, 5, null, null),
+	(23, 3, 'faz_sayisi', 'Faz Sayısı', 'integer', 'machine', null, false, 7, 2, 3);
+
+insert into machines (id, machine_type_id, code, name, capacity_kg_per_hour) values
+	(1, 1, 'KRC-01', 'Kırıcı 1', 2500),
+	(2, 2, 'MLK-01', 'Malaksör 1', 2000),
+	(3, 3, 'DKN-01', 'Dekantör 1', 2000),
+	(4, 4, 'SEP-01', 'Separatör 1', 2000);
+
+insert into machine_parts (id, machine_id, code, name, sort_order) values
+	(1, 1, '1', 'Kırıcı 1', 1),
+	(2, 2, '1', 'Malaksör 1', 1),
+	(3, 3, '1', 'Dekantör 1', 1),
+	(4, 4, '1', 'Separatör 1', 1);
 
 insert into production_stage_extension_input_production_products (id, production_stage_extension_id, production_product_id, sort_order, is_required) values
 	(1, 1, 1, 1, true),

@@ -18,8 +18,8 @@ Durum: plan (2026-11-23), kod yazilmadi. API ve Flutter birlikte. Sunucu kurulum
 | Kavram | Ornek | Ne tutar |
 |---|---|---|
 | Makine tipi | Malaksor | Islev aciklamasi, tipe ozel olcum alanlari (parent) |
-| Makine tipi alani | Malaksor: sicaklik (°C) | Ad, anahtar, veri tipi, birim, zorunlu mu, sira, min/max |
-| Makine | Malaksor 1 | Fabrikadaki cihaz: kod, marka/model, kapasite, aktif mi |
+| Makine tipi alani | Malaksor: sicaklik (°C) | Ad, anahtar, veri tipi, kapsam, birim, zorunlu mu, sira, min/max |
+| Makine | Malaksor 1 | Fabrikadaki cihaz: kod, marka/model, kapasite, aktif mi, bilgi alanlari (faz sayisi...) |
 | Makine parcasi | Hazne 1, Hazne 2, Hazne 3 | Makinenin bagimsiz calisan birimi; her makinede en az bir tane |
 | Makine adimi (calisma) | P-261104-01-1 partisi Hazne 2'de 09:10-09:52 | Parti asamasi, sira, parca, baslangic/bitis |
 | Adim degeri | Hazne 2, sicaklik 27.5 | Calismada girilen olcumler |
@@ -31,9 +31,11 @@ gerekmez. Alanlar `process_type_fields` gibi tanimdir ama makine tipine aittir, 
 
 - `machine_types`: id, key (unique), name, description, sort_order, is_active.
 - `machine_type_fields`: id, machine_type_id (RESTRICT), field_key, label, data_type (decimal/integer/text/boolean),
-  unit, is_required, sort_order, min_value, max_value, is_active. Unique (machine_type_id, field_key).
+  scope, unit, is_required, sort_order, min_value, max_value, is_active. Unique (machine_type_id, field_key).
+  - scope `run`: her calismada girilen olcum; `machine`: makine kaydinda duran bilgi (kirici tipi, faz sayisi).
+    Ikisi de ekrandan eklenir, pasife alinir ya da (kullanilmamissa) silinir.
 - `machines`: id, machine_type_id (RESTRICT), code (unique), name, brand, model, capacity_kg_per_hour, note,
-  is_active.
+  attributes (jsonb, field_key -> deger; tipin `machine` alanlariyla denetlenir), is_active.
 - `machine_parts`: id, machine_id (RESTRICT), code, name, sort_order, is_active. Unique (machine_id, code).
 - `production_stage_extension_machine_types`: id, production_stage_extension_id (CASCADE), machine_type_id
   (RESTRICT), sort_order. Asamanin makine sirasi (girdi/cikti urunleri tablolari gibi).
@@ -92,10 +94,12 @@ calismada secilemez ama gecmiste gorunur.
 
 | Tip | Islev | Alanlar |
 |---|---|---|
-| Kirici | Zeytini cekirdegiyle ezip hamur yapar | elek capi (mm), devir (rpm), hamur sicakligi (°C) |
-| Malaksor | Hamuru ilik ortamda karistirir, yag damlalarini birlestirir | sicaklik (°C), devir (rpm), inert gaz (evet/hayir) |
-| Dekantor | Yatay santrifuj: yagi pirina ve karasudan ayirir | devir (rpm), debi (kg/saat), su ilavesi (%, 3 fazlida) |
-| Separator | Dikey santrifuj: yagdaki suyu ve ince tortuyu alir | devir (rpm), yikama suyu sicakligi (°C) |
+| Kirici | Zeytini cekirdegiyle ezip hamur yapar | elek capi (mm), devir (rpm), hamur sicakligi (°C), besleme debisi (kg/saat); bilgi: kirici tipi (cekicli/diskli) |
+| Malaksor | Hamuru ilik ortamda karistirir, yag damlalarini birlestirir | sicaklik (°C), devir (rpm), inert gaz (evet/hayir), ceket suyu sicakligi (°C), hazne dolulugu (kg), mikro talk (%) |
+| Dekantor | Yatay santrifuj: yagi pirina ve karasudan ayirir | devir (rpm), debi (kg/saat), su ilavesi (%, 3 fazlida), diferansiyel devir (rpm), su sicakligi (°C), yag cikis sicakligi (°C); bilgi: faz sayisi (2/3) |
+| Separator | Dikey santrifuj: yagdaki suyu ve ince tortuyu alir | devir (rpm), yikama suyu sicakligi (°C), su ilavesi (l/saat), yag cikis sicakligi (°C), bosaltma araligi (dk) |
+
+Seed'deki alanlar oneridir ve hepsi istege bagli (malaksor sicakligi haric); fabrika kullanmadiklarini pasife alir.
 
 - Malaksor suresi alan degil, adimin baslangic/bitisinden hesaplanir. Bugunku Sikim alanlari "Malakasyon Suresi /
   Sicakligi" kalkar (malaksor adimina tasinir).

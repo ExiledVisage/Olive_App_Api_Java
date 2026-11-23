@@ -81,4 +81,6 @@ insert into permissions (id, name) values
 	(52, 'order.create'),
 	(53, 'order.update'),
 	(54, 'order.update_status'),
-	(55, 'storage_unit.measure');
+	(55, 'storage_unit.measure'),
+	(56, 'machine.view'),
+	(57, 'machine.manage');
