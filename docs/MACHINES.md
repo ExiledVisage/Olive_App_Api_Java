@@ -1,6 +1,7 @@
 # Makineler: makine kaydi, sikimda makine adimlari, makine takibi
 
-Durum: plan (2026-11-23), kod yazilmadi. API ve Flutter birlikte. Sunucu kurulumu (MACHINE_STAGES 6. adim) bekliyor.
+Durum (2026-11-23): 1. adim (7e9ac74) ve 2. adim yazildi; 3-6 bekliyor. Sunucu kurulumu (MACHINE_STAGES 6. adim)
+kullanici istegiyle ertelendi.
 
 ## Amac
 
@@ -37,10 +38,11 @@ gerekmez. Alanlar `process_type_fields` gibi tanimdir ama makine tipine aittir, 
 - `machines`: id, machine_type_id (RESTRICT), code (unique), name, brand, model, capacity_kg_per_hour, note,
   attributes (jsonb, field_key -> deger; tipin `machine` alanlariyla denetlenir), is_active.
 - `machine_parts`: id, machine_id (RESTRICT), code, name, sort_order, is_active. Unique (machine_id, code).
-- `production_stage_extension_machine_types`: id, production_stage_extension_id (CASCADE), machine_type_id
-  (RESTRICT), sort_order. Asamanin makine sirasi (girdi/cikti urunleri tablolari gibi).
-- `machine_runs`: id, batch_process_id (RESTRICT), machine_part_id (RESTRICT), machine_type_id, step_order,
-  started_at, finished_at, note. Unique (batch_process_id, step_order).
+- Asamanin makine sirasi ayri tablo degil, `machine_route` uzantisinin `machine_types` ayaridir (value_json, tip
+  anahtarlari sirayla). Asama yonetimindeki uzanti ayar ekrani kullanilir; tanimsiz ya da pasif anahtarin adimi
+  baslatilamaz.
+- `machine_runs`: id, batch_process_id (CASCADE), step_order, machine_type_id (RESTRICT), machine_part_id
+  (RESTRICT), started_at, finished_at, note. Unique (batch_process_id, step_order).
 - `machine_run_values`: id, machine_run_id (CASCADE), machine_type_field_id (RESTRICT), value_decimal, value_integer,
   value_text, value_boolean. Unique (machine_run_id, machine_type_field_id).
 
@@ -49,7 +51,7 @@ calismada secilemez ama gecmiste gorunur.
 
 ## Asama eklentisi: `machine_route` (Makine hatti)
 
-- `stage_extension_types` yeni tip (8, `machine_route`). Ayari: sirali makine tipleri.
+- `stage_extension_types` yeni tip (8, `machine_route`). Ayari: `machine_types` = ["kirici", "malaksor", ...].
 - Eklentisi olan asamada partinin her makine tipi icin bir adim acilir; ekran "tamamlanan / toplam" gosterir.
 - Kronometre ile iliski (kullanici karari 2026-11-23): Sikim'in kendi kronometresi (`timer`) kalir, makine
   adimlari onun icinde ayri kronometrelerdir. Seed'de Sikim'de `timer` + `machine_route` birlikte.
@@ -62,13 +64,15 @@ calismada secilemez ama gecmiste gorunur.
 ## Kurallar
 
 1. Adim sirasi: adim N, adim N-1 baslamadan baslamaz. Surekli akis oldugu icin saatler ortusebilir (N-1 bitmeden
-   N baslayabilir).
+   N baslayabilir). Adim yalnizca asama kronometresi calisirken baslar. Baslatilmamis adim asamanin tamamlanmasini
+   engellemez ("2/4" gorunur).
 2. Bir parca ayni anda tek partide calisir: acik calismasi olan parca baska partide secilemez ("Hazne 2 su an
    P-... partisinde"). Farkli parcalar ayni anda calisabilir.
 3. Parca secimi: tipte tek aktif makine ve onda tek aktif parca varsa kendiliginden atanir; yoksa zorunlu secim.
-4. Bitirirken tipin zorunlu alanlari dolu olmali; sayisal alanlar min/max icinde (disindaysa uyari mi hata mi:
-   acik konu).
-5. Saatler sonradan duzeltilebilir; bitis baslangictan once olamaz.
+4. Bitirirken tipin zorunlu alanlari dolu olmali. Min/max disi olcum kaydedilir, `out_of_range` ile isaretlenir.
+   Makine bilgisinde (scope machine) min/max disi hatadir.
+5. Saatler, parca, not ve olcumler sonradan duzeltilebilir (asama tamamlanmis olsa da); bitis baslangictan once
+   olamaz.
 6. Asama geri alinirsa (waiting) adimlar ve degerleri silinir (kronometre saatleri gibi).
 7. Yetkiler: `machine.view` (sekme), `machine.manage` (tip, alan, makine, parca); adimlar `batch_process.fill`.
 
@@ -78,7 +82,10 @@ calismada secilemez ama gecmiste gorunur.
 - Parti tarafi:
   - `GET /api/batch-processes/{id}/machine-runs`: adimlar, secilebilir parcalar, durum.
   - `POST /api/batch-processes/{id}/machine-runs/{step}/start` (`machine_part_id` gerekirse).
-  - `POST .../{step}/finish` (degerlerle), `PATCH .../{step}` (saat/deger duzeltme).
+  - `POST .../{step}/finish` (`values`: field_key -> deger, `note`), `PATCH .../{step}` (machine_part_id,
+    started_at, finished_at, note, values).
+  - Cevap: `completed`, `total`, `timer_started`, `timer_finished`, `steps[]` (step_order, machine_type_key,
+    machine_type, status waiting/running/done, fields, parts (+ busy_batch_code), run).
 - Makine sekmesi:
   - `GET /api/machines/{id}/runs?date_from&date_to` (sayfali): parti, parca, sure, degerler.
   - `GET /api/machines/{id}/series?field=sicaklik&date_from&date_to`: grafik icin zaman serisi (parca bazinda).
@@ -101,9 +108,9 @@ calismada secilemez ama gecmiste gorunur.
 
 Seed'deki alanlar oneridir ve hepsi istege bagli (malaksor sicakligi haric); fabrika kullanmadiklarini pasife alir.
 
-- Malaksor suresi alan degil, adimin baslangic/bitisinden hesaplanir. Bugunku Sikim alanlari "Malakasyon Suresi /
-  Sicakligi" kalkar (malaksor adimina tasinir).
-- Ortam sicakligi ve zeytin giris sicakligi makineye degil sikima aittir: Sikim asama alani olur.
+- Malaksor suresi alan degil, adimin baslangic/bitisinden hesaplanir. Sikim alanlari "Malakasyon Suresi /
+  Sicakligi" kalkti (malaksor adimina tasindi).
+- Ortam sicakligi ve zeytin giris sicakligi makineye degil sikima aittir: Sikim asama alani oldu.
 - Her tipten bir makine, her makinede bir parca (Kirici 1, Malaksor 1 / Hazne 1, ...). Hazne sayisi bilinince
   ekrandan eklenir.
 - Demo: her sikimda dort adim, makul degerler (malaksor 25-28 °C, 30-45 dk; dekantor 3000-3400 rpm ...).
@@ -132,6 +139,5 @@ Seed'deki alanlar oneridir ve hepsi istege bagli (malaksor sicakligi haric); fab
 ## Acik konular
 
 - Dekantor 2 fazli mi 3 fazli mi (su ilavesi zorunlu mu)? Varsayilan: istege bagli.
-- Min/max disi deger: hata mi, uyari mi? Varsayilan: uyari, kaydedilir.
 - Operator her adimda Baslat/Bitir'e basabilir mi? Varsayilan: evet; basmazsa saatler sonradan duzeltilir.
 - Bakim kaydi (ariza, temizlik) simdi mi sonra mi? Varsayilan: sonra.

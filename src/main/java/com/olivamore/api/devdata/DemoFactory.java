@@ -251,13 +251,11 @@ final class DemoFactory {
 		if (random.nextDouble() < 0.2) {
 			pomace = scale(pomace.multiply(decimal(0.97, 0.995)), 1);
 		}
-		machine(operator, batch, stages.get(4), "start");
-		if (!later(40, 70)) {
+		if (!pressing(operator, batch, stages.get(4), sorted)) {
 			return false;
 		}
-		machine(operator, batch, stages.get(4), "finish");
-		fields(operator, batch, stages.get(4), Map.of(ids.field("malakasyon_suresi"), String.valueOf(between(30, 45)),
-			ids.field("malakasyon_sicakligi"), decimal(25, 28.5).setScale(1, RoundingMode.HALF_UP).toPlainString()));
+		fields(operator, batch, stages.get(4), Map.of(ids.field("zeytin_giris_sicakligi"), tenth(8, 18).toPlainString(),
+			ids.field("ortam_sicakligi"), tenth(10, 22).toPlainString()));
 		complete(operator, batch, stages.get(4), body("input_quantity", sorted, "outputs", List.of(
 			body("product_type_key", "olive_oil", "quantity", oil),
 			body("production_product_id", ids.pomaceProduct(), "quantity", pomace, "unit", "KG"))));
@@ -318,6 +316,53 @@ final class DemoFactory {
 	private void complete(String user, Batch batch, long stage, Map<String, Object> data) {
 		api.patch(user, "/api/batch-processes/" + process(batch, stage),
 			data == null ? body("status", "completed") : body("status", "completed", "operation_data", data));
+	}
+
+	/**
+	 * Sikim: kronometre calisirken parti sirayla Kirici, Malaksor, Dekantor, Separator'dan gecer. Akis surekli
+	 * oldugu icin bir sonraki makine oncekisi bitmeden baslar; malaksor 30-50 dk.
+	 */
+	private boolean pressing(String operator, Batch batch, long stage, BigDecimal kg) {
+		String steps = "/api/batch-processes/" + process(batch, stage) + "/machine-runs/";
+		machine(operator, batch, stage, "start");
+		api.post(operator, steps + "1/start", Map.of());
+		if (!later(2, 4)) {
+			return false;
+		}
+		api.post(operator, steps + "2/start", Map.of());
+		if (!later(12, 20)) {
+			return false;
+		}
+		api.post(operator, steps + "1/finish", body("values", body("elek_capi", between(5, 7),
+			"devir", between(2800, 3000), "hamur_sicakligi", tenth(22, 27), "besleme_debisi", between(1800, 2400))));
+		if (!later(18, 30)) {
+			return false;
+		}
+		api.post(operator, steps + "2/finish", body("values", body("sicaklik", tenth(25, 28.5),
+			"devir", between(18, 25), "inert_gaz", random.nextDouble() < 0.2, "ceket_suyu_sicakligi", tenth(30, 38),
+			"hazne_dolulugu", kg, "mikro_talk", random.nextDouble() < 0.25 ? tenth(0.5, 2) : null)));
+		api.post(operator, steps + "3/start", Map.of());
+		if (!later(2, 4)) {
+			return false;
+		}
+		api.post(operator, steps + "4/start", Map.of());
+		if (!later(15, 25)) {
+			return false;
+		}
+		api.post(operator, steps + "3/finish", body("values", body("devir", between(3000, 3400),
+			"debi", between(1800, 2200), "su_ilavesi", tenth(0, 8), "diferansiyel_devir", tenth(8, 15),
+			"su_sicakligi", tenth(25, 30), "yag_cikis_sicakligi", tenth(24, 28))));
+		if (!later(2, 5)) {
+			return false;
+		}
+		api.post(operator, steps + "4/finish", body("values", body("devir", between(6500, 7200),
+			"yikama_suyu_sicakligi", tenth(25, 35), "su_ilavesi", between(100, 300),
+			"yag_cikis_sicakligi", tenth(24, 28), "bosaltma_araligi", between(15, 30))));
+		if (!later(1, 3)) {
+			return false;
+		}
+		machine(operator, batch, stage, "finish");
+		return true;
 	}
 
 	/** Kronometreli asamada makineyi baslatir ya da bitirir ({@code start} / {@code finish}). */
@@ -852,6 +897,11 @@ final class DemoFactory {
 
 	BigDecimal decimal(double min, double max) {
 		return BigDecimal.valueOf(min + random.nextDouble() * (max - min));
+	}
+
+	/** Ondalik bir basamakli olcum (sicaklik gibi). */
+	private BigDecimal tenth(double min, double max) {
+		return scale(decimal(min, max), 1);
 	}
 
 	private static BigDecimal scale(BigDecimal value, int scale) {

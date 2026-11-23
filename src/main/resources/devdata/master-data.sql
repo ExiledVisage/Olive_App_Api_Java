@@ -236,8 +236,8 @@ insert into process_types (id, name, description, category, is_active) values
 	(12, 'Randıman Tespiti', 'Girdi ve çıktı oranlarına göre randıman hesabı', 'yield_analysis', true);
 
 insert into process_type_fields (id, process_type_id, field_key, label, data_type, is_required, unit, sort_order, is_active, options, default_value) values
-	(4, 5, 'malakasyon_suresi', 'Malakasyon Süresi', 'integer', false, 'dk', 1, true, NULL, NULL),
-	(5, 5, 'malakasyon_sicakligi', 'Malakasyon Sıcaklığı', 'decimal', false, '°C', 2, true, NULL, NULL),
+	(4, 5, 'zeytin_giris_sicakligi', 'Zeytin Giriş Sıcaklığı', 'decimal', false, '°C', 1, true, NULL, NULL),
+	(5, 5, 'ortam_sicakligi', 'Ortam Sıcaklığı', 'decimal', false, '°C', 2, true, NULL, NULL),
 	(6, 8, 'numune_no', 'Laboratuvar Numune No', 'text', false, NULL, 1, true, NULL, NULL),
 	(7, 10, 'filtre_tipi', 'Filtre Tipi', 'text', false, NULL, 1, true, NULL, NULL);
 
@@ -313,13 +313,22 @@ insert into production_stage_extensions (id, production_stage_id, stage_extensio
 	(33, 34, 6, true, true, 1),
 	(34, 12, 7, true, true, 1),
 	(35, 24, 7, true, true, 1),
-	(36, 36, 7, true, true, 1);
+	(36, 36, 7, true, true, 1),
+	(37, 5, 8, true, true, 3),
+	(38, 17, 8, true, true, 3),
+	(39, 29, 8, true, true, 3);
 
 -- Sikimda pirina kalan ciktidir: girdi zeytin - zeytinyagi
 insert into production_stage_extension_values (id, production_stage_extension_id, stage_extension_type_field_id, value_text) values
 	(1, 25, 2, 'pomace'),
 	(2, 26, 2, 'pomace'),
 	(3, 27, 2, 'pomace');
+
+-- Sikimda makine sirasi (docs/MACHINES.md)
+insert into production_stage_extension_values (id, production_stage_extension_id, stage_extension_type_field_id, value_json) values
+	(4, 37, 3, '["kirici", "malaksor", "dekantor", "separator"]'),
+	(5, 38, 3, '["kirici", "malaksor", "dekantor", "separator"]'),
+	(6, 39, 3, '["kirici", "malaksor", "dekantor", "separator"]');
 
 -- Makineler (docs/MACHINES.md): sikimi olusturan makine tipleri, olcum alanlari; her tipten bir makine, tek parca
 insert into machine_types (id, key, name, description, sort_order) values

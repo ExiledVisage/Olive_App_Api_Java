@@ -35,4 +35,5 @@ insert into stage_extension_types (id, key, name, description) values
 	(4, 'analysis', 'Analysis', 'Bu asamada secilen urun tipi icin analiz islemleri yapilir.'),
 	(5, 'pre_settling', 'Pre-settling', 'Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.'),
 	(6, 'timer', 'Timer', 'Bu asamada makine suresi kronometreyle olculur; makine bitirilmeden asama tamamlanmaz.'),
-	(7, 'yield', 'Yield', 'Bu asamada randiman hesaplanir: on dinlendirmeden son tanka giden yag / sikima giren zeytin x 100 (kg); elle degistirilirse hesaplanan deger ve sapma orani kaydedilir.');
+	(7, 'yield', 'Yield', 'Bu asamada randiman hesaplanir: on dinlendirmeden son tanka giden yag / sikima giren zeytin x 100 (kg); elle degistirilirse hesaplanan deger ve sapma orani kaydedilir.'),
+	(8, 'machine_route', 'Machine Route', 'Bu asamada parti sirayla makinelerden gecer (Kirici, Malaksor...); her makine icin sure ve olcumler girilen bir adim acilir. Kronometre baslamadan adim baslamaz, acik adim varken kronometre bitmez.');

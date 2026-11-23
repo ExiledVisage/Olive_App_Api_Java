@@ -2,8 +2,10 @@ package com.olivamore.api.production.batchprocess.stage;
 
 import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -71,6 +73,28 @@ public class StageExtensions {
 		return action == null || action.isEmpty() ? null : action;
 	}
 
+	/**
+	 * Makine hatti uzantisinin makine sirasi (tip anahtarlari); uzanti yoksa {@code null}. Ayar
+	 * {@code machine_types}: ["kirici", "malaksor", ...].
+	 */
+	public static List<String> machineRoute(List<Extension> extensions) {
+		Extension extension = StageBatchProcessService.first(extensions, "machine_route");
+		if (extension == null) {
+			return null;
+		}
+		JsonNode types = extension.values().stream().filter(v -> "machine_types".equals(v.fieldKey())).findFirst()
+			.map(StageQueries.ExtensionValue::valueJson).orElse(null);
+		List<String> keys = new ArrayList<>();
+		if (types != null && types.isArray()) {
+			types.forEach(node -> {
+				if (node.isString() && !node.asString().isBlank()) {
+					keys.add(node.asString().strip());
+				}
+			});
+		}
+		return keys;
+	}
+
 	public void dispatch(StageProcess process, List<Extension> extensions, OperationData data) {
 		for (String key : keys(extensions)) {
 			switch (key) {
@@ -86,12 +110,12 @@ public class StageExtensions {
 		}
 	}
 
-	/** Dinlenmedeki asamanin iptali: tanktaki urun partiye doner. */
 	/** Teslimatin kantar tartimi geri alinir: yarattigi materyal silinir. */
 	public void undoWeighing(long batchProcessId) {
 		weighing.undo(batchProcessId);
 	}
 
+	/** Dinlenmedeki asamanin iptali: tanktaki urun partiye doner. */
 	public void cancelPreSettling(long batchProcessId) {
 		preSettling.cancel(batchProcessId);
 	}

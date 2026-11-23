@@ -3,6 +3,7 @@ package com.olivamore.api.production.batchprocess;
 import com.olivamore.api.identity.CurrentUser;
 import com.olivamore.api.identity.Permissions;
 import com.olivamore.api.inventory.PreSettlingTankEmptied;
+import com.olivamore.api.machine.MachineRuns;
 import com.olivamore.api.production.batch.BatchStatus;
 import com.olivamore.api.production.batch.ProductionBatch;
 import com.olivamore.api.production.batch.ProductionBatchRepository;
@@ -77,13 +78,15 @@ class BatchProcessService {
 	private final OperationDataRules operationRules;
 	private final Permissions permissions;
 	private final DataSource dataSource;
+	private final MachineRuns machineRuns;
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	BatchProcessService(BatchProcessRepository processes, BatchProcessFieldValueRepository fieldValues,
 		BatchProcessReviewRepository reviews, ProductionBatchRepository batches, StageQueries queries,
-		StageExtensions handlers, OperationDataRules operationRules, Permissions permissions, DataSource dataSource) {
+		StageExtensions handlers, OperationDataRules operationRules, Permissions permissions, DataSource dataSource,
+		MachineRuns machineRuns) {
 		this.processes = processes;
 		this.fieldValues = fieldValues;
 		this.reviews = reviews;
@@ -93,6 +96,7 @@ class BatchProcessService {
 		this.operationRules = operationRules;
 		this.permissions = permissions;
 		this.dataSource = dataSource;
+		this.machineRuns = machineRuns;
 	}
 
 	// ======================================================================
@@ -129,6 +133,9 @@ class BatchProcessService {
 				Patch.ifPresent(machineStartedAt, process::changeMachineStartedAt);
 				Patch.ifPresent(machineFinishedAt, process::changeMachineFinishedAt);
 				assertMachineTimesInOrder(process);
+				if (process.getMachineFinishedAt() != null) {
+					assertNoOpenMachineStep(process);
+				}
 			}
 		}
 		long batchId = process.getProductionBatchId();
@@ -171,7 +178,16 @@ class BatchProcessService {
 		if (process.getMachineFinishedAt() != null) {
 			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında kronometre zaten bitirildi.");
 		}
+		assertNoOpenMachineStep(process);
 		process.finishMachine(Timestamps.now());
+	}
+
+	/** Makine hattinda acik adim varken asama kronometresi bitmez. */
+	private void assertNoOpenMachineStep(BatchProcess process) {
+		machineRuns.openStep(process.getId()).ifPresent(machine -> {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında '" + machine + "' adımı "
+				+ "açık; önce makine adımını bitirin.");
+		});
 	}
 
 	private void assertTimer(BatchProcess process) {
@@ -281,6 +297,7 @@ class BatchProcessService {
 					assertNoSideEffectsToUndo(p, "waiting");
 				}
 				p.reopen();
+				machineRuns.clear(p.getId());
 			}
 			case IN_PROGRESS -> {
 				if (p.getStatus() == ProcessStatus.COMPLETED) {
@@ -911,7 +928,7 @@ class BatchProcessService {
 			.toList();
 	}
 
-	private static Patch<LocalDateTime> date(ValidationErrors errors, String field, Patch<String> raw) {
+	static Patch<LocalDateTime> date(ValidationErrors errors, String field, Patch<String> raw) {
 		if (raw == null || raw.value() == null) {
 			return raw == null ? null : new Patch<>(null);
 		}

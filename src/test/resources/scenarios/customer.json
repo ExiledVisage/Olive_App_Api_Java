@@ -1463,6 +1463,25 @@
         "preferred" : [ ],
         "history" : [ {
           "recipe" : {
+            "id" : 3,
+            "name" : "Naturel Sızma Ayvalık 0.4",
+            "version" : 1,
+            "is_active" : true,
+            "description" : "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+            "contents" : [ {
+              "id" : 3,
+              "production_product_type_id" : 4,
+              "production_product_type_name" : "Ayvalık Zeytinyağı",
+              "ratio" : 1.0
+            } ],
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          },
+          "order_count" : 9,
+          "total_quantity" : 10806,
+          "last_order_date" : "2026-11-06"
+        }, {
+          "recipe" : {
             "id" : 2,
             "name" : "Naturel Sızma Gemlik 0.8",
             "version" : 1,
@@ -1477,9 +1496,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 11,
-          "total_quantity" : 9180,
-          "last_order_date" : "2026-09-20"
+          "order_count" : 9,
+          "total_quantity" : 9384,
+          "last_order_date" : "2026-09-30"
         }, {
           "recipe" : {
             "id" : 1,
@@ -1496,28 +1515,33 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 5,
-          "total_quantity" : 7026,
-          "last_order_date" : "2026-11-02"
+          "order_count" : 6,
+          "total_quantity" : 8208,
+          "last_order_date" : "2026-11-06"
         }, {
           "recipe" : {
-            "id" : 3,
-            "name" : "Naturel Sızma Ayvalık 0.4",
+            "id" : 5,
+            "name" : "Klasik Blend 0.5",
             "version" : 1,
             "is_active" : true,
-            "description" : "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+            "description" : "%70 Gemlik, %30 Ayvalık karışımı",
             "contents" : [ {
-              "id" : 3,
+              "id" : 5,
+              "production_product_type_id" : 3,
+              "production_product_type_name" : "Gemlik Zeytinyağı",
+              "ratio" : 0.7
+            }, {
+              "id" : 6,
               "production_product_type_id" : 4,
               "production_product_type_name" : "Ayvalık Zeytinyağı",
-              "ratio" : 1.0
+              "ratio" : 0.3
             } ],
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 7,
-          "total_quantity" : 3246,
-          "last_order_date" : "2026-11-02"
+          "order_count" : 1,
+          "total_quantity" : 138,
+          "last_order_date" : "2026-04-23"
         } ]
       }
     },
@@ -1600,25 +1624,6 @@
         "preferred" : [ ],
         "history" : [ {
           "recipe" : {
-            "id" : 1,
-            "name" : "Naturel Sızma Gemlik 0.3",
-            "version" : 1,
-            "is_active" : true,
-            "description" : "%100 Gemlik zeytinyağı, 0.3 asitlik",
-            "contents" : [ {
-              "id" : 1,
-              "production_product_type_id" : 3,
-              "production_product_type_name" : "Gemlik Zeytinyağı",
-              "ratio" : 1.0
-            } ],
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          },
-          "order_count" : 5,
-          "total_quantity" : 6996,
-          "last_order_date" : "2026-10-25"
-        }, {
-          "recipe" : {
             "id" : 2,
             "name" : "Naturel Sızma Gemlik 0.8",
             "version" : 1,
@@ -1633,9 +1638,28 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 8,
-          "total_quantity" : 4650,
-          "last_order_date" : "2026-09-27"
+          "order_count" : 13,
+          "total_quantity" : 16134,
+          "last_order_date" : "2026-09-09"
+        }, {
+          "recipe" : {
+            "id" : 1,
+            "name" : "Naturel Sızma Gemlik 0.3",
+            "version" : 1,
+            "is_active" : true,
+            "description" : "%100 Gemlik zeytinyağı, 0.3 asitlik",
+            "contents" : [ {
+              "id" : 1,
+              "production_product_type_id" : 3,
+              "production_product_type_name" : "Gemlik Zeytinyağı",
+              "ratio" : 1.0
+            } ],
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          },
+          "order_count" : 9,
+          "total_quantity" : 9972,
+          "last_order_date" : "2026-10-20"
         }, {
           "recipe" : {
             "id" : 3,
@@ -1652,9 +1676,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 4,
-          "total_quantity" : 4566,
-          "last_order_date" : "2026-10-25"
+          "order_count" : 9,
+          "total_quantity" : 6714,
+          "last_order_date" : "2026-10-20"
         }, {
           "recipe" : {
             "id" : 5,
@@ -1676,9 +1700,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 1,
-          "total_quantity" : 636,
-          "last_order_date" : "2026-04-08"
+          "order_count" : 2,
+          "total_quantity" : 582,
+          "last_order_date" : "2026-05-02"
         } ]
       }
     },
@@ -1775,9 +1799,28 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 5,
-          "total_quantity" : 7944,
-          "last_order_date" : "2026-08-25"
+          "order_count" : 6,
+          "total_quantity" : 7530,
+          "last_order_date" : "2026-09-26"
+        }, {
+          "recipe" : {
+            "id" : 3,
+            "name" : "Naturel Sızma Ayvalık 0.4",
+            "version" : 1,
+            "is_active" : true,
+            "description" : "%100 Ayvalık zeytinyağı, 0.4 asitlik",
+            "contents" : [ {
+              "id" : 3,
+              "production_product_type_id" : 4,
+              "production_product_type_name" : "Ayvalık Zeytinyağı",
+              "ratio" : 1.0
+            } ],
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          },
+          "order_count" : 11,
+          "total_quantity" : 7356,
+          "last_order_date" : "2026-04-10"
         }, {
           "recipe" : {
             "id" : 1,
@@ -1794,9 +1837,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 7,
-          "total_quantity" : 5544,
-          "last_order_date" : "2026-10-11"
+          "order_count" : 12,
+          "total_quantity" : 6882,
+          "last_order_date" : "2026-11-02"
         }, {
           "recipe" : {
             "id" : 5,
@@ -1818,28 +1861,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 2,
-          "total_quantity" : 1986,
-          "last_order_date" : "2026-04-21"
-        }, {
-          "recipe" : {
-            "id" : 3,
-            "name" : "Naturel Sızma Ayvalık 0.4",
-            "version" : 1,
-            "is_active" : true,
-            "description" : "%100 Ayvalık zeytinyağı, 0.4 asitlik",
-            "contents" : [ {
-              "id" : 3,
-              "production_product_type_id" : 4,
-              "production_product_type_name" : "Ayvalık Zeytinyağı",
-              "ratio" : 1.0
-            } ],
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          },
-          "order_count" : 3,
-          "total_quantity" : 1632,
-          "last_order_date" : "2026-04-21"
+          "order_count" : 1,
+          "total_quantity" : 1908,
+          "last_order_date" : "2026-04-05"
         } ]
       }
     },
@@ -1922,6 +1946,25 @@
         "preferred" : [ ],
         "history" : [ {
           "recipe" : {
+            "id" : 1,
+            "name" : "Naturel Sızma Gemlik 0.3",
+            "version" : 1,
+            "is_active" : true,
+            "description" : "%100 Gemlik zeytinyağı, 0.3 asitlik",
+            "contents" : [ {
+              "id" : 1,
+              "production_product_type_id" : 3,
+              "production_product_type_name" : "Gemlik Zeytinyağı",
+              "ratio" : 1.0
+            } ],
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          },
+          "order_count" : 11,
+          "total_quantity" : 9540,
+          "last_order_date" : "2026-11-03"
+        }, {
+          "recipe" : {
             "id" : 2,
             "name" : "Naturel Sızma Gemlik 0.8",
             "version" : 1,
@@ -1937,27 +1980,8 @@
             "updated_at" : "2025-11-06T07:00:00Z"
           },
           "order_count" : 9,
-          "total_quantity" : 10746,
-          "last_order_date" : "2026-09-16"
-        }, {
-          "recipe" : {
-            "id" : 1,
-            "name" : "Naturel Sızma Gemlik 0.3",
-            "version" : 1,
-            "is_active" : true,
-            "description" : "%100 Gemlik zeytinyağı, 0.3 asitlik",
-            "contents" : [ {
-              "id" : 1,
-              "production_product_type_id" : 3,
-              "production_product_type_name" : "Gemlik Zeytinyağı",
-              "ratio" : 1.0
-            } ],
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          },
-          "order_count" : 9,
-          "total_quantity" : 10176,
-          "last_order_date" : "2026-10-08"
+          "total_quantity" : 8508,
+          "last_order_date" : "2026-09-24"
         }, {
           "recipe" : {
             "id" : 3,
@@ -1974,33 +1998,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 10,
-          "total_quantity" : 5718,
-          "last_order_date" : "2026-10-15"
-        }, {
-          "recipe" : {
-            "id" : 5,
-            "name" : "Klasik Blend 0.5",
-            "version" : 1,
-            "is_active" : true,
-            "description" : "%70 Gemlik, %30 Ayvalık karışımı",
-            "contents" : [ {
-              "id" : 5,
-              "production_product_type_id" : 3,
-              "production_product_type_name" : "Gemlik Zeytinyağı",
-              "ratio" : 0.7
-            }, {
-              "id" : 6,
-              "production_product_type_id" : 4,
-              "production_product_type_name" : "Ayvalık Zeytinyağı",
-              "ratio" : 0.3
-            } ],
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          },
-          "order_count" : 1,
-          "total_quantity" : 78,
-          "last_order_date" : "2026-04-26"
+          "order_count" : 8,
+          "total_quantity" : 5418,
+          "last_order_date" : "2026-05-06"
         } ]
       }
     },
@@ -3357,7 +3357,7 @@
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'Merkez Depo' adresi silinemez; kullanıldığı yerler: 16 sipariş.",
+      "detail" : "'Merkez Depo' adresi silinemez; kullanıldığı yerler: 19 sipariş.",
       "instance" : "/api/customers/1/addresses/1",
       "status" : 422,
       "title" : "Unprocessable Content"
@@ -3541,25 +3541,6 @@
         } ],
         "history" : [ {
           "recipe" : {
-            "id" : 1,
-            "name" : "Naturel Sızma Gemlik 0.3",
-            "version" : 1,
-            "is_active" : true,
-            "description" : "%100 Gemlik zeytinyağı, 0.3 asitlik",
-            "contents" : [ {
-              "id" : 1,
-              "production_product_type_id" : 3,
-              "production_product_type_name" : "Gemlik Zeytinyağı",
-              "ratio" : 1.0
-            } ],
-            "created_at" : "2025-11-06T07:00:00Z",
-            "updated_at" : "2025-11-06T07:00:00Z"
-          },
-          "order_count" : 5,
-          "total_quantity" : 6996,
-          "last_order_date" : "2026-10-25"
-        }, {
-          "recipe" : {
             "id" : 2,
             "name" : "Naturel Sızma Gemlik 0.8",
             "version" : 1,
@@ -3574,9 +3555,28 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 8,
-          "total_quantity" : 4650,
-          "last_order_date" : "2026-09-27"
+          "order_count" : 13,
+          "total_quantity" : 16134,
+          "last_order_date" : "2026-09-09"
+        }, {
+          "recipe" : {
+            "id" : 1,
+            "name" : "Naturel Sızma Gemlik 0.3",
+            "version" : 1,
+            "is_active" : true,
+            "description" : "%100 Gemlik zeytinyağı, 0.3 asitlik",
+            "contents" : [ {
+              "id" : 1,
+              "production_product_type_id" : 3,
+              "production_product_type_name" : "Gemlik Zeytinyağı",
+              "ratio" : 1.0
+            } ],
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          },
+          "order_count" : 9,
+          "total_quantity" : 9972,
+          "last_order_date" : "2026-10-20"
         }, {
           "recipe" : {
             "id" : 3,
@@ -3593,9 +3593,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 4,
-          "total_quantity" : 4566,
-          "last_order_date" : "2026-10-25"
+          "order_count" : 9,
+          "total_quantity" : 6714,
+          "last_order_date" : "2026-10-20"
         }, {
           "recipe" : {
             "id" : 5,
@@ -3617,9 +3617,9 @@
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2025-11-06T07:00:00Z"
           },
-          "order_count" : 1,
-          "total_quantity" : 636,
-          "last_order_date" : "2026-04-08"
+          "order_count" : 2,
+          "total_quantity" : 582,
+          "last_order_date" : "2026-05-02"
         } ]
       }
     },

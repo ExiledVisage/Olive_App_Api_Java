@@ -54,7 +54,7 @@ class Machine extends AuditedEntity {
 
 	private String note;
 
-	/** Tipin makine bilgisi alanlari (field_key -> deger); MachineAttributes denetler. */
+	/** Tipin makine bilgisi alanlari (field_key -> deger); MachineFieldValues denetler. */
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Column(nullable = false)
 	private ObjectNode attributes;

@@ -8,6 +8,7 @@ import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.productionline.StageExtensionResponse;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -37,7 +38,7 @@ public class StageQueries {
 	public record OutputProduct(Long productionProductId, String productKey) {
 	}
 
-	public record ExtensionValue(String fieldKey, String valueText) {
+	public record ExtensionValue(String fieldKey, String valueText, JsonNode valueJson) {
 	}
 
 	/** Asamanin uzantisi: tip anahtari, girdi kategorileri, cikti kategorileri, degerler. */
@@ -98,7 +99,8 @@ public class StageQueries {
 			e.outputProductionProducts().stream().map(p -> new OutputProduct(p.productionProductId(),
 				p.productionProduct() == null ? null : p.productionProduct().key())).toList(),
 			e.values().stream()
-				.map(v -> new ExtensionValue(v.field() == null ? null : v.field().fieldKey(), v.valueText()))
+				.map(v -> new ExtensionValue(v.field() == null ? null : v.field().fieldKey(), v.valueText(),
+					v.valueJson()))
 				.toList());
 	}
 

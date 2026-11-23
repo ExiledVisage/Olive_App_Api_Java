@@ -3,6 +3,7 @@ package com.olivamore.api.machine;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.persistence.DeletionGuard;
 import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
 import org.springframework.data.domain.Sort;
@@ -18,14 +19,19 @@ import java.util.List;
 @Service
 class MachineService {
 
+	private static final String USE_PASSIVE = "Pasife alabilirsiniz.";
+
 	private final MachineRepository machines;
 	private final MachinePartRepository parts;
 	private final MachineTypeRepository types;
+	private final MachineRunRepository runs;
 
-	MachineService(MachineRepository machines, MachinePartRepository parts, MachineTypeRepository types) {
+	MachineService(MachineRepository machines, MachinePartRepository parts, MachineTypeRepository types,
+		MachineRunRepository runs) {
 		this.machines = machines;
 		this.parts = parts;
 		this.types = types;
+		this.runs = runs;
 	}
 
 	@Transactional(readOnly = true)
@@ -59,7 +65,7 @@ class MachineService {
 		if (request.parts() != null) {
 			errors.distinct("parts", "code", request.parts().stream().map(CreateMachinePartRequest::code).toList());
 		}
-		ObjectNode attributes = type == null ? null : MachineAttributes.check(type, request.attributes(), errors);
+		ObjectNode attributes = type == null ? null : MachineFieldValues.attributes(type, request.attributes(), errors);
 		errors.throwIfAny();
 		if (!type.isActive()) {
 			throw new BusinessRuleException("'" + type.getName() + "' makine tipi pasif; bu tipte makine eklenemez.");
@@ -76,7 +82,7 @@ class MachineService {
 		ObjectNode attributes = null;
 		if (request.attributes() != null) {
 			ValidationErrors errors = new ValidationErrors();
-			attributes = MachineAttributes.check(machine.getMachineType(), request.attributes(), errors);
+			attributes = MachineFieldValues.attributes(machine.getMachineType(), request.attributes(), errors);
 			errors.throwIfAny();
 		}
 		machine.apply(request, attributes);
@@ -86,7 +92,11 @@ class MachineService {
 
 	@Transactional
 	void delete(long id) {
-		machines.delete(find(id));
+		Machine machine = find(id);
+		DeletionGuard.of("'" + machine.getName() + "' makinesi")
+			.usedBy("makine adımı", runs.countByMachinePartMachineId(id))
+			.check(USE_PASSIVE);
+		machines.delete(machine);
 	}
 
 	@Transactional
@@ -111,6 +121,9 @@ class MachineService {
 	@Transactional
 	void deletePart(long machineId, long partId) {
 		MachinePart part = findPart(machineId, partId);
+		DeletionGuard.of("'" + MachineRuns.label(part) + "' parçası")
+			.usedBy("makine adımı", runs.countByMachinePartId(partId))
+			.check(USE_PASSIVE);
 		if (parts.countByMachineId(machineId) <= 1) {
 			throw new BusinessRuleException("'" + part.getMachine().getName() + "' makinesinin tek parçası silinemez; "
 				+ "her makinede en az bir parça olmalı.");

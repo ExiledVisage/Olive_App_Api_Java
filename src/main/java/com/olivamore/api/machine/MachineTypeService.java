@@ -23,10 +23,13 @@ class MachineTypeService {
 
 	private final MachineTypeRepository types;
 	private final MachineTypeFieldRepository fields;
+	private final MachineRunValueRepository values;
 
-	MachineTypeService(MachineTypeRepository types, MachineTypeFieldRepository fields) {
+	MachineTypeService(MachineTypeRepository types, MachineTypeFieldRepository fields,
+		MachineRunValueRepository values) {
 		this.types = types;
 		this.fields = fields;
+		this.values = values;
 	}
 
 	@Transactional(readOnly = true)
@@ -103,6 +106,9 @@ class MachineTypeService {
 	@Transactional
 	void deleteField(long typeId, long fieldId) {
 		MachineTypeField field = findField(typeId, fieldId);
+		DeletionGuard.of("'" + field.getLabel() + "' alanı")
+			.usedBy("makine adımı ölçümü", values.countByFieldId(fieldId))
+			.check(USE_PASSIVE);
 		// Tipin alan listesinde kalirsa (PERSIST) silme geri alinir
 		field.getMachineType().getFields().remove(field);
 		fields.delete(field);

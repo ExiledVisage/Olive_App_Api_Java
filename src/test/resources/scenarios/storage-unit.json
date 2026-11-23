@@ -1526,7 +1526,7 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 27,
+        "id" : 49,
         "storage_unit_id" : 15,
         "production_product_id" : 2,
         "current_quantity" : 5450.2,
@@ -1537,8 +1537,8 @@
           "name" : "Zeytinyağı",
           "description" : "İşlenmiş zeytinyağı ürünü"
         },
-        "created_at" : "2025-11-18T07:01:00Z",
-        "updated_at" : "2026-10-28T07:02:00Z"
+        "created_at" : "2025-12-07T07:10:00Z",
+        "updated_at" : "2026-10-31T06:59:00Z"
       } ]
     },
     "save" : null
@@ -1575,12 +1575,249 @@
     "body" : null,
     "status" : 200,
     "response" : {
-      "content" : [ ],
+      "content" : [ {
+        "id" : 440,
+        "storage_unit_id" : 15,
+        "material_id" : 269,
+        "source_material_id" : 96,
+        "batch_process_id" : null,
+        "finished_product_run_id" : null,
+        "counterparty_storage_unit_id" : 8,
+        "source_type" : "INTERNAL_TRANSFER",
+        "movement_type" : "TRANSFER_IN",
+        "transfer_reference" : "TRF-20251224065500-00001H",
+        "quantity" : 1458.23,
+        "unit" : "KG",
+        "note" : "Tank aktarımı",
+        "moved_at" : "2025-12-24T06:55:00Z",
+        "material" : {
+          "id" : 269,
+          "production_batch_id" : null,
+          "production_product_type_id" : 3,
+          "parent_material_id" : null,
+          "origin_type" : "TANK",
+          "quantity" : 5450.2,
+          "unit" : "KG",
+          "status" : "active",
+          "current_location_type" : "storage_unit",
+          "current_location_id" : 15,
+          "source_production_stage_id" : null,
+          "created_by_batch_process_id" : null,
+          "closed_by_batch_process_id" : null,
+          "note" : null,
+          "production_product_type" : {
+            "id" : 3,
+            "production_product_id" : 2,
+            "name" : "Gemlik Zeytinyağı",
+            "code" : "OLIVE_OIL_GEMLIK",
+            "type" : "gemlik",
+            "unit" : "KG",
+            "density_kg_per_litre" : 0.916,
+            "production_product" : {
+              "id" : 2,
+              "key" : "olive_oil",
+              "name" : "Zeytinyağı",
+              "description" : "İşlenmiş zeytinyağı ürünü"
+            }
+          },
+          "attribute_values" : [ {
+            "id" : 73,
+            "material_id" : 269,
+            "production_product_attribute_definition_id" : 4,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.2834,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 4,
+              "production_product_id" : 2,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2025-12-07T07:10:00Z",
+            "updated_at" : "2026-10-31T06:59:00Z"
+          } ],
+          "created_at" : "2025-12-07T07:10:00Z",
+          "updated_at" : "2026-10-31T06:59:00Z"
+        },
+        "batch_process" : null,
+        "counterparty_storage_unit" : {
+          "id" : 8,
+          "name" : "Gemlik Toplama Tankı",
+          "code" : "TOPLAMA-GEM-01"
+        },
+        "created_at" : "2025-12-24T06:55:00Z",
+        "updated_at" : "2025-12-24T06:55:00Z"
+      }, {
+        "id" : 315,
+        "storage_unit_id" : 15,
+        "material_id" : 269,
+        "source_material_id" : 96,
+        "batch_process_id" : null,
+        "finished_product_run_id" : null,
+        "counterparty_storage_unit_id" : 8,
+        "source_type" : "INTERNAL_TRANSFER",
+        "movement_type" : "TRANSFER_IN",
+        "transfer_reference" : "TRF-20251210071000-000011",
+        "quantity" : 1162.21,
+        "unit" : "KG",
+        "note" : "Tank aktarımı",
+        "moved_at" : "2025-12-10T07:10:00Z",
+        "material" : {
+          "id" : 269,
+          "production_batch_id" : null,
+          "production_product_type_id" : 3,
+          "parent_material_id" : null,
+          "origin_type" : "TANK",
+          "quantity" : 5450.2,
+          "unit" : "KG",
+          "status" : "active",
+          "current_location_type" : "storage_unit",
+          "current_location_id" : 15,
+          "source_production_stage_id" : null,
+          "created_by_batch_process_id" : null,
+          "closed_by_batch_process_id" : null,
+          "note" : null,
+          "production_product_type" : {
+            "id" : 3,
+            "production_product_id" : 2,
+            "name" : "Gemlik Zeytinyağı",
+            "code" : "OLIVE_OIL_GEMLIK",
+            "type" : "gemlik",
+            "unit" : "KG",
+            "density_kg_per_litre" : 0.916,
+            "production_product" : {
+              "id" : 2,
+              "key" : "olive_oil",
+              "name" : "Zeytinyağı",
+              "description" : "İşlenmiş zeytinyağı ürünü"
+            }
+          },
+          "attribute_values" : [ {
+            "id" : 73,
+            "material_id" : 269,
+            "production_product_attribute_definition_id" : 4,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.2834,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 4,
+              "production_product_id" : 2,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2025-12-07T07:10:00Z",
+            "updated_at" : "2026-10-31T06:59:00Z"
+          } ],
+          "created_at" : "2025-12-07T07:10:00Z",
+          "updated_at" : "2026-10-31T06:59:00Z"
+        },
+        "batch_process" : null,
+        "counterparty_storage_unit" : {
+          "id" : 8,
+          "name" : "Gemlik Toplama Tankı",
+          "code" : "TOPLAMA-GEM-01"
+        },
+        "created_at" : "2025-12-10T07:10:00Z",
+        "updated_at" : "2025-12-10T07:10:00Z"
+      }, {
+        "id" : 289,
+        "storage_unit_id" : 15,
+        "material_id" : 269,
+        "source_material_id" : 96,
+        "batch_process_id" : null,
+        "finished_product_run_id" : null,
+        "counterparty_storage_unit_id" : 8,
+        "source_type" : "INTERNAL_TRANSFER",
+        "movement_type" : "TRANSFER_IN",
+        "transfer_reference" : "TRF-20251207071000-00000Y",
+        "quantity" : 2808.53,
+        "unit" : "KG",
+        "note" : "Tank aktarımı",
+        "moved_at" : "2025-12-07T07:10:00Z",
+        "material" : {
+          "id" : 269,
+          "production_batch_id" : null,
+          "production_product_type_id" : 3,
+          "parent_material_id" : null,
+          "origin_type" : "TANK",
+          "quantity" : 5450.2,
+          "unit" : "KG",
+          "status" : "active",
+          "current_location_type" : "storage_unit",
+          "current_location_id" : 15,
+          "source_production_stage_id" : null,
+          "created_by_batch_process_id" : null,
+          "closed_by_batch_process_id" : null,
+          "note" : null,
+          "production_product_type" : {
+            "id" : 3,
+            "production_product_id" : 2,
+            "name" : "Gemlik Zeytinyağı",
+            "code" : "OLIVE_OIL_GEMLIK",
+            "type" : "gemlik",
+            "unit" : "KG",
+            "density_kg_per_litre" : 0.916,
+            "production_product" : {
+              "id" : 2,
+              "key" : "olive_oil",
+              "name" : "Zeytinyağı",
+              "description" : "İşlenmiş zeytinyağı ürünü"
+            }
+          },
+          "attribute_values" : [ {
+            "id" : 73,
+            "material_id" : 269,
+            "production_product_attribute_definition_id" : 4,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.2834,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 4,
+              "production_product_id" : 2,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2025-12-07T07:10:00Z",
+            "updated_at" : "2026-10-31T06:59:00Z"
+          } ],
+          "created_at" : "2025-12-07T07:10:00Z",
+          "updated_at" : "2026-10-31T06:59:00Z"
+        },
+        "batch_process" : null,
+        "counterparty_storage_unit" : {
+          "id" : 8,
+          "name" : "Gemlik Toplama Tankı",
+          "code" : "TOPLAMA-GEM-01"
+        },
+        "created_at" : "2025-12-07T07:10:00Z",
+        "updated_at" : "2025-12-07T07:10:00Z"
+      } ],
       "page" : {
         "size" : 5,
         "number" : 1,
-        "total_elements" : 5,
-        "total_pages" : 1
+        "total_elements" : 8,
+        "total_pages" : 2
       }
     },
     "save" : null
