@@ -14,6 +14,10 @@ record UpdateBatchProcessRequest(
 
 	Patch<String> completedAt,
 
+	Patch<String> machineStartedAt,
+
+	Patch<String> machineFinishedAt,
+
 	Patch<String> note,
 
 	JsonNode operationData) {

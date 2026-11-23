@@ -37,6 +37,11 @@ public class StageExtensions {
 		return keys(extensions).stream().anyMatch(key -> "storage_movement".equals(key) || "pre_settling".equals(key));
 	}
 
+	/** Kronometre uzantisi varsa makine Baslat/Bitir ile olculur; bitmeden asama tamamlanmaz. */
+	public static boolean timed(List<Extension> extensions) {
+		return keys(extensions).contains("timer");
+	}
+
 	/** On dinlendirme uzantisi varsa asama tamamlanmaz, tank bosaltilana kadar dinlenmede bekler. */
 	public static boolean rests(List<Extension> extensions) {
 		return keys(extensions).contains("pre_settling");

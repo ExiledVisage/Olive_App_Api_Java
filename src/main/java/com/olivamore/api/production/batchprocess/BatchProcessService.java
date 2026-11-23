@@ -113,6 +113,8 @@ class BatchProcessService {
 		checkOperator(errors, request.operatorId());
 		Patch<LocalDateTime> startedAt = date(errors, "started_at", request.startedAt());
 		Patch<LocalDateTime> completedAt = date(errors, "completed_at", request.completedAt());
+		Patch<LocalDateTime> machineStartedAt = date(errors, "machine_started_at", request.machineStartedAt());
+		Patch<LocalDateTime> machineFinishedAt = date(errors, "machine_finished_at", request.machineFinishedAt());
 		JsonNode data = checkOperationData(errors, process, status, sent);
 		errors.throwIfAny();
 
@@ -122,12 +124,78 @@ class BatchProcessService {
 			Patch.ifPresent(request.operatorId(), process::changeOperator);
 			Patch.ifPresent(startedAt, process::changeStartedAt);
 			Patch.ifPresent(completedAt, process::changeCompletedAt);
+			if (machineStartedAt != null || machineFinishedAt != null) {
+				assertTimer(process);
+				Patch.ifPresent(machineStartedAt, process::changeMachineStartedAt);
+				Patch.ifPresent(machineFinishedAt, process::changeMachineFinishedAt);
+				assertMachineTimesInOrder(process);
+			}
 		}
 		long batchId = process.getProductionBatchId();
 		if (status != null) {
 			applyStatus(process, status, data, actor);
 		}
 		syncBatchStatus(batchId);
+	}
+
+	// ======================================================================
+	// Kronometre
+	// ======================================================================
+
+	/** Makine baslar: asama sirasi gelmis ve acik olmali; asama da baslamis olur. */
+	@Transactional
+	void startMachine(long id) {
+		BatchProcess process = find(id);
+		assertTimer(process);
+		if (!isOpen(process)) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşaması açık değil; kronometre başlatılamaz.");
+		}
+		if (process.getMachineStartedAt() != null) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında kronometre zaten başlatıldı.");
+		}
+		assertPreviousStagesDone(process);
+		process.startMachine(Timestamps.now());
+		syncBatchStatus(process.getProductionBatchId());
+	}
+
+	/** Makine biter; bundan sonra asamanin verileri kaydedilebilir. */
+	@Transactional
+	void finishMachine(long id) {
+		BatchProcess process = find(id);
+		assertTimer(process);
+		if (process.getMachineStartedAt() == null) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında kronometre başlatılmadı.");
+		}
+		if (process.getMachineFinishedAt() != null) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında kronometre zaten bitirildi.");
+		}
+		process.finishMachine(Timestamps.now());
+	}
+
+	private void assertTimer(BatchProcess process) {
+		if (!StageExtensions.timed(extensions(process))) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında kronometre yok.");
+		}
+	}
+
+	/** Elle duzeltilen saatler: bitis baslangicsiz ya da baslangictan once olamaz. */
+	private void assertMachineTimesInOrder(BatchProcess process) {
+		LocalDateTime started = process.getMachineStartedAt();
+		LocalDateTime finished = process.getMachineFinishedAt();
+		if (finished != null && started == null) {
+			throw new BusinessRuleException("Makine başlangıcı olmadan bitiş girilemez.");
+		}
+		if (finished != null && finished.isBefore(started)) {
+			throw new BusinessRuleException("Makine bitişi başlangıcından önce olamaz.");
+		}
+	}
+
+	/** Kronometreli asamanin verisi makine bitmeden kaydedilmez. */
+	private void assertMachineFinished(BatchProcess process) {
+		if (StageExtensions.timed(extensions(process)) && process.getMachineFinishedAt() == null) {
+			throw new BusinessRuleException("'" + stageLabel(process) + "' aşamasında makine bitirilmeden veri "
+				+ "kaydedilemez; önce kronometreyi bitirin.");
+		}
 	}
 
 	/**
@@ -219,6 +287,9 @@ class BatchProcessService {
 				p.begin(now);
 			}
 			case COMPLETED -> {
+				if (p.getStatus() != ProcessStatus.COMPLETED) {
+					assertMachineFinished(p);
+				}
 				if (p.getStatus() != ProcessStatus.COMPLETED && requiresApproval(p)) {
 					submitForApproval(p, data, actor, now);
 				}

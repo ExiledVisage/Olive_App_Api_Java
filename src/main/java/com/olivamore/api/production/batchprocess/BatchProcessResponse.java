@@ -20,6 +20,8 @@ public record BatchProcessResponse(
 	ProcessStatus status,
 	LocalDateTime startedAt,
 	LocalDateTime completedAt,
+	LocalDateTime machineStartedAt,
+	LocalDateTime machineFinishedAt,
 	String note,
 	JsonNode operationData,
 	Boolean requiresApproval,

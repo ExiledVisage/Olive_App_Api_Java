@@ -33,4 +33,5 @@ insert into stage_extension_types (id, key, name, description) values
 	(2, 'storage_movement', 'Storage Movement', 'Bu asamada secilen urun tipi storage unit tarafina tasinabilir.'),
 	(3, 'material_transformation', 'Material Transformation', 'Bu asamada input urun tiplerinden output urun tipleri olusur.'),
 	(4, 'analysis', 'Analysis', 'Bu asamada secilen urun tipi icin analiz islemleri yapilir.'),
-	(5, 'pre_settling', 'Pre-settling', 'Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.');
+	(5, 'pre_settling', 'Pre-settling', 'Bu asamada urun on dinlendirme tankina alinir; asama tank bosaltilinca tamamlanir, fark tortu olur.'),
+	(6, 'timer', 'Timer', 'Bu asamada makine suresi kronometreyle olculur; makine bitirilmeden asama tamamlanmaz.');

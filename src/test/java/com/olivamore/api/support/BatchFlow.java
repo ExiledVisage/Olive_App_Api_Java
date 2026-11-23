@@ -68,6 +68,14 @@ public final class BatchFlow {
 		return api.patch(process(batch, stage), Map.of("status", "completed", "operation_data", operationData));
 	}
 
+	/** Kronometreli asamada (5 sikim, 10 filtreleme) makineyi baslatip bitirir. */
+	public void runMachine(long batch, int stage) {
+		for (String action : List.of("start", "finish")) {
+			Response r = api.post(process(batch, stage) + "/machine/" + action, Map.of());
+			assertThat(r.status()).as(action + ": " + r.body()).isEqualTo(200);
+		}
+	}
+
 	/** Bu asamaya kadar (dahil) butun asamalari gecerli verilerle tamamlar. */
 	public void completeUpTo(long batch, int lastStage) {
 		for (int stage = 1; stage <= lastStage; stage++) {
@@ -79,7 +87,10 @@ public final class BatchFlow {
 				}
 				case 3 -> complete(batch, 3, Map.of("quantity", 4800));
 				case 4 -> api.patch(process(batch, 4), Map.of("status", "completed"));
-				case 5 -> complete(batch, 5, pressing());
+				case 5 -> {
+					runMachine(batch, 5);
+					yield complete(batch, 5, pressing());
+				}
 				case 6 -> complete(batch, 6, Map.of("quantity", OIL));
 				case 7 -> complete(batch, 7, Map.of("quantity", 3400));
 				case 8 -> complete(batch, 8, Map.of("attributes", List.of(Map.of("attribute_key", "acidity",

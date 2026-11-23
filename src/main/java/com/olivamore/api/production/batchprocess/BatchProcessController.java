@@ -48,6 +48,22 @@ class BatchProcessController {
 		return detail(id);
 	}
 
+	/** Kronometreli asamada makine baslar; asama da baslamis olur. */
+	@PostMapping("/api/batch-processes/{id}/machine/start")
+	@PreAuthorize("hasAuthority('batch_process.fill')")
+	DataResponse<BatchProcessResponse> startMachine(@PathVariable long id) {
+		processes.startMachine(id);
+		return detail(id);
+	}
+
+	/** Makine biter; asamanin verileri ancak bundan sonra kaydedilir. */
+	@PostMapping("/api/batch-processes/{id}/machine/finish")
+	@PreAuthorize("hasAuthority('batch_process.fill')")
+	DataResponse<BatchProcessResponse> finishMachine(@PathVariable long id) {
+		processes.finishMachine(id);
+		return detail(id);
+	}
+
 	/** Etki (materyal, tank hareketi) simdi islenir; gonderimden beri kural bozulduysa 422, asama bekler. */
 	@PostMapping("/api/batch-processes/{id}/approve")
 	@PreAuthorize("hasAuthority('batch_process.approve')")

@@ -314,7 +314,13 @@ insert into production_stage_extensions (id, production_stage_id, stage_extensio
 	(24, 32, 4, true, true, 1),
 	(25, 5, 3, true, true, 1),
 	(26, 17, 3, true, true, 1),
-	(27, 29, 3, true, true, 1);
+	(27, 29, 3, true, true, 1),
+	(28, 5, 6, true, true, 2),
+	(29, 17, 6, true, true, 2),
+	(30, 29, 6, true, true, 2),
+	(31, 10, 6, true, true, 1),
+	(32, 22, 6, true, true, 1),
+	(33, 34, 6, true, true, 1);
 
 insert into production_stage_extension_input_production_products (id, production_stage_extension_id, production_product_id, sort_order, is_required) values
 	(1, 1, 1, 1, true),

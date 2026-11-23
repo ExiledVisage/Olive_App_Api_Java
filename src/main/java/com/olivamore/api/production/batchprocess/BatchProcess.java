@@ -44,6 +44,12 @@ public class BatchProcess extends AuditedEntity {
 
 	private LocalDateTime completedAt;
 
+	/** Kronometre uzantisi: makinenin baslatildigi an. */
+	private LocalDateTime machineStartedAt;
+
+	/** Kronometre uzantisi: makinenin bitirildigi an; dolmadan asama tamamlanmaz. */
+	private LocalDateTime machineFinishedAt;
+
 	private String note;
 
 	@JdbcTypeCode(SqlTypes.JSON)
@@ -81,6 +87,25 @@ public class BatchProcess extends AuditedEntity {
 		completedAt = value;
 	}
 
+	void changeMachineStartedAt(LocalDateTime value) {
+		machineStartedAt = value;
+	}
+
+	void changeMachineFinishedAt(LocalDateTime value) {
+		machineFinishedAt = value;
+	}
+
+	/** Kronometre baslar; asama da baslamis (in_progress) olur. */
+	void startMachine(LocalDateTime now) {
+		machineStartedAt = now;
+		machineFinishedAt = null;
+		begin(now);
+	}
+
+	void finishMachine(LocalDateTime now) {
+		machineFinishedAt = now;
+	}
+
 	/** Teslimatta yapilmis asama: grupta baslamadan gecilir (grup bununla baslamis sayilmaz). */
 	public void inherit(long deliveryProcessId, LocalDateTime now) {
 		status = ProcessStatus.SKIPPED;
@@ -110,6 +135,8 @@ public class BatchProcess extends AuditedEntity {
 		inheritedFromProcessId = null;
 		startedAt = null;
 		completedAt = null;
+		machineStartedAt = null;
+		machineFinishedAt = null;
 		operationData = null;
 	}
 

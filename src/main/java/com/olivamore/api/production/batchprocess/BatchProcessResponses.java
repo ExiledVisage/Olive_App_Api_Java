@@ -97,7 +97,8 @@ public class BatchProcessResponses {
 			Stage stage = stageById.get(p.getProductionStageId());
 			ProcessTypeResponse type = stage.processTypeId() == null ? null : types.get(stage.processTypeId());
 			out.add(new BatchProcessResponse(p.getId(), p.getProductionBatchId(), p.getProductionStageId(), p.getOperatorId(),
-				p.getStatus(), p.getStartedAt(), p.getCompletedAt(), p.getNote(), p.getOperationData(), requiresApproval,
+				p.getStatus(), p.getStartedAt(), p.getCompletedAt(), p.getMachineStartedAt(),
+				p.getMachineFinishedAt(), p.getNote(), p.getOperationData(), requiresApproval,
 				p.getSubmittedAt(), p.getApprovedAt(),
 				!detail ? null : new Detail(name(reviewers.get(p.getSubmittedByUserId())),
 					name(reviewers.get(p.getApprovedByUserId())), reviewRows.getOrDefault(p.getId(), List.of())),

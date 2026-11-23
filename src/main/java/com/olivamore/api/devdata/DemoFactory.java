@@ -247,9 +247,11 @@ final class DemoFactory {
 
 		BigDecimal oil = scale(sorted.multiply(decimal(0.15, 0.205)), 2);
 		BigDecimal pomace = scale(sorted.multiply(decimal(0.68, 0.76)), 1);
+		machine(operator, batch, stages.get(4), "start");
 		if (!later(40, 70)) {
 			return false;
 		}
+		machine(operator, batch, stages.get(4), "finish");
 		fields(operator, batch, stages.get(4), Map.of(ids.field("malakasyon_suresi"), String.valueOf(between(30, 45)),
 			ids.field("malakasyon_sicakligi"), decimal(25, 28.5).setScale(1, RoundingMode.HALF_UP).toPlainString()));
 		complete(operator, batch, stages.get(4), body("input_quantity", sorted, "outputs", List.of(
@@ -290,9 +292,14 @@ final class DemoFactory {
 	/** On dinlendirmeden sonraki asamalar: filtreleme ve randiman. */
 	private void finish(Batch batch) {
 		String operator = OPERATORS.get(random.nextInt(OPERATORS.size()));
+		if (!later(5, 15)) {
+			return;
+		}
+		machine(operator, batch, batch.stages.get(9), "start");
 		if (!later(20, 40)) {
 			return;
 		}
+		machine(operator, batch, batch.stages.get(9), "finish");
 		fields(operator, batch, batch.stages.get(9), Map.of(ids.field("filtre_tipi"),
 			FILTERS.get(random.nextInt(FILTERS.size()))));
 		complete(operator, batch, batch.stages.get(9), null);
@@ -317,6 +324,11 @@ final class DemoFactory {
 	private void complete(String user, Batch batch, long stage, Map<String, Object> data) {
 		api.patch(user, "/api/batch-processes/" + process(batch, stage),
 			data == null ? body("status", "completed") : body("status", "completed", "operation_data", data));
+	}
+
+	/** Kronometreli asamada makineyi baslatir ya da bitirir ({@code start} / {@code finish}). */
+	private void machine(String user, Batch batch, long stage, String action) {
+		api.post(user, "/api/batch-processes/" + process(batch, stage) + "/machine/" + action, Map.of());
 	}
 
 	private long process(Batch batch, long stage) {

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.jdbc.core.JdbcTemplate;
+import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -112,9 +113,50 @@ class BatchStageRulesIT {
 	}
 
 	@Test
+	void timedStageIsSavedOnlyAfterTheMachineFinishes() {
+		long batch = batch();
+		completeUpTo(batch, 4);
+		String machine = process(batch, 5) + "/machine/";
+
+		assertRule(api.post(machine + "finish", Map.of()), "'Sıkım' aşamasında kronometre başlatılmadı.");
+		Response started = api.post(machine + "start", Map.of());
+		assertThat(started.status()).as(started.body()).isEqualTo(200);
+		JsonNode data = started.json().get("data");
+		assertThat(data.get("status").asString()).isEqualTo("in_progress");
+		assertThat(data.get("machine_started_at").isNull()).isFalse();
+		assertRule(api.post(machine + "start", Map.of()), "'Sıkım' aşamasında kronometre zaten başlatıldı.");
+		assertRule(complete(batch, 5, BatchFlow.pressing()), "'Sıkım' aşamasında makine bitirilmeden veri "
+			+ "kaydedilemez; önce kronometreyi bitirin.");
+
+		Response finished = api.post(machine + "finish", Map.of());
+		assertThat(finished.status()).as(finished.body()).isEqualTo(200);
+		assertThat(finished.json().get("data").get("machine_finished_at").isNull()).isFalse();
+		assertThat(complete(batch, 5, BatchFlow.pressing()).status()).isEqualTo(200);
+	}
+
+	@Test
+	void machineTimesCanBeCorrectedButNotReversed() {
+		long batch = batch();
+		completeUpTo(batch, 4);
+		flow.runMachine(batch, 5);
+
+		Response corrected = api.patch(process(batch, 5), Map.of("machine_started_at", "2026-11-07T09:10:00",
+			"machine_finished_at", "2026-11-07T10:40:00"));
+		Response reversed = api.patch(process(batch, 5), Map.of("machine_finished_at", "2026-11-07T09:00:00"));
+
+		assertThat(corrected.status()).as(corrected.body()).isEqualTo(200);
+		assertThat(corrected.json().get("data").get("machine_started_at").asString()).isEqualTo("2026-11-07T09:10:00Z");
+		assertThat(corrected.json().get("data").get("machine_finished_at").asString()).isEqualTo("2026-11-07T10:40:00Z");
+		assertRule(reversed, "Makine bitişi başlangıcından önce olamaz.");
+		assertRule(api.post(process(batch, 4) + "/machine/start", Map.of()),
+			"'Sıkım Ünitesine Transfer' aşamasında kronometre yok.");
+	}
+
+	@Test
 	void transformationOutputsInTheInputUnitCannotExceedTheInput() {
 		long batch = batch();
 		completeUpTo(batch, 4);
+		flow.runMachine(batch, 5);
 
 		Response unbalanced = complete(batch, 5, Map.of("input_quantity", 4800, "outputs", List.of(
 			Map.of("product_type_key", "olive_oil", "quantity", 900),

@@ -8,6 +8,9 @@ CREATE TABLE batch_processes (
     operator_id bigint,
     started_at timestamp(0) without time zone,
     completed_at timestamp(0) without time zone,
+    -- Kronometre uzantisi: makinenin calistigi aralik (asamanin kayit zamanlarindan ayri)
+    machine_started_at timestamp(0) without time zone,
+    machine_finished_at timestamp(0) without time zone,
     note text,
     operation_data jsonb,
     submitted_by_user_id bigint,
