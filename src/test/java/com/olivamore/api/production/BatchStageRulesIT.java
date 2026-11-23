@@ -121,7 +121,7 @@ class BatchStageRulesIT {
 			Map.of("production_product_id", 3, "quantity", 5000))));
 		Response balanced = complete(batch, 5, BatchFlow.pressing());
 
-		assertRule(unbalanced, "Kütle dengesi tutmuyor: girdi 4800 KG, aynı birimdeki çıktı toplamı 5000 KG. "
+		assertRule(unbalanced, "Kütle dengesi tutmuyor: girdi 4800 KG, aynı birimdeki çıktı toplamı 5900 KG. "
 			+ "Çıktı girdiden fazla olamaz.");
 		assertThat(balanced.status()).as(balanced.body()).isEqualTo(200);
 		// girdi tukendi; cikti yag (litre) ve pirina (kg)

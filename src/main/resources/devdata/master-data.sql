@@ -200,8 +200,8 @@ insert into production_products (id, key, name, description, default_density_kg_
 insert into production_product_types (id, production_product_id, name, code, type, unit, density_kg_per_litre) values
 	(1, 1, 'Gemlik Zeytini', 'OLIVE_GEMLIK', 'gemlik', 'KG', null),
 	(2, 1, 'Ayvalık Zeytini', 'OLIVE_AYVALIK', 'ayvalik', 'KG', null),
-	(3, 2, 'Gemlik Zeytinyağı', 'OLIVE_OIL_GEMLIK', 'gemlik', 'LITRE', null),
-	(4, 2, 'Ayvalık Zeytinyağı', 'OLIVE_OIL_AYVALIK', 'ayvalik', 'LITRE', null),
+	(3, 2, 'Gemlik Zeytinyağı', 'OLIVE_OIL_GEMLIK', 'gemlik', 'KG', null),
+	(4, 2, 'Ayvalık Zeytinyağı', 'OLIVE_OIL_AYVALIK', 'ayvalik', 'KG', null),
 	(5, 3, 'Zeytin Pirinası', 'OLIVE_POMACE', NULL, 'KG', 1.1000),
 	(6, 4, 'Portakal Aroması', 'ORANGE', 'orange', 'LITRE', 0.9200),
 	(7, 4, 'Limon Aroması', 'LEMON', 'lemon', 'LITRE', null),

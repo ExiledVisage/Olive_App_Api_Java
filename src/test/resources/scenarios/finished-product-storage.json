@@ -20,21 +20,21 @@
           "name" : "A1",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 303,
-          "available" : 197,
+          "current_quantity" : 301,
+          "available" : 199,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 1
           }, {
             "finished_product" : {
               "id" : 1,
               "name" : "Naturel Sızma Gemlik 0.3 250ml"
             },
-            "quantity" : 301
+            "quantity" : 300
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -43,15 +43,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 458,
-          "available" : 42,
+          "current_quantity" : 457,
+          "available" : 43,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 9,
               "name" : "Naturel Sızma Ayvalık 0.4 250ml"
             },
-            "quantity" : 458
+            "quantity" : 457
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -142,16 +142,16 @@
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 70
+            "quantity" : 71
           }, {
             "finished_product" : {
               "id" : 12,
               "name" : "Naturel Sızma Ayvalık 0.4 1L"
             },
-            "quantity" : 130
+            "quantity" : 129
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 8,
           "name" : "E1",
@@ -189,8 +189,8 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 70,
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "quantity" : 71,
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 14,
           "finished_product" : {
@@ -198,7 +198,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 958,
+          "quantity" : 957,
           "updated_at" : "2026-11-06T11:15:00Z"
         }, {
           "id" : 16,
@@ -234,7 +234,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 301,
+          "quantity" : 300,
           "updated_at" : "2026-11-03T08:29:00Z"
         }, {
           "id" : 22,
@@ -243,7 +243,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 130,
+          "quantity" : 129,
           "updated_at" : "2026-10-15T09:47:00Z"
         }, {
           "id" : 24,
@@ -270,7 +270,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 1,
           "updated_at" : "2026-09-02T08:32:00Z"
         }, {
           "id" : 35,
@@ -320,15 +320,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 300,
-          "current_quantity" : 291,
-          "available" : 9,
+          "current_quantity" : 292,
+          "available" : 8,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 15,
               "name" : "Klasik Blend 0.5 250ml"
             },
-            "quantity" : 5
+            "quantity" : 6
           }, {
             "finished_product" : {
               "id" : 9,
@@ -448,7 +448,7 @@
             "name" : "Klasik Blend 0.5 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 5,
+          "quantity" : 6,
           "updated_at" : "2026-04-19T08:38:00Z"
         }, {
           "id" : 28,
@@ -501,15 +501,15 @@
           "name" : "K2",
           "volume_litre" : 0.25,
           "max_quantity" : 1500,
-          "current_quantity" : 2,
-          "available" : 1498,
+          "current_quantity" : 4,
+          "available" : 1496,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 4
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -648,10 +648,16 @@
             "quantity" : 4
           }, {
             "finished_product" : {
+              "id" : 8,
+              "name" : "Naturel Sızma Gemlik 0.8 1L"
+            },
+            "quantity" : 1
+          }, {
+            "finished_product" : {
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 596
+            "quantity" : 595
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-05T14:18:00Z"
@@ -718,7 +724,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 862,
+          "quantity" : 861,
           "updated_at" : "2026-11-05T14:18:00Z"
         }, {
           "id" : 5,
@@ -799,7 +805,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 0,
+          "quantity" : 1,
           "updated_at" : "2026-10-12T09:49:00Z"
         }, {
           "id" : 36,
@@ -817,7 +823,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 4,
           "updated_at" : "2026-10-13T09:20:00Z"
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -842,21 +848,21 @@
           "name" : "A1",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 303,
-          "available" : 197,
+          "current_quantity" : 301,
+          "available" : 199,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 1
           }, {
             "finished_product" : {
               "id" : 1,
               "name" : "Naturel Sızma Gemlik 0.3 250ml"
             },
-            "quantity" : 301
+            "quantity" : 300
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -865,15 +871,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 458,
-          "available" : 42,
+          "current_quantity" : 457,
+          "available" : 43,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 9,
               "name" : "Naturel Sızma Ayvalık 0.4 250ml"
             },
-            "quantity" : 458
+            "quantity" : 457
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -964,16 +970,16 @@
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 70
+            "quantity" : 71
           }, {
             "finished_product" : {
               "id" : 12,
               "name" : "Naturel Sızma Ayvalık 0.4 1L"
             },
-            "quantity" : 130
+            "quantity" : 129
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 8,
           "name" : "E1",
@@ -1011,8 +1017,8 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 70,
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "quantity" : 71,
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 14,
           "finished_product" : {
@@ -1020,7 +1026,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 958,
+          "quantity" : 957,
           "updated_at" : "2026-11-06T11:15:00Z"
         }, {
           "id" : 16,
@@ -1056,7 +1062,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 301,
+          "quantity" : 300,
           "updated_at" : "2026-11-03T08:29:00Z"
         }, {
           "id" : 22,
@@ -1065,7 +1071,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 130,
+          "quantity" : 129,
           "updated_at" : "2026-10-15T09:47:00Z"
         }, {
           "id" : 24,
@@ -1092,7 +1098,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 1,
           "updated_at" : "2026-09-02T08:32:00Z"
         }, {
           "id" : 35,
@@ -1152,15 +1158,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 300,
-          "current_quantity" : 291,
-          "available" : 9,
+          "current_quantity" : 292,
+          "available" : 8,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 15,
               "name" : "Klasik Blend 0.5 250ml"
             },
-            "quantity" : 5
+            "quantity" : 6
           }, {
             "finished_product" : {
               "id" : 9,
@@ -1280,7 +1286,7 @@
             "name" : "Klasik Blend 0.5 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 5,
+          "quantity" : 6,
           "updated_at" : "2026-04-19T08:38:00Z"
         }, {
           "id" : 28,
@@ -1343,15 +1349,15 @@
           "name" : "K2",
           "volume_litre" : 0.25,
           "max_quantity" : 1500,
-          "current_quantity" : 2,
-          "available" : 1498,
+          "current_quantity" : 4,
+          "available" : 1496,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 4
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -1490,10 +1496,16 @@
             "quantity" : 4
           }, {
             "finished_product" : {
+              "id" : 8,
+              "name" : "Naturel Sızma Gemlik 0.8 1L"
+            },
+            "quantity" : 1
+          }, {
+            "finished_product" : {
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 596
+            "quantity" : 595
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-05T14:18:00Z"
@@ -1560,7 +1572,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 862,
+          "quantity" : 861,
           "updated_at" : "2026-11-05T14:18:00Z"
         }, {
           "id" : 5,
@@ -1641,7 +1653,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 0,
+          "quantity" : 1,
           "updated_at" : "2026-10-12T09:49:00Z"
         }, {
           "id" : 36,
@@ -1659,7 +1671,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 4,
           "updated_at" : "2026-10-13T09:20:00Z"
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -1688,7 +1700,7 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 2359,
+        "id" : 2357,
         "movement_type" : "order_pick",
         "quantity" : 50,
         "signed_quantity" : -50,
@@ -1709,7 +1721,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2341,
+        "id" : 2339,
         "movement_type" : "order_pick",
         "quantity" : 42,
         "signed_quantity" : -42,
@@ -1730,7 +1742,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2340,
+        "id" : 2338,
         "movement_type" : "order_pick",
         "quantity" : 54,
         "signed_quantity" : -54,
@@ -1751,10 +1763,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2324,
+        "id" : 2320,
         "movement_type" : "order_pick",
-        "quantity" : 9,
-        "signed_quantity" : -9,
+        "quantity" : 8,
+        "signed_quantity" : -8,
         "transfer_reference" : null,
         "note" : "Siparis #327 icin raftan alindi.",
         "moved_at" : "2026-11-03T08:29:00Z",
@@ -1772,7 +1784,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2298,
+        "id" : 2294,
         "movement_type" : "stock_in",
         "quantity" : 286,
         "signed_quantity" : 286,
@@ -1793,7 +1805,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2297,
+        "id" : 2293,
         "movement_type" : "stock_in",
         "quantity" : 300,
         "signed_quantity" : 300,
@@ -1814,7 +1826,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2285,
+        "id" : 2281,
         "movement_type" : "stock_in",
         "quantity" : 50,
         "signed_quantity" : 50,
@@ -1835,7 +1847,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2277,
+        "id" : 2273,
         "movement_type" : "order_pick",
         "quantity" : 50,
         "signed_quantity" : -50,
@@ -1856,7 +1868,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2248,
+        "id" : 2244,
         "movement_type" : "stock_in",
         "quantity" : 16,
         "signed_quantity" : 16,
@@ -1877,7 +1889,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2247,
+        "id" : 2243,
         "movement_type" : "stock_in",
         "quantity" : 146,
         "signed_quantity" : 146,
@@ -1898,7 +1910,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2239,
+        "id" : 2236,
         "movement_type" : "order_pick",
         "quantity" : 16,
         "signed_quantity" : -16,
@@ -1919,7 +1931,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2238,
+        "id" : 2235,
         "movement_type" : "order_pick",
         "quantity" : 146,
         "signed_quantity" : -146,
@@ -1940,7 +1952,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2229,
+        "id" : 2227,
         "movement_type" : "stock_in",
         "quantity" : 52,
         "signed_quantity" : 52,
@@ -1961,7 +1973,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2228,
+        "id" : 2226,
         "movement_type" : "stock_in",
         "quantity" : 134,
         "signed_quantity" : 134,
@@ -1982,7 +1994,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2227,
+        "id" : 2225,
         "movement_type" : "stock_in",
         "quantity" : 54,
         "signed_quantity" : 54,
@@ -2003,7 +2015,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2214,
+        "id" : 2212,
         "movement_type" : "stock_in",
         "quantity" : 50,
         "signed_quantity" : 50,
@@ -2024,7 +2036,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2205,
+        "id" : 2203,
         "movement_type" : "order_pick",
         "quantity" : 50,
         "signed_quantity" : -50,
@@ -2045,7 +2057,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2197,
+        "id" : 2195,
         "movement_type" : "order_pick",
         "quantity" : 52,
         "signed_quantity" : -52,
@@ -2066,7 +2078,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2196,
+        "id" : 2194,
         "movement_type" : "order_pick",
         "quantity" : 188,
         "signed_quantity" : -188,
@@ -2087,7 +2099,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2130,
+        "id" : 2132,
         "movement_type" : "stock_in",
         "quantity" : 50,
         "signed_quantity" : 50,
@@ -2108,7 +2120,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2101,
+        "id" : 2103,
         "movement_type" : "order_pick",
         "quantity" : 4,
         "signed_quantity" : -4,
@@ -2129,10 +2141,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2100,
+        "id" : 2102,
         "movement_type" : "stock_in",
-        "quantity" : 190,
-        "signed_quantity" : 190,
+        "quantity" : 185,
+        "signed_quantity" : 185,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-09T12:35:00Z",
@@ -2150,7 +2162,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2099,
+        "id" : 2101,
         "movement_type" : "stock_in",
         "quantity" : 188,
         "signed_quantity" : 188,
@@ -2257,8 +2269,8 @@
       }, {
         "id" : 1499,
         "movement_type" : "order_pick",
-        "quantity" : 63,
-        "signed_quantity" : -63,
+        "quantity" : 62,
+        "signed_quantity" : -62,
         "transfer_reference" : null,
         "note" : "Siparis #172 icin raftan alindi.",
         "moved_at" : "2026-05-13T09:14:00Z",
@@ -2299,8 +2311,8 @@
       }, {
         "id" : 1483,
         "movement_type" : "order_pick",
-        "quantity" : 17,
-        "signed_quantity" : -17,
+        "quantity" : 18,
+        "signed_quantity" : -18,
         "transfer_reference" : null,
         "note" : "Siparis #169 icin raftan alindi.",
         "moved_at" : "2026-05-10T09:02:00Z",
@@ -2320,8 +2332,8 @@
       }, {
         "id" : 1482,
         "movement_type" : "order_pick",
-        "quantity" : 37,
-        "signed_quantity" : -37,
+        "quantity" : 36,
+        "signed_quantity" : -36,
         "transfer_reference" : null,
         "note" : "Siparis #169 icin raftan alindi.",
         "moved_at" : "2026-05-10T09:02:00Z",
@@ -2341,8 +2353,8 @@
       }, {
         "id" : 1481,
         "movement_type" : "order_pick",
-        "quantity" : 53,
-        "signed_quantity" : -53,
+        "quantity" : 54,
+        "signed_quantity" : -54,
         "transfer_reference" : null,
         "note" : "Siparis #169 icin raftan alindi.",
         "moved_at" : "2026-05-10T09:02:00Z",
@@ -2362,8 +2374,8 @@
       }, {
         "id" : 1467,
         "movement_type" : "order_pick",
-        "quantity" : 48,
-        "signed_quantity" : -48,
+        "quantity" : 42,
+        "signed_quantity" : -42,
         "transfer_reference" : null,
         "note" : "Siparis #168 icin raftan alindi.",
         "moved_at" : "2026-05-08T08:49:00Z",
@@ -2383,8 +2395,8 @@
       }, {
         "id" : 1460,
         "movement_type" : "order_pick",
-        "quantity" : 69,
-        "signed_quantity" : -69,
+        "quantity" : 70,
+        "signed_quantity" : -70,
         "transfer_reference" : null,
         "note" : "Siparis #167 icin raftan alindi.",
         "moved_at" : "2026-05-07T08:38:00Z",
@@ -2425,8 +2437,8 @@
       }, {
         "id" : 1408,
         "movement_type" : "order_pick",
-        "quantity" : 77,
-        "signed_quantity" : -77,
+        "quantity" : 78,
+        "signed_quantity" : -78,
         "transfer_reference" : null,
         "note" : "Siparis #157 icin raftan alindi.",
         "moved_at" : "2026-04-27T08:40:00Z",
@@ -2509,8 +2521,8 @@
       }, {
         "id" : 1362,
         "movement_type" : "order_pick",
-        "quantity" : 161,
-        "signed_quantity" : -161,
+        "quantity" : 160,
+        "signed_quantity" : -160,
         "transfer_reference" : null,
         "note" : "Siparis #152 icin raftan alindi.",
         "moved_at" : "2026-04-21T09:44:00Z",
@@ -2698,8 +2710,8 @@
       }, {
         "id" : 1298,
         "movement_type" : "stock_in",
-        "quantity" : 11,
-        "signed_quantity" : 11,
+        "quantity" : 10,
+        "signed_quantity" : 10,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-12T16:01:00Z",
@@ -2719,8 +2731,8 @@
       }, {
         "id" : 1284,
         "movement_type" : "order_pick",
-        "quantity" : 11,
-        "signed_quantity" : -11,
+        "quantity" : 10,
+        "signed_quantity" : -10,
         "transfer_reference" : null,
         "note" : "Siparis #144 icin raftan alindi.",
         "moved_at" : "2026-04-12T08:31:00Z",
@@ -2803,8 +2815,8 @@
       }, {
         "id" : 1253,
         "movement_type" : "stock_in",
-        "quantity" : 11,
-        "signed_quantity" : 11,
+        "quantity" : 10,
+        "signed_quantity" : 10,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-07T12:55:00Z",
@@ -2824,8 +2836,8 @@
       }, {
         "id" : 1248,
         "movement_type" : "order_pick",
-        "quantity" : 11,
-        "signed_quantity" : -11,
+        "quantity" : 10,
+        "signed_quantity" : -10,
         "transfer_reference" : null,
         "note" : "Siparis #140 icin raftan alindi.",
         "moved_at" : "2026-04-07T08:39:00Z",
@@ -2845,8 +2857,8 @@
       }, {
         "id" : 1247,
         "movement_type" : "stock_in",
-        "quantity" : 11,
-        "signed_quantity" : 11,
+        "quantity" : 10,
+        "signed_quantity" : 10,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-06T13:08:00Z",
@@ -2866,8 +2878,8 @@
       }, {
         "id" : 1236,
         "movement_type" : "order_pick",
-        "quantity" : 11,
-        "signed_quantity" : -11,
+        "quantity" : 10,
+        "signed_quantity" : -10,
         "transfer_reference" : null,
         "note" : "Siparis #137 icin raftan alindi.",
         "moved_at" : "2026-04-05T08:29:00Z",
@@ -5688,7 +5700,7 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 2364,
+        "id" : 2362,
         "movement_type" : "order_pick",
         "quantity" : 466,
         "signed_quantity" : -466,
@@ -5709,7 +5721,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2363,
+        "id" : 2361,
         "movement_type" : "order_pick",
         "quantity" : 72,
         "signed_quantity" : -72,
@@ -5730,7 +5742,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2362,
+        "id" : 2360,
         "movement_type" : "order_pick",
         "quantity" : 222,
         "signed_quantity" : -222,
@@ -5751,7 +5763,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2361,
+        "id" : 2359,
         "movement_type" : "order_pick",
         "quantity" : 116,
         "signed_quantity" : -116,
@@ -5772,7 +5784,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2360,
+        "id" : 2358,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -5793,7 +5805,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2356,
+        "id" : 2354,
         "movement_type" : "order_pick",
         "quantity" : 276,
         "signed_quantity" : -276,
@@ -5814,7 +5826,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2355,
+        "id" : 2353,
         "movement_type" : "stock_in",
         "quantity" : 520,
         "signed_quantity" : 520,
@@ -5835,7 +5847,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2354,
+        "id" : 2352,
         "movement_type" : "stock_in",
         "quantity" : 266,
         "signed_quantity" : 266,
@@ -5856,7 +5868,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2352,
+        "id" : 2350,
         "movement_type" : "stock_in",
         "quantity" : 172,
         "signed_quantity" : 172,
@@ -5877,7 +5889,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2351,
+        "id" : 2349,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -5898,7 +5910,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2350,
+        "id" : 2348,
         "movement_type" : "stock_in",
         "quantity" : 1000,
         "signed_quantity" : 1000,
@@ -5919,7 +5931,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2349,
+        "id" : 2347,
         "movement_type" : "stock_in",
         "quantity" : 200,
         "signed_quantity" : 200,
@@ -5940,7 +5952,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2348,
+        "id" : 2346,
         "movement_type" : "stock_in",
         "quantity" : 600,
         "signed_quantity" : 600,
@@ -5961,7 +5973,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2347,
+        "id" : 2345,
         "movement_type" : "order_pick",
         "quantity" : 266,
         "signed_quantity" : -266,
@@ -5982,7 +5994,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2346,
+        "id" : 2344,
         "movement_type" : "order_pick",
         "quantity" : 520,
         "signed_quantity" : -520,
@@ -6003,7 +6015,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2345,
+        "id" : 2343,
         "movement_type" : "order_pick",
         "quantity" : 372,
         "signed_quantity" : -372,
@@ -6024,7 +6036,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2344,
+        "id" : 2342,
         "movement_type" : "order_pick",
         "quantity" : 600,
         "signed_quantity" : -600,
@@ -6045,7 +6057,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2343,
+        "id" : 2341,
         "movement_type" : "order_pick",
         "quantity" : 336,
         "signed_quantity" : -336,
@@ -6066,7 +6078,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2342,
+        "id" : 2340,
         "movement_type" : "order_pick",
         "quantity" : 1500,
         "signed_quantity" : -1500,
@@ -6087,7 +6099,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2337,
+        "id" : 2335,
         "movement_type" : "order_pick",
         "quantity" : 250,
         "signed_quantity" : -250,
@@ -6108,7 +6120,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2336,
+        "id" : 2334,
         "movement_type" : "order_pick",
         "quantity" : 500,
         "signed_quantity" : -500,
@@ -6129,10 +6141,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2335,
+        "id" : 2332,
         "movement_type" : "stock_in",
-        "quantity" : 76,
-        "signed_quantity" : 76,
+        "quantity" : 75,
+        "signed_quantity" : 75,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-11-03T16:23:00Z",
@@ -6150,7 +6162,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2334,
+        "id" : 2331,
         "movement_type" : "stock_in",
         "quantity" : 520,
         "signed_quantity" : 520,
@@ -6171,7 +6183,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2333,
+        "id" : 2330,
         "movement_type" : "stock_in",
         "quantity" : 280,
         "signed_quantity" : 280,
@@ -6192,7 +6204,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2332,
+        "id" : 2329,
         "movement_type" : "order_pick",
         "quantity" : 170,
         "signed_quantity" : -170,
@@ -6213,7 +6225,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2331,
+        "id" : 2328,
         "movement_type" : "order_pick",
         "quantity" : 568,
         "signed_quantity" : -568,
@@ -6234,7 +6246,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2330,
+        "id" : 2327,
         "movement_type" : "order_pick",
         "quantity" : 474,
         "signed_quantity" : -474,
@@ -6255,7 +6267,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2329,
+        "id" : 2326,
         "movement_type" : "order_pick",
         "quantity" : 500,
         "signed_quantity" : -500,
@@ -6276,7 +6288,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2328,
+        "id" : 2325,
         "movement_type" : "order_pick",
         "quantity" : 1000,
         "signed_quantity" : -1000,
@@ -6297,10 +6309,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2327,
+        "id" : 2323,
         "movement_type" : "order_pick",
-        "quantity" : 28,
-        "signed_quantity" : -28,
+        "quantity" : 27,
+        "signed_quantity" : -27,
         "transfer_reference" : null,
         "note" : "Siparis #328 icin raftan alindi.",
         "moved_at" : "2026-11-03T09:00:00Z",
@@ -6318,7 +6330,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2326,
+        "id" : 2322,
         "movement_type" : "order_pick",
         "quantity" : 110,
         "signed_quantity" : -110,
@@ -6339,10 +6351,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2323,
+        "id" : 2319,
         "movement_type" : "order_pick",
-        "quantity" : 978,
-        "signed_quantity" : -978,
+        "quantity" : 976,
+        "signed_quantity" : -976,
         "transfer_reference" : null,
         "note" : "Siparis #327 icin raftan alindi.",
         "moved_at" : "2026-11-03T08:29:00Z",
@@ -6360,7 +6372,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2321,
+        "id" : 2317,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -6381,7 +6393,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2320,
+        "id" : 2316,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -6402,7 +6414,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2319,
+        "id" : 2315,
         "movement_type" : "stock_in",
         "quantity" : 486,
         "signed_quantity" : 486,
@@ -6423,7 +6435,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2317,
+        "id" : 2313,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -6444,7 +6456,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2316,
+        "id" : 2312,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -6465,10 +6477,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2315,
+        "id" : 2311,
         "movement_type" : "order_pick",
-        "quantity" : 522,
-        "signed_quantity" : -522,
+        "quantity" : 524,
+        "signed_quantity" : -524,
         "transfer_reference" : null,
         "note" : "Siparis #326 icin raftan alindi.",
         "moved_at" : "2026-11-02T08:36:00Z",
@@ -6486,10 +6498,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2314,
+        "id" : 2310,
         "movement_type" : "order_pick",
-        "quantity" : 696,
-        "signed_quantity" : -696,
+        "quantity" : 694,
+        "signed_quantity" : -694,
         "transfer_reference" : null,
         "note" : "Siparis #326 icin raftan alindi.",
         "moved_at" : "2026-11-02T08:36:00Z",
@@ -6507,7 +6519,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2313,
+        "id" : 2309,
         "movement_type" : "order_pick",
         "quantity" : 486,
         "signed_quantity" : -486,
@@ -6528,7 +6540,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2312,
+        "id" : 2308,
         "movement_type" : "stock_in",
         "quantity" : 250,
         "signed_quantity" : 250,
@@ -6549,7 +6561,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2311,
+        "id" : 2307,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -6570,7 +6582,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2310,
+        "id" : 2306,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -6591,7 +6603,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2309,
+        "id" : 2305,
         "movement_type" : "stock_in",
         "quantity" : 1000,
         "signed_quantity" : 1000,
@@ -6612,7 +6624,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2308,
+        "id" : 2304,
         "movement_type" : "order_pick",
         "quantity" : 250,
         "signed_quantity" : -250,
@@ -6633,7 +6645,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2307,
+        "id" : 2303,
         "movement_type" : "order_pick",
         "quantity" : 1000,
         "signed_quantity" : -1000,
@@ -6654,7 +6666,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2306,
+        "id" : 2302,
         "movement_type" : "order_pick",
         "quantity" : 1000,
         "signed_quantity" : -1000,
@@ -6675,7 +6687,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2304,
+        "id" : 2300,
         "movement_type" : "stock_in",
         "quantity" : 1416,
         "signed_quantity" : 1416,
@@ -6696,10 +6708,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2302,
+        "id" : 2298,
         "movement_type" : "stock_in",
-        "quantity" : 720,
-        "signed_quantity" : 720,
+        "quantity" : 702,
+        "signed_quantity" : 702,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-30T12:02:00Z",
@@ -6717,10 +6729,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2300,
+        "id" : 2296,
         "movement_type" : "order_pick",
-        "quantity" : 720,
-        "signed_quantity" : -720,
+        "quantity" : 702,
+        "signed_quantity" : -702,
         "transfer_reference" : null,
         "note" : "Siparis #324 icin raftan alindi.",
         "moved_at" : "2026-10-30T08:51:00Z",
@@ -6738,7 +6750,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2299,
+        "id" : 2295,
         "movement_type" : "order_pick",
         "quantity" : 1416,
         "signed_quantity" : -1416,
@@ -6759,7 +6771,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2293,
+        "id" : 2289,
         "movement_type" : "stock_in",
         "quantity" : 106,
         "signed_quantity" : 106,
@@ -6780,7 +6792,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2292,
+        "id" : 2288,
         "movement_type" : "stock_in",
         "quantity" : 162,
         "signed_quantity" : 162,
@@ -6801,7 +6813,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2291,
+        "id" : 2287,
         "movement_type" : "stock_in",
         "quantity" : 30,
         "signed_quantity" : 30,
@@ -6822,7 +6834,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2290,
+        "id" : 2286,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -6843,7 +6855,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2289,
+        "id" : 2285,
         "movement_type" : "stock_in",
         "quantity" : 1000,
         "signed_quantity" : 1000,
@@ -6864,7 +6876,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2288,
+        "id" : 2284,
         "movement_type" : "stock_in",
         "quantity" : 258,
         "signed_quantity" : 258,
@@ -6885,7 +6897,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2287,
+        "id" : 2283,
         "movement_type" : "order_pick",
         "quantity" : 530,
         "signed_quantity" : -530,
@@ -6906,7 +6918,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2286,
+        "id" : 2282,
         "movement_type" : "order_pick",
         "quantity" : 1000,
         "signed_quantity" : -1000,
@@ -6927,7 +6939,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2283,
+        "id" : 2279,
         "movement_type" : "stock_in",
         "quantity" : 14,
         "signed_quantity" : 14,
@@ -6948,7 +6960,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2282,
+        "id" : 2278,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -6969,7 +6981,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2280,
+        "id" : 2276,
         "movement_type" : "stock_in",
         "quantity" : 314,
         "signed_quantity" : 314,
@@ -6990,7 +7002,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2279,
+        "id" : 2275,
         "movement_type" : "order_pick",
         "quantity" : 258,
         "signed_quantity" : -258,
@@ -7011,7 +7023,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2278,
+        "id" : 2274,
         "movement_type" : "order_pick",
         "quantity" : 14,
         "signed_quantity" : -14,
@@ -7032,7 +7044,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2275,
+        "id" : 2271,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -7053,7 +7065,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2273,
+        "id" : 2269,
         "movement_type" : "order_pick",
         "quantity" : 314,
         "signed_quantity" : -314,
@@ -7074,10 +7086,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2272,
+        "id" : 2268,
         "movement_type" : "stock_in",
-        "quantity" : 118,
-        "signed_quantity" : 118,
+        "quantity" : 136,
+        "signed_quantity" : 136,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-26T14:24:00Z",
@@ -7095,10 +7107,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2271,
+        "id" : 2267,
         "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
+        "quantity" : 482,
+        "signed_quantity" : 482,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-26T14:24:00Z",
@@ -7116,7 +7128,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2270,
+        "id" : 2266,
         "movement_type" : "stock_in",
         "quantity" : 882,
         "signed_quantity" : 882,
@@ -7137,7 +7149,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2268,
+        "id" : 2264,
         "movement_type" : "stock_in",
         "quantity" : 286,
         "signed_quantity" : 286,
@@ -7158,7 +7170,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2267,
+        "id" : 2263,
         "movement_type" : "stock_in",
         "quantity" : 194,
         "signed_quantity" : 194,
@@ -7179,7 +7191,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2266,
+        "id" : 2262,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -7200,7 +7212,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2265,
+        "id" : 2261,
         "movement_type" : "stock_in",
         "quantity" : 120,
         "signed_quantity" : 120,
@@ -7221,7 +7233,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2264,
+        "id" : 2260,
         "movement_type" : "stock_in",
         "quantity" : 568,
         "signed_quantity" : 568,
@@ -7242,7 +7254,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2263,
+        "id" : 2259,
         "movement_type" : "stock_in",
         "quantity" : 182,
         "signed_quantity" : 182,
@@ -7263,7 +7275,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2262,
+        "id" : 2258,
         "movement_type" : "order_pick",
         "quantity" : 194,
         "signed_quantity" : -194,
@@ -7284,7 +7296,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2260,
+        "id" : 2256,
         "movement_type" : "order_pick",
         "quantity" : 286,
         "signed_quantity" : -286,
@@ -7305,7 +7317,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2259,
+        "id" : 2255,
         "movement_type" : "order_pick",
         "quantity" : 120,
         "signed_quantity" : -120,
@@ -7326,7 +7338,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2258,
+        "id" : 2254,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -7347,7 +7359,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2257,
+        "id" : 2253,
         "movement_type" : "order_pick",
         "quantity" : 182,
         "signed_quantity" : -182,
@@ -7368,7 +7380,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2256,
+        "id" : 2252,
         "movement_type" : "order_pick",
         "quantity" : 568,
         "signed_quantity" : -568,
@@ -7389,10 +7401,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2255,
+        "id" : 2251,
         "movement_type" : "order_pick",
-        "quantity" : 280,
-        "signed_quantity" : -280,
+        "quantity" : 298,
+        "signed_quantity" : -298,
         "transfer_reference" : null,
         "note" : "Siparis #320 icin raftan alindi.",
         "moved_at" : "2026-10-25T08:28:00Z",
@@ -7410,10 +7422,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2254,
+        "id" : 2250,
         "movement_type" : "order_pick",
-        "quantity" : 500,
-        "signed_quantity" : -500,
+        "quantity" : 482,
+        "signed_quantity" : -482,
         "transfer_reference" : null,
         "note" : "Siparis #320 icin raftan alindi.",
         "moved_at" : "2026-10-25T08:28:00Z",
@@ -7431,7 +7443,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2253,
+        "id" : 2249,
         "movement_type" : "order_pick",
         "quantity" : 882,
         "signed_quantity" : -882,
@@ -7452,7 +7464,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2252,
+        "id" : 2248,
         "movement_type" : "stock_in",
         "quantity" : 696,
         "signed_quantity" : 696,
@@ -7473,7 +7485,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2251,
+        "id" : 2247,
         "movement_type" : "stock_in",
         "quantity" : 1304,
         "signed_quantity" : 1304,
@@ -7494,7 +7506,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2249,
+        "id" : 2245,
         "movement_type" : "stock_in",
         "quantity" : 314,
         "signed_quantity" : 314,
@@ -7515,10 +7527,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2245,
+        "id" : 2242,
         "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
+        "quantity" : 518,
+        "signed_quantity" : 518,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-23T13:58:00Z",
@@ -7536,7 +7548,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2244,
+        "id" : 2241,
         "movement_type" : "stock_in",
         "quantity" : 118,
         "signed_quantity" : 118,
@@ -7557,7 +7569,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2243,
+        "id" : 2240,
         "movement_type" : "stock_in",
         "quantity" : 200,
         "signed_quantity" : 200,
@@ -7578,7 +7590,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2242,
+        "id" : 2239,
         "movement_type" : "stock_in",
         "quantity" : 600,
         "signed_quantity" : 600,
@@ -7599,7 +7611,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2241,
+        "id" : 2238,
         "movement_type" : "order_pick",
         "quantity" : 114,
         "signed_quantity" : -114,
@@ -7620,7 +7632,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2240,
+        "id" : 2237,
         "movement_type" : "order_pick",
         "quantity" : 600,
         "signed_quantity" : -600,
@@ -7641,10 +7653,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2236,
+        "id" : 2234,
         "movement_type" : "order_pick",
-        "quantity" : 84,
-        "signed_quantity" : -84,
+        "quantity" : 102,
+        "signed_quantity" : -102,
         "transfer_reference" : null,
         "note" : "Siparis #319 icin raftan alindi.",
         "moved_at" : "2026-10-23T08:53:00Z",
@@ -7662,7 +7674,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2235,
+        "id" : 2233,
         "movement_type" : "order_pick",
         "quantity" : 416,
         "signed_quantity" : -416,
@@ -7683,7 +7695,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2234,
+        "id" : 2232,
         "movement_type" : "order_pick",
         "quantity" : 118,
         "signed_quantity" : -118,
@@ -7704,7 +7716,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2232,
+        "id" : 2230,
         "movement_type" : "order_pick",
         "quantity" : 400,
         "signed_quantity" : -400,
@@ -7725,7 +7737,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2231,
+        "id" : 2229,
         "movement_type" : "order_pick",
         "quantity" : 1304,
         "signed_quantity" : -1304,
@@ -7746,7 +7758,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2230,
+        "id" : 2228,
         "movement_type" : "order_pick",
         "quantity" : 802,
         "signed_quantity" : -802,
@@ -7767,10 +7779,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2224,
+        "id" : 2222,
         "movement_type" : "stock_in",
-        "quantity" : 882,
-        "signed_quantity" : 882,
+        "quantity" : 864,
+        "signed_quantity" : 864,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-22T12:05:00Z",
@@ -7788,7 +7800,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2223,
+        "id" : 2221,
         "movement_type" : "stock_in",
         "quantity" : 330,
         "signed_quantity" : 330,
@@ -7809,7 +7821,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2222,
+        "id" : 2220,
         "movement_type" : "stock_in",
         "quantity" : 546,
         "signed_quantity" : 546,
@@ -7830,7 +7842,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2221,
+        "id" : 2219,
         "movement_type" : "order_pick",
         "quantity" : 546,
         "signed_quantity" : -546,
@@ -7851,7 +7863,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2220,
+        "id" : 2218,
         "movement_type" : "order_pick",
         "quantity" : 330,
         "signed_quantity" : -330,
@@ -7872,7 +7884,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2218,
+        "id" : 2216,
         "movement_type" : "stock_in",
         "quantity" : 976,
         "signed_quantity" : 976,
@@ -7893,10 +7905,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2217,
+        "id" : 2215,
         "movement_type" : "stock_in",
-        "quantity" : 696,
-        "signed_quantity" : 696,
+        "quantity" : 694,
+        "signed_quantity" : 694,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-20T15:04:00Z",
@@ -7914,7 +7926,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2216,
+        "id" : 2214,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -7935,7 +7947,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2215,
+        "id" : 2213,
         "movement_type" : "stock_in",
         "quantity" : 1500,
         "signed_quantity" : 1500,
@@ -7956,7 +7968,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2212,
+        "id" : 2210,
         "movement_type" : "stock_in",
         "quantity" : 104,
         "signed_quantity" : 104,
@@ -7977,7 +7989,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2211,
+        "id" : 2209,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -7998,10 +8010,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2210,
+        "id" : 2208,
         "movement_type" : "stock_in",
-        "quantity" : 118,
-        "signed_quantity" : 118,
+        "quantity" : 136,
+        "signed_quantity" : 136,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-19T11:42:00Z",
@@ -8019,10 +8031,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2209,
+        "id" : 2207,
         "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
+        "quantity" : 482,
+        "signed_quantity" : 482,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-19T11:42:00Z",
@@ -8040,7 +8052,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2208,
+        "id" : 2206,
         "movement_type" : "stock_in",
         "quantity" : 882,
         "signed_quantity" : 882,
@@ -8061,7 +8073,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2207,
+        "id" : 2205,
         "movement_type" : "order_pick",
         "quantity" : 104,
         "signed_quantity" : -104,
@@ -8082,7 +8094,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2206,
+        "id" : 2204,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -8103,7 +8115,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2203,
+        "id" : 2201,
         "movement_type" : "order_pick",
         "quantity" : 198,
         "signed_quantity" : -198,
@@ -8124,7 +8136,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2202,
+        "id" : 2200,
         "movement_type" : "order_pick",
         "quantity" : 1500,
         "signed_quantity" : -1500,
@@ -8145,7 +8157,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2201,
+        "id" : 2199,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -8166,7 +8178,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2200,
+        "id" : 2198,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -8187,7 +8199,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2199,
+        "id" : 2197,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -8208,7 +8220,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2198,
+        "id" : 2196,
         "movement_type" : "stock_in",
         "quantity" : 1500,
         "signed_quantity" : 1500,
@@ -8229,10 +8241,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2193,
+        "id" : 2191,
         "movement_type" : "order_pick",
-        "quantity" : 420,
-        "signed_quantity" : -420,
+        "quantity" : 418,
+        "signed_quantity" : -418,
         "transfer_reference" : null,
         "note" : "Siparis #315 icin raftan alindi.",
         "moved_at" : "2026-10-18T08:49:00Z",
@@ -8250,7 +8262,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2191,
+        "id" : 2189,
         "movement_type" : "order_pick",
         "quantity" : 266,
         "signed_quantity" : -266,
@@ -8271,7 +8283,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2190,
+        "id" : 2188,
         "movement_type" : "order_pick",
         "quantity" : 882,
         "signed_quantity" : -882,
@@ -8292,7 +8304,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2188,
+        "id" : 2186,
         "movement_type" : "stock_in",
         "quantity" : 570,
         "signed_quantity" : 570,
@@ -8313,10 +8325,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2187,
+        "id" : 2185,
         "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
+        "quantity" : 518,
+        "signed_quantity" : 518,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-17T14:11:00Z",
@@ -8334,10 +8346,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2186,
+        "id" : 2184,
         "movement_type" : "stock_in",
-        "quantity" : 1000,
-        "signed_quantity" : 1000,
+        "quantity" : 982,
+        "signed_quantity" : 982,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-17T14:11:00Z",
@@ -8355,7 +8367,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2185,
+        "id" : 2183,
         "movement_type" : "order_pick",
         "quantity" : 570,
         "signed_quantity" : -570,
@@ -8376,31 +8388,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2182,
-        "movement_type" : "order_pick",
-        "quantity" : 43,
-        "signed_quantity" : -43,
-        "transfer_reference" : null,
-        "note" : "Siparis #314 icin raftan alindi.",
-        "moved_at" : "2026-10-17T09:51:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 19,
-          "name" : "Y3"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
         "id" : 2181,
         "movement_type" : "order_pick",
-        "quantity" : 156,
-        "signed_quantity" : -156,
+        "quantity" : 204,
+        "signed_quantity" : -204,
         "transfer_reference" : null,
         "note" : "Siparis #314 icin raftan alindi.",
         "moved_at" : "2026-10-17T09:51:00Z",
@@ -8409,8 +8400,8 @@
           "name" : "Naturel Sızma Gemlik 0.3 500ml"
         },
         "slot" : {
-          "id" : 18,
-          "name" : "Y2"
+          "id" : 17,
+          "name" : "Y1"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -8420,29 +8411,8 @@
       }, {
         "id" : 2180,
         "movement_type" : "order_pick",
-        "quantity" : 344,
-        "signed_quantity" : -344,
-        "transfer_reference" : null,
-        "note" : "Siparis #313 icin raftan alindi.",
-        "moved_at" : "2026-10-17T09:32:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 18,
-          "name" : "Y2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2179,
-        "movement_type" : "order_pick",
-        "quantity" : 10,
-        "signed_quantity" : -10,
+        "quantity" : 354,
+        "signed_quantity" : -354,
         "transfer_reference" : null,
         "note" : "Siparis #313 icin raftan alindi.",
         "moved_at" : "2026-10-17T09:32:00Z",
@@ -8460,7 +8430,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2178,
+        "id" : 2179,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -8481,7 +8451,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2177,
+        "id" : 2178,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -8502,10 +8472,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2175,
+        "id" : 2176,
         "movement_type" : "stock_in",
-        "quantity" : 28,
-        "signed_quantity" : 28,
+        "quantity" : 27,
+        "signed_quantity" : 27,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-16T16:20:00Z",
@@ -8523,7 +8493,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2174,
+        "id" : 2175,
         "movement_type" : "stock_in",
         "quantity" : 568,
         "signed_quantity" : 568,
@@ -8544,7 +8514,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2173,
+        "id" : 2174,
         "movement_type" : "stock_in",
         "quantity" : 232,
         "signed_quantity" : 232,
@@ -8565,10 +8535,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2172,
+        "id" : 2173,
         "movement_type" : "order_pick",
-        "quantity" : 202,
-        "signed_quantity" : -202,
+        "quantity" : 232,
+        "signed_quantity" : -232,
         "transfer_reference" : null,
         "note" : "Siparis #312 icin raftan alindi.",
         "moved_at" : "2026-10-16T08:11:00Z",
@@ -8586,10 +8556,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2171,
+        "id" : 2172,
         "movement_type" : "order_pick",
-        "quantity" : 302,
-        "signed_quantity" : -302,
+        "quantity" : 272,
+        "signed_quantity" : -272,
         "transfer_reference" : null,
         "note" : "Siparis #312 icin raftan alindi.",
         "moved_at" : "2026-10-16T08:11:00Z",
@@ -8607,7 +8577,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2170,
+        "id" : 2171,
         "movement_type" : "order_pick",
         "quantity" : 1096,
         "signed_quantity" : -1096,
@@ -8628,7 +8598,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2169,
+        "id" : 2170,
         "movement_type" : "order_pick",
         "quantity" : 638,
         "signed_quantity" : -638,
@@ -8649,7 +8619,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2167,
+        "id" : 2168,
         "movement_type" : "stock_in",
         "quantity" : 400,
         "signed_quantity" : 400,
@@ -8670,7 +8640,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2166,
+        "id" : 2167,
         "movement_type" : "stock_in",
         "quantity" : 200,
         "signed_quantity" : 200,
@@ -8691,7 +8661,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2165,
+        "id" : 2166,
         "movement_type" : "stock_in",
         "quantity" : 600,
         "signed_quantity" : 600,
@@ -8712,10 +8682,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2164,
+        "id" : 2165,
         "movement_type" : "order_pick",
-        "quantity" : 990,
-        "signed_quantity" : -990,
+        "quantity" : 424,
+        "signed_quantity" : -424,
         "transfer_reference" : null,
         "note" : "Siparis #311 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:47:00Z",
@@ -8733,20 +8703,20 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2161,
+        "id" : 2164,
         "movement_type" : "order_pick",
-        "quantity" : 30,
-        "signed_quantity" : -30,
+        "quantity" : 566,
+        "signed_quantity" : -566,
         "transfer_reference" : null,
         "note" : "Siparis #311 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:47:00Z",
         "finished_product" : {
-          "id" : 12,
-          "name" : "Naturel Sızma Ayvalık 0.4 1L"
+          "id" : 2,
+          "name" : "Naturel Sızma Gemlik 0.3 500ml"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 18,
+          "name" : "Y2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -8754,10 +8724,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2160,
+        "id" : 2161,
         "movement_type" : "order_pick",
-        "quantity" : 294,
-        "signed_quantity" : -294,
+        "quantity" : 323,
+        "signed_quantity" : -323,
         "transfer_reference" : null,
         "note" : "Siparis #311 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:47:00Z",
@@ -8775,7 +8745,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2158,
+        "id" : 2159,
         "movement_type" : "order_pick",
         "quantity" : 90,
         "signed_quantity" : -90,
@@ -8796,10 +8766,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2155,
+        "id" : 2156,
         "movement_type" : "order_pick",
-        "quantity" : 957,
-        "signed_quantity" : -957,
+        "quantity" : 1000,
+        "signed_quantity" : -1000,
         "transfer_reference" : null,
         "note" : "Siparis #310 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:27:00Z",
@@ -8817,10 +8787,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2154,
+        "id" : 2155,
         "movement_type" : "order_pick",
-        "quantity" : 500,
-        "signed_quantity" : -500,
+        "quantity" : 434,
+        "signed_quantity" : -434,
         "transfer_reference" : null,
         "note" : "Siparis #310 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:27:00Z",
@@ -8838,10 +8808,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2153,
+        "id" : 2154,
         "movement_type" : "order_pick",
-        "quantity" : 556,
-        "signed_quantity" : -556,
+        "quantity" : 558,
+        "signed_quantity" : -558,
         "transfer_reference" : null,
         "note" : "Siparis #310 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:27:00Z",
@@ -8859,10 +8829,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2152,
+        "id" : 2153,
         "movement_type" : "order_pick",
-        "quantity" : 782,
-        "signed_quantity" : -782,
+        "quantity" : 780,
+        "signed_quantity" : -780,
         "transfer_reference" : null,
         "note" : "Siparis #310 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:27:00Z",
@@ -8880,7 +8850,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2151,
+        "id" : 2152,
         "movement_type" : "order_pick",
         "quantity" : 138,
         "signed_quantity" : -138,
@@ -8901,7 +8871,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2150,
+        "id" : 2151,
         "movement_type" : "order_pick",
         "quantity" : 510,
         "signed_quantity" : -510,
@@ -8922,7 +8892,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2149,
+        "id" : 2150,
         "movement_type" : "order_pick",
         "quantity" : 600,
         "signed_quantity" : -600,
@@ -8943,10 +8913,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2147,
+        "id" : 2148,
         "movement_type" : "stock_in",
-        "quantity" : 783,
-        "signed_quantity" : 783,
+        "quantity" : 849,
+        "signed_quantity" : 849,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-14T16:51:00Z",
@@ -8964,10 +8934,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2146,
+        "id" : 2147,
         "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
+        "quantity" : 434,
+        "signed_quantity" : 434,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-14T16:51:00Z",
@@ -8985,7 +8955,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2145,
+        "id" : 2146,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -9006,7 +8976,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2144,
+        "id" : 2145,
         "movement_type" : "stock_in",
         "quantity" : 1000,
         "signed_quantity" : 1000,
@@ -9027,10 +8997,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2141,
+        "id" : 2142,
         "movement_type" : "stock_in",
-        "quantity" : 294,
-        "signed_quantity" : 294,
+        "quantity" : 323,
+        "signed_quantity" : 323,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-13T12:05:00Z",
@@ -9048,28 +9018,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2140,
-        "movement_type" : "stock_in",
-        "quantity" : 30,
-        "signed_quantity" : 30,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-13T12:05:00Z",
-        "finished_product" : {
-          "id" : 12,
-          "name" : "Naturel Sızma Ayvalık 0.4 1L"
-        },
-        "slot" : {
-          "id" : 22,
-          "name" : "L1"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2139,
+        "id" : 2141,
         "movement_type" : "order_pick",
         "quantity" : 78,
         "signed_quantity" : -78,
@@ -9090,10 +9039,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2137,
+        "id" : 2139,
         "movement_type" : "order_pick",
-        "quantity" : 294,
-        "signed_quantity" : -294,
+        "quantity" : 299,
+        "signed_quantity" : -299,
         "transfer_reference" : null,
         "note" : "Siparis #308 icin raftan alindi.",
         "moved_at" : "2026-10-13T09:20:00Z",
@@ -9111,7 +9060,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2135,
+        "id" : 2137,
         "movement_type" : "order_pick",
         "quantity" : 23,
         "signed_quantity" : -23,
@@ -9132,10 +9081,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2133,
+        "id" : 2135,
         "movement_type" : "order_pick",
-        "quantity" : 760,
-        "signed_quantity" : -760,
+        "quantity" : 826,
+        "signed_quantity" : -826,
         "transfer_reference" : null,
         "note" : "Siparis #307 icin raftan alindi.",
         "moved_at" : "2026-10-13T08:49:00Z",
@@ -9153,28 +9102,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2132,
-        "movement_type" : "order_pick",
-        "quantity" : 1000,
-        "signed_quantity" : -1000,
-        "transfer_reference" : null,
-        "note" : "Siparis #307 icin raftan alindi.",
-        "moved_at" : "2026-10-13T08:49:00Z",
-        "finished_product" : {
-          "id" : 10,
-          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
-        },
-        "slot" : {
-          "id" : 18,
-          "name" : "Y2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2131,
+        "id" : 2134,
         "movement_type" : "order_pick",
         "quantity" : 1000,
         "signed_quantity" : -1000,
@@ -9195,7 +9123,28 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2128,
+        "id" : 2133,
+        "movement_type" : "order_pick",
+        "quantity" : 934,
+        "signed_quantity" : -934,
+        "transfer_reference" : null,
+        "note" : "Siparis #307 icin raftan alindi.",
+        "moved_at" : "2026-10-13T08:49:00Z",
+        "finished_product" : {
+          "id" : 10,
+          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
+        },
+        "slot" : {
+          "id" : 18,
+          "name" : "Y2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2130,
         "movement_type" : "stock_in",
         "quantity" : 137,
         "signed_quantity" : 137,
@@ -9216,7 +9165,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2127,
+        "id" : 2129,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -9237,31 +9186,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2126,
+        "id" : 2128,
         "movement_type" : "stock_in",
-        "quantity" : 934,
-        "signed_quantity" : 934,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-12T12:55:00Z",
-        "finished_product" : {
-          "id" : 10,
-          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
-        },
-        "slot" : {
-          "id" : 19,
-          "name" : "Y3"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2125,
-        "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
+        "quantity" : 434,
+        "signed_quantity" : 434,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-12T12:55:00Z",
@@ -9279,7 +9207,28 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2124,
+        "id" : 2127,
+        "movement_type" : "stock_in",
+        "quantity" : 1000,
+        "signed_quantity" : 1000,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-10-12T12:55:00Z",
+        "finished_product" : {
+          "id" : 10,
+          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
+        },
+        "slot" : {
+          "id" : 17,
+          "name" : "Y1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2126,
         "movement_type" : "order_pick",
         "quantity" : 96,
         "signed_quantity" : -96,
@@ -9291,8 +9240,8 @@
           "name" : "Naturel Sızma Gemlik 0.3 500ml"
         },
         "slot" : {
-          "id" : 19,
-          "name" : "Y3"
+          "id" : 18,
+          "name" : "Y2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -9300,10 +9249,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2123,
+        "id" : 2125,
         "movement_type" : "order_pick",
-        "quantity" : 30,
-        "signed_quantity" : -30,
+        "quantity" : 24,
+        "signed_quantity" : -24,
         "transfer_reference" : null,
         "note" : "Siparis #306 icin raftan alindi.",
         "moved_at" : "2026-10-12T09:49:00Z",
@@ -9312,8 +9261,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 1L"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 23,
+          "name" : "L2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -9321,7 +9270,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2122,
+        "id" : 2124,
         "movement_type" : "order_pick",
         "quantity" : 36,
         "signed_quantity" : -36,
@@ -9342,10 +9291,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2120,
+        "id" : 2122,
         "movement_type" : "stock_in",
-        "quantity" : 420,
-        "signed_quantity" : 420,
+        "quantity" : 418,
+        "signed_quantity" : 418,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-11T15:30:00Z",
@@ -9363,7 +9312,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2119,
+        "id" : 2121,
         "movement_type" : "stock_in",
         "quantity" : 36,
         "signed_quantity" : 36,
@@ -9384,7 +9333,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2118,
+        "id" : 2120,
         "movement_type" : "stock_in",
         "quantity" : 1362,
         "signed_quantity" : 1362,
@@ -9405,7 +9354,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2115,
+        "id" : 2117,
         "movement_type" : "order_pick",
         "quantity" : 36,
         "signed_quantity" : -36,
@@ -9426,7 +9375,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2114,
+        "id" : 2116,
         "movement_type" : "order_pick",
         "quantity" : 1362,
         "signed_quantity" : -1362,
@@ -9447,31 +9396,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2113,
+        "id" : 2115,
         "movement_type" : "order_pick",
-        "quantity" : 838,
-        "signed_quantity" : -838,
-        "transfer_reference" : null,
-        "note" : "Siparis #304 icin raftan alindi.",
-        "moved_at" : "2026-10-11T08:33:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 19,
-          "name" : "Y3"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2112,
-        "movement_type" : "order_pick",
-        "quantity" : 500,
-        "signed_quantity" : -500,
+        "quantity" : 338,
+        "signed_quantity" : -338,
         "transfer_reference" : null,
         "note" : "Siparis #304 icin raftan alindi.",
         "moved_at" : "2026-10-11T08:33:00Z",
@@ -9489,10 +9417,31 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2111,
+        "id" : 2114,
+        "movement_type" : "order_pick",
+        "quantity" : 1000,
+        "signed_quantity" : -1000,
+        "transfer_reference" : null,
+        "note" : "Siparis #304 icin raftan alindi.",
+        "moved_at" : "2026-10-11T08:33:00Z",
+        "finished_product" : {
+          "id" : 2,
+          "name" : "Naturel Sızma Gemlik 0.3 500ml"
+        },
+        "slot" : {
+          "id" : 17,
+          "name" : "Y1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2113,
         "movement_type" : "stock_in",
-        "quantity" : 1080,
-        "signed_quantity" : 1080,
+        "quantity" : 1082,
+        "signed_quantity" : 1082,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-10T16:15:00Z",
@@ -9510,10 +9459,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2110,
+        "id" : 2112,
         "movement_type" : "stock_in",
-        "quantity" : 782,
-        "signed_quantity" : 782,
+        "quantity" : 780,
+        "signed_quantity" : 780,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-10T16:15:00Z",
@@ -9531,7 +9480,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2109,
+        "id" : 2111,
         "movement_type" : "stock_in",
         "quantity" : 138,
         "signed_quantity" : 138,
@@ -9552,7 +9501,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2107,
+        "id" : 2109,
         "movement_type" : "stock_in",
         "quantity" : 390,
         "signed_quantity" : 390,
@@ -9573,7 +9522,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2105,
+        "id" : 2107,
         "movement_type" : "order_pick",
         "quantity" : 390,
         "signed_quantity" : -390,
@@ -9594,7 +9543,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2104,
+        "id" : 2106,
         "movement_type" : "order_pick",
         "quantity" : 138,
         "signed_quantity" : -138,
@@ -9615,7 +9564,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2103,
+        "id" : 2105,
         "movement_type" : "order_pick",
         "quantity" : 38,
         "signed_quantity" : -38,
@@ -9636,7 +9585,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2102,
+        "id" : 2104,
         "movement_type" : "order_pick",
         "quantity" : 150,
         "signed_quantity" : -150,
@@ -9657,10 +9606,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2096,
+        "id" : 2098,
         "movement_type" : "stock_in",
-        "quantity" : 216,
-        "signed_quantity" : 216,
+        "quantity" : 186,
+        "signed_quantity" : 186,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-09T10:17:00Z",
@@ -9678,10 +9627,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2095,
+        "id" : 2097,
         "movement_type" : "stock_in",
-        "quantity" : 570,
-        "signed_quantity" : 570,
+        "quantity" : 600,
+        "signed_quantity" : 600,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-09T10:17:00Z",
@@ -9699,7 +9648,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2093,
+        "id" : 2095,
         "movement_type" : "stock_in",
         "quantity" : 390,
         "signed_quantity" : 390,
@@ -9720,20 +9669,41 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2092,
+        "id" : 2093,
         "movement_type" : "stock_in",
-        "quantity" : 638,
-        "signed_quantity" : 638,
+        "quantity" : 977,
+        "signed_quantity" : 977,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-08T12:43:00Z",
         "finished_product" : {
-          "id" : 9,
-          "name" : "Naturel Sızma Ayvalık 0.4 250ml"
+          "id" : 10,
+          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
         },
         "slot" : {
-          "id" : 15,
-          "name" : "K2"
+          "id" : 19,
+          "name" : "Y3"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2092,
+        "movement_type" : "stock_in",
+        "quantity" : 500,
+        "signed_quantity" : 500,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-10-08T12:43:00Z",
+        "finished_product" : {
+          "id" : 10,
+          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
+        },
+        "slot" : {
+          "id" : 18,
+          "name" : "Y2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -9742,30 +9712,9 @@
         }
       }, {
         "id" : 2091,
-        "movement_type" : "stock_in",
-        "quantity" : 1362,
-        "signed_quantity" : 1362,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-08T12:43:00Z",
-        "finished_product" : {
-          "id" : 9,
-          "name" : "Naturel Sızma Ayvalık 0.4 250ml"
-        },
-        "slot" : {
-          "id" : 14,
-          "name" : "K1"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2090,
         "movement_type" : "order_pick",
-        "quantity" : 216,
-        "signed_quantity" : -216,
+        "quantity" : 114,
+        "signed_quantity" : -114,
         "transfer_reference" : null,
         "note" : "Siparis #302 icin raftan alindi.",
         "moved_at" : "2026-10-08T08:13:00Z",
@@ -9783,10 +9732,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2089,
+        "id" : 2090,
         "movement_type" : "order_pick",
-        "quantity" : 222,
-        "signed_quantity" : -222,
+        "quantity" : 324,
+        "signed_quantity" : -324,
         "transfer_reference" : null,
         "note" : "Siparis #302 icin raftan alindi.",
         "moved_at" : "2026-10-08T08:13:00Z",
@@ -9804,28 +9753,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2087,
-        "movement_type" : "stock_in",
-        "quantity" : 977,
-        "signed_quantity" : 977,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-07T13:57:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 19,
-          "name" : "Y3"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2086,
+        "id" : 2089,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -9846,13 +9774,76 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
+        "id" : 2088,
+        "movement_type" : "stock_in",
+        "quantity" : 1000,
+        "signed_quantity" : 1000,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-10-07T13:57:00Z",
+        "finished_product" : {
+          "id" : 2,
+          "name" : "Naturel Sızma Gemlik 0.3 500ml"
+        },
+        "slot" : {
+          "id" : 17,
+          "name" : "Y1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2087,
+        "movement_type" : "stock_in",
+        "quantity" : 638,
+        "signed_quantity" : 638,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-10-07T11:52:00Z",
+        "finished_product" : {
+          "id" : 9,
+          "name" : "Naturel Sızma Ayvalık 0.4 250ml"
+        },
+        "slot" : {
+          "id" : 15,
+          "name" : "K2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2086,
+        "movement_type" : "stock_in",
+        "quantity" : 1362,
+        "signed_quantity" : 1362,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-10-07T11:52:00Z",
+        "finished_product" : {
+          "id" : 9,
+          "name" : "Naturel Sızma Ayvalık 0.4 250ml"
+        },
+        "slot" : {
+          "id" : 14,
+          "name" : "K1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
         "id" : 2085,
         "movement_type" : "stock_in",
         "quantity" : 200,
         "signed_quantity" : 200,
         "transfer_reference" : null,
         "note" : null,
-        "moved_at" : "2026-10-07T11:52:00Z",
+        "moved_at" : "2026-10-06T16:08:00Z",
         "finished_product" : {
           "id" : 11,
           "name" : "Naturel Sızma Ayvalık 0.4 750ml"
@@ -9873,7 +9864,7 @@
         "signed_quantity" : 600,
         "transfer_reference" : null,
         "note" : null,
-        "moved_at" : "2026-10-07T11:52:00Z",
+        "moved_at" : "2026-10-06T16:08:00Z",
         "finished_product" : {
           "id" : 11,
           "name" : "Naturel Sızma Ayvalık 0.4 750ml"
@@ -9889,48 +9880,6 @@
         }
       }, {
         "id" : 2083,
-        "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-06T16:08:00Z",
-        "finished_product" : {
-          "id" : 10,
-          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
-        },
-        "slot" : {
-          "id" : 18,
-          "name" : "Y2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2082,
-        "movement_type" : "stock_in",
-        "quantity" : 1000,
-        "signed_quantity" : 1000,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-06T16:08:00Z",
-        "finished_product" : {
-          "id" : 10,
-          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
-        },
-        "slot" : {
-          "id" : 17,
-          "name" : "Y1"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2081,
         "movement_type" : "stock_in",
         "quantity" : 138,
         "signed_quantity" : 138,
@@ -9951,7 +9900,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2080,
+        "id" : 2082,
         "movement_type" : "order_pick",
         "quantity" : 276,
         "signed_quantity" : -276,
@@ -9972,7 +9921,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2079,
+        "id" : 2081,
         "movement_type" : "order_pick",
         "quantity" : 72,
         "signed_quantity" : -72,
@@ -9984,8 +9933,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 1L"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 23,
+          "name" : "L2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -9993,10 +9942,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2077,
+        "id" : 2079,
         "movement_type" : "stock_in",
-        "quantity" : 294,
-        "signed_quantity" : 294,
+        "quantity" : 299,
+        "signed_quantity" : 299,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-05T14:22:00Z",
@@ -10014,7 +9963,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2076,
+        "id" : 2078,
         "movement_type" : "stock_in",
         "quantity" : 87,
         "signed_quantity" : 87,
@@ -10035,7 +9984,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2075,
+        "id" : 2077,
         "movement_type" : "stock_in",
         "quantity" : 150,
         "signed_quantity" : 150,
@@ -10056,10 +10005,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2074,
+        "id" : 2076,
         "movement_type" : "stock_in",
-        "quantity" : 302,
-        "signed_quantity" : 302,
+        "quantity" : 200,
+        "signed_quantity" : 200,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-04T11:31:00Z",
@@ -10077,10 +10026,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2073,
+        "id" : 2075,
         "movement_type" : "stock_in",
-        "quantity" : 498,
-        "signed_quantity" : 498,
+        "quantity" : 600,
+        "signed_quantity" : 600,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-04T11:31:00Z",
@@ -10098,7 +10047,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2072,
+        "id" : 2074,
         "movement_type" : "order_pick",
         "quantity" : 16,
         "signed_quantity" : -16,
@@ -10119,7 +10068,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2071,
+        "id" : 2073,
         "movement_type" : "order_pick",
         "quantity" : 14,
         "signed_quantity" : -14,
@@ -10140,7 +10089,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2070,
+        "id" : 2072,
         "movement_type" : "order_pick",
         "quantity" : 72,
         "signed_quantity" : -72,
@@ -10161,10 +10110,31 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2069,
+        "id" : 2071,
         "movement_type" : "order_pick",
-        "quantity" : 126,
-        "signed_quantity" : -126,
+        "quantity" : 30,
+        "signed_quantity" : -30,
+        "transfer_reference" : null,
+        "note" : "Siparis #299 icin raftan alindi.",
+        "moved_at" : "2026-10-04T08:39:00Z",
+        "finished_product" : {
+          "id" : 8,
+          "name" : "Naturel Sızma Gemlik 0.8 1L"
+        },
+        "slot" : {
+          "id" : 23,
+          "name" : "L2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2070,
+        "movement_type" : "order_pick",
+        "quantity" : 102,
+        "signed_quantity" : -102,
         "transfer_reference" : null,
         "note" : "Siparis #299 icin raftan alindi.",
         "moved_at" : "2026-10-04T08:39:00Z",
@@ -10182,10 +10152,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2068,
+        "id" : 2069,
         "movement_type" : "order_pick",
-        "quantity" : 372,
-        "signed_quantity" : -372,
+        "quantity" : 498,
+        "signed_quantity" : -498,
         "transfer_reference" : null,
         "note" : "Siparis #298 icin raftan alindi.",
         "moved_at" : "2026-10-04T08:20:00Z",
@@ -10203,28 +10173,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2067,
-        "movement_type" : "order_pick",
-        "quantity" : 126,
-        "signed_quantity" : -126,
-        "transfer_reference" : null,
-        "note" : "Siparis #298 icin raftan alindi.",
-        "moved_at" : "2026-10-04T08:20:00Z",
-        "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
-        },
-        "slot" : {
-          "id" : 23,
-          "name" : "L2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2066,
+        "id" : 2068,
         "movement_type" : "order_pick",
         "quantity" : 384,
         "signed_quantity" : -384,
@@ -10245,7 +10194,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2065,
+        "id" : 2067,
         "movement_type" : "order_pick",
         "quantity" : 156,
         "signed_quantity" : -156,
@@ -10266,7 +10215,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2064,
+        "id" : 2066,
         "movement_type" : "order_pick",
         "quantity" : 528,
         "signed_quantity" : -528,
@@ -10287,10 +10236,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2063,
+        "id" : 2065,
         "movement_type" : "stock_in",
-        "quantity" : 86,
-        "signed_quantity" : 86,
+        "quantity" : 127,
+        "signed_quantity" : 127,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-02T12:29:00Z",
@@ -10308,10 +10257,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2062,
+        "id" : 2064,
         "movement_type" : "stock_in",
-        "quantity" : 600,
-        "signed_quantity" : 600,
+        "quantity" : 559,
+        "signed_quantity" : 559,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-02T12:29:00Z",
@@ -10329,7 +10278,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2061,
+        "id" : 2063,
         "movement_type" : "order_pick",
         "quantity" : 1344,
         "signed_quantity" : -1344,
@@ -10350,7 +10299,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2060,
+        "id" : 2062,
         "movement_type" : "order_pick",
         "quantity" : 120,
         "signed_quantity" : -120,
@@ -10362,8 +10311,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 1L"
         },
         "slot" : {
-          "id" : 23,
-          "name" : "L2"
+          "id" : 22,
+          "name" : "L1"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -10371,10 +10320,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2059,
+        "id" : 2061,
         "movement_type" : "stock_in",
-        "quantity" : 536,
-        "signed_quantity" : 536,
+        "quantity" : 538,
+        "signed_quantity" : 538,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-01T13:20:00Z",
@@ -10392,10 +10341,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2058,
+        "id" : 2060,
         "movement_type" : "stock_in",
-        "quantity" : 1464,
-        "signed_quantity" : 1464,
+        "quantity" : 1462,
+        "signed_quantity" : 1462,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-01T13:20:00Z",
@@ -10413,31 +10362,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2057,
+        "id" : 2059,
         "movement_type" : "order_pick",
-        "quantity" : 198,
-        "signed_quantity" : -198,
-        "transfer_reference" : null,
-        "note" : "Siparis #296 icin raftan alindi.",
-        "moved_at" : "2026-10-01T08:58:00Z",
-        "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
-        },
-        "slot" : {
-          "id" : 23,
-          "name" : "L2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2056,
-        "movement_type" : "order_pick",
-        "quantity" : 84,
-        "signed_quantity" : -84,
+        "quantity" : 282,
+        "signed_quantity" : -282,
         "transfer_reference" : null,
         "note" : "Siparis #296 icin raftan alindi.",
         "moved_at" : "2026-10-01T08:58:00Z",
@@ -10455,7 +10383,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2055,
+        "id" : 2058,
         "movement_type" : "order_pick",
         "quantity" : 72,
         "signed_quantity" : -72,
@@ -10476,10 +10404,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2054,
+        "id" : 2057,
         "movement_type" : "order_pick",
-        "quantity" : 516,
-        "signed_quantity" : -516,
+        "quantity" : 157,
+        "signed_quantity" : -157,
         "transfer_reference" : null,
         "note" : "Siparis #295 icin raftan alindi.",
         "moved_at" : "2026-10-01T08:35:00Z",
@@ -10497,7 +10425,28 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2053,
+        "id" : 2056,
+        "movement_type" : "order_pick",
+        "quantity" : 359,
+        "signed_quantity" : -359,
+        "transfer_reference" : null,
+        "note" : "Siparis #295 icin raftan alindi.",
+        "moved_at" : "2026-10-01T08:35:00Z",
+        "finished_product" : {
+          "id" : 8,
+          "name" : "Naturel Sızma Gemlik 0.8 1L"
+        },
+        "slot" : {
+          "id" : 23,
+          "name" : "L2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2055,
         "movement_type" : "order_pick",
         "quantity" : 458,
         "signed_quantity" : -458,
@@ -10518,7 +10467,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2052,
+        "id" : 2054,
         "movement_type" : "order_pick",
         "quantity" : 538,
         "signed_quantity" : -538,
@@ -10539,7 +10488,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2051,
+        "id" : 2053,
         "movement_type" : "order_pick",
         "quantity" : 462,
         "signed_quantity" : -462,
@@ -10560,7 +10509,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2050,
+        "id" : 2052,
         "movement_type" : "order_pick",
         "quantity" : 972,
         "signed_quantity" : -972,
@@ -10581,7 +10530,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2049,
+        "id" : 2051,
         "movement_type" : "stock_in",
         "quantity" : 27,
         "signed_quantity" : 27,
@@ -10602,7 +10551,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2048,
+        "id" : 2050,
         "movement_type" : "stock_in",
         "quantity" : 443,
         "signed_quantity" : 443,
@@ -10623,7 +10572,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2047,
+        "id" : 2049,
         "movement_type" : "stock_in",
         "quantity" : 780,
         "signed_quantity" : 780,
@@ -10644,10 +10593,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2046,
+        "id" : 2048,
         "movement_type" : "stock_in",
-        "quantity" : 358,
-        "signed_quantity" : 358,
+        "quantity" : 200,
+        "signed_quantity" : 200,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-28T12:06:00Z",
@@ -10665,10 +10614,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2045,
+        "id" : 2047,
         "movement_type" : "stock_in",
-        "quantity" : 442,
-        "signed_quantity" : 442,
+        "quantity" : 600,
+        "signed_quantity" : 600,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-28T12:06:00Z",
@@ -10686,10 +10635,31 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2044,
+        "id" : 2046,
         "movement_type" : "order_pick",
-        "quantity" : 222,
-        "signed_quantity" : -222,
+        "quantity" : 60,
+        "signed_quantity" : -60,
+        "transfer_reference" : null,
+        "note" : "Siparis #293 icin raftan alindi.",
+        "moved_at" : "2026-09-28T08:42:00Z",
+        "finished_product" : {
+          "id" : 8,
+          "name" : "Naturel Sızma Gemlik 0.8 1L"
+        },
+        "slot" : {
+          "id" : 23,
+          "name" : "L2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2045,
+        "movement_type" : "order_pick",
+        "quantity" : 162,
+        "signed_quantity" : -162,
         "transfer_reference" : null,
         "note" : "Siparis #293 icin raftan alindi.",
         "moved_at" : "2026-09-28T08:42:00Z",
@@ -10707,10 +10677,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2043,
+        "id" : 2044,
         "movement_type" : "order_pick",
-        "quantity" : 420,
-        "signed_quantity" : -420,
+        "quantity" : 418,
+        "signed_quantity" : -418,
         "transfer_reference" : null,
         "note" : "Siparis #293 icin raftan alindi.",
         "moved_at" : "2026-09-28T08:42:00Z",
@@ -10728,10 +10698,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2042,
+        "id" : 2043,
         "movement_type" : "order_pick",
-        "quantity" : 600,
-        "signed_quantity" : -600,
+        "quantity" : 602,
+        "signed_quantity" : -602,
         "transfer_reference" : null,
         "note" : "Siparis #293 icin raftan alindi.",
         "moved_at" : "2026-09-28T08:42:00Z",
@@ -10749,7 +10719,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2041,
+        "id" : 2042,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -10770,7 +10740,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2040,
+        "id" : 2041,
         "movement_type" : "stock_in",
         "quantity" : 1500,
         "signed_quantity" : 1500,
@@ -10791,7 +10761,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2039,
+        "id" : 2040,
         "movement_type" : "order_pick",
         "quantity" : 276,
         "signed_quantity" : -276,
@@ -10812,7 +10782,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2038,
+        "id" : 2039,
         "movement_type" : "order_pick",
         "quantity" : 174,
         "signed_quantity" : -174,
@@ -10833,7 +10803,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2037,
+        "id" : 2038,
         "movement_type" : "order_pick",
         "quantity" : 780,
         "signed_quantity" : -780,
@@ -10854,7 +10824,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2036,
+        "id" : 2037,
         "movement_type" : "order_pick",
         "quantity" : 186,
         "signed_quantity" : -186,
@@ -10875,7 +10845,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2035,
+        "id" : 2036,
         "movement_type" : "order_pick",
         "quantity" : 1500,
         "signed_quantity" : -1500,
@@ -10896,7 +10866,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2034,
+        "id" : 2035,
         "movement_type" : "stock_in",
         "quantity" : 312,
         "signed_quantity" : 312,
@@ -10917,7 +10887,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2033,
+        "id" : 2034,
         "movement_type" : "stock_in",
         "quantity" : 557,
         "signed_quantity" : 557,
@@ -10938,7 +10908,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2032,
+        "id" : 2033,
         "movement_type" : "stock_in",
         "quantity" : 943,
         "signed_quantity" : 943,
@@ -10959,10 +10929,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2031,
+        "id" : 2032,
         "movement_type" : "order_pick",
-        "quantity" : 358,
-        "signed_quantity" : -358,
+        "quantity" : 576,
+        "signed_quantity" : -576,
         "transfer_reference" : null,
         "note" : "Siparis #290 icin raftan alindi.",
         "moved_at" : "2026-09-25T09:07:00Z",
@@ -10980,31 +10950,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2030,
-        "movement_type" : "order_pick",
-        "quantity" : 218,
-        "signed_quantity" : -218,
-        "transfer_reference" : null,
-        "note" : "Siparis #290 icin raftan alindi.",
-        "moved_at" : "2026-09-25T09:07:00Z",
-        "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
-        },
-        "slot" : {
-          "id" : 23,
-          "name" : "L2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2029,
+        "id" : 2031,
         "movement_type" : "stock_in",
-        "quantity" : 562,
-        "signed_quantity" : 562,
+        "quantity" : 564,
+        "signed_quantity" : 564,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-24T11:53:00Z",
@@ -11022,10 +10971,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2028,
+        "id" : 2030,
         "movement_type" : "stock_in",
-        "quantity" : 1438,
-        "signed_quantity" : 1438,
+        "quantity" : 1436,
+        "signed_quantity" : 1436,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-24T11:53:00Z",
@@ -11043,10 +10992,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2027,
+        "id" : 2029,
         "movement_type" : "stock_in",
-        "quantity" : 200,
-        "signed_quantity" : 200,
+        "quantity" : 219,
+        "signed_quantity" : 219,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-23T11:47:00Z",
@@ -11064,10 +11013,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2026,
+        "id" : 2028,
         "movement_type" : "stock_in",
-        "quantity" : 600,
-        "signed_quantity" : 600,
+        "quantity" : 581,
+        "signed_quantity" : 581,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-23T11:47:00Z",
@@ -11085,7 +11034,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2025,
+        "id" : 2027,
         "movement_type" : "order_pick",
         "quantity" : 96,
         "signed_quantity" : -96,
@@ -11106,7 +11055,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2024,
+        "id" : 2026,
         "movement_type" : "order_pick",
         "quantity" : 414,
         "signed_quantity" : -414,
@@ -11127,7 +11076,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2023,
+        "id" : 2025,
         "movement_type" : "order_pick",
         "quantity" : 186,
         "signed_quantity" : -186,
@@ -11139,8 +11088,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 1L"
         },
         "slot" : {
-          "id" : 23,
-          "name" : "L2"
+          "id" : 22,
+          "name" : "L1"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11148,31 +11097,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2022,
+        "id" : 2024,
         "movement_type" : "order_pick",
-        "quantity" : 18,
-        "signed_quantity" : -18,
-        "transfer_reference" : null,
-        "note" : "Siparis #287 icin raftan alindi.",
-        "moved_at" : "2026-09-21T09:12:00Z",
-        "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
-        },
-        "slot" : {
-          "id" : 23,
-          "name" : "L2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2021,
-        "movement_type" : "order_pick",
-        "quantity" : 300,
-        "signed_quantity" : -300,
+        "quantity" : 312,
+        "signed_quantity" : -312,
         "transfer_reference" : null,
         "note" : "Siparis #287 icin raftan alindi.",
         "moved_at" : "2026-09-21T09:12:00Z",
@@ -11190,10 +11118,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2020,
+        "id" : 2023,
         "movement_type" : "order_pick",
-        "quantity" : 420,
-        "signed_quantity" : -420,
+        "quantity" : 432,
+        "signed_quantity" : -432,
         "transfer_reference" : null,
         "note" : "Siparis #287 icin raftan alindi.",
         "moved_at" : "2026-09-21T09:12:00Z",
@@ -11211,10 +11139,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2019,
+        "id" : 2022,
         "movement_type" : "order_pick",
-        "quantity" : 792,
-        "signed_quantity" : -792,
+        "quantity" : 767,
+        "signed_quantity" : -767,
         "transfer_reference" : null,
         "note" : "Siparis #286 icin raftan alindi.",
         "moved_at" : "2026-09-20T08:58:00Z",
@@ -11232,7 +11160,28 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2018,
+        "id" : 2021,
+        "movement_type" : "order_pick",
+        "quantity" : 49,
+        "signed_quantity" : -49,
+        "transfer_reference" : null,
+        "note" : "Siparis #286 icin raftan alindi.",
+        "moved_at" : "2026-09-20T08:58:00Z",
+        "finished_product" : {
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
+        },
+        "slot" : {
+          "id" : 15,
+          "name" : "K2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2020,
         "movement_type" : "order_pick",
         "quantity" : 114,
         "signed_quantity" : -114,
@@ -11253,10 +11202,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2017,
+        "id" : 2019,
         "movement_type" : "order_pick",
-        "quantity" : 300,
-        "signed_quantity" : -300,
+        "quantity" : 83,
+        "signed_quantity" : -83,
         "transfer_reference" : null,
         "note" : "Siparis #286 icin raftan alindi.",
         "moved_at" : "2026-09-20T08:58:00Z",
@@ -11274,10 +11223,31 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2016,
+        "id" : 2018,
         "movement_type" : "order_pick",
-        "quantity" : 24,
-        "signed_quantity" : -24,
+        "quantity" : 217,
+        "signed_quantity" : -217,
+        "transfer_reference" : null,
+        "note" : "Siparis #286 icin raftan alindi.",
+        "moved_at" : "2026-09-20T08:58:00Z",
+        "finished_product" : {
+          "id" : 8,
+          "name" : "Naturel Sızma Gemlik 0.8 1L"
+        },
+        "slot" : {
+          "id" : 23,
+          "name" : "L2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2017,
+        "movement_type" : "order_pick",
+        "quantity" : 42,
+        "signed_quantity" : -42,
         "transfer_reference" : null,
         "note" : "Siparis #284 icin raftan alindi.",
         "moved_at" : "2026-09-20T08:15:00Z",
@@ -11286,8 +11256,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 250ml"
         },
         "slot" : {
-          "id" : 14,
-          "name" : "K1"
+          "id" : 15,
+          "name" : "K2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11295,7 +11265,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2015,
+        "id" : 2016,
         "movement_type" : "order_pick",
         "quantity" : 415,
         "signed_quantity" : -415,
@@ -11316,7 +11286,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2014,
+        "id" : 2015,
         "movement_type" : "order_pick",
         "quantity" : 503,
         "signed_quantity" : -503,
@@ -11337,10 +11307,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2013,
+        "id" : 2014,
         "movement_type" : "stock_in",
-        "quantity" : 1360,
-        "signed_quantity" : 1360,
+        "quantity" : 1359,
+        "signed_quantity" : 1359,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-19T10:45:00Z",
@@ -11358,7 +11328,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2012,
+        "id" : 2013,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -11379,7 +11349,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2011,
+        "id" : 2012,
         "movement_type" : "stock_in",
         "quantity" : 1000,
         "signed_quantity" : 1000,
@@ -11400,10 +11370,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2010,
+        "id" : 2011,
         "movement_type" : "stock_in",
-        "quantity" : 222,
-        "signed_quantity" : 222,
+        "quantity" : 200,
+        "signed_quantity" : 200,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-17T12:23:00Z",
@@ -11421,10 +11391,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2009,
+        "id" : 2010,
         "movement_type" : "stock_in",
-        "quantity" : 578,
-        "signed_quantity" : 578,
+        "quantity" : 600,
+        "signed_quantity" : 600,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-17T12:23:00Z",
@@ -11442,10 +11412,31 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
+        "id" : 2009,
+        "movement_type" : "order_pick",
+        "quantity" : 480,
+        "signed_quantity" : -480,
+        "transfer_reference" : null,
+        "note" : "Siparis #283 icin raftan alindi.",
+        "moved_at" : "2026-09-17T09:43:00Z",
+        "finished_product" : {
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
+        },
+        "slot" : {
+          "id" : 15,
+          "name" : "K2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
         "id" : 2008,
         "movement_type" : "order_pick",
-        "quantity" : 192,
-        "signed_quantity" : -192,
+        "quantity" : 30,
+        "signed_quantity" : -30,
         "transfer_reference" : null,
         "note" : "Siparis #283 icin raftan alindi.",
         "moved_at" : "2026-09-17T09:43:00Z",
@@ -11486,8 +11477,8 @@
       }, {
         "id" : 2006,
         "movement_type" : "order_pick",
-        "quantity" : 486,
-        "signed_quantity" : -486,
+        "quantity" : 1290,
+        "signed_quantity" : -1290,
         "transfer_reference" : null,
         "note" : "Siparis #282 icin raftan alindi.",
         "moved_at" : "2026-09-17T09:05:00Z",
@@ -11507,8 +11498,8 @@
       }, {
         "id" : 2005,
         "movement_type" : "order_pick",
-        "quantity" : 162,
-        "signed_quantity" : -162,
+        "quantity" : 120,
+        "signed_quantity" : -120,
         "transfer_reference" : null,
         "note" : "Siparis #281 icin raftan alindi.",
         "moved_at" : "2026-09-16T08:21:00Z",
@@ -11517,8 +11508,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 1L"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 23,
+          "name" : "L2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11570,8 +11561,29 @@
       }, {
         "id" : 2002,
         "movement_type" : "order_pick",
-        "quantity" : 265,
-        "signed_quantity" : -265,
+        "quantity" : 78,
+        "signed_quantity" : -78,
+        "transfer_reference" : null,
+        "note" : "Siparis #280 icin raftan alindi.",
+        "moved_at" : "2026-09-15T08:35:00Z",
+        "finished_product" : {
+          "id" : 8,
+          "name" : "Naturel Sızma Gemlik 0.8 1L"
+        },
+        "slot" : {
+          "id" : 23,
+          "name" : "L2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2001,
+        "movement_type" : "order_pick",
+        "quantity" : 162,
+        "signed_quantity" : -162,
         "transfer_reference" : null,
         "note" : "Siparis #280 icin raftan alindi.",
         "moved_at" : "2026-09-15T08:35:00Z",
@@ -11589,31 +11601,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2001,
-        "movement_type" : "order_pick",
-        "quantity" : 53,
-        "signed_quantity" : -53,
-        "transfer_reference" : null,
-        "note" : "Siparis #280 icin raftan alindi.",
-        "moved_at" : "2026-09-15T08:35:00Z",
-        "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
-        },
-        "slot" : {
-          "id" : 23,
-          "name" : "L2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
         "id" : 2000,
         "movement_type" : "order_pick",
-        "quantity" : 60,
-        "signed_quantity" : -60,
+        "quantity" : 438,
+        "signed_quantity" : -438,
         "transfer_reference" : null,
         "note" : "Siparis #279 icin raftan alindi.",
         "moved_at" : "2026-09-15T08:15:00Z",
@@ -11622,8 +11613,8 @@
           "name" : "Naturel Sızma Gemlik 0.8 1L"
         },
         "slot" : {
-          "id" : 23,
-          "name" : "L2"
+          "id" : 22,
+          "name" : "L1"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11633,8 +11624,8 @@
       }, {
         "id" : 1999,
         "movement_type" : "order_pick",
-        "quantity" : 788,
-        "signed_quantity" : -788,
+        "quantity" : 180,
+        "signed_quantity" : -180,
         "transfer_reference" : null,
         "note" : "Siparis #279 icin raftan alindi.",
         "moved_at" : "2026-09-15T08:15:00Z",
@@ -11653,27 +11644,6 @@
         }
       }, {
         "id" : 1998,
-        "movement_type" : "order_pick",
-        "quantity" : 514,
-        "signed_quantity" : -514,
-        "transfer_reference" : null,
-        "note" : "Siparis #279 icin raftan alindi.",
-        "moved_at" : "2026-09-15T08:15:00Z",
-        "finished_product" : {
-          "id" : 6,
-          "name" : "Naturel Sızma Gemlik 0.8 250ml"
-        },
-        "slot" : {
-          "id" : 15,
-          "name" : "K2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 1997,
         "movement_type" : "order_pick",
         "quantity" : 534,
         "signed_quantity" : -534,
@@ -11694,20 +11664,41 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 1996,
+        "id" : 1997,
         "movement_type" : "stock_in",
-        "quantity" : 449,
-        "signed_quantity" : 449,
+        "quantity" : 571,
+        "signed_quantity" : 571,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-14T12:32:00Z",
         "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 15,
+          "name" : "K2"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 1996,
+        "movement_type" : "stock_in",
+        "quantity" : 1226,
+        "signed_quantity" : 1226,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-09-14T12:32:00Z",
+        "finished_product" : {
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
+        },
+        "slot" : {
+          "id" : 14,
+          "name" : "K1"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11759,11 +11750,32 @@
       }, {
         "id" : 1993,
         "movement_type" : "order_pick",
-        "quantity" : 102,
-        "signed_quantity" : -102,
+        "quantity" : 810,
+        "signed_quantity" : -810,
         "transfer_reference" : null,
         "note" : "Siparis #278 icin raftan alindi.",
         "moved_at" : "2026-09-13T09:05:00Z",
+        "finished_product" : {
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
+        },
+        "slot" : {
+          "id" : 14,
+          "name" : "K1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 1992,
+        "movement_type" : "stock_in",
+        "quantity" : 215,
+        "signed_quantity" : 215,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-09-12T13:03:00Z",
         "finished_product" : {
           "id" : 8,
           "name" : "Naturel Sızma Gemlik 0.8 1L"
@@ -11778,13 +11790,13 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 1992,
-        "movement_type" : "order_pick",
-        "quantity" : 222,
-        "signed_quantity" : -222,
+        "id" : 1991,
+        "movement_type" : "stock_in",
+        "quantity" : 585,
+        "signed_quantity" : 585,
         "transfer_reference" : null,
-        "note" : "Siparis #278 icin raftan alindi.",
-        "moved_at" : "2026-09-13T09:05:00Z",
+        "note" : null,
+        "moved_at" : "2026-09-12T13:03:00Z",
         "finished_product" : {
           "id" : 8,
           "name" : "Naturel Sızma Gemlik 0.8 1L"
@@ -11799,34 +11811,13 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 1991,
-        "movement_type" : "stock_in",
-        "quantity" : 500,
-        "signed_quantity" : 500,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-09-12T13:03:00Z",
-        "finished_product" : {
-          "id" : 6,
-          "name" : "Naturel Sızma Gemlik 0.8 250ml"
-        },
-        "slot" : {
-          "id" : 15,
-          "name" : "K2"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
         "id" : 1990,
-        "movement_type" : "stock_in",
-        "quantity" : 1500,
-        "signed_quantity" : 1500,
+        "movement_type" : "order_pick",
+        "quantity" : 416,
+        "signed_quantity" : -416,
         "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-09-12T13:03:00Z",
+        "note" : "Siparis #277 icin raftan alindi.",
+        "moved_at" : "2026-09-12T09:30:00Z",
         "finished_product" : {
           "id" : 6,
           "name" : "Naturel Sızma Gemlik 0.8 250ml"
@@ -11843,18 +11834,18 @@
       }, {
         "id" : 1989,
         "movement_type" : "order_pick",
-        "quantity" : 378,
-        "signed_quantity" : -378,
+        "quantity" : 514,
+        "signed_quantity" : -514,
         "transfer_reference" : null,
         "note" : "Siparis #277 icin raftan alindi.",
         "moved_at" : "2026-09-12T09:30:00Z",
         "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 15,
+          "name" : "K2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11864,18 +11855,18 @@
       }, {
         "id" : 1988,
         "movement_type" : "stock_in",
-        "quantity" : 215,
-        "signed_quantity" : 215,
+        "quantity" : 500,
+        "signed_quantity" : 500,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-11T13:06:00Z",
         "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
         },
         "slot" : {
-          "id" : 23,
-          "name" : "L2"
+          "id" : 15,
+          "name" : "K2"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -11885,18 +11876,18 @@
       }, {
         "id" : 1987,
         "movement_type" : "stock_in",
-        "quantity" : 585,
-        "signed_quantity" : 585,
+        "quantity" : 1500,
+        "signed_quantity" : 1500,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-09-11T13:06:00Z",
         "finished_product" : {
-          "id" : 8,
-          "name" : "Naturel Sızma Gemlik 0.8 1L"
+          "id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml"
         },
         "slot" : {
-          "id" : 22,
-          "name" : "L1"
+          "id" : 14,
+          "name" : "K1"
         },
         "counterparty_slot" : null,
         "created_by_user" : {
@@ -16232,8 +16223,8 @@
       }, {
         "id" : 1768,
         "movement_type" : "order_pick",
-        "quantity" : 15,
-        "signed_quantity" : -15,
+        "quantity" : 14,
+        "signed_quantity" : -14,
         "transfer_reference" : null,
         "note" : "Siparis #227 icin raftan alindi.",
         "moved_at" : "2026-07-09T09:40:00Z",
@@ -16421,8 +16412,8 @@
       }, {
         "id" : 1757,
         "movement_type" : "stock_in",
-        "quantity" : 649,
-        "signed_quantity" : 649,
+        "quantity" : 648,
+        "signed_quantity" : 648,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-07-06T12:52:00Z",
@@ -21608,8 +21599,8 @@
       }, {
         "id" : 1480,
         "movement_type" : "order_pick",
-        "quantity" : 264,
-        "signed_quantity" : -264,
+        "quantity" : 258,
+        "signed_quantity" : -258,
         "transfer_reference" : null,
         "note" : "Siparis #169 icin raftan alindi.",
         "moved_at" : "2026-05-10T09:02:00Z",
@@ -21629,8 +21620,8 @@
       }, {
         "id" : 1479,
         "movement_type" : "order_pick",
-        "quantity" : 471,
-        "signed_quantity" : -471,
+        "quantity" : 470,
+        "signed_quantity" : -470,
         "transfer_reference" : null,
         "note" : "Siparis #169 icin raftan alindi.",
         "moved_at" : "2026-05-10T09:02:00Z",
@@ -22154,8 +22145,8 @@
       }, {
         "id" : 1441,
         "movement_type" : "stock_in",
-        "quantity" : 471,
-        "signed_quantity" : 471,
+        "quantity" : 470,
+        "signed_quantity" : 470,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-05-03T13:47:00Z",
@@ -22301,8 +22292,8 @@
       }, {
         "id" : 1434,
         "movement_type" : "order_pick",
-        "quantity" : 414,
-        "signed_quantity" : -414,
+        "quantity" : 420,
+        "signed_quantity" : -420,
         "transfer_reference" : null,
         "note" : "Siparis #162 icin raftan alindi.",
         "moved_at" : "2026-05-02T08:27:00Z",
@@ -22553,8 +22544,8 @@
       }, {
         "id" : 1419,
         "movement_type" : "stock_in",
-        "quantity" : 1351,
-        "signed_quantity" : 1351,
+        "quantity" : 1352,
+        "signed_quantity" : 1352,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-29T11:47:00Z",
@@ -22574,8 +22565,8 @@
       }, {
         "id" : 1418,
         "movement_type" : "stock_in",
-        "quantity" : 77,
-        "signed_quantity" : 77,
+        "quantity" : 76,
+        "signed_quantity" : 76,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-29T11:47:00Z",
@@ -22595,8 +22586,8 @@
       }, {
         "id" : 1416,
         "movement_type" : "stock_in",
-        "quantity" : 217,
-        "signed_quantity" : 217,
+        "quantity" : 216,
+        "signed_quantity" : 216,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-28T11:58:00Z",
@@ -22679,8 +22670,8 @@
       }, {
         "id" : 1410,
         "movement_type" : "order_pick",
-        "quantity" : 217,
-        "signed_quantity" : -217,
+        "quantity" : 216,
+        "signed_quantity" : -216,
         "transfer_reference" : null,
         "note" : "Siparis #157 icin raftan alindi.",
         "moved_at" : "2026-04-27T08:40:00Z",
@@ -22721,8 +22712,8 @@
       }, {
         "id" : 1407,
         "movement_type" : "order_pick",
-        "quantity" : 253,
-        "signed_quantity" : -253,
+        "quantity" : 252,
+        "signed_quantity" : -252,
         "transfer_reference" : null,
         "note" : "Siparis #157 icin raftan alindi.",
         "moved_at" : "2026-04-27T08:40:00Z",
@@ -22742,8 +22733,8 @@
       }, {
         "id" : 1406,
         "movement_type" : "order_pick",
-        "quantity" : 577,
-        "signed_quantity" : -577,
+        "quantity" : 576,
+        "signed_quantity" : -576,
         "transfer_reference" : null,
         "note" : "Siparis #157 icin raftan alindi.",
         "moved_at" : "2026-04-27T08:40:00Z",
@@ -22763,8 +22754,8 @@
       }, {
         "id" : 1405,
         "movement_type" : "order_pick",
-        "quantity" : 1247,
-        "signed_quantity" : -1247,
+        "quantity" : 1248,
+        "signed_quantity" : -1248,
         "transfer_reference" : null,
         "note" : "Siparis #157 icin raftan alindi.",
         "moved_at" : "2026-04-27T08:40:00Z",
@@ -22847,8 +22838,8 @@
       }, {
         "id" : 1396,
         "movement_type" : "stock_in",
-        "quantity" : 321,
-        "signed_quantity" : 321,
+        "quantity" : 322,
+        "signed_quantity" : 322,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-25T12:02:00Z",
@@ -22889,8 +22880,8 @@
       }, {
         "id" : 1393,
         "movement_type" : "stock_in",
-        "quantity" : 217,
-        "signed_quantity" : 217,
+        "quantity" : 216,
+        "signed_quantity" : 216,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-24T12:22:00Z",
@@ -23162,8 +23153,8 @@
       }, {
         "id" : 1374,
         "movement_type" : "stock_in",
-        "quantity" : 149,
-        "signed_quantity" : 149,
+        "quantity" : 148,
+        "signed_quantity" : 148,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-22T14:35:00Z",
@@ -23204,8 +23195,8 @@
       }, {
         "id" : 1372,
         "movement_type" : "stock_in",
-        "quantity" : 1217,
-        "signed_quantity" : 1217,
+        "quantity" : 1218,
+        "signed_quantity" : 1218,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-22T14:35:00Z",
@@ -23372,8 +23363,8 @@
       }, {
         "id" : 1358,
         "movement_type" : "order_pick",
-        "quantity" : 1217,
-        "signed_quantity" : -1217,
+        "quantity" : 1218,
+        "signed_quantity" : -1218,
         "transfer_reference" : null,
         "note" : "Siparis #152 icin raftan alindi.",
         "moved_at" : "2026-04-21T09:44:00Z",
@@ -24044,8 +24035,8 @@
       }, {
         "id" : 1294,
         "movement_type" : "stock_in",
-        "quantity" : 317,
-        "signed_quantity" : 317,
+        "quantity" : 318,
+        "signed_quantity" : 318,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-12T16:01:00Z",
@@ -24149,8 +24140,8 @@
       }, {
         "id" : 1287,
         "movement_type" : "order_pick",
-        "quantity" : 317,
-        "signed_quantity" : -317,
+        "quantity" : 318,
+        "signed_quantity" : -318,
         "transfer_reference" : null,
         "note" : "Siparis #144 icin raftan alindi.",
         "moved_at" : "2026-04-12T08:31:00Z",
@@ -24254,8 +24245,8 @@
       }, {
         "id" : 1267,
         "movement_type" : "stock_in",
-        "quantity" : 381,
-        "signed_quantity" : 381,
+        "quantity" : 382,
+        "signed_quantity" : 382,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-09T11:27:00Z",
@@ -24401,8 +24392,8 @@
       }, {
         "id" : 1256,
         "movement_type" : "order_pick",
-        "quantity" : 847,
-        "signed_quantity" : -847,
+        "quantity" : 848,
+        "signed_quantity" : -848,
         "transfer_reference" : null,
         "note" : "Siparis #139 icin raftan alindi.",
         "moved_at" : "2026-04-08T08:23:00Z",
@@ -24464,8 +24455,8 @@
       }, {
         "id" : 1252,
         "movement_type" : "stock_in",
-        "quantity" : 119,
-        "signed_quantity" : 119,
+        "quantity" : 120,
+        "signed_quantity" : 120,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-07T12:55:00Z",
@@ -24506,8 +24497,8 @@
       }, {
         "id" : 1250,
         "movement_type" : "order_pick",
-        "quantity" : 119,
-        "signed_quantity" : -119,
+        "quantity" : 120,
+        "signed_quantity" : -120,
         "transfer_reference" : null,
         "note" : "Siparis #140 icin raftan alindi.",
         "moved_at" : "2026-04-07T08:39:00Z",
@@ -25031,8 +25022,8 @@
       }, {
         "id" : 1193,
         "movement_type" : "stock_in",
-        "quantity" : 847,
-        "signed_quantity" : 847,
+        "quantity" : 848,
+        "signed_quantity" : 848,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-30T16:48:00Z",
@@ -25115,8 +25106,8 @@
       }, {
         "id" : 1188,
         "movement_type" : "order_pick",
-        "quantity" : 847,
-        "signed_quantity" : -847,
+        "quantity" : 848,
+        "signed_quantity" : -848,
         "transfer_reference" : null,
         "note" : "Siparis #133 icin raftan alindi.",
         "moved_at" : "2026-03-30T08:54:00Z",
@@ -25346,8 +25337,8 @@
       }, {
         "id" : 1160,
         "movement_type" : "stock_in",
-        "quantity" : 877,
-        "signed_quantity" : 877,
+        "quantity" : 876,
+        "signed_quantity" : 876,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-27T12:22:00Z",
@@ -25367,8 +25358,8 @@
       }, {
         "id" : 1159,
         "movement_type" : "stock_in",
-        "quantity" : 347,
-        "signed_quantity" : 347,
+        "quantity" : 348,
+        "signed_quantity" : 348,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-27T12:22:00Z",
@@ -25388,8 +25379,8 @@
       }, {
         "id" : 1158,
         "movement_type" : "order_pick",
-        "quantity" : 877,
-        "signed_quantity" : -877,
+        "quantity" : 876,
+        "signed_quantity" : -876,
         "transfer_reference" : null,
         "note" : "Siparis #130 icin raftan alindi.",
         "moved_at" : "2026-03-27T08:13:00Z",
@@ -25409,8 +25400,8 @@
       }, {
         "id" : 1157,
         "movement_type" : "order_pick",
-        "quantity" : 347,
-        "signed_quantity" : -347,
+        "quantity" : 348,
+        "signed_quantity" : -348,
         "transfer_reference" : null,
         "note" : "Siparis #130 icin raftan alindi.",
         "moved_at" : "2026-03-27T08:13:00Z",
@@ -25430,8 +25421,8 @@
       }, {
         "id" : 1147,
         "movement_type" : "stock_in",
-        "quantity" : 79,
-        "signed_quantity" : 79,
+        "quantity" : 80,
+        "signed_quantity" : 80,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-25T20:15:00Z",
@@ -25451,8 +25442,8 @@
       }, {
         "id" : 1146,
         "movement_type" : "stock_in",
-        "quantity" : 653,
-        "signed_quantity" : 653,
+        "quantity" : 652,
+        "signed_quantity" : 652,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-25T17:08:00Z",
@@ -25493,8 +25484,8 @@
       }, {
         "id" : 1144,
         "movement_type" : "stock_in",
-        "quantity" : 347,
-        "signed_quantity" : 347,
+        "quantity" : 348,
+        "signed_quantity" : 348,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-25T17:08:00Z",
@@ -25514,8 +25505,8 @@
       }, {
         "id" : 1143,
         "movement_type" : "stock_in",
-        "quantity" : 1057,
-        "signed_quantity" : 1057,
+        "quantity" : 1056,
+        "signed_quantity" : 1056,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-25T13:56:00Z",
@@ -42134,21 +42125,21 @@
           "name" : "A1",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 303,
-          "available" : 197,
+          "current_quantity" : 301,
+          "available" : 199,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 1
           }, {
             "finished_product" : {
               "id" : 1,
               "name" : "Naturel Sızma Gemlik 0.3 250ml"
             },
-            "quantity" : 301
+            "quantity" : 300
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -42157,15 +42148,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 458,
-          "available" : 42,
+          "current_quantity" : 457,
+          "available" : 43,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 9,
               "name" : "Naturel Sızma Ayvalık 0.4 250ml"
             },
-            "quantity" : 458
+            "quantity" : 457
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -42256,16 +42247,16 @@
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 70
+            "quantity" : 71
           }, {
             "finished_product" : {
               "id" : 12,
               "name" : "Naturel Sızma Ayvalık 0.4 1L"
             },
-            "quantity" : 130
+            "quantity" : 129
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 8,
           "name" : "E1",
@@ -42303,8 +42294,8 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 70,
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "quantity" : 71,
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 14,
           "finished_product" : {
@@ -42312,7 +42303,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 958,
+          "quantity" : 957,
           "updated_at" : "2026-11-06T11:15:00Z"
         }, {
           "id" : 16,
@@ -42348,7 +42339,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 301,
+          "quantity" : 300,
           "updated_at" : "2026-11-03T08:29:00Z"
         }, {
           "id" : 22,
@@ -42357,7 +42348,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 130,
+          "quantity" : 129,
           "updated_at" : "2026-10-15T09:47:00Z"
         }, {
           "id" : 24,
@@ -42384,7 +42375,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 1,
           "updated_at" : "2026-09-02T08:32:00Z"
         }, {
           "id" : 35,
@@ -42434,15 +42425,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 300,
-          "current_quantity" : 291,
-          "available" : 9,
+          "current_quantity" : 292,
+          "available" : 8,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 15,
               "name" : "Klasik Blend 0.5 250ml"
             },
-            "quantity" : 5
+            "quantity" : 6
           }, {
             "finished_product" : {
               "id" : 9,
@@ -42562,7 +42553,7 @@
             "name" : "Klasik Blend 0.5 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 5,
+          "quantity" : 6,
           "updated_at" : "2026-04-19T08:38:00Z"
         }, {
           "id" : 28,
@@ -42615,15 +42606,15 @@
           "name" : "K2",
           "volume_litre" : 0.25,
           "max_quantity" : 1500,
-          "current_quantity" : 2,
-          "available" : 1498,
+          "current_quantity" : 4,
+          "available" : 1496,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 4
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -42762,10 +42753,16 @@
             "quantity" : 4
           }, {
             "finished_product" : {
+              "id" : 8,
+              "name" : "Naturel Sızma Gemlik 0.8 1L"
+            },
+            "quantity" : 1
+          }, {
+            "finished_product" : {
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 596
+            "quantity" : 595
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-05T14:18:00Z"
@@ -42832,7 +42829,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 862,
+          "quantity" : 861,
           "updated_at" : "2026-11-05T14:18:00Z"
         }, {
           "id" : 5,
@@ -42913,7 +42910,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 0,
+          "quantity" : 1,
           "updated_at" : "2026-10-12T09:49:00Z"
         }, {
           "id" : 36,
@@ -42931,7 +42928,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 4,
           "updated_at" : "2026-10-13T09:20:00Z"
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -43829,7 +43826,7 @@
     },
     "status" : 422,
     "response" : {
-      "detail" : "'Naturel Sızma Gemlik 0.3 250ml' için depoya yerleştirilecek yeterli şişe yok. Fabrikada: 401, depolarda: 391, sevkiyat bekleyen: 0, açıkta: 10, istenen: 50. Depolar arası taşıma için transfer kullanın.",
+      "detail" : "'Naturel Sızma Gemlik 0.3 250ml' için depoya yerleştirilecek yeterli şişe yok. Fabrikada: 400, depolarda: 390, sevkiyat bekleyen: 0, açıkta: 10, istenen: 50. Depolar arası taşıma için transfer kullanın.",
       "instance" : "/api/finished-product-storages/4/stock-in",
       "status" : 422,
       "title" : "Unprocessable Content"
@@ -44161,8 +44158,8 @@
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 401,
-        "stored_stock" : 391,
+        "total_stock" : 400,
+        "stored_stock" : 390,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 10,
         "is_active" : true,
@@ -44207,7 +44204,7 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 301
+          "quantity" : 300
         }, {
           "storage_id" : 4,
           "storage_name" : "Test Depo 1",
@@ -44501,7 +44498,7 @@
               },
               "quantity" : 25
             } ],
-            "created_at" : "2026-11-07T12:00:00Z",
+            "created_at" : "2026-11-07T12:00:01Z",
             "updated_at" : "2026-11-07T12:00:01Z"
           }, {
             "id" : 27,
@@ -44518,7 +44515,7 @@
               },
               "quantity" : 30
             } ],
-            "created_at" : "2026-11-07T12:00:00Z",
+            "created_at" : "2026-11-07T12:00:01Z",
             "updated_at" : "2026-11-07T12:00:01Z"
           }, {
             "id" : 28,
@@ -44538,7 +44535,7 @@
               },
               "quantity" : 30
             } ],
-            "created_at" : "2026-11-07T12:00:00Z",
+            "created_at" : "2026-11-07T12:00:01Z",
             "updated_at" : "2026-11-07T12:00:01Z"
           } ],
           "stock" : [ {
@@ -44599,15 +44596,15 @@
             "name" : "K2",
             "volume_litre" : 0.25,
             "max_quantity" : 1500,
-            "current_quantity" : 2,
-            "available" : 1498,
+            "current_quantity" : 4,
+            "available" : 1496,
             "finished_product" : null,
             "contents" : [ {
               "finished_product" : {
                 "id" : 6,
                 "name" : "Naturel Sızma Gemlik 0.8 250ml"
               },
-              "quantity" : 2
+              "quantity" : 4
             } ],
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2026-11-06T11:15:00Z"
@@ -44746,10 +44743,16 @@
               "quantity" : 4
             }, {
               "finished_product" : {
+                "id" : 8,
+                "name" : "Naturel Sızma Gemlik 0.8 1L"
+              },
+              "quantity" : 1
+            }, {
+              "finished_product" : {
                 "id" : 4,
                 "name" : "Naturel Sızma Gemlik 0.3 1L"
               },
-              "quantity" : 596
+              "quantity" : 595
             } ],
             "created_at" : "2025-11-06T07:00:00Z",
             "updated_at" : "2026-11-05T14:18:00Z"
@@ -44816,7 +44819,7 @@
               "name" : "Naturel Sızma Gemlik 0.3 1L",
               "volume_litre" : 1.0
             },
-            "quantity" : 862,
+            "quantity" : 861,
             "updated_at" : "2026-11-05T14:18:00Z"
           }, {
             "id" : 5,
@@ -44897,7 +44900,7 @@
               "name" : "Naturel Sızma Gemlik 0.8 1L",
               "volume_litre" : 1.0
             },
-            "quantity" : 0,
+            "quantity" : 1,
             "updated_at" : "2026-10-12T09:49:00Z"
           }, {
             "id" : 36,
@@ -44915,7 +44918,7 @@
               "name" : "Naturel Sızma Gemlik 0.8 250ml",
               "volume_litre" : 0.25
             },
-            "quantity" : 2,
+            "quantity" : 4,
             "updated_at" : "2026-10-13T09:20:00Z"
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
@@ -45452,7 +45455,7 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 2377,
+        "id" : 2375,
         "movement_type" : "stock_out",
         "quantity" : 30,
         "signed_quantity" : -30,
@@ -45473,7 +45476,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2376,
+        "id" : 2374,
         "movement_type" : "stock_out",
         "quantity" : 5,
         "signed_quantity" : -5,
@@ -45494,11 +45497,11 @@
           "name" : "Olivamore Admin"
         }
       }, {
-        "id" : 2375,
+        "id" : 2373,
         "movement_type" : "transfer_in",
         "quantity" : 20,
         "signed_quantity" : 20,
-        "transfer_reference" : "3fa4a52a-3ab9-422f-8921-14fe3003be1f",
+        "transfer_reference" : "6a936379-2243-42f8-9118-54bc2e09155c",
         "note" : null,
         "moved_at" : "2026-11-07T12:00:01Z",
         "finished_product" : {
@@ -45519,11 +45522,11 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2374,
+        "id" : 2372,
         "movement_type" : "transfer_out",
         "quantity" : 20,
         "signed_quantity" : -20,
-        "transfer_reference" : "3fa4a52a-3ab9-422f-8921-14fe3003be1f",
+        "transfer_reference" : "6a936379-2243-42f8-9118-54bc2e09155c",
         "note" : null,
         "moved_at" : "2026-11-07T12:00:01Z",
         "finished_product" : {
@@ -45544,11 +45547,11 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2372,
+        "id" : 2370,
         "movement_type" : "transfer_out",
         "quantity" : 10,
         "signed_quantity" : -10,
-        "transfer_reference" : "2a38d411-e057-4f3c-ae9e-dcbb5c4a7be6",
+        "transfer_reference" : "96cfa3df-031a-43fd-b99d-75dc556cc475",
         "note" : null,
         "moved_at" : "2026-11-07T12:00:01Z",
         "finished_product" : {
@@ -45569,7 +45572,7 @@
           "name" : "Olivamore Admin"
         }
       }, {
-        "id" : 2371,
+        "id" : 2369,
         "movement_type" : "stock_in",
         "quantity" : 30,
         "signed_quantity" : 30,
@@ -45590,7 +45593,7 @@
           "name" : "Olivamore Admin"
         }
       }, {
-        "id" : 2370,
+        "id" : 2368,
         "movement_type" : "stock_in",
         "quantity" : 25,
         "signed_quantity" : 25,
@@ -45611,7 +45614,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2369,
+        "id" : 2367,
         "movement_type" : "stock_in",
         "quantity" : 30,
         "signed_quantity" : 30,
@@ -45632,7 +45635,7 @@
           "name" : "Olivamore Admin"
         }
       }, {
-        "id" : 2368,
+        "id" : 2366,
         "movement_type" : "stock_in",
         "quantity" : 20,
         "signed_quantity" : 20,
@@ -45653,7 +45656,7 @@
           "name" : "Olivamore Admin"
         }
       }, {
-        "id" : 2367,
+        "id" : 2365,
         "movement_type" : "stock_in",
         "quantity" : 40,
         "signed_quantity" : 40,
@@ -45684,10 +45687,10 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 2366,
+        "id" : 2364,
         "movement_type" : "order_pick",
-        "quantity" : 42,
-        "signed_quantity" : -42,
+        "quantity" : 43,
+        "signed_quantity" : -43,
         "transfer_reference" : null,
         "note" : "Siparis #337 icin raftan alindi.",
         "moved_at" : "2026-11-06T11:15:00Z",
@@ -45705,10 +45708,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2365,
+        "id" : 2363,
         "movement_type" : "order_pick",
-        "quantity" : 170,
-        "signed_quantity" : -170,
+        "quantity" : 169,
+        "signed_quantity" : -169,
         "transfer_reference" : null,
         "note" : "Siparis #337 icin raftan alindi.",
         "moved_at" : "2026-11-06T11:15:00Z",
@@ -45726,7 +45729,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2358,
+        "id" : 2356,
         "movement_type" : "order_pick",
         "quantity" : 50,
         "signed_quantity" : -50,
@@ -45747,7 +45750,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2357,
+        "id" : 2355,
         "movement_type" : "order_pick",
         "quantity" : 210,
         "signed_quantity" : -210,
@@ -45768,7 +45771,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2353,
+        "id" : 2351,
         "movement_type" : "stock_in",
         "quantity" : 24,
         "signed_quantity" : 24,
@@ -45789,7 +45792,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2339,
+        "id" : 2337,
         "movement_type" : "order_pick",
         "quantity" : 282,
         "signed_quantity" : -282,
@@ -45810,7 +45813,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2338,
+        "id" : 2336,
         "movement_type" : "order_pick",
         "quantity" : 66,
         "signed_quantity" : -66,
@@ -45831,10 +45834,52 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2325,
+        "id" : 2333,
+        "movement_type" : "stock_in",
+        "quantity" : 1,
+        "signed_quantity" : 1,
+        "transfer_reference" : null,
+        "note" : null,
+        "moved_at" : "2026-11-03T16:23:00Z",
+        "finished_product" : {
+          "id" : 4,
+          "name" : "Naturel Sızma Gemlik 0.3 1L"
+        },
+        "slot" : {
+          "id" : 7,
+          "name" : "D1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2324,
         "movement_type" : "order_pick",
-        "quantity" : 27,
-        "signed_quantity" : -27,
+        "quantity" : 1,
+        "signed_quantity" : -1,
+        "transfer_reference" : null,
+        "note" : "Siparis #328 icin raftan alindi.",
+        "moved_at" : "2026-11-03T09:00:00Z",
+        "finished_product" : {
+          "id" : 4,
+          "name" : "Naturel Sızma Gemlik 0.3 1L"
+        },
+        "slot" : {
+          "id" : 7,
+          "name" : "D1"
+        },
+        "counterparty_slot" : null,
+        "created_by_user" : {
+          "id" : 6,
+          "name" : "Depo ve Sipariş"
+        }
+      }, {
+        "id" : 2321,
+        "movement_type" : "order_pick",
+        "quantity" : 30,
+        "signed_quantity" : -30,
         "transfer_reference" : null,
         "note" : "Siparis #327 icin raftan alindi.",
         "moved_at" : "2026-11-03T08:29:00Z",
@@ -45852,7 +45897,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2322,
+        "id" : 2318,
         "movement_type" : "stock_in",
         "quantity" : 42,
         "signed_quantity" : 42,
@@ -45873,7 +45918,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2318,
+        "id" : 2314,
         "movement_type" : "order_pick",
         "quantity" : 42,
         "signed_quantity" : -42,
@@ -45894,7 +45939,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2305,
+        "id" : 2301,
         "movement_type" : "order_pick",
         "quantity" : 24,
         "signed_quantity" : -24,
@@ -45915,10 +45960,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2303,
+        "id" : 2299,
         "movement_type" : "stock_in",
-        "quantity" : 216,
-        "signed_quantity" : 216,
+        "quantity" : 234,
+        "signed_quantity" : 234,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-30T12:02:00Z",
@@ -45936,10 +45981,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2301,
+        "id" : 2297,
         "movement_type" : "order_pick",
-        "quantity" : 216,
-        "signed_quantity" : -216,
+        "quantity" : 234,
+        "signed_quantity" : -234,
         "transfer_reference" : null,
         "note" : "Siparis #324 icin raftan alindi.",
         "moved_at" : "2026-10-30T08:51:00Z",
@@ -45957,7 +46002,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2296,
+        "id" : 2292,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -45978,7 +46023,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2295,
+        "id" : 2291,
         "movement_type" : "stock_in",
         "quantity" : 500,
         "signed_quantity" : 500,
@@ -45999,10 +46044,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2294,
+        "id" : 2290,
         "movement_type" : "stock_in",
-        "quantity" : 94,
-        "signed_quantity" : 94,
+        "quantity" : 93,
+        "signed_quantity" : 93,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-29T15:48:00Z",
@@ -46020,7 +46065,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2284,
+        "id" : 2280,
         "movement_type" : "stock_in",
         "quantity" : 50,
         "signed_quantity" : 50,
@@ -46041,7 +46086,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2281,
+        "id" : 2277,
         "movement_type" : "stock_in",
         "quantity" : 148,
         "signed_quantity" : 148,
@@ -46062,7 +46107,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2276,
+        "id" : 2272,
         "movement_type" : "order_pick",
         "quantity" : 50,
         "signed_quantity" : -50,
@@ -46083,7 +46128,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2274,
+        "id" : 2270,
         "movement_type" : "order_pick",
         "quantity" : 148,
         "signed_quantity" : -148,
@@ -46104,7 +46149,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2269,
+        "id" : 2265,
         "movement_type" : "stock_in",
         "quantity" : 24,
         "signed_quantity" : 24,
@@ -46125,7 +46170,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2261,
+        "id" : 2257,
         "movement_type" : "order_pick",
         "quantity" : 24,
         "signed_quantity" : -24,
@@ -46146,7 +46191,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2250,
+        "id" : 2246,
         "movement_type" : "stock_in",
         "quantity" : 62,
         "signed_quantity" : 62,
@@ -46167,49 +46212,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2246,
-        "movement_type" : "stock_in",
-        "quantity" : 18,
-        "signed_quantity" : 18,
-        "transfer_reference" : null,
-        "note" : null,
-        "moved_at" : "2026-10-23T13:58:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 4,
-          "name" : "B1"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2237,
-        "movement_type" : "order_pick",
-        "quantity" : 18,
-        "signed_quantity" : -18,
-        "transfer_reference" : null,
-        "note" : "Siparis #319 icin raftan alindi.",
-        "moved_at" : "2026-10-23T08:53:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 4,
-          "name" : "B1"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2233,
+        "id" : 2231,
         "movement_type" : "order_pick",
         "quantity" : 62,
         "signed_quantity" : -62,
@@ -46230,7 +46233,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2226,
+        "id" : 2224,
         "movement_type" : "stock_in",
         "quantity" : 282,
         "signed_quantity" : 282,
@@ -46251,10 +46254,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2225,
+        "id" : 2223,
         "movement_type" : "stock_in",
-        "quantity" : 282,
-        "signed_quantity" : 282,
+        "quantity" : 300,
+        "signed_quantity" : 300,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-22T12:05:00Z",
@@ -46272,10 +46275,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2219,
+        "id" : 2217,
         "movement_type" : "stock_in",
-        "quantity" : 328,
-        "signed_quantity" : 328,
+        "quantity" : 330,
+        "signed_quantity" : 330,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-20T15:04:00Z",
@@ -46293,7 +46296,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2213,
+        "id" : 2211,
         "movement_type" : "stock_in",
         "quantity" : 50,
         "signed_quantity" : 50,
@@ -46314,7 +46317,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2204,
+        "id" : 2202,
         "movement_type" : "order_pick",
         "quantity" : 50,
         "signed_quantity" : -50,
@@ -46335,7 +46338,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2195,
+        "id" : 2193,
         "movement_type" : "order_pick",
         "quantity" : 54,
         "signed_quantity" : -54,
@@ -46356,10 +46359,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2194,
+        "id" : 2192,
         "movement_type" : "order_pick",
-        "quantity" : 106,
-        "signed_quantity" : -106,
+        "quantity" : 108,
+        "signed_quantity" : -108,
         "transfer_reference" : null,
         "note" : "Siparis #315 icin raftan alindi.",
         "moved_at" : "2026-10-18T08:49:00Z",
@@ -46377,7 +46380,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2192,
+        "id" : 2190,
         "movement_type" : "order_pick",
         "quantity" : 12,
         "signed_quantity" : -12,
@@ -46398,7 +46401,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2189,
+        "id" : 2187,
         "movement_type" : "stock_in",
         "quantity" : 24,
         "signed_quantity" : 24,
@@ -46419,7 +46422,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2184,
+        "id" : 2182,
         "movement_type" : "order_pick",
         "quantity" : 24,
         "signed_quantity" : -24,
@@ -46440,31 +46443,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2183,
-        "movement_type" : "order_pick",
-        "quantity" : 5,
-        "signed_quantity" : -5,
-        "transfer_reference" : null,
-        "note" : "Siparis #314 icin raftan alindi.",
-        "moved_at" : "2026-10-17T09:51:00Z",
-        "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
-        },
-        "slot" : {
-          "id" : 4,
-          "name" : "B1"
-        },
-        "counterparty_slot" : null,
-        "created_by_user" : {
-          "id" : 6,
-          "name" : "Depo ve Sipariş"
-        }
-      }, {
-        "id" : 2176,
+        "id" : 2177,
         "movement_type" : "stock_in",
-        "quantity" : 66,
-        "signed_quantity" : 66,
+        "quantity" : 67,
+        "signed_quantity" : 67,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-16T16:20:00Z",
@@ -46482,7 +46464,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2168,
+        "id" : 2169,
         "movement_type" : "stock_in",
         "quantity" : 132,
         "signed_quantity" : 132,
@@ -46526,8 +46508,8 @@
       }, {
         "id" : 2162,
         "movement_type" : "order_pick",
-        "quantity" : 66,
-        "signed_quantity" : -66,
+        "quantity" : 67,
+        "signed_quantity" : -67,
         "transfer_reference" : null,
         "note" : "Siparis #311 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:47:00Z",
@@ -46545,7 +46527,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2159,
+        "id" : 2160,
         "movement_type" : "order_pick",
         "quantity" : 60,
         "signed_quantity" : -60,
@@ -46566,7 +46548,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2157,
+        "id" : 2158,
         "movement_type" : "order_pick",
         "quantity" : 228,
         "signed_quantity" : -228,
@@ -46587,10 +46569,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2156,
+        "id" : 2157,
         "movement_type" : "order_pick",
-        "quantity" : 277,
-        "signed_quantity" : -277,
+        "quantity" : 300,
+        "signed_quantity" : -300,
         "transfer_reference" : null,
         "note" : "Siparis #310 icin raftan alindi.",
         "moved_at" : "2026-10-15T09:27:00Z",
@@ -46608,7 +46590,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2148,
+        "id" : 2149,
         "movement_type" : "stock_in",
         "quantity" : 7,
         "signed_quantity" : 7,
@@ -46629,7 +46611,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2143,
+        "id" : 2144,
         "movement_type" : "stock_in",
         "quantity" : 60,
         "signed_quantity" : 60,
@@ -46650,10 +46632,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2142,
+        "id" : 2143,
         "movement_type" : "stock_in",
-        "quantity" : 168,
-        "signed_quantity" : 168,
+        "quantity" : 169,
+        "signed_quantity" : 169,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-13T12:05:00Z",
@@ -46671,10 +46653,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2138,
+        "id" : 2140,
         "movement_type" : "order_pick",
-        "quantity" : 168,
-        "signed_quantity" : -168,
+        "quantity" : 169,
+        "signed_quantity" : -169,
         "transfer_reference" : null,
         "note" : "Siparis #308 icin raftan alindi.",
         "moved_at" : "2026-10-13T09:20:00Z",
@@ -46692,7 +46674,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2136,
+        "id" : 2138,
         "movement_type" : "order_pick",
         "quantity" : 7,
         "signed_quantity" : -7,
@@ -46713,7 +46695,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2134,
+        "id" : 2136,
         "movement_type" : "order_pick",
         "quantity" : 60,
         "signed_quantity" : -60,
@@ -46734,7 +46716,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2129,
+        "id" : 2131,
         "movement_type" : "stock_in",
         "quantity" : 50,
         "signed_quantity" : 50,
@@ -46755,10 +46737,10 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2121,
+        "id" : 2123,
         "movement_type" : "stock_in",
-        "quantity" : 182,
-        "signed_quantity" : 182,
+        "quantity" : 184,
+        "signed_quantity" : 184,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-10-11T15:30:00Z",
@@ -46776,7 +46758,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2117,
+        "id" : 2119,
         "movement_type" : "stock_in",
         "quantity" : 90,
         "signed_quantity" : 90,
@@ -46797,7 +46779,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2116,
+        "id" : 2118,
         "movement_type" : "order_pick",
         "quantity" : 90,
         "signed_quantity" : -90,
@@ -46818,7 +46800,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2108,
+        "id" : 2110,
         "movement_type" : "stock_in",
         "quantity" : 84,
         "signed_quantity" : 84,
@@ -46839,7 +46821,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2106,
+        "id" : 2108,
         "movement_type" : "order_pick",
         "quantity" : 84,
         "signed_quantity" : -84,
@@ -46860,7 +46842,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2098,
+        "id" : 2100,
         "movement_type" : "stock_in",
         "quantity" : 282,
         "signed_quantity" : 282,
@@ -46881,7 +46863,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2097,
+        "id" : 2099,
         "movement_type" : "stock_in",
         "quantity" : 270,
         "signed_quantity" : 270,
@@ -46902,7 +46884,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2094,
+        "id" : 2096,
         "movement_type" : "stock_in",
         "quantity" : 184,
         "signed_quantity" : 184,
@@ -46923,16 +46905,16 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2088,
+        "id" : 2094,
         "movement_type" : "stock_in",
         "quantity" : 23,
         "signed_quantity" : 23,
         "transfer_reference" : null,
         "note" : null,
-        "moved_at" : "2026-10-07T13:57:00Z",
+        "moved_at" : "2026-10-08T12:43:00Z",
         "finished_product" : {
-          "id" : 2,
-          "name" : "Naturel Sızma Gemlik 0.3 500ml"
+          "id" : 10,
+          "name" : "Naturel Sızma Ayvalık 0.4 500ml"
         },
         "slot" : {
           "id" : 4,
@@ -46944,7 +46926,7 @@
           "name" : "Depo ve Sipariş"
         }
       }, {
-        "id" : 2078,
+        "id" : 2080,
         "movement_type" : "stock_in",
         "quantity" : 196,
         "signed_quantity" : 196,
@@ -47198,8 +47180,8 @@
       }, {
         "id" : 1769,
         "movement_type" : "order_pick",
-        "quantity" : 9,
-        "signed_quantity" : -9,
+        "quantity" : 10,
+        "signed_quantity" : -10,
         "transfer_reference" : null,
         "note" : "Siparis #227 icin raftan alindi.",
         "moved_at" : "2026-07-09T09:40:00Z",
@@ -47639,8 +47621,8 @@
       }, {
         "id" : 1501,
         "movement_type" : "order_pick",
-        "quantity" : 99,
-        "signed_quantity" : -99,
+        "quantity" : 100,
+        "signed_quantity" : -100,
         "transfer_reference" : null,
         "note" : "Siparis #172 icin raftan alindi.",
         "moved_at" : "2026-05-13T09:14:00Z",
@@ -47765,8 +47747,8 @@
       }, {
         "id" : 1459,
         "movement_type" : "order_pick",
-        "quantity" : 129,
-        "signed_quantity" : -129,
+        "quantity" : 128,
+        "signed_quantity" : -128,
         "transfer_reference" : null,
         "note" : "Siparis #167 icin raftan alindi.",
         "moved_at" : "2026-05-07T08:38:00Z",
@@ -47828,8 +47810,8 @@
       }, {
         "id" : 1450,
         "movement_type" : "order_pick",
-        "quantity" : 63,
-        "signed_quantity" : -63,
+        "quantity" : 64,
+        "signed_quantity" : -64,
         "transfer_reference" : null,
         "note" : "Siparis #165 icin raftan alindi.",
         "moved_at" : "2026-05-06T08:19:00Z",
@@ -47849,8 +47831,8 @@
       }, {
         "id" : 1449,
         "movement_type" : "order_pick",
-        "quantity" : 183,
-        "signed_quantity" : -183,
+        "quantity" : 182,
+        "signed_quantity" : -182,
         "transfer_reference" : null,
         "note" : "Siparis #165 icin raftan alindi.",
         "moved_at" : "2026-05-06T08:19:00Z",
@@ -47975,8 +47957,8 @@
       }, {
         "id" : 1417,
         "movement_type" : "stock_in",
-        "quantity" : 69,
-        "signed_quantity" : 69,
+        "quantity" : 70,
+        "signed_quantity" : 70,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-28T11:58:00Z",
@@ -48017,8 +47999,8 @@
       }, {
         "id" : 1411,
         "movement_type" : "order_pick",
-        "quantity" : 69,
-        "signed_quantity" : -69,
+        "quantity" : 70,
+        "signed_quantity" : -70,
         "transfer_reference" : null,
         "note" : "Siparis #157 icin raftan alindi.",
         "moved_at" : "2026-04-27T08:40:00Z",
@@ -49088,8 +49070,8 @@
       }, {
         "id" : 1268,
         "movement_type" : "stock_in",
-        "quantity" : 307,
-        "signed_quantity" : 307,
+        "quantity" : 306,
+        "signed_quantity" : 306,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-09T11:27:00Z",
@@ -49151,8 +49133,8 @@
       }, {
         "id" : 1257,
         "movement_type" : "order_pick",
-        "quantity" : 307,
-        "signed_quantity" : -307,
+        "quantity" : 306,
+        "signed_quantity" : -306,
         "transfer_reference" : null,
         "note" : "Siparis #139 icin raftan alindi.",
         "moved_at" : "2026-04-08T08:23:00Z",
@@ -49172,8 +49154,8 @@
       }, {
         "id" : 1246,
         "movement_type" : "stock_in",
-        "quantity" : 193,
-        "signed_quantity" : 193,
+        "quantity" : 194,
+        "signed_quantity" : 194,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-04-06T13:08:00Z",
@@ -49256,8 +49238,8 @@
       }, {
         "id" : 1235,
         "movement_type" : "order_pick",
-        "quantity" : 193,
-        "signed_quantity" : -193,
+        "quantity" : 194,
+        "signed_quantity" : -194,
         "transfer_reference" : null,
         "note" : "Siparis #137 icin raftan alindi.",
         "moved_at" : "2026-04-05T08:29:00Z",
@@ -49634,8 +49616,8 @@
       }, {
         "id" : 1194,
         "movement_type" : "stock_in",
-        "quantity" : 307,
-        "signed_quantity" : 307,
+        "quantity" : 306,
+        "signed_quantity" : 306,
         "transfer_reference" : null,
         "note" : null,
         "moved_at" : "2026-03-30T16:48:00Z",
@@ -49655,8 +49637,8 @@
       }, {
         "id" : 1189,
         "movement_type" : "order_pick",
-        "quantity" : 307,
-        "signed_quantity" : -307,
+        "quantity" : 306,
+        "signed_quantity" : -306,
         "transfer_reference" : null,
         "note" : "Siparis #133 icin raftan alindi.",
         "moved_at" : "2026-03-30T08:54:00Z",
@@ -54979,8 +54961,8 @@
         "id" : 1,
         "name" : "Naturel Sızma Gemlik 0.3 250ml",
         "volume_litre" : 0.25,
-        "total_stock" : 396,
-        "stored_stock" : 386,
+        "total_stock" : 395,
+        "stored_stock" : 385,
         "awaiting_shipment_stock" : null,
         "unstored_stock" : 10,
         "is_active" : true,
@@ -55025,7 +55007,7 @@
           "storage_name" : "Ana Depo",
           "slot_id" : 1,
           "slot_name" : "A1",
-          "quantity" : 301
+          "quantity" : 300
         }, {
           "storage_id" : 3,
           "storage_name" : "Sevkiyat Deposu",
@@ -55173,21 +55155,21 @@
           "name" : "A1",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 303,
-          "available" : 197,
+          "current_quantity" : 301,
+          "available" : 199,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 1
           }, {
             "finished_product" : {
               "id" : 1,
               "name" : "Naturel Sızma Gemlik 0.3 250ml"
             },
-            "quantity" : 301
+            "quantity" : 300
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -55196,15 +55178,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 500,
-          "current_quantity" : 458,
-          "available" : 42,
+          "current_quantity" : 457,
+          "available" : 43,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 9,
               "name" : "Naturel Sızma Ayvalık 0.4 250ml"
             },
-            "quantity" : 458
+            "quantity" : 457
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -55295,16 +55277,16 @@
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 70
+            "quantity" : 71
           }, {
             "finished_product" : {
               "id" : 12,
               "name" : "Naturel Sızma Ayvalık 0.4 1L"
             },
-            "quantity" : 130
+            "quantity" : 129
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 8,
           "name" : "E1",
@@ -55342,8 +55324,8 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 70,
-          "updated_at" : "2026-10-16T16:20:00Z"
+          "quantity" : 71,
+          "updated_at" : "2026-11-03T16:23:00Z"
         }, {
           "id" : 14,
           "finished_product" : {
@@ -55351,7 +55333,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 958,
+          "quantity" : 957,
           "updated_at" : "2026-11-06T11:15:00Z"
         }, {
           "id" : 16,
@@ -55387,7 +55369,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 301,
+          "quantity" : 300,
           "updated_at" : "2026-11-03T08:29:00Z"
         }, {
           "id" : 22,
@@ -55396,7 +55378,7 @@
             "name" : "Naturel Sızma Ayvalık 0.4 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 130,
+          "quantity" : 129,
           "updated_at" : "2026-10-15T09:47:00Z"
         }, {
           "id" : 24,
@@ -55423,7 +55405,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 1,
           "updated_at" : "2026-09-02T08:32:00Z"
         }, {
           "id" : 35,
@@ -55473,15 +55455,15 @@
           "name" : "A2",
           "volume_litre" : 0.25,
           "max_quantity" : 300,
-          "current_quantity" : 291,
-          "available" : 9,
+          "current_quantity" : 292,
+          "available" : 8,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 15,
               "name" : "Klasik Blend 0.5 250ml"
             },
-            "quantity" : 5
+            "quantity" : 6
           }, {
             "finished_product" : {
               "id" : 9,
@@ -55601,7 +55583,7 @@
             "name" : "Klasik Blend 0.5 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 5,
+          "quantity" : 6,
           "updated_at" : "2026-04-19T08:38:00Z"
         }, {
           "id" : 28,
@@ -55660,15 +55642,15 @@
           "name" : "K2",
           "volume_litre" : 0.25,
           "max_quantity" : 1500,
-          "current_quantity" : 2,
-          "available" : 1498,
+          "current_quantity" : 4,
+          "available" : 1496,
           "finished_product" : null,
           "contents" : [ {
             "finished_product" : {
               "id" : 6,
               "name" : "Naturel Sızma Gemlik 0.8 250ml"
             },
-            "quantity" : 2
+            "quantity" : 4
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-06T11:15:00Z"
@@ -55807,10 +55789,16 @@
             "quantity" : 4
           }, {
             "finished_product" : {
+              "id" : 8,
+              "name" : "Naturel Sızma Gemlik 0.8 1L"
+            },
+            "quantity" : 1
+          }, {
+            "finished_product" : {
               "id" : 4,
               "name" : "Naturel Sızma Gemlik 0.3 1L"
             },
-            "quantity" : 596
+            "quantity" : 595
           } ],
           "created_at" : "2025-11-06T07:00:00Z",
           "updated_at" : "2026-11-05T14:18:00Z"
@@ -55877,7 +55865,7 @@
             "name" : "Naturel Sızma Gemlik 0.3 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 862,
+          "quantity" : 861,
           "updated_at" : "2026-11-05T14:18:00Z"
         }, {
           "id" : 5,
@@ -55958,7 +55946,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 1L",
             "volume_litre" : 1.0
           },
-          "quantity" : 0,
+          "quantity" : 1,
           "updated_at" : "2026-10-12T09:49:00Z"
         }, {
           "id" : 36,
@@ -55976,7 +55964,7 @@
             "name" : "Naturel Sızma Gemlik 0.8 250ml",
             "volume_litre" : 0.25
           },
-          "quantity" : 2,
+          "quantity" : 4,
           "updated_at" : "2026-10-13T09:20:00Z"
         } ],
         "created_at" : "2025-11-06T07:00:00Z",
@@ -56007,7 +55995,7 @@
             },
             "quantity" : 5
           } ],
-          "created_at" : "2026-11-07T12:00:00Z",
+          "created_at" : "2026-11-07T12:00:01Z",
           "updated_at" : "2026-11-07T12:00:01Z"
         }, {
           "id" : 27,
@@ -56030,7 +56018,7 @@
             },
             "quantity" : 20
           } ],
-          "created_at" : "2026-11-07T12:00:00Z",
+          "created_at" : "2026-11-07T12:00:01Z",
           "updated_at" : "2026-11-07T12:00:01Z"
         }, {
           "id" : 28,
@@ -56044,7 +56032,7 @@
             "name" : "Portakallı Zeytinyağı 500ml"
           },
           "contents" : [ ],
-          "created_at" : "2026-11-07T12:00:00Z",
+          "created_at" : "2026-11-07T12:00:01Z",
           "updated_at" : "2026-11-07T12:00:01Z"
         } ],
         "stock" : [ {
@@ -56091,8 +56079,8 @@
           "available" : 10,
           "finished_product" : null,
           "contents" : [ ],
-          "created_at" : "2026-11-07T12:00:00Z",
-          "updated_at" : "2026-11-07T12:00:00Z"
+          "created_at" : "2026-11-07T12:00:01Z",
+          "updated_at" : "2026-11-07T12:00:01Z"
         } ],
         "stock" : [ ],
         "created_at" : "2026-11-07T12:00:00Z",

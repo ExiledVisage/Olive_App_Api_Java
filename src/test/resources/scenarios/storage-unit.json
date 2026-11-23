@@ -801,6 +801,7 @@
         "code" : "TEST-TANK-1",
         "capacity" : 1500.0,
         "capacity_unit" : "LITRE",
+        "kind" : "final",
         "is_blend_tank" : true,
         "allow_multiple_production_product_types" : false,
         "allow_multiple_production_products" : false,
@@ -810,6 +811,10 @@
         "remaining_capacity" : 1500,
         "filled_percentage" : 0,
         "empty_percentage" : 100,
+        "capacity_kg" : 1374,
+        "capacity_litre" : 1500,
+        "filled_kg" : 0,
+        "filled_litre" : 0,
         "allowed_production_products" : [ {
           "id" : 17,
           "storage_unit_id" : 16,
@@ -820,8 +825,8 @@
             "name" : "Zeytinyağı",
             "description" : "İşlenmiş zeytinyağı ürünü"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 19,
           "storage_unit_id" : 16,
@@ -832,8 +837,8 @@
             "name" : "Meyve Katkısı",
             "description" : "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "allowed_production_product_types" : [ {
           "id" : 15,
@@ -845,11 +850,11 @@
             "name" : "Gemlik Zeytinyağı",
             "code" : "OLIVE_OIL_GEMLIK",
             "type" : "gemlik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "production_product" : null
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 16,
           "storage_unit_id" : 16,
@@ -860,22 +865,17 @@
             "name" : "Ayvalık Zeytinyağı",
             "code" : "OLIVE_OIL_AYVALIK",
             "type" : "ayvalik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "production_product" : null
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "attribute_rules" : [ ],
         "balances" : [ ],
         "current_materials" : [ ],
-        "created_at" : "2026-11-06T20:14:02Z",
-        "updated_at" : "2026-11-06T20:14:02Z",
-        "filled_litre" : 0,
-        "capacity_kg" : 1374,
-        "filled_kg" : 0,
-        "capacity_litre" : 1500,
-        "kind" : "final"
+        "created_at" : "2026-11-23T14:42:28Z",
+        "updated_at" : "2026-11-23T14:42:28Z"
       }
     },
     "save" : null
@@ -894,6 +894,7 @@
         "code" : "TEST-TANK-1",
         "capacity" : 1500.0,
         "capacity_unit" : "LITRE",
+        "kind" : "final",
         "is_blend_tank" : true,
         "allow_multiple_production_product_types" : false,
         "allow_multiple_production_products" : false,
@@ -903,6 +904,10 @@
         "remaining_capacity" : 1500,
         "filled_percentage" : 0,
         "empty_percentage" : 100,
+        "capacity_kg" : 1374,
+        "capacity_litre" : 1500,
+        "filled_kg" : 0,
+        "filled_litre" : 0,
         "allowed_production_products" : [ {
           "id" : 17,
           "storage_unit_id" : 16,
@@ -913,8 +918,8 @@
             "name" : "Zeytinyağı",
             "description" : "İşlenmiş zeytinyağı ürünü"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 19,
           "storage_unit_id" : 16,
@@ -925,8 +930,8 @@
             "name" : "Meyve Katkısı",
             "description" : "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "allowed_production_product_types" : [ {
           "id" : 16,
@@ -938,22 +943,17 @@
             "name" : "Ayvalık Zeytinyağı",
             "code" : "OLIVE_OIL_AYVALIK",
             "type" : "ayvalik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "production_product" : null
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "attribute_rules" : [ ],
         "balances" : [ ],
         "current_materials" : [ ],
-        "created_at" : "2026-11-06T20:14:02Z",
-        "updated_at" : "2026-11-06T20:14:02Z",
-        "filled_litre" : 0,
-        "capacity_kg" : 1374,
-        "filled_kg" : 0,
-        "capacity_litre" : 1500,
-        "kind" : "final"
+        "created_at" : "2026-11-23T14:42:28Z",
+        "updated_at" : "2026-11-23T14:42:28Z"
       }
     },
     "save" : null
@@ -1141,6 +1141,7 @@
         "code" : "TEST-TANK-1",
         "capacity" : 1500.0,
         "capacity_unit" : "LITRE",
+        "kind" : "final",
         "is_blend_tank" : true,
         "allow_multiple_production_product_types" : false,
         "allow_multiple_production_products" : false,
@@ -1150,6 +1151,10 @@
         "remaining_capacity" : 1500,
         "filled_percentage" : 0,
         "empty_percentage" : 100,
+        "capacity_kg" : 1374,
+        "capacity_litre" : 1500,
+        "filled_kg" : 0,
+        "filled_litre" : 0,
         "allowed_production_products" : [ {
           "id" : 17,
           "storage_unit_id" : 16,
@@ -1160,8 +1165,8 @@
             "name" : "Zeytinyağı",
             "description" : "İşlenmiş zeytinyağı ürünü"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 19,
           "storage_unit_id" : 16,
@@ -1172,8 +1177,8 @@
             "name" : "Meyve Katkısı",
             "description" : "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "allowed_production_product_types" : [ {
           "id" : 16,
@@ -1185,11 +1190,11 @@
             "name" : "Ayvalık Zeytinyağı",
             "code" : "OLIVE_OIL_AYVALIK",
             "type" : "ayvalik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "production_product" : null
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "attribute_rules" : [ {
           "id" : 9,
@@ -1211,8 +1216,8 @@
             "sort_order" : 1,
             "description" : "Asitlik oranı"
           },
-          "created_at" : "2026-11-06T20:14:03Z",
-          "updated_at" : "2026-11-06T20:14:03Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 10,
           "storage_unit_id" : 16,
@@ -1233,18 +1238,13 @@
             "sort_order" : 2,
             "description" : "Nem oranı"
           },
-          "created_at" : "2026-11-06T20:14:03Z",
-          "updated_at" : "2026-11-06T20:14:03Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "balances" : [ ],
         "current_materials" : [ ],
-        "created_at" : "2026-11-06T20:14:02Z",
-        "updated_at" : "2026-11-06T20:14:02Z",
-        "filled_litre" : 0,
-        "capacity_kg" : 1374,
-        "filled_kg" : 0,
-        "capacity_litre" : 1500,
-        "kind" : "final"
+        "created_at" : "2026-11-23T14:42:28Z",
+        "updated_at" : "2026-11-23T14:42:28Z"
       }
     },
     "save" : null
@@ -1271,6 +1271,7 @@
         "code" : "TEST-TANK-1",
         "capacity" : 1500.0,
         "capacity_unit" : "LITRE",
+        "kind" : "final",
         "is_blend_tank" : true,
         "allow_multiple_production_product_types" : false,
         "allow_multiple_production_products" : false,
@@ -1280,6 +1281,10 @@
         "remaining_capacity" : 1500,
         "filled_percentage" : 0,
         "empty_percentage" : 100,
+        "capacity_kg" : 1374,
+        "capacity_litre" : 1500,
+        "filled_kg" : 0,
+        "filled_litre" : 0,
         "allowed_production_products" : [ {
           "id" : 17,
           "storage_unit_id" : 16,
@@ -1290,8 +1295,8 @@
             "name" : "Zeytinyağı",
             "description" : "İşlenmiş zeytinyağı ürünü"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 19,
           "storage_unit_id" : 16,
@@ -1302,8 +1307,8 @@
             "name" : "Meyve Katkısı",
             "description" : "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "allowed_production_product_types" : [ {
           "id" : 16,
@@ -1315,11 +1320,11 @@
             "name" : "Ayvalık Zeytinyağı",
             "code" : "OLIVE_OIL_AYVALIK",
             "type" : "ayvalik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "production_product" : null
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "attribute_rules" : [ {
           "id" : 10,
@@ -1341,8 +1346,8 @@
             "sort_order" : 2,
             "description" : "Nem oranı"
           },
-          "created_at" : "2026-11-06T20:14:03Z",
-          "updated_at" : "2026-11-06T20:14:03Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 11,
           "storage_unit_id" : 16,
@@ -1363,18 +1368,13 @@
             "sort_order" : 3,
             "description" : "Yağ oranı"
           },
-          "created_at" : "2026-11-06T20:14:03Z",
-          "updated_at" : "2026-11-06T20:14:03Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "balances" : [ ],
         "current_materials" : [ ],
-        "created_at" : "2026-11-06T20:14:02Z",
-        "updated_at" : "2026-11-06T20:14:02Z",
-        "filled_litre" : 0,
-        "capacity_kg" : 1374,
-        "filled_kg" : 0,
-        "capacity_litre" : 1500,
-        "kind" : "final"
+        "created_at" : "2026-11-23T14:42:28Z",
+        "updated_at" : "2026-11-23T14:42:28Z"
       }
     },
     "save" : null
@@ -1411,6 +1411,7 @@
         "code" : "TEST-TANK-1",
         "capacity" : 1500.0,
         "capacity_unit" : "LITRE",
+        "kind" : "final",
         "is_blend_tank" : true,
         "allow_multiple_production_product_types" : false,
         "allow_multiple_production_products" : false,
@@ -1420,6 +1421,10 @@
         "remaining_capacity" : 1500,
         "filled_percentage" : 0,
         "empty_percentage" : 100,
+        "capacity_kg" : 1374,
+        "capacity_litre" : 1500,
+        "filled_kg" : 0,
+        "filled_litre" : 0,
         "allowed_production_products" : [ {
           "id" : 17,
           "storage_unit_id" : 16,
@@ -1430,8 +1435,8 @@
             "name" : "Zeytinyağı",
             "description" : "İşlenmiş zeytinyağı ürünü"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 19,
           "storage_unit_id" : 16,
@@ -1442,8 +1447,8 @@
             "name" : "Meyve Katkısı",
             "description" : "Zeytinyağına aroma/katkı amaçlı eklenen meyve bazlı ürünler"
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "allowed_production_product_types" : [ {
           "id" : 16,
@@ -1455,11 +1460,11 @@
             "name" : "Ayvalık Zeytinyağı",
             "code" : "OLIVE_OIL_AYVALIK",
             "type" : "ayvalik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "production_product" : null
           },
-          "created_at" : "2026-11-06T20:14:02Z",
-          "updated_at" : "2026-11-06T20:14:02Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "attribute_rules" : [ {
           "id" : 10,
@@ -1481,8 +1486,8 @@
             "sort_order" : 2,
             "description" : "Nem oranı"
           },
-          "created_at" : "2026-11-06T20:14:03Z",
-          "updated_at" : "2026-11-06T20:14:03Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         }, {
           "id" : 11,
           "storage_unit_id" : 16,
@@ -1503,18 +1508,13 @@
             "sort_order" : 3,
             "description" : "Yağ oranı"
           },
-          "created_at" : "2026-11-06T20:14:03Z",
-          "updated_at" : "2026-11-06T20:14:03Z"
+          "created_at" : "2026-11-23T14:42:28Z",
+          "updated_at" : "2026-11-23T14:42:28Z"
         } ],
         "balances" : [ ],
         "current_materials" : [ ],
-        "created_at" : "2026-11-06T20:14:02Z",
-        "updated_at" : "2026-11-06T20:14:02Z",
-        "filled_litre" : 0,
-        "capacity_kg" : 1374,
-        "filled_kg" : 0,
-        "capacity_litre" : 1500,
-        "kind" : "final"
+        "created_at" : "2026-11-23T14:42:28Z",
+        "updated_at" : "2026-11-23T14:42:28Z"
       }
     },
     "save" : null
@@ -1526,11 +1526,11 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 33,
+        "id" : 29,
         "storage_unit_id" : 15,
         "production_product_id" : 2,
-        "current_quantity" : 5950.0,
-        "unit" : "LITRE",
+        "current_quantity" : 5450.2,
+        "unit" : "KG",
         "production_product" : {
           "id" : 2,
           "key" : "olive_oil",
@@ -1578,26 +1578,26 @@
       "content" : [ {
         "id" : 141,
         "storage_unit_id" : 15,
-        "material_id" : 154,
-        "source_material_id" : 150,
+        "material_id" : 150,
+        "source_material_id" : 55,
         "batch_process_id" : null,
         "finished_product_run_id" : null,
         "counterparty_storage_unit_id" : 8,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_IN",
         "transfer_reference" : "TRF-20251121070600-00000E",
-        "quantity" : 451.65,
-        "unit" : "LITRE",
+        "quantity" : 413.71,
+        "unit" : "KG",
         "note" : "Tank aktarımı",
         "moved_at" : "2025-11-21T07:06:00Z",
         "material" : {
-          "id" : 154,
+          "id" : 150,
           "production_batch_id" : null,
           "production_product_type_id" : 3,
           "parent_material_id" : null,
           "origin_type" : "TANK",
-          "quantity" : 5950.0,
-          "unit" : "LITRE",
+          "quantity" : 5450.2,
+          "unit" : "KG",
           "status" : "active",
           "current_location_type" : "storage_unit",
           "current_location_id" : 15,
@@ -1611,7 +1611,7 @@
             "name" : "Gemlik Zeytinyağı",
             "code" : "OLIVE_OIL_GEMLIK",
             "type" : "gemlik",
-            "unit" : "LITRE",
+            "unit" : "KG",
             "density_kg_per_litre" : 0.916,
             "production_product" : {
               "id" : 2,
@@ -1621,8 +1621,8 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 52,
-            "material_id" : 154,
+            "id" : 48,
+            "material_id" : 150,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
             "value_integer" : null,
@@ -1728,7 +1728,7 @@
     "body" : null,
     "status" : 422,
     "response" : {
-      "detail" : "'TOPLAMA-AYV-01' tankının 103 hareket kaydı var; silinemez. Tankı kullanımdan kaldırmak için is_active alanını false yapın.",
+      "detail" : "'TOPLAMA-AYV-01' tankında 1 aktif materyal var; silinemez. Önce tankı boşaltın.",
       "instance" : "/api/storage-units/11",
       "status" : 422,
       "title" : "Unprocessable Content"

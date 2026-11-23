@@ -44,7 +44,10 @@ final class DemoFactory {
 
 	/** Son gun bu saatten sonra islem yapilmaz: demo verinin en yeni ani. */
 	private static final LocalTime CUTOFF = LocalTime.of(15, 30);
-	private static final BigDecimal OLIVE_OIL_DENSITY = new BigDecimal("0.916");
+	/** Materyalin yogunlugu (kg/L): tipin kendisi, yoksa urunun varsayilani. {@code m}, {@code t}, {@code p} takma adlari. */
+	private static final String DENSITY = "coalesce(nullif(t.density_kg_per_litre, 0), p.default_density_kg_per_litre)";
+	private static final String MATERIAL_TYPE = "join production_product_types t on t.id = m.production_product_type_id "
+		+ "join production_products p on p.id = t.production_product_id";
 	/** On dinlendirme tankina giren en buyuk parti yagi (L): yer yoksa zeytin kabul edilmez. */
 	private static final BigDecimal BATCH_ROOM = new BigDecimal("2000");
 	private static final BigDecimal TANK_MARGIN = new BigDecimal("50");
@@ -242,8 +245,7 @@ final class DemoFactory {
 		}
 		complete(operator, batch, stages.get(3), null);
 
-		BigDecimal oilKg = sorted.multiply(decimal(0.15, 0.205));
-		BigDecimal oil = scale(oilKg.divide(OLIVE_OIL_DENSITY, 6, RoundingMode.HALF_UP), 2);
+		BigDecimal oil = scale(sorted.multiply(decimal(0.15, 0.205)), 2);
 		BigDecimal pomace = scale(sorted.multiply(decimal(0.68, 0.76)), 1);
 		if (!later(40, 70)) {
 			return false;
@@ -297,8 +299,7 @@ final class DemoFactory {
 		if (!later(10, 20)) {
 			return;
 		}
-		BigDecimal yield = batch.oil.multiply(OLIVE_OIL_DENSITY).multiply(BigDecimal.valueOf(100))
-			.divide(batch.kg, 2, RoundingMode.HALF_UP);
+		BigDecimal yield = batch.oil.multiply(BigDecimal.valueOf(100)).divide(batch.kg, 2, RoundingMode.HALF_UP);
 		fields(operator, batch, batch.stages.get(10), Map.of(ids.field("randiman"), yield.toPlainString()));
 		complete(operator, batch, batch.stages.get(10), null);
 		if (later(15, 60)) {
@@ -455,11 +456,19 @@ final class DemoFactory {
 		}
 	}
 
-	private void open(String tank, String type, String quantity, String acidity) {
+	/** Acilis stogu litre verilir; tip kilo tutuluyorsa yogunlukla kiloya cevrilir. */
+	private void open(String tank, String type, String litres, String acidity) {
 		later(5, 10);
 		long typeId = ids.type(type);
+		Map<String, Object> unit = jdbc.queryForMap("select t.unit, " + DENSITY + " as density "
+			+ "from production_product_types t join production_products p on p.id = t.production_product_id "
+			+ "where t.id = ?", typeId);
+		BigDecimal quantity = new BigDecimal(litres);
+		if ("KG".equals(unit.get("unit"))) {
+			quantity = scale(quantity.multiply((BigDecimal) unit.get("density")), 2);
+		}
 		api.post(ADMIN, "/api/storage-movements/opening", body("storage_unit_id", ids.tank(tank),
-			"production_product_type_id", typeId, "quantity", new BigDecimal(quantity), "unit", "LITRE",
+			"production_product_type_id", typeId, "quantity", quantity, "unit", unit.get("unit"),
 			"attribute_values", List.of(body("production_product_attribute_definition_id", ids.acidityDefinition(typeId),
 				"value_decimal", new BigDecimal(acidity))),
 			"note", "Açılış stoğu"));
@@ -531,12 +540,14 @@ final class DemoFactory {
 		BigDecimal acidityTotal = BigDecimal.ZERO;
 		BigDecimal total = BigDecimal.ZERO;
 		for (Map<String, Object> row : jdbc.queryForList("""
-			select m.production_product_type_id as type_id, m.quantity, v.value_decimal from materials m
+			select m.production_product_type_id as type_id, v.value_decimal,
+				case when m.unit = 'LITRE' then m.quantity * %s else m.quantity end as quantity
+			from materials m %s
 			left join material_attribute_values v on v.material_id = m.id and v.production_product_attribute_definition_id
 				in (select d.id from production_product_attribute_definitions d
 					join attribute_definitions a on a.id = d.attribute_definition_id and a.attribute_key = 'acidity')
 			where m.status = 'active' and m.current_location_type = 'storage_unit' and m.current_location_id = ?
-			""", source.tankId())) {
+			""".formatted(DENSITY, MATERIAL_TYPE), source.tankId())) {
 			BigDecimal quantity = (BigDecimal) row.get("quantity");
 			mix.merge(((Number) row.get("type_id")).longValue(), quantity, BigDecimal::add);
 			total = total.add(quantity);
@@ -798,10 +809,15 @@ final class DemoFactory {
 
 	// ---- yardimcilar -------------------------------------------------------------------------
 
-	/** Tanktaki aktif materyallerin toplami (demo tanklarinda hepsi litre). */
+	/**
+	 * Tanktaki aktif materyallerin toplami, litre (demo tanklarinin kapasite birimi): kilo tutulan yogunlukla. Asagi
+	 * yuvarlanir ki cekilen miktar tanktakini asmasin.
+	 */
 	private BigDecimal stock(long tank) {
-		return jdbc.queryForObject("select coalesce(sum(quantity), 0) from materials where status = 'active' "
-			+ "and current_location_type = 'storage_unit' and current_location_id = ?", BigDecimal.class, tank);
+		return jdbc.queryForObject("select coalesce(sum(case when m.unit = 'KG' then m.quantity / " + DENSITY
+			+ " else m.quantity end), 0) from materials m " + MATERIAL_TYPE + " where m.status = 'active' "
+			+ "and m.current_location_type = 'storage_unit' and m.current_location_id = ?", BigDecimal.class, tank)
+			.setScale(2, RoundingMode.DOWN);
 	}
 
 	private BigDecimal room(long tank) {

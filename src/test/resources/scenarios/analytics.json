@@ -62,11 +62,11 @@
           "batch_count" : 289,
           "incoming_kg" : 1592400.0,
           "pressed_kg" : 1577035.1,
-          "oil_kg" : 305777.6,
+          "oil_kg" : 280092.3,
           "pomace_kg" : 1123752.7,
-          "residue_kg" : 4864.0,
-          "yield_pct" : 19.39,
-          "gross_yield_pct" : 19.2,
+          "residue_kg" : 4864.6,
+          "yield_pct" : 17.76,
+          "gross_yield_pct" : 17.59,
           "avg_acidity" : 0.47
         },
         "series" : [ {
@@ -219,11 +219,11 @@
           "batch_count" : 41,
           "incoming_kg" : 219255.0,
           "pressed_kg" : 217015.5,
-          "oil_kg" : 41989.1,
+          "oil_kg" : 38462.0,
           "pomace_kg" : 155297.9,
-          "residue_kg" : 520.2,
-          "yield_pct" : 19.35,
-          "gross_yield_pct" : 19.15,
+          "residue_kg" : 520.3,
+          "yield_pct" : 17.72,
+          "gross_yield_pct" : 17.54,
           "avg_acidity" : 0.31
         }, {
           "key" : "2025-12",
@@ -231,11 +231,11 @@
           "batch_count" : 46,
           "incoming_kg" : 243955.0,
           "pressed_kg" : 241526.5,
-          "oil_kg" : 47103.0,
+          "oil_kg" : 43146.5,
           "pomace_kg" : 171432.2,
           "residue_kg" : 864.3,
-          "yield_pct" : 19.5,
-          "gross_yield_pct" : 19.31,
+          "yield_pct" : 17.86,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-01",
@@ -243,11 +243,11 @@
           "batch_count" : 30,
           "incoming_kg" : 173775.0,
           "pressed_kg" : 172136.3,
-          "oil_kg" : 33076.3,
+          "oil_kg" : 30297.8,
           "pomace_kg" : 121815.1,
           "residue_kg" : 578.8,
-          "yield_pct" : 19.22,
-          "gross_yield_pct" : 19.03,
+          "yield_pct" : 17.6,
+          "gross_yield_pct" : 17.44,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-02",
@@ -255,11 +255,11 @@
           "batch_count" : 30,
           "incoming_kg" : 159305.0,
           "pressed_kg" : 157627.6,
-          "oil_kg" : 30761.8,
+          "oil_kg" : 28177.8,
           "pomace_kg" : 112661.8,
-          "residue_kg" : 512.1,
-          "yield_pct" : 19.52,
-          "gross_yield_pct" : 19.31,
+          "residue_kg" : 512.2,
+          "yield_pct" : 17.88,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-03",
@@ -267,11 +267,11 @@
           "batch_count" : 7,
           "incoming_kg" : 37410.0,
           "pressed_kg" : 37125.7,
-          "oil_kg" : 7446.6,
+          "oil_kg" : 6821.1,
           "pomace_kg" : 26606.6,
-          "residue_kg" : 125.8,
-          "yield_pct" : 20.06,
-          "gross_yield_pct" : 19.91,
+          "residue_kg" : 125.9,
+          "yield_pct" : 18.37,
+          "gross_yield_pct" : 18.23,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-04",
@@ -279,11 +279,11 @@
           "batch_count" : 7,
           "incoming_kg" : 35315.0,
           "pressed_kg" : 34946.5,
-          "oil_kg" : 6854.7,
+          "oil_kg" : 6278.9,
           "pomace_kg" : 24967.1,
           "residue_kg" : 113.3,
-          "yield_pct" : 19.61,
-          "gross_yield_pct" : 19.41,
+          "yield_pct" : 17.97,
+          "gross_yield_pct" : 17.78,
           "avg_acidity" : 0.77
         }, {
           "key" : "2026-05",
@@ -291,11 +291,11 @@
           "batch_count" : 18,
           "incoming_kg" : 103390.0,
           "pressed_kg" : 102239.6,
-          "oil_kg" : 19037.8,
+          "oil_kg" : 17438.7,
           "pomace_kg" : 73079.9,
-          "residue_kg" : 306.9,
-          "yield_pct" : 18.62,
-          "gross_yield_pct" : 18.41,
+          "residue_kg" : 307.0,
+          "yield_pct" : 17.06,
+          "gross_yield_pct" : 16.87,
           "avg_acidity" : 0.79
         }, {
           "key" : "2026-06",
@@ -303,11 +303,11 @@
           "batch_count" : 13,
           "incoming_kg" : 82010.0,
           "pressed_kg" : 81205.7,
-          "oil_kg" : 15757.2,
+          "oil_kg" : 14433.5,
           "pomace_kg" : 57995.0,
           "residue_kg" : 226.2,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-07",
@@ -315,11 +315,11 @@
           "batch_count" : 13,
           "incoming_kg" : 83505.0,
           "pressed_kg" : 82763.0,
-          "oil_kg" : 16353.1,
+          "oil_kg" : 14979.5,
           "pomace_kg" : 58728.8,
           "residue_kg" : 256.5,
-          "yield_pct" : 19.76,
-          "gross_yield_pct" : 19.58,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.94,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08",
@@ -327,11 +327,11 @@
           "batch_count" : 13,
           "incoming_kg" : 67550.0,
           "pressed_kg" : 66918.9,
-          "oil_kg" : 12837.3,
+          "oil_kg" : 11758.9,
           "pomace_kg" : 48694.7,
-          "residue_kg" : 215.5,
-          "yield_pct" : 19.18,
-          "gross_yield_pct" : 19.0,
+          "residue_kg" : 215.6,
+          "yield_pct" : 17.57,
+          "gross_yield_pct" : 17.41,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-09",
@@ -339,11 +339,11 @@
           "batch_count" : 11,
           "incoming_kg" : 53160.0,
           "pressed_kg" : 52698.8,
-          "oil_kg" : 10481.1,
+          "oil_kg" : 9600.8,
           "pomace_kg" : 37690.3,
           "residue_kg" : 157.4,
-          "yield_pct" : 19.89,
-          "gross_yield_pct" : 19.72,
+          "yield_pct" : 18.22,
+          "gross_yield_pct" : 18.06,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-10",
@@ -351,11 +351,11 @@
           "batch_count" : 53,
           "incoming_kg" : 295360.0,
           "pressed_kg" : 292753.0,
-          "oil_kg" : 56483.0,
+          "oil_kg" : 51738.4,
           "pomace_kg" : 208052.3,
-          "residue_kg" : 911.7,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 911.8,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.52,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-11",
@@ -363,11 +363,11 @@
           "batch_count" : 7,
           "incoming_kg" : 38410.0,
           "pressed_kg" : 38078.0,
-          "oil_kg" : 7596.5,
+          "oil_kg" : 6958.4,
           "pomace_kg" : 26731.0,
           "residue_kg" : 75.3,
-          "yield_pct" : 19.95,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.27,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.38
         } ],
         "by_variety" : [ {
@@ -376,11 +376,11 @@
           "batch_count" : 206,
           "incoming_kg" : 1141565.0,
           "pressed_kg" : 1130533.2,
-          "oil_kg" : 219161.3,
+          "oil_kg" : 200751.7,
           "pomace_kg" : 806533.5,
-          "residue_kg" : 3348.5,
-          "yield_pct" : 19.39,
-          "gross_yield_pct" : 19.2,
+          "residue_kg" : 3348.9,
+          "yield_pct" : 17.76,
+          "gross_yield_pct" : 17.59,
           "avg_acidity" : 0.49
         }, {
           "product_type_id" : 2,
@@ -388,11 +388,11 @@
           "batch_count" : 83,
           "incoming_kg" : 450835.0,
           "pressed_kg" : 446501.9,
-          "oil_kg" : 86616.3,
+          "oil_kg" : 79340.6,
           "pomace_kg" : 317219.2,
-          "residue_kg" : 1515.5,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "residue_kg" : 1515.7,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.41
         } ]
       }
@@ -425,11 +425,11 @@
           "batch_count" : 51,
           "incoming_kg" : 284955.0,
           "pressed_kg" : 282404.4,
-          "oil_kg" : 54473.6,
+          "oil_kg" : 49897.7,
           "pomace_kg" : 200665.4,
-          "residue_kg" : 881.4,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 881.5,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.51,
           "avg_acidity" : 0.33
         },
         "series" : [ {
@@ -438,11 +438,11 @@
           "batch_count" : 2,
           "incoming_kg" : 10820.0,
           "pressed_kg" : 10741.9,
-          "oil_kg" : 2055.8,
+          "oil_kg" : 1883.1,
           "pomace_kg" : 7679.1,
           "residue_kg" : 29.5,
-          "yield_pct" : 19.14,
-          "gross_yield_pct" : 19.0,
+          "yield_pct" : 17.53,
+          "gross_yield_pct" : 17.4,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-10-02",
@@ -450,11 +450,11 @@
           "batch_count" : 1,
           "incoming_kg" : 3965.0,
           "pressed_kg" : 3948.7,
-          "oil_kg" : 832.6,
+          "oil_kg" : 762.7,
           "pomace_kg" : 2808.6,
           "residue_kg" : 14.7,
-          "yield_pct" : 21.09,
-          "gross_yield_pct" : 21.0,
+          "yield_pct" : 19.31,
+          "gross_yield_pct" : 19.24,
           "avg_acidity" : 0.39
         }, {
           "key" : "2026-10-03",
@@ -462,11 +462,11 @@
           "batch_count" : 2,
           "incoming_kg" : 12860.0,
           "pressed_kg" : 12779.0,
-          "oil_kg" : 2375.1,
+          "oil_kg" : 2175.6,
           "pomace_kg" : 8837.8,
           "residue_kg" : 41.9,
-          "yield_pct" : 18.59,
-          "gross_yield_pct" : 18.47,
+          "yield_pct" : 17.02,
+          "gross_yield_pct" : 16.92,
           "avg_acidity" : 0.41
         }, {
           "key" : "2026-10-04",
@@ -474,11 +474,11 @@
           "batch_count" : 2,
           "incoming_kg" : 13170.0,
           "pressed_kg" : 13031.3,
-          "oil_kg" : 2360.1,
+          "oil_kg" : 2161.9,
           "pomace_kg" : 9086.3,
           "residue_kg" : 43.2,
-          "yield_pct" : 18.11,
-          "gross_yield_pct" : 17.92,
+          "yield_pct" : 16.59,
+          "gross_yield_pct" : 16.41,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-10-05",
@@ -486,11 +486,11 @@
           "batch_count" : 2,
           "incoming_kg" : 12335.0,
           "pressed_kg" : 12255.1,
-          "oil_kg" : 2434.9,
+          "oil_kg" : 2230.4,
           "pomace_kg" : 8824.0,
           "residue_kg" : 40.9,
-          "yield_pct" : 19.87,
-          "gross_yield_pct" : 19.74,
+          "yield_pct" : 18.2,
+          "gross_yield_pct" : 18.08,
           "avg_acidity" : 0.36
         }, {
           "key" : "2026-10-06",
@@ -498,11 +498,11 @@
           "batch_count" : 2,
           "incoming_kg" : 12925.0,
           "pressed_kg" : 12809.4,
-          "oil_kg" : 2417.8,
+          "oil_kg" : 2214.7,
           "pomace_kg" : 9314.0,
           "residue_kg" : 41.2,
-          "yield_pct" : 18.88,
-          "gross_yield_pct" : 18.71,
+          "yield_pct" : 17.29,
+          "gross_yield_pct" : 17.14,
           "avg_acidity" : 0.32
         }, {
           "key" : "2026-10-07",
@@ -510,11 +510,11 @@
           "batch_count" : 2,
           "incoming_kg" : 13815.0,
           "pressed_kg" : 13659.3,
-          "oil_kg" : 2632.0,
+          "oil_kg" : 2411.0,
           "pomace_kg" : 9938.5,
           "residue_kg" : 39.3,
-          "yield_pct" : 19.27,
-          "gross_yield_pct" : 19.05,
+          "yield_pct" : 17.65,
+          "gross_yield_pct" : 17.45,
           "avg_acidity" : 0.43
         }, {
           "key" : "2026-10-08",
@@ -522,11 +522,11 @@
           "batch_count" : 2,
           "incoming_kg" : 14060.0,
           "pressed_kg" : 13927.1,
-          "oil_kg" : 2432.3,
+          "oil_kg" : 2227.9,
           "pomace_kg" : 9633.8,
           "residue_kg" : 37.3,
-          "yield_pct" : 17.46,
-          "gross_yield_pct" : 17.3,
+          "yield_pct" : 16.0,
+          "gross_yield_pct" : 15.85,
           "avg_acidity" : 0.31
         }, {
           "key" : "2026-10-09",
@@ -534,11 +534,11 @@
           "batch_count" : 2,
           "incoming_kg" : 9250.0,
           "pressed_kg" : 9195.2,
-          "oil_kg" : 1852.6,
+          "oil_kg" : 1697.0,
           "pomace_kg" : 6622.7,
           "residue_kg" : 28.6,
-          "yield_pct" : 20.15,
-          "gross_yield_pct" : 20.03,
+          "yield_pct" : 18.45,
+          "gross_yield_pct" : 18.35,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-10-10",
@@ -546,11 +546,11 @@
           "batch_count" : 2,
           "incoming_kg" : 8090.0,
           "pressed_kg" : 8012.3,
-          "oil_kg" : 1588.2,
+          "oil_kg" : 1454.8,
           "pomace_kg" : 5771.2,
           "residue_kg" : 24.4,
-          "yield_pct" : 19.82,
-          "gross_yield_pct" : 19.63,
+          "yield_pct" : 18.16,
+          "gross_yield_pct" : 17.98,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-10-11",
@@ -558,11 +558,11 @@
           "batch_count" : 2,
           "incoming_kg" : 11220.0,
           "pressed_kg" : 11120.3,
-          "oil_kg" : 2246.8,
+          "oil_kg" : 2058.1,
           "pomace_kg" : 7938.1,
           "residue_kg" : 39.4,
-          "yield_pct" : 20.2,
-          "gross_yield_pct" : 20.03,
+          "yield_pct" : 18.51,
+          "gross_yield_pct" : 18.34,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-10-12",
@@ -570,11 +570,11 @@
           "batch_count" : 2,
           "incoming_kg" : 14465.0,
           "pressed_kg" : 14349.5,
-          "oil_kg" : 2526.0,
+          "oil_kg" : 2313.8,
           "pomace_kg" : 10092.5,
           "residue_kg" : 49.2,
-          "yield_pct" : 17.6,
-          "gross_yield_pct" : 17.46,
+          "yield_pct" : 16.12,
+          "gross_yield_pct" : 16.0,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-10-13",
@@ -582,11 +582,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7970.0,
           "pressed_kg" : 7883.3,
-          "oil_kg" : 1528.4,
+          "oil_kg" : 1400.0,
           "pomace_kg" : 5918.4,
           "residue_kg" : 29.5,
-          "yield_pct" : 19.39,
-          "gross_yield_pct" : 19.18,
+          "yield_pct" : 17.76,
+          "gross_yield_pct" : 17.57,
           "avg_acidity" : 0.37
         }, {
           "key" : "2026-10-14",
@@ -594,11 +594,11 @@
           "batch_count" : 2,
           "incoming_kg" : 7910.0,
           "pressed_kg" : 7805.2,
-          "oil_kg" : 1464.8,
+          "oil_kg" : 1341.7,
           "pomace_kg" : 5624.9,
           "residue_kg" : 24.8,
-          "yield_pct" : 18.77,
-          "gross_yield_pct" : 18.52,
+          "yield_pct" : 17.19,
+          "gross_yield_pct" : 16.96,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-10-15",
@@ -606,11 +606,11 @@
           "batch_count" : 2,
           "incoming_kg" : 8635.0,
           "pressed_kg" : 8556.7,
-          "oil_kg" : 1445.0,
+          "oil_kg" : 1323.6,
           "pomace_kg" : 5818.7,
           "residue_kg" : 25.0,
-          "yield_pct" : 16.89,
-          "gross_yield_pct" : 16.73,
+          "yield_pct" : 15.47,
+          "gross_yield_pct" : 15.33,
           "avg_acidity" : 0.36
         }, {
           "key" : "2026-10-16",
@@ -618,11 +618,11 @@
           "batch_count" : 1,
           "incoming_kg" : 5330.0,
           "pressed_kg" : 5298.6,
-          "oil_kg" : 1113.6,
+          "oil_kg" : 1020.1,
           "pomace_kg" : 3706.0,
           "residue_kg" : 17.8,
-          "yield_pct" : 21.02,
-          "gross_yield_pct" : 20.89,
+          "yield_pct" : 19.25,
+          "gross_yield_pct" : 19.14,
           "avg_acidity" : 0.28
         }, {
           "key" : "2026-10-17",
@@ -630,11 +630,11 @@
           "batch_count" : 2,
           "incoming_kg" : 17505.0,
           "pressed_kg" : 17355.7,
-          "oil_kg" : 3281.8,
+          "oil_kg" : 3006.2,
           "pomace_kg" : 12485.7,
           "residue_kg" : 46.5,
-          "yield_pct" : 18.91,
-          "gross_yield_pct" : 18.75,
+          "yield_pct" : 17.32,
+          "gross_yield_pct" : 17.17,
           "avg_acidity" : 0.36
         }, {
           "key" : "2026-10-18",
@@ -642,11 +642,11 @@
           "batch_count" : 1,
           "incoming_kg" : 4815.0,
           "pressed_kg" : 4754.4,
-          "oil_kg" : 1023.3,
+          "oil_kg" : 937.3,
           "pomace_kg" : 3274.1,
           "residue_kg" : 20.1,
-          "yield_pct" : 21.52,
-          "gross_yield_pct" : 21.25,
+          "yield_pct" : 19.71,
+          "gross_yield_pct" : 19.47,
           "avg_acidity" : 0.37
         }, {
           "key" : "2026-10-19",
@@ -654,11 +654,11 @@
           "batch_count" : 2,
           "incoming_kg" : 11280.0,
           "pressed_kg" : 11137.3,
-          "oil_kg" : 2093.3,
+          "oil_kg" : 1917.5,
           "pomace_kg" : 8203.9,
           "residue_kg" : 22.9,
-          "yield_pct" : 18.8,
-          "gross_yield_pct" : 18.56,
+          "yield_pct" : 17.22,
+          "gross_yield_pct" : 17.0,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-10-20",
@@ -666,11 +666,11 @@
           "batch_count" : 1,
           "incoming_kg" : 2090.0,
           "pressed_kg" : 2081.3,
-          "oil_kg" : 459.6,
+          "oil_kg" : 420.9,
           "pomace_kg" : 1463.5,
           "residue_kg" : 8.7,
-          "yield_pct" : 22.08,
-          "gross_yield_pct" : 21.99,
+          "yield_pct" : 20.22,
+          "gross_yield_pct" : 20.14,
           "avg_acidity" : 0.26
         }, {
           "key" : "2026-10-21",
@@ -678,11 +678,11 @@
           "batch_count" : 2,
           "incoming_kg" : 15145.0,
           "pressed_kg" : 15007.8,
-          "oil_kg" : 3056.9,
+          "oil_kg" : 2800.1,
           "pomace_kg" : 10381.8,
           "residue_kg" : 58.1,
-          "yield_pct" : 20.37,
-          "gross_yield_pct" : 20.18,
+          "yield_pct" : 18.66,
+          "gross_yield_pct" : 18.49,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-10-22",
@@ -690,11 +690,11 @@
           "batch_count" : 2,
           "incoming_kg" : 8350.0,
           "pressed_kg" : 8275.5,
-          "oil_kg" : 1635.0,
+          "oil_kg" : 1497.7,
           "pomace_kg" : 6016.7,
           "residue_kg" : 31.1,
-          "yield_pct" : 19.76,
-          "gross_yield_pct" : 19.58,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.94,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-10-23",
@@ -702,11 +702,11 @@
           "batch_count" : 2,
           "incoming_kg" : 11655.0,
           "pressed_kg" : 11536.6,
-          "oil_kg" : 2249.9,
+          "oil_kg" : 2060.9,
           "pomace_kg" : 8286.9,
           "residue_kg" : 38.9,
-          "yield_pct" : 19.5,
-          "gross_yield_pct" : 19.3,
+          "yield_pct" : 17.86,
+          "gross_yield_pct" : 17.68,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-10-24",
@@ -714,11 +714,11 @@
           "batch_count" : 2,
           "incoming_kg" : 8885.0,
           "pressed_kg" : 8834.3,
-          "oil_kg" : 1882.7,
+          "oil_kg" : 1724.6,
           "pomace_kg" : 6342.3,
           "residue_kg" : 31.4,
-          "yield_pct" : 21.31,
-          "gross_yield_pct" : 21.19,
+          "yield_pct" : 19.52,
+          "gross_yield_pct" : 19.41,
           "avg_acidity" : 0.28
         }, {
           "key" : "2026-10-25",
@@ -726,11 +726,11 @@
           "batch_count" : 1,
           "incoming_kg" : 4875.0,
           "pressed_kg" : 4826.2,
-          "oil_kg" : 1016.7,
+          "oil_kg" : 931.3,
           "pomace_kg" : 3605.9,
           "residue_kg" : 17.0,
-          "yield_pct" : 21.07,
-          "gross_yield_pct" : 20.86,
+          "yield_pct" : 19.3,
+          "gross_yield_pct" : 19.1,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-10-26",
@@ -738,11 +738,11 @@
           "batch_count" : 1,
           "incoming_kg" : 3825.0,
           "pressed_kg" : 3787.2,
-          "oil_kg" : 792.2,
+          "oil_kg" : 725.6,
           "pomace_kg" : 2574.0,
           "residue_kg" : 11.6,
-          "yield_pct" : 20.92,
-          "gross_yield_pct" : 20.71,
+          "yield_pct" : 19.16,
+          "gross_yield_pct" : 18.97,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-10-27",
@@ -750,11 +750,11 @@
           "batch_count" : 2,
           "incoming_kg" : 6600.0,
           "pressed_kg" : 6533.7,
-          "oil_kg" : 1308.5,
+          "oil_kg" : 1198.6,
           "pomace_kg" : 4725.1,
           "residue_kg" : 14.1,
-          "yield_pct" : 20.03,
-          "gross_yield_pct" : 19.83,
+          "yield_pct" : 18.34,
+          "gross_yield_pct" : 18.16,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-10-28",
@@ -762,11 +762,11 @@
           "batch_count" : 1,
           "incoming_kg" : 4160.0,
           "pressed_kg" : 4140.4,
-          "oil_kg" : 720.8,
+          "oil_kg" : 660.3,
           "pomace_kg" : 2816.8,
           "residue_kg" : 7.7,
-          "yield_pct" : 17.41,
-          "gross_yield_pct" : 17.33,
+          "yield_pct" : 15.95,
+          "gross_yield_pct" : 15.87,
           "avg_acidity" : 0.28
         }, {
           "key" : "2026-10-29",
@@ -774,11 +774,11 @@
           "batch_count" : 2,
           "incoming_kg" : 11695.0,
           "pressed_kg" : 11560.1,
-          "oil_kg" : 2342.0,
+          "oil_kg" : 2145.3,
           "pomace_kg" : 7963.7,
           "residue_kg" : 27.0,
-          "yield_pct" : 20.26,
-          "gross_yield_pct" : 20.03,
+          "yield_pct" : 18.56,
+          "gross_yield_pct" : 18.34,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-10-30",
@@ -786,11 +786,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7255.0,
           "pressed_kg" : 7201.0,
-          "oil_kg" : 1305.0,
+          "oil_kg" : 1195.3,
           "pomace_kg" : 4910.4,
           "residue_kg" : 19.7,
-          "yield_pct" : 18.12,
-          "gross_yield_pct" : 17.99,
+          "yield_pct" : 16.6,
+          "gross_yield_pct" : 16.48,
           "avg_acidity" : 0.32
         } ],
         "by_variety" : [ {
@@ -799,11 +799,11 @@
           "batch_count" : 32,
           "incoming_kg" : 180700.0,
           "pressed_kg" : 179049.0,
-          "oil_kg" : 34899.5,
+          "oil_kg" : 31967.8,
           "pomace_kg" : 126935.4,
           "residue_kg" : 542.3,
-          "yield_pct" : 19.49,
-          "gross_yield_pct" : 19.31,
+          "yield_pct" : 17.85,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.3
         }, {
           "product_type_id" : 2,
@@ -811,11 +811,11 @@
           "batch_count" : 19,
           "incoming_kg" : 104255.0,
           "pressed_kg" : 103355.4,
-          "oil_kg" : 19574.1,
+          "oil_kg" : 17929.9,
           "pomace_kg" : 73730.0,
           "residue_kg" : 339.1,
-          "yield_pct" : 18.94,
-          "gross_yield_pct" : 18.78,
+          "yield_pct" : 17.35,
+          "gross_yield_pct" : 17.2,
           "avg_acidity" : 0.4
         } ]
       }
@@ -834,11 +834,11 @@
           "batch_count" : 53,
           "incoming_kg" : 295360.0,
           "pressed_kg" : 292753.0,
-          "oil_kg" : 56483.0,
+          "oil_kg" : 51738.4,
           "pomace_kg" : 208052.3,
-          "residue_kg" : 911.7,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 911.8,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.52,
           "avg_acidity" : 0.33
         },
         "series" : [ {
@@ -847,11 +847,11 @@
           "batch_count" : 7,
           "incoming_kg" : 40815.0,
           "pressed_kg" : 40500.9,
-          "oil_kg" : 7623.5,
+          "oil_kg" : 6983.2,
           "pomace_kg" : 28411.8,
           "residue_kg" : 129.3,
-          "yield_pct" : 18.82,
-          "gross_yield_pct" : 18.68,
+          "yield_pct" : 17.24,
+          "gross_yield_pct" : 17.11,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-10-05",
@@ -859,11 +859,11 @@
           "batch_count" : 14,
           "incoming_kg" : 81695.0,
           "pressed_kg" : 80978.7,
-          "oil_kg" : 15604.6,
+          "oil_kg" : 14293.8,
           "pomace_kg" : 58042.3,
           "residue_kg" : 251.1,
-          "yield_pct" : 19.27,
-          "gross_yield_pct" : 19.1,
+          "yield_pct" : 17.65,
+          "gross_yield_pct" : 17.5,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-10-12",
@@ -871,11 +871,11 @@
           "batch_count" : 11,
           "incoming_kg" : 66630.0,
           "pressed_kg" : 66003.4,
-          "oil_kg" : 12382.8,
+          "oil_kg" : 11342.6,
           "pomace_kg" : 46920.3,
           "residue_kg" : 212.8,
-          "yield_pct" : 18.76,
-          "gross_yield_pct" : 18.58,
+          "yield_pct" : 17.18,
+          "gross_yield_pct" : 17.02,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-10-19",
@@ -883,11 +883,11 @@
           "batch_count" : 12,
           "incoming_kg" : 62280.0,
           "pressed_kg" : 61699.0,
-          "oil_kg" : 12394.1,
+          "oil_kg" : 11353.0,
           "pomace_kg" : 44301.0,
-          "residue_kg" : 208.0,
-          "yield_pct" : 20.09,
-          "gross_yield_pct" : 19.9,
+          "residue_kg" : 208.1,
+          "yield_pct" : 18.4,
+          "gross_yield_pct" : 18.23,
           "avg_acidity" : 0.32
         }, {
           "key" : "2026-10-26",
@@ -895,11 +895,11 @@
           "batch_count" : 9,
           "incoming_kg" : 43940.0,
           "pressed_kg" : 43571.0,
-          "oil_kg" : 8477.9,
+          "oil_kg" : 7765.8,
           "pomace_kg" : 30376.9,
           "residue_kg" : 110.4,
-          "yield_pct" : 19.46,
-          "gross_yield_pct" : 19.29,
+          "yield_pct" : 17.82,
+          "gross_yield_pct" : 17.67,
           "avg_acidity" : 0.32
         } ],
         "by_variety" : [ {
@@ -908,11 +908,11 @@
           "batch_count" : 34,
           "incoming_kg" : 191105.0,
           "pressed_kg" : 189397.6,
-          "oil_kg" : 36908.9,
+          "oil_kg" : 33808.5,
           "pomace_kg" : 134322.3,
           "residue_kg" : 572.6,
-          "yield_pct" : 19.49,
-          "gross_yield_pct" : 19.31,
+          "yield_pct" : 17.85,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.3
         }, {
           "product_type_id" : 2,
@@ -920,11 +920,11 @@
           "batch_count" : 19,
           "incoming_kg" : 104255.0,
           "pressed_kg" : 103355.4,
-          "oil_kg" : 19574.1,
+          "oil_kg" : 17929.9,
           "pomace_kg" : 73730.0,
           "residue_kg" : 339.1,
-          "yield_pct" : 18.94,
-          "gross_yield_pct" : 18.78,
+          "yield_pct" : 17.35,
+          "gross_yield_pct" : 17.2,
           "avg_acidity" : 0.4
         } ]
       }
@@ -943,11 +943,11 @@
           "batch_count" : 94,
           "incoming_kg" : 518925.0,
           "pressed_kg" : 514325.4,
-          "oil_kg" : 100020.0,
+          "oil_kg" : 91618.3,
           "pomace_kg" : 366112.2,
-          "residue_kg" : 1559.7,
-          "yield_pct" : 19.45,
-          "gross_yield_pct" : 19.27,
+          "residue_kg" : 1559.9,
+          "yield_pct" : 17.81,
+          "gross_yield_pct" : 17.66,
           "avg_acidity" : 0.51
         },
         "series" : [ {
@@ -956,11 +956,11 @@
           "batch_count" : 2,
           "incoming_kg" : 12840.0,
           "pressed_kg" : 12729.0,
-          "oil_kg" : 2571.0,
+          "oil_kg" : 2355.0,
           "pomace_kg" : 9059.4,
           "residue_kg" : 50.1,
-          "yield_pct" : 20.2,
-          "gross_yield_pct" : 20.02,
+          "yield_pct" : 18.5,
+          "gross_yield_pct" : 18.34,
           "avg_acidity" : 0.87
         }, {
           "key" : "2026-07-13",
@@ -968,11 +968,11 @@
           "batch_count" : 4,
           "incoming_kg" : 24335.0,
           "pressed_kg" : 24136.0,
-          "oil_kg" : 4823.7,
+          "oil_kg" : 4418.5,
           "pomace_kg" : 17026.7,
           "residue_kg" : 85.5,
-          "yield_pct" : 19.99,
-          "gross_yield_pct" : 19.82,
+          "yield_pct" : 18.31,
+          "gross_yield_pct" : 18.16,
           "avg_acidity" : 0.79
         }, {
           "key" : "2026-07-20",
@@ -980,11 +980,11 @@
           "batch_count" : 1,
           "incoming_kg" : 3895.0,
           "pressed_kg" : 3855.1,
-          "oil_kg" : 797.5,
+          "oil_kg" : 730.5,
           "pomace_kg" : 2618.8,
           "residue_kg" : 10.7,
-          "yield_pct" : 20.69,
-          "gross_yield_pct" : 20.47,
+          "yield_pct" : 18.95,
+          "gross_yield_pct" : 18.75,
           "avg_acidity" : 0.77
         }, {
           "key" : "2026-07-27",
@@ -992,11 +992,11 @@
           "batch_count" : 4,
           "incoming_kg" : 27865.0,
           "pressed_kg" : 27596.8,
-          "oil_kg" : 5256.9,
+          "oil_kg" : 4815.4,
           "pomace_kg" : 19485.2,
           "residue_kg" : 66.3,
-          "yield_pct" : 19.05,
-          "gross_yield_pct" : 18.87,
+          "yield_pct" : 17.45,
+          "gross_yield_pct" : 17.28,
           "avg_acidity" : 0.78
         }, {
           "key" : "2026-08-03",
@@ -1004,11 +1004,11 @@
           "batch_count" : 5,
           "incoming_kg" : 27765.0,
           "pressed_kg" : 27476.8,
-          "oil_kg" : 5634.3,
+          "oil_kg" : 5161.0,
           "pomace_kg" : 19977.1,
           "residue_kg" : 88.9,
-          "yield_pct" : 20.51,
-          "gross_yield_pct" : 20.29,
+          "yield_pct" : 18.78,
+          "gross_yield_pct" : 18.59,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08-10",
@@ -1016,11 +1016,11 @@
           "batch_count" : 3,
           "incoming_kg" : 8845.0,
           "pressed_kg" : 8759.7,
-          "oil_kg" : 1714.4,
+          "oil_kg" : 1570.4,
           "pomace_kg" : 6517.9,
           "residue_kg" : 22.4,
-          "yield_pct" : 19.57,
-          "gross_yield_pct" : 19.38,
+          "yield_pct" : 17.93,
+          "gross_yield_pct" : 17.75,
           "avg_acidity" : 0.79
         }, {
           "key" : "2026-08-17",
@@ -1028,11 +1028,11 @@
           "batch_count" : 4,
           "incoming_kg" : 26450.0,
           "pressed_kg" : 26242.2,
-          "oil_kg" : 4661.6,
+          "oil_kg" : 4270.0,
           "pomace_kg" : 18953.5,
           "residue_kg" : 91.3,
-          "yield_pct" : 17.76,
-          "gross_yield_pct" : 17.62,
+          "yield_pct" : 16.27,
+          "gross_yield_pct" : 16.14,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08-24",
@@ -1052,11 +1052,11 @@
           "batch_count" : 1,
           "incoming_kg" : 3320.0,
           "pressed_kg" : 3300.9,
-          "oil_kg" : 589.7,
+          "oil_kg" : 540.2,
           "pomace_kg" : 2348.5,
           "residue_kg" : 9.0,
-          "yield_pct" : 17.87,
-          "gross_yield_pct" : 17.76,
+          "yield_pct" : 16.37,
+          "gross_yield_pct" : 16.27,
           "avg_acidity" : 0.84
         }, {
           "key" : "2026-09-07",
@@ -1064,11 +1064,11 @@
           "batch_count" : 3,
           "incoming_kg" : 11265.0,
           "pressed_kg" : 11142.3,
-          "oil_kg" : 2362.3,
+          "oil_kg" : 2163.9,
           "pomace_kg" : 7986.4,
           "residue_kg" : 35.6,
-          "yield_pct" : 21.2,
-          "gross_yield_pct" : 20.97,
+          "yield_pct" : 19.42,
+          "gross_yield_pct" : 19.21,
           "avg_acidity" : 0.84
         }, {
           "key" : "2026-09-14",
@@ -1076,11 +1076,11 @@
           "batch_count" : 3,
           "incoming_kg" : 19175.0,
           "pressed_kg" : 19036.5,
-          "oil_kg" : 3672.2,
+          "oil_kg" : 3363.8,
           "pomace_kg" : 13965.8,
           "residue_kg" : 58.8,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.15,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.54,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-09-21",
@@ -1088,11 +1088,11 @@
           "batch_count" : 3,
           "incoming_kg" : 13855.0,
           "pressed_kg" : 13717.4,
-          "oil_kg" : 2635.1,
+          "oil_kg" : 2413.7,
           "pomace_kg" : 9348.6,
           "residue_kg" : 27.9,
-          "yield_pct" : 19.21,
-          "gross_yield_pct" : 19.02,
+          "yield_pct" : 17.6,
+          "gross_yield_pct" : 17.42,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-09-28",
@@ -1100,11 +1100,11 @@
           "batch_count" : 8,
           "incoming_kg" : 46360.0,
           "pressed_kg" : 46002.6,
-          "oil_kg" : 8845.4,
+          "oil_kg" : 8102.4,
           "pomace_kg" : 32452.8,
           "residue_kg" : 155.4,
-          "yield_pct" : 19.23,
-          "gross_yield_pct" : 19.08,
+          "yield_pct" : 17.61,
+          "gross_yield_pct" : 17.48,
           "avg_acidity" : 0.41
         }, {
           "key" : "2026-10-05",
@@ -1112,11 +1112,11 @@
           "batch_count" : 14,
           "incoming_kg" : 81695.0,
           "pressed_kg" : 80978.7,
-          "oil_kg" : 15604.6,
+          "oil_kg" : 14293.8,
           "pomace_kg" : 58042.3,
           "residue_kg" : 251.1,
-          "yield_pct" : 19.27,
-          "gross_yield_pct" : 19.1,
+          "yield_pct" : 17.65,
+          "gross_yield_pct" : 17.5,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-10-12",
@@ -1124,11 +1124,11 @@
           "batch_count" : 11,
           "incoming_kg" : 66630.0,
           "pressed_kg" : 66003.4,
-          "oil_kg" : 12382.8,
+          "oil_kg" : 11342.6,
           "pomace_kg" : 46920.3,
           "residue_kg" : 212.8,
-          "yield_pct" : 18.76,
-          "gross_yield_pct" : 18.58,
+          "yield_pct" : 17.18,
+          "gross_yield_pct" : 17.02,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-10-19",
@@ -1136,11 +1136,11 @@
           "batch_count" : 12,
           "incoming_kg" : 62280.0,
           "pressed_kg" : 61699.0,
-          "oil_kg" : 12394.1,
+          "oil_kg" : 11353.0,
           "pomace_kg" : 44301.0,
-          "residue_kg" : 208.0,
-          "yield_pct" : 20.09,
-          "gross_yield_pct" : 19.9,
+          "residue_kg" : 208.1,
+          "yield_pct" : 18.4,
+          "gross_yield_pct" : 18.23,
           "avg_acidity" : 0.32
         }, {
           "key" : "2026-10-26",
@@ -1148,11 +1148,11 @@
           "batch_count" : 10,
           "incoming_kg" : 51575.0,
           "pressed_kg" : 51153.0,
-          "oil_kg" : 10050.1,
+          "oil_kg" : 9205.9,
           "pomace_kg" : 35562.8,
           "residue_kg" : 135.0,
-          "yield_pct" : 19.65,
-          "gross_yield_pct" : 19.49,
+          "yield_pct" : 18.0,
+          "gross_yield_pct" : 17.85,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-11-02",
@@ -1160,11 +1160,11 @@
           "batch_count" : 6,
           "incoming_kg" : 30775.0,
           "pressed_kg" : 30496.0,
-          "oil_kg" : 6024.3,
+          "oil_kg" : 5518.3,
           "pomace_kg" : 21545.1,
           "residue_kg" : 50.7,
-          "yield_pct" : 19.75,
-          "gross_yield_pct" : 19.58,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.93,
           "avg_acidity" : 0.38
         } ],
         "by_variety" : [ {
@@ -1173,11 +1173,11 @@
           "batch_count" : 69,
           "incoming_kg" : 383375.0,
           "pressed_kg" : 379944.8,
-          "oil_kg" : 74194.2,
+          "oil_kg" : 67961.9,
           "pomace_kg" : 270483.9,
-          "residue_kg" : 1145.3,
-          "yield_pct" : 19.53,
-          "gross_yield_pct" : 19.35,
+          "residue_kg" : 1145.4,
+          "yield_pct" : 17.89,
+          "gross_yield_pct" : 17.73,
           "avg_acidity" : 0.55
         }, {
           "product_type_id" : 2,
@@ -1185,11 +1185,11 @@
           "batch_count" : 25,
           "incoming_kg" : 135550.0,
           "pressed_kg" : 134380.6,
-          "oil_kg" : 25825.8,
+          "oil_kg" : 23656.5,
           "pomace_kg" : 95628.3,
-          "residue_kg" : 414.4,
-          "yield_pct" : 19.22,
-          "gross_yield_pct" : 19.05,
+          "residue_kg" : 414.5,
+          "yield_pct" : 17.6,
+          "gross_yield_pct" : 17.45,
           "avg_acidity" : 0.4
         } ]
       }
@@ -1208,11 +1208,11 @@
           "batch_count" : 94,
           "incoming_kg" : 518925.0,
           "pressed_kg" : 514325.4,
-          "oil_kg" : 100020.0,
+          "oil_kg" : 91618.3,
           "pomace_kg" : 366112.2,
-          "residue_kg" : 1559.7,
-          "yield_pct" : 19.45,
-          "gross_yield_pct" : 19.27,
+          "residue_kg" : 1559.9,
+          "yield_pct" : 17.81,
+          "gross_yield_pct" : 17.66,
           "avg_acidity" : 0.51
         },
         "series" : [ {
@@ -1221,11 +1221,11 @@
           "batch_count" : 10,
           "incoming_kg" : 64445.0,
           "pressed_kg" : 63876.7,
-          "oil_kg" : 12622.1,
+          "oil_kg" : 11561.8,
           "pomace_kg" : 44943.9,
           "residue_kg" : 199.8,
-          "yield_pct" : 19.76,
-          "gross_yield_pct" : 19.59,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.94,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08",
@@ -1233,11 +1233,11 @@
           "batch_count" : 13,
           "incoming_kg" : 67550.0,
           "pressed_kg" : 66918.9,
-          "oil_kg" : 12837.3,
+          "oil_kg" : 11758.9,
           "pomace_kg" : 48694.7,
-          "residue_kg" : 215.5,
-          "yield_pct" : 19.18,
-          "gross_yield_pct" : 19.0,
+          "residue_kg" : 215.6,
+          "yield_pct" : 17.57,
+          "gross_yield_pct" : 17.41,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-09",
@@ -1245,11 +1245,11 @@
           "batch_count" : 11,
           "incoming_kg" : 53160.0,
           "pressed_kg" : 52698.8,
-          "oil_kg" : 10481.1,
+          "oil_kg" : 9600.8,
           "pomace_kg" : 37690.3,
           "residue_kg" : 157.4,
-          "yield_pct" : 19.89,
-          "gross_yield_pct" : 19.72,
+          "yield_pct" : 18.22,
+          "gross_yield_pct" : 18.06,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-10",
@@ -1257,11 +1257,11 @@
           "batch_count" : 53,
           "incoming_kg" : 295360.0,
           "pressed_kg" : 292753.0,
-          "oil_kg" : 56483.0,
+          "oil_kg" : 51738.4,
           "pomace_kg" : 208052.3,
-          "residue_kg" : 911.7,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 911.8,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.52,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-11",
@@ -1269,11 +1269,11 @@
           "batch_count" : 7,
           "incoming_kg" : 38410.0,
           "pressed_kg" : 38078.0,
-          "oil_kg" : 7596.5,
+          "oil_kg" : 6958.4,
           "pomace_kg" : 26731.0,
           "residue_kg" : 75.3,
-          "yield_pct" : 19.95,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.27,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.38
         } ],
         "by_variety" : [ {
@@ -1282,11 +1282,11 @@
           "batch_count" : 69,
           "incoming_kg" : 383375.0,
           "pressed_kg" : 379944.8,
-          "oil_kg" : 74194.2,
+          "oil_kg" : 67961.9,
           "pomace_kg" : 270483.9,
-          "residue_kg" : 1145.3,
-          "yield_pct" : 19.53,
-          "gross_yield_pct" : 19.35,
+          "residue_kg" : 1145.4,
+          "yield_pct" : 17.89,
+          "gross_yield_pct" : 17.73,
           "avg_acidity" : 0.55
         }, {
           "product_type_id" : 2,
@@ -1294,11 +1294,11 @@
           "batch_count" : 25,
           "incoming_kg" : 135550.0,
           "pressed_kg" : 134380.6,
-          "oil_kg" : 25825.8,
+          "oil_kg" : 23656.5,
           "pomace_kg" : 95628.3,
-          "residue_kg" : 414.4,
-          "yield_pct" : 19.22,
-          "gross_yield_pct" : 19.05,
+          "residue_kg" : 414.5,
+          "yield_pct" : 17.6,
+          "gross_yield_pct" : 17.45,
           "avg_acidity" : 0.4
         } ]
       }
@@ -1317,11 +1317,11 @@
           "batch_count" : 287,
           "incoming_kg" : 1581820.0,
           "pressed_kg" : 1566578.6,
-          "oil_kg" : 303578.0,
+          "oil_kg" : 278077.4,
           "pomace_kg" : 1116131.0,
-          "residue_kg" : 4836.1,
-          "yield_pct" : 19.38,
-          "gross_yield_pct" : 19.19,
+          "residue_kg" : 4836.6,
+          "yield_pct" : 17.75,
+          "gross_yield_pct" : 17.58,
           "avg_acidity" : 0.47
         },
         "series" : [ {
@@ -1330,11 +1330,11 @@
           "batch_count" : 39,
           "incoming_kg" : 208675.0,
           "pressed_kg" : 206559.0,
-          "oil_kg" : 39789.5,
+          "oil_kg" : 36447.1,
           "pomace_kg" : 147676.2,
           "residue_kg" : 492.3,
-          "yield_pct" : 19.26,
-          "gross_yield_pct" : 19.07,
+          "yield_pct" : 17.64,
+          "gross_yield_pct" : 17.47,
           "avg_acidity" : 0.31
         }, {
           "key" : "2025-12",
@@ -1342,11 +1342,11 @@
           "batch_count" : 46,
           "incoming_kg" : 243955.0,
           "pressed_kg" : 241526.5,
-          "oil_kg" : 47103.0,
+          "oil_kg" : 43146.5,
           "pomace_kg" : 171432.2,
           "residue_kg" : 864.3,
-          "yield_pct" : 19.5,
-          "gross_yield_pct" : 19.31,
+          "yield_pct" : 17.86,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-01",
@@ -1354,11 +1354,11 @@
           "batch_count" : 30,
           "incoming_kg" : 173775.0,
           "pressed_kg" : 172136.3,
-          "oil_kg" : 33076.3,
+          "oil_kg" : 30297.8,
           "pomace_kg" : 121815.1,
           "residue_kg" : 578.8,
-          "yield_pct" : 19.22,
-          "gross_yield_pct" : 19.03,
+          "yield_pct" : 17.6,
+          "gross_yield_pct" : 17.44,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-02",
@@ -1366,11 +1366,11 @@
           "batch_count" : 30,
           "incoming_kg" : 159305.0,
           "pressed_kg" : 157627.6,
-          "oil_kg" : 30761.8,
+          "oil_kg" : 28177.8,
           "pomace_kg" : 112661.8,
-          "residue_kg" : 512.1,
-          "yield_pct" : 19.52,
-          "gross_yield_pct" : 19.31,
+          "residue_kg" : 512.2,
+          "yield_pct" : 17.88,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-03",
@@ -1378,11 +1378,11 @@
           "batch_count" : 7,
           "incoming_kg" : 37410.0,
           "pressed_kg" : 37125.7,
-          "oil_kg" : 7446.6,
+          "oil_kg" : 6821.1,
           "pomace_kg" : 26606.6,
-          "residue_kg" : 125.8,
-          "yield_pct" : 20.06,
-          "gross_yield_pct" : 19.91,
+          "residue_kg" : 125.9,
+          "yield_pct" : 18.37,
+          "gross_yield_pct" : 18.23,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-04",
@@ -1390,11 +1390,11 @@
           "batch_count" : 7,
           "incoming_kg" : 35315.0,
           "pressed_kg" : 34946.5,
-          "oil_kg" : 6854.7,
+          "oil_kg" : 6278.9,
           "pomace_kg" : 24967.1,
           "residue_kg" : 113.3,
-          "yield_pct" : 19.61,
-          "gross_yield_pct" : 19.41,
+          "yield_pct" : 17.97,
+          "gross_yield_pct" : 17.78,
           "avg_acidity" : 0.77
         }, {
           "key" : "2026-05",
@@ -1402,11 +1402,11 @@
           "batch_count" : 18,
           "incoming_kg" : 103390.0,
           "pressed_kg" : 102239.6,
-          "oil_kg" : 19037.8,
+          "oil_kg" : 17438.7,
           "pomace_kg" : 73079.9,
-          "residue_kg" : 306.9,
-          "yield_pct" : 18.62,
-          "gross_yield_pct" : 18.41,
+          "residue_kg" : 307.0,
+          "yield_pct" : 17.06,
+          "gross_yield_pct" : 16.87,
           "avg_acidity" : 0.79
         }, {
           "key" : "2026-06",
@@ -1414,11 +1414,11 @@
           "batch_count" : 13,
           "incoming_kg" : 82010.0,
           "pressed_kg" : 81205.7,
-          "oil_kg" : 15757.2,
+          "oil_kg" : 14433.5,
           "pomace_kg" : 57995.0,
           "residue_kg" : 226.2,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-07",
@@ -1426,11 +1426,11 @@
           "batch_count" : 13,
           "incoming_kg" : 83505.0,
           "pressed_kg" : 82763.0,
-          "oil_kg" : 16353.1,
+          "oil_kg" : 14979.5,
           "pomace_kg" : 58728.8,
           "residue_kg" : 256.5,
-          "yield_pct" : 19.76,
-          "gross_yield_pct" : 19.58,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.94,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08",
@@ -1438,11 +1438,11 @@
           "batch_count" : 13,
           "incoming_kg" : 67550.0,
           "pressed_kg" : 66918.9,
-          "oil_kg" : 12837.3,
+          "oil_kg" : 11758.9,
           "pomace_kg" : 48694.7,
-          "residue_kg" : 215.5,
-          "yield_pct" : 19.18,
-          "gross_yield_pct" : 19.0,
+          "residue_kg" : 215.6,
+          "yield_pct" : 17.57,
+          "gross_yield_pct" : 17.41,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-09",
@@ -1450,11 +1450,11 @@
           "batch_count" : 11,
           "incoming_kg" : 53160.0,
           "pressed_kg" : 52698.8,
-          "oil_kg" : 10481.1,
+          "oil_kg" : 9600.8,
           "pomace_kg" : 37690.3,
           "residue_kg" : 157.4,
-          "yield_pct" : 19.89,
-          "gross_yield_pct" : 19.72,
+          "yield_pct" : 18.22,
+          "gross_yield_pct" : 18.06,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-10",
@@ -1462,11 +1462,11 @@
           "batch_count" : 53,
           "incoming_kg" : 295360.0,
           "pressed_kg" : 292753.0,
-          "oil_kg" : 56483.0,
+          "oil_kg" : 51738.4,
           "pomace_kg" : 208052.3,
-          "residue_kg" : 911.7,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 911.8,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.52,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-11",
@@ -1474,11 +1474,11 @@
           "batch_count" : 7,
           "incoming_kg" : 38410.0,
           "pressed_kg" : 38078.0,
-          "oil_kg" : 7596.5,
+          "oil_kg" : 6958.4,
           "pomace_kg" : 26731.0,
           "residue_kg" : 75.3,
-          "yield_pct" : 19.95,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.27,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.38
         } ],
         "by_variety" : [ {
@@ -1487,11 +1487,11 @@
           "batch_count" : 204,
           "incoming_kg" : 1130985.0,
           "pressed_kg" : 1120076.7,
-          "oil_kg" : 216961.6,
+          "oil_kg" : 198736.8,
           "pomace_kg" : 798911.8,
-          "residue_kg" : 3320.5,
-          "yield_pct" : 19.37,
-          "gross_yield_pct" : 19.18,
+          "residue_kg" : 3320.9,
+          "yield_pct" : 17.74,
+          "gross_yield_pct" : 17.57,
           "avg_acidity" : 0.49
         }, {
           "product_type_id" : 2,
@@ -1499,11 +1499,11 @@
           "batch_count" : 83,
           "incoming_kg" : 450835.0,
           "pressed_kg" : 446501.9,
-          "oil_kg" : 86616.3,
+          "oil_kg" : 79340.6,
           "pomace_kg" : 317219.2,
-          "residue_kg" : 1515.5,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "residue_kg" : 1515.7,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.41
         } ]
       }
@@ -1522,11 +1522,11 @@
           "batch_count" : 289,
           "incoming_kg" : 1592400.0,
           "pressed_kg" : 1577035.1,
-          "oil_kg" : 305777.6,
+          "oil_kg" : 280092.3,
           "pomace_kg" : 1123752.7,
-          "residue_kg" : 4864.0,
-          "yield_pct" : 19.39,
-          "gross_yield_pct" : 19.2,
+          "residue_kg" : 4864.6,
+          "yield_pct" : 17.76,
+          "gross_yield_pct" : 17.59,
           "avg_acidity" : 0.47
         },
         "series" : [ {
@@ -1679,11 +1679,11 @@
           "batch_count" : 41,
           "incoming_kg" : 219255.0,
           "pressed_kg" : 217015.5,
-          "oil_kg" : 41989.1,
+          "oil_kg" : 38462.0,
           "pomace_kg" : 155297.9,
-          "residue_kg" : 520.2,
-          "yield_pct" : 19.35,
-          "gross_yield_pct" : 19.15,
+          "residue_kg" : 520.3,
+          "yield_pct" : 17.72,
+          "gross_yield_pct" : 17.54,
           "avg_acidity" : 0.31
         }, {
           "key" : "2025-12",
@@ -1691,11 +1691,11 @@
           "batch_count" : 46,
           "incoming_kg" : 243955.0,
           "pressed_kg" : 241526.5,
-          "oil_kg" : 47103.0,
+          "oil_kg" : 43146.5,
           "pomace_kg" : 171432.2,
           "residue_kg" : 864.3,
-          "yield_pct" : 19.5,
-          "gross_yield_pct" : 19.31,
+          "yield_pct" : 17.86,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-01",
@@ -1703,11 +1703,11 @@
           "batch_count" : 30,
           "incoming_kg" : 173775.0,
           "pressed_kg" : 172136.3,
-          "oil_kg" : 33076.3,
+          "oil_kg" : 30297.8,
           "pomace_kg" : 121815.1,
           "residue_kg" : 578.8,
-          "yield_pct" : 19.22,
-          "gross_yield_pct" : 19.03,
+          "yield_pct" : 17.6,
+          "gross_yield_pct" : 17.44,
           "avg_acidity" : 0.35
         }, {
           "key" : "2026-02",
@@ -1715,11 +1715,11 @@
           "batch_count" : 30,
           "incoming_kg" : 159305.0,
           "pressed_kg" : 157627.6,
-          "oil_kg" : 30761.8,
+          "oil_kg" : 28177.8,
           "pomace_kg" : 112661.8,
-          "residue_kg" : 512.1,
-          "yield_pct" : 19.52,
-          "gross_yield_pct" : 19.31,
+          "residue_kg" : 512.2,
+          "yield_pct" : 17.88,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.34
         }, {
           "key" : "2026-03",
@@ -1727,11 +1727,11 @@
           "batch_count" : 7,
           "incoming_kg" : 37410.0,
           "pressed_kg" : 37125.7,
-          "oil_kg" : 7446.6,
+          "oil_kg" : 6821.1,
           "pomace_kg" : 26606.6,
-          "residue_kg" : 125.8,
-          "yield_pct" : 20.06,
-          "gross_yield_pct" : 19.91,
+          "residue_kg" : 125.9,
+          "yield_pct" : 18.37,
+          "gross_yield_pct" : 18.23,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-04",
@@ -1739,11 +1739,11 @@
           "batch_count" : 7,
           "incoming_kg" : 35315.0,
           "pressed_kg" : 34946.5,
-          "oil_kg" : 6854.7,
+          "oil_kg" : 6278.9,
           "pomace_kg" : 24967.1,
           "residue_kg" : 113.3,
-          "yield_pct" : 19.61,
-          "gross_yield_pct" : 19.41,
+          "yield_pct" : 17.97,
+          "gross_yield_pct" : 17.78,
           "avg_acidity" : 0.77
         }, {
           "key" : "2026-05",
@@ -1751,11 +1751,11 @@
           "batch_count" : 18,
           "incoming_kg" : 103390.0,
           "pressed_kg" : 102239.6,
-          "oil_kg" : 19037.8,
+          "oil_kg" : 17438.7,
           "pomace_kg" : 73079.9,
-          "residue_kg" : 306.9,
-          "yield_pct" : 18.62,
-          "gross_yield_pct" : 18.41,
+          "residue_kg" : 307.0,
+          "yield_pct" : 17.06,
+          "gross_yield_pct" : 16.87,
           "avg_acidity" : 0.79
         }, {
           "key" : "2026-06",
@@ -1763,11 +1763,11 @@
           "batch_count" : 13,
           "incoming_kg" : 82010.0,
           "pressed_kg" : 81205.7,
-          "oil_kg" : 15757.2,
+          "oil_kg" : 14433.5,
           "pomace_kg" : 57995.0,
           "residue_kg" : 226.2,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-07",
@@ -1775,11 +1775,11 @@
           "batch_count" : 13,
           "incoming_kg" : 83505.0,
           "pressed_kg" : 82763.0,
-          "oil_kg" : 16353.1,
+          "oil_kg" : 14979.5,
           "pomace_kg" : 58728.8,
           "residue_kg" : 256.5,
-          "yield_pct" : 19.76,
-          "gross_yield_pct" : 19.58,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.94,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08",
@@ -1787,11 +1787,11 @@
           "batch_count" : 13,
           "incoming_kg" : 67550.0,
           "pressed_kg" : 66918.9,
-          "oil_kg" : 12837.3,
+          "oil_kg" : 11758.9,
           "pomace_kg" : 48694.7,
-          "residue_kg" : 215.5,
-          "yield_pct" : 19.18,
-          "gross_yield_pct" : 19.0,
+          "residue_kg" : 215.6,
+          "yield_pct" : 17.57,
+          "gross_yield_pct" : 17.41,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-09",
@@ -1799,11 +1799,11 @@
           "batch_count" : 11,
           "incoming_kg" : 53160.0,
           "pressed_kg" : 52698.8,
-          "oil_kg" : 10481.1,
+          "oil_kg" : 9600.8,
           "pomace_kg" : 37690.3,
           "residue_kg" : 157.4,
-          "yield_pct" : 19.89,
-          "gross_yield_pct" : 19.72,
+          "yield_pct" : 18.22,
+          "gross_yield_pct" : 18.06,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-10",
@@ -1811,11 +1811,11 @@
           "batch_count" : 53,
           "incoming_kg" : 295360.0,
           "pressed_kg" : 292753.0,
-          "oil_kg" : 56483.0,
+          "oil_kg" : 51738.4,
           "pomace_kg" : 208052.3,
-          "residue_kg" : 911.7,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 911.8,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.52,
           "avg_acidity" : 0.33
         }, {
           "key" : "2026-11",
@@ -1823,11 +1823,11 @@
           "batch_count" : 7,
           "incoming_kg" : 38410.0,
           "pressed_kg" : 38078.0,
-          "oil_kg" : 7596.5,
+          "oil_kg" : 6958.4,
           "pomace_kg" : 26731.0,
           "residue_kg" : 75.3,
-          "yield_pct" : 19.95,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.27,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.38
         } ],
         "by_variety" : [ {
@@ -1836,11 +1836,11 @@
           "batch_count" : 206,
           "incoming_kg" : 1141565.0,
           "pressed_kg" : 1130533.2,
-          "oil_kg" : 219161.3,
+          "oil_kg" : 200751.7,
           "pomace_kg" : 806533.5,
-          "residue_kg" : 3348.5,
-          "yield_pct" : 19.39,
-          "gross_yield_pct" : 19.2,
+          "residue_kg" : 3348.9,
+          "yield_pct" : 17.76,
+          "gross_yield_pct" : 17.59,
           "avg_acidity" : 0.49
         }, {
           "product_type_id" : 2,
@@ -1848,11 +1848,11 @@
           "batch_count" : 83,
           "incoming_kg" : 450835.0,
           "pressed_kg" : 446501.9,
-          "oil_kg" : 86616.3,
+          "oil_kg" : 79340.6,
           "pomace_kg" : 317219.2,
-          "residue_kg" : 1515.5,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "residue_kg" : 1515.7,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.41
         } ]
       }
@@ -1871,11 +1871,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7700.0,
           "pressed_kg" : 7627.0,
-          "oil_kg" : 1433.7,
+          "oil_kg" : 1313.3,
           "pomace_kg" : 5505.9,
           "residue_kg" : 0.0,
-          "yield_pct" : 18.8,
-          "gross_yield_pct" : 18.62,
+          "yield_pct" : 17.22,
+          "gross_yield_pct" : 17.06,
           "avg_acidity" : 0.39
         },
         "series" : [ {
@@ -1884,11 +1884,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7700.0,
           "pressed_kg" : 7627.0,
-          "oil_kg" : 1433.7,
+          "oil_kg" : 1313.3,
           "pomace_kg" : 5505.9,
           "residue_kg" : 0.0,
-          "yield_pct" : 18.8,
-          "gross_yield_pct" : 18.62,
+          "yield_pct" : 17.22,
+          "gross_yield_pct" : 17.06,
           "avg_acidity" : 0.39
         } ],
         "by_variety" : [ {
@@ -1897,11 +1897,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7700.0,
           "pressed_kg" : 7627.0,
-          "oil_kg" : 1433.7,
+          "oil_kg" : 1313.3,
           "pomace_kg" : 5505.9,
           "residue_kg" : 0.0,
-          "yield_pct" : 18.8,
-          "gross_yield_pct" : 18.62,
+          "yield_pct" : 17.22,
+          "gross_yield_pct" : 17.06,
           "avg_acidity" : 0.39
         } ]
       }
@@ -1920,11 +1920,11 @@
           "batch_count" : 204,
           "incoming_kg" : 1130985.0,
           "pressed_kg" : 1120076.7,
-          "oil_kg" : 216961.6,
+          "oil_kg" : 198736.8,
           "pomace_kg" : 798911.8,
-          "residue_kg" : 3320.5,
-          "yield_pct" : 19.37,
-          "gross_yield_pct" : 19.18,
+          "residue_kg" : 3320.9,
+          "yield_pct" : 17.74,
+          "gross_yield_pct" : 17.57,
           "avg_acidity" : 0.49
         },
         "series" : [ {
@@ -1933,11 +1933,11 @@
           "batch_count" : 28,
           "incoming_kg" : 154135.0,
           "pressed_kg" : 152593.6,
-          "oil_kg" : 29508.4,
+          "oil_kg" : 27029.6,
           "pomace_kg" : 109033.3,
           "residue_kg" : 372.3,
-          "yield_pct" : 19.34,
-          "gross_yield_pct" : 19.14,
+          "yield_pct" : 17.71,
+          "gross_yield_pct" : 17.54,
           "avg_acidity" : 0.28
         }, {
           "key" : "2025-12",
@@ -1945,11 +1945,11 @@
           "batch_count" : 26,
           "incoming_kg" : 129810.0,
           "pressed_kg" : 128484.0,
-          "oil_kg" : 24546.2,
+          "oil_kg" : 22484.4,
           "pomace_kg" : 91558.3,
           "residue_kg" : 376.5,
-          "yield_pct" : 19.1,
-          "gross_yield_pct" : 18.91,
+          "yield_pct" : 17.5,
+          "gross_yield_pct" : 17.32,
           "avg_acidity" : 0.3
         }, {
           "key" : "2026-01",
@@ -1957,11 +1957,11 @@
           "batch_count" : 17,
           "incoming_kg" : 106085.0,
           "pressed_kg" : 105072.1,
-          "oil_kg" : 20214.9,
+          "oil_kg" : 18516.9,
           "pomace_kg" : 74702.4,
           "residue_kg" : 342.9,
-          "yield_pct" : 19.24,
-          "gross_yield_pct" : 19.06,
+          "yield_pct" : 17.62,
+          "gross_yield_pct" : 17.45,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-02",
@@ -1969,11 +1969,11 @@
           "batch_count" : 17,
           "incoming_kg" : 85490.0,
           "pressed_kg" : 84650.7,
-          "oil_kg" : 16580.7,
+          "oil_kg" : 15187.9,
           "pomace_kg" : 60190.1,
-          "residue_kg" : 274.4,
-          "yield_pct" : 19.59,
-          "gross_yield_pct" : 19.39,
+          "residue_kg" : 274.5,
+          "yield_pct" : 17.94,
+          "gross_yield_pct" : 17.77,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-03",
@@ -1981,11 +1981,11 @@
           "batch_count" : 6,
           "incoming_kg" : 32315.0,
           "pressed_kg" : 32053.4,
-          "oil_kg" : 6536.5,
+          "oil_kg" : 5987.4,
           "pomace_kg" : 23116.9,
           "residue_kg" : 106.1,
-          "yield_pct" : 20.39,
-          "gross_yield_pct" : 20.23,
+          "yield_pct" : 18.68,
+          "gross_yield_pct" : 18.53,
           "avg_acidity" : 0.81
         }, {
           "key" : "2026-04",
@@ -1993,11 +1993,11 @@
           "batch_count" : 7,
           "incoming_kg" : 35315.0,
           "pressed_kg" : 34946.5,
-          "oil_kg" : 6854.7,
+          "oil_kg" : 6278.9,
           "pomace_kg" : 24967.1,
           "residue_kg" : 113.3,
-          "yield_pct" : 19.61,
-          "gross_yield_pct" : 19.41,
+          "yield_pct" : 17.97,
+          "gross_yield_pct" : 17.78,
           "avg_acidity" : 0.77
         }, {
           "key" : "2026-05",
@@ -2005,11 +2005,11 @@
           "batch_count" : 18,
           "incoming_kg" : 103390.0,
           "pressed_kg" : 102239.6,
-          "oil_kg" : 19037.8,
+          "oil_kg" : 17438.7,
           "pomace_kg" : 73079.9,
-          "residue_kg" : 306.9,
-          "yield_pct" : 18.62,
-          "gross_yield_pct" : 18.41,
+          "residue_kg" : 307.0,
+          "yield_pct" : 17.06,
+          "gross_yield_pct" : 16.87,
           "avg_acidity" : 0.79
         }, {
           "key" : "2026-06",
@@ -2017,11 +2017,11 @@
           "batch_count" : 13,
           "incoming_kg" : 82010.0,
           "pressed_kg" : 81205.7,
-          "oil_kg" : 15757.2,
+          "oil_kg" : 14433.5,
           "pomace_kg" : 57995.0,
           "residue_kg" : 226.2,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-07",
@@ -2029,11 +2029,11 @@
           "batch_count" : 13,
           "incoming_kg" : 83505.0,
           "pressed_kg" : 82763.0,
-          "oil_kg" : 16353.1,
+          "oil_kg" : 14979.5,
           "pomace_kg" : 58728.8,
           "residue_kg" : 256.5,
-          "yield_pct" : 19.76,
-          "gross_yield_pct" : 19.58,
+          "yield_pct" : 18.1,
+          "gross_yield_pct" : 17.94,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-08",
@@ -2041,11 +2041,11 @@
           "batch_count" : 13,
           "incoming_kg" : 67550.0,
           "pressed_kg" : 66918.9,
-          "oil_kg" : 12837.3,
+          "oil_kg" : 11758.9,
           "pomace_kg" : 48694.7,
-          "residue_kg" : 215.5,
-          "yield_pct" : 19.18,
-          "gross_yield_pct" : 19.0,
+          "residue_kg" : 215.6,
+          "yield_pct" : 17.57,
+          "gross_yield_pct" : 17.41,
           "avg_acidity" : 0.8
         }, {
           "key" : "2026-09",
@@ -2053,11 +2053,11 @@
           "batch_count" : 11,
           "incoming_kg" : 53160.0,
           "pressed_kg" : 52698.8,
-          "oil_kg" : 10481.1,
+          "oil_kg" : 9600.8,
           "pomace_kg" : 37690.3,
           "residue_kg" : 157.4,
-          "yield_pct" : 19.89,
-          "gross_yield_pct" : 19.72,
+          "yield_pct" : 18.22,
+          "gross_yield_pct" : 18.06,
           "avg_acidity" : 0.83
         }, {
           "key" : "2026-10",
@@ -2065,11 +2065,11 @@
           "batch_count" : 34,
           "incoming_kg" : 191105.0,
           "pressed_kg" : 189397.6,
-          "oil_kg" : 36908.9,
+          "oil_kg" : 33808.5,
           "pomace_kg" : 134322.3,
           "residue_kg" : 572.6,
-          "yield_pct" : 19.49,
-          "gross_yield_pct" : 19.31,
+          "yield_pct" : 17.85,
+          "gross_yield_pct" : 17.69,
           "avg_acidity" : 0.3
         }, {
           "key" : "2026-11",
@@ -2077,11 +2077,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7115.0,
           "pressed_kg" : 7052.8,
-          "oil_kg" : 1344.8,
+          "oil_kg" : 1231.9,
           "pomace_kg" : 4832.7,
           "residue_kg" : 0.0,
-          "yield_pct" : 19.07,
-          "gross_yield_pct" : 18.9,
+          "yield_pct" : 17.47,
+          "gross_yield_pct" : 17.31,
           "avg_acidity" : 0.29
         } ],
         "by_variety" : [ {
@@ -2090,11 +2090,11 @@
           "batch_count" : 204,
           "incoming_kg" : 1130985.0,
           "pressed_kg" : 1120076.7,
-          "oil_kg" : 216961.6,
+          "oil_kg" : 198736.8,
           "pomace_kg" : 798911.8,
-          "residue_kg" : 3320.5,
-          "yield_pct" : 19.37,
-          "gross_yield_pct" : 19.18,
+          "residue_kg" : 3320.9,
+          "yield_pct" : 17.74,
+          "gross_yield_pct" : 17.57,
           "avg_acidity" : 0.49
         } ]
       }
@@ -2113,11 +2113,11 @@
           "batch_count" : 12,
           "incoming_kg" : 72955.0,
           "pressed_kg" : 72333.3,
-          "oil_kg" : 13848.2,
+          "oil_kg" : 12684.9,
           "pomace_kg" : 51370.1,
           "residue_kg" : 201.9,
-          "yield_pct" : 19.14,
-          "gross_yield_pct" : 18.98,
+          "yield_pct" : 17.54,
+          "gross_yield_pct" : 17.39,
           "avg_acidity" : 0.5
         },
         "series" : [ {
@@ -2150,11 +2150,11 @@
           "batch_count" : 1,
           "incoming_kg" : 7650.0,
           "pressed_kg" : 7599.0,
-          "oil_kg" : 1629.3,
+          "oil_kg" : 1492.5,
           "pomace_kg" : 5237.4,
           "residue_kg" : 31.9,
-          "yield_pct" : 21.44,
-          "gross_yield_pct" : 21.3,
+          "yield_pct" : 19.64,
+          "gross_yield_pct" : 19.51,
           "avg_acidity" : 0.44
         }, {
           "key" : "2026-02",
@@ -2162,11 +2162,11 @@
           "batch_count" : 2,
           "incoming_kg" : 10560.0,
           "pressed_kg" : 10446.6,
-          "oil_kg" : 1915.6,
+          "oil_kg" : 1754.7,
           "pomace_kg" : 7550.6,
           "residue_kg" : 32.4,
-          "yield_pct" : 18.34,
-          "gross_yield_pct" : 18.14,
+          "yield_pct" : 16.8,
+          "gross_yield_pct" : 16.62,
           "avg_acidity" : 0.29
         }, {
           "key" : "2026-03",
@@ -2210,11 +2210,11 @@
           "batch_count" : 1,
           "incoming_kg" : 6170.0,
           "pressed_kg" : 6125.7,
-          "oil_kg" : 1129.6,
+          "oil_kg" : 1034.7,
           "pomace_kg" : 4375.9,
           "residue_kg" : 11.3,
-          "yield_pct" : 18.44,
-          "gross_yield_pct" : 18.31,
+          "yield_pct" : 16.89,
+          "gross_yield_pct" : 16.77,
           "avg_acidity" : 0.74
         }, {
           "key" : "2026-07",
@@ -2222,11 +2222,11 @@
           "batch_count" : 1,
           "incoming_kg" : 8355.0,
           "pressed_kg" : 8308.9,
-          "oil_kg" : 1638.6,
+          "oil_kg" : 1501.0,
           "pomace_kg" : 5729.4,
           "residue_kg" : 19.8,
-          "yield_pct" : 19.72,
-          "gross_yield_pct" : 19.61,
+          "yield_pct" : 18.06,
+          "gross_yield_pct" : 17.97,
           "avg_acidity" : 0.88
         }, {
           "key" : "2026-08",
@@ -2234,11 +2234,11 @@
           "batch_count" : 2,
           "incoming_kg" : 11905.0,
           "pressed_kg" : 11806.9,
-          "oil_kg" : 2370.1,
+          "oil_kg" : 2171.0,
           "pomace_kg" : 8591.4,
           "residue_kg" : 30.5,
-          "yield_pct" : 20.07,
-          "gross_yield_pct" : 19.91,
+          "yield_pct" : 18.39,
+          "gross_yield_pct" : 18.24,
           "avg_acidity" : 0.84
         }, {
           "key" : "2026-09",
@@ -2258,11 +2258,11 @@
           "batch_count" : 4,
           "incoming_kg" : 25300.0,
           "pressed_kg" : 25056.1,
-          "oil_kg" : 4516.4,
+          "oil_kg" : 4137.0,
           "pomace_kg" : 17735.8,
-          "residue_kg" : 65.9,
-          "yield_pct" : 18.03,
-          "gross_yield_pct" : 17.85,
+          "residue_kg" : 66.0,
+          "yield_pct" : 16.51,
+          "gross_yield_pct" : 16.35,
           "avg_acidity" : 0.32
         }, {
           "key" : "2026-11",
@@ -2270,11 +2270,11 @@
           "batch_count" : 1,
           "incoming_kg" : 3015.0,
           "pressed_kg" : 2990.1,
-          "oil_kg" : 648.6,
+          "oil_kg" : 594.1,
           "pomace_kg" : 2149.6,
           "residue_kg" : 10.1,
-          "yield_pct" : 21.69,
-          "gross_yield_pct" : 21.51,
+          "yield_pct" : 19.87,
+          "gross_yield_pct" : 19.7,
           "avg_acidity" : 0.43
         } ],
         "by_variety" : [ {
@@ -2283,11 +2283,11 @@
           "batch_count" : 9,
           "incoming_kg" : 58675.0,
           "pressed_kg" : 58150.0,
-          "oil_kg" : 10981.7,
+          "oil_kg" : 10059.3,
           "pomace_kg" : 41376.2,
-          "residue_kg" : 151.6,
-          "yield_pct" : 18.89,
-          "gross_yield_pct" : 18.72,
+          "residue_kg" : 151.7,
+          "yield_pct" : 17.3,
+          "gross_yield_pct" : 17.14,
           "avg_acidity" : 0.53
         }, {
           "product_type_id" : 2,
@@ -2295,11 +2295,11 @@
           "batch_count" : 3,
           "incoming_kg" : 14280.0,
           "pressed_kg" : 14183.3,
-          "oil_kg" : 2866.5,
+          "oil_kg" : 2625.7,
           "pomace_kg" : 9993.9,
           "residue_kg" : 50.3,
-          "yield_pct" : 20.21,
-          "gross_yield_pct" : 20.07,
+          "yield_pct" : 18.51,
+          "gross_yield_pct" : 18.39,
           "avg_acidity" : 0.42
         } ]
       }
@@ -2334,11 +2334,11 @@
           "batch_count" : 53,
           "incoming_kg" : 295360.0,
           "pressed_kg" : 292753.0,
-          "oil_kg" : 56483.0,
+          "oil_kg" : 51738.4,
           "pomace_kg" : 208052.3,
-          "residue_kg" : 911.7,
-          "yield_pct" : 19.29,
-          "gross_yield_pct" : 19.12,
+          "residue_kg" : 911.8,
+          "yield_pct" : 17.67,
+          "gross_yield_pct" : 17.52,
           "avg_acidity" : 0.33,
           "supplier_count" : 21
         },
@@ -2350,11 +2350,11 @@
           "batch_count" : 5,
           "incoming_kg" : 29830.0,
           "pressed_kg" : 29534.7,
-          "oil_kg" : 5917.4,
+          "oil_kg" : 5420.4,
           "pomace_kg" : 20483.0,
           "residue_kg" : 110.3,
-          "yield_pct" : 20.04,
-          "gross_yield_pct" : 19.84,
+          "yield_pct" : 18.35,
+          "gross_yield_pct" : 18.17,
           "avg_acidity" : 0.31
         }, {
           "supplier_id" : 1,
@@ -2364,11 +2364,11 @@
           "batch_count" : 4,
           "incoming_kg" : 25300.0,
           "pressed_kg" : 25056.1,
-          "oil_kg" : 4516.4,
+          "oil_kg" : 4137.0,
           "pomace_kg" : 17735.8,
-          "residue_kg" : 65.9,
-          "yield_pct" : 18.03,
-          "gross_yield_pct" : 17.85,
+          "residue_kg" : 66.0,
+          "yield_pct" : 16.51,
+          "gross_yield_pct" : 16.35,
           "avg_acidity" : 0.32
         }, {
           "supplier_id" : 22,
@@ -2378,11 +2378,11 @@
           "batch_count" : 4,
           "incoming_kg" : 22805.0,
           "pressed_kg" : 22664.4,
-          "oil_kg" : 4480.4,
+          "oil_kg" : 4104.0,
           "pomace_kg" : 15986.3,
           "residue_kg" : 75.6,
-          "yield_pct" : 19.77,
-          "gross_yield_pct" : 19.65,
+          "yield_pct" : 18.11,
+          "gross_yield_pct" : 18.0,
           "avg_acidity" : 0.32
         }, {
           "supplier_id" : 3,
@@ -2392,11 +2392,11 @@
           "batch_count" : 4,
           "incoming_kg" : 20075.0,
           "pressed_kg" : 19889.8,
-          "oil_kg" : 4013.8,
+          "oil_kg" : 3676.7,
           "pomace_kg" : 14279.2,
           "residue_kg" : 61.8,
-          "yield_pct" : 20.18,
-          "gross_yield_pct" : 19.99,
+          "yield_pct" : 18.49,
+          "gross_yield_pct" : 18.31,
           "avg_acidity" : 0.34
         }, {
           "supplier_id" : 16,
@@ -2406,11 +2406,11 @@
           "batch_count" : 4,
           "incoming_kg" : 18270.0,
           "pressed_kg" : 18105.1,
-          "oil_kg" : 3271.3,
+          "oil_kg" : 2996.5,
           "pomace_kg" : 12853.3,
           "residue_kg" : 46.9,
-          "yield_pct" : 18.07,
-          "gross_yield_pct" : 17.91,
+          "yield_pct" : 16.55,
+          "gross_yield_pct" : 16.4,
           "avg_acidity" : 0.35
         }, {
           "supplier_id" : 2,
@@ -2420,11 +2420,11 @@
           "batch_count" : 3,
           "incoming_kg" : 17900.0,
           "pressed_kg" : 17689.3,
-          "oil_kg" : 3483.1,
+          "oil_kg" : 3190.5,
           "pomace_kg" : 12195.8,
           "residue_kg" : 50.6,
-          "yield_pct" : 19.69,
-          "gross_yield_pct" : 19.46,
+          "yield_pct" : 18.04,
+          "gross_yield_pct" : 17.82,
           "avg_acidity" : 0.3
         }, {
           "supplier_id" : 19,
@@ -2434,11 +2434,11 @@
           "batch_count" : 4,
           "incoming_kg" : 17755.0,
           "pressed_kg" : 17658.0,
-          "oil_kg" : 3498.9,
+          "oil_kg" : 3205.0,
           "pomace_kg" : 12743.5,
           "residue_kg" : 53.6,
-          "yield_pct" : 19.81,
-          "gross_yield_pct" : 19.71,
+          "yield_pct" : 18.15,
+          "gross_yield_pct" : 18.05,
           "avg_acidity" : 0.35
         }, {
           "supplier_id" : 13,
@@ -2448,11 +2448,11 @@
           "batch_count" : 2,
           "incoming_kg" : 16205.0,
           "pressed_kg" : 16073.7,
-          "oil_kg" : 3141.9,
+          "oil_kg" : 2878.0,
           "pomace_kg" : 11558.3,
           "residue_kg" : 57.9,
-          "yield_pct" : 19.55,
-          "gross_yield_pct" : 19.39,
+          "yield_pct" : 17.9,
+          "gross_yield_pct" : 17.76,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 25,
@@ -2462,11 +2462,11 @@
           "batch_count" : 2,
           "incoming_kg" : 15950.0,
           "pressed_kg" : 15788.4,
-          "oil_kg" : 3040.6,
+          "oil_kg" : 2785.2,
           "pomace_kg" : 11279.7,
           "residue_kg" : 53.0,
-          "yield_pct" : 19.26,
-          "gross_yield_pct" : 19.06,
+          "yield_pct" : 17.64,
+          "gross_yield_pct" : 17.46,
           "avg_acidity" : 0.31
         }, {
           "supplier_id" : 15,
@@ -2476,11 +2476,11 @@
           "batch_count" : 3,
           "incoming_kg" : 14830.0,
           "pressed_kg" : 14676.5,
-          "oil_kg" : 2975.0,
+          "oil_kg" : 2725.1,
           "pomace_kg" : 10369.6,
           "residue_kg" : 45.8,
-          "yield_pct" : 20.27,
-          "gross_yield_pct" : 20.06,
+          "yield_pct" : 18.57,
+          "gross_yield_pct" : 18.38,
           "avg_acidity" : 0.29
         }, {
           "supplier_id" : 4,
@@ -2490,11 +2490,11 @@
           "batch_count" : 3,
           "incoming_kg" : 14615.0,
           "pressed_kg" : 14496.2,
-          "oil_kg" : 2821.2,
+          "oil_kg" : 2584.2,
           "pomace_kg" : 10413.4,
           "residue_kg" : 49.7,
-          "yield_pct" : 19.46,
-          "gross_yield_pct" : 19.3,
+          "yield_pct" : 17.83,
+          "gross_yield_pct" : 17.68,
           "avg_acidity" : 0.34
         }, {
           "supplier_id" : 20,
@@ -2504,11 +2504,11 @@
           "batch_count" : 2,
           "incoming_kg" : 12860.0,
           "pressed_kg" : 12750.0,
-          "oil_kg" : 2554.6,
+          "oil_kg" : 2340.0,
           "pomace_kg" : 9087.0,
           "residue_kg" : 27.8,
-          "yield_pct" : 20.04,
-          "gross_yield_pct" : 19.86,
+          "yield_pct" : 18.35,
+          "gross_yield_pct" : 18.2,
           "avg_acidity" : 0.3
         }, {
           "supplier_id" : 27,
@@ -2518,11 +2518,11 @@
           "batch_count" : 2,
           "incoming_kg" : 11205.0,
           "pressed_kg" : 11124.4,
-          "oil_kg" : 1969.9,
+          "oil_kg" : 1804.4,
           "pomace_kg" : 7842.0,
           "residue_kg" : 32.1,
-          "yield_pct" : 17.71,
-          "gross_yield_pct" : 17.58,
+          "yield_pct" : 16.22,
+          "gross_yield_pct" : 16.1,
           "avg_acidity" : 0.38
         }, {
           "supplier_id" : 10,
@@ -2532,11 +2532,11 @@
           "batch_count" : 2,
           "incoming_kg" : 10670.0,
           "pressed_kg" : 10566.7,
-          "oil_kg" : 1907.2,
+          "oil_kg" : 1747.0,
           "pomace_kg" : 7563.1,
           "residue_kg" : 31.0,
-          "yield_pct" : 18.05,
-          "gross_yield_pct" : 17.87,
+          "yield_pct" : 16.53,
+          "gross_yield_pct" : 16.37,
           "avg_acidity" : 0.36
         }, {
           "supplier_id" : 14,
@@ -2546,11 +2546,11 @@
           "batch_count" : 2,
           "incoming_kg" : 10105.0,
           "pressed_kg" : 10021.1,
-          "oil_kg" : 1916.6,
+          "oil_kg" : 1755.6,
           "pomace_kg" : 7385.2,
           "residue_kg" : 30.4,
-          "yield_pct" : 19.13,
-          "gross_yield_pct" : 18.97,
+          "yield_pct" : 17.52,
+          "gross_yield_pct" : 17.37,
           "avg_acidity" : 0.35
         }, {
           "supplier_id" : 6,
@@ -2560,11 +2560,11 @@
           "batch_count" : 2,
           "incoming_kg" : 9765.0,
           "pressed_kg" : 9701.8,
-          "oil_kg" : 1919.8,
+          "oil_kg" : 1758.5,
           "pomace_kg" : 6967.2,
           "residue_kg" : 35.5,
-          "yield_pct" : 19.79,
-          "gross_yield_pct" : 19.66,
+          "yield_pct" : 18.13,
+          "gross_yield_pct" : 18.01,
           "avg_acidity" : 0.32
         }, {
           "supplier_id" : 18,
@@ -2574,11 +2574,11 @@
           "batch_count" : 1,
           "incoming_kg" : 8415.0,
           "pressed_kg" : 8361.9,
-          "oil_kg" : 1414.5,
+          "oil_kg" : 1295.7,
           "pomace_kg" : 5802.9,
           "residue_kg" : 27.3,
-          "yield_pct" : 16.92,
-          "gross_yield_pct" : 16.81,
+          "yield_pct" : 15.5,
+          "gross_yield_pct" : 15.4,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 7,
@@ -2588,11 +2588,11 @@
           "batch_count" : 1,
           "incoming_kg" : 5845.0,
           "pressed_kg" : 5793.5,
-          "oil_kg" : 1087.1,
+          "oil_kg" : 995.8,
           "pomace_kg" : 4091.2,
           "residue_kg" : 15.6,
-          "yield_pct" : 18.76,
-          "gross_yield_pct" : 18.6,
+          "yield_pct" : 17.19,
+          "gross_yield_pct" : 17.04,
           "avg_acidity" : 0.34
         }, {
           "supplier_id" : 11,
@@ -2602,11 +2602,11 @@
           "batch_count" : 1,
           "incoming_kg" : 5670.0,
           "pressed_kg" : 5594.0,
-          "oil_kg" : 1186.7,
+          "oil_kg" : 1087.0,
           "pomace_kg" : 4161.5,
           "residue_kg" : 18.5,
-          "yield_pct" : 21.21,
-          "gross_yield_pct" : 20.93,
+          "yield_pct" : 19.43,
+          "gross_yield_pct" : 19.17,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 24,
@@ -2616,11 +2616,11 @@
           "batch_count" : 1,
           "incoming_kg" : 5200.0,
           "pressed_kg" : 5126.1,
-          "oil_kg" : 907.1,
+          "oil_kg" : 830.9,
           "pomace_kg" : 3790.8,
           "residue_kg" : 13.5,
-          "yield_pct" : 17.7,
-          "gross_yield_pct" : 17.44,
+          "yield_pct" : 16.21,
+          "gross_yield_pct" : 15.98,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 23,
@@ -2630,11 +2630,11 @@
           "batch_count" : 1,
           "incoming_kg" : 2090.0,
           "pressed_kg" : 2081.3,
-          "oil_kg" : 459.6,
+          "oil_kg" : 420.9,
           "pomace_kg" : 1463.5,
           "residue_kg" : 8.7,
-          "yield_pct" : 22.08,
-          "gross_yield_pct" : 21.99,
+          "yield_pct" : 20.22,
+          "gross_yield_pct" : 20.14,
           "avg_acidity" : 0.26
         } ]
       }
@@ -2652,11 +2652,11 @@
           "batch_count" : 287,
           "incoming_kg" : 1581820.0,
           "pressed_kg" : 1566578.6,
-          "oil_kg" : 303578.0,
+          "oil_kg" : 278077.4,
           "pomace_kg" : 1116131.0,
-          "residue_kg" : 4836.1,
-          "yield_pct" : 19.38,
-          "gross_yield_pct" : 19.19,
+          "residue_kg" : 4836.6,
+          "yield_pct" : 17.75,
+          "gross_yield_pct" : 17.58,
           "avg_acidity" : 0.47,
           "supplier_count" : 26
         },
@@ -2668,11 +2668,11 @@
           "batch_count" : 16,
           "incoming_kg" : 101805.0,
           "pressed_kg" : 100816.3,
-          "oil_kg" : 18643.7,
+          "oil_kg" : 17077.6,
           "pomace_kg" : 72826.2,
-          "residue_kg" : 302.3,
-          "yield_pct" : 18.49,
-          "gross_yield_pct" : 18.31,
+          "residue_kg" : 302.4,
+          "yield_pct" : 16.94,
+          "gross_yield_pct" : 16.77,
           "avg_acidity" : 0.53
         }, {
           "supplier_id" : 3,
@@ -2682,11 +2682,11 @@
           "batch_count" : 17,
           "incoming_kg" : 87165.0,
           "pressed_kg" : 86354.3,
-          "oil_kg" : 16956.7,
+          "oil_kg" : 15532.3,
           "pomace_kg" : 61553.7,
           "residue_kg" : 261.3,
-          "yield_pct" : 19.64,
-          "gross_yield_pct" : 19.45,
+          "yield_pct" : 17.99,
+          "gross_yield_pct" : 17.82,
           "avg_acidity" : 0.43
         }, {
           "supplier_id" : 23,
@@ -2696,11 +2696,11 @@
           "batch_count" : 14,
           "incoming_kg" : 80600.0,
           "pressed_kg" : 79823.1,
-          "oil_kg" : 15043.8,
+          "oil_kg" : 13780.1,
           "pomace_kg" : 56874.0,
           "residue_kg" : 212.0,
-          "yield_pct" : 18.85,
-          "gross_yield_pct" : 18.66,
+          "yield_pct" : 17.26,
+          "gross_yield_pct" : 17.1,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 6,
@@ -2710,11 +2710,11 @@
           "batch_count" : 12,
           "incoming_kg" : 73410.0,
           "pressed_kg" : 72743.6,
-          "oil_kg" : 13816.3,
+          "oil_kg" : 12655.7,
           "pomace_kg" : 52015.0,
           "residue_kg" : 250.2,
-          "yield_pct" : 18.99,
-          "gross_yield_pct" : 18.82,
+          "yield_pct" : 17.4,
+          "gross_yield_pct" : 17.24,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 1,
@@ -2724,11 +2724,11 @@
           "batch_count" : 12,
           "incoming_kg" : 72955.0,
           "pressed_kg" : 72333.3,
-          "oil_kg" : 13848.2,
+          "oil_kg" : 12684.9,
           "pomace_kg" : 51370.1,
           "residue_kg" : 201.9,
-          "yield_pct" : 19.14,
-          "gross_yield_pct" : 18.98,
+          "yield_pct" : 17.54,
+          "gross_yield_pct" : 17.39,
           "avg_acidity" : 0.5
         }, {
           "supplier_id" : 22,
@@ -2738,11 +2738,11 @@
           "batch_count" : 13,
           "incoming_kg" : 71440.0,
           "pressed_kg" : 70750.0,
-          "oil_kg" : 14261.9,
+          "oil_kg" : 13063.9,
           "pomace_kg" : 50603.1,
           "residue_kg" : 236.0,
-          "yield_pct" : 20.16,
-          "gross_yield_pct" : 19.96,
+          "yield_pct" : 18.46,
+          "gross_yield_pct" : 18.29,
           "avg_acidity" : 0.46
         }, {
           "supplier_id" : 26,
@@ -2752,11 +2752,11 @@
           "batch_count" : 13,
           "incoming_kg" : 68455.0,
           "pressed_kg" : 67745.6,
-          "oil_kg" : 13358.8,
+          "oil_kg" : 12236.6,
           "pomace_kg" : 47312.6,
-          "residue_kg" : 229.1,
-          "yield_pct" : 19.72,
-          "gross_yield_pct" : 19.51,
+          "residue_kg" : 229.2,
+          "yield_pct" : 18.06,
+          "gross_yield_pct" : 17.88,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 10,
@@ -2766,11 +2766,11 @@
           "batch_count" : 14,
           "incoming_kg" : 68150.0,
           "pressed_kg" : 67422.9,
-          "oil_kg" : 12420.9,
+          "oil_kg" : 11377.5,
           "pomace_kg" : 47144.0,
           "residue_kg" : 229.7,
-          "yield_pct" : 18.42,
-          "gross_yield_pct" : 18.23,
+          "yield_pct" : 16.87,
+          "gross_yield_pct" : 16.69,
           "avg_acidity" : 0.47
         }, {
           "supplier_id" : 24,
@@ -2780,11 +2780,11 @@
           "batch_count" : 11,
           "incoming_kg" : 65390.0,
           "pressed_kg" : 64669.2,
-          "oil_kg" : 12169.3,
+          "oil_kg" : 11147.1,
           "pomace_kg" : 46851.4,
           "residue_kg" : 192.3,
-          "yield_pct" : 18.82,
-          "gross_yield_pct" : 18.61,
+          "yield_pct" : 17.24,
+          "gross_yield_pct" : 17.05,
           "avg_acidity" : 0.51
         }, {
           "supplier_id" : 20,
@@ -2794,11 +2794,11 @@
           "batch_count" : 12,
           "incoming_kg" : 64120.0,
           "pressed_kg" : 63544.4,
-          "oil_kg" : 12413.8,
+          "oil_kg" : 11371.1,
           "pomace_kg" : 45076.8,
           "residue_kg" : 202.4,
-          "yield_pct" : 19.54,
-          "gross_yield_pct" : 19.36,
+          "yield_pct" : 17.89,
+          "gross_yield_pct" : 17.73,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 4,
@@ -2808,11 +2808,11 @@
           "batch_count" : 10,
           "incoming_kg" : 62300.0,
           "pressed_kg" : 61739.5,
-          "oil_kg" : 12535.2,
+          "oil_kg" : 11482.2,
           "pomace_kg" : 43539.8,
           "residue_kg" : 229.9,
-          "yield_pct" : 20.3,
-          "gross_yield_pct" : 20.12,
+          "yield_pct" : 18.6,
+          "gross_yield_pct" : 18.43,
           "avg_acidity" : 0.49
         }, {
           "supplier_id" : 16,
@@ -2822,11 +2822,11 @@
           "batch_count" : 12,
           "incoming_kg" : 62185.0,
           "pressed_kg" : 61531.9,
-          "oil_kg" : 11432.0,
+          "oil_kg" : 10471.7,
           "pomace_kg" : 43483.4,
           "residue_kg" : 167.4,
-          "yield_pct" : 18.58,
-          "gross_yield_pct" : 18.38,
+          "yield_pct" : 17.02,
+          "gross_yield_pct" : 16.84,
           "avg_acidity" : 0.45
         }, {
           "supplier_id" : 7,
@@ -2836,11 +2836,11 @@
           "batch_count" : 14,
           "incoming_kg" : 61545.0,
           "pressed_kg" : 60943.8,
-          "oil_kg" : 11857.3,
+          "oil_kg" : 10861.3,
           "pomace_kg" : 44420.5,
           "residue_kg" : 196.8,
-          "yield_pct" : 19.46,
-          "gross_yield_pct" : 19.27,
+          "yield_pct" : 17.82,
+          "gross_yield_pct" : 17.65,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 14,
@@ -2850,11 +2850,11 @@
           "batch_count" : 12,
           "incoming_kg" : 60815.0,
           "pressed_kg" : 60238.5,
-          "oil_kg" : 12279.7,
+          "oil_kg" : 11248.3,
           "pomace_kg" : 43356.5,
           "residue_kg" : 208.8,
-          "yield_pct" : 20.39,
-          "gross_yield_pct" : 20.19,
+          "yield_pct" : 18.67,
+          "gross_yield_pct" : 18.5,
           "avg_acidity" : 0.5
         }, {
           "supplier_id" : 11,
@@ -2864,11 +2864,11 @@
           "batch_count" : 10,
           "incoming_kg" : 60190.0,
           "pressed_kg" : 59566.8,
-          "oil_kg" : 12028.5,
+          "oil_kg" : 11018.1,
           "pomace_kg" : 42514.0,
           "residue_kg" : 191.6,
-          "yield_pct" : 20.19,
-          "gross_yield_pct" : 19.98,
+          "yield_pct" : 18.5,
+          "gross_yield_pct" : 18.31,
           "avg_acidity" : 0.51
         }, {
           "supplier_id" : 19,
@@ -2878,11 +2878,11 @@
           "batch_count" : 11,
           "incoming_kg" : 58080.0,
           "pressed_kg" : 57589.3,
-          "oil_kg" : 11225.6,
+          "oil_kg" : 10282.7,
           "pomace_kg" : 41307.0,
           "residue_kg" : 184.8,
-          "yield_pct" : 19.49,
-          "gross_yield_pct" : 19.33,
+          "yield_pct" : 17.86,
+          "gross_yield_pct" : 17.7,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 5,
@@ -2892,11 +2892,11 @@
           "batch_count" : 12,
           "incoming_kg" : 56380.0,
           "pressed_kg" : 55831.2,
-          "oil_kg" : 11080.0,
+          "oil_kg" : 10149.3,
           "pomace_kg" : 39993.0,
-          "residue_kg" : 147.4,
-          "yield_pct" : 19.85,
-          "gross_yield_pct" : 19.65,
+          "residue_kg" : 147.5,
+          "yield_pct" : 18.18,
+          "gross_yield_pct" : 18.0,
           "avg_acidity" : 0.56
         }, {
           "supplier_id" : 17,
@@ -2906,11 +2906,11 @@
           "batch_count" : 9,
           "incoming_kg" : 52805.0,
           "pressed_kg" : 52276.9,
-          "oil_kg" : 9927.6,
+          "oil_kg" : 9093.7,
           "pomace_kg" : 37503.8,
           "residue_kg" : 155.8,
-          "yield_pct" : 18.99,
-          "gross_yield_pct" : 18.8,
+          "yield_pct" : 17.4,
+          "gross_yield_pct" : 17.22,
           "avg_acidity" : 0.55
         }, {
           "supplier_id" : 2,
@@ -2920,11 +2920,11 @@
           "batch_count" : 8,
           "incoming_kg" : 48075.0,
           "pressed_kg" : 47555.7,
-          "oil_kg" : 9354.8,
+          "oil_kg" : 8569.0,
           "pomace_kg" : 32949.4,
           "residue_kg" : 137.6,
-          "yield_pct" : 19.67,
-          "gross_yield_pct" : 19.46,
+          "yield_pct" : 18.02,
+          "gross_yield_pct" : 17.82,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 15,
@@ -2934,11 +2934,11 @@
           "batch_count" : 10,
           "incoming_kg" : 47920.0,
           "pressed_kg" : 47482.9,
-          "oil_kg" : 9421.3,
+          "oil_kg" : 8629.9,
           "pomace_kg" : 33469.6,
           "residue_kg" : 138.0,
-          "yield_pct" : 19.84,
-          "gross_yield_pct" : 19.66,
+          "yield_pct" : 18.17,
+          "gross_yield_pct" : 18.01,
           "avg_acidity" : 0.36
         }, {
           "supplier_id" : 12,
@@ -2948,11 +2948,11 @@
           "batch_count" : 9,
           "incoming_kg" : 45325.0,
           "pressed_kg" : 44861.8,
-          "oil_kg" : 8581.1,
+          "oil_kg" : 7860.3,
           "pomace_kg" : 31991.8,
-          "residue_kg" : 142.1,
-          "yield_pct" : 19.13,
-          "gross_yield_pct" : 18.93,
+          "residue_kg" : 142.2,
+          "yield_pct" : 17.52,
+          "gross_yield_pct" : 17.34,
           "avg_acidity" : 0.54
         }, {
           "supplier_id" : 21,
@@ -2962,11 +2962,11 @@
           "batch_count" : 7,
           "incoming_kg" : 45085.0,
           "pressed_kg" : 44707.7,
-          "oil_kg" : 8965.7,
+          "oil_kg" : 8212.6,
           "pomace_kg" : 32199.0,
-          "residue_kg" : 117.8,
-          "yield_pct" : 20.05,
-          "gross_yield_pct" : 19.89,
+          "residue_kg" : 117.9,
+          "yield_pct" : 18.37,
+          "gross_yield_pct" : 18.22,
           "avg_acidity" : 0.68
         }, {
           "supplier_id" : 25,
@@ -2976,11 +2976,11 @@
           "batch_count" : 7,
           "incoming_kg" : 44345.0,
           "pressed_kg" : 43916.5,
-          "oil_kg" : 8771.6,
+          "oil_kg" : 8034.8,
           "pomace_kg" : 31206.7,
           "residue_kg" : 151.4,
-          "yield_pct" : 19.97,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.3,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.38
         }, {
           "supplier_id" : 27,
@@ -2990,11 +2990,11 @@
           "batch_count" : 8,
           "incoming_kg" : 42975.0,
           "pressed_kg" : 42579.8,
-          "oil_kg" : 7891.1,
+          "oil_kg" : 7228.2,
           "pomace_kg" : 29824.5,
           "residue_kg" : 102.1,
-          "yield_pct" : 18.53,
-          "gross_yield_pct" : 18.36,
+          "yield_pct" : 16.98,
+          "gross_yield_pct" : 16.82,
           "avg_acidity" : 0.51
         }, {
           "supplier_id" : 8,
@@ -3004,11 +3004,11 @@
           "batch_count" : 7,
           "incoming_kg" : 41385.0,
           "pressed_kg" : 41000.1,
-          "oil_kg" : 7691.2,
+          "oil_kg" : 7045.1,
           "pomace_kg" : 29016.7,
-          "residue_kg" : 123.2,
-          "yield_pct" : 18.76,
-          "gross_yield_pct" : 18.58,
+          "residue_kg" : 123.3,
+          "yield_pct" : 17.18,
+          "gross_yield_pct" : 17.02,
           "avg_acidity" : 0.63
         }, {
           "supplier_id" : 18,
@@ -3018,11 +3018,11 @@
           "batch_count" : 7,
           "incoming_kg" : 38920.0,
           "pressed_kg" : 38553.5,
-          "oil_kg" : 7602.1,
+          "oil_kg" : 6963.5,
           "pomace_kg" : 27728.4,
           "residue_kg" : 124.2,
-          "yield_pct" : 19.72,
-          "gross_yield_pct" : 19.53,
+          "yield_pct" : 18.06,
+          "gross_yield_pct" : 17.89,
           "avg_acidity" : 0.42
         } ]
       }
@@ -3040,11 +3040,11 @@
           "batch_count" : 289,
           "incoming_kg" : 1592400.0,
           "pressed_kg" : 1577035.1,
-          "oil_kg" : 305777.6,
+          "oil_kg" : 280092.3,
           "pomace_kg" : 1123752.7,
-          "residue_kg" : 4864.0,
-          "yield_pct" : 19.39,
-          "gross_yield_pct" : 19.2,
+          "residue_kg" : 4864.6,
+          "yield_pct" : 17.76,
+          "gross_yield_pct" : 17.59,
           "avg_acidity" : 0.47,
           "supplier_count" : 26
         },
@@ -3056,11 +3056,11 @@
           "batch_count" : 16,
           "incoming_kg" : 101805.0,
           "pressed_kg" : 100816.3,
-          "oil_kg" : 18643.7,
+          "oil_kg" : 17077.6,
           "pomace_kg" : 72826.2,
-          "residue_kg" : 302.3,
-          "yield_pct" : 18.49,
-          "gross_yield_pct" : 18.31,
+          "residue_kg" : 302.4,
+          "yield_pct" : 16.94,
+          "gross_yield_pct" : 16.77,
           "avg_acidity" : 0.53
         }, {
           "supplier_id" : 3,
@@ -3070,11 +3070,11 @@
           "batch_count" : 17,
           "incoming_kg" : 87165.0,
           "pressed_kg" : 86354.3,
-          "oil_kg" : 16956.7,
+          "oil_kg" : 15532.3,
           "pomace_kg" : 61553.7,
           "residue_kg" : 261.3,
-          "yield_pct" : 19.64,
-          "gross_yield_pct" : 19.45,
+          "yield_pct" : 17.99,
+          "gross_yield_pct" : 17.82,
           "avg_acidity" : 0.43
         }, {
           "supplier_id" : 23,
@@ -3084,11 +3084,11 @@
           "batch_count" : 14,
           "incoming_kg" : 80600.0,
           "pressed_kg" : 79823.1,
-          "oil_kg" : 15043.8,
+          "oil_kg" : 13780.1,
           "pomace_kg" : 56874.0,
           "residue_kg" : 212.0,
-          "yield_pct" : 18.85,
-          "gross_yield_pct" : 18.66,
+          "yield_pct" : 17.26,
+          "gross_yield_pct" : 17.1,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 26,
@@ -3098,11 +3098,11 @@
           "batch_count" : 14,
           "incoming_kg" : 75110.0,
           "pressed_kg" : 74309.3,
-          "oil_kg" : 14779.7,
+          "oil_kg" : 13538.2,
           "pomace_kg" : 52244.2,
           "residue_kg" : 247.2,
-          "yield_pct" : 19.89,
-          "gross_yield_pct" : 19.68,
+          "yield_pct" : 18.22,
+          "gross_yield_pct" : 18.02,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 6,
@@ -3112,11 +3112,11 @@
           "batch_count" : 12,
           "incoming_kg" : 73410.0,
           "pressed_kg" : 72743.6,
-          "oil_kg" : 13816.3,
+          "oil_kg" : 12655.7,
           "pomace_kg" : 52015.0,
           "residue_kg" : 250.2,
-          "yield_pct" : 18.99,
-          "gross_yield_pct" : 18.82,
+          "yield_pct" : 17.4,
+          "gross_yield_pct" : 17.24,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 1,
@@ -3126,11 +3126,11 @@
           "batch_count" : 12,
           "incoming_kg" : 72955.0,
           "pressed_kg" : 72333.3,
-          "oil_kg" : 13848.2,
+          "oil_kg" : 12684.9,
           "pomace_kg" : 51370.1,
           "residue_kg" : 201.9,
-          "yield_pct" : 19.14,
-          "gross_yield_pct" : 18.98,
+          "yield_pct" : 17.54,
+          "gross_yield_pct" : 17.39,
           "avg_acidity" : 0.5
         }, {
           "supplier_id" : 10,
@@ -3140,11 +3140,11 @@
           "batch_count" : 15,
           "incoming_kg" : 72075.0,
           "pressed_kg" : 71315.7,
-          "oil_kg" : 13199.6,
+          "oil_kg" : 12090.9,
           "pomace_kg" : 49834.1,
-          "residue_kg" : 239.5,
-          "yield_pct" : 18.51,
-          "gross_yield_pct" : 18.31,
+          "residue_kg" : 239.6,
+          "yield_pct" : 16.95,
+          "gross_yield_pct" : 16.78,
           "avg_acidity" : 0.46
         }, {
           "supplier_id" : 22,
@@ -3154,11 +3154,11 @@
           "batch_count" : 13,
           "incoming_kg" : 71440.0,
           "pressed_kg" : 70750.0,
-          "oil_kg" : 14261.9,
+          "oil_kg" : 13063.9,
           "pomace_kg" : 50603.1,
           "residue_kg" : 236.0,
-          "yield_pct" : 20.16,
-          "gross_yield_pct" : 19.96,
+          "yield_pct" : 18.46,
+          "gross_yield_pct" : 18.29,
           "avg_acidity" : 0.46
         }, {
           "supplier_id" : 24,
@@ -3168,11 +3168,11 @@
           "batch_count" : 11,
           "incoming_kg" : 65390.0,
           "pressed_kg" : 64669.2,
-          "oil_kg" : 12169.3,
+          "oil_kg" : 11147.1,
           "pomace_kg" : 46851.4,
           "residue_kg" : 192.3,
-          "yield_pct" : 18.82,
-          "gross_yield_pct" : 18.61,
+          "yield_pct" : 17.24,
+          "gross_yield_pct" : 17.05,
           "avg_acidity" : 0.51
         }, {
           "supplier_id" : 20,
@@ -3182,11 +3182,11 @@
           "batch_count" : 12,
           "incoming_kg" : 64120.0,
           "pressed_kg" : 63544.4,
-          "oil_kg" : 12413.8,
+          "oil_kg" : 11371.1,
           "pomace_kg" : 45076.8,
           "residue_kg" : 202.4,
-          "yield_pct" : 19.54,
-          "gross_yield_pct" : 19.36,
+          "yield_pct" : 17.89,
+          "gross_yield_pct" : 17.73,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 4,
@@ -3196,11 +3196,11 @@
           "batch_count" : 10,
           "incoming_kg" : 62300.0,
           "pressed_kg" : 61739.5,
-          "oil_kg" : 12535.2,
+          "oil_kg" : 11482.2,
           "pomace_kg" : 43539.8,
           "residue_kg" : 229.9,
-          "yield_pct" : 20.3,
-          "gross_yield_pct" : 20.12,
+          "yield_pct" : 18.6,
+          "gross_yield_pct" : 18.43,
           "avg_acidity" : 0.49
         }, {
           "supplier_id" : 16,
@@ -3210,11 +3210,11 @@
           "batch_count" : 12,
           "incoming_kg" : 62185.0,
           "pressed_kg" : 61531.9,
-          "oil_kg" : 11432.0,
+          "oil_kg" : 10471.7,
           "pomace_kg" : 43483.4,
           "residue_kg" : 167.4,
-          "yield_pct" : 18.58,
-          "gross_yield_pct" : 18.38,
+          "yield_pct" : 17.02,
+          "gross_yield_pct" : 16.84,
           "avg_acidity" : 0.45
         }, {
           "supplier_id" : 7,
@@ -3224,11 +3224,11 @@
           "batch_count" : 14,
           "incoming_kg" : 61545.0,
           "pressed_kg" : 60943.8,
-          "oil_kg" : 11857.3,
+          "oil_kg" : 10861.3,
           "pomace_kg" : 44420.5,
           "residue_kg" : 196.8,
-          "yield_pct" : 19.46,
-          "gross_yield_pct" : 19.27,
+          "yield_pct" : 17.82,
+          "gross_yield_pct" : 17.65,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 14,
@@ -3238,11 +3238,11 @@
           "batch_count" : 12,
           "incoming_kg" : 60815.0,
           "pressed_kg" : 60238.5,
-          "oil_kg" : 12279.7,
+          "oil_kg" : 11248.3,
           "pomace_kg" : 43356.5,
           "residue_kg" : 208.8,
-          "yield_pct" : 20.39,
-          "gross_yield_pct" : 20.19,
+          "yield_pct" : 18.67,
+          "gross_yield_pct" : 18.5,
           "avg_acidity" : 0.5
         }, {
           "supplier_id" : 11,
@@ -3252,11 +3252,11 @@
           "batch_count" : 10,
           "incoming_kg" : 60190.0,
           "pressed_kg" : 59566.8,
-          "oil_kg" : 12028.5,
+          "oil_kg" : 11018.1,
           "pomace_kg" : 42514.0,
           "residue_kg" : 191.6,
-          "yield_pct" : 20.19,
-          "gross_yield_pct" : 19.98,
+          "yield_pct" : 18.5,
+          "gross_yield_pct" : 18.31,
           "avg_acidity" : 0.51
         }, {
           "supplier_id" : 19,
@@ -3266,11 +3266,11 @@
           "batch_count" : 11,
           "incoming_kg" : 58080.0,
           "pressed_kg" : 57589.3,
-          "oil_kg" : 11225.6,
+          "oil_kg" : 10282.7,
           "pomace_kg" : 41307.0,
           "residue_kg" : 184.8,
-          "yield_pct" : 19.49,
-          "gross_yield_pct" : 19.33,
+          "yield_pct" : 17.86,
+          "gross_yield_pct" : 17.7,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 5,
@@ -3280,11 +3280,11 @@
           "batch_count" : 12,
           "incoming_kg" : 56380.0,
           "pressed_kg" : 55831.2,
-          "oil_kg" : 11080.0,
+          "oil_kg" : 10149.3,
           "pomace_kg" : 39993.0,
-          "residue_kg" : 147.4,
-          "yield_pct" : 19.85,
-          "gross_yield_pct" : 19.65,
+          "residue_kg" : 147.5,
+          "yield_pct" : 18.18,
+          "gross_yield_pct" : 18.0,
           "avg_acidity" : 0.56
         }, {
           "supplier_id" : 17,
@@ -3294,11 +3294,11 @@
           "batch_count" : 9,
           "incoming_kg" : 52805.0,
           "pressed_kg" : 52276.9,
-          "oil_kg" : 9927.6,
+          "oil_kg" : 9093.7,
           "pomace_kg" : 37503.8,
           "residue_kg" : 155.8,
-          "yield_pct" : 18.99,
-          "gross_yield_pct" : 18.8,
+          "yield_pct" : 17.4,
+          "gross_yield_pct" : 17.22,
           "avg_acidity" : 0.55
         }, {
           "supplier_id" : 2,
@@ -3308,11 +3308,11 @@
           "batch_count" : 8,
           "incoming_kg" : 48075.0,
           "pressed_kg" : 47555.7,
-          "oil_kg" : 9354.8,
+          "oil_kg" : 8569.0,
           "pomace_kg" : 32949.4,
           "residue_kg" : 137.6,
-          "yield_pct" : 19.67,
-          "gross_yield_pct" : 19.46,
+          "yield_pct" : 18.02,
+          "gross_yield_pct" : 17.82,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 15,
@@ -3322,11 +3322,11 @@
           "batch_count" : 10,
           "incoming_kg" : 47920.0,
           "pressed_kg" : 47482.9,
-          "oil_kg" : 9421.3,
+          "oil_kg" : 8629.9,
           "pomace_kg" : 33469.6,
           "residue_kg" : 138.0,
-          "yield_pct" : 19.84,
-          "gross_yield_pct" : 19.66,
+          "yield_pct" : 18.17,
+          "gross_yield_pct" : 18.01,
           "avg_acidity" : 0.36
         }, {
           "supplier_id" : 12,
@@ -3336,11 +3336,11 @@
           "batch_count" : 9,
           "incoming_kg" : 45325.0,
           "pressed_kg" : 44861.8,
-          "oil_kg" : 8581.1,
+          "oil_kg" : 7860.3,
           "pomace_kg" : 31991.8,
-          "residue_kg" : 142.1,
-          "yield_pct" : 19.13,
-          "gross_yield_pct" : 18.93,
+          "residue_kg" : 142.2,
+          "yield_pct" : 17.52,
+          "gross_yield_pct" : 17.34,
           "avg_acidity" : 0.54
         }, {
           "supplier_id" : 21,
@@ -3350,11 +3350,11 @@
           "batch_count" : 7,
           "incoming_kg" : 45085.0,
           "pressed_kg" : 44707.7,
-          "oil_kg" : 8965.7,
+          "oil_kg" : 8212.6,
           "pomace_kg" : 32199.0,
-          "residue_kg" : 117.8,
-          "yield_pct" : 20.05,
-          "gross_yield_pct" : 19.89,
+          "residue_kg" : 117.9,
+          "yield_pct" : 18.37,
+          "gross_yield_pct" : 18.22,
           "avg_acidity" : 0.68
         }, {
           "supplier_id" : 25,
@@ -3364,11 +3364,11 @@
           "batch_count" : 7,
           "incoming_kg" : 44345.0,
           "pressed_kg" : 43916.5,
-          "oil_kg" : 8771.6,
+          "oil_kg" : 8034.8,
           "pomace_kg" : 31206.7,
           "residue_kg" : 151.4,
-          "yield_pct" : 19.97,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.3,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.38
         }, {
           "supplier_id" : 27,
@@ -3378,11 +3378,11 @@
           "batch_count" : 8,
           "incoming_kg" : 42975.0,
           "pressed_kg" : 42579.8,
-          "oil_kg" : 7891.1,
+          "oil_kg" : 7228.2,
           "pomace_kg" : 29824.5,
           "residue_kg" : 102.1,
-          "yield_pct" : 18.53,
-          "gross_yield_pct" : 18.36,
+          "yield_pct" : 16.98,
+          "gross_yield_pct" : 16.82,
           "avg_acidity" : 0.51
         }, {
           "supplier_id" : 8,
@@ -3392,11 +3392,11 @@
           "batch_count" : 7,
           "incoming_kg" : 41385.0,
           "pressed_kg" : 41000.1,
-          "oil_kg" : 7691.2,
+          "oil_kg" : 7045.1,
           "pomace_kg" : 29016.7,
-          "residue_kg" : 123.2,
-          "yield_pct" : 18.76,
-          "gross_yield_pct" : 18.58,
+          "residue_kg" : 123.3,
+          "yield_pct" : 17.18,
+          "gross_yield_pct" : 17.02,
           "avg_acidity" : 0.63
         }, {
           "supplier_id" : 18,
@@ -3406,11 +3406,11 @@
           "batch_count" : 7,
           "incoming_kg" : 38920.0,
           "pressed_kg" : 38553.5,
-          "oil_kg" : 7602.1,
+          "oil_kg" : 6963.5,
           "pomace_kg" : 27728.4,
           "residue_kg" : 124.2,
-          "yield_pct" : 19.72,
-          "gross_yield_pct" : 19.53,
+          "yield_pct" : 18.06,
+          "gross_yield_pct" : 17.89,
           "avg_acidity" : 0.42
         } ]
       }
@@ -3428,11 +3428,11 @@
           "batch_count" : 83,
           "incoming_kg" : 450835.0,
           "pressed_kg" : 446501.9,
-          "oil_kg" : 86616.3,
+          "oil_kg" : 79340.6,
           "pomace_kg" : 317219.2,
-          "residue_kg" : 1515.5,
-          "yield_pct" : 19.4,
-          "gross_yield_pct" : 19.21,
+          "residue_kg" : 1515.7,
+          "yield_pct" : 17.77,
+          "gross_yield_pct" : 17.6,
           "avg_acidity" : 0.41,
           "supplier_count" : 26
         },
@@ -3444,11 +3444,11 @@
           "batch_count" : 8,
           "incoming_kg" : 45925.0,
           "pressed_kg" : 45520.9,
-          "oil_kg" : 9026.0,
+          "oil_kg" : 8267.8,
           "pomace_kg" : 32690.6,
           "residue_kg" : 139.9,
-          "yield_pct" : 19.83,
-          "gross_yield_pct" : 19.65,
+          "yield_pct" : 18.16,
+          "gross_yield_pct" : 18.0,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 26,
@@ -3458,11 +3458,11 @@
           "batch_count" : 5,
           "incoming_kg" : 29800.0,
           "pressed_kg" : 29491.2,
-          "oil_kg" : 6058.1,
+          "oil_kg" : 5549.2,
           "pomace_kg" : 20289.9,
           "residue_kg" : 118.1,
-          "yield_pct" : 20.54,
-          "gross_yield_pct" : 20.33,
+          "yield_pct" : 18.82,
+          "gross_yield_pct" : 18.62,
           "avg_acidity" : 0.38
         }, {
           "supplier_id" : 7,
@@ -3472,11 +3472,11 @@
           "batch_count" : 5,
           "incoming_kg" : 26285.0,
           "pressed_kg" : 25982.9,
-          "oil_kg" : 5046.4,
+          "oil_kg" : 4622.5,
           "pomace_kg" : 19193.7,
-          "residue_kg" : 86.1,
-          "yield_pct" : 19.42,
-          "gross_yield_pct" : 19.2,
+          "residue_kg" : 86.2,
+          "yield_pct" : 17.79,
+          "gross_yield_pct" : 17.59,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 18,
@@ -3486,11 +3486,11 @@
           "batch_count" : 4,
           "incoming_kg" : 25225.0,
           "pressed_kg" : 24984.5,
-          "oil_kg" : 4759.2,
+          "oil_kg" : 4359.4,
           "pomace_kg" : 17951.0,
           "residue_kg" : 89.3,
-          "yield_pct" : 19.05,
-          "gross_yield_pct" : 18.87,
+          "yield_pct" : 17.45,
+          "gross_yield_pct" : 17.28,
           "avg_acidity" : 0.38
         }, {
           "supplier_id" : 23,
@@ -3500,11 +3500,11 @@
           "batch_count" : 4,
           "incoming_kg" : 25165.0,
           "pressed_kg" : 24905.7,
-          "oil_kg" : 4938.0,
+          "oil_kg" : 4523.2,
           "pomace_kg" : 17604.2,
           "residue_kg" : 101.8,
-          "yield_pct" : 19.83,
-          "gross_yield_pct" : 19.62,
+          "yield_pct" : 18.16,
+          "gross_yield_pct" : 17.97,
           "avg_acidity" : 0.43
         }, {
           "supplier_id" : 22,
@@ -3514,11 +3514,11 @@
           "batch_count" : 5,
           "incoming_kg" : 25030.0,
           "pressed_kg" : 24760.3,
-          "oil_kg" : 4957.9,
+          "oil_kg" : 4541.4,
           "pomace_kg" : 17560.3,
           "residue_kg" : 95.9,
-          "yield_pct" : 20.02,
-          "gross_yield_pct" : 19.81,
+          "yield_pct" : 18.34,
+          "gross_yield_pct" : 18.14,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 13,
@@ -3528,11 +3528,11 @@
           "batch_count" : 4,
           "incoming_kg" : 24315.0,
           "pressed_kg" : 24114.3,
-          "oil_kg" : 4589.7,
+          "oil_kg" : 4204.2,
           "pomace_kg" : 17395.1,
-          "residue_kg" : 82.8,
-          "yield_pct" : 19.03,
-          "gross_yield_pct" : 18.88,
+          "residue_kg" : 82.9,
+          "yield_pct" : 17.43,
+          "gross_yield_pct" : 17.29,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 27,
@@ -3542,11 +3542,11 @@
           "batch_count" : 3,
           "incoming_kg" : 23810.0,
           "pressed_kg" : 23597.2,
-          "oil_kg" : 4396.7,
+          "oil_kg" : 4027.4,
           "pomace_kg" : 16738.2,
           "residue_kg" : 60.4,
-          "yield_pct" : 18.63,
-          "gross_yield_pct" : 18.47,
+          "yield_pct" : 17.07,
+          "gross_yield_pct" : 16.91,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 24,
@@ -3556,11 +3556,11 @@
           "batch_count" : 4,
           "incoming_kg" : 23445.0,
           "pressed_kg" : 23217.0,
-          "oil_kg" : 4287.3,
+          "oil_kg" : 3927.2,
           "pomace_kg" : 16847.8,
           "residue_kg" : 66.1,
-          "yield_pct" : 18.47,
-          "gross_yield_pct" : 18.29,
+          "yield_pct" : 16.92,
+          "gross_yield_pct" : 16.75,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 4,
@@ -3570,11 +3570,11 @@
           "batch_count" : 4,
           "incoming_kg" : 22725.0,
           "pressed_kg" : 22497.4,
-          "oil_kg" : 4653.8,
+          "oil_kg" : 4262.9,
           "pomace_kg" : 15596.4,
-          "residue_kg" : 92.1,
-          "yield_pct" : 20.69,
-          "gross_yield_pct" : 20.48,
+          "residue_kg" : 92.2,
+          "yield_pct" : 18.95,
+          "gross_yield_pct" : 18.76,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 10,
@@ -3584,11 +3584,11 @@
           "batch_count" : 4,
           "incoming_kg" : 21640.0,
           "pressed_kg" : 21476.5,
-          "oil_kg" : 3921.6,
+          "oil_kg" : 3592.2,
           "pomace_kg" : 14950.7,
           "residue_kg" : 77.6,
-          "yield_pct" : 18.26,
-          "gross_yield_pct" : 18.12,
+          "yield_pct" : 16.73,
+          "gross_yield_pct" : 16.6,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 2,
@@ -3598,11 +3598,11 @@
           "batch_count" : 3,
           "incoming_kg" : 21310.0,
           "pressed_kg" : 21071.9,
-          "oil_kg" : 3994.8,
+          "oil_kg" : 3659.3,
           "pomace_kg" : 14637.5,
           "residue_kg" : 60.6,
-          "yield_pct" : 18.96,
-          "gross_yield_pct" : 18.75,
+          "yield_pct" : 17.37,
+          "gross_yield_pct" : 17.17,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 11,
@@ -3612,11 +3612,11 @@
           "batch_count" : 3,
           "incoming_kg" : 20210.0,
           "pressed_kg" : 19941.3,
-          "oil_kg" : 4130.4,
+          "oil_kg" : 3783.4,
           "pomace_kg" : 14391.8,
           "residue_kg" : 80.9,
-          "yield_pct" : 20.71,
-          "gross_yield_pct" : 20.44,
+          "yield_pct" : 18.97,
+          "gross_yield_pct" : 18.72,
           "avg_acidity" : 0.4
         }, {
           "supplier_id" : 14,
@@ -3626,11 +3626,11 @@
           "batch_count" : 3,
           "incoming_kg" : 15630.0,
           "pressed_kg" : 15473.7,
-          "oil_kg" : 3049.3,
+          "oil_kg" : 2793.1,
           "pomace_kg" : 10944.9,
           "residue_kg" : 47.3,
-          "yield_pct" : 19.71,
-          "gross_yield_pct" : 19.51,
+          "yield_pct" : 18.05,
+          "gross_yield_pct" : 17.87,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 1,
@@ -3640,11 +3640,11 @@
           "batch_count" : 3,
           "incoming_kg" : 14280.0,
           "pressed_kg" : 14183.3,
-          "oil_kg" : 2866.5,
+          "oil_kg" : 2625.7,
           "pomace_kg" : 9993.9,
           "residue_kg" : 50.3,
-          "yield_pct" : 20.21,
-          "gross_yield_pct" : 20.07,
+          "yield_pct" : 18.51,
+          "gross_yield_pct" : 18.39,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 8,
@@ -3654,11 +3654,11 @@
           "batch_count" : 2,
           "incoming_kg" : 13930.0,
           "pressed_kg" : 13790.5,
-          "oil_kg" : 2595.7,
+          "oil_kg" : 2377.7,
           "pomace_kg" : 9513.3,
           "residue_kg" : 35.0,
-          "yield_pct" : 18.82,
-          "gross_yield_pct" : 18.63,
+          "yield_pct" : 17.24,
+          "gross_yield_pct" : 17.07,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 16,
@@ -3668,11 +3668,11 @@
           "batch_count" : 2,
           "incoming_kg" : 13395.0,
           "pressed_kg" : 13270.3,
-          "oil_kg" : 2399.6,
+          "oil_kg" : 2198.1,
           "pomace_kg" : 9176.3,
           "residue_kg" : 35.4,
-          "yield_pct" : 18.08,
-          "gross_yield_pct" : 17.91,
+          "yield_pct" : 16.56,
+          "gross_yield_pct" : 16.41,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 20,
@@ -3682,11 +3682,11 @@
           "batch_count" : 3,
           "incoming_kg" : 11740.0,
           "pressed_kg" : 11635.7,
-          "oil_kg" : 2134.2,
+          "oil_kg" : 1954.9,
           "pomace_kg" : 8311.3,
           "residue_kg" : 34.8,
-          "yield_pct" : 18.34,
-          "gross_yield_pct" : 18.18,
+          "yield_pct" : 16.8,
+          "gross_yield_pct" : 16.65,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 19,
@@ -3696,11 +3696,11 @@
           "batch_count" : 3,
           "incoming_kg" : 10200.0,
           "pressed_kg" : 10124.2,
-          "oil_kg" : 1955.9,
+          "oil_kg" : 1791.6,
           "pomace_kg" : 7156.5,
           "residue_kg" : 32.3,
-          "yield_pct" : 19.32,
-          "gross_yield_pct" : 19.18,
+          "yield_pct" : 17.7,
+          "gross_yield_pct" : 17.56,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 12,
@@ -3710,11 +3710,11 @@
           "batch_count" : 2,
           "incoming_kg" : 8535.0,
           "pressed_kg" : 8476.3,
-          "oil_kg" : 1552.3,
+          "oil_kg" : 1421.9,
           "pomace_kg" : 5948.7,
           "residue_kg" : 34.0,
-          "yield_pct" : 18.31,
-          "gross_yield_pct" : 18.19,
+          "yield_pct" : 16.78,
+          "gross_yield_pct" : 16.66,
           "avg_acidity" : 0.67
         }, {
           "supplier_id" : 17,
@@ -3724,11 +3724,11 @@
           "batch_count" : 2,
           "incoming_kg" : 7440.0,
           "pressed_kg" : 7355.5,
-          "oil_kg" : 1329.6,
+          "oil_kg" : 1217.9,
           "pomace_kg" : 5313.1,
           "residue_kg" : 20.7,
-          "yield_pct" : 18.08,
-          "gross_yield_pct" : 17.87,
+          "yield_pct" : 16.56,
+          "gross_yield_pct" : 16.37,
           "avg_acidity" : 0.41
         }, {
           "supplier_id" : 25,
@@ -3738,11 +3738,11 @@
           "batch_count" : 1,
           "incoming_kg" : 6285.0,
           "pressed_kg" : 6247.6,
-          "oil_kg" : 1235.4,
+          "oil_kg" : 1131.6,
           "pomace_kg" : 4529.4,
           "residue_kg" : 27.8,
-          "yield_pct" : 19.77,
-          "gross_yield_pct" : 19.66,
+          "yield_pct" : 18.11,
+          "gross_yield_pct" : 18.01,
           "avg_acidity" : 0.42
         }, {
           "supplier_id" : 15,
@@ -3752,11 +3752,11 @@
           "batch_count" : 2,
           "incoming_kg" : 6015.0,
           "pressed_kg" : 5969.2,
-          "oil_kg" : 1113.7,
+          "oil_kg" : 1020.1,
           "pomace_kg" : 4353.3,
           "residue_kg" : 17.4,
-          "yield_pct" : 18.66,
-          "gross_yield_pct" : 18.51,
+          "yield_pct" : 17.09,
+          "gross_yield_pct" : 16.96,
           "avg_acidity" : 0.39
         }, {
           "supplier_id" : 5,
@@ -3766,11 +3766,11 @@
           "batch_count" : 2,
           "incoming_kg" : 4275.0,
           "pressed_kg" : 4235.9,
-          "oil_kg" : 783.1,
+          "oil_kg" : 717.3,
           "pomace_kg" : 3076.9,
           "residue_kg" : 12.5,
-          "yield_pct" : 18.49,
-          "gross_yield_pct" : 18.32,
+          "yield_pct" : 16.93,
+          "gross_yield_pct" : 16.78,
           "avg_acidity" : 0.37
         }, {
           "supplier_id" : 21,
@@ -3780,11 +3780,11 @@
           "batch_count" : 1,
           "incoming_kg" : 2185.0,
           "pressed_kg" : 2160.1,
-          "oil_kg" : 432.2,
+          "oil_kg" : 395.9,
           "pomace_kg" : 1610.4,
           "residue_kg" : 8.5,
-          "yield_pct" : 20.01,
-          "gross_yield_pct" : 19.78,
+          "yield_pct" : 18.33,
+          "gross_yield_pct" : 18.12,
           "avg_acidity" : 0.44
         }, {
           "supplier_id" : 6,
@@ -3794,11 +3794,11 @@
           "batch_count" : 1,
           "incoming_kg" : 2040.0,
           "pressed_kg" : 2018.5,
-          "oil_kg" : 409.1,
+          "oil_kg" : 374.7,
           "pomace_kg" : 1444.0,
           "residue_kg" : 7.9,
-          "yield_pct" : 20.27,
-          "gross_yield_pct" : 20.05,
+          "yield_pct" : 18.56,
+          "gross_yield_pct" : 18.37,
           "avg_acidity" : 0.4
         } ]
       }
@@ -3813,8 +3813,8 @@
     "response" : {
       "data" : {
         "summary" : {
-          "bottle_count" : 40380,
-          "litres" : 26803.5,
+          "bottle_count" : 40386,
+          "litres" : 26809.5,
           "order_count" : 28,
           "customer_count" : 14
         },
@@ -3829,8 +3829,8 @@
           "customer_id" : 1,
           "name" : "Yılmaz Gıda A.Ş.",
           "order_count" : 4,
-          "bottle_count" : 5250,
-          "litres" : 4074.0,
+          "bottle_count" : 5256,
+          "litres" : 4080.0,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 9,
@@ -3850,8 +3850,8 @@
           "customer_id" : 11,
           "name" : "Polat Pide & Kebap",
           "order_count" : 3,
-          "bottle_count" : 1908,
-          "litres" : 2095.5,
+          "bottle_count" : 1902,
+          "litres" : 2089.5,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 7,
@@ -3913,8 +3913,8 @@
           "customer_id" : 14,
           "name" : "Doğan Gurme",
           "order_count" : 1,
-          "bottle_count" : 228,
-          "litres" : 159.0,
+          "bottle_count" : 234,
+          "litres" : 165.0,
           "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         } ]
       }
@@ -3929,8 +3929,8 @@
     "response" : {
       "data" : {
         "summary" : {
-          "bottle_count" : 130500,
-          "litres" : 74608.5,
+          "bottle_count" : 131844,
+          "litres" : 74611.5,
           "order_count" : 106,
           "customer_count" : 16
         },
@@ -3945,8 +3945,8 @@
           "customer_id" : 4,
           "name" : "Zeynep Arslan",
           "order_count" : 11,
-          "bottle_count" : 16818,
-          "litres" : 7680.0,
+          "bottle_count" : 16092,
+          "litres" : 7782.0,
           "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         }, {
           "customer_id" : 12,
@@ -3963,11 +3963,18 @@
           "litres" : 6526.5,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
+          "customer_id" : 2,
+          "name" : "Ege Lezzet Market",
+          "order_count" : 10,
+          "bottle_count" : 11052,
+          "litres" : 5548.5,
+          "top_product" : "Naturel Sızma Gemlik 0.8 1L"
+        }, {
           "customer_id" : 1,
           "name" : "Yılmaz Gıda A.Ş.",
           "order_count" : 6,
-          "bottle_count" : 8172,
-          "litres" : 5479.5,
+          "bottle_count" : 8178,
+          "litres" : 5485.5,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 7,
@@ -3976,13 +3983,6 @@
           "bottle_count" : 11664,
           "litres" : 5478.0,
           "top_product" : "Naturel Sızma Gemlik 0.8 500ml"
-        }, {
-          "customer_id" : 2,
-          "name" : "Ege Lezzet Market",
-          "order_count" : 10,
-          "bottle_count" : 10242,
-          "litres" : 5346.0,
-          "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         }, {
           "customer_id" : 16,
           "name" : "Seda Kurt",
@@ -3994,23 +3994,23 @@
           "customer_id" : 11,
           "name" : "Polat Pide & Kebap",
           "order_count" : 6,
-          "bottle_count" : 6798,
-          "litres" : 4023.0,
+          "bottle_count" : 6792,
+          "litres" : 4017.0,
           "top_product" : "Naturel Sızma Gemlik 0.8 500ml"
         }, {
           "customer_id" : 13,
           "name" : "Güneş Otelcilik",
           "order_count" : 5,
-          "bottle_count" : 6066,
-          "litres" : 3874.5,
+          "bottle_count" : 6090,
+          "litres" : 3880.5,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 14,
           "name" : "Doğan Gurme",
           "order_count" : 7,
-          "bottle_count" : 8220,
-          "litres" : 3559.5,
-          "top_product" : "Naturel Sızma Gemlik 0.8 1L"
+          "bottle_count" : 8736,
+          "litres" : 3378.0,
+          "top_product" : "Naturel Sızma Gemlik 0.8 250ml"
         }, {
           "customer_id" : 9,
           "name" : "Şahin Kurumsal Hediye",
@@ -4019,19 +4019,19 @@
           "litres" : 2871.0,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
-          "customer_id" : 15,
-          "name" : "Ege Catering",
-          "order_count" : 6,
-          "bottle_count" : 5790,
-          "litres" : 2728.5,
-          "top_product" : "Naturel Sızma Gemlik 0.8 1L"
-        }, {
           "customer_id" : 8,
           "name" : "Kuşadası Resort Otel",
           "order_count" : 3,
-          "bottle_count" : 6114,
-          "litres" : 2683.5,
+          "bottle_count" : 6036,
+          "litres" : 2605.5,
           "top_product" : "Naturel Sızma Gemlik 0.8 500ml"
+        }, {
+          "customer_id" : 15,
+          "name" : "Ege Catering",
+          "order_count" : 6,
+          "bottle_count" : 6264,
+          "litres" : 2604.0,
+          "top_product" : "Naturel Sızma Gemlik 0.3 500ml"
         }, {
           "customer_id" : 3,
           "name" : "Demir Otelcilik",
@@ -4043,8 +4043,8 @@
           "customer_id" : 6,
           "name" : "Aydın Şarküteri",
           "order_count" : 6,
-          "bottle_count" : 1614,
-          "litres" : 873.0,
+          "bottle_count" : 1938,
+          "litres" : 949.5,
           "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         } ]
       }
@@ -4059,7 +4059,7 @@
     "response" : {
       "data" : {
         "summary" : {
-          "bottle_count" : 457308,
+          "bottle_count" : 458646,
           "litres" : 269587.5,
           "order_count" : 330,
           "customer_count" : 16
@@ -4068,8 +4068,8 @@
           "customer_id" : 15,
           "name" : "Ege Catering",
           "order_count" : 23,
-          "bottle_count" : 32748,
-          "litres" : 21613.5,
+          "bottle_count" : 33216,
+          "litres" : 21486.0,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 10,
@@ -4082,22 +4082,22 @@
           "customer_id" : 5,
           "name" : "Koç Restoran Grubu",
           "order_count" : 25,
-          "bottle_count" : 31044,
-          "litres" : 18519.0,
+          "bottle_count" : 31038,
+          "litres" : 18516.0,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 8,
           "name" : "Kuşadası Resort Otel",
           "order_count" : 21,
-          "bottle_count" : 32706,
-          "litres" : 18441.0,
+          "bottle_count" : 32628,
+          "litres" : 18363.0,
           "top_product" : "Naturel Sızma Ayvalık 0.4 500ml"
         }, {
           "customer_id" : 4,
           "name" : "Zeynep Arslan",
           "order_count" : 23,
-          "bottle_count" : 31872,
-          "litres" : 18232.5,
+          "bottle_count" : 31146,
+          "litres" : 18334.5,
           "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         }, {
           "customer_id" : 16,
@@ -4124,8 +4124,8 @@
           "customer_id" : 2,
           "name" : "Ege Lezzet Market",
           "order_count" : 21,
-          "bottle_count" : 26310,
-          "litres" : 17629.5,
+          "bottle_count" : 27120,
+          "litres" : 17832.0,
           "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         }, {
           "customer_id" : 12,
@@ -4145,36 +4145,36 @@
           "customer_id" : 13,
           "name" : "Güneş Otelcilik",
           "order_count" : 20,
-          "bottle_count" : 27078,
-          "litres" : 15652.5,
+          "bottle_count" : 27108,
+          "litres" : 15661.5,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 1,
           "name" : "Yılmaz Gıda A.Ş.",
           "order_count" : 18,
-          "bottle_count" : 27342,
-          "litres" : 15274.5,
+          "bottle_count" : 27348,
+          "litres" : 15280.5,
           "top_product" : "Naturel Sızma Gemlik 0.8 1L"
         }, {
           "customer_id" : 11,
           "name" : "Polat Pide & Kebap",
           "order_count" : 21,
-          "bottle_count" : 26676,
-          "litres" : 14148.0,
+          "bottle_count" : 26670,
+          "litres" : 14142.0,
           "top_product" : "Naturel Sızma Gemlik 0.8 500ml"
         }, {
           "customer_id" : 6,
           "name" : "Aydın Şarküteri",
           "order_count" : 21,
-          "bottle_count" : 19452,
-          "litres" : 12469.5,
+          "bottle_count" : 19776,
+          "litres" : 12546.0,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         }, {
           "customer_id" : 14,
           "name" : "Doğan Gurme",
           "order_count" : 14,
-          "bottle_count" : 18216,
-          "litres" : 11551.5,
+          "bottle_count" : 18732,
+          "litres" : 11370.0,
           "top_product" : "Naturel Sızma Gemlik 0.3 5L"
         } ]
       }
@@ -4194,8 +4194,8 @@
         },
         "bucket" : "week",
         "summary" : {
-          "bottle_count" : 5250,
-          "litres" : 4074.0,
+          "bottle_count" : 5256,
+          "litres" : 4080.0,
           "order_count" : 4
         },
         "previous" : {
@@ -4218,8 +4218,8 @@
         }, {
           "key" : "2026-10-12",
           "start" : "2026-10-12",
-          "bottle_count" : 4812,
-          "litres" : 3636.0,
+          "bottle_count" : 4818,
+          "litres" : 3642.0,
           "order_count" : 3
         }, {
           "key" : "2026-10-19",
@@ -4247,8 +4247,8 @@
         }, {
           "finished_product_id" : 12,
           "name" : "Naturel Sızma Ayvalık 0.4 1L",
-          "bottle_count" : 462,
-          "litres" : 462.0
+          "bottle_count" : 468,
+          "litres" : 468.0
         }, {
           "finished_product_id" : 4,
           "name" : "Naturel Sızma Gemlik 0.3 1L",
@@ -4297,8 +4297,8 @@
         },
         "bucket" : "week",
         "summary" : {
-          "bottle_count" : 8172,
-          "litres" : 5479.5,
+          "bottle_count" : 8178,
+          "litres" : 5485.5,
           "order_count" : 6
         },
         "previous" : {
@@ -4393,8 +4393,8 @@
         }, {
           "key" : "2026-10-12",
           "start" : "2026-10-12",
-          "bottle_count" : 4812,
-          "litres" : 3636.0,
+          "bottle_count" : 4818,
+          "litres" : 3642.0,
           "order_count" : 3
         }, {
           "key" : "2026-10-19",
@@ -4433,8 +4433,8 @@
         }, {
           "finished_product_id" : 12,
           "name" : "Naturel Sızma Ayvalık 0.4 1L",
-          "bottle_count" : 804,
-          "litres" : 804.0
+          "bottle_count" : 810,
+          "litres" : 810.0
         }, {
           "finished_product_id" : 4,
           "name" : "Naturel Sızma Gemlik 0.3 1L",
@@ -4478,8 +4478,8 @@
         },
         "bucket" : "month",
         "summary" : {
-          "bottle_count" : 27342,
-          "litres" : 15274.5,
+          "bottle_count" : 27348,
+          "litres" : 15280.5,
           "order_count" : 18
         },
         "previous" : {
@@ -4556,8 +4556,8 @@
         }, {
           "key" : "2026-10",
           "start" : "2026-10-01",
-          "bottle_count" : 5250,
-          "litres" : 4074.0,
+          "bottle_count" : 5256,
+          "litres" : 4080.0,
           "order_count" : 4
         }, {
           "key" : "2026-11",
@@ -4584,8 +4584,8 @@
         }, {
           "finished_product_id" : 12,
           "name" : "Naturel Sızma Ayvalık 0.4 1L",
-          "bottle_count" : 1680,
-          "litres" : 1680.0
+          "bottle_count" : 1686,
+          "litres" : 1686.0
         }, {
           "finished_product_id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3 250ml",
@@ -4644,8 +4644,8 @@
           "order_count" : 1
         },
         "previous" : {
-          "bottle_count" : 486,
-          "litres" : 121.5,
+          "bottle_count" : 1290,
+          "litres" : 322.5,
           "order_count" : 1
         },
         "series" : [ {
@@ -4707,8 +4707,8 @@
         },
         "bucket" : "week",
         "summary" : {
-          "bottle_count" : 10242,
-          "litres" : 5346.0,
+          "bottle_count" : 11052,
+          "litres" : 5548.5,
           "order_count" : 10
         },
         "previous" : {
@@ -4779,8 +4779,8 @@
         }, {
           "key" : "2026-09-14",
           "start" : "2026-09-14",
-          "bottle_count" : 486,
-          "litres" : 121.5,
+          "bottle_count" : 1290,
+          "litres" : 322.5,
           "order_count" : 1
         }, {
           "key" : "2026-09-21",
@@ -4821,8 +4821,8 @@
         }, {
           "key" : "2026-11-02",
           "start" : "2026-11-02",
-          "bottle_count" : 672,
-          "litres" : 618.0,
+          "bottle_count" : 678,
+          "litres" : 619.5,
           "order_count" : 1
         } ],
         "products" : [ {
@@ -4836,15 +4836,15 @@
           "bottle_count" : 2214,
           "litres" : 1107.0
         }, {
+          "finished_product_id" : 6,
+          "name" : "Naturel Sızma Gemlik 0.8 250ml",
+          "bottle_count" : 2730,
+          "litres" : 682.5
+        }, {
           "finished_product_id" : 4,
           "name" : "Naturel Sızma Gemlik 0.3 1L",
           "bottle_count" : 600,
           "litres" : 600.0
-        }, {
-          "finished_product_id" : 6,
-          "name" : "Naturel Sızma Gemlik 0.8 250ml",
-          "bottle_count" : 1926,
-          "litres" : 481.5
         }, {
           "finished_product_id" : 10,
           "name" : "Naturel Sızma Ayvalık 0.4 500ml",
@@ -4858,8 +4858,8 @@
         }, {
           "finished_product_id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3 250ml",
-          "bottle_count" : 1086,
-          "litres" : 271.5
+          "bottle_count" : 1092,
+          "litres" : 273.0
         } ]
       }
     },
@@ -4878,8 +4878,8 @@
         },
         "bucket" : "month",
         "summary" : {
-          "bottle_count" : 26310,
-          "litres" : 17629.5,
+          "bottle_count" : 27120,
+          "litres" : 17832.0,
           "order_count" : 21
         },
         "previous" : {
@@ -4950,8 +4950,8 @@
         }, {
           "key" : "2026-09",
           "start" : "2026-09-01",
-          "bottle_count" : 486,
-          "litres" : 121.5,
+          "bottle_count" : 1290,
+          "litres" : 322.5,
           "order_count" : 1
         }, {
           "key" : "2026-10",
@@ -4962,8 +4962,8 @@
         }, {
           "key" : "2026-11",
           "start" : "2026-11-01",
-          "bottle_count" : 1686,
-          "litres" : 871.5,
+          "bottle_count" : 1692,
+          "litres" : 873.0,
           "order_count" : 2
         } ],
         "products" : [ {
@@ -4989,8 +4989,8 @@
         }, {
           "finished_product_id" : 6,
           "name" : "Naturel Sızma Gemlik 0.8 250ml",
-          "bottle_count" : 3810,
-          "litres" : 952.5
+          "bottle_count" : 4614,
+          "litres" : 1153.5
         }, {
           "finished_product_id" : 2,
           "name" : "Naturel Sızma Gemlik 0.3 500ml",
@@ -4999,8 +4999,8 @@
         }, {
           "finished_product_id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3 250ml",
-          "bottle_count" : 3564,
-          "litres" : 891.0
+          "bottle_count" : 3570,
+          "litres" : 892.5
         }, {
           "finished_product_id" : 3,
           "name" : "Naturel Sızma Gemlik 0.3 750ml",
@@ -5147,8 +5147,8 @@
           "order_count" : 9
         },
         "previous" : {
-          "bottle_count" : 10350,
-          "litres" : 4138.5,
+          "bottle_count" : 10344,
+          "litres" : 4135.5,
           "order_count" : 8
         },
         "series" : [ {
@@ -5323,8 +5323,8 @@
         },
         "bucket" : "month",
         "summary" : {
-          "bottle_count" : 31044,
-          "litres" : 18519.0,
+          "bottle_count" : 31038,
+          "litres" : 18516.0,
           "order_count" : 25
         },
         "previous" : {
@@ -5371,8 +5371,8 @@
         }, {
           "key" : "2026-05",
           "start" : "2026-05-01",
-          "bottle_count" : 3678,
-          "litres" : 1366.5,
+          "bottle_count" : 3672,
+          "litres" : 1363.5,
           "order_count" : 1
         }, {
           "key" : "2026-06",
@@ -5429,8 +5429,8 @@
         }, {
           "finished_product_id" : 7,
           "name" : "Naturel Sızma Gemlik 0.8 500ml",
-          "bottle_count" : 3312,
-          "litres" : 1656.0
+          "bottle_count" : 3306,
+          "litres" : 1653.0
         }, {
           "finished_product_id" : 4,
           "name" : "Naturel Sızma Gemlik 0.3 1L",
@@ -6620,71 +6620,71 @@
         "rows" : [ {
           "key" : "2025-11",
           "label" : "2025-11-01",
-          "value" : 39789.5,
+          "value" : 36447.1,
           "count" : 39
         }, {
           "key" : "2025-12",
           "label" : "2025-12-01",
-          "value" : 47103.0,
+          "value" : 43146.5,
           "count" : 46
         }, {
           "key" : "2026-01",
           "label" : "2026-01-01",
-          "value" : 33076.3,
+          "value" : 30297.8,
           "count" : 30
         }, {
           "key" : "2026-02",
           "label" : "2026-02-01",
-          "value" : 30761.8,
+          "value" : 28177.8,
           "count" : 30
         }, {
           "key" : "2026-03",
           "label" : "2026-03-01",
-          "value" : 7446.6,
+          "value" : 6821.1,
           "count" : 7
         }, {
           "key" : "2026-04",
           "label" : "2026-04-01",
-          "value" : 6854.7,
+          "value" : 6278.9,
           "count" : 7
         }, {
           "key" : "2026-05",
           "label" : "2026-05-01",
-          "value" : 19037.8,
+          "value" : 17438.7,
           "count" : 18
         }, {
           "key" : "2026-06",
           "label" : "2026-06-01",
-          "value" : 15757.2,
+          "value" : 14433.5,
           "count" : 13
         }, {
           "key" : "2026-07",
           "label" : "2026-07-01",
-          "value" : 16353.1,
+          "value" : 14979.5,
           "count" : 13
         }, {
           "key" : "2026-08",
           "label" : "2026-08-01",
-          "value" : 12837.3,
+          "value" : 11758.9,
           "count" : 13
         }, {
           "key" : "2026-09",
           "label" : "2026-09-01",
-          "value" : 10481.1,
+          "value" : 9600.8,
           "count" : 11
         }, {
           "key" : "2026-10",
           "label" : "2026-10-01",
-          "value" : 56483.0,
+          "value" : 51738.4,
           "count" : 53
         }, {
           "key" : "2026-11",
           "label" : "2026-11-01",
-          "value" : 7596.5,
+          "value" : 6958.4,
           "count" : 7
         } ],
         "count_unit" : "parti",
-        "total" : 303578.0
+        "total" : 278077.4
       }
     },
     "save" : null
@@ -6713,136 +6713,136 @@
         "rows" : [ {
           "key" : "13",
           "label" : "Kılıç Bahçeleri (TED-111)",
-          "value" : 18643.7,
+          "value" : 17077.6,
           "count" : 16
         }, {
           "key" : "3",
           "label" : "Polat Zeytincilik (TED-101)",
-          "value" : 16956.7,
+          "value" : 15532.3,
           "count" : 17
         }, {
           "key" : "23",
           "label" : "Koç Zeytincilik (TED-121)",
-          "value" : 15043.8,
+          "value" : 13780.1,
           "count" : 14
         }, {
           "key" : "22",
           "label" : "İbrahim Şahin (TED-120)",
-          "value" : 14261.9,
+          "value" : 13063.9,
           "count" : 13
         }, {
           "key" : "1",
           "label" : "Yılmaz Çiftliği (TED-001)",
-          "value" : 13848.2,
+          "value" : 12684.9,
           "count" : 12
         }, {
           "key" : "6",
           "label" : "Polat Bahçeleri (TED-104)",
-          "value" : 13816.3,
+          "value" : 12655.7,
           "count" : 12
         }, {
           "key" : "26",
           "label" : "Ali Aslan (TED-124)",
-          "value" : 13358.8,
+          "value" : 12236.6,
           "count" : 13
         }, {
           "key" : "4",
           "label" : "Arslan Tarım (TED-102)",
-          "value" : 12535.2,
+          "value" : 11482.2,
           "count" : 10
         }, {
           "key" : "10",
           "label" : "Ahmet Kaya (TED-108)",
-          "value" : 12420.9,
+          "value" : 11377.5,
           "count" : 14
         }, {
           "key" : "20",
           "label" : "Halil Şahin (TED-118)",
-          "value" : 12413.8,
+          "value" : 11371.1,
           "count" : 12
         }, {
           "key" : "14",
           "label" : "Öztürk Bahçeleri (TED-112)",
-          "value" : 12279.7,
+          "value" : 11248.3,
           "count" : 12
         }, {
           "key" : "24",
           "label" : "Erdoğan Çiftliği (TED-122)",
-          "value" : 12169.3,
+          "value" : 11147.1,
           "count" : 11
         }, {
           "key" : "11",
           "label" : "Doğan Tarım (TED-109)",
-          "value" : 12028.5,
+          "value" : 11018.1,
           "count" : 10
         }, {
           "key" : "7",
           "label" : "Öztürk Zeytincilik (TED-105)",
-          "value" : 11857.3,
+          "value" : 10861.3,
           "count" : 14
         }, {
           "key" : "16",
           "label" : "Aydın Tarım (TED-114)",
-          "value" : 11432.0,
+          "value" : 10471.7,
           "count" : 12
         }, {
           "key" : "19",
           "label" : "Mehmet Kurt (TED-117)",
-          "value" : 11225.6,
+          "value" : 10282.7,
           "count" : 11
         }, {
           "key" : "5",
           "label" : "Kemal Şahin (TED-103)",
-          "value" : 11080.0,
+          "value" : 10149.3,
           "count" : 12
         }, {
           "key" : "17",
           "label" : "Osman Çetin (TED-115)",
-          "value" : 9927.6,
+          "value" : 9093.7,
           "count" : 9
         }, {
           "key" : "15",
           "label" : "Güneş Tarım (TED-113)",
-          "value" : 9421.3,
+          "value" : 8629.9,
           "count" : 10
         }, {
           "key" : "2",
           "label" : "Kaya Zeytincilik (TED-002)",
-          "value" : 9354.8,
+          "value" : 8569.0,
           "count" : 8
         }, {
           "key" : "21",
           "label" : "Güneş Çiftliği (TED-119)",
-          "value" : 8965.7,
+          "value" : 8212.6,
           "count" : 7
         }, {
           "key" : "25",
           "label" : "Osman Şahin (TED-123)",
-          "value" : 8771.6,
+          "value" : 8034.8,
           "count" : 7
         }, {
           "key" : "12",
           "label" : "Arslan Zeytincilik (TED-110)",
-          "value" : 8581.1,
+          "value" : 7860.3,
           "count" : 9
         }, {
           "key" : "27",
           "label" : "Ali Güneş (TED-125)",
-          "value" : 7891.1,
+          "value" : 7228.2,
           "count" : 8
         }, {
           "key" : "8",
           "label" : "Karaca Çiftliği (TED-106)",
-          "value" : 7691.2,
+          "value" : 7045.1,
           "count" : 7
         }, {
           "key" : "18",
           "label" : "Kurt Bahçeleri (TED-116)",
-          "value" : 7602.1,
+          "value" : 6963.5,
           "count" : 7
         } ],
         "count_unit" : "parti",
-        "total" : 303578.0
+        "total" : 278077.4
       }
     },
     "save" : null
@@ -6871,136 +6871,136 @@
         "rows" : [ {
           "key" : "23",
           "label" : "ORH-1388 • Kılıç Bahçeleri",
-          "value" : 14034.6,
+          "value" : 12855.7,
           "count" : 12
         }, {
           "key" : "11",
           "label" : "IZN-1179 • Polat Bahçeleri",
-          "value" : 12218.5,
+          "value" : 11192.2,
           "count" : 10
         }, {
           "key" : "41",
           "label" : "EDR-1762 • Koç Zeytincilik",
-          "value" : 11709.8,
+          "value" : 10726.2,
           "count" : 11
         }, {
           "key" : "17",
           "label" : "BRH-1282 • Ahmet Kaya",
-          "value" : 11510.4,
+          "value" : 10543.5,
           "count" : 13
         }, {
           "key" : "4",
           "label" : "ORH-1007 • Polat Zeytincilik",
-          "value" : 10554.0,
+          "value" : 9667.5,
           "count" : 13
         }, {
           "key" : "29",
           "label" : "EDR-1528 • Aydın Tarım",
-          "value" : 10285.0,
+          "value" : 9421.0,
           "count" : 11
         }, {
           "key" : "47",
           "label" : "EDR-1866 • Ali Aslan",
-          "value" : 9800.7,
+          "value" : 8977.4,
           "count" : 10
         }, {
           "key" : "18",
           "label" : "EDR-1303 • Doğan Tarım",
-          "value" : 9624.0,
+          "value" : 8815.6,
           "count" : 8
         }, {
           "key" : "9",
           "label" : "AYL-1128 • Kemal Şahin",
-          "value" : 9289.4,
+          "value" : 8509.1,
           "count" : 9
         }, {
           "key" : "3",
           "label" : "TRL-AYV-01 • Kaya Zeytincilik",
-          "value" : 8736.6,
+          "value" : 8002.7,
           "count" : 7
         }, {
           "key" : "30",
           "label" : "ORH-1554 • Osman Çetin",
-          "value" : 8359.9,
+          "value" : 7657.6,
           "count" : 7
         }, {
           "key" : "5",
           "label" : "BRH-1028 • Arslan Tarım",
-          "value" : 8224.0,
+          "value" : 7533.2,
           "count" : 7
         }, {
           "key" : "33",
           "label" : "ORH-1586 • Mehmet Kurt",
-          "value" : 8028.0,
+          "value" : 7353.6,
           "count" : 8
         }, {
           "key" : "34",
           "label" : "MDN-1594 • Halil Şahin",
-          "value" : 7948.4,
+          "value" : 7280.8,
           "count" : 7
         }, {
           "key" : "13",
           "label" : "ORH-1202 • Öztürk Zeytincilik",
-          "value" : 7896.9,
+          "value" : 7233.6,
           "count" : 10
         }, {
           "key" : "48",
           "label" : "AYL-1884 • Ali Güneş",
-          "value" : 7035.3,
+          "value" : 6444.4,
           "count" : 7
         }, {
           "key" : "39",
           "label" : "MDN-1704 • İbrahim Şahin",
-          "value" : 6567.0,
+          "value" : 6015.3,
           "count" : 7
         }, {
           "key" : "1",
           "label" : "TRL-GEM-01 • Yılmaz Çiftliği",
-          "value" : 6398.1,
+          "value" : 5860.6,
           "count" : 5
         }, {
           "key" : "43",
           "label" : "ORH-1786 • Osman Şahin",
-          "value" : 6350.0,
+          "value" : 5816.5,
           "count" : 5
         }, {
           "key" : "26",
           "label" : "IZN-1448 • Güneş Tarım",
-          "value" : 6257.4,
+          "value" : 5731.8,
           "count" : 7
         }, {
           "key" : "42",
           "label" : "ORH-1774 • Erdoğan Çiftliği",
-          "value" : 6076.0,
+          "value" : 5565.7,
           "count" : 5
         }, {
           "key" : "24",
           "label" : "GML-1424 • Öztürk Bahçeleri",
-          "value" : 6021.6,
+          "value" : 5515.8,
           "count" : 6
         }, {
           "key" : "14",
           "label" : "MDN-1211 • Karaca Çiftliği",
-          "value" : 5300.0,
+          "value" : 4854.8,
           "count" : 5
         }, {
           "key" : "37",
           "label" : "ORH-1654 • Güneş Çiftliği",
-          "value" : 4678.4,
+          "value" : 4285.4,
           "count" : 4
         }, {
           "key" : "31",
           "label" : "GML-1579 • Kurt Bahçeleri",
-          "value" : 4257.4,
+          "value" : 3899.8,
           "count" : 4
         }, {
           "key" : "21",
           "label" : "GML-1358 • Arslan Zeytincilik",
-          "value" : 3934.1,
+          "value" : 3603.7,
           "count" : 5
         } ],
         "count_unit" : "parti",
-        "total" : 303578.0
+        "total" : 278077.4
       }
     },
     "save" : null
@@ -7029,16 +7029,16 @@
         "rows" : [ {
           "key" : "1",
           "label" : "Gemlik Zeytini",
-          "value" : 216961.6,
+          "value" : 198736.8,
           "count" : 204
         }, {
           "key" : "2",
           "label" : "Ayvalık Zeytini",
-          "value" : 86616.3,
+          "value" : 79340.6,
           "count" : 83
         } ],
         "count_unit" : "parti",
-        "total" : 303578.0
+        "total" : 278077.4
       }
     },
     "save" : null
@@ -8039,71 +8039,71 @@
         "rows" : [ {
           "key" : "2025-11",
           "label" : "2025-11-01",
-          "value" : 19.26,
+          "value" : 17.64,
           "count" : 39
         }, {
           "key" : "2025-12",
           "label" : "2025-12-01",
-          "value" : 19.5,
+          "value" : 17.86,
           "count" : 46
         }, {
           "key" : "2026-01",
           "label" : "2026-01-01",
-          "value" : 19.22,
+          "value" : 17.6,
           "count" : 30
         }, {
           "key" : "2026-02",
           "label" : "2026-02-01",
-          "value" : 19.52,
+          "value" : 17.88,
           "count" : 30
         }, {
           "key" : "2026-03",
           "label" : "2026-03-01",
-          "value" : 20.06,
+          "value" : 18.37,
           "count" : 7
         }, {
           "key" : "2026-04",
           "label" : "2026-04-01",
-          "value" : 19.61,
+          "value" : 17.97,
           "count" : 7
         }, {
           "key" : "2026-05",
           "label" : "2026-05-01",
-          "value" : 18.62,
+          "value" : 17.06,
           "count" : 18
         }, {
           "key" : "2026-06",
           "label" : "2026-06-01",
-          "value" : 19.4,
+          "value" : 17.77,
           "count" : 13
         }, {
           "key" : "2026-07",
           "label" : "2026-07-01",
-          "value" : 19.76,
+          "value" : 18.1,
           "count" : 13
         }, {
           "key" : "2026-08",
           "label" : "2026-08-01",
-          "value" : 19.18,
+          "value" : 17.57,
           "count" : 13
         }, {
           "key" : "2026-09",
           "label" : "2026-09-01",
-          "value" : 19.89,
+          "value" : 18.22,
           "count" : 11
         }, {
           "key" : "2026-10",
           "label" : "2026-10-01",
-          "value" : 19.29,
+          "value" : 17.67,
           "count" : 53
         }, {
           "key" : "2026-11",
           "label" : "2026-11-01",
-          "value" : 19.95,
+          "value" : 18.27,
           "count" : 7
         } ],
         "count_unit" : "parti",
-        "total" : 19.38
+        "total" : 17.75
       }
     },
     "save" : null
@@ -8132,136 +8132,136 @@
         "rows" : [ {
           "key" : "14",
           "label" : "Öztürk Bahçeleri (TED-112)",
-          "value" : 20.39,
+          "value" : 18.67,
           "count" : 12
         }, {
           "key" : "4",
           "label" : "Arslan Tarım (TED-102)",
-          "value" : 20.3,
+          "value" : 18.6,
           "count" : 10
         }, {
           "key" : "11",
           "label" : "Doğan Tarım (TED-109)",
-          "value" : 20.19,
+          "value" : 18.5,
           "count" : 10
         }, {
           "key" : "22",
           "label" : "İbrahim Şahin (TED-120)",
-          "value" : 20.16,
+          "value" : 18.46,
           "count" : 13
         }, {
           "key" : "21",
           "label" : "Güneş Çiftliği (TED-119)",
-          "value" : 20.05,
+          "value" : 18.37,
           "count" : 7
         }, {
           "key" : "25",
           "label" : "Osman Şahin (TED-123)",
-          "value" : 19.97,
+          "value" : 18.3,
           "count" : 7
         }, {
           "key" : "5",
           "label" : "Kemal Şahin (TED-103)",
-          "value" : 19.85,
+          "value" : 18.18,
           "count" : 12
         }, {
           "key" : "15",
           "label" : "Güneş Tarım (TED-113)",
-          "value" : 19.84,
+          "value" : 18.17,
           "count" : 10
         }, {
           "key" : "18",
           "label" : "Kurt Bahçeleri (TED-116)",
-          "value" : 19.72,
+          "value" : 18.06,
           "count" : 7
         }, {
           "key" : "26",
           "label" : "Ali Aslan (TED-124)",
-          "value" : 19.72,
+          "value" : 18.06,
           "count" : 13
         }, {
           "key" : "2",
           "label" : "Kaya Zeytincilik (TED-002)",
-          "value" : 19.67,
+          "value" : 18.02,
           "count" : 8
         }, {
           "key" : "3",
           "label" : "Polat Zeytincilik (TED-101)",
-          "value" : 19.64,
+          "value" : 17.99,
           "count" : 17
         }, {
           "key" : "20",
           "label" : "Halil Şahin (TED-118)",
-          "value" : 19.54,
+          "value" : 17.89,
           "count" : 12
         }, {
           "key" : "19",
           "label" : "Mehmet Kurt (TED-117)",
-          "value" : 19.49,
+          "value" : 17.86,
           "count" : 11
         }, {
           "key" : "7",
           "label" : "Öztürk Zeytincilik (TED-105)",
-          "value" : 19.46,
+          "value" : 17.82,
           "count" : 14
         }, {
           "key" : "1",
           "label" : "Yılmaz Çiftliği (TED-001)",
-          "value" : 19.14,
+          "value" : 17.54,
           "count" : 12
         }, {
           "key" : "12",
           "label" : "Arslan Zeytincilik (TED-110)",
-          "value" : 19.13,
+          "value" : 17.52,
           "count" : 9
         }, {
           "key" : "6",
           "label" : "Polat Bahçeleri (TED-104)",
-          "value" : 18.99,
+          "value" : 17.4,
           "count" : 12
         }, {
           "key" : "17",
           "label" : "Osman Çetin (TED-115)",
-          "value" : 18.99,
+          "value" : 17.4,
           "count" : 9
         }, {
           "key" : "23",
           "label" : "Koç Zeytincilik (TED-121)",
-          "value" : 18.85,
+          "value" : 17.26,
           "count" : 14
         }, {
           "key" : "24",
           "label" : "Erdoğan Çiftliği (TED-122)",
-          "value" : 18.82,
+          "value" : 17.24,
           "count" : 11
         }, {
           "key" : "8",
           "label" : "Karaca Çiftliği (TED-106)",
-          "value" : 18.76,
+          "value" : 17.18,
           "count" : 7
         }, {
           "key" : "16",
           "label" : "Aydın Tarım (TED-114)",
-          "value" : 18.58,
+          "value" : 17.02,
           "count" : 12
         }, {
           "key" : "27",
           "label" : "Ali Güneş (TED-125)",
-          "value" : 18.53,
+          "value" : 16.98,
           "count" : 8
         }, {
           "key" : "13",
           "label" : "Kılıç Bahçeleri (TED-111)",
-          "value" : 18.49,
+          "value" : 16.94,
           "count" : 16
         }, {
           "key" : "10",
           "label" : "Ahmet Kaya (TED-108)",
-          "value" : 18.42,
+          "value" : 16.87,
           "count" : 14
         } ],
         "count_unit" : "parti",
-        "total" : 19.38
+        "total" : 17.75
       }
     },
     "save" : null
@@ -8290,136 +8290,136 @@
         "rows" : [ {
           "key" : "37",
           "label" : "ORH-1654 • Güneş Çiftliği",
-          "value" : 20.76,
+          "value" : 19.02,
           "count" : 4
         }, {
           "key" : "5",
           "label" : "BRH-1028 • Arslan Tarım",
-          "value" : 20.22,
+          "value" : 18.52,
           "count" : 7
         }, {
           "key" : "24",
           "label" : "GML-1424 • Öztürk Bahçeleri",
-          "value" : 20.08,
+          "value" : 18.39,
           "count" : 6
         }, {
           "key" : "18",
           "label" : "EDR-1303 • Doğan Tarım",
-          "value" : 20.08,
+          "value" : 18.39,
           "count" : 8
         }, {
           "key" : "43",
           "label" : "ORH-1786 • Osman Şahin",
-          "value" : 20.04,
+          "value" : 18.36,
           "count" : 5
         }, {
           "key" : "3",
           "label" : "TRL-AYV-01 • Kaya Zeytincilik",
-          "value" : 19.94,
+          "value" : 18.26,
           "count" : 7
         }, {
           "key" : "9",
           "label" : "AYL-1128 • Kemal Şahin",
-          "value" : 19.91,
+          "value" : 18.23,
           "count" : 9
         }, {
           "key" : "39",
           "label" : "MDN-1704 • İbrahim Şahin",
-          "value" : 19.85,
+          "value" : 18.19,
           "count" : 7
         }, {
           "key" : "21",
           "label" : "GML-1358 • Arslan Zeytincilik",
-          "value" : 19.58,
+          "value" : 17.93,
           "count" : 5
         }, {
           "key" : "34",
           "label" : "MDN-1594 • Halil Şahin",
-          "value" : 19.53,
+          "value" : 17.89,
           "count" : 7
         }, {
           "key" : "13",
           "label" : "ORH-1202 • Öztürk Zeytincilik",
-          "value" : 19.51,
+          "value" : 17.88,
           "count" : 10
         }, {
           "key" : "31",
           "label" : "GML-1579 • Kurt Bahçeleri",
-          "value" : 19.41,
+          "value" : 17.78,
           "count" : 4
         }, {
           "key" : "26",
           "label" : "IZN-1448 • Güneş Tarım",
-          "value" : 19.37,
+          "value" : 17.74,
           "count" : 7
         }, {
           "key" : "47",
           "label" : "EDR-1866 • Ali Aslan",
-          "value" : 19.35,
+          "value" : 17.72,
           "count" : 10
         }, {
           "key" : "1",
           "label" : "TRL-GEM-01 • Yılmaz Çiftliği",
-          "value" : 19.32,
+          "value" : 17.7,
           "count" : 5
         }, {
           "key" : "33",
           "label" : "ORH-1586 • Mehmet Kurt",
-          "value" : 19.28,
+          "value" : 17.66,
           "count" : 8
         }, {
           "key" : "14",
           "label" : "MDN-1211 • Karaca Çiftliği",
-          "value" : 19.19,
+          "value" : 17.58,
           "count" : 5
         }, {
           "key" : "4",
           "label" : "ORH-1007 • Polat Zeytincilik",
-          "value" : 19.18,
+          "value" : 17.57,
           "count" : 13
         }, {
           "key" : "11",
           "label" : "IZN-1179 • Polat Bahçeleri",
-          "value" : 19.15,
+          "value" : 17.54,
           "count" : 10
         }, {
           "key" : "42",
           "label" : "ORH-1774 • Erdoğan Çiftliği",
-          "value" : 18.98,
+          "value" : 17.38,
           "count" : 5
         }, {
           "key" : "41",
           "label" : "EDR-1762 • Koç Zeytincilik",
-          "value" : 18.89,
+          "value" : 17.3,
           "count" : 11
         }, {
           "key" : "30",
           "label" : "ORH-1554 • Osman Çetin",
-          "value" : 18.7,
+          "value" : 17.13,
           "count" : 7
         }, {
           "key" : "48",
           "label" : "AYL-1884 • Ali Güneş",
-          "value" : 18.68,
+          "value" : 17.11,
           "count" : 7
         }, {
           "key" : "17",
           "label" : "BRH-1282 • Ahmet Kaya",
-          "value" : 18.4,
+          "value" : 16.85,
           "count" : 13
         }, {
           "key" : "23",
           "label" : "ORH-1388 • Kılıç Bahçeleri",
-          "value" : 18.38,
+          "value" : 16.84,
           "count" : 12
         }, {
           "key" : "29",
           "label" : "EDR-1528 • Aydın Tarım",
-          "value" : 18.34,
+          "value" : 16.8,
           "count" : 11
         } ],
         "count_unit" : "parti",
-        "total" : 19.38
+        "total" : 17.75
       }
     },
     "save" : null
@@ -8448,16 +8448,16 @@
         "rows" : [ {
           "key" : "2",
           "label" : "Ayvalık Zeytini",
-          "value" : 19.4,
+          "value" : 17.77,
           "count" : 83
         }, {
           "key" : "1",
           "label" : "Gemlik Zeytini",
-          "value" : 19.37,
+          "value" : 17.74,
           "count" : 204
         } ],
         "count_unit" : "parti",
-        "total" : 19.38
+        "total" : 17.75
       }
     },
     "save" : null
@@ -9015,7 +9015,7 @@
         }, {
           "key" : "2026-05",
           "label" : "2026-05-01",
-          "value" : 20448.0,
+          "value" : 20445.0,
           "count" : 28
         }, {
           "key" : "2026-06",
@@ -9035,17 +9035,17 @@
         }, {
           "key" : "2026-09",
           "label" : "2026-09-01",
-          "value" : 8619.0,
+          "value" : 8617.5,
           "count" : 24
         }, {
           "key" : "2026-10",
           "label" : "2026-10-01",
-          "value" : 29061.0,
+          "value" : 29067.0,
           "count" : 29
         }, {
           "key" : "2026-11",
           "label" : "2026-11-01",
-          "value" : 9865.5,
+          "value" : 9864.0,
           "count" : 11
         } ],
         "count_unit" : "siparis",
@@ -9117,7 +9117,7 @@
         "rows" : [ {
           "key" : "15",
           "label" : "Ege Catering",
-          "value" : 21613.5,
+          "value" : 21486.0,
           "count" : 23
         }, {
           "key" : "10",
@@ -9127,17 +9127,17 @@
         }, {
           "key" : "5",
           "label" : "Koç Restoran Grubu",
-          "value" : 18519.0,
+          "value" : 18516.0,
           "count" : 25
         }, {
           "key" : "8",
           "label" : "Kuşadası Resort Otel",
-          "value" : 18441.0,
+          "value" : 18363.0,
           "count" : 21
         }, {
           "key" : "4",
           "label" : "Zeynep Arslan",
-          "value" : 18232.5,
+          "value" : 18334.5,
           "count" : 23
         }, {
           "key" : "16",
@@ -9157,7 +9157,7 @@
         }, {
           "key" : "2",
           "label" : "Ege Lezzet Market",
-          "value" : 17629.5,
+          "value" : 17832.0,
           "count" : 21
         }, {
           "key" : "12",
@@ -9172,27 +9172,27 @@
         }, {
           "key" : "13",
           "label" : "Güneş Otelcilik",
-          "value" : 15652.5,
+          "value" : 15661.5,
           "count" : 20
         }, {
           "key" : "1",
           "label" : "Yılmaz Gıda A.Ş.",
-          "value" : 15274.5,
+          "value" : 15280.5,
           "count" : 18
         }, {
           "key" : "11",
           "label" : "Polat Pide & Kebap",
-          "value" : 14148.0,
+          "value" : 14142.0,
           "count" : 21
         }, {
           "key" : "6",
           "label" : "Aydın Şarküteri",
-          "value" : 12469.5,
+          "value" : 12546.0,
           "count" : 21
         }, {
           "key" : "14",
           "label" : "Doğan Gurme",
-          "value" : 11551.5,
+          "value" : 11370.0,
           "count" : 14
         } ],
         "count_unit" : "siparis",
@@ -9230,8 +9230,8 @@
         }, {
           "key" : "8",
           "label" : "Naturel Sızma Gemlik 0.8 1L",
-          "value" : 34788.0,
-          "count" : 87
+          "value" : 34338.0,
+          "count" : 85
         }, {
           "key" : "7",
           "label" : "Naturel Sızma Gemlik 0.8 500ml",
@@ -9240,13 +9240,13 @@
         }, {
           "key" : "10",
           "label" : "Naturel Sızma Ayvalık 0.4 500ml",
-          "value" : 23874.0,
+          "value" : 23871.0,
           "count" : 41
         }, {
           "key" : "6",
           "label" : "Naturel Sızma Gemlik 0.8 250ml",
-          "value" : 21240.0,
-          "count" : 95
+          "value" : 21688.5,
+          "count" : 97
         }, {
           "key" : "2",
           "label" : "Naturel Sızma Gemlik 0.3 500ml",
@@ -9255,7 +9255,7 @@
         }, {
           "key" : "9",
           "label" : "Naturel Sızma Ayvalık 0.4 250ml",
-          "value" : 16917.0,
+          "value" : 16915.5,
           "count" : 37
         }, {
           "key" : "11",
@@ -9265,7 +9265,7 @@
         }, {
           "key" : "12",
           "label" : "Naturel Sızma Ayvalık 0.4 1L",
-          "value" : 16554.0,
+          "value" : 16560.0,
           "count" : 33
         }, {
           "key" : "4",
@@ -9358,7 +9358,7 @@
         }, {
           "key" : "2026-05",
           "label" : "2026-05-01",
-          "value" : 41406.0,
+          "value" : 41400.0,
           "count" : 28
         }, {
           "key" : "2026-06",
@@ -9378,21 +9378,21 @@
         }, {
           "key" : "2026-09",
           "label" : "2026-09-01",
-          "value" : 18006.0,
+          "value" : 19350.0,
           "count" : 24
         }, {
           "key" : "2026-10",
           "label" : "2026-10-01",
-          "value" : 42426.0,
+          "value" : 42432.0,
           "count" : 29
         }, {
           "key" : "2026-11",
           "label" : "2026-11-01",
-          "value" : 15072.0,
+          "value" : 15066.0,
           "count" : 11
         } ],
         "count_unit" : "siparis",
-        "total" : 457308.0
+        "total" : 458646.0
       }
     },
     "save" : null
@@ -9470,7 +9470,7 @@
         }, {
           "key" : "15",
           "label" : "Ege Catering",
-          "value" : 32748.0,
+          "value" : 33216.0,
           "count" : 23
         }, {
           "key" : "7",
@@ -9480,17 +9480,17 @@
         }, {
           "key" : "8",
           "label" : "Kuşadası Resort Otel",
-          "value" : 32706.0,
+          "value" : 32628.0,
           "count" : 21
         }, {
           "key" : "4",
           "label" : "Zeynep Arslan",
-          "value" : 31872.0,
+          "value" : 31146.0,
           "count" : 23
         }, {
           "key" : "5",
           "label" : "Koç Restoran Grubu",
-          "value" : 31044.0,
+          "value" : 31038.0,
           "count" : 25
         }, {
           "key" : "12",
@@ -9500,22 +9500,22 @@
         }, {
           "key" : "1",
           "label" : "Yılmaz Gıda A.Ş.",
-          "value" : 27342.0,
+          "value" : 27348.0,
           "count" : 18
+        }, {
+          "key" : "2",
+          "label" : "Ege Lezzet Market",
+          "value" : 27120.0,
+          "count" : 21
         }, {
           "key" : "13",
           "label" : "Güneş Otelcilik",
-          "value" : 27078.0,
+          "value" : 27108.0,
           "count" : 20
         }, {
           "key" : "11",
           "label" : "Polat Pide & Kebap",
-          "value" : 26676.0,
-          "count" : 21
-        }, {
-          "key" : "2",
-          "label" : "Ege Lezzet Market",
-          "value" : 26310.0,
+          "value" : 26670.0,
           "count" : 21
         }, {
           "key" : "3",
@@ -9530,16 +9530,16 @@
         }, {
           "key" : "6",
           "label" : "Aydın Şarküteri",
-          "value" : 19452.0,
+          "value" : 19776.0,
           "count" : 21
         }, {
           "key" : "14",
           "label" : "Doğan Gurme",
-          "value" : 18216.0,
+          "value" : 18732.0,
           "count" : 14
         } ],
         "count_unit" : "siparis",
-        "total" : 457308.0
+        "total" : 458646.0
       }
     },
     "save" : null
@@ -9568,12 +9568,12 @@
         "rows" : [ {
           "key" : "6",
           "label" : "Naturel Sızma Gemlik 0.8 250ml",
-          "value" : 84960.0,
-          "count" : 95
+          "value" : 86754.0,
+          "count" : 97
         }, {
           "key" : "9",
           "label" : "Naturel Sızma Ayvalık 0.4 250ml",
-          "value" : 67668.0,
+          "value" : 67662.0,
           "count" : 37
         }, {
           "key" : "7",
@@ -9583,7 +9583,7 @@
         }, {
           "key" : "10",
           "label" : "Naturel Sızma Ayvalık 0.4 500ml",
-          "value" : 47748.0,
+          "value" : 47742.0,
           "count" : 41
         }, {
           "key" : "1",
@@ -9591,15 +9591,15 @@
           "value" : 44376.0,
           "count" : 46
         }, {
-          "key" : "8",
-          "label" : "Naturel Sızma Gemlik 0.8 1L",
-          "value" : 34788.0,
-          "count" : 87
-        }, {
           "key" : "2",
           "label" : "Naturel Sızma Gemlik 0.3 500ml",
           "value" : 34602.0,
           "count" : 43
+        }, {
+          "key" : "8",
+          "label" : "Naturel Sızma Gemlik 0.8 1L",
+          "value" : 34338.0,
+          "count" : 85
         }, {
           "key" : "11",
           "label" : "Naturel Sızma Ayvalık 0.4 750ml",
@@ -9608,7 +9608,7 @@
         }, {
           "key" : "12",
           "label" : "Naturel Sızma Ayvalık 0.4 1L",
-          "value" : 16554.0,
+          "value" : 16560.0,
           "count" : 33
         }, {
           "key" : "3",
@@ -9642,7 +9642,7 @@
           "count" : 5
         } ],
         "count_unit" : "siparis",
-        "total" : 457308.0
+        "total" : 458646.0
       }
     },
     "save" : null
@@ -9911,13 +9911,13 @@
         "rows" : [ {
           "key" : "6",
           "label" : "Naturel Sızma Gemlik 0.8 250ml",
-          "value" : 95.0,
-          "count" : 95
+          "value" : 97.0,
+          "count" : 97
         }, {
           "key" : "8",
           "label" : "Naturel Sızma Gemlik 0.8 1L",
-          "value" : 87.0,
-          "count" : 87
+          "value" : 85.0,
+          "count" : 85
         }, {
           "key" : "7",
           "label" : "Naturel Sızma Gemlik 0.8 500ml",
@@ -10074,71 +10074,71 @@
         }, {
           "key" : "2025-11",
           "label" : "2025-11-01",
-          "value" : 41989.1,
+          "value" : 38462.0,
           "count" : 41
         }, {
           "key" : "2025-12",
           "label" : "2025-12-01",
-          "value" : 47103.0,
+          "value" : 43146.5,
           "count" : 46
         }, {
           "key" : "2026-01",
           "label" : "2026-01-01",
-          "value" : 33076.3,
+          "value" : 30297.8,
           "count" : 30
         }, {
           "key" : "2026-02",
           "label" : "2026-02-01",
-          "value" : 30761.8,
+          "value" : 28177.8,
           "count" : 30
         }, {
           "key" : "2026-03",
           "label" : "2026-03-01",
-          "value" : 7446.6,
+          "value" : 6821.1,
           "count" : 7
         }, {
           "key" : "2026-04",
           "label" : "2026-04-01",
-          "value" : 6854.7,
+          "value" : 6278.9,
           "count" : 7
         }, {
           "key" : "2026-05",
           "label" : "2026-05-01",
-          "value" : 19037.8,
+          "value" : 17438.7,
           "count" : 18
         }, {
           "key" : "2026-06",
           "label" : "2026-06-01",
-          "value" : 15757.2,
+          "value" : 14433.5,
           "count" : 13
         }, {
           "key" : "2026-07",
           "label" : "2026-07-01",
-          "value" : 16353.1,
+          "value" : 14979.5,
           "count" : 13
         }, {
           "key" : "2026-08",
           "label" : "2026-08-01",
-          "value" : 12837.3,
+          "value" : 11758.9,
           "count" : 13
         }, {
           "key" : "2026-09",
           "label" : "2026-09-01",
-          "value" : 10481.1,
+          "value" : 9600.8,
           "count" : 11
         }, {
           "key" : "2026-10",
           "label" : "2026-10-01",
-          "value" : 56483.0,
+          "value" : 51738.4,
           "count" : 53
         }, {
           "key" : "2026-11",
           "label" : "2026-11-01",
-          "value" : 7596.5,
+          "value" : 6958.4,
           "count" : 7
         } ],
         "count_unit" : "parti",
-        "total" : 305777.6
+        "total" : 280092.3
       }
     },
     "save" : null
@@ -10167,11 +10167,11 @@
         "rows" : [ {
           "key" : "1",
           "label" : "TRL-GEM-01 • Yılmaz Çiftliği",
-          "value" : 19.09,
+          "value" : 17.48,
           "count" : 4
         } ],
         "count_unit" : "parti",
-        "total" : 18.89
+        "total" : 17.3
       }
     },
     "save" : null
@@ -10220,7 +10220,7 @@
         }, {
           "key" : "6",
           "label" : "Naturel Sızma Gemlik 0.8 250ml",
-          "value" : 952.5,
+          "value" : 1153.5,
           "count" : 7
         }, {
           "key" : "2",
@@ -10230,7 +10230,7 @@
         }, {
           "key" : "1",
           "label" : "Naturel Sızma Gemlik 0.3 250ml",
-          "value" : 891.0,
+          "value" : 892.5,
           "count" : 4
         }, {
           "key" : "3",
@@ -10259,7 +10259,7 @@
           "count" : 1
         } ],
         "count_unit" : "siparis",
-        "total" : 17629.5
+        "total" : 17832.0
       }
     },
     "save" : null
@@ -10478,16 +10478,16 @@
         "rows" : [ {
           "key" : "1",
           "label" : "Gemlik Zeytini",
-          "value" : 216961.6,
+          "value" : 198736.8,
           "count" : 204
         }, {
           "key" : "2",
           "label" : "Ayvalık Zeytini",
-          "value" : 86616.3,
+          "value" : 79340.6,
           "count" : 83
         } ],
         "count_unit" : "parti",
-        "total" : 303578.0
+        "total" : 278077.4
       }
     },
     "save" : null

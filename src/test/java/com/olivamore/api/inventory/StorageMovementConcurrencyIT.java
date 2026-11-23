@@ -41,7 +41,7 @@ class StorageMovementConcurrencyIT {
 		RestClient http = ApiClient.http(port);
 		String token = JSON.readTree(ApiClient.call(http, "POST", "/api/auth/login", null,
 			JSON.readTree("{\"email\":\"admin@olivamore.com\",\"password\":\"123\"}")).body()).get(TestAuth.ACCESS_TOKEN).asString();
-		String body = "{\"storage_unit_id\":" + unit + ",\"production_product_type_id\":3,\"quantity\":60,\"unit\":\"LITRE\"}";
+		String body = "{\"storage_unit_id\":" + unit + ",\"production_product_type_id\":3,\"quantity\":60,\"unit\":\"KG\"}";
 
 		ExecutorService pool = Executors.newFixedThreadPool(4);
 		List<Future<ApiClient.Response>> calls = new ArrayList<>();

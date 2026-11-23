@@ -4,6 +4,7 @@ import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.support.Api;
 import com.olivamore.api.support.ApiClient.Response;
 import com.olivamore.api.support.ApiIntegrationTest;
+import com.olivamore.api.support.OilInLitres;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -56,6 +57,7 @@ class FinalTankRulesIT {
 	@BeforeAll
 	void setUp() {
 		api = Api.on(port);
+		OilInLitres.apply(jdbc);
 	}
 
 	@Test
