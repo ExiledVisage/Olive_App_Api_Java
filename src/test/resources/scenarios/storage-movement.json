@@ -16123,6 +16123,7 @@
           "delivery_batch_code" : null,
           "stage_name" : null,
           "storage_unit" : null,
+          "tank_entries" : null,
           "is_focus" : true,
           "depth" : 0
         }, {
@@ -16140,6 +16141,26 @@
           "delivery_batch_code" : null,
           "stage_name" : null,
           "storage_unit" : "FILL-BLEND-50",
+          "tank_entries" : [ {
+            "movement_id" : 6,
+            "source_material_id" : 11,
+            "tank_material_id" : 12,
+            "storage_unit_id" : 5,
+            "storage_unit_name" : "Dolum Tankı — Klasik Blend 0.5",
+            "storage_unit_code" : "FILL-BLEND-50",
+            "moved_at" : "2025-11-06T08:47:00Z",
+            "quantity" : 247.32,
+            "unit" : "KG",
+            "balance_before" : 0.0,
+            "balance_after" : 247.32,
+            "mix_after" : [ {
+              "definition_id" : 4,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "unit" : "%",
+              "value" : 0.58
+            } ]
+          } ],
           "is_focus" : false,
           "depth" : 1
         } ],
@@ -16150,7 +16171,8 @@
           "quantity" : 247.32,
           "unit" : "KG"
         } ],
-        "truncated" : false
+        "truncated" : false,
+        "tank_ledger" : null
       }
     },
     "save" : null

@@ -23,9 +23,9 @@ import static com.olivamore.api.support.Api.id;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Son tankta soy grafi ve materyal gecmisi (C7): tank materyali hic sifirlanmayabildiginden kenarlari zamanla
- * sinirlanir; partinin tanka girisi kendi gecmisinde gorulur; kok suzgeci tank materyallerini getirmez. Demo veri:
- * tip 3 Gemlik zeytinyagi (LITRE).
+ * Son tankta soy grafi ve materyal gecmisi: agac tankta durur (tank uc dugum, giris snapshot'i), tank materyalinin
+ * grafi yerine defteri; partinin tanka girisi kendi gecmisinde gorulur; kok suzgeci tank materyallerini getirmez.
+ * Demo veri: tip 3 Gemlik zeytinyagi (LITRE).
  */
 @ApiIntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -53,45 +53,58 @@ class MaterialLineageIT {
 	}
 
 	@Test
-	void batchMaterialLeadsOnlyToFillingsAfterItEnteredTheTank() {
+	void batchMaterialLineageStopsAtTheTankWithASnapshotOfTheEntry() {
 		long tank = tank();
 		long mix = materialOf(api.post("/api/storage-movements/opening", Map.of("storage_unit_id", tank,
 			"production_product_type_id", GEMLIK, "quantity", 500, "unit", "LITRE")));
-		List<Long> runs = runs(3);
+		List<Long> runs = runs(2);
 		fill(tank, mix, runs.get(0), "40");
 		long batch = batchMaterial("100");
-		enter(tank, batch, "100");
+		long entry = data(enter(tank, batch, "100")).get("id").asLong();
 		fill(tank, mix, runs.get(1), "40");
-		// planlanmis, henuz cekilmemis kosu: giristen sonra sayilir
-		reserve(mix, runs.get(2), "40");
+		long other = batchMaterial("30");
+		enter(tank, other, "30");
 
-		List<String> nodes = keys(data(api.get("/api/materials/" + batch + "/lineage")));
+		JsonNode lineage = data(api.get("/api/materials/" + batch + "/lineage"));
 
-		assertThat(nodes).contains("material:" + mix, "run:" + runs.get(1), "run:" + runs.get(2))
-			.doesNotContain("run:" + runs.get(0));
-		// tank materyalinin kendi grafi sinirsiz
-		assertThat(keys(data(api.get("/api/materials/" + mix + "/lineage"))))
-			.contains("run:" + runs.get(0), "run:" + runs.get(1), "material:" + batch);
+		// tank uc dugum: dolumlar ve tankin diger girdileri yok
+		assertThat(keys(lineage)).containsExactlyInAnyOrder("material:" + batch, "material:" + mix);
+		assertThat(lineage.get("tank_ledger").isNull()).isTrue();
+		JsonNode tankNode = node(lineage, "material:" + mix);
+		assertThat(tankNode.get("lineage_role").asString()).isEqualTo("tank");
+		JsonNode snapshot = tankNode.get("tank_entries").get(0);
+		assertThat(tankNode.get("tank_entries")).hasSize(1);
+		assertThat(snapshot.get("movement_id").asLong()).isEqualTo(entry);
+		assertThat(snapshot.get("source_material_id").asLong()).isEqualTo(batch);
+		assertThat(snapshot.get("storage_unit_id").asLong()).isEqualTo(tank);
+		assertThat(snapshot.get("storage_unit_code").asString()).startsWith("LINEAGE-");
+		assertThat(snapshot.get("quantity").decimalValue()).isEqualByComparingTo("100");
+		assertThat(snapshot.get("balance_before").decimalValue()).isEqualByComparingTo("460");
+		assertThat(snapshot.get("balance_after").decimalValue()).isEqualByComparingTo("560");
+		assertThat(node(lineage, "material:" + batch).get("tank_entries").isNull()).isTrue();
 	}
 
 	@Test
-	void transferredTankMaterialLeadsBackOnlyToEntriesBeforeTheTransfer() {
+	void tankMaterialHasNoGraphAndPointsToTheTankLedger() {
 		long from = tank();
 		long to = tank();
 		long before = batchMaterial("100");
-		JsonNode first = data(enter(from, before, "100"));
-		long mix = first.get("material_id").asLong();
+		long mix = data(enter(from, before, "100")).get("material_id").asLong();
 		JsonNode moved = data(api.post("/api/storage-movements/transfer", Map.of("from_storage_unit_id", from,
 			"to_storage_unit_id", to, "quantity", 50)));
 		long target = moved.get("in_movements").get(0).get("material_id").asLong();
-		long after = batchMaterial("80");
-		enter(from, after, "80");
 
-		List<String> nodes = keys(data(api.get("/api/materials/" + target + "/lineage")));
+		JsonNode ofMix = data(api.get("/api/materials/" + mix + "/lineage"));
+		JsonNode ofTarget = data(api.get("/api/materials/" + target + "/lineage"));
 
-		assertThat(nodes).contains("material:" + mix, "material:" + before).doesNotContain("material:" + after);
-		assertThat(keys(data(api.get("/api/materials/" + mix + "/lineage"))))
-			.contains("material:" + before, "material:" + after, "material:" + target);
+		assertThat(keys(ofMix)).containsExactly("material:" + mix);
+		assertThat(ofMix.get("edges")).isEmpty();
+		assertThat(ofMix.get("tank_ledger").get("storage_unit_id").asLong()).isEqualTo(from);
+		assertThat(ofMix.get("tank_ledger").get("material_id").asLong()).isEqualTo(mix);
+		assertThat(ofTarget.get("tank_ledger").get("storage_unit_id").asLong()).isEqualTo(to);
+		// partinin agaci ilk tankta durur, transfer edilen tanka gecmez
+		assertThat(keys(data(api.get("/api/materials/" + before + "/lineage"))))
+			.contains("material:" + mix).doesNotContain("material:" + target);
 	}
 
 	@Test
@@ -163,6 +176,11 @@ class MaterialLineageIT {
 	private static long materialOf(Response movement) {
 		assertThat(movement.status()).as(movement.body()).isEqualTo(201);
 		return data(movement).get("material_id").asLong();
+	}
+
+	private static JsonNode node(JsonNode lineage, String key) {
+		return lineage.get("nodes").valueStream().filter(n -> n.get("key").asString().equals(key)).findFirst()
+			.orElseThrow();
 	}
 
 	private static List<String> keys(JsonNode lineage) {

@@ -40,13 +40,14 @@ import static com.olivamore.api.inventory.material.MaterialResponses.lookup;
  * materyal ve giristen sonraki karisim degeri.
  * <p>
  * Bakiye ve karisim saklanmaz, materyalin bu tanktaki butun hareketleri kayit (id) sirasiyla yeniden oynatilarak
- * hesaplanir (moved_at kayit ani; demo verisinde saat geri gidebildigi icin sira id ile); sayfa ya da tarih siniri sonucu degistirmez. Karisim {@link TankMixAttributes} ile ayni
- * kurala uyar: bos tanka giren degerler aynen alinir, doluysa sayisal degerler tanktaki ve gelen miktara gore
+ * hesaplanir (moved_at kayit ani; demo verisinde saat geri gidebildigi icin sira id ile); sayfa ya da tarih
+ * siniri sonucu degistirmez. Karisim {@link TankMixAttributes} ile ayni kurala uyar: bos tanka giren degerler
+ * aynen alinir, doluysa sayisal degerler tanktaki ve gelen miktara gore
  * agirlikli ortalama olur (4 basamak, integer yuvarlanir), iki taraftan birinde olmayan deger bosalir; tank analizi
  * olculen degeri yerine koyar. Ayni saniyedeki hareket ve analizde analiz sonra sayilir.
  */
 @Component
-class TankLedger {
+public class TankLedger {
 
 	private static final Set<MovementType> INFLOWS = EnumSet.of(MovementType.IN, MovementType.TRANSFER_IN,
 		MovementType.OPENING, MovementType.ADJUSTMENT_IN);
@@ -84,6 +85,27 @@ class TankLedger {
 	private record Replay(Map<Long, BigDecimal> balances, Map<Long, Map<Long, BigDecimal>> mixes) {
 	}
 
+	/** Tanktaki materyallerin yeniden oynatilmis butun hareketleri ve karisimdaki attribute tanimlari. */
+	private record Ledger(Map<Long, BigDecimal> balances, Map<Long, Map<Long, BigDecimal>> mixes,
+		Map<Long, Definition> definitions) {
+	}
+
+	private record EntryRow(Long id, Long storageUnitId, Long materialId, Long sourceMaterialId, BigDecimal quantity,
+		String unit, LocalDateTime movedAt) {
+	}
+
+	/**
+	 * Tanka giris aninin snapshot'i (soy agacinin tank dugumu): tank, zaman, giren miktar, giristen once ve sonra
+	 * tank materyalinin bu tanktaki miktari ve giristen sonraki karisim degeri.
+	 */
+	public record EntrySnapshot(Long movementId, Long sourceMaterialId, Long tankMaterialId, Long storageUnitId,
+		String storageUnitName, String storageUnitCode, LocalDateTime movedAt, BigDecimal quantity, String unit,
+		BigDecimal balanceBefore, BigDecimal balanceAfter, List<MixValue> mixAfter) {
+	}
+
+	private record UnitRow(Long id, String name, String code) {
+	}
+
 	private final JdbcClient jdbc;
 	private final MaterialQueries queries;
 	private final MaterialResponses materials;
@@ -112,22 +134,10 @@ class TankLedger {
 		if (rows.isEmpty()) {
 			return List.of();
 		}
-		List<Long> materialIds = rows.stream().map(StorageMovement::getMaterialId).distinct().toList();
-		List<Event> events = events(unitId, materialIds);
-		Map<Long, Map<Long, BigDecimal>> incoming = numericValues(column(events, Event::entered));
-		Map<Long, List<Measurement>> measurements = measurements(unitId, materialIds).stream()
-			.collect(Collectors.groupingBy(Measurement::materialId));
-		Map<Long, Definition> definitions = queries.definitions(Stream.concat(
-			incoming.values().stream().flatMap(v -> v.keySet().stream()),
-			measurements.values().stream().flatMap(List::stream).map(Measurement::definitionId)).distinct().toList());
-		Map<Long, BigDecimal> balances = new HashMap<>();
-		Map<Long, Map<Long, BigDecimal>> mixes = new HashMap<>();
-		events.stream().collect(Collectors.groupingBy(Event::materialId)).forEach((materialId, ofMaterial) -> {
-			Replay replay = replay(ofMaterial, measurements.getOrDefault(materialId, List.of()), incoming,
-				definitions);
-			balances.putAll(replay.balances());
-			mixes.putAll(replay.mixes());
-		});
+		Ledger ledger = ledger(unitId, rows.stream().map(StorageMovement::getMaterialId).distinct().toList());
+		Map<Long, BigDecimal> balances = ledger.balances();
+		Map<Long, Map<Long, BigDecimal>> mixes = ledger.mixes();
+		Map<Long, Definition> definitions = ledger.definitions();
 
 		Map<Long, MaterialRow> sources = queries.materials(column(rows, TankLedger::entered));
 		Map<Long, Batch> batches = queries.batches(column(sources.values(), MaterialRow::productionBatchId));
@@ -154,6 +164,35 @@ class TankLedger {
 				counterpartyMaterial(row, in, counterparts), mix == null ? null : mixValues(mix, definitions)));
 		}
 		return entries;
+	}
+
+	/** Giris hareketlerinin snapshot'lari: hareket id -> snapshot (giris olmayan hareketler atlanir). */
+	public Map<Long, EntrySnapshot> snapshots(Collection<Long> movementIds) {
+		List<Long> ids = movementIds.stream().filter(Objects::nonNull).distinct().toList();
+		if (ids.isEmpty()) {
+			return Map.of();
+		}
+		List<EntryRow> rows = jdbc.sql("""
+			select id, storage_unit_id, material_id, source_material_id, quantity, unit, moved_at from storage_movements
+			where id in (:ids) and movement_type in (:inflows)
+			""").param("ids", ids).param("inflows", INFLOWS.stream().map(MovementType::value).toList())
+			.query(EntryRow.class).list();
+		Map<Long, UnitRow> units = idRows("storage_units", column(rows, EntryRow::storageUnitId), UnitRow.class,
+			UnitRow::id);
+		Map<Long, EntrySnapshot> snapshots = new HashMap<>();
+		rows.stream().collect(Collectors.groupingBy(EntryRow::storageUnitId)).forEach((unitId, ofUnit) -> {
+			Ledger ledger = ledger(unitId, column(ofUnit, EntryRow::materialId));
+			UnitRow unit = lookup(units, unitId);
+			for (EntryRow row : ofUnit) {
+				BigDecimal after = ledger.balances().get(row.id());
+				Map<Long, BigDecimal> mix = ledger.mixes().get(row.id());
+				snapshots.put(row.id(), new EntrySnapshot(row.id(), row.sourceMaterialId(), row.materialId(), unitId,
+					unit == null ? null : unit.name(), unit == null ? null : unit.code(), row.movedAt(), row.quantity(),
+					row.unit(), after == null ? null : after.subtract(row.quantity()), after,
+					mix == null ? null : mixValues(mix, ledger.definitions())));
+			}
+		});
+		return snapshots;
 	}
 
 	/**
@@ -193,6 +232,25 @@ class TankLedger {
 				ofMaterial.isEmpty() ? null : ofMaterial.getLast().movedAt()));
 		}
 		return summaries;
+	}
+
+	private Ledger ledger(long unitId, List<Long> materialIds) {
+		List<Event> events = events(unitId, materialIds);
+		Map<Long, Map<Long, BigDecimal>> incoming = numericValues(column(events, Event::entered));
+		Map<Long, List<Measurement>> measurements = measurements(unitId, materialIds).stream()
+			.collect(Collectors.groupingBy(Measurement::materialId));
+		Map<Long, Definition> definitions = queries.definitions(Stream.concat(
+			incoming.values().stream().flatMap(v -> v.keySet().stream()),
+			measurements.values().stream().flatMap(List::stream).map(Measurement::definitionId)).distinct().toList());
+		Map<Long, BigDecimal> balances = new HashMap<>();
+		Map<Long, Map<Long, BigDecimal>> mixes = new HashMap<>();
+		events.stream().collect(Collectors.groupingBy(Event::materialId)).forEach((materialId, ofMaterial) -> {
+			Replay replay = replay(ofMaterial, measurements.getOrDefault(materialId, List.of()), incoming,
+				definitions);
+			balances.putAll(replay.balances());
+			mixes.putAll(replay.mixes());
+		});
+		return new Ledger(balances, mixes, definitions);
 	}
 
 	private static Replay replay(List<Event> events, List<Measurement> measurements,

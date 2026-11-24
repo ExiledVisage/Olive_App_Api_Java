@@ -1,6 +1,7 @@
 # Tank defteri: islem gecmisini deftere donusturmek
 
-Durum (2026-11-24): API 1. adim (TankLedger) tamam; 2-5 bekliyor. API ve Flutter birlikte.
+Durum (2026-11-24): API 1. adim (602fbd1) ve 2. adim (soy agaci tankta durur) tamam; 3-5 (Flutter, deploy) bekliyor.
+API ve Flutter birlikte.
 Ilk plan (2026-11-20) ayri bir defter ucu ve sayfasi oneriyordu; kullanici karari ile yerine **var olan tank islem
 gecmisi gelistirilir**.
 

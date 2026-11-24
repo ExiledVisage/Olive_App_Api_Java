@@ -1,9 +1,18 @@
 package com.olivamore.api.inventory.material;
 
+import com.olivamore.api.inventory.storagemovement.TankLedger;
+
 import java.util.List;
 
-/** Soy grafi: dugumler, kenarlar; dugum sayisi siniri asildiysa {@code truncated}. */
-record MaterialLineageResponse(String focus, List<Node> nodes, List<Edge> edges, boolean truncated) {
+/**
+ * Soy grafi: dugumler, kenarlar; dugum sayisi siniri asildiysa {@code truncated}. Odak tank materyaliyse graf yok,
+ * {@code tankLedger} tankin defterine (islem gecmisi, materyale suzulu) isaret eder; degilse null.
+ */
+record MaterialLineageResponse(String focus, List<Node> nodes, List<Edge> edges, boolean truncated,
+	TankLedgerRef tankLedger) {
+
+	record TankLedgerRef(Long storageUnitId, Long materialId) {
+	}
 
 	/** Dugum: materyal ya da kosu/depo/siparis. */
 	sealed interface Node permits MaterialNode, OtherNode {
@@ -16,14 +25,15 @@ record MaterialLineageResponse(String focus, List<Node> nodes, List<Edge> edges,
 
 	}
 
+	/** @param tankEntries tank materyalinde bu agactan yapilan girislerin snapshot'lari; digerlerinde null */
 	record MaterialNode(String key, String kind, Long id, String title, String subtitle, Number quantity, String unit,
 		String status, String lineageRole, String originType, String batchCode, String deliveryBatchCode, String stageName,
-		String storageUnit, boolean isFocus, int depth) implements Node {
+		String storageUnit, List<TankLedger.EntrySnapshot> tankEntries, boolean isFocus, int depth) implements Node {
 
 		@Override
 		public Node withDepth(int value) {
 			return new MaterialNode(key, kind, id, title, subtitle, quantity, unit, status, lineageRole, originType,
-				batchCode, deliveryBatchCode, stageName, storageUnit, isFocus, value);
+				batchCode, deliveryBatchCode, stageName, storageUnit, tankEntries, isFocus, value);
 		}
 
 	}

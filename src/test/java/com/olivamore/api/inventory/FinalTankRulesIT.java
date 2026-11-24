@@ -354,7 +354,7 @@ class FinalTankRulesIT {
 	}
 
 	@Test
-	void lineageWalksFromTheBatchMaterialThroughTheTankMaterial() {
+	void lineageOfTheBatchMaterialEndsAtTheTankMaterial() {
 		long tank = tank(1000, Map.of());
 		long batch = batchMaterial(GEMLIK, "100", "LITRE", "0.3");
 		JsonNode in = data(api.post("/api/storage-movements/inbound",
@@ -369,9 +369,10 @@ class FinalTankRulesIT {
 		lineage.get("edges").forEach(e -> edges.add(e.get("from").asString() + ">" + e.get("to").asString() + " "
 			+ e.get("label").asString() + " " + e.get("quantity").asString()));
 		assertThat(edges).containsExactly("material:" + batch + ">material:" + mix + " Tanka girdi 50");
-		assertThat(fromMix.get("nodes")).anyMatch(n -> n.get("key").asString().equals("material:" + batch));
-		assertThat(fromMix.get("nodes")).anyMatch(n -> n.get("key").asString().equals("material:" + mix)
-			&& n.get("lineage_role").asString().equals("tank"));
+		// tank materyalinin grafi yok, defterine isaret eder
+		assertThat(fromMix.get("nodes")).hasSize(1);
+		assertThat(fromMix.get("nodes").get(0).get("lineage_role").asString()).isEqualTo("tank");
+		assertThat(fromMix.get("tank_ledger").get("material_id").asLong()).isEqualTo(mix);
 	}
 
 	// ---- yardimcilar -------------------------------------------------------
