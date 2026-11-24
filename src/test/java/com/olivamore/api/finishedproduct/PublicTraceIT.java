@@ -54,8 +54,9 @@ class PublicTraceIT {
 		List<Map<String, Object>> deliveries = jdbc.queryForList("""
 			select b.id, s.name from production_batches b join suppliers s on s.id = b.supplier_id
 			where b.parent_batch_id is null and b.received_at is not null
-			order by b.id limit 50
+			order by (b.supplier_field_id is null) desc, b.id limit 50
 			""");
+		// tarlasi girilmemis teslimat: sayfada yalnizca tedarikci
 		Map<String, Object> before = deliveries.getFirst();
 		Map<String, Object> after = deliveries.stream().filter(d -> !d.get("name").equals(before.get("name")))
 			.findFirst().orElseThrow();

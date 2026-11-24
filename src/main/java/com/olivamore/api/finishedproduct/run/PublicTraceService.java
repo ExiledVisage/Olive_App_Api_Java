@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * Sisedeki QR (docs/GREENOPS_FEATURES.md 5b): dolum kosusuna tahmin edilemez bir anahtar; adres
@@ -104,8 +105,9 @@ class PublicTraceService {
 			+ (days.getFirst().equals(days.getLast()) ? "" : " – " + DAY.format(days.getLast())));
 
 		StringBuilder origin = new StringBuilder();
-		deliveries.stream().map(d -> String.join(" · ", List.of(d.supplierName(), d.fieldCode(), d.fieldLocation())
-				.stream().filter(Objects::nonNull).filter(s -> !s.isBlank()).toList()))
+		// tarla girilmemis teslimatta kod ve konum bos
+		deliveries.stream().map(d -> String.join(" · ", Stream.of(d.supplierName(), d.fieldCode(), d.fieldLocation())
+				.filter(Objects::nonNull).filter(s -> !s.isBlank()).toList()))
 			.filter(s -> !s.isBlank()).distinct().sorted(Comparator.naturalOrder())
 			.forEach(s -> origin.append("<li>").append(escape(s)).append("</li>"));
 
