@@ -1,7 +1,7 @@
 # Makineler: makine kaydi, sikimda makine adimlari, makine takibi
 
-Durum (2026-11-24): 1. adim (7e9ac74), 2. adim (e1792fe) ve 3. adim yazildi; 4-6 bekliyor. Sunucu kurulumu (MACHINE_STAGES 6. adim)
-kullanici istegiyle ertelendi.
+Durum (2026-11-24): API 1. adim (7e9ac74), 2. adim (e1792fe), 3. adim (97d887c); Flutter 4. adim (2079f6d), 5. adim
+(6a20dee, feat/java-api). 6. adim (sunucu kurulumu, MACHINE_STAGES 6. adimla birlikte) kullanici istegiyle ertelendi.
 
 ## Amac
 
