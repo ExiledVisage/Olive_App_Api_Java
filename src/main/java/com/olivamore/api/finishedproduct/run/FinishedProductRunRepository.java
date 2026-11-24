@@ -16,6 +16,9 @@ public interface FinishedProductRunRepository extends JpaRepository<FinishedProd
 	@EntityGraph(attributePaths = {"product", "recipe"})
 	List<FinishedProductRun> findAllByOrderByCreatedAtDescIdDesc();
 
+	@EntityGraph(attributePaths = "product")
+	Optional<FinishedProductRun> findByPublicToken(String publicToken);
+
 	@Override
 	@EntityGraph(attributePaths = {"product", "recipe"})
 	Page<FinishedProductRun> findAll(Pageable pageable);

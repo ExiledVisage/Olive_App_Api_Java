@@ -67,7 +67,7 @@ import java.util.UUID;
 class SecurityConfig {
 
 	private static final String[] PUBLIC_PATHS = {"/api/auth/login", "/api/auth/register", "/api/auth/refresh",
-		"/api/app/version", "/api/app/download"};
+		"/api/app/version", "/api/app/download", "/api/public/**"};
 	private static final int MIN_KEY_BITS = 2048;
 
 	@Bean

@@ -1,4 +1,4 @@
--- finished_product_runs: dolum kosulari
+-- finished_product_runs: dolum kosulari; public_token sisedeki QR'in herkese acik izlenebilirlik sayfasi icin
 
 CREATE TABLE finished_product_runs (
     id bigint NOT NULL,
@@ -11,7 +11,8 @@ CREATE TABLE finished_product_runs (
     completed_at timestamp(0) without time zone,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
-    source_storage_unit_id bigint
+    source_storage_unit_id bigint,
+    public_token character varying(40)
 );
 
 CREATE SEQUENCE finished_product_runs_id_seq
@@ -57,3 +58,5 @@ ALTER TABLE ONLY packaging_lot_movements
 ALTER TABLE ONLY storage_movements
     ADD CONSTRAINT storage_movements_finished_product_run_id_foreign FOREIGN KEY (finished_product_run_id)
         REFERENCES finished_product_runs(id) ON DELETE SET NULL;
+
+CREATE UNIQUE INDEX finished_product_runs_public_token_unique ON finished_product_runs USING btree (public_token);

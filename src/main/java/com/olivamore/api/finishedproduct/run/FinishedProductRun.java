@@ -54,6 +54,9 @@ public class FinishedProductRun extends AuditedEntity {
 
 	private LocalDateTime completedAt;
 
+	/** Sisedeki QR'in herkese acik sayfasi; yoksa bag yok. */
+	private String publicToken;
+
 	FinishedProductRun(FinishedProduct product, FinishedProductRecipe recipe, long sourceStorageUnitId, int quantity,
 		String note) {
 		this.product = product;
@@ -61,6 +64,10 @@ public class FinishedProductRun extends AuditedEntity {
 		this.sourceStorageUnitId = sourceStorageUnitId;
 		this.quantity = quantity;
 		this.note = note;
+	}
+
+	void changePublicToken(String token) {
+		publicToken = token;
 	}
 
 	void start() {

@@ -5,12 +5,17 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -115,6 +120,78 @@ public class MaterialDirectory {
 		}
 		return jdbc.sql("select id, production_batch_id from materials where production_batch_id in (:ids) order by id")
 			.param("ids", batchIds).query(BatchMaterial.class).list();
+	}
+
+	/**
+	 * Dolum kosusunun yaginin geldigi partiler: kosunun cektigi materyallerden yukari, ebeveynler ve tanka
+	 * girisler uzerinden. Tank materyalinde yalnizca kosunun cekisinden (yoksa simdiden) onceki girisler sayilir;
+	 * tanklar arasi transferde kaynak tankin da transferden onceki girisleri. En fazla 2000 materyal gezilir.
+	 * @return parti id'leri (partisi olmayan acilis stoku gibi materyaller yok)
+	 */
+	public Set<Long> originBatchIds(long runId, Collection<Long> materialIds) {
+		record Step(long materialId, long until) {
+		}
+		record Origin(Long id, Long productionBatchId, Long parentMaterialId, String originType) {
+		}
+		record Entry(Long id, Long sourceMaterialId, Long materialId) {
+		}
+		record Withdrawal(Long materialId, Long id) {
+		}
+		List<Long> start = materialIds.stream().filter(Objects::nonNull).distinct().toList();
+		if (start.isEmpty()) {
+			return Set.of();
+		}
+		Map<Long, Long> withdrawals = jdbc.sql("""
+			select material_id, min(id) as id from storage_movements
+			where finished_product_run_id = :run and material_id in (:ids) group by material_id
+			""").param("run", runId).param("ids", start).query(Withdrawal.class).list().stream()
+			.collect(Collectors.toMap(Withdrawal::materialId, Withdrawal::id));
+		List<Step> frontier = start.stream().map(id -> new Step(id, withdrawals.getOrDefault(id, Long.MAX_VALUE)))
+			.toList();
+		Map<Long, Long> seen = new HashMap<>();
+		Set<Long> batches = new LinkedHashSet<>();
+		while (!frontier.isEmpty() && seen.size() < 2000) {
+			List<Step> fresh = frontier.stream().filter(s -> seen.getOrDefault(s.materialId(), Long.MIN_VALUE) < s.until())
+				.toList();
+			fresh.forEach(s -> seen.merge(s.materialId(), s.until(), Math::max));
+			if (fresh.isEmpty()) {
+				break;
+			}
+			Map<Long, Origin> rows = jdbc.sql("select id, production_batch_id, parent_material_id, origin_type from materials"
+				+ " where id in (:ids)").param("ids", fresh.stream().map(Step::materialId).distinct().toList())
+				.query(Origin.class).list().stream().collect(Collectors.toMap(Origin::id, Function.identity()));
+			List<Step> next = new ArrayList<>();
+			List<Long> tanks = new ArrayList<>();
+			for (Step step : fresh) {
+				Origin row = rows.get(step.materialId());
+				if (row == null) {
+					continue;
+				}
+				if ("TANK".equals(row.originType())) {
+					tanks.add(row.id());
+					continue;
+				}
+				if (row.productionBatchId() != null) {
+					batches.add(row.productionBatchId());
+				}
+				if (row.parentMaterialId() != null) {
+					next.add(new Step(row.parentMaterialId(), step.until()));
+				}
+			}
+			if (!tanks.isEmpty()) {
+				Map<Long, Long> until = new HashMap<>();
+				fresh.stream().filter(s -> tanks.contains(s.materialId()))
+					.forEach(s -> until.merge(s.materialId(), s.until(), Math::max));
+				jdbc.sql("""
+					select id, source_material_id, material_id from storage_movements
+					where material_id in (:ids) and source_material_id is not null order by id
+					""").param("ids", tanks).query(Entry.class).list().stream()
+					.filter(e -> e.id() < until.get(e.materialId()))
+					.forEach(e -> next.add(new Step(e.sourceMaterialId(), e.id())));
+			}
+			frontier = next;
+		}
+		return batches;
 	}
 
 	public long countOfBatch(long batchId) {

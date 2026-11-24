@@ -80,3 +80,5 @@ olive:
       refresh-token-ttl: ${JWT_REFRESH_TOKEN_TTL:30d}
   # Mobil uygulama surumleri (version.json + APK); frontend'in yayinlama betigi buraya koyar
   releases-path: ${APP_RELEASES_PATH:releases}
+  # Sisedeki QR'in actigi herkese acik sayfanin adres tabani (alan adi gelince degisir; QR'lar yeni adresle uretilir)
+  public-base-url: ${PUBLIC_BASE_URL:http://161.35.54.96:8001}

@@ -173,9 +173,24 @@ hicbiri; secim cihazda hatirlanir).
 - GreenOps'taki aciklar tekrarlanmaz: kiraci/ID tahmini yok (token), hiz siniri gercek istemci IP'siyle (nginx
   `X-Forwarded-For` yalnizca guvenilen proxy'den), yalnizca okuma.
 
-**Alan adi:** henuz yok (kullanici). Adres tabani ayardan gelir (`app.public-base-url`, varsayilan sunucu IP'si);
-sayfa sabit bir sablonla ve ustte "Bu sayfa deneme amaclidir" uyarisiyla yayinlanir. Sisede kalici QR basilmadan
-once alan adi ve HTTPS kesinlesmeli; ayar degisince QR'lar yeni adresle uretilir.
+**Alan adi:** henuz yok (kullanici). Adres tabani ayardan gelir (`olive.public-base-url`, ortam degiskeni
+`PUBLIC_BASE_URL`, varsayilan gelistirme sunucusu); sayfa sabit sablonla ve ustte "Bu sayfa deneme amaclidir"
+uyarisiyla yayinlanir. Sisede kalici QR basilmadan once alan adi ve HTTPS kesinlesmeli; ayar degisince QR'lar yeni
+adresle uretilir.
+
+**Yapildi (API):**
+- Ic etiket icin API gerekmedi: QR yalnizca kod tasir (`olv:batch:<id>`, `olv:tank:<id>`), teslimatin gruplari ve
+  guncel asamalari zaten parti cevabinda (`groups[].current_stage`). Etiket ve QR okutma Flutter'da.
+- `finished_product_runs.public_token` (tahmin edilemez, 32 karakter);
+  `POST /api/finished-product-runs/{id}/public-link`
+  (bag yoksa acar; `?regenerate=true` yeniler, eski QR gecersiz) ve `DELETE` (kaldirir); yalnizca baslamis/bitmis
+  kosu; yetki `finished_product_run.complete`. Kosu detayinda `public_url`.
+- Sayfa `GET /api/public/runs/{token}` (girissiz, adres basina dakikada 30, istegin Accept basligindan bagimsiz
+  HTML; bilinmeyen anahtar 404 sayfasi). Gosterilen: urun, lot (Dolum #), dolum tarihi, kosu degerleri (asitlik),
+  cesit, hasat donemi, tedarikci ve tarla (kod, konum).
+- Kaynak partiler envanterin `MaterialDirectory.originBatchIds`'i ile: kosunun cektigi tank materyallerinden yukari;
+  tankta yalnizca kosunun cekisinden onceki girisler, transferde kaynak tankin transferden onceki girisleri.
+  Teslimat bilgisi `finishedproduct.RunOriginDirectory` arayuzuyle (uretim modulu uygular; bagimlilik tek yonlu).
 
 ## Adimlar
 

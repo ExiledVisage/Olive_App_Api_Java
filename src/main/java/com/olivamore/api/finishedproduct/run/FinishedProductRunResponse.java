@@ -32,6 +32,8 @@ record FinishedProductRunResponse(
 	List<AttributeValue> attributeValues,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	PackagingScrap packagingScrap,
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	String publicUrl,
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
 

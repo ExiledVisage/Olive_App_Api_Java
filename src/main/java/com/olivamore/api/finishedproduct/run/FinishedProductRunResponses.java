@@ -47,8 +47,11 @@ class FinishedProductRunResponses {
 	private final FinishedProductRunRepository runs;
 	private final RecipeResources recipes;
 	private final RunQueries queries;
+	private final PublicTraceService publicUrls;
 
-	FinishedProductRunResponses(FinishedProductRunRepository runs, RecipeResources recipes, RunQueries queries) {
+	FinishedProductRunResponses(FinishedProductRunRepository runs, RecipeResources recipes, RunQueries queries,
+		PublicTraceService publicUrls) {
+		this.publicUrls = publicUrls;
 		this.runs = runs;
 		this.recipes = recipes;
 		this.queries = queries;
@@ -112,6 +115,7 @@ class FinishedProductRunResponses {
 				shape.details() ? values.getOrDefault(run.getId(), List.of()) : null,
 				shape.details() ? scrap(packagings.getOrDefault(run.getId(), List.of()),
 					scraps.getOrDefault(run.getId(), List.of())) : null,
+				shape.details() ? publicUrls.url(run.getPublicToken()) : null,
 				run.getCreatedAt(), run.getUpdatedAt());
 		}).toList();
 	}
