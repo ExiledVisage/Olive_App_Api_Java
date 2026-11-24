@@ -125,23 +125,20 @@ yag = pirina kg x pirina yag % / 100; analitikte zeytin yag % ve pirina KPY orta
 **GreenOps:** tank basina geometri (ic cap, silindir yuksekligi, alt ve ust konik acisi, cetvel ofseti, posa
 borusu); cetvel mm'den litre, sabit yogunlukla kg (Excel'den alinmis formul).
 
-**Veri:**
-- `storage_unit_geometries` (tank basina en fazla bir): `shape` (`vertical_cylinder`), `inner_diameter_mm`,
-  `cylinder_height_mm`, `bottom_cone_deg`, `top_cone_deg` (0 = duz), `ruler_offset_mm`, `dead_volume_l`
-  (posa borusu vb.). Cetvel dipten dolu yuksekligi olcer (kullanici cevabi); ofset cetvelin sifiri ile tank dibi
-arasindaki fark.
-- `tank_level_readings`: tank, olculen mm, hesaplanan litre ve kg, kullanilan yogunluk, o anki defter bakiyesi,
-  fark, olcen, not, zaman.
-
-**Hesap:** alt koni + silindir + ust koni hacimleri, olculen yukseklige kadar (kesik koni formulleri); yogunluk
-tanktaki urun tipinin yogunlugu (yoksa urun varsayilani). Kapasiteyi asan ya da negatif olcum reddedilir. Birim
-testi GreenOps Excel'inden alinan birkac tank/olcum ornegiyle (kullanici ornek verirse).
-
-**Defterle baglanti:** okumada defter bakiyesi ile fark gosterilir; kullanici isterse fark icin sayim duzeltmesi
-(`adjustment`) tek tikla acilir (ayri onay). Okuma tek basina stoku degistirmez.
-
-**API:** `PUT/GET /api/storage-units/{id}/geometry`, `POST /api/storage-units/{id}/level-readings` (hesaplar,
-kaydeder), `GET .../level-readings`; yetki `storage_unit.measure`.
+**Yapildi (API):**
+- Geometri `storage_units` kolonlarinda (tank basina bir, istege bagli): `inner_diameter_mm`, `cylinder_height_mm`,
+  `bottom_cone_deg`, `top_cone_deg` (yataydan, 0 = duz), `ruler_offset_mm`, `dead_volume_litre`. Cetvel dipten dolu
+  yuksekligi olcer; sivi yuksekligi alt koni tepesinden = okuma + ofset.
+- Hacim (`TankGeometry`): alt koni (tepeden dolan koni), silindir, ust koni (kesik koni); olu hacim duser; tankin
+  disina dusen okuma 422. Birim testi elle hesaplanmis degerlerle (`TankGeometryTest`).
+- `tank_level_readings`: okuma, litre, kg, yogunluk, o anki defter miktari ve birimi, fark, olcen, not, zaman.
+- Yogunluk tanktaki karisimdan (toplam kg / toplam litre); tank bossa kg yok. Defter miktari tankta duran
+  materyallerin toplami (tankin biriminde); fark = hesaplanan - defter, yuzdesiyle. Okuma stoku degistirmez; fark
+  icin sayim duzeltmesini kullanici ayrica yapar (Flutter'da "Farki duzelt" var olan duzeltme penceresini doldurur).
+- Uclar: `GET/PUT/DELETE /api/storage-units/{id}/geometry` (gorme `storage_unit.view`, degistirme
+  `storage_unit.manage`; GET cevabinda en buyuk okuma ve tam hacim), `POST/GET /api/storage-units/{id}/level-readings`
+  (okuma `storage_unit.measure`).
+- Gercek tank olculeri tank ayarlarindan sonra girilecek; demo tanklarda geometri yok.
 
 **Flutter:** tank ayarlarinda geometri formu; tank sayfasinda "Seviye olc" (mm gir -> litre, kg, defterle fark;
 "Farki duzelt"); okuma gecmisi.

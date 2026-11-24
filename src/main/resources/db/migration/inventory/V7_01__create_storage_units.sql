@@ -1,4 +1,4 @@
--- storage_units: tanklar: tur (son tank, on dinlendirme), kapasite ve birimi
+-- storage_units: tanklar: tur (son tank, on dinlendirme), kapasite ve birimi; seviye olcumu icin geometri (istege bagli)
 
 CREATE TABLE storage_units (
     id bigint NOT NULL,
@@ -14,6 +14,12 @@ CREATE TABLE storage_units (
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     kind character varying(255) DEFAULT 'final'::character varying NOT NULL,
+    inner_diameter_mm numeric(10,2),
+    cylinder_height_mm numeric(10,2),
+    bottom_cone_deg numeric(5,2),
+    top_cone_deg numeric(5,2),
+    ruler_offset_mm numeric(10,2),
+    dead_volume_litre numeric(10,2),
     CONSTRAINT storage_units_capacity_unit_check CHECK (capacity_unit IN ('KG', 'LITRE')),
     CONSTRAINT storage_units_kind_check CHECK (kind IN ('final', 'pre_settling'))
 );

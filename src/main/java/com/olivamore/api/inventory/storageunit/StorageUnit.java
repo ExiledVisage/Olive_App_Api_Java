@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /** Tank; kapasitesi 2 basamak. */
 @Entity
@@ -59,6 +60,19 @@ public class StorageUnit extends AuditedEntity {
 	@Column(name = "is_active", nullable = false)
 	private boolean active = true;
 
+	/** Seviye olcumu icin geometri; hepsi bossa tankin geometrisi girilmemis. */
+	private BigDecimal innerDiameterMm;
+
+	private BigDecimal cylinderHeightMm;
+
+	private BigDecimal bottomConeDeg;
+
+	private BigDecimal topConeDeg;
+
+	private BigDecimal rulerOffsetMm;
+
+	private BigDecimal deadVolumeLitre;
+
 	StorageUnit(CreateStorageUnitRequest request) {
 		name = request.name();
 		code = request.code();
@@ -73,6 +87,23 @@ public class StorageUnit extends AuditedEntity {
 	}
 
 	/** Yalnizca gonderilen alanlar. */
+	/** Girilmediyse bos. */
+	public Optional<TankGeometry> geometry() {
+		return innerDiameterMm == null || cylinderHeightMm == null ? Optional.empty()
+			: Optional.of(new TankGeometry(innerDiameterMm, cylinderHeightMm, bottomConeDeg, topConeDeg,
+				rulerOffsetMm, deadVolumeLitre));
+	}
+
+	/** {@code null} geometriyi siler. */
+	public void changeGeometry(TankGeometry geometry) {
+		innerDiameterMm = geometry == null ? null : geometry.innerDiameterMm();
+		cylinderHeightMm = geometry == null ? null : geometry.cylinderHeightMm();
+		bottomConeDeg = geometry == null ? null : geometry.bottomConeDeg();
+		topConeDeg = geometry == null ? null : geometry.topConeDeg();
+		rulerOffsetMm = geometry == null ? null : geometry.rulerOffsetMm();
+		deadVolumeLitre = geometry == null ? null : geometry.deadVolumeLitre();
+	}
+
 	void apply(UpdateStorageUnitRequest request) {
 		if (request.name() != null) {
 			name = request.name();
