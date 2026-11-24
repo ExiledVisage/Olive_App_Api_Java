@@ -12599,6 +12599,34 @@
           "estimated_value" : 0.3403,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2025-11-09T08:33:00Z",
         "updated_at" : "2025-11-09T10:14:00Z"
       }
@@ -12701,6 +12729,34 @@
           "estimated_value" : 0.4032,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2025-11-11T08:44:00Z",
         "updated_at" : "2025-11-11T11:20:00Z"
       }
@@ -12803,6 +12859,34 @@
           "estimated_value" : 0.3403,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 3,
+            "packaging_item_name" : "Cam Şişe 750ml",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 9,
+            "packaging_item_name" : "Metal Vidalı Kapak 38mm",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 14,
+            "packaging_item_name" : "Ön Etiket 750ml",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2025-11-11T12:04:00Z",
         "updated_at" : "2025-11-11T14:52:00Z"
       }
@@ -12905,6 +12989,34 @@
           "estimated_value" : 0.4046,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 2,
+            "packaging_item_name" : "Cam Şişe 500ml",
+            "used" : 1500,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 1500,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 13,
+            "packaging_item_name" : "Ön Etiket 500ml",
+            "used" : 1500,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 1500,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2025-11-16T13:34:00Z",
         "updated_at" : "2025-11-16T15:41:00Z"
       }
@@ -12956,18 +13068,18 @@
           "density_kg_per_litre" : 0.916
         } ],
         "packagings" : [ {
-          "id" : 901,
+          "id" : 903,
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
           "packaging_lot_id" : 144,
           "lot_code" : "ECA-26-0015",
-          "lot_received_at" : "2026-02-21T12:42:00Z",
+          "lot_received_at" : "2026-02-21T10:16:00Z",
           "lot_remaining" : 0,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 2000
         }, {
-          "id" : 902,
+          "id" : 904,
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
@@ -12978,7 +13090,7 @@
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 2000
         }, {
-          "id" : 903,
+          "id" : 905,
           "packaging_item_id" : 12,
           "packaging_item_name" : "Ön Etiket 250ml",
           "packaging_item_type" : "LABEL",
@@ -12989,7 +13101,7 @@
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 2000
         }, {
-          "id" : 904,
+          "id" : 906,
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
@@ -12998,9 +13110,9 @@
           "lot_received_at" : "2026-02-27T12:12:00Z",
           "lot_remaining" : 0,
           "supplier_name" : "Marmara Etiket Baski",
-          "quantity" : 1958
+          "quantity" : 1918
         }, {
-          "id" : 905,
+          "id" : 907,
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
@@ -13009,7 +13121,7 @@
           "lot_received_at" : "2026-03-04T14:03:00Z",
           "lot_remaining" : 0,
           "supplier_name" : "Marmara Etiket Baski",
-          "quantity" : 42
+          "quantity" : 82
         } ],
         "attribute_values" : [ {
           "id" : 200,
@@ -13018,6 +13130,34 @@
           "estimated_value" : 0.31,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 2000,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2026-03-04T14:03:00Z",
         "updated_at" : "2026-03-04T16:47:00Z"
       }
@@ -13452,7 +13592,7 @@
     },
     "status" : 422,
     "response" : {
-      "detail" : "Cam Şişe 250ml için 5000 adet gerekiyor, lotlarda 1950 adet var. Önce mal girişi yapın.",
+      "detail" : "Cam Şişe 250ml için 5000 adet gerekiyor, lotlarda 2424 adet var. Önce mal girişi yapın.",
       "instance" : "/api/finished-product-runs",
       "status" : 422,
       "title" : "Unprocessable Content"
@@ -13523,10 +13663,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 20
         }, {
@@ -13534,10 +13674,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 20
         }, {
@@ -13548,7 +13688,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         }, {
@@ -13556,10 +13696,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         } ],
@@ -13570,8 +13710,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : [ "R1", "data.id" ]
@@ -13622,10 +13790,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 12
         }, {
@@ -13633,10 +13801,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 12
         }, {
@@ -13647,7 +13815,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 12
         }, {
@@ -13655,10 +13823,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 12
         } ],
@@ -13669,8 +13837,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : [ "R2", "data.id" ]
@@ -13720,10 +13916,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 10
         }, {
@@ -13731,10 +13927,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 10
         }, {
@@ -13745,7 +13941,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         }, {
@@ -13753,10 +13949,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         } ],
@@ -13767,8 +13963,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : [ "R3", "data.id" ]
@@ -13825,10 +14049,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 40
         }, {
@@ -13836,10 +14060,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 40
         }, {
@@ -13850,7 +14074,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 40
         }, {
@@ -13858,10 +14082,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 40
         } ],
@@ -13872,8 +14096,36 @@
           "estimated_value" : 0.503,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : [ "R4", "data.id" ]
@@ -13923,10 +14175,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 8
         }, {
@@ -13934,10 +14186,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 8
         }, {
@@ -13948,7 +14200,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 8
         }, {
@@ -13956,10 +14208,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 8
         } ],
@@ -13970,8 +14222,36 @@
           "estimated_value" : 0.42,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : [ "R5", "data.id" ]
@@ -14021,10 +14301,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 16
         }, {
@@ -14032,10 +14312,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 16
         }, {
@@ -14046,7 +14326,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 16
         }, {
@@ -14054,10 +14334,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 16
         } ],
@@ -14068,8 +14348,36 @@
           "estimated_value" : 0.78,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : [ "R6", "data.id" ]
@@ -14123,10 +14431,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 20
         }, {
@@ -14134,10 +14442,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 20
         }, {
@@ -14148,7 +14456,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         }, {
@@ -14156,10 +14464,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         } ],
@@ -14170,8 +14478,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : null
@@ -14429,10 +14765,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 10
         }, {
@@ -14440,10 +14776,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 10
         }, {
@@ -14454,7 +14790,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         }, {
@@ -14462,10 +14798,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         } ],
@@ -14476,8 +14812,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:02Z"
       }
     },
     "save" : null
@@ -14679,7 +15043,7 @@
         "status" : "in_progress",
         "allowed_transitions" : [ "completed", "cancelled" ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:01Z",
+        "started_at" : "2026-11-07T12:00:03Z",
         "completed_at" : null,
         "finished_product" : {
           "id" : 1,
@@ -14705,10 +15069,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2424,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 20
         }, {
@@ -14716,10 +15080,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 246,
+          "lot_remaining" : 211,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 20
         }, {
@@ -14730,7 +15094,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1950,
+          "lot_remaining" : 1932,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         }, {
@@ -14738,10 +15102,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7742,
+          "lot_remaining" : 7677,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         } ],
@@ -14752,8 +15116,36 @@
           "estimated_value" : 0.3,
           "actual_value" : 0.31
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:03Z"
       }
     },
     "save" : null
@@ -14787,8 +15179,8 @@
         "status" : "completed",
         "allowed_transitions" : [ ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:01Z",
-        "completed_at" : "2026-11-07T12:00:01Z",
+        "started_at" : "2026-11-07T12:00:03Z",
+        "completed_at" : "2026-11-07T12:00:03Z",
         "finished_product" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3 250ml",
@@ -14813,10 +15205,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1930,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2404,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 20
         }, {
@@ -14824,10 +15216,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 226,
+          "lot_remaining" : 191,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 20
         }, {
@@ -14838,7 +15230,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1930,
+          "lot_remaining" : 1912,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         }, {
@@ -14846,10 +15238,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7722,
+          "lot_remaining" : 7657,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         } ],
@@ -14860,8 +15252,36 @@
           "estimated_value" : 0.3,
           "actual_value" : 0.31
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:03Z"
       }
     },
     "save" : null
@@ -14893,8 +15313,8 @@
         "status" : "completed",
         "allowed_transitions" : [ ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:01Z",
-        "completed_at" : "2026-11-07T12:00:01Z",
+        "started_at" : "2026-11-07T12:00:03Z",
+        "completed_at" : "2026-11-07T12:00:03Z",
         "finished_product" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3 250ml",
@@ -14930,10 +15350,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1930,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2404,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 20
         }, {
@@ -14941,10 +15361,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 226,
+          "lot_remaining" : 191,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 20
         }, {
@@ -14955,7 +15375,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1930,
+          "lot_remaining" : 1912,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         }, {
@@ -14963,10 +15383,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7722,
+          "lot_remaining" : 7657,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 20
         } ],
@@ -14977,8 +15397,36 @@
           "estimated_value" : 0.3,
           "actual_value" : 0.31
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 20,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:03Z"
       }
     },
     "save" : null
@@ -15148,12 +15596,12 @@
         "id" : 1,
         "name" : "Cam Şişe 250ml",
         "type" : "BOTTLE",
-        "current_stock" : 1930,
-        "lot_count" : 31,
+        "current_stock" : 2404,
+        "lot_count" : 32,
         "active_lot_count" : 1,
         "is_active" : true,
         "created_at" : "2025-11-06T07:00:00Z",
-        "updated_at" : "2026-11-07T12:00:01Z"
+        "updated_at" : "2026-11-07T12:00:03Z"
       }
     },
     "save" : null
@@ -15166,39 +15614,50 @@
     "response" : {
       "data" : {
         "id" : 330,
-        "lot_code" : "AKS-26-0062",
-        "received_at" : "2026-10-22T09:29:00Z",
-        "quantity_received" : 3000,
+        "lot_code" : "MEB-26-0117",
+        "received_at" : "2026-10-21T14:51:00Z",
+        "quantity_received" : 6000,
         "quantity_remaining" : 0,
-        "quantity_used" : 3000,
+        "quantity_used" : 6000,
         "status" : "depleted",
         "note" : null,
         "packaging_item" : {
-          "id" : 9,
-          "name" : "Metal Vidalı Kapak 38mm",
-          "type" : "CAP"
+          "id" : 17,
+          "name" : "Arka Etiket (Genel)",
+          "type" : "LABEL"
         },
         "product_supplier" : {
-          "id" : 2,
-          "name" : "Anadolu Kapak Sanayi",
-          "code" : "TED-KAP-01"
+          "id" : 3,
+          "name" : "Marmara Etiket Baski",
+          "code" : "TED-ETK-01"
         },
         "movements" : [ {
-          "id" : 2400,
+          "id" : 2532,
           "movement_type" : "IN",
           "source_type" : "SUPPLIER_DELIVERY",
-          "quantity" : 3000,
+          "quantity" : 6000,
           "is_incoming" : true,
           "note" : null,
-          "moved_at" : "2026-10-22T09:29:00Z",
+          "moved_at" : "2026-10-21T14:51:00Z",
           "finished_product_run_id" : null,
           "finished_product_name" : null,
-          "created_at" : "2026-10-22T09:29:00Z"
+          "created_at" : "2026-10-21T14:51:00Z"
         }, {
-          "id" : 2403,
+          "id" : 2537,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
-          "quantity" : 398,
+          "quantity" : 861,
+          "is_incoming" : false,
+          "note" : "Dolum Run #446",
+          "moved_at" : "2026-10-21T17:12:00Z",
+          "finished_product_run_id" : 446,
+          "finished_product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "created_at" : "2026-10-21T17:12:00Z"
+        }, {
+          "id" : 2543,
+          "movement_type" : "OUT",
+          "source_type" : "FINISHED_PRODUCT_RUN",
+          "quantity" : 534,
           "is_incoming" : false,
           "note" : "Dolum Run #447",
           "moved_at" : "2026-10-22T12:27:00Z",
@@ -15206,7 +15665,18 @@
           "finished_product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
           "created_at" : "2026-10-22T12:27:00Z"
         }, {
-          "id" : 2413,
+          "id" : 2549,
+          "movement_type" : "OUT",
+          "source_type" : "FINISHED_PRODUCT_RUN",
+          "quantity" : 486,
+          "is_incoming" : false,
+          "note" : "Dolum Run #448",
+          "moved_at" : "2026-10-22T17:03:00Z",
+          "finished_product_run_id" : 448,
+          "finished_product_name" : "Naturel Sızma Gemlik 0.3 500ml",
+          "created_at" : "2026-10-22T17:03:00Z"
+        }, {
+          "id" : 2553,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 258,
@@ -15217,7 +15687,7 @@
           "finished_product_name" : "Naturel Sızma Gemlik 0.3 750ml",
           "created_at" : "2026-10-23T13:56:00Z"
         }, {
-          "id" : 2420,
+          "id" : 2562,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 448,
@@ -15228,7 +15698,7 @@
           "finished_product_name" : "Naturel Sızma Ayvalık 0.4 1L",
           "created_at" : "2026-10-23T17:24:00Z"
         }, {
-          "id" : 2428,
+          "id" : 2570,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 800,
@@ -15239,7 +15709,18 @@
           "finished_product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
           "created_at" : "2026-10-24T10:36:00Z"
         }, {
-          "id" : 2437,
+          "id" : 2575,
+          "movement_type" : "OUT",
+          "source_type" : "FINISHED_PRODUCT_RUN",
+          "quantity" : 1500,
+          "is_incoming" : false,
+          "note" : "Dolum Run #452",
+          "moved_at" : "2026-10-24T14:23:00Z",
+          "finished_product_run_id" : 452,
+          "finished_product_name" : "Naturel Sızma Gemlik 0.3 500ml",
+          "created_at" : "2026-10-24T14:23:00Z"
+        }, {
+          "id" : 2579,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 800,
@@ -15250,7 +15731,7 @@
           "finished_product_name" : "Naturel Sızma Ayvalık 0.4 1L",
           "created_at" : "2026-10-25T13:11:00Z"
         }, {
-          "id" : 2444,
+          "id" : 2587,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 130,
@@ -15261,35 +15742,38 @@
           "finished_product_name" : "Naturel Sızma Gemlik 0.3 750ml",
           "created_at" : "2026-10-26T12:31:00Z"
         }, {
-          "id" : 2460,
+          "id" : 2596,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
-          "quantity" : 82,
+          "quantity" : 183,
           "is_incoming" : false,
-          "note" : "Dolum Run #457",
-          "moved_at" : "2026-10-27T11:13:00Z",
-          "finished_product_run_id" : 457,
-          "finished_product_name" : "Naturel Sızma Gemlik 0.3 1L",
-          "created_at" : "2026-10-27T11:13:00Z"
-        }, {
-          "id" : 2486,
-          "movement_type" : "OUT",
-          "source_type" : "FINISHED_PRODUCT_RUN",
-          "quantity" : 84,
-          "is_incoming" : false,
-          "note" : "Dolum Run #462",
-          "moved_at" : "2026-10-30T12:44:00Z",
-          "finished_product_run_id" : 462,
-          "finished_product_name" : "Naturel Sızma Ayvalık 0.4 1L",
-          "created_at" : "2026-10-30T12:44:00Z"
+          "note" : "Dolum Run #456",
+          "moved_at" : "2026-10-26T15:59:00Z",
+          "finished_product_run_id" : 456,
+          "finished_product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "created_at" : "2026-10-26T15:59:00Z"
         } ],
         "runs" : [ {
+          "id" : 446,
+          "status" : "completed",
+          "quantity" : 861,
+          "finished_product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "bottle_quantity" : 1470,
+          "completed_at" : "2026-10-21T17:12:00Z"
+        }, {
           "id" : 447,
           "status" : "completed",
-          "quantity" : 398,
+          "quantity" : 534,
           "finished_product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
           "bottle_quantity" : 534,
           "completed_at" : "2026-10-22T12:27:00Z"
+        }, {
+          "id" : 448,
+          "status" : "completed",
+          "quantity" : 486,
+          "finished_product_name" : "Naturel Sızma Gemlik 0.3 500ml",
+          "bottle_quantity" : 486,
+          "completed_at" : "2026-10-22T17:03:00Z"
         }, {
           "id" : 449,
           "status" : "completed",
@@ -15312,6 +15796,13 @@
           "bottle_quantity" : 800,
           "completed_at" : "2026-10-24T10:36:00Z"
         }, {
+          "id" : 452,
+          "status" : "completed",
+          "quantity" : 1500,
+          "finished_product_name" : "Naturel Sızma Gemlik 0.3 500ml",
+          "bottle_quantity" : 1500,
+          "completed_at" : "2026-10-24T14:23:00Z"
+        }, {
           "id" : 453,
           "status" : "completed",
           "quantity" : 800,
@@ -15326,22 +15817,15 @@
           "bottle_quantity" : 130,
           "completed_at" : "2026-10-26T12:31:00Z"
         }, {
-          "id" : 457,
+          "id" : 456,
           "status" : "completed",
-          "quantity" : 82,
-          "finished_product_name" : "Naturel Sızma Gemlik 0.3 1L",
-          "bottle_quantity" : 82,
-          "completed_at" : "2026-10-27T11:13:00Z"
-        }, {
-          "id" : 462,
-          "status" : "completed",
-          "quantity" : 84,
-          "finished_product_name" : "Naturel Sızma Ayvalık 0.4 1L",
-          "bottle_quantity" : 800,
-          "completed_at" : "2026-10-30T12:44:00Z"
+          "quantity" : 183,
+          "finished_product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "bottle_quantity" : 2000,
+          "completed_at" : "2026-10-26T15:59:00Z"
         } ],
-        "created_at" : "2026-10-22T09:29:00Z",
-        "updated_at" : "2026-10-30T12:44:00Z"
+        "created_at" : "2026-10-21T14:51:00Z",
+        "updated_at" : "2026-10-26T15:59:00Z"
       }
     },
     "save" : null
@@ -15454,7 +15938,7 @@
         "status" : "in_progress",
         "allowed_transitions" : [ "completed", "cancelled" ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:03Z",
         "completed_at" : null,
         "finished_product" : {
           "id" : 1,
@@ -15480,10 +15964,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1930,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2404,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 10
         }, {
@@ -15491,10 +15975,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 226,
+          "lot_remaining" : 191,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 10
         }, {
@@ -15505,7 +15989,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1930,
+          "lot_remaining" : 1912,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         }, {
@@ -15513,10 +15997,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7722,
+          "lot_remaining" : 7657,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         } ],
@@ -15527,8 +16011,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:03Z"
       }
     },
     "save" : null
@@ -15547,8 +16059,8 @@
         "status" : "completed",
         "allowed_transitions" : [ ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:02Z",
-        "completed_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:03Z",
+        "completed_at" : "2026-11-07T12:00:04Z",
         "finished_product" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3 250ml",
@@ -15573,10 +16085,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2394,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 10
         }, {
@@ -15584,10 +16096,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 216,
+          "lot_remaining" : 181,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 10
         }, {
@@ -15598,7 +16110,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "lot_remaining" : 1902,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         }, {
@@ -15606,10 +16118,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7712,
+          "lot_remaining" : 7647,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 10
         } ],
@@ -15620,8 +16132,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 10,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null,
@@ -15675,7 +16215,7 @@
           "finished_product_name" : "Naturel Sızma Gemlik 0.3 750ml",
           "created_at" : "2025-11-11T14:52:00Z"
         }, {
-          "id" : 53,
+          "id" : 54,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 800,
@@ -15686,7 +16226,7 @@
           "finished_product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
           "created_at" : "2025-11-13T11:27:00Z"
         }, {
-          "id" : 63,
+          "id" : 65,
           "movement_type" : "OUT",
           "source_type" : "FINISHED_PRODUCT_RUN",
           "quantity" : 400,
@@ -15743,7 +16283,7 @@
         "status" : "in_progress",
         "allowed_transitions" : [ "completed", "cancelled" ],
         "note" : "aksam vardiyasi",
-        "started_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:04Z",
         "completed_at" : null,
         "finished_product" : {
           "id" : 1,
@@ -15769,9 +16309,9 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
           "lot_remaining" : 1,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 12
@@ -15780,10 +16320,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 216,
+          "lot_remaining" : 181,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 12
         }, {
@@ -15794,7 +16334,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "lot_remaining" : 1902,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 12
         }, {
@@ -15802,10 +16342,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7712,
+          "lot_remaining" : 7647,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 12
         } ],
@@ -15816,8 +16356,36 @@
           "estimated_value" : 0.3,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 12,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null
@@ -15859,7 +16427,7 @@
         "status" : "in_progress",
         "allowed_transitions" : [ "completed", "cancelled" ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:04Z",
         "completed_at" : null,
         "finished_product" : {
           "id" : 9,
@@ -15885,10 +16453,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2394,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 8
         }, {
@@ -15896,10 +16464,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 216,
+          "lot_remaining" : 181,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 8
         }, {
@@ -15910,7 +16478,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "lot_remaining" : 1902,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 8
         }, {
@@ -15918,10 +16486,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7712,
+          "lot_remaining" : 7647,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 8
         } ],
@@ -15932,8 +16500,36 @@
           "estimated_value" : 0.42,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 8,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null
@@ -15990,7 +16586,7 @@
         "status" : "in_progress",
         "allowed_transitions" : [ "completed", "cancelled" ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:04Z",
         "completed_at" : null,
         "finished_product" : {
           "id" : 15,
@@ -16024,10 +16620,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2394,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 40
         }, {
@@ -16035,10 +16631,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 216,
+          "lot_remaining" : 181,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 40
         }, {
@@ -16049,7 +16645,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1920,
+          "lot_remaining" : 1902,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 40
         }, {
@@ -16057,10 +16653,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7712,
+          "lot_remaining" : 7647,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 40
         } ],
@@ -16071,8 +16667,36 @@
           "estimated_value" : 0.503,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null
@@ -16091,8 +16715,8 @@
         "status" : "completed",
         "allowed_transitions" : [ ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:02Z",
-        "completed_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:04Z",
+        "completed_at" : "2026-11-07T12:00:04Z",
         "finished_product" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5 250ml",
@@ -16125,10 +16749,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1880,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2354,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 40
         }, {
@@ -16136,10 +16760,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 176,
+          "lot_remaining" : 141,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 40
         }, {
@@ -16150,7 +16774,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1880,
+          "lot_remaining" : 1862,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 40
         }, {
@@ -16158,10 +16782,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 7672,
+          "lot_remaining" : 7607,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 40
         } ],
@@ -16172,8 +16796,36 @@
           "estimated_value" : 0.503,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 40,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null
@@ -16388,7 +17040,7 @@
         "allowed_transitions" : [ ],
         "note" : null,
         "started_at" : "2026-11-06T11:07:00Z",
-        "completed_at" : "2026-11-07T12:00:02Z",
+        "completed_at" : "2026-11-07T12:00:04Z",
         "finished_product" : {
           "id" : 4,
           "name" : "Naturel Sızma Gemlik 0.3 1L",
@@ -16413,10 +17065,10 @@
           "packaging_item_id" : 4,
           "packaging_item_name" : "Cam Şişe 1L",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 346,
-          "lot_code" : "ECA-26-0068",
+          "packaging_lot_id" : 347,
+          "lot_code" : "ECA-26-0069",
           "lot_received_at" : "2026-11-05T09:46:00Z",
-          "lot_remaining" : 2574,
+          "lot_remaining" : 2540,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 800
         }, {
@@ -16424,10 +17076,10 @@
           "packaging_item_id" : 9,
           "packaging_item_name" : "Metal Vidalı Kapak 38mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 347,
+          "packaging_lot_id" : 348,
           "lot_code" : "AKS-26-0067",
           "lot_received_at" : "2026-11-05T09:46:00Z",
-          "lot_remaining" : 2696,
+          "lot_remaining" : 2656,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 800
         }, {
@@ -16435,10 +17087,10 @@
           "packaging_item_id" : 15,
           "packaging_item_name" : "Ön Etiket 1L",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 348,
+          "packaging_lot_id" : 349,
           "lot_code" : "MEB-26-0125",
           "lot_received_at" : "2026-11-05T09:46:00Z",
-          "lot_remaining" : 2574,
+          "lot_remaining" : 2557,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 800
         }, {
@@ -16446,10 +17098,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 6872,
+          "lot_remaining" : 6807,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 800
         } ],
@@ -16460,8 +17112,36 @@
           "estimated_value" : 0.28,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 4,
+            "packaging_item_name" : "Cam Şişe 1L",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 9,
+            "packaging_item_name" : "Metal Vidalı Kapak 38mm",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 15,
+            "packaging_item_name" : "Ön Etiket 1L",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 800,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2026-11-06T10:50:00Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null
@@ -16480,7 +17160,7 @@
         "status" : "in_progress",
         "allowed_transitions" : [ "completed", "cancelled" ],
         "note" : null,
-        "started_at" : "2026-11-07T12:00:02Z",
+        "started_at" : "2026-11-07T12:00:04Z",
         "completed_at" : null,
         "finished_product" : {
           "id" : 11,
@@ -16506,10 +17186,10 @@
           "packaging_item_id" : 3,
           "packaging_item_name" : "Cam Şişe 750ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 334,
-          "lot_code" : "ECA-26-0065",
+          "packaging_lot_id" : 335,
+          "lot_code" : "ECA-26-0066",
           "lot_received_at" : "2026-10-24T08:53:00Z",
-          "lot_remaining" : 1622,
+          "lot_remaining" : 1600,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 564
         }, {
@@ -16517,10 +17197,10 @@
           "packaging_item_id" : 9,
           "packaging_item_name" : "Metal Vidalı Kapak 38mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 347,
+          "packaging_lot_id" : 348,
           "lot_code" : "AKS-26-0067",
           "lot_received_at" : "2026-11-05T09:46:00Z",
-          "lot_remaining" : 2696,
+          "lot_remaining" : 2656,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 564
         }, {
@@ -16528,10 +17208,10 @@
           "packaging_item_id" : 14,
           "packaging_item_name" : "Ön Etiket 750ml",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 335,
+          "packaging_lot_id" : 336,
           "lot_code" : "MEB-26-0119",
           "lot_received_at" : "2026-10-24T08:53:00Z",
-          "lot_remaining" : 1622,
+          "lot_remaining" : 1618,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 564
         }, {
@@ -16539,10 +17219,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 6872,
+          "lot_remaining" : 6807,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 564
         } ],
@@ -16553,8 +17233,36 @@
           "estimated_value" : 0.4094,
           "actual_value" : null
         } ],
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 3,
+            "packaging_item_name" : "Cam Şişe 750ml",
+            "used" : 564,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 9,
+            "packaging_item_name" : "Metal Vidalı Kapak 38mm",
+            "used" : 564,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 14,
+            "packaging_item_name" : "Ön Etiket 750ml",
+            "used" : 564,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 564,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
         "created_at" : "2026-11-06T10:10:00Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null,
@@ -16616,10 +17324,10 @@
           "packaging_item_id" : 1,
           "packaging_item_name" : "Cam Şişe 250ml",
           "packaging_item_type" : "BOTTLE",
-          "packaging_lot_id" : 336,
-          "lot_code" : "ECA-26-0066",
-          "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1880,
+          "packaging_lot_id" : 342,
+          "lot_code" : "ECA-26-0068",
+          "lot_received_at" : "2026-10-28T08:22:00Z",
+          "lot_remaining" : 2354,
           "supplier_name" : "Ege Cam Ambalaj A.S.",
           "quantity" : 16
         }, {
@@ -16627,10 +17335,10 @@
           "packaging_item_id" : 8,
           "packaging_item_name" : "Metal Vidalı Kapak 28mm",
           "packaging_item_type" : "CAP",
-          "packaging_lot_id" : 344,
+          "packaging_lot_id" : 345,
           "lot_code" : "AKS-26-0066",
           "lot_received_at" : "2026-11-01T12:16:00Z",
-          "lot_remaining" : 176,
+          "lot_remaining" : 141,
           "supplier_name" : "Anadolu Kapak Sanayi",
           "quantity" : 16
         }, {
@@ -16641,7 +17349,7 @@
           "packaging_lot_id" : 338,
           "lot_code" : "MEB-26-0120",
           "lot_received_at" : "2026-10-26T13:39:00Z",
-          "lot_remaining" : 1880,
+          "lot_remaining" : 1862,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 16
         }, {
@@ -16649,10 +17357,10 @@
           "packaging_item_id" : 17,
           "packaging_item_name" : "Arka Etiket (Genel)",
           "packaging_item_type" : "LABEL",
-          "packaging_lot_id" : 349,
+          "packaging_lot_id" : 350,
           "lot_code" : "MEB-26-0126",
           "lot_received_at" : "2026-11-05T13:19:00Z",
-          "lot_remaining" : 6872,
+          "lot_remaining" : 6807,
           "supplier_name" : "Marmara Etiket Baski",
           "quantity" : 16
         } ],
@@ -16663,8 +17371,36 @@
           "estimated_value" : 0.78,
           "actual_value" : null
         } ],
-        "created_at" : "2026-11-07T12:00:01Z",
-        "updated_at" : "2026-11-07T12:00:02Z"
+        "packaging_scrap" : {
+          "entries" : [ ],
+          "items" : [ {
+            "packaging_item_id" : 1,
+            "packaging_item_name" : "Cam Şişe 250ml",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 8,
+            "packaging_item_name" : "Metal Vidalı Kapak 28mm",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 12,
+            "packaging_item_name" : "Ön Etiket 250ml",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          }, {
+            "packaging_item_id" : 17,
+            "packaging_item_name" : "Arka Etiket (Genel)",
+            "used" : 16,
+            "scrapped" : 0,
+            "scrap_rate_percent" : 0.0
+          } ]
+        },
+        "created_at" : "2026-11-07T12:00:02Z",
+        "updated_at" : "2026-11-07T12:00:04Z"
       }
     },
     "save" : null

@@ -5,6 +5,7 @@ import com.olivamore.api.finishedproduct.RecipeResponse;
 import com.olivamore.api.finishedproduct.product.FinishedProduct;
 import com.olivamore.api.finishedproduct.run.FinishedProductRunResponse.AttributeValue;
 import com.olivamore.api.finishedproduct.run.FinishedProductRunResponse.Packaging;
+import com.olivamore.api.packaging.PackagingDirectory;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.web.Pages;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -91,6 +95,9 @@ class FinishedProductRunResponses {
 		Map<Long, List<FinishedProductRunResponse.Material>> materials = shape.details() ? materials(ids) : Map.of();
 		Map<Long, List<Packaging>> packagings = shape.details() ? packagings(ids) : Map.of();
 		Map<Long, List<AttributeValue>> values = shape.details() ? values(ids) : Map.of();
+		Map<Long, List<PackagingDirectory.RunScrap>> scraps = shape.details()
+			? queries.scrapDisplays(ids).stream().collect(Collectors.groupingBy(PackagingDirectory.RunScrap::runId))
+			: Map.of();
 		return rows.stream().map(run -> {
 			FinishedProduct product = run.getProduct();
 			Long recipeId = run.getRecipe().getId();
@@ -103,6 +110,8 @@ class FinishedProductRunResponses {
 				shape.details() ? materials.getOrDefault(run.getId(), List.of()) : null,
 				shape.details() ? packagings.getOrDefault(run.getId(), List.of()) : null,
 				shape.details() ? values.getOrDefault(run.getId(), List.of()) : null,
+				shape.details() ? scrap(packagings.getOrDefault(run.getId(), List.of()),
+					scraps.getOrDefault(run.getId(), List.of())) : null,
 				run.getCreatedAt(), run.getUpdatedAt());
 		}).toList();
 	}
@@ -126,6 +135,33 @@ class FinishedProductRunResponses {
 			Collectors.mapping(row -> new Packaging(row.id(), row.packagingItemId(), row.packagingItemName(),
 				row.packagingItemType(), row.packagingLotId(), row.lotCode(), row.lotReceivedAt(), row.lotRemaining(),
 				row.supplierName(), row.quantity()), Collectors.toList())));
+	}
+
+	/** Kalem basina kullanilan (tahsis) ve fire; oran fire / (kullanilan + fire) x 100, 2 basamak. */
+	private static FinishedProductRunResponse.PackagingScrap scrap(List<Packaging> packagings,
+		List<PackagingDirectory.RunScrap> rows) {
+		List<FinishedProductRunResponse.Scrap> entries = rows.stream().map(r -> new FinishedProductRunResponse.Scrap(
+			r.id(), r.packagingItemId(), r.packagingItemName(), r.packagingLotId(), r.lotCode(), r.quantity(),
+			r.reason(), r.note(), r.movedAt(), r.userId())).toList();
+		Map<Long, Long> used = new LinkedHashMap<>();
+		Map<Long, String> names = new LinkedHashMap<>();
+		packagings.forEach(p -> {
+			used.merge(p.packagingItemId(), (long) p.quantity(), Long::sum);
+			names.putIfAbsent(p.packagingItemId(), p.packagingItemName());
+		});
+		Map<Long, Long> scrapped = new LinkedHashMap<>();
+		rows.forEach(r -> {
+			scrapped.merge(r.packagingItemId(), (long) r.quantity(), Long::sum);
+			names.putIfAbsent(r.packagingItemId(), r.packagingItemName());
+		});
+		List<FinishedProductRunResponse.ScrapTotal> items = names.keySet().stream().map(itemId -> {
+			long u = used.getOrDefault(itemId, 0L);
+			long s = scrapped.getOrDefault(itemId, 0L);
+			BigDecimal rate = u + s == 0 ? BigDecimal.ZERO : BigDecimal.valueOf(s * 100)
+				.divide(BigDecimal.valueOf(u + s), 2, RoundingMode.HALF_UP);
+			return new FinishedProductRunResponse.ScrapTotal(itemId, names.get(itemId), u, s, rate);
+		}).toList();
+		return new FinishedProductRunResponse.PackagingScrap(entries, items);
 	}
 
 	private Map<Long, List<AttributeValue>> values(List<Long> runIds) {

@@ -23,6 +23,11 @@ public class PackagingDirectory {
 		Integer lotRemaining, String supplierName, int quantity) {
 	}
 
+	/** Kosudaki fire: kalem, lot, adet, sebep (broken, defective, other), not, zaman, kaydeden. */
+	public record RunScrap(Long id, Long runId, Long packagingItemId, String packagingItemName, Long packagingLotId,
+		String lotCode, int quantity, String reason, String note, LocalDateTime movedAt, Long userId) {
+	}
+
 	private final JdbcClient jdbc;
 
 	PackagingDirectory(JdbcClient jdbc) {
@@ -57,6 +62,22 @@ public class PackagingDirectory {
 	public boolean hasAllocations(long runId) {
 		return jdbc.sql("select count(*) from finished_product_run_packagings where finished_product_run_id = :id")
 			.param("id", runId).query(Long.class).single() > 0;
+	}
+
+	/** Kosularin firesi, kayit sirasinda. */
+	public List<RunScrap> runScraps(Collection<Long> runIds) {
+		if (runIds.isEmpty()) {
+			return List.of();
+		}
+		return jdbc.sql("""
+			select m.id, m.finished_product_run_id as run_id, m.packaging_item_id, i.name as packaging_item_name,
+				m.packaging_lot_id, l.lot_code, m.quantity, m.scrap_reason as reason, m.note, m.moved_at, m.user_id
+			from packaging_lot_movements m
+			left join packaging_items i on i.id = m.packaging_item_id
+			left join packaging_lots l on l.id = m.packaging_lot_id
+			where m.finished_product_run_id in (:ids) and m.movement_type = 'SCRAP'
+			order by m.id
+			""").param("ids", runIds).query(RunScrap.class).list();
 	}
 
 	/** Kosularin ambalaj ayirmalari, kalem, lot ve tedarikci bilgileriyle, kayit sirasinda. */

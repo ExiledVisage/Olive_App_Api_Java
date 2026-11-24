@@ -30,6 +30,8 @@ record FinishedProductRunResponse(
 	List<Packaging> packagings,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	List<AttributeValue> attributeValues,
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	PackagingScrap packagingScrap,
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
 
@@ -60,6 +62,18 @@ record FinishedProductRunResponse(
 		Integer lotRemaining,
 		String supplierName,
 		int quantity) {
+	}
+
+	/** Dolum firesi: kayitlar ve kalem basina toplam ile oran (fire / (kullanilan + fire) x 100). */
+	record PackagingScrap(List<Scrap> entries, List<ScrapTotal> items) {
+	}
+
+	record Scrap(Long id, Long packagingItemId, String packagingItemName, Long packagingLotId, String lotCode,
+		int quantity, String reason, String note, LocalDateTime movedAt, Long userId) {
+	}
+
+	record ScrapTotal(Long packagingItemId, String packagingItemName, long used, long scrapped,
+		BigDecimal scrapRatePercent) {
 	}
 
 	record AttributeValue(

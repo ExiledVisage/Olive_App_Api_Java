@@ -53,6 +53,10 @@ class PackagingLotMovement extends AuditedEntity {
 	@Column(nullable = false)
 	private LocalDateTime movedAt;
 
+	/** Yalnizca dolum firesinde (SCRAP, kosuya bagli). */
+	@Convert(converter = LotEnums.ScrapReasonConverter.class)
+	private LotEnums.ScrapReason scrapReason;
+
 	PackagingLotMovement(PackagingLot lot, MovementType type, Source source, int quantity, String note,
 		LocalDateTime movedAt, long userId, Long runId) {
 		packagingLotId = lot.getId();
@@ -64,6 +68,15 @@ class PackagingLotMovement extends AuditedEntity {
 		this.quantity = quantity;
 		this.note = note;
 		this.movedAt = movedAt;
+	}
+
+	/** Dolum kosusunda kirik / hatali ambalaj. */
+	static PackagingLotMovement runScrap(PackagingLot lot, int quantity, LotEnums.ScrapReason reason, String note,
+		LocalDateTime at, long userId, long runId) {
+		PackagingLotMovement movement = new PackagingLotMovement(lot, MovementType.SCRAP, Source.FINISHED_PRODUCT_RUN,
+			quantity, note, at, userId, runId);
+		movement.scrapReason = reason;
+		return movement;
 	}
 
 }

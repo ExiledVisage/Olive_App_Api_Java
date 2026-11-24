@@ -80,6 +80,35 @@ final class LotEnums {
 
 	}
 
+	/** Dolumda fire sebebi: kirik, hatali (etiket, kapak, baski...), diger. */
+	enum ScrapReason implements ValueEnum {
+
+		BROKEN("broken"),
+		DEFECTIVE("defective"),
+		OTHER("other");
+
+		private final String value;
+
+		ScrapReason(String value) {
+			this.value = value;
+		}
+
+		@Override
+		public String value() {
+			return value;
+		}
+
+	}
+
+	@Converter
+	static class ScrapReasonConverter extends ValueEnumConverter<ScrapReason> {
+
+		ScrapReasonConverter() {
+			super(ScrapReason.class);
+		}
+
+	}
+
 	@Converter
 	static class StatusConverter extends ValueEnumConverter<Status> {
 

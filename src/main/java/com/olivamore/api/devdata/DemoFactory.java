@@ -660,10 +660,33 @@ final class DemoFactory {
 			return true;
 		}
 		api.patch(WAREHOUSE, "/api/finished-product-runs/" + run + "/status", body("status", "completed"));
+		scrapAtRun(run, product);
 		if (later(10, 30)) {
 			stockIn(run, product, bottles);
 		}
 		return true;
+	}
+
+	/**
+	 * Kosularin dortte birinde hatta kirilan / hatali cikan birkac ambalaj. Ayri, kosuya bagli rastgele kaynak:
+	 * ana akisin sayilari kaymaz. Lotta yer yoksa yazilmaz.
+	 */
+	private void scrapAtRun(long run, Ids.Product product) {
+		Random own = new Random(run * 104729L);
+		if (own.nextDouble() >= 0.25 || product.components().isEmpty()) {
+			return;
+		}
+		List<Long> items = new ArrayList<>(product.components().keySet());
+		long item = items.get(own.nextInt(items.size()));
+		int quantity = 1 + own.nextInt(4);
+		Long available = jdbc.queryForObject("select coalesce(sum(quantity_remaining), 0) from packaging_lots "
+			+ "where packaging_item_id = ? and status = 'active' and quantity_remaining >= ?", Long.class, item, quantity);
+		if (available < quantity) {
+			return;
+		}
+		String reason = own.nextDouble() < 0.7 ? "broken" : "defective";
+		api.post(WAREHOUSE, "/api/finished-product-runs/" + run + "/packaging-scrap", body("packaging_item_id", item,
+			"quantity", quantity, "reason", reason, "note", "broken".equals(reason) ? "Hatta kırıldı" : "Etiket hatalı"));
 	}
 
 	/** Bilesenlerin lotlarda yeterli adedi yoksa yeni lot gelir. */

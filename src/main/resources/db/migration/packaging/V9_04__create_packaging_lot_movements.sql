@@ -12,7 +12,9 @@ CREATE TABLE packaging_lot_movements (
     note text,
     moved_at timestamp(0) without time zone NOT NULL,
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    scrap_reason character varying(20),
+    CONSTRAINT packaging_lot_movements_scrap_reason_check CHECK (scrap_reason IN ('broken', 'defective', 'other'))
 );
 
 CREATE SEQUENCE packaging_lot_movements_id_seq

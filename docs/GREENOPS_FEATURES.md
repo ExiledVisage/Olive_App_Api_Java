@@ -63,9 +63,13 @@ kosu, ambalaj kalemi, lot (verilmezse kosunun o kalem icin tahsis ettigi lot, FI
 **Kurallar:** kosu `in_progress` ya da `completed` iken; lotta yeterli adet olmali; fire kosunun uretim adedini
 degistirmez. Geri alinabilir (ters hareket) ayni gun icinde ya da yetkiyle.
 
-**API:** `POST /api/finished-product-runs/{id}/packaging-scrap`, `GET .../packaging-scrap`,
-`DELETE .../packaging-scrap/{movementId}`; kosu cevabinda kalem basina fire toplami ve fire orani
-(fire / (uretilen + fire)). Analitikte ambalaj fire orani.
+**API (yapildi):** `POST /api/finished-product-runs/{id}/packaging-scrap` (kalem, istege bagli lot, adet, sebep
+`broken`/`defective`/`other`, not) ve `DELETE .../packaging-scrap/{movementId}` (adet lota doner); yetki
+`finished_product_run.complete`. Kalem urunun ambalajlarindan olmali; lot verilmezse kosunun tahsis ettigi lot, yetmezse
+kalemin en eski aktif lotu. Kosu detayinda `packaging_scrap`: kayitlar ve kalem basina kullanilan, fire ve oran
+(fire / (kullanilan + fire) x 100). Sebep `packaging_lot_movements.scrap_reason` kolonunda. Paketleme modulu disa
+`PackagingAllocations.scrapForRun/undoScrap` ve `PackagingDirectory.runScraps` ile acilir. Demo: kosularin dortte
+birinde birkac fire. Analitikte fire orani sonra.
 
 **Flutter:** kosu detayinda "Kirik / hatali ambalaj" bolumu ve ekleme penceresi (kalem, adet, sebep, not).
 

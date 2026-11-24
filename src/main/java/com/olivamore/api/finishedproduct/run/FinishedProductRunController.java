@@ -77,6 +77,23 @@ class FinishedProductRunController {
 		return DataResponse.of(responses.detail(id));
 	}
 
+	/** Kirik / hatali ambalaj (fire); cevap kosu detayi. */
+	@PostMapping("/api/finished-product-runs/{id}/packaging-scrap")
+	@PreAuthorize("hasAuthority('finished_product_run.complete')")
+	DataResponse<FinishedProductRunResponse> scrapPackaging(@PathVariable long id,
+		@Valid @RequestBody ScrapPackagingRequest request, @AuthenticationPrincipal CurrentUser user) {
+		runs.scrapPackaging(id, request, user.id());
+		return DataResponse.of(responses.detail(id));
+	}
+
+	/** Fire kaydinin geri alinmasi; adet lota doner. */
+	@DeleteMapping("/api/finished-product-runs/{id}/packaging-scrap/{movementId}")
+	@PreAuthorize("hasAuthority('finished_product_run.complete')")
+	DataResponse<FinishedProductRunResponse> undoScrap(@PathVariable long id, @PathVariable long movementId) {
+		runs.undoScrap(id, movementId);
+		return DataResponse.of(responses.detail(id));
+	}
+
 	@DeleteMapping("/api/finished-product-runs/{id}")
 	@PreAuthorize("hasAuthority('finished_product_run.create')")
 	Map<String, String> destroy(@PathVariable long id) {

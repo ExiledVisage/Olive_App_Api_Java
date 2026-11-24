@@ -1,6 +1,7 @@
 package com.olivamore.api.packaging;
 
 import com.olivamore.api.packaging.lot.LotAllocationService;
+import com.olivamore.api.packaging.lot.RunScrapService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,9 +19,24 @@ public class PackagingAllocations {
 	}
 
 	private final LotAllocationService allocations;
+	private final RunScrapService scraps;
 
-	PackagingAllocations(LotAllocationService allocations) {
+	PackagingAllocations(LotAllocationService allocations, RunScrapService scraps) {
 		this.allocations = allocations;
+		this.scraps = scraps;
+	}
+
+	/**
+	 * Kosuda kirik / hatali ambalaj; {@code lotId} bossa kosunun tahsis ettigi lot. @param reason broken,
+	 * defective ya da other @return fire hareketinin id'si
+	 */
+	public long scrapForRun(long runId, long itemId, Long lotId, int quantity, String reason, String note,
+		long userId) {
+		return scraps.scrap(runId, itemId, lotId, quantity, reason, note, userId);
+	}
+
+	public void undoScrap(long runId, long movementId) {
+		scraps.undo(runId, movementId);
 	}
 
 	public void allocateForRun(long runId, List<Need> needs) {

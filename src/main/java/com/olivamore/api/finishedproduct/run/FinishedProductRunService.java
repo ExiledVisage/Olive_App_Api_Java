@@ -25,6 +25,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.HttpStatusException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
+import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.time.Timestamps;
 import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
@@ -470,6 +471,37 @@ class FinishedProductRunService {
 		packaging.syncRunAllocation(run.getId(), run.getStatus().value(),
 			needs(run.getProduct().getId(), run.getQuantity()),
 			request.packagings().stream().map(p -> new Selection(p.packagingLotId(), p.quantity())).toList());
+	}
+
+	/**
+	 * Dolumda kirik / hatali ambalaj: kosu basladiysa ya da bittiyse; kalem urunun ambalajlarindan olmali. Fire
+	 * kosunun uretim adedini degistirmez, ambalaj lotundan duser.
+	 */
+	@Transactional
+	void scrapPackaging(long id, ScrapPackagingRequest request, long userId) {
+		FinishedProductRun run = find(id);
+		assertScrappable(run);
+		boolean used = needs(run.getProduct().getId(), run.getQuantity()).stream()
+			.anyMatch(need -> need.itemId() == request.packagingItemId());
+		if (!used) {
+			throw ValidationFailedException.of("packaging_item_id", "Bu ambalaj bu üründe kullanılmıyor.");
+		}
+		packaging.scrapForRun(run.getId(), request.packagingItemId(), request.packagingLotId(), request.quantity(),
+			request.reason(), request.note(), userId);
+	}
+
+	/** Fire kaydi geri alinir; adet lota doner. */
+	@Transactional
+	void undoScrap(long id, long movementId) {
+		FinishedProductRun run = find(id);
+		assertScrappable(run);
+		packaging.undoScrap(run.getId(), movementId);
+	}
+
+	private static void assertScrappable(FinishedProductRun run) {
+		if (run.getStatus() != RunStatus.IN_PROGRESS && run.getStatus() != RunStatus.COMPLETED) {
+			throw new BusinessRuleException("Fire yalnızca başlamış ya da tamamlanmış dolumda kaydedilir.");
+		}
 	}
 
 	/** Yalnizca planli kosu silinir. */

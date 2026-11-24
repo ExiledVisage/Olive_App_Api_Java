@@ -168,6 +168,10 @@ class RunQueries {
 			.toList();
 	}
 
+	List<PackagingDirectory.RunScrap> scrapDisplays(Collection<Long> runIds) {
+		return packaging.runScraps(runIds);
+	}
+
 	List<ValueDisplay> valueDisplays(Collection<Long> runIds) {
 		if (runIds.isEmpty()) {
 			return List.of();
