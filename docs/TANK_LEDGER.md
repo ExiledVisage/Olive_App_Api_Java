@@ -1,6 +1,6 @@
 # Tank defteri: islem gecmisini deftere donusturmek
 
-Durum (2026-11-24): API 1. adim (602fbd1), 2. adim (13d4b4f) tamam; Flutter 3-4. adim yazildi; 5 (deploy) bekliyor.
+Durum (2026-11-24): API 1. adim (602fbd1), 2. adim (13d4b4f), Flutter 3-4 (706d78d) tamam; sunucuya kuruldu.
 API ve Flutter birlikte.
 Ilk plan (2026-11-20) ayri bir defter ucu ve sayfasi oneriyordu; kullanici karari ile yerine **var olan tank islem
 gecmisi gelistirilir**.

@@ -1,7 +1,7 @@
 # Makineler: makine kaydi, sikimda makine adimlari, makine takibi
 
 Durum (2026-11-24): API 1. adim (7e9ac74), 2. adim (e1792fe), 3. adim (97d887c); Flutter 4. adim (2079f6d), 5. adim
-(6a20dee, feat/java-api). 6. adim (sunucu kurulumu, MACHINE_STAGES 6. adimla birlikte) kullanici istegiyle ertelendi.
+(6a20dee, feat/java-api). 6. adim: sunucuya kuruldu (2026-11-24; DB sifirlandi, APK 1.0.36).
 
 ## Amac
 
