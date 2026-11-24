@@ -1,8 +1,8 @@
 # GreenOps'tan alinan ozellikler
 
-Durum: plan (2026-11-24), acik sorular cevaplandi, kod yazilmadi. API ve Flutter birlikte. Kaynak: greenops-suite incelemesi (2026-11-23);
-GreenOps'tan kod alinmaz, ozellik bizim yapimiza (asama eklentileri, materyal modeli, sunucu kurallari, testler)
-uyarlanir. Makine parametreleri ayrica yapildi (`docs/MACHINES.md`).
+Durum: plan (2026-11-24), acik sorular cevaplandi, kod yazilmadi. API ve Flutter birlikte. Kaynak: greenops-suite
+incelemesi (2026-11-23); GreenOps'tan kod alinmaz, ozellik bizim yapimiza (asama eklentileri, materyal modeli, sunucu
+kurallari, testler) uyarlanir. Makine parametreleri ayrica yapildi (`docs/MACHINES.md`).
 
 Kullanici secimi (2026-11-24): onerilen dort hizli kazanim ve QR.
 
@@ -97,9 +97,10 @@ Sikim'daki donusumle olustugu icin sikim bitmeden yapilamaz, bu zaten asama sira
 - Zeytin: `oil_ratio` (YPY), `moisture`, `kpy`, `acidity`, `industrial_yield`, `sample_no`.
 - Pirina: `oil_ratio`, `moisture`, `kpy`, `sample_no`.
 
-**Kod:** `kpy` hesaplanan attribute: ayni materyalde `oil_ratio` ve `moisture` yazildiginda `kpy` verilmediyse
-sunucu hesaplayip yazar; cihaz KPY verdiyse o kaydedilir (GreenOps gibi). Randiman kartinda beklenen randiman (zeytin `industrial_yield`) ile gercek
-randiman yan yana ve "pirinada kalan yag" (pirina kg x pirina yag %) bilgi olarak; analitikte zeytin yag % ve pirina KPY ortalamalari (cesit ve donem basina).
+**Kod:** `kpy` hesaplanan attribute: ayni materyalde `oil_ratio` ve `moisture` yazildiginda `kpy` verilmediyse sunucu
+hesaplayip yazar; cihaz KPY verdiyse o kaydedilir (GreenOps gibi). Randiman kartinda beklenen randiman (zeytin
+`industrial_yield`) ile gercek randiman yan yana ve "pirinada kalan yag" (pirina kg x pirina yag %) bilgi olarak;
+analitikte zeytin yag % ve pirina KPY ortalamalari (cesit ve donem basina).
 
 **Flutter:** analiz formu zaten dinamik; `kpy` salt okunur gosterilir. Parti detayinda IAS ozeti.
 
