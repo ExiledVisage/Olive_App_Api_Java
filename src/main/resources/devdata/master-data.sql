@@ -439,6 +439,22 @@ insert into storage_units (id, name, code, capacity, capacity_unit, is_blend_tan
 	(14, 'Blend Dolum Tankı', 'DOLUM-BLEND-01', 10000.00, 'LITRE', true, true, false, 'Gemlik ve Ayvalık yağı burada karışır; soy ağacında iki ebeveynli düğüm buradan doğar.', true, 'final'),
 	(15, 'Gemlik Blend Rezerv Tankı', 'REZERV-GEM-01', 6000.00, 'LITRE', false, false, false, 'Hasat döneminin düşük asitli Gemlik yağı burada bekler ve yıl boyunca blendlerde yüksek asitli Ayvalık ile harmanlanır.', true, 'final');
 
+-- Tank olculeri (seviye olcumu, docs/GREENOPS_FEATURES.md 4): GreenOps'taki fabrika tank modelleri (Pergamon
+-- hacim Excel'i). Kapasitesi bir modele denk gelen tanka o model; 3000 ve 6000 L icin 5500 modelinin capi ve koni
+-- acilariyla govde yuksekligi kapasiteye gore. Cetvel ofseti GreenOps'ta okumadan cikarilir, bizde eklenir: eksi.
+update storage_units set inner_diameter_mm = 1909.86, cylinder_height_mm = 3750, bottom_cone_deg = 12,
+	top_cone_deg = 11, ruler_offset_mm = -75, dead_volume_litre = 0 where capacity = 10000.00;
+update storage_units set inner_diameter_mm = 1496.06, cylinder_height_mm = 3000, bottom_cone_deg = 13,
+	top_cone_deg = 13, ruler_offset_mm = -60, dead_volume_litre = 0 where capacity = 5000.00;
+update storage_units set inner_diameter_mm = 1496.06, cylinder_height_mm = 3640, bottom_cone_deg = 13,
+	top_cone_deg = 13, ruler_offset_mm = -60, dead_volume_litre = 0 where capacity = 6000.00;
+update storage_units set inner_diameter_mm = 1496.06, cylinder_height_mm = 1760, bottom_cone_deg = 13,
+	top_cone_deg = 13, ruler_offset_mm = -60, dead_volume_litre = 0 where capacity = 3000.00;
+update storage_units set inner_diameter_mm = 1320.99, cylinder_height_mm = 1500, bottom_cone_deg = 13,
+	top_cone_deg = 13, ruler_offset_mm = -60, dead_volume_litre = 0 where capacity = 2000.00;
+update storage_units set inner_diameter_mm = 939.01, cylinder_height_mm = 1500, bottom_cone_deg = 13,
+	top_cone_deg = 13, ruler_offset_mm = -60, dead_volume_litre = 0 where capacity = 1000.00;
+
 insert into storage_unit_allowed_production_products (id, storage_unit_id, production_product_id) values
 	(1, 1, 2),
 	(2, 2, 2),

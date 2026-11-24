@@ -1,7 +1,8 @@
 # Tedarikci karsilastirma
 
-Durum: plan (2026-11-24), kararlar alindi, kod yazilmadi. API ve Flutter birlikte. Kullanici: analiz bolumune bir sekme; 2, 3 ya da
-istenen sayida tedarikci secilir, secilen ozellikler (ya da hepsi) yan yana karsilastirilir.
+Durum (2026-11-24): API ve Flutter tamam; deploy kullanici istediginde. API ve Flutter birlikte.
+Kullanici: analiz bolumune bir sekme; 2, 3 ya da istenen sayida tedarikci secilir, secilen ozellikler (ya da hepsi) yan
+yana karsilastirilir.
 
 ## Bugun ne var
 
@@ -63,6 +64,14 @@ Analizde yeni "Karsilastir" sekmesi:
 
 Karsilastirilan tur genisletilebilir: arazi, zeytin cesidi, makine (kullanim, kg/saat, randiman), musteri, urun.
 Ilk surum yalnizca tedarikci.
+
+## Yapildi
+
+- API `SupplierComparison`: `/api/analytics/suppliers/compare` ve `/compare/metrics` (yetkiye gore ozellik listesi);
+  hacim ve verim `AnalyticsService.totals` ile (tedarikci listesiyle ayni degerler), IAS degerleri parti
+  kilosuyla agirlikli, maliyet ve kanal yalnizca fiyat yetkisiyle, aylik seri. `SupplierCompareIT` 4 test.
+- Flutter analizde "Karsilastir" sekmesi (`supplier_compare_tab.dart`): tedarikci ve ozellik secicileri, 4'e kadar
+  tablo, fazlasinda ozellik kartlari (elle de degisir), aylik cizgi grafik, tedarikci adindan tedarikci sayfasi.
 
 ## Kararlar (2026-11-24)
 

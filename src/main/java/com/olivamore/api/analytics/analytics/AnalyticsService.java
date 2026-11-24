@@ -265,7 +265,7 @@ class AnalyticsService {
 
 	// ---- toplamlar -----------------------------------------------------------------------
 
-	private static BatchTotals totals(List<BatchRow> rows) {
+	static BatchTotals totals(List<BatchRow> rows) {
 		double incoming = 0;
 		double pressed = 0;
 		double oil = 0;
@@ -320,7 +320,7 @@ class AnalyticsService {
 	}
 
 	/** Yarim deger sifirdan uzaga; en kisa ondalik gosterim uzerinden ({@code 0.285 -> 0.29}). */
-	private static double round(double value, int places) {
+	static double round(double value, int places) {
 		if (!Double.isFinite(value) || value == 0) {
 			return value;
 		}

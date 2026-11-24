@@ -139,7 +139,7 @@ borusu); cetvel mm'den litre, sabit yogunlukla kg (Excel'den alinmis formul).
 - Uclar: `GET/PUT/DELETE /api/storage-units/{id}/geometry` (gorme `storage_unit.view`, degistirme
   `storage_unit.manage`; GET cevabinda en buyuk okuma ve tam hacim), `POST/GET /api/storage-units/{id}/level-readings`
   (okuma `storage_unit.measure`).
-- Gercek tank olculeri tank ayarlarindan sonra girilecek; demo tanklarda geometri yok.
+- Demo tanklara GreenOps fabrika modellerinin olculeri girildi (master-data); gercek tanklar ayarlardan duzeltilir.
 
 **Flutter:** tank ayarlarinda geometri formu; tank sayfasinda "Seviye olc" (mm gir -> litre, kg, defterle fark;
 "Farki duzelt"); okuma gecmisi.

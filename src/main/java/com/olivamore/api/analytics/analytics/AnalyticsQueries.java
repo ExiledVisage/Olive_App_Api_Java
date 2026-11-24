@@ -378,4 +378,62 @@ class AnalyticsQueries {
 			.param("product", finishedProductId).query(ItemRow.class).list();
 	}
 
+
+	// ---- tedarikci karsilastirma ---------------------------------------------------------
+
+	/** Tedarikci teslimati (grup degil): varis, kilo ve alim bilgisi. */
+	record Delivery(long batchId, Long supplierId, LocalDateTime receivedAt, BigDecimal quantityKg,
+		String supplyChannel, BigDecimal pricePerKg, BigDecimal vatRate, BigDecimal transportCost) {
+	}
+
+	record IasValue(long batchId, String productKey, String attributeKey, BigDecimal valueDecimal) {
+	}
+
+	record SupplierName(long id, String name, String code) {
+	}
+
+	List<SupplierName> suppliers(List<Long> ids) {
+		return jdbc.sql("select id, name, code from suppliers where id in (:ids) order by id").param("ids", ids)
+			.query(SupplierName.class).list();
+	}
+
+	/** Aralikta gelen teslimatlar (urun tipi verilirse o girdiyle). */
+	List<Delivery> deliveries(Range range, List<Long> supplierIds, Long productTypeId) {
+		return jdbc.sql("""
+			select b.id as batch_id, b.supplier_id, b.received_at, b.quantity_kg, b.supply_channel, b.price_per_kg,
+				b.vat_rate, b.transport_cost
+			from production_batches b
+			where b.parent_batch_id is null and b.supplier_id in (:suppliers)
+				and b.received_at between :from and :to
+				and (cast(:type as bigint) is null or exists (
+					select 1 from production_batch_input_production_product_types i
+					where i.production_batch_id = b.id and i.production_product_type_id = :type))
+			order by b.received_at, b.id
+			""").param("suppliers", supplierIds).param("from", range.from()).param("to", range.to())
+			.param("type", productTypeId).query(Delivery.class).list();
+	}
+
+	/**
+	 * Partilerin IAS degerleri (zeytin ve pirina: yag orani, KPY, endustriyel randiman); partinin o urundeki en son
+	 * materyalinden.
+	 */
+	List<IasValue> iasValues(List<Long> batchIds) {
+		if (batchIds.isEmpty()) {
+			return List.of();
+		}
+		return jdbc.sql("""
+			select distinct on (m.production_batch_id, p.key, a.attribute_key)
+				m.production_batch_id as batch_id, p.key as product_key, a.attribute_key, v.value_decimal
+			from materials m
+			join production_product_types t on t.id = m.production_product_type_id
+			join production_products p on p.id = t.production_product_id
+			join material_attribute_values v on v.material_id = m.id
+			join production_product_attribute_definitions d on d.id = v.production_product_attribute_definition_id
+			join attribute_definitions a on a.id = d.attribute_definition_id
+			where m.production_batch_id in (:ids) and p.key in ('olive', 'pomace')
+				and a.attribute_key in ('oil_ratio', 'kpy', 'industrial_yield') and v.value_decimal is not null
+			order by m.production_batch_id, p.key, a.attribute_key, m.id desc
+			""").param("ids", batchIds).query(IasValue.class).list();
+	}
+
 }

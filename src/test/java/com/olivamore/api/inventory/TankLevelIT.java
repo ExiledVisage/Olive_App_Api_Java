@@ -121,6 +121,21 @@ class TankLevelIT {
 		assertThat(api.get("/api/storage-units/" + tank + "/geometry").json().get("data").isNull()).isTrue();
 	}
 
+	@Test
+	void demoTanksHaveTheFactoryModelGeometry() {
+		long tank = jdbc.queryForObject("select id from storage_units where code = 'TOPLAMA-GEM-01'", Long.class);
+
+		JsonNode geometry = data(api.get("/api/storage-units/" + tank + "/geometry"));
+		Response reading = api.post("/api/storage-units/" + tank + "/level-readings", Map.of("measured_mm", 2000));
+
+		// 11000 modeli: ic cap 1909,86 mm, govde 3750 mm, koniler 12 / 11 derece, cetvel ofseti 75 mm
+		assertThat(geometry.get("inner_diameter_mm").decimalValue()).isEqualByComparingTo("1909.86");
+		assertThat(geometry.get("full_litres").decimalValue()).isBetween(new BigDecimal("11000"),
+			new BigDecimal("11200"));
+		assertThat(reading.status()).as(reading.body()).isEqualTo(201);
+		assertThat(data(reading).get("calculated_litre").decimalValue()).isPositive();
+	}
+
 	private static Map<String, Object> flat() {
 		return Map.of("inner_diameter_mm", 1000, "cylinder_height_mm", 2000, "bottom_cone_deg", 0, "top_cone_deg", 0);
 	}
