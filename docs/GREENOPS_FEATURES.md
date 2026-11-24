@@ -1,8 +1,9 @@
 # GreenOps'tan alinan ozellikler
 
-Durum: plan (2026-11-24), acik sorular cevaplandi, kod yazilmadi. API ve Flutter birlikte. Kaynak: greenops-suite
-incelemesi (2026-11-23); GreenOps'tan kod alinmaz, ozellik bizim yapimiza (asama eklentileri, materyal modeli, sunucu
-kurallari, testler) uyarlanir. Makine parametreleri ayrica yapildi (`docs/MACHINES.md`).
+Durum (2026-11-24): API 1-5 tamam (f101868, 38685ad, 91a9518, 239ed2b, a802520); Flutter 6-8 tamam
+(feat/java-api, 1871075); deploy (9) kullanici istediginde. Kaynak: greenops-suite incelemesi (2026-11-23);
+GreenOps'tan kod alinmaz, ozellik bizim yapimiza (asama eklentileri, materyal modeli, sunucu kurallari, testler)
+uyarlanir. Makine parametreleri ayrica yapildi (`docs/MACHINES.md`).
 
 Kullanici secimi (2026-11-24): onerilen dort hizli kazanim ve QR.
 
