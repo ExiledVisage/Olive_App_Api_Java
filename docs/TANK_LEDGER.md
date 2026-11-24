@@ -1,7 +1,8 @@
 # Tank defteri: islem gecmisini deftere donusturmek
 
-Durum: plan (2026-11-24), kod yazilmadi. API ve Flutter birlikte. Ilk plan (2026-11-20) ayri bir defter ucu ve
-sayfasi oneriyordu; kullanici karari ile yerine **var olan tank islem gecmisi gelistirilir**.
+Durum (2026-11-24): API 1. adim (TankLedger) tamam; 2-5 bekliyor. API ve Flutter birlikte.
+Ilk plan (2026-11-20) ayri bir defter ucu ve sayfasi oneriyordu; kullanici karari ile yerine **var olan tank islem
+gecmisi gelistirilir**.
 
 ## Sorun
 
@@ -65,9 +66,11 @@ tank sayfasinda gorunuyor; yeni hesap yok, ayni deger ozete konur.
 
 Bugun yalnizca **guncel** ortalama saklaniyor; gecmiste "su giristen sonra tank asitligi neydi" bilinmiyor.
 Giris satirina `mix_after` eklenir: o giristen sonra tank materyalinin sayisal attribute degerleri. Saklanmaz,
-hesaplanir: cikislar ortalamayi degistirmedigi icin, materyalin o ana kadarki girislerinin miktara gore agirlikli
-ortalamasidir (`merge` ile ayni kural: girislerden birinde deger yoksa o attribute bos). Soy agacindaki tank uc
-dugumunun snapshot'inda da gorunur.
+hesaplanir (`TankLedger`): materyalin bu tanktaki hareketleri ve tank analizleri zaman sirasiyla yeniden oynatilir,
+her giriste `merge` ile ayni kural uygulanir (tanktaki o anki miktar ile gelen miktara gore agirlikli ortalama;
+cikis ortalamayi degistirmez ama sonraki girisin agirligini azaltir; girislerden birinde deger yoksa bos; analiz
+olculen degeri yerine koyar, ayni saniyedeki harekette analiz sonra sayilir). Soy agacindaki tank uc dugumunun
+snapshot'inda da gorunur.
 
 ### 3. Soy agaci tankta durur
 

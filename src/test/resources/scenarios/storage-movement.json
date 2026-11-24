@@ -1943,7 +1943,7 @@
         "quantity" : 54.96,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T04:17:48Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -1976,12 +1976,18 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T04:17:48Z",
+        "updated_at" : "2026-11-24T04:17:48Z",
+        "direction" : "out",
+        "balance_after" : 3819.29,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1805,
         "storage_unit_id" : 13,
@@ -1992,11 +1998,11 @@
         "counterparty_storage_unit_id" : 11,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_OUT",
-        "transfer_reference" : "TRF-20261123223926-000058",
+        "transfer_reference" : "TRF-20261124041748-000058",
         "quantity" : 9.39,
         "unit" : "KG",
         "note" : "Toplama",
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T04:17:48Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2029,7 +2035,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2037,8 +2043,14 @@
           "name" : "Ayvalık Toplama Tankı",
           "code" : "TOPLAMA-AYV-01"
         },
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T04:17:48Z",
+        "updated_at" : "2026-11-24T04:17:48Z",
+        "direction" : "out",
+        "balance_after" : 3874.25,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : null
       }, {
         "id" : 1804,
         "storage_unit_id" : 13,
@@ -2053,7 +2065,7 @@
         "quantity" : 36.64,
         "unit" : "KG",
         "note" : "Dolum",
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T04:17:48Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2086,7 +2098,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : {
           "id" : 3822,
@@ -2095,8 +2107,14 @@
           "status" : "waiting"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T04:17:48Z",
+        "updated_at" : "2026-11-24T04:17:48Z",
+        "direction" : "out",
+        "balance_after" : 3883.64,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1803,
         "storage_unit_id" : 13,
@@ -2111,7 +2129,7 @@
         "quantity" : 0.5,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T04:17:48Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2144,12 +2162,24 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T04:17:48Z",
+        "updated_at" : "2026-11-24T04:17:48Z",
+        "direction" : "in",
+        "balance_after" : 3920.28,
+        "source" : {
+          "material_id" : 1503,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ ]
       }, {
         "id" : 1802,
         "storage_unit_id" : 13,
@@ -2164,7 +2194,7 @@
         "quantity" : 100.0,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T04:17:48Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2197,7 +2227,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : {
           "id" : 3822,
@@ -2206,8 +2236,20 @@
           "status" : "waiting"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T04:17:48Z",
+        "updated_at" : "2026-11-24T04:17:48Z",
+        "direction" : "in",
+        "balance_after" : 3919.78,
+        "source" : {
+          "material_id" : 1502,
+          "batch_id" : 588,
+          "batch_code" : "P-261106-02-1",
+          "delivery_batch_code" : "P-261106-02",
+          "stage_name" : "Randıman Tespiti"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ ]
       }, {
         "id" : 1796,
         "storage_unit_id" : 13,
@@ -2255,7 +2297,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2264,7 +2306,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-11-06T07:09:00Z",
-        "updated_at" : "2026-11-06T07:09:00Z"
+        "updated_at" : "2026-11-06T07:09:00Z",
+        "direction" : "in",
+        "balance_after" : 3819.78,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1787,
         "storage_unit_id" : 13,
@@ -2312,12 +2366,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-05T12:12:00Z",
-        "updated_at" : "2026-11-05T12:12:00Z"
+        "updated_at" : "2026-11-05T12:12:00Z",
+        "direction" : "out",
+        "balance_after" : 487.75,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 472,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 756,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1781,
         "storage_unit_id" : 13,
@@ -2365,12 +2430,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-04T11:32:00Z",
-        "updated_at" : "2026-11-04T11:32:00Z"
+        "updated_at" : "2026-11-04T11:32:00Z",
+        "direction" : "out",
+        "balance_after" : 1183.71,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 470,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 690,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1770,
         "storage_unit_id" : 13,
@@ -2418,12 +2494,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-03T16:23:00Z",
-        "updated_at" : "2026-11-03T16:23:00Z"
+        "updated_at" : "2026-11-03T16:23:00Z",
+        "direction" : "out",
+        "balance_after" : 1660.11,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 469,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1764,
         "storage_unit_id" : 13,
@@ -2471,7 +2558,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2480,7 +2567,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-11-03T07:02:00Z",
-        "updated_at" : "2026-11-03T07:02:00Z"
+        "updated_at" : "2026-11-03T07:02:00Z",
+        "direction" : "in",
+        "balance_after" : 2350.55,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1758,
         "storage_unit_id" : 13,
@@ -2528,12 +2627,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-01T15:02:00Z",
-        "updated_at" : "2026-11-01T15:02:00Z"
+        "updated_at" : "2026-11-01T15:02:00Z",
+        "direction" : "out",
+        "balance_after" : 1666.2,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 467,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1314,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1751,
         "storage_unit_id" : 13,
@@ -2581,12 +2691,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-31T11:35:00Z",
-        "updated_at" : "2026-10-31T11:35:00Z"
+        "updated_at" : "2026-10-31T11:35:00Z",
+        "direction" : "out",
+        "balance_after" : 2271.02,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 464,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 366,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1735,
         "storage_unit_id" : 13,
@@ -2634,12 +2755,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-30T12:44:00Z",
-        "updated_at" : "2026-10-30T12:44:00Z"
+        "updated_at" : "2026-10-30T12:44:00Z",
+        "direction" : "out",
+        "balance_after" : 2523.72,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 462,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1730,
         "storage_unit_id" : 13,
@@ -2687,12 +2819,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-29T11:20:00Z",
-        "updated_at" : "2026-10-29T11:20:00Z"
+        "updated_at" : "2026-10-29T11:20:00Z",
+        "direction" : "out",
+        "balance_after" : 3260.18,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 461,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1964,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1727,
         "storage_unit_id" : 13,
@@ -2740,12 +2883,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-28T13:56:00Z",
-        "updated_at" : "2026-10-28T13:56:00Z"
+        "updated_at" : "2026-10-28T13:56:00Z",
+        "direction" : "out",
+        "balance_after" : 3712.18,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 460,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 558,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1713,
         "storage_unit_id" : 13,
@@ -2793,12 +2947,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-27T14:57:00Z",
-        "updated_at" : "2026-10-27T14:57:00Z"
+        "updated_at" : "2026-10-27T14:57:00Z",
+        "direction" : "out",
+        "balance_after" : 3969.02,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 458,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1709,
         "storage_unit_id" : 13,
@@ -2846,7 +3011,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2855,7 +3020,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-27T07:17:00Z",
-        "updated_at" : "2026-10-27T07:17:00Z"
+        "updated_at" : "2026-10-27T07:17:00Z",
+        "direction" : "in",
+        "balance_after" : 4659.46,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1701,
         "storage_unit_id" : 13,
@@ -2903,12 +3080,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-26T15:59:00Z",
-        "updated_at" : "2026-10-26T15:59:00Z"
+        "updated_at" : "2026-10-26T15:59:00Z",
+        "direction" : "out",
+        "balance_after" : 2633.52,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 456,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1696,
         "storage_unit_id" : 13,
@@ -2956,12 +3144,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-25T13:11:00Z",
-        "updated_at" : "2026-10-25T13:11:00Z"
+        "updated_at" : "2026-10-25T13:11:00Z",
+        "direction" : "out",
+        "balance_after" : 3093.81,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 453,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1684,
         "storage_unit_id" : 13,
@@ -3009,12 +3208,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-24T10:36:00Z",
-        "updated_at" : "2026-10-24T10:36:00Z"
+        "updated_at" : "2026-10-24T10:36:00Z",
+        "direction" : "out",
+        "balance_after" : 3830.27,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 451,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1679,
         "storage_unit_id" : 13,
@@ -3062,12 +3272,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-23T17:24:00Z",
-        "updated_at" : "2026-10-23T17:24:00Z"
+        "updated_at" : "2026-10-23T17:24:00Z",
+        "direction" : "out",
+        "balance_after" : 4382.62,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 450,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 448,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1673,
         "storage_unit_id" : 13,
@@ -3115,7 +3336,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3124,7 +3345,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-23T07:27:00Z",
-        "updated_at" : "2026-10-23T07:27:00Z"
+        "updated_at" : "2026-10-23T07:27:00Z",
+        "direction" : "in",
+        "balance_after" : 4795.04,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1660,
         "storage_unit_id" : 13,
@@ -3172,12 +3405,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-22T12:27:00Z",
-        "updated_at" : "2026-10-22T12:27:00Z"
+        "updated_at" : "2026-10-22T12:27:00Z",
+        "direction" : "out",
+        "balance_after" : 2773.66,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 447,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 534,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1655,
         "storage_unit_id" : 13,
@@ -3225,12 +3469,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-21T17:12:00Z",
-        "updated_at" : "2026-10-21T17:12:00Z"
+        "updated_at" : "2026-10-21T17:12:00Z",
+        "direction" : "out",
+        "balance_after" : 3142.35,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 446,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1470,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1640,
         "storage_unit_id" : 13,
@@ -3278,12 +3533,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-20T12:35:00Z",
-        "updated_at" : "2026-10-20T12:35:00Z"
+        "updated_at" : "2026-10-20T12:35:00Z",
+        "direction" : "out",
+        "balance_after" : 3818.98,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 443,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1608,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1632,
         "storage_unit_id" : 13,
@@ -3331,7 +3597,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3340,7 +3606,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-19T07:00:00Z",
-        "updated_at" : "2026-10-19T07:00:00Z"
+        "updated_at" : "2026-10-19T07:00:00Z",
+        "direction" : "in",
+        "balance_after" : 4189.05,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1621,
         "storage_unit_id" : 13,
@@ -3388,12 +3666,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-18T12:25:00Z",
-        "updated_at" : "2026-10-18T12:25:00Z"
+        "updated_at" : "2026-10-18T12:25:00Z",
+        "direction" : "out",
+        "balance_after" : 1042.73,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 440,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1610,
         "storage_unit_id" : 13,
@@ -3441,12 +3730,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-17T16:18:00Z",
-        "updated_at" : "2026-10-17T16:18:00Z"
+        "updated_at" : "2026-10-17T16:18:00Z",
+        "direction" : "out",
+        "balance_after" : 1503.02,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 439,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1604,
         "storage_unit_id" : 13,
@@ -3494,12 +3794,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-16T18:00:00Z",
-        "updated_at" : "2026-10-16T18:00:00Z"
+        "updated_at" : "2026-10-16T18:00:00Z",
+        "direction" : "out",
+        "balance_after" : 2193.46,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 437,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 256,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1598,
         "storage_unit_id" : 13,
@@ -3547,7 +3858,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3556,7 +3867,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-16T07:02:00Z",
-        "updated_at" : "2026-10-16T07:02:00Z"
+        "updated_at" : "2026-10-16T07:02:00Z",
+        "direction" : "in",
+        "balance_after" : 2370.21,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1594,
         "storage_unit_id" : 13,
@@ -3604,12 +3927,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-15T15:34:00Z",
-        "updated_at" : "2026-10-15T15:34:00Z"
+        "updated_at" : "2026-10-15T15:34:00Z",
+        "direction" : "out",
+        "balance_after" : 1834.95,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 435,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1578,
         "storage_unit_id" : 13,
@@ -3657,12 +3991,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-14T14:50:00Z",
-        "updated_at" : "2026-10-14T14:50:00Z"
+        "updated_at" : "2026-10-14T14:50:00Z",
+        "direction" : "out",
+        "balance_after" : 2525.39,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 433,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 185,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1572,
         "storage_unit_id" : 13,
@@ -3710,12 +4055,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-13T14:51:00Z",
-        "updated_at" : "2026-10-13T14:51:00Z"
+        "updated_at" : "2026-10-13T14:51:00Z",
+        "direction" : "out",
+        "balance_after" : 2695.7,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 431,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1566,
         "storage_unit_id" : 13,
@@ -3763,7 +4119,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3772,7 +4128,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-13T07:08:00Z",
-        "updated_at" : "2026-10-13T07:08:00Z"
+        "updated_at" : "2026-10-13T07:08:00Z",
+        "direction" : "in",
+        "balance_after" : 3155.99,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1561,
         "storage_unit_id" : 13,
@@ -3820,12 +4188,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-12T11:43:00Z",
-        "updated_at" : "2026-10-12T11:43:00Z"
+        "updated_at" : "2026-10-12T11:43:00Z",
+        "direction" : "out",
+        "balance_after" : 1762.95,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 428,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1550,
         "storage_unit_id" : 13,
@@ -3873,12 +4252,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-11T12:35:00Z",
-        "updated_at" : "2026-10-11T12:35:00Z"
+        "updated_at" : "2026-10-11T12:35:00Z",
+        "direction" : "out",
+        "balance_after" : 2499.41,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 427,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1547,
         "storage_unit_id" : 13,
@@ -3926,12 +4316,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-10T14:53:00Z",
-        "updated_at" : "2026-10-10T14:53:00Z"
+        "updated_at" : "2026-10-10T14:53:00Z",
+        "direction" : "out",
+        "balance_after" : 3051.76,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 426,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1543,
         "storage_unit_id" : 13,
@@ -3979,7 +4380,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3988,7 +4389,19 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-10T07:05:00Z",
-        "updated_at" : "2026-10-10T07:05:00Z"
+        "updated_at" : "2026-10-10T07:05:00Z",
+        "direction" : "in",
+        "balance_after" : 3742.2,
+        "source" : {
+          "material_id" : 1272,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1272,
+        "mix_after" : [ ]
       }, {
         "id" : 1530,
         "storage_unit_id" : 13,
@@ -4036,12 +4449,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-08T14:15:00Z",
-        "updated_at" : "2026-10-08T14:15:00Z"
+        "updated_at" : "2026-10-08T14:15:00Z",
+        "direction" : "out",
+        "balance_after" : 2.39,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 423,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 91,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1518,
         "storage_unit_id" : 13,
@@ -4089,12 +4513,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-10-07T14:01:00Z",
-        "updated_at" : "2026-10-07T14:01:00Z"
+        "updated_at" : "2026-10-07T14:01:00Z",
+        "direction" : "out",
+        "balance_after" : 86.16,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 421,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1514,
         "storage_unit_id" : 13,
@@ -4142,7 +4577,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -4151,7 +4586,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-10-07T06:56:00Z",
-        "updated_at" : "2026-10-07T06:56:00Z"
+        "updated_at" : "2026-10-07T06:56:00Z",
+        "direction" : "in",
+        "balance_after" : 546.45,
+        "source" : {
+          "material_id" : 1251,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 1251,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3696
+        } ]
       }, {
         "id" : 1099,
         "storage_unit_id" : 13,
@@ -4199,12 +4652,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-05-01T12:58:00Z",
-        "updated_at" : "2026-05-01T12:58:00Z"
+        "updated_at" : "2026-05-01T12:58:00Z",
+        "direction" : "out",
+        "balance_after" : 11.98,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 306,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 478,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1093,
         "storage_unit_id" : 13,
@@ -4252,12 +4716,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-30T12:58:00Z",
-        "updated_at" : "2026-04-30T12:58:00Z"
+        "updated_at" : "2026-04-30T12:58:00Z",
+        "direction" : "out",
+        "balance_after" : 452.02,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 304,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 894,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1089,
         "storage_unit_id" : 13,
@@ -4305,12 +4780,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-29T10:07:00Z",
-        "updated_at" : "2026-04-29T10:07:00Z"
+        "updated_at" : "2026-04-29T10:07:00Z",
+        "direction" : "out",
+        "balance_after" : 863.52,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 302,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 158,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1087,
         "storage_unit_id" : 13,
@@ -4358,12 +4844,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-28T11:04:00Z",
-        "updated_at" : "2026-04-28T11:04:00Z"
+        "updated_at" : "2026-04-28T11:04:00Z",
+        "direction" : "out",
+        "balance_after" : 972.61,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 300,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1083,
         "storage_unit_id" : 13,
@@ -4411,12 +4908,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-27T12:51:00Z",
-        "updated_at" : "2026-04-27T12:51:00Z"
+        "updated_at" : "2026-04-27T12:51:00Z",
+        "direction" : "out",
+        "balance_after" : 1524.96,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 298,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 252,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1082,
         "storage_unit_id" : 13,
@@ -4464,12 +4972,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-26T17:47:00Z",
-        "updated_at" : "2026-04-26T17:47:00Z"
+        "updated_at" : "2026-04-26T17:47:00Z",
+        "direction" : "out",
+        "balance_after" : 1756.95,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 297,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1079,
         "storage_unit_id" : 13,
@@ -4517,12 +5036,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-24T11:04:00Z",
-        "updated_at" : "2026-04-24T11:04:00Z"
+        "updated_at" : "2026-04-24T11:04:00Z",
+        "direction" : "out",
+        "balance_after" : 2309.3,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 294,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1076,
         "storage_unit_id" : 13,
@@ -4570,12 +5100,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-23T10:59:00Z",
-        "updated_at" : "2026-04-23T10:59:00Z"
+        "updated_at" : "2026-04-23T10:59:00Z",
+        "direction" : "out",
+        "balance_after" : 2723.56,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 293,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 246,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1072,
         "storage_unit_id" : 13,
@@ -4623,12 +5164,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-21T10:24:00Z",
-        "updated_at" : "2026-04-21T10:24:00Z"
+        "updated_at" : "2026-04-21T10:24:00Z",
+        "direction" : "out",
+        "balance_after" : 2950.02,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 291,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 108,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1065,
         "storage_unit_id" : 13,
@@ -4676,12 +5228,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-20T15:12:00Z",
-        "updated_at" : "2026-04-20T15:12:00Z"
+        "updated_at" : "2026-04-20T15:12:00Z",
+        "direction" : "out",
+        "balance_after" : 3049.44,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 290,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 912,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1060,
         "storage_unit_id" : 13,
@@ -4729,12 +5292,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-19T11:24:00Z",
-        "updated_at" : "2026-04-19T11:24:00Z"
+        "updated_at" : "2026-04-19T11:24:00Z",
+        "direction" : "out",
+        "balance_after" : 3469.22,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 287,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1057,
         "storage_unit_id" : 13,
@@ -4782,12 +5356,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-18T10:30:00Z",
-        "updated_at" : "2026-04-18T10:30:00Z"
+        "updated_at" : "2026-04-18T10:30:00Z",
+        "direction" : "out",
+        "balance_after" : 3929.51,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 286,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 96,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1054,
         "storage_unit_id" : 13,
@@ -4835,12 +5420,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-17T15:38:00Z",
-        "updated_at" : "2026-04-17T15:38:00Z"
+        "updated_at" : "2026-04-17T15:38:00Z",
+        "direction" : "out",
+        "balance_after" : 3995.79,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 285,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 954,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1052,
         "storage_unit_id" : 13,
@@ -4888,12 +5484,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-16T11:55:00Z",
-        "updated_at" : "2026-04-16T11:55:00Z"
+        "updated_at" : "2026-04-16T11:55:00Z",
+        "direction" : "out",
+        "balance_after" : 4215.35,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 283,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 154,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1051,
         "storage_unit_id" : 13,
@@ -4941,12 +5548,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-15T14:45:00Z",
-        "updated_at" : "2026-04-15T14:45:00Z"
+        "updated_at" : "2026-04-15T14:45:00Z",
+        "direction" : "out",
+        "balance_after" : 4321.68,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 282,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1049,
         "storage_unit_id" : 13,
@@ -4994,12 +5612,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-12T14:56:00Z",
-        "updated_at" : "2026-04-12T14:56:00Z"
+        "updated_at" : "2026-04-12T14:56:00Z",
+        "direction" : "out",
+        "balance_after" : 4874.03,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 280,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 600,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1046,
         "storage_unit_id" : 13,
@@ -5047,12 +5676,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-11T15:47:00Z",
-        "updated_at" : "2026-04-11T15:47:00Z"
+        "updated_at" : "2026-04-11T15:47:00Z",
+        "direction" : "out",
+        "balance_after" : 5288.29,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 277,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 124,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1039,
         "storage_unit_id" : 13,
@@ -5100,12 +5740,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-09T15:21:00Z",
-        "updated_at" : "2026-04-09T15:21:00Z"
+        "updated_at" : "2026-04-09T15:21:00Z",
+        "direction" : "out",
+        "balance_after" : 5402.44,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 274,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 136,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1034,
         "storage_unit_id" : 13,
@@ -5153,12 +5804,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-08T16:11:00Z",
-        "updated_at" : "2026-04-08T16:11:00Z"
+        "updated_at" : "2026-04-08T16:11:00Z",
+        "direction" : "out",
+        "balance_after" : 5496.34,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 270,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 156,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1028,
         "storage_unit_id" : 13,
@@ -5206,12 +5868,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-07T14:43:00Z",
-        "updated_at" : "2026-04-07T14:43:00Z"
+        "updated_at" : "2026-04-07T14:43:00Z",
+        "direction" : "out",
+        "balance_after" : 5639.95,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 267,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1025,
         "storage_unit_id" : 13,
@@ -5259,7 +5932,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -5268,7 +5941,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-04-07T07:03:00Z",
-        "updated_at" : "2026-04-07T07:03:00Z"
+        "updated_at" : "2026-04-07T07:03:00Z",
+        "direction" : "in",
+        "balance_after" : 6100.24,
+        "source" : {
+          "material_id" : 481,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 481,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3881
+        } ]
       }, {
         "id" : 1022,
         "storage_unit_id" : 13,
@@ -5316,12 +6007,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-06T10:47:00Z",
-        "updated_at" : "2026-04-06T10:47:00Z"
+        "updated_at" : "2026-04-06T10:47:00Z",
+        "direction" : "out",
+        "balance_after" : 3642.86,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 264,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1019,
         "storage_unit_id" : 13,
@@ -5369,12 +6071,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-05T14:39:00Z",
-        "updated_at" : "2026-04-05T14:39:00Z"
+        "updated_at" : "2026-04-05T14:39:00Z",
+        "direction" : "out",
+        "balance_after" : 4195.21,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 263,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1720,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1012,
         "storage_unit_id" : 13,
@@ -5422,12 +6135,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-04T17:08:00Z",
-        "updated_at" : "2026-04-04T17:08:00Z"
+        "updated_at" : "2026-04-04T17:08:00Z",
+        "direction" : "out",
+        "balance_after" : 4591.06,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 259,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1008,
         "storage_unit_id" : 13,
@@ -5475,12 +6199,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-02T19:02:00Z",
-        "updated_at" : "2026-04-02T19:02:00Z"
+        "updated_at" : "2026-04-02T19:02:00Z",
+        "direction" : "out",
+        "balance_after" : 5051.35,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 256,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 108,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 1001,
         "storage_unit_id" : 13,
@@ -5528,12 +6263,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-04-01T15:08:00Z",
-        "updated_at" : "2026-04-01T15:08:00Z"
+        "updated_at" : "2026-04-01T15:08:00Z",
+        "direction" : "out",
+        "balance_after" : 5101.06,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 251,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 696,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 996,
         "storage_unit_id" : 13,
@@ -5581,12 +6327,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-30T11:33:00Z",
-        "updated_at" : "2026-03-30T11:33:00Z"
+        "updated_at" : "2026-03-30T11:33:00Z",
+        "direction" : "out",
+        "balance_after" : 5581.6,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 247,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 156,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 989,
         "storage_unit_id" : 13,
@@ -5634,12 +6391,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-26T12:24:00Z",
-        "updated_at" : "2026-03-26T12:24:00Z"
+        "updated_at" : "2026-03-26T12:24:00Z",
+        "direction" : "out",
+        "balance_after" : 5725.21,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 242,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1476,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 981,
         "storage_unit_id" : 13,
@@ -5687,12 +6455,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-24T17:53:00Z",
-        "updated_at" : "2026-03-24T17:53:00Z"
+        "updated_at" : "2026-03-24T17:53:00Z",
+        "direction" : "out",
+        "balance_after" : 6404.6,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 239,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 968,
         "storage_unit_id" : 13,
@@ -5740,12 +6519,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-21T13:49:00Z",
-        "updated_at" : "2026-03-21T13:49:00Z"
+        "updated_at" : "2026-03-21T13:49:00Z",
+        "direction" : "out",
+        "balance_after" : 6864.89,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 234,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 493,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 964,
         "storage_unit_id" : 13,
@@ -5793,12 +6583,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-20T18:33:00Z",
-        "updated_at" : "2026-03-20T18:33:00Z"
+        "updated_at" : "2026-03-20T18:33:00Z",
+        "direction" : "out",
+        "balance_after" : 6978.35,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 231,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 270,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 954,
         "storage_unit_id" : 13,
@@ -5846,12 +6647,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-18T11:54:00Z",
-        "updated_at" : "2026-03-18T11:54:00Z"
+        "updated_at" : "2026-03-18T11:54:00Z",
+        "direction" : "out",
+        "balance_after" : 7226.91,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 226,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1356,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 952,
         "storage_unit_id" : 13,
@@ -5899,12 +6711,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-17T16:56:00Z",
-        "updated_at" : "2026-03-17T16:56:00Z"
+        "updated_at" : "2026-03-17T16:56:00Z",
+        "direction" : "out",
+        "balance_after" : 7851.06,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 224,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 946,
         "storage_unit_id" : 13,
@@ -5952,12 +6775,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-14T18:30:00Z",
-        "updated_at" : "2026-03-14T18:30:00Z"
+        "updated_at" : "2026-03-14T18:30:00Z",
+        "direction" : "out",
+        "balance_after" : 8311.35,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 220,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 820,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 943,
         "storage_unit_id" : 13,
@@ -6005,12 +6839,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-13T18:55:00Z",
-        "updated_at" : "2026-03-13T18:55:00Z"
+        "updated_at" : "2026-03-13T18:55:00Z",
+        "direction" : "out",
+        "balance_after" : 8500.07,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 217,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 670,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 940,
         "storage_unit_id" : 13,
@@ -6058,12 +6903,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-11T12:17:00Z",
-        "updated_at" : "2026-03-11T12:17:00Z"
+        "updated_at" : "2026-03-11T12:17:00Z",
+        "direction" : "out",
+        "balance_after" : 8654.27,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 214,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 246,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 938,
         "storage_unit_id" : 13,
@@ -6111,12 +6967,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-09T19:08:00Z",
-        "updated_at" : "2026-03-09T19:08:00Z"
+        "updated_at" : "2026-03-09T19:08:00Z",
+        "direction" : "out",
+        "balance_after" : 8710.89,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 212,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1752,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 935,
         "storage_unit_id" : 13,
@@ -6164,7 +7031,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -6173,7 +7040,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-03-09T06:57:00Z",
-        "updated_at" : "2026-03-09T06:57:00Z"
+        "updated_at" : "2026-03-09T06:57:00Z",
+        "direction" : "in",
+        "balance_after" : 9114.1,
+        "source" : {
+          "material_id" : 481,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 481,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3939
+        } ]
       }, {
         "id" : 929,
         "storage_unit_id" : 13,
@@ -6221,12 +7106,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-08T21:06:00Z",
-        "updated_at" : "2026-03-08T21:06:00Z"
+        "updated_at" : "2026-03-08T21:06:00Z",
+        "direction" : "out",
+        "balance_after" : 3185.56,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 209,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 924,
         "storage_unit_id" : 13,
@@ -6274,12 +7170,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-07T12:29:00Z",
-        "updated_at" : "2026-03-07T12:29:00Z"
+        "updated_at" : "2026-03-07T12:29:00Z",
+        "direction" : "out",
+        "balance_after" : 3876.0,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 206,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 330,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 922,
         "storage_unit_id" : 13,
@@ -6327,12 +7234,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-06T11:53:00Z",
-        "updated_at" : "2026-03-06T11:53:00Z"
+        "updated_at" : "2026-03-06T11:53:00Z",
+        "direction" : "out",
+        "balance_after" : 4179.79,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 204,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1220,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 917,
         "storage_unit_id" : 13,
@@ -6380,12 +7298,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-05T10:27:00Z",
-        "updated_at" : "2026-03-05T10:27:00Z"
+        "updated_at" : "2026-03-05T10:27:00Z",
+        "direction" : "out",
+        "balance_after" : 4460.57,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 201,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 907,
         "storage_unit_id" : 13,
@@ -6433,12 +7362,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-04T13:22:00Z",
-        "updated_at" : "2026-03-04T13:22:00Z"
+        "updated_at" : "2026-03-04T13:22:00Z",
+        "direction" : "out",
+        "balance_after" : 5151.01,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 199,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 642,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 903,
         "storage_unit_id" : 13,
@@ -6486,12 +7426,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-03T10:51:00Z",
-        "updated_at" : "2026-03-03T10:51:00Z"
+        "updated_at" : "2026-03-03T10:51:00Z",
+        "direction" : "out",
+        "balance_after" : 5594.27,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 197,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 582,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 899,
         "storage_unit_id" : 13,
@@ -6539,12 +7490,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-02T12:44:00Z",
-        "updated_at" : "2026-03-02T12:44:00Z"
+        "updated_at" : "2026-03-02T12:44:00Z",
+        "direction" : "out",
+        "balance_after" : 6130.05,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 195,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 892,
         "storage_unit_id" : 13,
@@ -6592,12 +7554,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-03-01T13:47:00Z",
-        "updated_at" : "2026-03-01T13:47:00Z"
+        "updated_at" : "2026-03-01T13:47:00Z",
+        "direction" : "out",
+        "balance_after" : 6682.4,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 194,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 884,
         "storage_unit_id" : 13,
@@ -6645,12 +7618,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-27T11:21:00Z",
-        "updated_at" : "2026-02-27T11:21:00Z"
+        "updated_at" : "2026-02-27T11:21:00Z",
+        "direction" : "out",
+        "balance_after" : 7372.84,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 190,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 516,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 854,
         "storage_unit_id" : 13,
@@ -6698,12 +7682,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-23T17:19:00Z",
-        "updated_at" : "2026-02-23T17:19:00Z"
+        "updated_at" : "2026-02-23T17:19:00Z",
+        "direction" : "out",
+        "balance_after" : 7847.86,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 188,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 664,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 848,
         "storage_unit_id" : 13,
@@ -6751,12 +7746,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-22T11:18:00Z",
-        "updated_at" : "2026-02-22T11:18:00Z"
+        "updated_at" : "2026-02-22T11:18:00Z",
+        "direction" : "out",
+        "balance_after" : 8459.13,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 186,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 846,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 842,
         "storage_unit_id" : 13,
@@ -6804,12 +7810,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-21T11:39:00Z",
-        "updated_at" : "2026-02-21T11:39:00Z"
+        "updated_at" : "2026-02-21T11:39:00Z",
+        "direction" : "out",
+        "balance_after" : 8653.83,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 184,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 837,
         "storage_unit_id" : 13,
@@ -6857,7 +7874,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -6866,7 +7883,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-02-21T07:15:00Z",
-        "updated_at" : "2026-02-21T07:15:00Z"
+        "updated_at" : "2026-02-21T07:15:00Z",
+        "direction" : "in",
+        "balance_after" : 9114.12,
+        "source" : {
+          "material_id" : 481,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 481,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3859
+        } ]
       }, {
         "id" : 832,
         "storage_unit_id" : 13,
@@ -6914,12 +7949,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-20T11:55:00Z",
-        "updated_at" : "2026-02-20T11:55:00Z"
+        "updated_at" : "2026-02-20T11:55:00Z",
+        "direction" : "out",
+        "balance_after" : 3467.75,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 182,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 684,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 827,
         "storage_unit_id" : 13,
@@ -6967,12 +8013,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-19T16:06:00Z",
-        "updated_at" : "2026-02-19T16:06:00Z"
+        "updated_at" : "2026-02-19T16:06:00Z",
+        "direction" : "out",
+        "balance_after" : 3940.01,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 181,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 666,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 822,
         "storage_unit_id" : 13,
@@ -7020,12 +8077,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-18T12:01:00Z",
-        "updated_at" : "2026-02-18T12:01:00Z"
+        "updated_at" : "2026-02-18T12:01:00Z",
+        "direction" : "out",
+        "balance_after" : 4399.84,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 178,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 817,
         "storage_unit_id" : 13,
@@ -7073,12 +8141,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-17T16:33:00Z",
-        "updated_at" : "2026-02-17T16:33:00Z"
+        "updated_at" : "2026-02-17T16:33:00Z",
+        "direction" : "out",
+        "balance_after" : 4860.13,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 177,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 807,
         "storage_unit_id" : 13,
@@ -7126,12 +8205,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-16T15:16:00Z",
-        "updated_at" : "2026-02-16T15:16:00Z"
+        "updated_at" : "2026-02-16T15:16:00Z",
+        "direction" : "out",
+        "balance_after" : 5550.57,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 175,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 738,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 793,
         "storage_unit_id" : 13,
@@ -7179,12 +8269,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-15T14:42:00Z",
-        "updated_at" : "2026-02-15T14:42:00Z"
+        "updated_at" : "2026-02-15T14:42:00Z",
+        "direction" : "out",
+        "balance_after" : 6060.11,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 173,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 787,
         "storage_unit_id" : 13,
@@ -7232,12 +8333,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-14T13:35:00Z",
-        "updated_at" : "2026-02-14T13:35:00Z"
+        "updated_at" : "2026-02-14T13:35:00Z",
+        "direction" : "out",
+        "balance_after" : 6750.55,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 171,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1140,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 777,
         "storage_unit_id" : 13,
@@ -7285,12 +8397,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-13T16:45:00Z",
-        "updated_at" : "2026-02-13T16:45:00Z"
+        "updated_at" : "2026-02-13T16:45:00Z",
+        "direction" : "out",
+        "balance_after" : 7012.92,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 169,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 768,
         "storage_unit_id" : 13,
@@ -7338,12 +8461,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-12T13:26:00Z",
-        "updated_at" : "2026-02-12T13:26:00Z"
+        "updated_at" : "2026-02-12T13:26:00Z",
+        "direction" : "out",
+        "balance_after" : 7749.38,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 166,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1890,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 766,
         "storage_unit_id" : 13,
@@ -7391,12 +8525,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-11T10:30:00Z",
-        "updated_at" : "2026-02-11T10:30:00Z"
+        "updated_at" : "2026-02-11T10:30:00Z",
+        "direction" : "out",
+        "balance_after" : 8184.35,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 164,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1020,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 763,
         "storage_unit_id" : 13,
@@ -7444,12 +8589,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-10T14:00:00Z",
-        "updated_at" : "2026-02-10T14:00:00Z"
+        "updated_at" : "2026-02-10T14:00:00Z",
+        "direction" : "out",
+        "balance_after" : 8653.85,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 163,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 761,
         "storage_unit_id" : 13,
@@ -7497,7 +8653,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -7506,7 +8662,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-02-10T07:06:00Z",
-        "updated_at" : "2026-02-10T07:06:00Z"
+        "updated_at" : "2026-02-10T07:06:00Z",
+        "direction" : "in",
+        "balance_after" : 9114.14,
+        "source" : {
+          "material_id" : 481,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 481,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.387
+        } ]
       }, {
         "id" : 759,
         "storage_unit_id" : 13,
@@ -7554,12 +8728,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-09T16:44:00Z",
-        "updated_at" : "2026-02-09T16:44:00Z"
+        "updated_at" : "2026-02-09T16:44:00Z",
+        "direction" : "out",
+        "balance_after" : 3290.08,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 161,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 757,
         "storage_unit_id" : 13,
@@ -7607,12 +8792,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-08T16:19:00Z",
-        "updated_at" : "2026-02-08T16:19:00Z"
+        "updated_at" : "2026-02-08T16:19:00Z",
+        "direction" : "out",
+        "balance_after" : 3980.52,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 159,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 754,
         "storage_unit_id" : 13,
@@ -7660,12 +8856,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-07T12:17:00Z",
-        "updated_at" : "2026-02-07T12:17:00Z"
+        "updated_at" : "2026-02-07T12:17:00Z",
+        "direction" : "out",
+        "balance_after" : 4532.87,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 156,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 752,
         "storage_unit_id" : 13,
@@ -7713,12 +8920,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-06T11:24:00Z",
-        "updated_at" : "2026-02-06T11:24:00Z"
+        "updated_at" : "2026-02-06T11:24:00Z",
+        "direction" : "out",
+        "balance_after" : 5269.33,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 154,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 166,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 746,
         "storage_unit_id" : 13,
@@ -7766,12 +8984,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-05T13:02:00Z",
-        "updated_at" : "2026-02-05T13:02:00Z"
+        "updated_at" : "2026-02-05T13:02:00Z",
+        "direction" : "out",
+        "balance_after" : 5383.94,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 152,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 735,
         "storage_unit_id" : 13,
@@ -7819,12 +9048,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-04T15:43:00Z",
-        "updated_at" : "2026-02-04T15:43:00Z"
+        "updated_at" : "2026-02-04T15:43:00Z",
+        "direction" : "out",
+        "balance_after" : 5936.29,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 151,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 496,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 733,
         "storage_unit_id" : 13,
@@ -7872,12 +9112,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-03T14:30:00Z",
-        "updated_at" : "2026-02-03T14:30:00Z"
+        "updated_at" : "2026-02-03T14:30:00Z",
+        "direction" : "out",
+        "balance_after" : 6278.75,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 149,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 738,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 727,
         "storage_unit_id" : 13,
@@ -7925,12 +9176,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-02T15:53:00Z",
-        "updated_at" : "2026-02-02T15:53:00Z"
+        "updated_at" : "2026-02-02T15:53:00Z",
+        "direction" : "out",
+        "balance_after" : 6618.44,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 147,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 388,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 718,
         "storage_unit_id" : 13,
@@ -7978,12 +9240,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-02-01T12:16:00Z",
-        "updated_at" : "2026-02-01T12:16:00Z"
+        "updated_at" : "2026-02-01T12:16:00Z",
+        "direction" : "out",
+        "balance_after" : 6886.33,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 144,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 714,
         "storage_unit_id" : 13,
@@ -8031,12 +9304,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-31T12:08:00Z",
-        "updated_at" : "2026-01-31T12:08:00Z"
+        "updated_at" : "2026-01-31T12:08:00Z",
+        "direction" : "out",
+        "balance_after" : 7576.77,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 142,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 84,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 695,
         "storage_unit_id" : 13,
@@ -8084,12 +9368,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-28T11:55:00Z",
-        "updated_at" : "2026-01-28T11:55:00Z"
+        "updated_at" : "2026-01-28T11:55:00Z",
+        "direction" : "out",
+        "balance_after" : 7654.1,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 139,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 342,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 689,
         "storage_unit_id" : 13,
@@ -8137,12 +9432,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-27T12:51:00Z",
-        "updated_at" : "2026-01-27T12:51:00Z"
+        "updated_at" : "2026-01-27T12:51:00Z",
+        "direction" : "out",
+        "balance_after" : 7811.52,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 137,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 84,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 671,
         "storage_unit_id" : 13,
@@ -8190,12 +9496,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-25T11:51:00Z",
-        "updated_at" : "2026-01-25T11:51:00Z"
+        "updated_at" : "2026-01-25T11:51:00Z",
+        "direction" : "out",
+        "balance_after" : 7888.85,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 135,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 690,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 666,
         "storage_unit_id" : 13,
@@ -8243,12 +9560,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-24T15:17:00Z",
-        "updated_at" : "2026-01-24T15:17:00Z"
+        "updated_at" : "2026-01-24T15:17:00Z",
+        "direction" : "out",
+        "balance_after" : 8365.25,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 134,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1254,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 662,
         "storage_unit_id" : 13,
@@ -8296,12 +9624,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-23T15:48:00Z",
-        "updated_at" : "2026-01-23T15:48:00Z"
+        "updated_at" : "2026-01-23T15:48:00Z",
+        "direction" : "out",
+        "balance_after" : 8653.85,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 132,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 658,
         "storage_unit_id" : 13,
@@ -8349,7 +9688,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -8358,7 +9697,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-01-23T07:11:00Z",
-        "updated_at" : "2026-01-23T07:11:00Z"
+        "updated_at" : "2026-01-23T07:11:00Z",
+        "direction" : "in",
+        "balance_after" : 9114.14,
+        "source" : {
+          "material_id" : 481,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 481,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3888
+        } ]
       }, {
         "id" : 654,
         "storage_unit_id" : 13,
@@ -8406,12 +9763,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-22T16:10:00Z",
-        "updated_at" : "2026-01-22T16:10:00Z"
+        "updated_at" : "2026-01-22T16:10:00Z",
+        "direction" : "out",
+        "balance_after" : 3662.36,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 130,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 651,
         "storage_unit_id" : 13,
@@ -8459,12 +9827,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-21T13:01:00Z",
-        "updated_at" : "2026-01-21T13:01:00Z"
+        "updated_at" : "2026-01-21T13:01:00Z",
+        "direction" : "out",
+        "balance_after" : 4352.8,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 127,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 643,
         "storage_unit_id" : 13,
@@ -8512,12 +9891,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-20T13:16:00Z",
-        "updated_at" : "2026-01-20T13:16:00Z"
+        "updated_at" : "2026-01-20T13:16:00Z",
+        "direction" : "out",
+        "balance_after" : 4813.09,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 125,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 640,
         "storage_unit_id" : 13,
@@ -8565,12 +9955,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-19T16:15:00Z",
-        "updated_at" : "2026-01-19T16:15:00Z"
+        "updated_at" : "2026-01-19T16:15:00Z",
+        "direction" : "out",
+        "balance_after" : 5503.53,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 124,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 78,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 634,
         "storage_unit_id" : 13,
@@ -8618,12 +10019,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-17T14:58:00Z",
-        "updated_at" : "2026-01-17T14:58:00Z"
+        "updated_at" : "2026-01-17T14:58:00Z",
+        "direction" : "out",
+        "balance_after" : 5575.34,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 122,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 114,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 609,
         "storage_unit_id" : 13,
@@ -8671,12 +10083,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-14T11:35:00Z",
-        "updated_at" : "2026-01-14T11:35:00Z"
+        "updated_at" : "2026-01-14T11:35:00Z",
+        "direction" : "out",
+        "balance_after" : 5680.29,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 119,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 90,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 606,
         "storage_unit_id" : 13,
@@ -8724,12 +10147,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-13T14:26:00Z",
-        "updated_at" : "2026-01-13T14:26:00Z"
+        "updated_at" : "2026-01-13T14:26:00Z",
+        "direction" : "out",
+        "balance_after" : 5763.14,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 118,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 591,
         "storage_unit_id" : 13,
@@ -8777,12 +10211,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-12T13:47:00Z",
-        "updated_at" : "2026-01-12T13:47:00Z"
+        "updated_at" : "2026-01-12T13:47:00Z",
+        "direction" : "out",
+        "balance_after" : 6223.43,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 115,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 586,
         "storage_unit_id" : 13,
@@ -8830,12 +10275,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-11T18:00:00Z",
-        "updated_at" : "2026-01-11T18:00:00Z"
+        "updated_at" : "2026-01-11T18:00:00Z",
+        "direction" : "out",
+        "balance_after" : 6913.87,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 114,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 579,
         "storage_unit_id" : 13,
@@ -8883,12 +10339,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-10T13:45:00Z",
-        "updated_at" : "2026-01-10T13:45:00Z"
+        "updated_at" : "2026-01-10T13:45:00Z",
+        "direction" : "out",
+        "balance_after" : 7374.16,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 111,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 572,
         "storage_unit_id" : 13,
@@ -8936,12 +10403,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-09T15:14:00Z",
-        "updated_at" : "2026-01-09T15:14:00Z"
+        "updated_at" : "2026-01-09T15:14:00Z",
+        "direction" : "out",
+        "balance_after" : 7926.51,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 110,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 570,
         "storage_unit_id" : 13,
@@ -8989,7 +10467,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -8998,7 +10476,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-01-09T07:06:00Z",
-        "updated_at" : "2026-01-09T07:06:00Z"
+        "updated_at" : "2026-01-09T07:06:00Z",
+        "direction" : "in",
+        "balance_after" : 8386.8,
+        "source" : {
+          "material_id" : 481,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 481,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3941
+        } ]
       }, {
         "id" : 567,
         "storage_unit_id" : 13,
@@ -9046,12 +10542,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-08T12:15:00Z",
-        "updated_at" : "2026-01-08T12:15:00Z"
+        "updated_at" : "2026-01-08T12:15:00Z",
+        "direction" : "out",
+        "balance_after" : 2981.94,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 107,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 535,
         "storage_unit_id" : 13,
@@ -9099,12 +10606,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-04T12:25:00Z",
-        "updated_at" : "2026-01-04T12:25:00Z"
+        "updated_at" : "2026-01-04T12:25:00Z",
+        "direction" : "out",
+        "balance_after" : 3672.38,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 105,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 226,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 529,
         "storage_unit_id" : 13,
@@ -9152,12 +10670,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-03T12:27:00Z",
-        "updated_at" : "2026-01-03T12:27:00Z"
+        "updated_at" : "2026-01-03T12:27:00Z",
+        "direction" : "out",
+        "balance_after" : 3724.39,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 103,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 516,
         "storage_unit_id" : 13,
@@ -9205,12 +10734,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-02T15:24:00Z",
-        "updated_at" : "2026-01-02T15:24:00Z"
+        "updated_at" : "2026-01-02T15:24:00Z",
+        "direction" : "out",
+        "balance_after" : 4184.68,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 102,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 276,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 510,
         "storage_unit_id" : 13,
@@ -9258,12 +10798,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2026-01-01T14:59:00Z",
-        "updated_at" : "2026-01-01T14:59:00Z"
+        "updated_at" : "2026-01-01T14:59:00Z",
+        "direction" : "out",
+        "balance_after" : 4311.72,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 100,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 174,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 506,
         "storage_unit_id" : 13,
@@ -9311,7 +10862,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -9320,7 +10871,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2026-01-01T07:05:00Z",
-        "updated_at" : "2026-01-01T07:05:00Z"
+        "updated_at" : "2026-01-01T07:05:00Z",
+        "direction" : "in",
+        "balance_after" : 4431.86,
+        "source" : {
+          "material_id" : 426,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 426,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.4075
+        } ]
       }, {
         "id" : 503,
         "storage_unit_id" : 13,
@@ -9368,12 +10937,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-31T10:31:00Z",
-        "updated_at" : "2025-12-31T10:31:00Z"
+        "updated_at" : "2025-12-31T10:31:00Z",
+        "direction" : "out",
+        "balance_after" : 3416.68,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 97,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 388,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 486,
         "storage_unit_id" : 13,
@@ -9421,12 +11001,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-30T16:53:00Z",
-        "updated_at" : "2025-12-30T16:53:00Z"
+        "updated_at" : "2025-12-30T16:53:00Z",
+        "direction" : "out",
+        "balance_after" : 3773.87,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 96,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 166,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 477,
         "storage_unit_id" : 13,
@@ -9474,12 +11065,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-29T11:07:00Z",
-        "updated_at" : "2025-12-29T11:07:00Z"
+        "updated_at" : "2025-12-29T11:07:00Z",
+        "direction" : "out",
+        "balance_after" : 3888.48,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 93,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 471,
         "storage_unit_id" : 13,
@@ -9527,12 +11129,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-28T10:51:00Z",
-        "updated_at" : "2025-12-28T10:51:00Z"
+        "updated_at" : "2025-12-28T10:51:00Z",
+        "direction" : "out",
+        "balance_after" : 4348.77,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 91,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 462,
         "storage_unit_id" : 13,
@@ -9580,12 +11193,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-27T16:26:00Z",
-        "updated_at" : "2025-12-27T16:26:00Z"
+        "updated_at" : "2025-12-27T16:26:00Z",
+        "direction" : "out",
+        "balance_after" : 5039.21,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 90,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 720,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 458,
         "storage_unit_id" : 13,
@@ -9633,7 +11257,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -9642,7 +11266,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-27T07:01:00Z",
-        "updated_at" : "2025-12-27T07:01:00Z"
+        "updated_at" : "2025-12-27T07:01:00Z",
+        "direction" : "in",
+        "balance_after" : 5702.03,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3978
+        } ]
       }, {
         "id" : 454,
         "storage_unit_id" : 13,
@@ -9690,12 +11332,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-26T17:06:00Z",
-        "updated_at" : "2025-12-26T17:06:00Z"
+        "updated_at" : "2025-12-26T17:06:00Z",
+        "direction" : "out",
+        "balance_after" : 3444.38,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 88,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 406,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 448,
         "storage_unit_id" : 13,
@@ -9743,12 +11396,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-25T15:26:00Z",
-        "updated_at" : "2025-12-25T15:26:00Z"
+        "updated_at" : "2025-12-25T15:26:00Z",
+        "direction" : "out",
+        "balance_after" : 3818.14,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 86,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 210,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 444,
         "storage_unit_id" : 13,
@@ -9796,12 +11460,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-24T13:52:00Z",
-        "updated_at" : "2025-12-24T13:52:00Z"
+        "updated_at" : "2025-12-24T13:52:00Z",
+        "direction" : "out",
+        "balance_after" : 3963.13,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 84,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 250,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 425,
         "storage_unit_id" : 13,
@@ -9849,12 +11524,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-22T11:04:00Z",
-        "updated_at" : "2025-12-22T11:04:00Z"
+        "updated_at" : "2025-12-22T11:04:00Z",
+        "direction" : "out",
+        "balance_after" : 4135.74,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 81,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 606,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 419,
         "storage_unit_id" : 13,
@@ -9902,12 +11588,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-21T11:30:00Z",
-        "updated_at" : "2025-12-21T11:30:00Z"
+        "updated_at" : "2025-12-21T11:30:00Z",
+        "direction" : "out",
+        "balance_after" : 4693.61,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 79,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 336,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 402,
         "storage_unit_id" : 13,
@@ -9955,12 +11652,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-20T16:18:00Z",
-        "updated_at" : "2025-12-20T16:18:00Z"
+        "updated_at" : "2025-12-20T16:18:00Z",
+        "direction" : "out",
+        "balance_after" : 4848.27,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 78,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1864,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 396,
         "storage_unit_id" : 13,
@@ -10008,7 +11716,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -10017,7 +11725,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-20T07:07:00Z",
-        "updated_at" : "2025-12-20T07:07:00Z"
+        "updated_at" : "2025-12-20T07:07:00Z",
+        "direction" : "in",
+        "balance_after" : 5277.26,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3978
+        } ]
       }, {
         "id" : 389,
         "storage_unit_id" : 13,
@@ -10065,12 +11791,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-19T10:47:00Z",
-        "updated_at" : "2025-12-19T10:47:00Z"
+        "updated_at" : "2025-12-19T10:47:00Z",
+        "direction" : "out",
+        "balance_after" : 2933.88,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 75,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 383,
         "storage_unit_id" : 13,
@@ -10118,12 +11855,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-18T11:40:00Z",
-        "updated_at" : "2025-12-18T11:40:00Z"
+        "updated_at" : "2025-12-18T11:40:00Z",
+        "direction" : "out",
+        "balance_after" : 3624.32,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 73,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 378,
         "storage_unit_id" : 13,
@@ -10171,12 +11919,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-17T16:54:00Z",
-        "updated_at" : "2025-12-17T16:54:00Z"
+        "updated_at" : "2025-12-17T16:54:00Z",
+        "direction" : "out",
+        "balance_after" : 4084.61,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 72,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 94,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 365,
         "storage_unit_id" : 13,
@@ -10224,7 +11983,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -10233,7 +11992,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-16T07:10:00Z",
-        "updated_at" : "2025-12-16T07:10:00Z"
+        "updated_at" : "2025-12-16T07:10:00Z",
+        "direction" : "in",
+        "balance_after" : 4149.51,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3978
+        } ]
       }, {
         "id" : 354,
         "storage_unit_id" : 13,
@@ -10281,12 +12058,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-15T11:03:00Z",
-        "updated_at" : "2025-12-15T11:03:00Z"
+        "updated_at" : "2025-12-15T11:03:00Z",
+        "direction" : "out",
+        "balance_after" : 2374.71,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 68,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 1332,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 348,
         "storage_unit_id" : 13,
@@ -10334,12 +12122,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-14T11:30:00Z",
-        "updated_at" : "2025-12-14T11:30:00Z"
+        "updated_at" : "2025-12-14T11:30:00Z",
+        "direction" : "out",
+        "balance_after" : 2681.26,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 66,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 276,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 341,
         "storage_unit_id" : 13,
@@ -10387,12 +12186,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-13T16:49:00Z",
-        "updated_at" : "2025-12-13T16:49:00Z"
+        "updated_at" : "2025-12-13T16:49:00Z",
+        "direction" : "out",
+        "balance_after" : 2935.34,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 65,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 528,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 337,
         "storage_unit_id" : 13,
@@ -10440,7 +12250,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -10449,7 +12259,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-13T07:07:00Z",
-        "updated_at" : "2025-12-13T07:07:00Z"
+        "updated_at" : "2025-12-13T07:07:00Z",
+        "direction" : "in",
+        "balance_after" : 3178.37,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3978
+        } ]
       }, {
         "id" : 331,
         "storage_unit_id" : 13,
@@ -10497,12 +12325,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-12T15:38:00Z",
-        "updated_at" : "2025-12-12T15:38:00Z"
+        "updated_at" : "2025-12-12T15:38:00Z",
+        "direction" : "out",
+        "balance_after" : 402.71,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 63,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 322,
         "storage_unit_id" : 13,
@@ -10550,12 +12389,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-11T11:55:00Z",
-        "updated_at" : "2025-12-11T11:55:00Z"
+        "updated_at" : "2025-12-11T11:55:00Z",
+        "direction" : "out",
+        "balance_after" : 863.0,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 60,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 318,
         "storage_unit_id" : 13,
@@ -10603,12 +12453,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-10T10:55:00Z",
-        "updated_at" : "2025-12-10T10:55:00Z"
+        "updated_at" : "2025-12-10T10:55:00Z",
+        "direction" : "out",
+        "balance_after" : 1323.29,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 58,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 304,
         "storage_unit_id" : 13,
@@ -10656,12 +12517,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-09T11:39:00Z",
-        "updated_at" : "2025-12-09T11:39:00Z"
+        "updated_at" : "2025-12-09T11:39:00Z",
+        "direction" : "out",
+        "balance_after" : 1875.64,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 56,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 298,
         "storage_unit_id" : 13,
@@ -10709,12 +12581,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-08T11:28:00Z",
-        "updated_at" : "2025-12-08T11:28:00Z"
+        "updated_at" : "2025-12-08T11:28:00Z",
+        "direction" : "out",
+        "balance_after" : 2566.08,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 54,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 293,
         "storage_unit_id" : 13,
@@ -10762,12 +12645,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-07T15:04:00Z",
-        "updated_at" : "2025-12-07T15:04:00Z"
+        "updated_at" : "2025-12-07T15:04:00Z",
+        "direction" : "out",
+        "balance_after" : 3256.52,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 53,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 732,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 274,
         "storage_unit_id" : 13,
@@ -10815,12 +12709,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-06T13:58:00Z",
-        "updated_at" : "2025-12-06T13:58:00Z"
+        "updated_at" : "2025-12-06T13:58:00Z",
+        "direction" : "out",
+        "balance_after" : 3930.38,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 50,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 294,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 269,
         "storage_unit_id" : 13,
@@ -10868,7 +12773,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -10877,7 +12782,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-06T07:08:00Z",
-        "updated_at" : "2025-12-06T07:08:00Z"
+        "updated_at" : "2025-12-06T07:08:00Z",
+        "direction" : "in",
+        "balance_after" : 4133.37,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3988
+        } ]
       }, {
         "id" : 264,
         "storage_unit_id" : 13,
@@ -10925,12 +12848,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-05T12:27:00Z",
-        "updated_at" : "2025-12-05T12:27:00Z"
+        "updated_at" : "2025-12-05T12:27:00Z",
+        "direction" : "out",
+        "balance_after" : 2919.0,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 48,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 594,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 258,
         "storage_unit_id" : 13,
@@ -10978,12 +12912,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-04T11:04:00Z",
-        "updated_at" : "2025-12-04T11:04:00Z"
+        "updated_at" : "2025-12-04T11:04:00Z",
+        "direction" : "out",
+        "balance_after" : 3465.82,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 46,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 245,
         "storage_unit_id" : 13,
@@ -11031,12 +12976,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-03T16:07:00Z",
-        "updated_at" : "2025-12-03T16:07:00Z"
+        "updated_at" : "2025-12-03T16:07:00Z",
+        "direction" : "out",
+        "balance_after" : 3926.11,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 45,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 241,
         "storage_unit_id" : 13,
@@ -11084,7 +13040,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11093,7 +13049,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-03T06:59:00Z",
-        "updated_at" : "2025-12-03T06:59:00Z"
+        "updated_at" : "2025-12-03T06:59:00Z",
+        "direction" : "in",
+        "balance_after" : 4386.4,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3993
+        } ]
       }, {
         "id" : 235,
         "storage_unit_id" : 13,
@@ -11141,12 +13115,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-02T15:19:00Z",
-        "updated_at" : "2025-12-02T15:19:00Z"
+        "updated_at" : "2025-12-02T15:19:00Z",
+        "direction" : "out",
+        "balance_after" : 2994.95,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 43,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 230,
         "storage_unit_id" : 13,
@@ -11194,12 +13179,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-12-01T11:15:00Z",
-        "updated_at" : "2025-12-01T11:15:00Z"
+        "updated_at" : "2025-12-01T11:15:00Z",
+        "direction" : "out",
+        "balance_after" : 3685.39,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 40,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 225,
         "storage_unit_id" : 13,
@@ -11247,7 +13243,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11256,7 +13252,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-12-01T07:05:00Z",
-        "updated_at" : "2025-12-01T07:05:00Z"
+        "updated_at" : "2025-12-01T07:05:00Z",
+        "direction" : "in",
+        "balance_after" : 4375.83,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3978
+        } ]
       }, {
         "id" : 223,
         "storage_unit_id" : 13,
@@ -11304,12 +13318,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-30T15:46:00Z",
-        "updated_at" : "2025-11-30T15:46:00Z"
+        "updated_at" : "2025-11-30T15:46:00Z",
+        "direction" : "out",
+        "balance_after" : 3244.62,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 39,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 209,
         "storage_unit_id" : 13,
@@ -11357,12 +13382,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-29T11:42:00Z",
-        "updated_at" : "2025-11-29T11:42:00Z"
+        "updated_at" : "2025-11-29T11:42:00Z",
+        "direction" : "out",
+        "balance_after" : 3981.08,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 37,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 202,
         "storage_unit_id" : 13,
@@ -11410,12 +13446,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-28T13:38:00Z",
-        "updated_at" : "2025-11-28T13:38:00Z"
+        "updated_at" : "2025-11-28T13:38:00Z",
+        "direction" : "out",
+        "balance_after" : 4533.43,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 36,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 199,
         "storage_unit_id" : 13,
@@ -11463,12 +13510,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-27T12:24:00Z",
-        "updated_at" : "2025-11-27T12:24:00Z"
+        "updated_at" : "2025-11-27T12:24:00Z",
+        "direction" : "out",
+        "balance_after" : 5085.78,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 35,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 234,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 188,
         "storage_unit_id" : 13,
@@ -11516,12 +13574,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-26T14:40:00Z",
-        "updated_at" : "2025-11-26T14:40:00Z"
+        "updated_at" : "2025-11-26T14:40:00Z",
+        "direction" : "out",
+        "balance_after" : 5247.34,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 34,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 184,
         "storage_unit_id" : 13,
@@ -11569,7 +13638,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11578,7 +13647,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-11-26T07:09:00Z",
-        "updated_at" : "2025-11-26T07:09:00Z"
+        "updated_at" : "2025-11-26T07:09:00Z",
+        "direction" : "in",
+        "balance_after" : 5707.63,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3979
+        } ]
       }, {
         "id" : 176,
         "storage_unit_id" : 13,
@@ -11626,12 +13713,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-25T16:37:00Z",
-        "updated_at" : "2025-11-25T16:37:00Z"
+        "updated_at" : "2025-11-25T16:37:00Z",
+        "direction" : "out",
+        "balance_after" : 3505.8,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 32,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 294,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 169,
         "storage_unit_id" : 13,
@@ -11679,12 +13777,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-24T11:37:00Z",
-        "updated_at" : "2025-11-24T11:37:00Z"
+        "updated_at" : "2025-11-24T11:37:00Z",
+        "direction" : "out",
+        "balance_after" : 3708.79,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 29,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 612,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 165,
         "storage_unit_id" : 13,
@@ -11732,12 +13841,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-23T11:59:00Z",
-        "updated_at" : "2025-11-23T11:59:00Z"
+        "updated_at" : "2025-11-23T11:59:00Z",
+        "direction" : "out",
+        "balance_after" : 4131.34,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 27,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 152,
         "storage_unit_id" : 13,
@@ -11785,12 +13905,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-22T15:20:00Z",
-        "updated_at" : "2025-11-22T15:20:00Z"
+        "updated_at" : "2025-11-22T15:20:00Z",
+        "direction" : "out",
+        "balance_after" : 4867.8,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 26,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 148,
         "storage_unit_id" : 13,
@@ -11838,7 +13969,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11847,7 +13978,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-11-22T07:01:00Z",
-        "updated_at" : "2025-11-22T07:01:00Z"
+        "updated_at" : "2025-11-22T07:01:00Z",
+        "direction" : "in",
+        "balance_after" : 5558.24,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3981
+        } ]
       }, {
         "id" : 140,
         "storage_unit_id" : 13,
@@ -11895,12 +14044,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-21T15:21:00Z",
-        "updated_at" : "2025-11-21T15:21:00Z"
+        "updated_at" : "2025-11-21T15:21:00Z",
+        "direction" : "out",
+        "balance_after" : 2247.63,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 24,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 234,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 136,
         "storage_unit_id" : 13,
@@ -11948,12 +14108,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-20T15:35:00Z",
-        "updated_at" : "2025-11-20T15:35:00Z"
+        "updated_at" : "2025-11-20T15:35:00Z",
+        "direction" : "out",
+        "balance_after" : 2463.05,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 22,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 130,
         "storage_unit_id" : 13,
@@ -12001,12 +14172,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-19T15:11:00Z",
-        "updated_at" : "2025-11-19T15:11:00Z"
+        "updated_at" : "2025-11-19T15:11:00Z",
+        "direction" : "out",
+        "balance_after" : 3153.49,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 20,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 406,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 114,
         "storage_unit_id" : 13,
@@ -12054,12 +14236,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-18T16:35:00Z",
-        "updated_at" : "2025-11-18T16:35:00Z"
+        "updated_at" : "2025-11-18T16:35:00Z",
+        "direction" : "out",
+        "balance_after" : 3527.25,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 18,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 110,
         "storage_unit_id" : 13,
@@ -12107,7 +14300,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -12116,7 +14309,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-11-18T07:02:00Z",
-        "updated_at" : "2025-11-18T07:02:00Z"
+        "updated_at" : "2025-11-18T07:02:00Z",
+        "direction" : "in",
+        "balance_after" : 3987.54,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3988
+        } ]
       }, {
         "id" : 104,
         "storage_unit_id" : 13,
@@ -12164,12 +14375,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-17T15:57:00Z",
-        "updated_at" : "2025-11-17T15:57:00Z"
+        "updated_at" : "2025-11-17T15:57:00Z",
+        "direction" : "out",
+        "balance_after" : 2543.59,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 16,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 98,
         "storage_unit_id" : 13,
@@ -12217,12 +14439,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-16T15:41:00Z",
-        "updated_at" : "2025-11-16T15:41:00Z"
+        "updated_at" : "2025-11-16T15:41:00Z",
+        "direction" : "out",
+        "balance_after" : 3003.88,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 14,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 92,
         "storage_unit_id" : 13,
@@ -12270,12 +14503,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-15T16:16:00Z",
-        "updated_at" : "2025-11-15T16:16:00Z"
+        "updated_at" : "2025-11-15T16:16:00Z",
+        "direction" : "out",
+        "balance_after" : 3694.32,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 12,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 82,
         "storage_unit_id" : 13,
@@ -12323,12 +14567,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-14T16:17:00Z",
-        "updated_at" : "2025-11-14T16:17:00Z"
+        "updated_at" : "2025-11-14T16:17:00Z",
+        "direction" : "out",
+        "balance_after" : 4154.61,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 10,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 1L",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 78,
         "storage_unit_id" : 13,
@@ -12376,7 +14631,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -12385,7 +14640,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-11-14T07:09:00Z",
-        "updated_at" : "2025-11-14T07:09:00Z"
+        "updated_at" : "2025-11-14T07:09:00Z",
+        "direction" : "in",
+        "balance_after" : 4891.07,
+        "source" : {
+          "material_id" : 87,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 87,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3994
+        } ]
       }, {
         "id" : 67,
         "storage_unit_id" : 13,
@@ -12433,12 +14706,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-13T11:27:00Z",
-        "updated_at" : "2025-11-13T11:27:00Z"
+        "updated_at" : "2025-11-13T11:27:00Z",
+        "direction" : "out",
+        "balance_after" : 1525.77,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 7,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 750ml",
+          "quantity" : 800,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 62,
         "storage_unit_id" : 13,
@@ -12486,12 +14770,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-12T14:15:00Z",
-        "updated_at" : "2025-11-12T14:15:00Z"
+        "updated_at" : "2025-11-12T14:15:00Z",
+        "direction" : "out",
+        "balance_after" : 2078.12,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 6,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 500ml",
+          "quantity" : 1500,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 49,
         "storage_unit_id" : 13,
@@ -12539,12 +14834,23 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
         "created_at" : "2025-11-11T11:20:00Z",
-        "updated_at" : "2025-11-11T11:20:00Z"
+        "updated_at" : "2025-11-11T11:20:00Z",
+        "direction" : "out",
+        "balance_after" : 2768.56,
+        "source" : null,
+        "finished_product_run" : {
+          "id" : 3,
+          "product_name" : "Naturel Sızma Ayvalık 0.4 250ml",
+          "quantity" : 2000,
+          "status" : "completed"
+        },
+        "counterparty_material_id" : null,
+        "mix_after" : null
       }, {
         "id" : 44,
         "storage_unit_id" : 13,
@@ -12592,7 +14898,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T04:17:48Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -12601,7 +14907,25 @@
           "code" : "TOPLAMA-AYV-01"
         },
         "created_at" : "2025-11-11T06:58:00Z",
-        "updated_at" : "2025-11-11T06:58:00Z"
+        "updated_at" : "2025-11-11T06:58:00Z",
+        "direction" : "in",
+        "balance_after" : 3228.85,
+        "source" : {
+          "material_id" : 54,
+          "batch_id" : null,
+          "batch_code" : null,
+          "delivery_batch_code" : null,
+          "stage_name" : null
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : 54,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.4032
+        } ]
       } ],
       "page" : {
         "size" : 199,
@@ -12697,7 +15021,25 @@
         },
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-05T11:08:00Z",
-        "updated_at" : "2026-11-05T11:08:00Z"
+        "updated_at" : "2026-11-05T11:08:00Z",
+        "direction" : "in",
+        "balance_after" : 1069.44,
+        "source" : {
+          "material_id" : 1481,
+          "batch_id" : 582,
+          "batch_code" : "P-261105-01-1",
+          "delivery_batch_code" : "P-261105-01",
+          "stage_name" : "Sıkım"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.32
+        } ]
       }, {
         "id" : 1780,
         "storage_unit_id" : 7,
@@ -12777,7 +15119,25 @@
         },
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-04T15:58:00Z",
-        "updated_at" : "2026-11-04T15:58:00Z"
+        "updated_at" : "2026-11-04T15:58:00Z",
+        "direction" : "in",
+        "balance_after" : 417.73,
+        "source" : {
+          "material_id" : 1477,
+          "batch_id" : 580,
+          "batch_code" : "P-261104-02-1",
+          "delivery_batch_code" : "P-261104-02",
+          "stage_name" : "Sıkım"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.32
+        } ]
       }, {
         "id" : 1775,
         "storage_unit_id" : 7,
@@ -12861,7 +15221,13 @@
           "code" : "TOPLAMA-GEM-01"
         },
         "created_at" : "2026-11-04T07:09:00Z",
-        "updated_at" : "2026-11-04T07:09:00Z"
+        "updated_at" : "2026-11-04T07:09:00Z",
+        "direction" : "out",
+        "balance_after" : 13.27,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : 96,
+        "mix_after" : null
       }, {
         "id" : 1773,
         "storage_unit_id" : 7,
@@ -12945,7 +15311,13 @@
           "code" : "TOPLAMA-GEM-01"
         },
         "created_at" : "2026-11-04T07:09:00Z",
-        "updated_at" : "2026-11-04T07:09:00Z"
+        "updated_at" : "2026-11-04T07:09:00Z",
+        "direction" : "out",
+        "balance_after" : 15.71,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : 96,
+        "mix_after" : null
       }, {
         "id" : 1771,
         "storage_unit_id" : 7,
@@ -13029,7 +15401,13 @@
           "code" : "TOPLAMA-GEM-01"
         },
         "created_at" : "2026-11-04T07:09:00Z",
-        "updated_at" : "2026-11-04T07:09:00Z"
+        "updated_at" : "2026-11-04T07:09:00Z",
+        "direction" : "out",
+        "balance_after" : 6.22,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : 96,
+        "mix_after" : null
       }, {
         "id" : 1766,
         "storage_unit_id" : 7,
@@ -13109,7 +15487,25 @@
         },
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-03T11:36:00Z",
-        "updated_at" : "2026-11-03T11:36:00Z"
+        "updated_at" : "2026-11-03T11:36:00Z",
+        "direction" : "in",
+        "balance_after" : 1006.11,
+        "source" : {
+          "material_id" : 1462,
+          "batch_id" : 574,
+          "batch_code" : "P-261103-01-1",
+          "delivery_batch_code" : "P-261103-01",
+          "stage_name" : "Sıkım"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.33
+        } ]
       }, {
         "id" : 1760,
         "storage_unit_id" : 7,
@@ -13189,7 +15585,25 @@
         },
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-02T11:40:00Z",
-        "updated_at" : "2026-11-02T11:40:00Z"
+        "updated_at" : "2026-11-02T11:40:00Z",
+        "direction" : "in",
+        "balance_after" : 1190.74,
+        "source" : {
+          "material_id" : 1457,
+          "batch_id" : 572,
+          "batch_code" : "P-261102-01-1",
+          "delivery_batch_code" : "P-261102-01",
+          "stage_name" : "Sıkım"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.3
+        } ]
       }, {
         "id" : 1756,
         "storage_unit_id" : 7,
@@ -13269,7 +15683,25 @@
         },
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-01T11:24:00Z",
-        "updated_at" : "2026-11-01T11:24:00Z"
+        "updated_at" : "2026-11-01T11:24:00Z",
+        "direction" : "in",
+        "balance_after" : 471.42,
+        "source" : {
+          "material_id" : 1453,
+          "batch_id" : 570,
+          "batch_code" : "P-261101-01-1",
+          "delivery_batch_code" : "P-261101-01",
+          "stage_name" : "Sıkım"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.32
+        } ]
       } ],
       "page" : {
         "size" : 8,
@@ -13385,7 +15817,13 @@
           "code" : "TOPLAMA-GEM-01"
         },
         "created_at" : "2026-11-04T07:09:00Z",
-        "updated_at" : "2026-11-04T07:09:00Z"
+        "updated_at" : "2026-11-04T07:09:00Z",
+        "direction" : "out",
+        "balance_after" : 15.71,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : 96,
+        "mix_after" : null
       }, {
         "id" : 1771,
         "storage_unit_id" : 7,
@@ -13469,7 +15907,13 @@
           "code" : "TOPLAMA-GEM-01"
         },
         "created_at" : "2026-11-04T07:09:00Z",
-        "updated_at" : "2026-11-04T07:09:00Z"
+        "updated_at" : "2026-11-04T07:09:00Z",
+        "direction" : "out",
+        "balance_after" : 6.22,
+        "source" : null,
+        "finished_product_run" : null,
+        "counterparty_material_id" : 96,
+        "mix_after" : null
       }, {
         "id" : 1766,
         "storage_unit_id" : 7,
@@ -13549,7 +15993,25 @@
         },
         "counterparty_storage_unit" : null,
         "created_at" : "2026-11-03T11:36:00Z",
-        "updated_at" : "2026-11-03T11:36:00Z"
+        "updated_at" : "2026-11-03T11:36:00Z",
+        "direction" : "in",
+        "balance_after" : 1006.11,
+        "source" : {
+          "material_id" : 1462,
+          "batch_id" : 574,
+          "batch_code" : "P-261103-01-1",
+          "delivery_batch_code" : "P-261103-01",
+          "stage_name" : "Sıkım"
+        },
+        "finished_product_run" : null,
+        "counterparty_material_id" : null,
+        "mix_after" : [ {
+          "definition_id" : 4,
+          "attribute_key" : "acidity",
+          "label" : "Asitlik",
+          "unit" : "%",
+          "value" : 0.33
+        } ]
       } ],
       "page" : {
         "size" : 3,

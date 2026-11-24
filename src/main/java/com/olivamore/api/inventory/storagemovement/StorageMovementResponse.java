@@ -1,6 +1,7 @@
 package com.olivamore.api.inventory.storagemovement;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.inventory.material.MaterialUnit;
 
@@ -32,6 +33,39 @@ public record StorageMovementResponse(
 	MaterialResponse.UnitSummary counterpartyStorageUnit,
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
+
+	/**
+	 * Tank islem gecmisi satiri (defter): hareketin butun alanlari ve defter alanlari.
+	 * @param direction {@code in} ya da {@code out}
+	 * @param balanceAfter hareketten sonra bu materyalin bu tanktaki miktari (materyalin biriminde)
+	 * @param source giriste tanka giren materyal (on dinlendirmede materyalin kendisi) ve partisi; cikista null
+	 * @param finishedProductRun dolum cikisinda kosu; yoksa null
+	 * @param counterpartyMaterialId transferde karsi tanktaki materyal; yoksa null
+	 * @param mixAfter giristen sonra tank materyalinin sayisal attribute degerleri; cikista null
+	 */
+	public record HistoryEntry(@JsonUnwrapped StorageMovementResponse movement, String direction,
+		BigDecimal balanceAfter, Source source, Run finishedProductRun, Long counterpartyMaterialId,
+		List<MixValue> mixAfter) {
+	}
+
+	/** Giriste gelen materyal: parti, teslimat ve asama (partiden gelmiyorsa bos). */
+	public record Source(Long materialId, Long batchId, String batchCode, String deliveryBatchCode,
+		String stageName) {
+	}
+
+	public record Run(Long id, String productName, Integer quantity, String status) {
+	}
+
+	public record MixValue(Long definitionId, String attributeKey, String label, String unit, BigDecimal value) {
+	}
+
+	/**
+	 * Defter ozeti: materyal (guncel attribute degerleriyle) ve bu tanktaki hareketlerinin toplamlari.
+	 * @param balance hareketlere gore kalan (materyalin biriminde)
+	 */
+	public record LedgerSummary(MaterialResponse material, BigDecimal totalIn, BigDecimal totalOut,
+		BigDecimal balance, int inCount, int outCount, LocalDateTime firstMovedAt, LocalDateTime lastMovedAt) {
+	}
 
 	/** Transfer cevabi (200): son tanktan cikista karisimdaki her tip icin bir cikis ve bir giris hareketi. */
 	public record Transfer(String transferReference, List<StorageMovementResponse> outMovements,

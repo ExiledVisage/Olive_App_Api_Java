@@ -84,16 +84,33 @@ class StorageMovementController {
 		return DataResponse.created(responses.written(movements.adjustment(request)));
 	}
 
-	/** {@code ?date_from}, {@code ?date_to}: moved_at araligi; {@code page}/{@code size} varsa sayfali. */
+	/**
+	 * Tank defteri: {@code ?date_from}, {@code ?date_to} moved_at araligi, {@code ?material_id} tek materyal;
+	 * {@code page}/{@code size} varsa sayfali. Satirda bakiye, gelen parti, dolum kosusu ve karisim degeri.
+	 */
 	@GetMapping("/api/storage-units/{id}/movement-history")
 	@PreAuthorize("hasAuthority('storage_movement.view')")
-	PagedModel<StorageMovementResponse> history(@PathVariable long id,
+	PagedModel<StorageMovementResponse.HistoryEntry> history(@PathVariable long id,
+		@RequestParam(name = "material_id", required = false) Long materialId,
 		@RequestParam(name = "date_from", required = false) String dateFrom,
 		@RequestParam(name = "date_to", required = false) String dateTo, Pageable pageable) {
+		assertUnit(id);
+		return listing.history(id, materialId, dateFrom, dateTo, pageable);
+	}
+
+	/** Defter ozeti: {@code ?material_id} verilirse o materyal, yoksa tankta su an aktif materyaller. */
+	@GetMapping("/api/storage-units/{id}/movement-history/summary")
+	@PreAuthorize("hasAuthority('storage_movement.view')")
+	DataResponse<List<StorageMovementResponse.LedgerSummary>> historySummary(@PathVariable long id,
+		@RequestParam(name = "material_id", required = false) Long materialId) {
+		assertUnit(id);
+		return DataResponse.of(listing.summary(id, materialId));
+	}
+
+	private void assertUnit(long id) {
 		if (!units.existsById(id)) {
 			throw new ModelNotFoundException("StorageUnit", id);
 		}
-		return listing.history(id, dateFrom, dateTo, pageable);
 	}
 
 	private ResponseEntity<DataResponse<StorageMovementResponse>> created(StorageMovement movement) {
