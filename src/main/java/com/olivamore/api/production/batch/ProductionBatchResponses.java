@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -73,6 +74,11 @@ class ProductionBatchResponses {
 		Map<Long, List<BatchProcessResponse>> processMap = processes(ids);
 		Map<Long, List<MaterialResponse>> materialMap = materials(ids);
 		Splits splits = splits(rows);
+		boolean prices = Purchases.visible();
+		Map<Long, ProductionBatch> parents = prices
+			? batches.findAllById(present(rows.stream().map(ProductionBatch::getParentBatchId))).stream()
+				.collect(Collectors.toMap(ProductionBatch::getId, Function.identity()))
+			: Map.of();
 
 		List<ProductionBatchResponse> out = new ArrayList<>();
 		for (ProductionBatch b : rows) {
@@ -85,7 +91,7 @@ class ProductionBatchResponses {
 				splittable ? allocated(groups) : null,
 				splittable ? splits.remaining().getOrDefault(b.getId(), BigDecimal.ZERO) : null,
 				b.getTruckPlate(), b.getWeighingSlipNo(), b.getReceivedAt(), b.getStartedAt(), b.getCompletedAt(),
-				b.getNote(), inputTypes.getOrDefault(b.getId(), List.of()),
+				b.getNote(), prices ? purchase(b, parents) : null, inputTypes.getOrDefault(b.getId(), List.of()),
 				outputTypes.getOrDefault(b.getId(), List.of()), lines.get(b.getProductionLineId()),
 				creators.get(b.getCreatedByUserId()), processMap.getOrDefault(b.getId(), List.of()),
 				materialMap.getOrDefault(b.getId(), List.of()), groups, b.getCreatedAt(), b.getUpdatedAt()));
@@ -129,6 +135,15 @@ class ProductionBatchResponses {
 
 	private static BigDecimal allocated(List<Group> groups) {
 		return groups.stream().map(Group::quantityKg).filter(Objects::nonNull).reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+
+	/** Teslimatta kendi alim bilgisi, grupta teslimatinki grubun kilosuyla. */
+	private static ProductionBatchResponse.Purchase purchase(ProductionBatch batch, Map<Long, ProductionBatch> parents) {
+		if (!batch.isGroup()) {
+			return Purchases.of(batch, batch.getQuantityKg(), false);
+		}
+		ProductionBatch delivery = parents.get(batch.getParentBatchId());
+		return delivery == null ? null : Purchases.of(delivery, batch.getQuantityKg(), true);
 	}
 
 	private static List<Long> present(Stream<Long> ids) {

@@ -1,4 +1,4 @@
--- production_batches: uretim partileri
+-- production_batches: uretim partileri; alim fiyati ve kanali yalnizca teslimatta (fiyat KDV haric, oran ayri)
 
 CREATE TABLE production_batches (
     id bigint NOT NULL,
@@ -17,7 +17,13 @@ CREATE TABLE production_batches (
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     supplier_id bigint,
-    supplier_field_id bigint
+    supplier_field_id bigint,
+    supply_channel character varying(20),
+    price_per_kg numeric(12,4),
+    vat_rate numeric(5,2),
+    transport_cost numeric(14,2),
+    price_note text,
+    CONSTRAINT production_batches_supply_channel_check CHECK (supply_channel IN ('farmer', 'trader', 'own_grove'))
 );
 
 CREATE SEQUENCE production_batches_id_seq

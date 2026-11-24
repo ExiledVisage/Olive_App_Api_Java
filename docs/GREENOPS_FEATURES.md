@@ -41,8 +41,12 @@ gosterim). Tamamlanmis teslimatta fiyat sonradan duzeltilebilir (odeme sonradan 
 rolleri (operator, production_operator, warehouse_operator) gormez. Yetkisi olmayana fiyat alanlari cevapta
 gelmez.
 
-**API:** teslimat olustur/duzenle istegine alanlar; `GET /api/suppliers/{id}/purchases?date_from&date_to`
-(teslimatlar, kg, tutar, ortalama kg fiyati); analitik raporlara "alim tutari" ve "ortalama zeytin fiyati".
+**API (yapildi):** `PUT /api/production-batches/{id}/purchase` (yetki `production_batch.price`; istek bilginin
+tamami, grupta 422, fiyat varsa `vat_rate` zorunlu); parti cevabinda `purchase` (yalnizca yetkiyle; grupta
+teslimatin fiyati, nakliye kilo payi, `from_delivery`). Ayri alim ucu yerine var olan
+`GET /api/suppliers/{id}/deliveries` genisledi: `?date_from&date_to`, teslimatta `purchase`, ozette alim toplamlari
+(`summary.purchase`: fiyatli teslimat sayisi ve kilosu, KDV haric/dahil toplam ve ortalama kg maliyeti). Analitik
+raporlara alim metrikleri sonra.
 
 **Flutter:** teslimat formunda kanal ve fiyat (yetkiye gore), teslimat detayinda tutar; tedarikci sayfasinda alim
 ozeti (donem secici).

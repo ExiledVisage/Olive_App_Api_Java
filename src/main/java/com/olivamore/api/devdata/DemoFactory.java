@@ -206,7 +206,24 @@ final class DemoFactory {
 			"quantity_kg", weighed ? kg : null, "truck_plate", plate(),
 			"weighing_slip_no", "TF-" + day.format(CODE_DATE) + between(100, 999));
 		long id = DemoApi.id(api.post(PRODUCTION, "/api/production-batches", body));
+		purchase(id);
 		return new Batch(id, day, sequence, cultivar, ids.stages(line), kg);
+	}
+
+	/**
+	 * Alim bilgisi (yonetici girer): cogu ciftciden, bir kismi tuccardan (nakliyeli), az kismi kendi bahcemizden
+	 * (fiyatsiz). Ayri, partiye bagli bir rastgele kaynak: ana akisin sayilari kaymaz.
+	 */
+	private void purchase(long batchId) {
+		Random own = new Random(batchId * 7919L);
+		double draw = own.nextDouble();
+		String channel = draw < 0.6 ? "farmer" : draw < 0.9 ? "trader" : "own_grove";
+		boolean priced = !"own_grove".equals(channel);
+		BigDecimal price = priced ? BigDecimal.valueOf(3000 + own.nextInt(1500), 2) : null;
+		BigDecimal transport = "trader".equals(channel) ? BigDecimal.valueOf((5 + own.nextInt(20)) * 100L) : null;
+		api.put(ADMIN, "/api/production-batches/" + batchId + "/purchase", body("supply_channel", channel,
+			"price_per_kg", price, "vat_rate", priced ? BigDecimal.ONE : null, "transport_cost", transport,
+			"price_note", priced && own.nextDouble() < 0.3 ? "Hasat sonu ödeme" : null));
 	}
 
 	/** Son gun kayit acilir ama tartim yapilmaz: bekleyen parti. */

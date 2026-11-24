@@ -39,6 +39,10 @@ final class DemoApi {
 		return call(user, HttpMethod.PATCH, path, body);
 	}
 
+	JsonNode put(String user, String path, Object body) {
+		return call(user, HttpMethod.PUT, path, body);
+	}
+
 	/** Cevaptaki {@code data.id}. */
 	static long id(JsonNode response) {
 		return response.get("data").get("id").asLong();

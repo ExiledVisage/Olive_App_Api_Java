@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -93,6 +94,15 @@ class ProductionBatchController {
 	DataResponse<ProductionBatchResponse> update(@PathVariable long id,
 		@Valid @RequestBody UpdateProductionBatchRequest request) {
 		batches.update(id, request);
+		return DataResponse.of(responses.detail(id));
+	}
+
+	/** Teslimatin alim bilgisi (kanal, KDV haric kg fiyati, KDV orani, nakliye, not); istek bilginin tamami. */
+	@PutMapping("/api/production-batches/{id}/purchase")
+	@PreAuthorize("hasAuthority('production_batch.price')")
+	DataResponse<ProductionBatchResponse> purchase(@PathVariable long id,
+		@Valid @RequestBody UpdatePurchaseRequest request) {
+		batches.purchase(id, request);
 		return DataResponse.of(responses.detail(id));
 	}
 

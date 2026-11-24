@@ -1,5 +1,6 @@
 package com.olivamore.api.production.batch;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.olivamore.api.inventory.MaterialResponse;
 import com.olivamore.api.production.batchprocess.BatchProcessResponse;
 
@@ -32,6 +33,8 @@ record ProductionBatchResponse(
 	LocalDateTime startedAt,
 	LocalDateTime completedAt,
 	String note,
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	Purchase purchase,
 	List<BatchType> inputProductionProductTypes,
 	List<BatchType> outputProductionProductTypes,
 	Line productionLine,
@@ -49,6 +52,16 @@ record ProductionBatchResponse(
 	}
 
 	record CurrentStage(Long productionStageId, String name, String status) {
+	}
+
+	/**
+	 * Alim bilgisi (yalnizca {@code production_batch.price} yetkisiyle). Grupta teslimatin fiyati, tutarlar grubun
+	 * kilosuyla ve nakliye kilo payiyla ({@code from_delivery} true). Tutarlar KDV haric ve dahil; nakliye iki
+	 * toplamda da oldugu gibi.
+	 */
+	record Purchase(SupplyChannel supplyChannel, BigDecimal pricePerKg, BigDecimal vatRate,
+		BigDecimal pricePerKgWithVat, BigDecimal transportCost, BigDecimal totalExVat, BigDecimal totalWithVat,
+		BigDecimal costPerKgExVat, BigDecimal costPerKgWithVat, String priceNote, boolean fromDelivery) {
 	}
 
 	record BatchType(Long id, Long productionBatchId, Long productionProductTypeId, int sortOrder,

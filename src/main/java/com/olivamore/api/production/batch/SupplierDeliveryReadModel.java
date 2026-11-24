@@ -4,11 +4,16 @@ import com.olivamore.api.process.ProcessResources;
 import com.olivamore.api.product.ProductDirectory;
 import com.olivamore.api.productionline.ProductionLineResources;
 import com.olivamore.api.supplier.SupplierDeliverySource;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,25 +39,50 @@ class SupplierDeliveryReadModel implements SupplierDeliverySource {
 	}
 
 	private final JdbcClient jdbc;
+	private final ProductionBatchRepository batches;
 	private final ProductDirectory products;
 	private final ProductionLineResources lines;
 	private final ProcessResources process;
 
-	SupplierDeliveryReadModel(JdbcClient jdbc, ProductDirectory products, ProductionLineResources lines,
-		ProcessResources process) {
+	SupplierDeliveryReadModel(JdbcClient jdbc, ProductionBatchRepository batches, ProductDirectory products,
+		ProductionLineResources lines, ProcessResources process) {
 		this.jdbc = jdbc;
+		this.batches = batches;
 		this.products = products;
 		this.lines = lines;
 		this.process = process;
 	}
 
 	@Override
-	public List<BatchDelivery> batches(long supplierId) {
-		return jdbc.sql("""
-			select id, batch_code, status, received_at, supplier_field_id, quantity_kg, truck_plate, weighing_slip_no
-			from production_batches where supplier_id = ? and parent_batch_id is null
-			order by received_at desc, id desc
-			""").param(supplierId).query(BatchDelivery.class).list();
+	public List<BatchDelivery> batches(long supplierId, LocalDate from, LocalDate to) {
+		boolean prices = Purchases.visible();
+		List<ProductionBatch> deliveries = batches.findAll((root, query, cb) -> {
+			List<Predicate> where = new ArrayList<>();
+			where.add(cb.equal(root.get("supplierId"), supplierId));
+			where.add(cb.isNull(root.get("parentBatchId")));
+			Expression<LocalDate> day = cb.function("date", LocalDate.class, root.get("receivedAt"));
+			if (from != null) {
+				where.add(cb.greaterThanOrEqualTo(day, from));
+			}
+			if (to != null) {
+				where.add(cb.lessThanOrEqualTo(day, to));
+			}
+			return cb.and(where.toArray(Predicate[]::new));
+		}, Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id")));
+		return deliveries.stream().map(b -> new BatchDelivery(b.getId(), b.getBatchCode(), b.getStatus().value(),
+			b.getReceivedAt(), b.getSupplierFieldId(), b.getQuantityKg(), b.getTruckPlate(), b.getWeighingSlipNo(),
+			prices ? purchase(b) : null)).toList();
+	}
+
+	@Override
+	public boolean pricesVisible() {
+		return Purchases.visible();
+	}
+
+	private static Purchase purchase(ProductionBatch batch) {
+		ProductionBatchResponse.Purchase p = Purchases.of(batch, batch.getQuantityKg(), false);
+		return p == null ? null : new Purchase(p.supplyChannel() == null ? null : p.supplyChannel().value(),
+			p.pricePerKg(), p.vatRate(), p.pricePerKgWithVat(), p.transportCost(), p.totalExVat(), p.totalWithVat());
 	}
 
 	@Override

@@ -464,7 +464,15 @@
       "summary" : {
         "delivery_count" : 0,
         "total_weighed_kg" : 0,
-        "last_received_at" : null
+        "last_received_at" : null,
+        "purchase" : {
+          "priced_count" : 0,
+          "priced_kg" : 0.0,
+          "total_ex_vat" : 0,
+          "total_with_vat" : 0,
+          "average_cost_per_kg_ex_vat" : null,
+          "average_cost_per_kg_with_vat" : null
+        }
       }
     },
     "save" : null

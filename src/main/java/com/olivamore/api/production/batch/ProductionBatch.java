@@ -63,6 +63,18 @@ public class ProductionBatch extends AuditedEntity {
 
 	private String note;
 
+	/** Alim bilgisi yalnizca teslimatta; fiyat KDV haric TL/kg. */
+	@Convert(converter = SupplyChannel.ChannelConverter.class)
+	private SupplyChannel supplyChannel;
+
+	private BigDecimal pricePerKg;
+
+	private BigDecimal vatRate;
+
+	private BigDecimal transportCost;
+
+	private String priceNote;
+
 	ProductionBatch(String batchCode, long productionLineId, Long supplierId, Long supplierFieldId, long createdByUserId,
 		BatchStatus status, BigDecimal quantityKg, String truckPlate, String weighingSlipNo, LocalDateTime receivedAt,
 		LocalDateTime startedAt, LocalDateTime completedAt, String note) {
@@ -148,6 +160,15 @@ public class ProductionBatch extends AuditedEntity {
 
 	void changeNote(String value) {
 		note = value;
+	}
+
+	void changePurchase(SupplyChannel channel, BigDecimal price, BigDecimal vat, BigDecimal transport,
+		String priceNote) {
+		this.supplyChannel = channel;
+		this.pricePerKg = price;
+		this.vatRate = vat;
+		this.transportCost = transport;
+		this.priceNote = priceNote;
 	}
 
 	public void markInProgress(LocalDateTime now) {

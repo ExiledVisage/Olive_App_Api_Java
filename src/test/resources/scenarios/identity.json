@@ -585,8 +585,8 @@
         "name" : "Test Kullanici",
         "email" : "test@olivamore.com",
         "roles" : [ "operator", "planner" ],
-        "permissions" : [ "supplier.view", "supplier.manage", "analytics.view", "product_supplier.view", "product_supplier.manage", "packaging_lot.view", "packaging_lot.receive", "production_product_type.view", "production_line.view", "attribute_definition.view", "packaging_item.view", "production_batch.view", "production_batch.create", "production_batch.update", "batch_process.view", "batch_process.fill", "batch_process.complete", "batch_process.skip", "calendar.view", "storage_unit.view", "storage_movement.view", "storage_movement.create", "storage_movement.transfer", "finished_product_recipe.view", "finished_product.view", "finished_product_run.view", "finished_product_run.create", "finished_product_run.complete", "finished_product_storage.view", "finished_product_storage.stock_in", "finished_product_storage.stock_out", "customer.view", "customer.manage", "order.view", "order.create", "order.update", "order.update_status", "machine.view" ],
-        "created_at" : "2026-11-23T19:34:37Z"
+        "permissions" : [ "supplier.view", "supplier.manage", "analytics.view", "product_supplier.view", "product_supplier.manage", "packaging_lot.view", "packaging_lot.receive", "production_product_type.view", "production_line.view", "attribute_definition.view", "packaging_item.view", "production_batch.view", "production_batch.create", "production_batch.update", "batch_process.view", "batch_process.fill", "batch_process.complete", "batch_process.skip", "calendar.view", "storage_unit.view", "storage_movement.view", "storage_movement.create", "storage_movement.transfer", "finished_product_recipe.view", "finished_product.view", "finished_product_run.view", "finished_product_run.create", "finished_product_run.complete", "finished_product_storage.view", "finished_product_storage.stock_in", "finished_product_storage.stock_out", "customer.view", "customer.manage", "order.view", "order.create", "order.update", "order.update_status", "machine.view", "production_batch.price" ],
+        "created_at" : "2026-11-24T15:16:23Z"
       }
     }
   }, {
@@ -605,8 +605,8 @@
         "name" : "Test Kullanici 2",
         "email" : "test@olivamore.com",
         "roles" : [ "operator", "planner" ],
-        "permissions" : [ "supplier.view", "supplier.manage", "analytics.view", "product_supplier.view", "product_supplier.manage", "packaging_lot.view", "packaging_lot.receive", "production_product_type.view", "production_line.view", "attribute_definition.view", "packaging_item.view", "production_batch.view", "production_batch.create", "production_batch.update", "batch_process.view", "batch_process.fill", "batch_process.complete", "batch_process.skip", "calendar.view", "storage_unit.view", "storage_movement.view", "storage_movement.create", "storage_movement.transfer", "finished_product_recipe.view", "finished_product.view", "finished_product_run.view", "finished_product_run.create", "finished_product_run.complete", "finished_product_storage.view", "finished_product_storage.stock_in", "finished_product_storage.stock_out", "customer.view", "customer.manage", "order.view", "order.create", "order.update", "order.update_status", "machine.view" ],
-        "created_at" : "2026-11-23T19:34:37Z"
+        "permissions" : [ "supplier.view", "supplier.manage", "analytics.view", "product_supplier.view", "product_supplier.manage", "packaging_lot.view", "packaging_lot.receive", "production_product_type.view", "production_line.view", "attribute_definition.view", "packaging_item.view", "production_batch.view", "production_batch.create", "production_batch.update", "batch_process.view", "batch_process.fill", "batch_process.complete", "batch_process.skip", "calendar.view", "storage_unit.view", "storage_movement.view", "storage_movement.create", "storage_movement.transfer", "finished_product_recipe.view", "finished_product.view", "finished_product_run.view", "finished_product_run.create", "finished_product_run.complete", "finished_product_storage.view", "finished_product_storage.stock_in", "finished_product_storage.stock_out", "customer.view", "customer.manage", "order.view", "order.create", "order.update", "order.update_status", "machine.view", "production_batch.price" ],
+        "created_at" : "2026-11-24T15:16:23Z"
       }
     }
   }, {
@@ -702,8 +702,8 @@
         "name" : "Test Kullanici 2",
         "email" : "test@olivamore.com",
         "roles" : [ "food_engineer" ],
-        "permissions" : [ "analytics.view", "production_product_type.view", "attribute_definition.view", "notification.send", "storage_unit.view", "storage_movement.view", "finished_product_recipe.view", "finished_product_recipe.manage", "finished_product.view", "finished_product.manage", "finished_product_storage.view", "customer.view", "machine.view" ],
-        "created_at" : "2026-11-23T19:34:37Z"
+        "permissions" : [ "analytics.view", "production_product_type.view", "attribute_definition.view", "notification.send", "storage_unit.view", "storage_movement.view", "finished_product_recipe.view", "finished_product_recipe.manage", "finished_product.view", "finished_product.manage", "finished_product_storage.view", "customer.view", "machine.view", "production_batch.price" ],
+        "created_at" : "2026-11-24T15:16:23Z"
       }
     }
   }, {

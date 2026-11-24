@@ -35,6 +35,19 @@
         "started_at" : "2026-11-05T13:02:00Z",
         "completed_at" : "2026-11-06T09:36:00Z",
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 35.62,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 35.9762,
+          "transport_cost" : null,
+          "total_ex_vat" : 262989.58,
+          "total_with_vat" : 265619.48,
+          "cost_per_kg_ex_vat" : 35.62,
+          "cost_per_kg_with_vat" : 35.9762,
+          "price_note" : null,
+          "from_delivery" : true
+        },
         "input_production_product_types" : [ {
           "id" : 584,
           "production_batch_id" : 584,
@@ -1400,6 +1413,19 @@
         "started_at" : "2026-11-05T11:41:00Z",
         "completed_at" : "2026-11-06T09:36:00Z",
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 35.62,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 35.9762,
+          "transport_cost" : null,
+          "total_ex_vat" : 266615.7,
+          "total_with_vat" : 269281.86,
+          "cost_per_kg_ex_vat" : 35.62,
+          "cost_per_kg_with_vat" : 35.9762,
+          "price_note" : null,
+          "from_delivery" : false
+        },
         "input_production_product_types" : [ {
           "id" : 583,
           "production_batch_id" : 583,
@@ -1832,6 +1858,19 @@
         "started_at" : "2026-11-05T08:25:00Z",
         "completed_at" : null,
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "trader",
+          "price_per_kg" : 34.3,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 34.643,
+          "transport_cost" : 1491.91,
+          "total_ex_vat" : 235009.74,
+          "total_with_vat" : 237344.92,
+          "cost_per_kg_ex_vat" : 34.5191,
+          "cost_per_kg_with_vat" : 34.8621,
+          "price_note" : "Hasat sonu ödeme",
+          "from_delivery" : true
+        },
         "input_production_product_types" : [ {
           "id" : 582,
           "production_batch_id" : 582,
@@ -3023,6 +3062,19 @@
         "started_at" : "2026-11-05T07:03:00Z",
         "completed_at" : null,
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "trader",
+          "price_per_kg" : 34.3,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 34.643,
+          "transport_cost" : 1500.0,
+          "total_ex_vat" : 236283.5,
+          "total_with_vat" : 238631.34,
+          "cost_per_kg_ex_vat" : 34.5191,
+          "cost_per_kg_with_vat" : 34.8621,
+          "price_note" : "Hasat sonu ödeme",
+          "from_delivery" : false
+        },
         "input_production_product_types" : [ {
           "id" : 581,
           "production_batch_id" : 581,
@@ -3455,6 +3507,19 @@
         "started_at" : "2026-11-04T13:27:00Z",
         "completed_at" : null,
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 34.01,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 34.3501,
+          "transport_cost" : null,
+          "total_ex_vat" : 82712.32,
+          "total_with_vat" : 83539.44,
+          "cost_per_kg_ex_vat" : 34.01,
+          "cost_per_kg_with_vat" : 34.3501,
+          "price_note" : null,
+          "from_delivery" : true
+        },
         "input_production_product_types" : [ {
           "id" : 580,
           "production_batch_id" : 580,
@@ -4642,6 +4707,19 @@
         "started_at" : "2026-11-04T12:08:00Z",
         "completed_at" : null,
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 34.01,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 34.3501,
+          "transport_cost" : null,
+          "total_ex_vat" : 83834.65,
+          "total_with_vat" : 84673.0,
+          "cost_per_kg_ex_vat" : 34.01,
+          "cost_per_kg_with_vat" : 34.3501,
+          "price_note" : null,
+          "from_delivery" : false
+        },
         "input_production_product_types" : [ {
           "id" : 579,
           "production_batch_id" : 579,
@@ -5078,6 +5156,19 @@
         "started_at" : "2026-11-04T08:36:00Z",
         "completed_at" : "2026-11-06T08:42:00Z",
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 30.79,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 31.0979,
+          "transport_cost" : null,
+          "total_ex_vat" : 202333.41,
+          "total_with_vat" : 204356.74,
+          "cost_per_kg_ex_vat" : 30.79,
+          "cost_per_kg_with_vat" : 31.0979,
+          "price_note" : "Hasat sonu ödeme",
+          "from_delivery" : true
+        },
         "input_production_product_types" : [ {
           "id" : 578,
           "production_batch_id" : 578,
@@ -6443,6 +6534,19 @@
         "started_at" : "2026-11-04T07:08:00Z",
         "completed_at" : "2026-11-06T08:42:00Z",
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 30.79,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 31.0979,
+          "transport_cost" : null,
+          "total_ex_vat" : 204907.45,
+          "total_with_vat" : 206956.52,
+          "cost_per_kg_ex_vat" : 30.79,
+          "cost_per_kg_with_vat" : 31.0979,
+          "price_note" : "Hasat sonu ödeme",
+          "from_delivery" : false
+        },
         "input_production_product_types" : [ {
           "id" : 577,
           "production_batch_id" : 577,
@@ -6887,6 +6991,19 @@
         "started_at" : "2026-11-06T07:02:00Z",
         "completed_at" : null,
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "own_grove",
+          "price_per_kg" : null,
+          "vat_rate" : null,
+          "price_per_kg_with_vat" : null,
+          "transport_cost" : null,
+          "total_ex_vat" : null,
+          "total_with_vat" : null,
+          "cost_per_kg_ex_vat" : null,
+          "cost_per_kg_with_vat" : null,
+          "price_note" : null,
+          "from_delivery" : false
+        },
         "input_production_product_types" : [ {
           "id" : 585,
           "production_batch_id" : 585,
@@ -7323,6 +7440,19 @@
         "started_at" : "2026-11-05T13:02:00Z",
         "completed_at" : "2026-11-06T09:36:00Z",
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 35.62,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 35.9762,
+          "transport_cost" : null,
+          "total_ex_vat" : 262989.58,
+          "total_with_vat" : 265619.48,
+          "cost_per_kg_ex_vat" : 35.62,
+          "cost_per_kg_with_vat" : 35.9762,
+          "price_note" : null,
+          "from_delivery" : true
+        },
         "input_production_product_types" : [ {
           "id" : 584,
           "production_batch_id" : 584,
@@ -8829,6 +8959,19 @@
         "started_at" : "2026-02-16T07:05:00Z",
         "completed_at" : "2026-02-17T08:51:00Z",
         "note" : null,
+        "purchase" : {
+          "supply_channel" : "farmer",
+          "price_per_kg" : 30.68,
+          "vat_rate" : 1.0,
+          "price_per_kg_with_vat" : 30.9868,
+          "transport_cost" : null,
+          "total_ex_vat" : 168433.2,
+          "total_with_vat" : 170117.53,
+          "cost_per_kg_ex_vat" : 30.68,
+          "cost_per_kg_with_vat" : 30.9868,
+          "price_note" : null,
+          "from_delivery" : false
+        },
         "input_production_product_types" : [ {
           "id" : 273,
           "production_batch_id" : 273,

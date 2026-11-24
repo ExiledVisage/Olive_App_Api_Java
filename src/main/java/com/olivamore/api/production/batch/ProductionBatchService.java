@@ -153,6 +153,23 @@ class ProductionBatchService {
 		batches.findByParentBatchIdOrderByIdAsc(id).forEach(group -> group.copyDeliveryInfo(batch));
 	}
 
+	/** Alim bilgisi yalnizca teslimata girilir; istek bilginin tamamidir. Fiyat verildiyse KDV orani zorunlu. */
+	@Transactional
+	void purchase(long id, UpdatePurchaseRequest request) {
+		ProductionBatch batch = find(id);
+		if (batch.isGroup()) {
+			throw new BusinessRuleException("'" + batch.getBatchCode() + "' bir teslimatın grubu; alım fiyatı "
+				+ "teslimata girilir.");
+		}
+		ValidationErrors errors = new ValidationErrors();
+		if (request.pricePerKg() != null && request.vatRate() == null) {
+			errors.add("vat_rate", MessageKeys.REQUIRED);
+		}
+		errors.throwIfAny();
+		batch.changePurchase(request.supplyChannel(), request.pricePerKg(), request.vatRate(),
+			request.transportCost(), request.priceNote());
+	}
+
 	private static boolean touchesDeliveryInfo(UpdateProductionBatchRequest request) {
 		return request.supplierId() != null || request.supplierFieldId() != null || request.receivedAt() != null
 			|| request.truckPlate() != null || request.weighingSlipNo() != null || request.quantityKg() != null;

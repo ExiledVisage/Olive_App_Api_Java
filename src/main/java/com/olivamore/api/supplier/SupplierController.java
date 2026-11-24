@@ -43,10 +43,16 @@ class SupplierController {
 		return DataResponse.of(suppliers.get(id));
 	}
 
+	/**
+	 * Teslimatlar; {@code ?date_from}, {@code ?date_to} varis gunu araligi. Fiyat yetkisiyle teslimatta alim
+	 * bilgisi ve ozette alim toplamlari.
+	 */
 	@GetMapping("/{id}/deliveries")
 	@PreAuthorize("hasAuthority('supplier.view')")
-	SupplierDeliveriesResponse deliveries(@PathVariable long id) {
-		return deliveries.forSupplier(id);
+	SupplierDeliveriesResponse deliveries(@PathVariable long id,
+		@RequestParam(name = "date_from", required = false) String dateFrom,
+		@RequestParam(name = "date_to", required = false) String dateTo) {
+		return deliveries.forSupplier(id, dateFrom, dateTo);
 	}
 
 	@PostMapping

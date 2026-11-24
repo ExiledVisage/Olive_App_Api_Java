@@ -67,6 +67,7 @@ insert into role_permissions (role_id, permission_id) values
 	(1, 55),
 	(1, 56),
 	(1, 57),
+	(1, 58),
 	(2, 1),
 	(2, 4),
 	(2, 6),
@@ -123,6 +124,7 @@ insert into role_permissions (role_id, permission_id) values
 	(3, 53),
 	(3, 54),
 	(3, 56),
+	(3, 58),
 	(4, 1),
 	(4, 9),
 	(4, 11),
@@ -169,7 +171,8 @@ insert into role_permissions (role_id, permission_id) values
 	(6, 41),
 	(6, 45),
 	(6, 49),
-	(6, 56);
+	(6, 56),
+	(6, 58);
 
 insert into users (id, name, email, password) values
 	(1, 'Olivamore Admin', 'admin@olivamore.com', '$2y$12$.1wjegORyxIF82qFmEsE7.rjgzakb4Lv3dY4FwMw0kNwQctzJWvFy'),
