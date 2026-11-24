@@ -24419,6 +24419,7 @@
           "quantity" : 577.08,
           "unit" : "KG",
           "moved_at" : "2025-11-06T08:38:00Z",
+          "storage_unit_id" : 5,
           "storage_unit_name" : "Dolum Tankı — Klasik Blend 0.5",
           "counterparty_storage_unit_name" : null,
           "tank_material_id" : null
@@ -24743,6 +24744,7 @@
           "quantity" : 1127.69,
           "unit" : "KG",
           "moved_at" : "2025-11-11T07:08:00Z",
+          "storage_unit_id" : 11,
           "storage_unit_name" : "Ayvalık Toplama Tankı",
           "counterparty_storage_unit_name" : "Ayvalık Ön Dinlenme Tankı",
           "tank_material_id" : 54
@@ -24753,6 +24755,7 @@
           "quantity" : 1127.69,
           "unit" : "KG",
           "moved_at" : "2025-11-11T07:08:00Z",
+          "storage_unit_id" : 10,
           "storage_unit_name" : "Ayvalık Ön Dinlenme Tankı",
           "counterparty_storage_unit_name" : "Ayvalık Toplama Tankı",
           "tank_material_id" : null
@@ -24763,6 +24766,7 @@
           "quantity" : 1149.34,
           "unit" : "KG",
           "moved_at" : "2025-11-09T17:05:00Z",
+          "storage_unit_id" : 10,
           "storage_unit_name" : "Ayvalık Ön Dinlenme Tankı",
           "counterparty_storage_unit_name" : null,
           "tank_material_id" : null
@@ -25455,6 +25459,7 @@
           "quantity" : 992.84,
           "unit" : "KG",
           "moved_at" : "2026-11-04T07:09:00Z",
+          "storage_unit_id" : 8,
           "storage_unit_name" : "Gemlik Toplama Tankı",
           "counterparty_storage_unit_name" : "Gemlik Ön Dinlenme Tankı",
           "tank_material_id" : 96
@@ -25465,6 +25470,7 @@
           "quantity" : 992.84,
           "unit" : "KG",
           "moved_at" : "2026-11-04T07:09:00Z",
+          "storage_unit_id" : 7,
           "storage_unit_name" : "Gemlik Ön Dinlenme Tankı",
           "counterparty_storage_unit_name" : "Gemlik Toplama Tankı",
           "tank_material_id" : null
@@ -25475,6 +25481,7 @@
           "quantity" : 1006.11,
           "unit" : "KG",
           "moved_at" : "2026-11-03T11:36:00Z",
+          "storage_unit_id" : 7,
           "storage_unit_name" : "Gemlik Ön Dinlenme Tankı",
           "counterparty_storage_unit_name" : null,
           "tank_material_id" : null
@@ -25699,6 +25706,7 @@
           "quantity" : 2702.2,
           "unit" : "KG",
           "moved_at" : "2025-11-06T08:10:00Z",
+          "storage_unit_id" : 1,
           "storage_unit_name" : "Dolum Tankı — Gemlik 0.3",
           "counterparty_storage_unit_name" : null,
           "tank_material_id" : 2

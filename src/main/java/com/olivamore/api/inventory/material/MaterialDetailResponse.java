@@ -52,6 +52,7 @@ record MaterialDetailResponse(
 		BigDecimal quantity,
 		String unit,
 		LocalDateTime movedAt,
+		Long storageUnitId,
 		String storageUnitName,
 		String counterpartyStorageUnitName,
 		Long tankMaterialId) {

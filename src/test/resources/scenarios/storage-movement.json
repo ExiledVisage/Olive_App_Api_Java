@@ -16091,6 +16091,7 @@
           "quantity" : 417.73,
           "unit" : "KG",
           "moved_at" : "2026-11-04T15:58:00Z",
+          "storage_unit_id" : 7,
           "storage_unit_name" : "Gemlik Ön Dinlenme Tankı",
           "counterparty_storage_unit_name" : null,
           "tank_material_id" : null

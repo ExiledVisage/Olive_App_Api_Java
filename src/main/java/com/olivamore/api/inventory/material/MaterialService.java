@@ -228,8 +228,8 @@ class MaterialService {
 			Unit unit = lookup(units, r.storageUnitId());
 			Unit counterparty = lookup(units, r.counterpartyStorageUnitId());
 			return new MaterialDetailResponse.Movement(r.id(), r.finishedProductRunId(), r.movementType(), r.quantity(),
-				r.unit(), r.movedAt(), unit == null ? null : unit.name(), counterparty == null ? null : counterparty.name(),
-				r.materialId() == materialId ? null : r.materialId());
+				r.unit(), r.movedAt(), r.storageUnitId(), unit == null ? null : unit.name(),
+				counterparty == null ? null : counterparty.name(), r.materialId() == materialId ? null : r.materialId());
 		}).toList();
 	}
 
