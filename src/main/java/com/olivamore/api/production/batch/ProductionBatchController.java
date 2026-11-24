@@ -28,9 +28,11 @@ class ProductionBatchController {
 	private final ProductionBatchResponses responses;
 	private final ProductionBatchListing listing;
 	private final BatchGroupService groups;
+	private final IasMeasurementService ias;
 
 	ProductionBatchController(ProductionBatchService batches, ProductionBatchResponses responses,
-		ProductionBatchListing listing, BatchGroupService groups) {
+		ProductionBatchListing listing, BatchGroupService groups, IasMeasurementService ias) {
+		this.ias = ias;
 		this.batches = batches;
 		this.responses = responses;
 		this.listing = listing;
@@ -94,6 +96,18 @@ class ProductionBatchController {
 	DataResponse<ProductionBatchResponse> update(@PathVariable long id,
 		@Valid @RequestBody UpdateProductionBatchRequest request) {
 		batches.update(id, request);
+		return DataResponse.of(responses.detail(id));
+	}
+
+	/**
+	 * IAS olcumu (zeytin ya da pirina), asamadan bagimsiz; degerler partinin materyaline yazilir, cevap parti
+	 * detayi.
+	 */
+	@PostMapping("/api/production-batches/{id}/ias-measurements")
+	@PreAuthorize("hasAuthority('batch_process.fill')")
+	DataResponse<ProductionBatchResponse> iasMeasurement(@PathVariable long id,
+		@Valid @RequestBody IasMeasurementRequest request) {
+		ias.record(id, request);
 		return DataResponse.of(responses.detail(id));
 	}
 

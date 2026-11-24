@@ -198,7 +198,10 @@ insert into attribute_definitions (id, attribute_key, label, data_type, unit, de
 	(3, 'moisture', 'Nem Oranı', 'decimal', '%', 'Nem oranı'),
 	(4, 'oil_ratio', 'Yağ Oranı', 'decimal', '%', 'Yağ oranı'),
 	(5, 'vitamin_profile', 'Vitamin Profili', 'json', NULL, 'JSON formatında vitamin bilgileri'),
-	(6, 'mineral_profile', 'Mineral Profili', 'json', NULL, 'JSON formatında mineral bilgileri');
+	(6, 'mineral_profile', 'Mineral Profili', 'json', NULL, 'JSON formatında mineral bilgileri'),
+	(7, 'kpy', 'Kuru Bazda Yağ', 'decimal', '%', 'Yağ oranı / (100 - nem) x 100; IAS ölçümü'),
+	(8, 'industrial_yield', 'Endüstriyel Randıman', 'decimal', '%', 'IAS cihazının beklenen randımanı (zeytin)'),
+	(9, 'sample_no', 'Numune No', 'string', NULL, 'IAS cihazındaki numune numarası');
 
 insert into production_products (id, key, name, description, default_density_kg_per_litre) values
 	(1, 'olive', 'Zeytin', 'Ham zeytin ürünü', null),
@@ -224,7 +227,16 @@ insert into production_product_attribute_definitions (id, production_product_id,
 	(5, 2, 2, false, 2),
 	(6, 2, 5, false, 3),
 	(7, 2, 6, false, 4),
-	(8, 4, 1, false, 1);
+	(8, 4, 1, false, 1),
+	-- IAS olcumu (docs/GREENOPS_FEATURES.md 3): zeytin ve pirina
+	(9, 1, 1, false, 4),
+	(10, 1, 7, false, 5),
+	(11, 1, 8, false, 6),
+	(12, 1, 9, false, 7),
+	(13, 3, 4, false, 1),
+	(14, 3, 3, false, 2),
+	(15, 3, 7, false, 3),
+	(16, 3, 9, false, 4);
 
 insert into process_types (id, name, description, category, is_active) values
 	(1, 'Kantarda Tartım', 'Gelen zeytinin ilk kantar tartımı', 'weighing', true),

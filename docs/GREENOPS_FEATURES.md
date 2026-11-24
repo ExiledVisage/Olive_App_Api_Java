@@ -95,9 +95,9 @@ nem verir, numune laboratuvara da gonderilebilir. Iki fazli pirinada nem yuksek 
 karsilastirma KPY ile yapilir; pirina KPY'si dekantor verimini, zeytin endustriyel randimani beklenen randimani
 gosterir. Her parti olculmeyebilir; olcum bu yuzden istege bagli olmali.
 
-**Karar:** GreenOps'taki gibi iki ayri, istege bagli (`is_required = false`) asama: Sikim'dan once
-"IAS Zeytin Olcumu" (analysis, zeytin) ve Sikim'dan hemen sonra "IAS Pirina Olcumu" (analysis, pirina; pirina
-Sikim'daki donusumle olustugu icin sikim bitmeden yapilamaz, bu zaten asama sirasindan gelir).
+**Karar (2026-11-24, degisti):** once iki istege bagli asama dusunuldu; ancak asamalar sirayla ilerledigi icin
+olculmeyen her partide iki kez "Atla" gerekiyordu ve butun hatlarin asama sirasi kayiyordu. Kullanici karariyla
+IAS olcumu **asamadan bagimsiz**: parti sayfasindan istenen anda (laboratuvar sonucu gec gelse de) girilir.
 
 **Seed / tanim:**
 - Attribute: `kpy` (decimal, %, "Kuru Bazda Yag"), `industrial_yield` (decimal, %, "Endustriyel Randiman"),
@@ -105,10 +105,16 @@ Sikim'daki donusumle olustugu icin sikim bitmeden yapilamaz, bu zaten asama sira
 - Zeytin: `oil_ratio` (YPY), `moisture`, `kpy`, `acidity`, `industrial_yield`, `sample_no`.
 - Pirina: `oil_ratio`, `moisture`, `kpy`, `sample_no`.
 
-**Kod:** `kpy` hesaplanan attribute: ayni materyalde `oil_ratio` ve `moisture` yazildiginda `kpy` verilmediyse sunucu
-hesaplayip yazar; cihaz KPY verdiyse o kaydedilir (GreenOps gibi). Randiman kartinda beklenen randiman (zeytin
-`industrial_yield`) ile gercek randiman yan yana ve "pirinada kalan yag" (pirina kg x pirina yag %) bilgi olarak;
-analitikte zeytin yag % ve pirina KPY ortalamalari (cesit ve donem basina).
+**API (yapildi):** `POST /api/production-batches/{id}/ias-measurements` (yetki `batch_process.fill`): `kind`
+(`olive`/`pomace`), istege bagli `material_id`, `oil_ratio` ve `moisture` zorunlu, `kpy` verilmezse
+yag / (100 - nem) x 100, `acidity` ve `industrial_yield` yalnizca zeytinde, `sample_no`. Degerler partinin o
+urundeki materyaline attribute olarak yazilir (tek aktif materyal; aktif yoksa en son olusan, yani sikimdan sonra
+gelen zeytin sonucu tuketilmis zeytine; birden fazla aktifse `material_id` istenir). Pirina sikimda olustugu icin
+sikimdan once 422. Cevap parti detayi (materyallerde degerler). Demo: partilerin cogunda zeytin, yarisinda pirina
+olcumu.
+
+**Sonra / Flutter'da:** beklenen randiman (zeytin `industrial_yield`) ile gercek randiman yan yana; pirinada kalan
+yag = pirina kg x pirina yag % / 100; analitikte zeytin yag % ve pirina KPY ortalamalari.
 
 **Flutter:** analiz formu zaten dinamik; `kpy` salt okunur gosterilir. Parti detayinda IAS ozeti.
 
@@ -192,8 +198,7 @@ Her adimdan sonra rapor, commit kullanici onayiyla.
 
 1. Fiyat yetkisi admin, planner ve food_engineer'da; operator rolleri gormez.
 2. Fiyat KDV haric girilir, KDV orani tutulur; tutarlar KDV haric ve dahil gosterilir. TL.
-3. Pirina olcumu ayri, istege bagli "IAS Pirina Olcumu" asamasi (Sikim'dan sonra); zeytin icin "IAS Zeytin
-   Olcumu" (Sikim'dan once).
+3. IAS olcumu asamadan bagimsiz (once ayri asama karari alinmisti; atlama yukunden dolayi degisti).
 4. Cetvel dipten dolu yuksekligi olcer. Tank olculeri sonra girilir.
 5. Sise sayfasinda tedarikci ve tarla gosterilir.
 6. Alan adi yok: ayarli adres tabani ve "deneme" uyarili sabit sablon.

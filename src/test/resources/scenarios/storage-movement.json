@@ -864,7 +864,7 @@
         "quantity" : 600.5,
         "unit" : "KG",
         "note" : "Kismi",
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T16:45:51Z",
         "storage_unit" : {
           "id" : 17,
           "name" : "Pirina",
@@ -900,14 +900,102 @@
               "description" : "Zeytin işleme sonrası oluşan yan ürün"
             }
           },
-          "attribute_values" : [ ],
-          "created_at" : "2026-11-23T22:39:26Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "attribute_values" : [ {
+            "id" : 2211,
+            "material_id" : 1501,
+            "production_product_attribute_definition_id" : 13,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 3.57,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 13,
+              "production_product_id" : 3,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-24T16:45:51Z",
+            "updated_at" : "2026-11-24T16:45:51Z"
+          }, {
+            "id" : 2212,
+            "material_id" : 1501,
+            "production_product_attribute_definition_id" : 14,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 67.47,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 14,
+              "production_product_id" : 3,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-24T16:45:51Z",
+            "updated_at" : "2026-11-24T16:45:51Z"
+          }, {
+            "id" : 2213,
+            "material_id" : 1501,
+            "production_product_attribute_definition_id" : 15,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 10.97,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 15,
+              "production_product_id" : 3,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-24T16:45:51Z",
+            "updated_at" : "2026-11-24T16:45:51Z"
+          }, {
+            "id" : 2214,
+            "material_id" : 1501,
+            "production_product_attribute_definition_id" : 16,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-251106-01-P",
+            "value_json" : null,
+            "definition" : {
+              "id" : 16,
+              "production_product_id" : 3,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-24T16:45:51Z",
+            "updated_at" : "2026-11-24T16:45:51Z"
+          } ],
+          "created_at" : "2026-11-24T16:45:51Z",
+          "updated_at" : "2026-11-24T16:45:51Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T16:45:51Z",
+        "updated_at" : "2026-11-24T16:45:51Z"
       }
     },
     "save" : [ "P1", "data.material.id" ]
@@ -1065,7 +1153,7 @@
         "quantity" : 100.0,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-23T22:39:26Z",
+        "moved_at" : "2026-11-24T16:45:51Z",
         "storage_unit" : {
           "id" : 13,
           "name" : "Ayvalık Dolum Tankı",
@@ -1102,7 +1190,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 28,
+            "id" : 78,
             "material_id" : 59,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -1122,10 +1210,10 @@
               "description" : "Asitlik oranı"
             },
             "created_at" : "2025-11-11T06:58:00Z",
-            "updated_at" : "2026-11-23T22:39:26Z"
+            "updated_at" : "2026-11-24T16:45:51Z"
           } ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-23T22:39:26Z"
+          "updated_at" : "2026-11-24T16:45:51Z"
         },
         "batch_process" : {
           "id" : 3822,
@@ -1134,8 +1222,8 @@
           "status" : "waiting"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-23T22:39:26Z",
-        "updated_at" : "2026-11-23T22:39:26Z"
+        "created_at" : "2026-11-24T16:45:51Z",
+        "updated_at" : "2026-11-24T16:45:51Z"
       }
     },
     "save" : [ "M13", "data.material.id" ]
@@ -14988,7 +15076,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 322,
+            "id" : 2182,
             "material_id" : 1481,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15086,7 +15174,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 321,
+            "id" : 2171,
             "material_id" : 1477,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15184,7 +15272,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 318,
+            "id" : 2158,
             "material_id" : 1462,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15274,7 +15362,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 317,
+            "id" : 2147,
             "material_id" : 1457,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15364,7 +15452,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 316,
+            "id" : 2140,
             "material_id" : 1453,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15454,7 +15542,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 318,
+            "id" : 2158,
             "material_id" : 1462,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15552,7 +15640,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 317,
+            "id" : 2147,
             "material_id" : 1457,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15650,7 +15738,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 316,
+            "id" : 2140,
             "material_id" : 1453,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15780,7 +15868,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 317,
+            "id" : 2147,
             "material_id" : 1457,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15870,7 +15958,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 316,
+            "id" : 2140,
             "material_id" : 1453,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15960,7 +16048,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 318,
+            "id" : 2158,
             "material_id" : 1462,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,

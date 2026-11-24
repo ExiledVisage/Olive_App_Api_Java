@@ -615,7 +615,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 323,
+              "id" : 2193,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -669,7 +669,95 @@
                 "description" : "Zeytin işleme sonrası oluşan yan ürün"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2189,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 13,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.82,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 13,
+                "production_product_id" : 3,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 1,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2190,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 14,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 67.18,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 14,
+                "production_product_id" : 3,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2191,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 15,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 8.59,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 15,
+                "production_product_id" : 3,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2192,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 16,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261105-02-P",
+              "value_json" : null,
+              "definition" : {
+                "id" : 16,
+                "production_product_id" : 3,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            } ],
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           } ],
@@ -703,7 +791,139 @@
                 "description" : "Ham zeytin ürünü"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2183,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 3,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 16.18,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 3,
+                "production_product_id" : 1,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2184,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 2,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 51.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 2,
+                "production_product_id" : 1,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2185,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 10,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 33.24,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 10,
+                "production_product_id" : 1,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2186,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 9,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.78,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 9,
+                "production_product_id" : 1,
+                "attribute_key" : "acidity",
+                "label" : "Asitlik",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2187,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 11,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 15.19,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 11,
+                "production_product_id" : 1,
+                "attribute_key" : "industrial_yield",
+                "label" : "Endüstriyel Randıman",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "IAS cihazının beklenen randımanı (zeytin)"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2188,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 12,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261105-02-Z",
+              "value_json" : null,
+              "definition" : {
+                "id" : 12,
+                "production_product_id" : 1,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            } ],
             "created_at" : "2026-11-05T12:45:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           } ],
@@ -963,7 +1183,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 323,
+              "id" : 2193,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -1187,7 +1407,139 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2183,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 3,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 16.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 3,
+              "production_product_id" : 1,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2184,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 2,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 51.32,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 2,
+              "production_product_id" : 1,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2185,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 10,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 33.24,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 10,
+              "production_product_id" : 1,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2186,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 9,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.78,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 9,
+              "production_product_id" : 1,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2187,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 11,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 15.19,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 11,
+              "production_product_id" : 1,
+              "attribute_key" : "industrial_yield",
+              "label" : "Endüstriyel Randıman",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "IAS cihazının beklenen randımanı (zeytin)"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2188,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 12,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261105-02-Z",
+            "value_json" : null,
+            "definition" : {
+              "id" : 12,
+              "production_product_id" : 1,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          } ],
           "created_by_batch_process" : null,
           "closed_by_batch_process" : {
             "id" : 3792,
@@ -1240,7 +1592,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 323,
+            "id" : 2193,
             "material_id" : 1485,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -1318,7 +1670,95 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2189,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 13,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.82,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 13,
+              "production_product_id" : 3,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2190,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 14,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 67.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 14,
+              "production_product_id" : 3,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2191,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 15,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 8.59,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 15,
+              "production_product_id" : 3,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2192,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 16,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261105-02-P",
+            "value_json" : null,
+            "definition" : {
+              "id" : 16,
+              "production_product_id" : 3,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          } ],
           "created_by_batch_process" : {
             "id" : 3792,
             "production_batch_id" : 584,
@@ -2438,7 +2878,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 322,
+              "id" : 2182,
               "material_id" : 1481,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -2492,7 +2932,95 @@
                 "description" : "Zeytin işleme sonrası oluşan yan ürün"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2178,
+              "material_id" : 1482,
+              "production_product_attribute_definition_id" : 13,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 3.2,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 13,
+                "production_product_id" : 3,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 1,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2179,
+              "material_id" : 1482,
+              "production_product_attribute_definition_id" : 14,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 66.43,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 14,
+                "production_product_id" : 3,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2180,
+              "material_id" : 1482,
+              "production_product_attribute_definition_id" : 15,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 9.53,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 15,
+                "production_product_id" : 3,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2181,
+              "material_id" : 1482,
+              "production_product_attribute_definition_id" : 16,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261105-01-P",
+              "value_json" : null,
+              "definition" : {
+                "id" : 16,
+                "production_product_id" : 3,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            } ],
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           } ],
@@ -2526,7 +3054,139 @@
                 "description" : "Ham zeytin ürünü"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2172,
+              "material_id" : 1480,
+              "production_product_attribute_definition_id" : 3,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 16.38,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 3,
+                "production_product_id" : 1,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2173,
+              "material_id" : 1480,
+              "production_product_attribute_definition_id" : 2,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 52.44,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 2,
+                "production_product_id" : 1,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2174,
+              "material_id" : 1480,
+              "production_product_attribute_definition_id" : 10,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 34.44,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 10,
+                "production_product_id" : 1,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2175,
+              "material_id" : 1480,
+              "production_product_attribute_definition_id" : 9,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.77,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 9,
+                "production_product_id" : 1,
+                "attribute_key" : "acidity",
+                "label" : "Asitlik",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2176,
+              "material_id" : 1480,
+              "production_product_attribute_definition_id" : 11,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 15.15,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 11,
+                "production_product_id" : 1,
+                "attribute_key" : "industrial_yield",
+                "label" : "Endüstriyel Randıman",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "IAS cihazının beklenen randımanı (zeytin)"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            }, {
+              "id" : 2177,
+              "material_id" : 1480,
+              "production_product_attribute_definition_id" : 12,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261105-01-Z",
+              "value_json" : null,
+              "definition" : {
+                "id" : 12,
+                "production_product_id" : 1,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-05T09:28:00Z",
+              "updated_at" : "2026-11-05T09:28:00Z"
+            } ],
             "created_at" : "2026-11-05T08:08:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           } ],
@@ -2893,7 +3553,139 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2172,
+            "material_id" : 1480,
+            "production_product_attribute_definition_id" : 3,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 16.38,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 3,
+              "production_product_id" : 1,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2173,
+            "material_id" : 1480,
+            "production_product_attribute_definition_id" : 2,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 52.44,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 2,
+              "production_product_id" : 1,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2174,
+            "material_id" : 1480,
+            "production_product_attribute_definition_id" : 10,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 34.44,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 10,
+              "production_product_id" : 1,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2175,
+            "material_id" : 1480,
+            "production_product_attribute_definition_id" : 9,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.77,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 9,
+              "production_product_id" : 1,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2176,
+            "material_id" : 1480,
+            "production_product_attribute_definition_id" : 11,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 15.15,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 11,
+              "production_product_id" : 1,
+              "attribute_key" : "industrial_yield",
+              "label" : "Endüstriyel Randıman",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "IAS cihazının beklenen randımanı (zeytin)"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2177,
+            "material_id" : 1480,
+            "production_product_attribute_definition_id" : 12,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261105-01-Z",
+            "value_json" : null,
+            "definition" : {
+              "id" : 12,
+              "production_product_id" : 1,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          } ],
           "created_by_batch_process" : null,
           "closed_by_batch_process" : {
             "id" : 3779,
@@ -2946,7 +3738,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 322,
+            "id" : 2182,
             "material_id" : 1481,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -3019,7 +3811,95 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2178,
+            "material_id" : 1482,
+            "production_product_attribute_definition_id" : 13,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 3.2,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 13,
+              "production_product_id" : 3,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2179,
+            "material_id" : 1482,
+            "production_product_attribute_definition_id" : 14,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 66.43,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 14,
+              "production_product_id" : 3,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2180,
+            "material_id" : 1482,
+            "production_product_attribute_definition_id" : 15,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 9.53,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 15,
+              "production_product_id" : 3,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          }, {
+            "id" : 2181,
+            "material_id" : 1482,
+            "production_product_attribute_definition_id" : 16,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261105-01-P",
+            "value_json" : null,
+            "definition" : {
+              "id" : 16,
+              "production_product_id" : 3,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-05T09:28:00Z",
+            "updated_at" : "2026-11-05T09:28:00Z"
+          } ],
           "created_by_batch_process" : {
             "id" : 3779,
             "production_batch_id" : 582,
@@ -4087,7 +4967,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 321,
+              "id" : 2171,
               "material_id" : 1477,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -4175,7 +5055,139 @@
                 "description" : "Ham zeytin ürünü"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2165,
+              "material_id" : 1476,
+              "production_product_attribute_definition_id" : 3,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 16.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 3,
+                "production_product_id" : 1,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-04T14:30:00Z",
+              "updated_at" : "2026-11-04T14:30:00Z"
+            }, {
+              "id" : 2166,
+              "material_id" : 1476,
+              "production_product_attribute_definition_id" : 2,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 46.02,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 2,
+                "production_product_id" : 1,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-04T14:30:00Z",
+              "updated_at" : "2026-11-04T14:30:00Z"
+            }, {
+              "id" : 2167,
+              "material_id" : 1476,
+              "production_product_attribute_definition_id" : 10,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 30.23,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 10,
+                "production_product_id" : 1,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-04T14:30:00Z",
+              "updated_at" : "2026-11-04T14:30:00Z"
+            }, {
+              "id" : 2168,
+              "material_id" : 1476,
+              "production_product_attribute_definition_id" : 9,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.44,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 9,
+                "production_product_id" : 1,
+                "attribute_key" : "acidity",
+                "label" : "Asitlik",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-04T14:30:00Z",
+              "updated_at" : "2026-11-04T14:30:00Z"
+            }, {
+              "id" : 2169,
+              "material_id" : 1476,
+              "production_product_attribute_definition_id" : 11,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 15.21,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 11,
+                "production_product_id" : 1,
+                "attribute_key" : "industrial_yield",
+                "label" : "Endüstriyel Randıman",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "IAS cihazının beklenen randımanı (zeytin)"
+              },
+              "created_at" : "2026-11-04T14:30:00Z",
+              "updated_at" : "2026-11-04T14:30:00Z"
+            }, {
+              "id" : 2170,
+              "material_id" : 1476,
+              "production_product_attribute_definition_id" : 12,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261104-02-Z",
+              "value_json" : null,
+              "definition" : {
+                "id" : 12,
+                "production_product_id" : 1,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-04T14:30:00Z",
+              "updated_at" : "2026-11-04T14:30:00Z"
+            } ],
             "created_at" : "2026-11-04T13:11:00Z",
             "updated_at" : "2026-11-04T14:30:00Z"
           } ],
@@ -4542,7 +5554,139 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2165,
+            "material_id" : 1476,
+            "production_product_attribute_definition_id" : 3,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 16.32,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 3,
+              "production_product_id" : 1,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-04T14:30:00Z",
+            "updated_at" : "2026-11-04T14:30:00Z"
+          }, {
+            "id" : 2166,
+            "material_id" : 1476,
+            "production_product_attribute_definition_id" : 2,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 46.02,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 2,
+              "production_product_id" : 1,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-04T14:30:00Z",
+            "updated_at" : "2026-11-04T14:30:00Z"
+          }, {
+            "id" : 2167,
+            "material_id" : 1476,
+            "production_product_attribute_definition_id" : 10,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 30.23,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 10,
+              "production_product_id" : 1,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-04T14:30:00Z",
+            "updated_at" : "2026-11-04T14:30:00Z"
+          }, {
+            "id" : 2168,
+            "material_id" : 1476,
+            "production_product_attribute_definition_id" : 9,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.44,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 9,
+              "production_product_id" : 1,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-04T14:30:00Z",
+            "updated_at" : "2026-11-04T14:30:00Z"
+          }, {
+            "id" : 2169,
+            "material_id" : 1476,
+            "production_product_attribute_definition_id" : 11,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 15.21,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 11,
+              "production_product_id" : 1,
+              "attribute_key" : "industrial_yield",
+              "label" : "Endüstriyel Randıman",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "IAS cihazının beklenen randımanı (zeytin)"
+            },
+            "created_at" : "2026-11-04T14:30:00Z",
+            "updated_at" : "2026-11-04T14:30:00Z"
+          }, {
+            "id" : 2170,
+            "material_id" : 1476,
+            "production_product_attribute_definition_id" : 12,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261104-02-Z",
+            "value_json" : null,
+            "definition" : {
+              "id" : 12,
+              "production_product_id" : 1,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-04T14:30:00Z",
+            "updated_at" : "2026-11-04T14:30:00Z"
+          } ],
           "created_by_batch_process" : null,
           "closed_by_batch_process" : {
             "id" : 3766,
@@ -4595,7 +5739,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 321,
+            "id" : 2171,
             "material_id" : 1477,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -5736,7 +6880,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 320,
+              "id" : 2164,
               "material_id" : 1473,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -6084,7 +7228,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 320,
+              "id" : 2164,
               "material_id" : 1473,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -6361,7 +7505,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 320,
+            "id" : 2164,
             "material_id" : 1473,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -8020,7 +9164,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 323,
+              "id" : 2193,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -8074,7 +9218,95 @@
                 "description" : "Zeytin işleme sonrası oluşan yan ürün"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2189,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 13,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.82,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 13,
+                "production_product_id" : 3,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 1,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2190,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 14,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 67.18,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 14,
+                "production_product_id" : 3,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2191,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 15,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 8.59,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 15,
+                "production_product_id" : 3,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2192,
+              "material_id" : 1486,
+              "production_product_attribute_definition_id" : 16,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261105-02-P",
+              "value_json" : null,
+              "definition" : {
+                "id" : 16,
+                "production_product_id" : 3,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            } ],
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           } ],
@@ -8108,7 +9340,139 @@
                 "description" : "Ham zeytin ürünü"
               }
             },
-            "attribute_values" : [ ],
+            "attribute_values" : [ {
+              "id" : 2183,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 3,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 16.18,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 3,
+                "production_product_id" : 1,
+                "attribute_key" : "oil_ratio",
+                "label" : "Yağ Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 3,
+                "description" : "Yağ oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2184,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 2,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 51.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 2,
+                "production_product_id" : 1,
+                "attribute_key" : "moisture",
+                "label" : "Nem Oranı",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 2,
+                "description" : "Nem oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2185,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 10,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 33.24,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 10,
+                "production_product_id" : 1,
+                "attribute_key" : "kpy",
+                "label" : "Kuru Bazda Yağ",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2186,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 9,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.78,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 9,
+                "production_product_id" : 1,
+                "attribute_key" : "acidity",
+                "label" : "Asitlik",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 4,
+                "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2187,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 11,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 15.19,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 11,
+                "production_product_id" : 1,
+                "attribute_key" : "industrial_yield",
+                "label" : "Endüstriyel Randıman",
+                "data_type" : "decimal",
+                "unit" : "%",
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "IAS cihazının beklenen randımanı (zeytin)"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            }, {
+              "id" : 2188,
+              "material_id" : 1484,
+              "production_product_attribute_definition_id" : 12,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "IAS-261105-02-Z",
+              "value_json" : null,
+              "definition" : {
+                "id" : 12,
+                "production_product_id" : 1,
+                "attribute_key" : "sample_no",
+                "label" : "Numune No",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "IAS cihazındaki numune numarası"
+              },
+              "created_at" : "2026-11-05T14:17:00Z",
+              "updated_at" : "2026-11-05T14:17:00Z"
+            } ],
             "created_at" : "2026-11-05T12:45:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           } ],
@@ -8368,7 +9732,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 323,
+              "id" : 2193,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -8592,7 +9956,139 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2183,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 3,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 16.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 3,
+              "production_product_id" : 1,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2184,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 2,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 51.32,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 2,
+              "production_product_id" : 1,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2185,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 10,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 33.24,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 10,
+              "production_product_id" : 1,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2186,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 9,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.78,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 9,
+              "production_product_id" : 1,
+              "attribute_key" : "acidity",
+              "label" : "Asitlik",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2187,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 11,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 15.19,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 11,
+              "production_product_id" : 1,
+              "attribute_key" : "industrial_yield",
+              "label" : "Endüstriyel Randıman",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "IAS cihazının beklenen randımanı (zeytin)"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2188,
+            "material_id" : 1484,
+            "production_product_attribute_definition_id" : 12,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261105-02-Z",
+            "value_json" : null,
+            "definition" : {
+              "id" : 12,
+              "production_product_id" : 1,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          } ],
           "created_by_batch_process" : null,
           "closed_by_batch_process" : {
             "id" : 3792,
@@ -8645,7 +10141,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 323,
+            "id" : 2193,
             "material_id" : 1485,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -8723,7 +10219,95 @@
             "unit" : "KG",
             "status" : "consumed"
           },
-          "attribute_values" : [ ],
+          "attribute_values" : [ {
+            "id" : 2189,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 13,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.82,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 13,
+              "production_product_id" : 3,
+              "attribute_key" : "oil_ratio",
+              "label" : "Yağ Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 1,
+              "description" : "Yağ oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2190,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 14,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 67.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 14,
+              "production_product_id" : 3,
+              "attribute_key" : "moisture",
+              "label" : "Nem Oranı",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 2,
+              "description" : "Nem oranı"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2191,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 15,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 8.59,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 15,
+              "production_product_id" : 3,
+              "attribute_key" : "kpy",
+              "label" : "Kuru Bazda Yağ",
+              "data_type" : "decimal",
+              "unit" : "%",
+              "is_required" : false,
+              "sort_order" : 3,
+              "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          }, {
+            "id" : 2192,
+            "material_id" : 1486,
+            "production_product_attribute_definition_id" : 16,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "IAS-261105-02-P",
+            "value_json" : null,
+            "definition" : {
+              "id" : 16,
+              "production_product_id" : 3,
+              "attribute_key" : "sample_no",
+              "label" : "Numune No",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 4,
+              "description" : "IAS cihazındaki numune numarası"
+            },
+            "created_at" : "2026-11-05T14:17:00Z",
+            "updated_at" : "2026-11-05T14:17:00Z"
+          } ],
           "created_by_batch_process" : {
             "id" : 3792,
             "production_batch_id" : 584,

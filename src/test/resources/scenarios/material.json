@@ -24506,7 +24506,23 @@
           "status" : "consumed"
         },
         "child_materials" : [ ],
-        "attribute_values" : [ ],
+        "attribute_values" : [ {
+          "label" : "Yağ Oranı",
+          "unit" : "%",
+          "value" : 4.34
+        }, {
+          "label" : "Nem Oranı",
+          "unit" : "%",
+          "value" : 56.23
+        }, {
+          "label" : "Kuru Bazda Yağ",
+          "unit" : "%",
+          "value" : 9.92
+        }, {
+          "label" : "Numune No",
+          "unit" : null,
+          "value" : "IAS-251108-01-P"
+        } ],
         "movements" : [ ],
         "runs" : [ ]
       }

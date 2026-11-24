@@ -278,6 +278,7 @@ final class DemoFactory {
 			body("production_product_id", ids.pomaceProduct(), "quantity", pomace, "unit", "KG"))));
 
 		batch.oil = oil;
+		ias(operator, batch, sorted, oil);
 
 		BigDecimal acidity = batch.cultivar.acidity(season, this);
 		if (!later(30, 90)) {
@@ -687,6 +688,30 @@ final class DemoFactory {
 		String reason = own.nextDouble() < 0.7 ? "broken" : "defective";
 		api.post(WAREHOUSE, "/api/finished-product-runs/" + run + "/packaging-scrap", body("packaging_item_id", item,
 			"quantity", quantity, "reason", reason, "note", "broken".equals(reason) ? "Hatta kırıldı" : "Etiket hatalı"));
+	}
+
+	/**
+	 * IAS olcumu (sikimdan sonra girilir): partilerin cogunda zeytin, yarisinda pirina. Zeytinin yag orani gercek
+	 * randimana yakin, endustriyel randiman onun biraz alti. Ayri, partiye bagli rastgele kaynak: ana akis kaymaz.
+	 */
+	private void ias(String operator, Batch batch, BigDecimal olive, BigDecimal oil) {
+		Random own = new Random(batch.id * 15485863L);
+		String path = "/api/production-batches/" + batch.id + "/ias-measurements";
+		String sample = "IAS-" + batch.day.format(CODE_DATE) + "-" + "%02d".formatted(batch.sequence);
+		if (own.nextDouble() < 0.7) {
+			double oilRatio = oil.doubleValue() * 100 / olive.doubleValue() + (own.nextDouble() - 0.5) * 2;
+			api.post(operator, path, body("kind", "olive", "oil_ratio", round2(oilRatio),
+				"moisture", round2(45 + own.nextDouble() * 10), "acidity", round2(0.2 + own.nextDouble() * 0.7),
+				"industrial_yield", round2(oilRatio * (0.9 + own.nextDouble() * 0.06)), "sample_no", sample + "-Z"));
+		}
+		if (own.nextDouble() < 0.5) {
+			api.post(operator, path, body("kind", "pomace", "oil_ratio", round2(2.5 + own.nextDouble() * 2),
+				"moisture", round2(55 + own.nextDouble() * 13), "sample_no", sample + "-P"));
+		}
+	}
+
+	private static BigDecimal round2(double value) {
+		return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
 	}
 
 	/** Bilesenlerin lotlarda yeterli adedi yoksa yeni lot gelir. */

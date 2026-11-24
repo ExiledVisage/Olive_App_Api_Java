@@ -146,7 +146,7 @@ public class MaterialQueries {
 				m.sortOrder(), m.attributeKey(), m.label(), m.dataType(), m.unit(), m.description())));
 	}
 
-	/** Materyallerin attribute degerleri. */
+	/** Materyallerin attribute degerleri, kayit sirasiyla (yanit sirasi sabit). */
 	public List<AttributeValueRow> attributeValues(Collection<Long> materialIds) {
 		List<Long> present = ValidationErrors.present(materialIds);
 		if (present.isEmpty()) {
@@ -155,7 +155,7 @@ public class MaterialQueries {
 		return jdbc.sql("""
 			select id, material_id, production_product_attribute_definition_id as definition_id, value_boolean,
 				value_integer, value_decimal, value_text, value_json::text as value_json, created_at, updated_at
-			from material_attribute_values where material_id in (:ids)
+			from material_attribute_values where material_id in (:ids) order by id
 			""").param("ids", present).query(AttributeValueRow.class).list();
 	}
 
