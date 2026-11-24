@@ -18,6 +18,7 @@ record MachineResponse(
 	JsonNode attributes,
 	boolean isActive,
 	List<Part> parts,
+	MachineActivity.Activity activity,
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
 
@@ -33,12 +34,12 @@ record MachineResponse(
 
 	}
 
-	static MachineResponse of(Machine machine) {
+	static MachineResponse of(Machine machine, MachineActivity.Activity activity) {
 		MachineType type = machine.getMachineType();
 		return new MachineResponse(machine.getId(), new Type(type.getId(), type.getKey(), type.getName()),
 			machine.getCode(), machine.getName(), machine.getBrand(), machine.getModel(),
 			machine.getCapacityKgPerHour(), machine.getNote(), machine.getAttributes(), machine.isActive(),
-			machine.getParts().stream().map(Part::of).toList(), machine.getCreatedAt(), machine.getUpdatedAt());
+			machine.getParts().stream().map(Part::of).toList(), activity, machine.getCreatedAt(), machine.getUpdatedAt());
 	}
 
 }

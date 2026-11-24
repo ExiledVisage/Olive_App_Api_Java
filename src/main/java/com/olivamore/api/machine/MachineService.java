@@ -14,6 +14,7 @@ import tools.jackson.databind.node.ObjectNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /** Makineler ve parcalari. Her makinede en az bir parca kalir. */
 @Service
@@ -25,13 +26,15 @@ class MachineService {
 	private final MachinePartRepository parts;
 	private final MachineTypeRepository types;
 	private final MachineRunRepository runs;
+	private final MachineActivity activity;
 
 	MachineService(MachineRepository machines, MachinePartRepository parts, MachineTypeRepository types,
-		MachineRunRepository runs) {
+		MachineRunRepository runs, MachineActivity activity) {
 		this.machines = machines;
 		this.parts = parts;
 		this.types = types;
 		this.runs = runs;
+		this.activity = activity;
 	}
 
 	@Transactional(readOnly = true)
@@ -43,13 +46,15 @@ class MachineService {
 		if (isActive != null) {
 			filters.add((root, query, cb) -> cb.equal(root.get("active"), isActive));
 		}
-		return machines.findAll(Specification.allOf(filters), Sort.by("machineType.sortOrder", "code", "id")).stream()
-			.map(MachineResponse::of).toList();
+		List<Machine> found = machines.findAll(Specification.allOf(filters),
+			Sort.by("machineType.sortOrder", "code", "id"));
+		Map<Long, MachineActivity.Activity> activities = activity.of(found.stream().map(Machine::getId).toList());
+		return found.stream().map(m -> MachineResponse.of(m, activities.get(m.getId()))).toList();
 	}
 
 	@Transactional(readOnly = true)
 	MachineResponse get(long id) {
-		return MachineResponse.of(find(id));
+		return response(find(id));
 	}
 
 	@Transactional
@@ -70,7 +75,7 @@ class MachineService {
 		if (!type.isActive()) {
 			throw new BusinessRuleException("'" + type.getName() + "' makine tipi pasif; bu tipte makine eklenemez.");
 		}
-		return MachineResponse.of(machines.save(new Machine(type, request, attributes)));
+		return response(machines.save(new Machine(type, request, attributes)));
 	}
 
 	@Transactional
@@ -87,7 +92,7 @@ class MachineService {
 		}
 		machine.apply(request, attributes);
 		machines.flush();
-		return MachineResponse.of(machine);
+		return response(machine);
 	}
 
 	@Transactional
@@ -131,6 +136,10 @@ class MachineService {
 		// Makinenin parca listesinde kalirsa (PERSIST) silme geri alinir
 		part.getMachine().getParts().remove(part);
 		parts.delete(part);
+	}
+
+	private MachineResponse response(Machine machine) {
+		return MachineResponse.of(machine, activity.of(List.of(machine.getId())).get(machine.getId()));
 	}
 
 	private Machine find(long id) {

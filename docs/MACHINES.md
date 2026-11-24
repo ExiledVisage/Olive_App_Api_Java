@@ -1,6 +1,6 @@
 # Makineler: makine kaydi, sikimda makine adimlari, makine takibi
 
-Durum (2026-11-23): 1. adim (7e9ac74) ve 2. adim yazildi; 3-6 bekliyor. Sunucu kurulumu (MACHINE_STAGES 6. adim)
+Durum (2026-11-24): 1. adim (7e9ac74), 2. adim (e1792fe) ve 3. adim yazildi; 4-6 bekliyor. Sunucu kurulumu (MACHINE_STAGES 6. adim)
 kullanici istegiyle ertelendi.
 
 ## Amac
@@ -86,15 +86,21 @@ calismada secilemez ama gecmiste gorunur.
     started_at, finished_at, note, values).
   - Cevap: `completed`, `total`, `timer_started`, `timer_finished`, `steps[]` (step_order, machine_type_key,
     machine_type, status waiting/running/done, fields, parts (+ busy_batch_code), run).
-- Makine sekmesi:
-  - `GET /api/machines/{id}/runs?date_from&date_to` (sayfali): parti, parca, sure, degerler.
-  - `GET /api/machines/{id}/series?field=sicaklik&date_from&date_to`: grafik icin zaman serisi (parca bazinda).
-  - `GET /api/machines/{id}/summary?date_from&date_to` (hazir donemler: son 2 gun, 1 hafta, 1 ay):
+- Makine sekmesi (`machine.view`):
+  - `GET /api/machines` ve `/{id}`: `activity` = status (running/idle), running[] (parca, parti kodu, baslangic),
+    last_run_at.
+  - `GET /api/machines/{id}/runs?date_from&date_to` (`page`/`size` ile sayfali, en yeni once): parti, parca, sure,
+    degerler.
+  - `GET /api/machines/{id}/series?field=sicaklik&period` (ya da date_from/date_to): sayisal olcum alaninin zaman
+    serisi, parca bazinda; noktada parti kodu ve aralik disi isareti.
+  - `GET /api/machines/{id}/summary?period` (ya da date_from/date_to): donem `period` = 2d, 1w (varsayilan), 2w, 1m
+    simdiye kadar; tarih araligi gunler dahil.
     - son calisma, su anki parti;
     - toplam calisma suresi, kullanim orani (calisma / donem suresi);
     - islenen parti sayisi ve kg, saatte islenen kg;
-    - makineden gecen partilerin ortalama randimani, yag ve pirina kg (randiman makineye ayrilamaz: parti butun
-      makinelerden gecer, yag sonda olculur; "bu ayarla calisirken randiman" karsilastirmasi icin);
+    - makineden gecen partilerin ezilen zeytini (Sikim girdisi), suzulen yagi (on dinlendirmeden cikan, kg) ve
+      ortalama randimani (randiman makineye ayrilamaz: parti butun makinelerden gecer, yag sonda olculur). Parti
+      bilgisini uretim modulu `MachineBatches` arayuzuyle verir (makine modulu uretime bagli degil);
     - alan basina ortalama / en dusuk / en yuksek, parca bazinda.
 
 ## Seed (baslangic tanimlari)
