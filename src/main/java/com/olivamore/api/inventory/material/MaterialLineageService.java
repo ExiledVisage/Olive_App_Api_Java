@@ -8,7 +8,6 @@ import com.olivamore.api.inventory.material.MaterialQueries.Batch;
 import com.olivamore.api.inventory.material.MaterialQueries.MaterialRow;
 import com.olivamore.api.inventory.material.MaterialQueries.ProductType;
 import com.olivamore.api.inventory.material.MaterialQueries.Unit;
-import com.olivamore.api.inventory.storagemovement.TankLedger;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ import static com.olivamore.api.inventory.material.MaterialResponses.lookup;
  * ve (tek kosudan beslenen depolarda) siparisler eklenir.
  * <p>
  * Agac tankta durur: tank materyali uc dugumdur ("bu tanka girdi"), tankin diger girdileri ve ciktilari
- * genisletilmez; dugumde buradan yapilan girislerin snapshot'i ({@link TankLedger.EntrySnapshot}) vardir. Odak
+ * genisletilmez; dugumde buradan yapilan girislerin snapshot'i ({@link TankEntrySnapshots.EntrySnapshot}) vardir. Odak
  * tank materyaliyse graf cizilmez, cevap tankin defterine isaret eder ({@code tank_ledger}).
  * Dugumlere kokten en uzun yol derinligi verilir.
  */
@@ -63,9 +62,9 @@ class MaterialLineageService {
 
 	private final MaterialQueries queries;
 	private final JdbcClient jdbc;
-	private final TankLedger ledger;
+	private final TankEntrySnapshots ledger;
 
-	MaterialLineageService(MaterialQueries queries, JdbcClient jdbc, TankLedger ledger) {
+	MaterialLineageService(MaterialQueries queries, JdbcClient jdbc, TankEntrySnapshots ledger) {
 		this.queries = queries;
 		this.jdbc = jdbc;
 		this.ledger = ledger;
@@ -89,11 +88,11 @@ class MaterialLineageService {
 
 		List<MaterialQueries.MovementLink> entries = queries.linksFrom(materials.stream().filter(m -> !isTank(m))
 			.map(MaterialRow::id).toList()).stream().filter(link -> found.containsKey(link.materialId())).toList();
-		Map<Long, TankLedger.EntrySnapshot> snapshots = ledger.snapshots(
+		Map<Long, TankEntrySnapshots.EntrySnapshot> snapshots = ledger.snapshots(
 			entries.stream().map(MaterialQueries.MovementLink::id).toList());
-		Map<Long, List<TankLedger.EntrySnapshot>> tankEntries = new LinkedHashMap<>();
+		Map<Long, List<TankEntrySnapshots.EntrySnapshot>> tankEntries = new LinkedHashMap<>();
 		entries.forEach(link -> {
-			TankLedger.EntrySnapshot snapshot = snapshots.get(link.id());
+			TankEntrySnapshots.EntrySnapshot snapshot = snapshots.get(link.id());
 			if (snapshot != null) {
 				tankEntries.computeIfAbsent(link.materialId(), k -> new ArrayList<>()).add(snapshot);
 			}
@@ -311,7 +310,7 @@ class MaterialLineageService {
 
 	private static MaterialNode materialNode(MaterialRow m, boolean focus, Map<Long, ProductType> types,
 		Map<Long, Batch> batches, Map<Long, StageRow> stages, Map<Long, Unit> units,
-		List<TankLedger.EntrySnapshot> tankEntries) {
+		List<TankEntrySnapshots.EntrySnapshot> tankEntries) {
 		ProductType type = lookup(types, m.productionProductTypeId());
 		Batch batch = lookup(batches, m.productionBatchId());
 		StageRow stage = lookup(stages, m.sourceProductionStageId());

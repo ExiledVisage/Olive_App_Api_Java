@@ -1,7 +1,5 @@
 package com.olivamore.api.inventory.material;
 
-import com.olivamore.api.inventory.storagemovement.TankLedger;
-
 import java.util.List;
 
 /**
@@ -28,7 +26,7 @@ record MaterialLineageResponse(String focus, List<Node> nodes, List<Edge> edges,
 	/** @param tankEntries tank materyalinde bu agactan yapilan girislerin snapshot'lari; digerlerinde null */
 	record MaterialNode(String key, String kind, Long id, String title, String subtitle, Number quantity, String unit,
 		String status, String lineageRole, String originType, String batchCode, String deliveryBatchCode, String stageName,
-		String storageUnit, List<TankLedger.EntrySnapshot> tankEntries, boolean isFocus, int depth) implements Node {
+		String storageUnit, List<TankEntrySnapshots.EntrySnapshot> tankEntries, boolean isFocus, int depth) implements Node {
 
 		@Override
 		public Node withDepth(int value) {

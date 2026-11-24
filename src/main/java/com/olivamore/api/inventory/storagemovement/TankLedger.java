@@ -7,9 +7,9 @@ import com.olivamore.api.inventory.material.MaterialQueries.Batch;
 import com.olivamore.api.inventory.material.MaterialQueries.Definition;
 import com.olivamore.api.inventory.material.MaterialQueries.MaterialRow;
 import com.olivamore.api.inventory.material.MaterialResponses;
+import com.olivamore.api.inventory.material.TankEntrySnapshots;
 import com.olivamore.api.inventory.storagemovement.StorageMovementResponse.HistoryEntry;
 import com.olivamore.api.inventory.storagemovement.StorageMovementResponse.LedgerSummary;
-import com.olivamore.api.inventory.storagemovement.StorageMovementResponse.MixValue;
 import com.olivamore.api.inventory.storagemovement.StorageMovementResponse.Run;
 import com.olivamore.api.inventory.storagemovement.StorageMovementResponse.Source;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -47,7 +47,7 @@ import static com.olivamore.api.inventory.material.MaterialResponses.lookup;
  * olculen degeri yerine koyar. Ayni saniyedeki hareket ve analizde analiz sonra sayilir.
  */
 @Component
-public class TankLedger {
+class TankLedger implements TankEntrySnapshots {
 
 	private static final Set<MovementType> INFLOWS = EnumSet.of(MovementType.IN, MovementType.TRANSFER_IN,
 		MovementType.OPENING, MovementType.ADJUSTMENT_IN);
@@ -92,15 +92,6 @@ public class TankLedger {
 
 	private record EntryRow(Long id, Long storageUnitId, Long materialId, Long sourceMaterialId, BigDecimal quantity,
 		String unit, LocalDateTime movedAt) {
-	}
-
-	/**
-	 * Tanka giris aninin snapshot'i (soy agacinin tank dugumu): tank, zaman, giren miktar, giristen once ve sonra
-	 * tank materyalinin bu tanktaki miktari ve giristen sonraki karisim degeri.
-	 */
-	public record EntrySnapshot(Long movementId, Long sourceMaterialId, Long tankMaterialId, Long storageUnitId,
-		String storageUnitName, String storageUnitCode, LocalDateTime movedAt, BigDecimal quantity, String unit,
-		BigDecimal balanceBefore, BigDecimal balanceAfter, List<MixValue> mixAfter) {
 	}
 
 	private record UnitRow(Long id, String name, String code) {
@@ -166,7 +157,7 @@ public class TankLedger {
 		return entries;
 	}
 
-	/** Giris hareketlerinin snapshot'lari: hareket id -> snapshot (giris olmayan hareketler atlanir). */
+	@Override
 	public Map<Long, EntrySnapshot> snapshots(Collection<Long> movementIds) {
 		List<Long> ids = movementIds.stream().filter(Objects::nonNull).distinct().toList();
 		if (ids.isEmpty()) {
@@ -189,7 +180,9 @@ public class TankLedger {
 				snapshots.put(row.id(), new EntrySnapshot(row.id(), row.sourceMaterialId(), row.materialId(), unitId,
 					unit == null ? null : unit.name(), unit == null ? null : unit.code(), row.movedAt(), row.quantity(),
 					row.unit(), after == null ? null : after.subtract(row.quantity()), after,
-					mix == null ? null : mixValues(mix, ledger.definitions())));
+					mix == null ? null : mixValues(mix, ledger.definitions()).stream()
+						.map(v -> new TankEntrySnapshots.MixValue(v.definitionId(), v.attributeKey(), v.label(), v.unit(),
+							v.value())).toList()));
 			}
 		});
 		return snapshots;
@@ -314,13 +307,14 @@ public class TankLedger {
 		return value.setScale(integer ? 0 : VALUE_SCALE, RoundingMode.HALF_UP);
 	}
 
-	private static List<MixValue> mixValues(Map<Long, BigDecimal> mix, Map<Long, Definition> definitions) {
+	private static List<StorageMovementResponse.MixValue> mixValues(Map<Long, BigDecimal> mix,
+		Map<Long, Definition> definitions) {
 		return mix.entrySet().stream().map(e -> {
 			Definition definition = definitions.get(e.getKey());
-			return new MixValue(e.getKey(), definition == null ? null : definition.attributeKey(),
+			return new StorageMovementResponse.MixValue(e.getKey(), definition == null ? null : definition.attributeKey(),
 				definition == null ? null : definition.label(), definition == null ? null : definition.unit(),
 				e.getValue().stripTrailingZeros());
-		}).sorted(Comparator.comparing(MixValue::definitionId)).toList();
+		}).sorted(Comparator.comparing(StorageMovementResponse.MixValue::definitionId)).toList();
 	}
 
 	private static Source source(MaterialRow material, Map<Long, Batch> batches, Map<Long, StageRow> stages) {
