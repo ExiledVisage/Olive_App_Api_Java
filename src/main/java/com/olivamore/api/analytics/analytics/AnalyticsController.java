@@ -22,9 +22,9 @@ import java.util.List;
 class AnalyticsController {
 
 	private final AnalyticsService analytics;
-	private final SupplierComparison comparison;
+	private final Comparison comparison;
 
-	AnalyticsController(AnalyticsService analytics, SupplierComparison comparison) {
+	AnalyticsController(AnalyticsService analytics, Comparison comparison) {
 		this.analytics = analytics;
 		this.comparison = comparison;
 	}
@@ -44,28 +44,48 @@ class AnalyticsController {
 		return DataResponse.of(analytics.suppliers(from, to, productTypeId));
 	}
 
+	/** Karsilastirilabilen gruplar (alim kanali yalnizca fiyat yetkisiyle). */
+	@GetMapping("/api/analytics/compare")
+	DataResponse<List<Comparison.Subject>> compareSubjects(Authentication authentication) {
+		return DataResponse.of(comparison.subjects(prices(authentication)));
+	}
+
+	/** Grubun karsilastirilabilen ozellikleri (fiyat yetkisi yoksa maliyet ve kanal yok). */
+	@GetMapping("/api/analytics/compare/{subject}/metrics")
+	DataResponse<List<CompareSubject.Metric>> compareMetrics(@PathVariable String subject,
+		Authentication authentication) {
+		return DataResponse.of(comparison.metrics(subject, prices(authentication)));
+	}
+
+	/** Secicideki kalemler: hareketli gruplarda donemdekiler, en buyukten. */
+	@GetMapping("/api/analytics/compare/{subject}/options")
+	DataResponse<List<CompareSubject.Item>> compareOptions(@PathVariable String subject,
+		@RequestParam(required = false) String from, @RequestParam(required = false) String to,
+		@RequestParam(name = "product_type_id", required = false) String productTypeId,
+		Authentication authentication) {
+		return DataResponse.of(comparison.options(subject, from, to, productTypeId, prices(authentication)));
+	}
+
 	/**
-	 * Tedarikci karsilastirma: {@code ?ids=1,2,3} (2-50), {@code ?metrics=} (verilmezse hepsi), donem ve istege
-	 * bagli urun tipi; {@code ?series=} tek ozelligin aylik degerleri. Maliyet ve kanal yalnizca fiyat yetkisiyle.
+	 * Karsilastirma: {@code ?ids=} (2-50), {@code ?metrics=} (verilmezse hepsi), donem (donem grubunda yok), istege
+	 * bagli {@code product_type_id}, {@code supplier_id}, {@code field_id}; {@code ?series=} tek ozelligin aylik
+	 * degerleri.
 	 */
-	@GetMapping("/api/analytics/suppliers/compare")
-	DataResponse<SupplierComparison.Comparison> compareSuppliers(@RequestParam(required = false) String ids,
+	@GetMapping("/api/analytics/compare/{subject}")
+	DataResponse<Comparison.Result> compare(@PathVariable String subject, @RequestParam(required = false) String ids,
 		@RequestParam(required = false) String metrics, @RequestParam(required = false) String from,
 		@RequestParam(required = false) String to,
 		@RequestParam(name = "product_type_id", required = false) String productTypeId,
+		@RequestParam(name = "supplier_id", required = false) String supplierId,
+		@RequestParam(name = "field_id", required = false) String fieldId,
 		@RequestParam(required = false) String series, Authentication authentication) {
-		return DataResponse.of(comparison.compare(ids, metrics, from, to, productTypeId, series, prices(authentication)));
-	}
-
-	/** Karsilastirilabilen ozellikler (kullanicinin yetkisine gore). */
-	@GetMapping("/api/analytics/suppliers/compare/metrics")
-	DataResponse<List<SupplierComparison.Metric>> compareMetrics(Authentication authentication) {
-		return DataResponse.of(SupplierComparison.visibleMetrics(prices(authentication)));
+		return DataResponse.of(comparison.compare(subject, new Comparison.Query(ids, metrics, from, to, productTypeId,
+			supplierId, fieldId, series), prices(authentication)));
 	}
 
 	private static boolean prices(Authentication authentication) {
 		return authentication != null && authentication.getAuthorities().stream()
-			.anyMatch(a -> SupplierComparison.PRICE_PERMISSION.equals(a.getAuthority()));
+			.anyMatch(a -> Comparison.PRICE_PERMISSION.equals(a.getAuthority()));
 	}
 
 	@GetMapping("/api/analytics/customers")

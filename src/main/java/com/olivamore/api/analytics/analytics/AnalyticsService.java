@@ -291,7 +291,7 @@ class AnalyticsService {
 			acidityCount == 0 ? null : round(aciditySum / acidityCount, 2));
 	}
 
-	private static OrderTotals orderTotals(List<ItemRow> items) {
+	static OrderTotals orderTotals(List<ItemRow> items) {
 		long bottles = 0;
 		double litres = 0;
 		for (ItemRow item : items) {
@@ -310,12 +310,12 @@ class AnalyticsService {
 		return products;
 	}
 
-	private static int orderCount(List<ItemRow> items) {
+	static int orderCount(List<ItemRow> items) {
 		return new LinkedHashSet<>(items.stream().map(ItemRow::orderId).toList()).size();
 	}
 
 	/** Firma adi doluysa o, degilse kisi adi. */
-	private static String displayName(String company, String name) {
+	static String displayName(String company, String name) {
 		return company != null && !company.isEmpty() && !"0".equals(company) ? company : name;
 	}
 
