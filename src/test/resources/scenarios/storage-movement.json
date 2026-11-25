@@ -864,7 +864,7 @@
         "quantity" : 600.5,
         "unit" : "KG",
         "note" : "Kismi",
-        "moved_at" : "2026-11-24T16:45:51Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "storage_unit" : {
           "id" : 17,
           "name" : "Pirina",
@@ -901,7 +901,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2211,
+            "id" : 4119,
             "material_id" : 1501,
             "production_product_attribute_definition_id" : 13,
             "value_boolean" : null,
@@ -920,10 +920,10 @@
               "sort_order" : 1,
               "description" : "Yağ oranı"
             },
-            "created_at" : "2026-11-24T16:45:51Z",
-            "updated_at" : "2026-11-24T16:45:51Z"
+            "created_at" : "2026-11-25T14:43:06Z",
+            "updated_at" : "2026-11-25T14:43:06Z"
           }, {
-            "id" : 2212,
+            "id" : 4120,
             "material_id" : 1501,
             "production_product_attribute_definition_id" : 14,
             "value_boolean" : null,
@@ -942,10 +942,10 @@
               "sort_order" : 2,
               "description" : "Nem oranı"
             },
-            "created_at" : "2026-11-24T16:45:51Z",
-            "updated_at" : "2026-11-24T16:45:51Z"
+            "created_at" : "2026-11-25T14:43:06Z",
+            "updated_at" : "2026-11-25T14:43:06Z"
           }, {
-            "id" : 2213,
+            "id" : 4121,
             "material_id" : 1501,
             "production_product_attribute_definition_id" : 15,
             "value_boolean" : null,
@@ -964,10 +964,10 @@
               "sort_order" : 3,
               "description" : "Yağ oranı / (100 - nem) x 100; IAS ölçümü"
             },
-            "created_at" : "2026-11-24T16:45:51Z",
-            "updated_at" : "2026-11-24T16:45:51Z"
+            "created_at" : "2026-11-25T14:43:06Z",
+            "updated_at" : "2026-11-25T14:43:06Z"
           }, {
-            "id" : 2214,
+            "id" : 4122,
             "material_id" : 1501,
             "production_product_attribute_definition_id" : 16,
             "value_boolean" : null,
@@ -986,16 +986,16 @@
               "sort_order" : 4,
               "description" : "IAS cihazındaki numune numarası"
             },
-            "created_at" : "2026-11-24T16:45:51Z",
-            "updated_at" : "2026-11-24T16:45:51Z"
+            "created_at" : "2026-11-25T14:43:06Z",
+            "updated_at" : "2026-11-25T14:43:06Z"
           } ],
-          "created_at" : "2026-11-24T16:45:51Z",
-          "updated_at" : "2026-11-24T16:45:51Z"
+          "created_at" : "2026-11-25T14:43:06Z",
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-24T16:45:51Z",
-        "updated_at" : "2026-11-24T16:45:51Z"
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z"
       }
     },
     "save" : [ "P1", "data.material.id" ]
@@ -1153,7 +1153,7 @@
         "quantity" : 100.0,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-24T16:45:51Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "storage_unit" : {
           "id" : 13,
           "name" : "Ayvalık Dolum Tankı",
@@ -1190,7 +1190,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 78,
+            "id" : 155,
             "material_id" : 59,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -1210,10 +1210,10 @@
               "description" : "Asitlik oranı"
             },
             "created_at" : "2025-11-11T06:58:00Z",
-            "updated_at" : "2026-11-24T16:45:51Z"
+            "updated_at" : "2026-11-25T14:43:06Z"
           } ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T16:45:51Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : {
           "id" : 3822,
@@ -1222,8 +1222,8 @@
           "status" : "waiting"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-24T16:45:51Z",
-        "updated_at" : "2026-11-24T16:45:51Z"
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z"
       }
     },
     "save" : [ "M13", "data.material.id" ]
@@ -2031,7 +2031,7 @@
         "quantity" : 54.96,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-24T04:17:48Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2064,12 +2064,12 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-24T04:17:48Z",
-        "updated_at" : "2026-11-24T04:17:48Z",
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z",
         "direction" : "out",
         "balance_after" : 3819.29,
         "source" : null,
@@ -2086,11 +2086,11 @@
         "counterparty_storage_unit_id" : 11,
         "source_type" : "INTERNAL_TRANSFER",
         "movement_type" : "TRANSFER_OUT",
-        "transfer_reference" : "TRF-20261124041748-000058",
+        "transfer_reference" : "TRF-20261125144306-000058",
         "quantity" : 9.39,
         "unit" : "KG",
         "note" : "Toplama",
-        "moved_at" : "2026-11-24T04:17:48Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2123,7 +2123,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2131,8 +2131,8 @@
           "name" : "Ayvalık Toplama Tankı",
           "code" : "TOPLAMA-AYV-01"
         },
-        "created_at" : "2026-11-24T04:17:48Z",
-        "updated_at" : "2026-11-24T04:17:48Z",
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z",
         "direction" : "out",
         "balance_after" : 3874.25,
         "source" : null,
@@ -2153,7 +2153,7 @@
         "quantity" : 36.64,
         "unit" : "KG",
         "note" : "Dolum",
-        "moved_at" : "2026-11-24T04:17:48Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2186,7 +2186,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : {
           "id" : 3822,
@@ -2195,8 +2195,8 @@
           "status" : "waiting"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-24T04:17:48Z",
-        "updated_at" : "2026-11-24T04:17:48Z",
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z",
         "direction" : "out",
         "balance_after" : 3883.64,
         "source" : null,
@@ -2217,7 +2217,7 @@
         "quantity" : 0.5,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-24T04:17:48Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2250,12 +2250,12 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-24T04:17:48Z",
-        "updated_at" : "2026-11-24T04:17:48Z",
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z",
         "direction" : "in",
         "balance_after" : 3920.28,
         "source" : {
@@ -2282,7 +2282,7 @@
         "quantity" : 100.0,
         "unit" : "KG",
         "note" : null,
-        "moved_at" : "2026-11-24T04:17:48Z",
+        "moved_at" : "2026-11-25T14:43:06Z",
         "material" : {
           "id" : 59,
           "production_batch_id" : null,
@@ -2315,7 +2315,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : {
           "id" : 3822,
@@ -2324,8 +2324,8 @@
           "status" : "waiting"
         },
         "counterparty_storage_unit" : null,
-        "created_at" : "2026-11-24T04:17:48Z",
-        "updated_at" : "2026-11-24T04:17:48Z",
+        "created_at" : "2026-11-25T14:43:06Z",
+        "updated_at" : "2026-11-25T14:43:06Z",
         "direction" : "in",
         "balance_after" : 3919.78,
         "source" : {
@@ -2385,7 +2385,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2454,7 +2454,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2518,7 +2518,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2582,7 +2582,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2646,7 +2646,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -2715,7 +2715,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2779,7 +2779,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2843,7 +2843,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2907,7 +2907,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -2971,7 +2971,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3035,7 +3035,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3099,7 +3099,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3168,7 +3168,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3232,7 +3232,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3296,7 +3296,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3360,7 +3360,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3424,7 +3424,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3493,7 +3493,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3557,7 +3557,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3621,7 +3621,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3685,7 +3685,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -3754,7 +3754,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3818,7 +3818,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3882,7 +3882,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -3946,7 +3946,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -4015,7 +4015,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4079,7 +4079,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4143,7 +4143,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4207,7 +4207,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -4276,7 +4276,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4340,7 +4340,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4404,7 +4404,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4468,7 +4468,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -4537,7 +4537,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4601,7 +4601,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4665,7 +4665,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -4740,7 +4740,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4804,7 +4804,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4868,7 +4868,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4932,7 +4932,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -4996,7 +4996,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5060,7 +5060,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5124,7 +5124,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5188,7 +5188,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5252,7 +5252,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5316,7 +5316,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5380,7 +5380,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5444,7 +5444,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5508,7 +5508,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5572,7 +5572,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5636,7 +5636,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5700,7 +5700,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5764,7 +5764,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5828,7 +5828,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5892,7 +5892,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -5956,7 +5956,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6020,7 +6020,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -6095,7 +6095,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6159,7 +6159,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6223,7 +6223,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6287,7 +6287,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6351,7 +6351,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6415,7 +6415,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6479,7 +6479,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6543,7 +6543,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6607,7 +6607,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6671,7 +6671,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6735,7 +6735,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6799,7 +6799,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6863,7 +6863,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6927,7 +6927,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -6991,7 +6991,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7055,7 +7055,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7119,7 +7119,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -7194,7 +7194,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7258,7 +7258,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7322,7 +7322,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7386,7 +7386,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7450,7 +7450,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7514,7 +7514,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7578,7 +7578,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7642,7 +7642,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7706,7 +7706,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7770,7 +7770,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7834,7 +7834,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7898,7 +7898,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -7962,7 +7962,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -8037,7 +8037,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8101,7 +8101,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8165,7 +8165,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8229,7 +8229,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8293,7 +8293,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8357,7 +8357,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8421,7 +8421,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8485,7 +8485,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8549,7 +8549,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8613,7 +8613,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8677,7 +8677,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8741,7 +8741,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -8816,7 +8816,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8880,7 +8880,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -8944,7 +8944,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9008,7 +9008,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9072,7 +9072,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9136,7 +9136,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9200,7 +9200,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9264,7 +9264,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9328,7 +9328,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9392,7 +9392,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9456,7 +9456,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9520,7 +9520,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9584,7 +9584,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9648,7 +9648,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9712,7 +9712,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9776,7 +9776,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -9851,7 +9851,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9915,7 +9915,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -9979,7 +9979,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10043,7 +10043,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10107,7 +10107,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10171,7 +10171,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10235,7 +10235,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10299,7 +10299,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10363,7 +10363,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10427,7 +10427,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10491,7 +10491,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10555,7 +10555,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -10630,7 +10630,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10694,7 +10694,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10758,7 +10758,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10822,7 +10822,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10886,7 +10886,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -10950,7 +10950,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11025,7 +11025,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11089,7 +11089,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11153,7 +11153,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11217,7 +11217,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11281,7 +11281,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11345,7 +11345,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11420,7 +11420,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11484,7 +11484,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11548,7 +11548,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11612,7 +11612,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11676,7 +11676,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11740,7 +11740,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11804,7 +11804,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -11879,7 +11879,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -11943,7 +11943,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12007,7 +12007,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12071,7 +12071,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -12146,7 +12146,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12210,7 +12210,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12274,7 +12274,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12338,7 +12338,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -12413,7 +12413,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12477,7 +12477,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12541,7 +12541,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12605,7 +12605,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12669,7 +12669,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12733,7 +12733,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12797,7 +12797,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -12861,7 +12861,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -12936,7 +12936,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13000,7 +13000,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13064,7 +13064,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13128,7 +13128,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -13203,7 +13203,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13267,7 +13267,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13331,7 +13331,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -13406,7 +13406,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13470,7 +13470,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13534,7 +13534,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13598,7 +13598,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13662,7 +13662,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13726,7 +13726,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -13801,7 +13801,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13865,7 +13865,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13929,7 +13929,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -13993,7 +13993,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14057,7 +14057,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -14132,7 +14132,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14196,7 +14196,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14260,7 +14260,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14324,7 +14324,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14388,7 +14388,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -14463,7 +14463,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14527,7 +14527,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14591,7 +14591,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14655,7 +14655,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14719,7 +14719,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -14794,7 +14794,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14858,7 +14858,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14922,7 +14922,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : null,
@@ -14986,7 +14986,7 @@
           },
           "attribute_values" : [ ],
           "created_at" : "2025-11-11T06:58:00Z",
-          "updated_at" : "2026-11-24T04:17:48Z"
+          "updated_at" : "2026-11-25T14:43:06Z"
         },
         "batch_process" : null,
         "counterparty_storage_unit" : {
@@ -15013,6 +15013,42 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.4032
+        }, {
+          "definition_id" : 17,
+          "attribute_key" : "peroxide",
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 11.4355
+        }, {
+          "definition_id" : 18,
+          "attribute_key" : "k232",
+          "label" : "K232",
+          "unit" : null,
+          "value" : 2.0331
+        }, {
+          "definition_id" : 19,
+          "attribute_key" : "k270",
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.1476
+        }, {
+          "definition_id" : 20,
+          "attribute_key" : "delta_k",
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.0047
+        }, {
+          "definition_id" : 22,
+          "attribute_key" : "defect_median",
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0
+        }, {
+          "definition_id" : 23,
+          "attribute_key" : "fruity_median",
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 3.646
         } ]
       } ],
       "page" : {
@@ -15076,7 +15112,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2182,
+            "id" : 4069,
             "material_id" : 1481,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15094,6 +15130,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4070,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 7.01,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4071,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.7,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4072,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.14,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4073,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.002,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4074,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4075,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.31,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4076,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-05T10:08:00Z",
             "updated_at" : "2026-11-05T10:08:00Z"
@@ -15127,6 +15317,42 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.32
+        }, {
+          "definition_id" : 17,
+          "attribute_key" : "peroxide",
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 7.01
+        }, {
+          "definition_id" : 18,
+          "attribute_key" : "k232",
+          "label" : "K232",
+          "unit" : null,
+          "value" : 1.7
+        }, {
+          "definition_id" : 19,
+          "attribute_key" : "k270",
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.14
+        }, {
+          "definition_id" : 20,
+          "attribute_key" : "delta_k",
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.002
+        }, {
+          "definition_id" : 22,
+          "attribute_key" : "defect_median",
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0
+        }, {
+          "definition_id" : 23,
+          "attribute_key" : "fruity_median",
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 2.31
         } ]
       }, {
         "id" : 1780,
@@ -15174,7 +15400,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2171,
+            "id" : 4057,
             "material_id" : 1477,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15192,6 +15418,28 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-04T15:32:00Z",
+            "updated_at" : "2026-11-04T15:32:00Z"
+          }, {
+            "id" : 4058,
+            "material_id" : 1477,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-04T15:32:00Z",
             "updated_at" : "2026-11-04T15:32:00Z"
@@ -15272,7 +15520,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2158,
+            "id" : 4023,
             "material_id" : 1462,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15290,6 +15538,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4024,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 10.93,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4025,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.73,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4026,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.21,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4027,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.005,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4028,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4029,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 3.58,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4030,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-03T10:47:00Z",
             "updated_at" : "2026-11-03T10:47:00Z"
@@ -15362,7 +15764,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2147,
+            "id" : 4011,
             "material_id" : 1457,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15380,6 +15782,28 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-02T10:56:00Z",
+            "updated_at" : "2026-11-02T10:56:00Z"
+          }, {
+            "id" : 4012,
+            "material_id" : 1457,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-02T10:56:00Z",
             "updated_at" : "2026-11-02T10:56:00Z"
@@ -15452,7 +15876,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2140,
+            "id" : 3997,
             "material_id" : 1453,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15470,6 +15894,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 3998,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 7.82,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 3999,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.3,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4000,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4001,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.006,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4002,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4003,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 4.09,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4004,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-01T10:26:00Z",
             "updated_at" : "2026-11-01T10:26:00Z"
@@ -15542,7 +16120,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2158,
+            "id" : 4023,
             "material_id" : 1462,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15560,6 +16138,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4024,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 10.93,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4025,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.73,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4026,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.21,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4027,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.005,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4028,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4029,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 3.58,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4030,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-03T10:47:00Z",
             "updated_at" : "2026-11-03T10:47:00Z"
@@ -15593,6 +16325,42 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.33
+        }, {
+          "definition_id" : 17,
+          "attribute_key" : "peroxide",
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 10.93
+        }, {
+          "definition_id" : 18,
+          "attribute_key" : "k232",
+          "label" : "K232",
+          "unit" : null,
+          "value" : 1.73
+        }, {
+          "definition_id" : 19,
+          "attribute_key" : "k270",
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.21
+        }, {
+          "definition_id" : 20,
+          "attribute_key" : "delta_k",
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.005
+        }, {
+          "definition_id" : 22,
+          "attribute_key" : "defect_median",
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0
+        }, {
+          "definition_id" : 23,
+          "attribute_key" : "fruity_median",
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 3.58
         } ]
       }, {
         "id" : 1760,
@@ -15640,7 +16408,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2147,
+            "id" : 4011,
             "material_id" : 1457,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15658,6 +16426,28 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-02T10:56:00Z",
+            "updated_at" : "2026-11-02T10:56:00Z"
+          }, {
+            "id" : 4012,
+            "material_id" : 1457,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-02T10:56:00Z",
             "updated_at" : "2026-11-02T10:56:00Z"
@@ -15738,7 +16528,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2140,
+            "id" : 3997,
             "material_id" : 1453,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15756,6 +16546,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 3998,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 7.82,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 3999,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.3,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4000,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4001,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.006,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4002,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4003,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 4.09,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4004,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-01T10:26:00Z",
             "updated_at" : "2026-11-01T10:26:00Z"
@@ -15789,6 +16733,42 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.32
+        }, {
+          "definition_id" : 17,
+          "attribute_key" : "peroxide",
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 7.82
+        }, {
+          "definition_id" : 18,
+          "attribute_key" : "k232",
+          "label" : "K232",
+          "unit" : null,
+          "value" : 2.3
+        }, {
+          "definition_id" : 19,
+          "attribute_key" : "k270",
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.18
+        }, {
+          "definition_id" : 20,
+          "attribute_key" : "delta_k",
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.006
+        }, {
+          "definition_id" : 22,
+          "attribute_key" : "defect_median",
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0
+        }, {
+          "definition_id" : 23,
+          "attribute_key" : "fruity_median",
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 4.09
         } ]
       } ],
       "page" : {
@@ -15868,7 +16848,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2147,
+            "id" : 4011,
             "material_id" : 1457,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15886,6 +16866,28 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-02T10:56:00Z",
+            "updated_at" : "2026-11-02T10:56:00Z"
+          }, {
+            "id" : 4012,
+            "material_id" : 1457,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-02T10:56:00Z",
             "updated_at" : "2026-11-02T10:56:00Z"
@@ -15958,7 +16960,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2140,
+            "id" : 3997,
             "material_id" : 1453,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -15976,6 +16978,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 3998,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 7.82,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 3999,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.3,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4000,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.18,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4001,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.006,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4002,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4003,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 4.09,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-01T10:26:00Z",
+            "updated_at" : "2026-11-01T10:26:00Z"
+          }, {
+            "id" : 4004,
+            "material_id" : 1453,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-01T10:26:00Z",
             "updated_at" : "2026-11-01T10:26:00Z"
@@ -16048,7 +17204,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 2158,
+            "id" : 4023,
             "material_id" : 1462,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -16066,6 +17222,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4024,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 10.93,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4025,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.73,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4026,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.21,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4027,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.005,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4028,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4029,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 3.58,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-03T10:47:00Z",
+            "updated_at" : "2026-11-03T10:47:00Z"
+          }, {
+            "id" : 4030,
+            "material_id" : 1462,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-03T10:47:00Z",
             "updated_at" : "2026-11-03T10:47:00Z"
@@ -16099,6 +17409,42 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.33
+        }, {
+          "definition_id" : 17,
+          "attribute_key" : "peroxide",
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 10.93
+        }, {
+          "definition_id" : 18,
+          "attribute_key" : "k232",
+          "label" : "K232",
+          "unit" : null,
+          "value" : 1.73
+        }, {
+          "definition_id" : 19,
+          "attribute_key" : "k270",
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.21
+        }, {
+          "definition_id" : 20,
+          "attribute_key" : "delta_k",
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.005
+        }, {
+          "definition_id" : 22,
+          "attribute_key" : "defect_median",
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0
+        }, {
+          "definition_id" : 23,
+          "attribute_key" : "fruity_median",
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 3.58
         } ]
       } ],
       "page" : {
@@ -16171,6 +17517,10 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.32
+        }, {
+          "label" : "Yağ Sınıfı",
+          "unit" : null,
+          "value" : "extra_virgin"
         } ],
         "movements" : [ {
           "id" : 1780,

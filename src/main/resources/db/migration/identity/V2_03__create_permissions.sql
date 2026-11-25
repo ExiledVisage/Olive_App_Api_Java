@@ -84,4 +84,7 @@ insert into permissions (id, name) values
 	(55, 'storage_unit.measure'),
 	(56, 'machine.view'),
 	(57, 'machine.manage'),
-	(58, 'production_batch.price');
+	(58, 'production_batch.price'),
+	(59, 'quality.view'),
+	(60, 'quality.manage'),
+	(61, 'filling_check.record');

@@ -21,14 +21,16 @@ import static com.olivamore.api.analytics.analytics.AnalyticsService.round;
 
 /**
  * Uretim gruplarinin ortak verisi: araliktaki partiler (analizdeki {@link AnalyticsQueries#batches} ile, gruplara
- * bolunmus teslimat yerine gruplari), teslimatlar ve IAS degerleri. Degerler {@link #values}: hacim ve verim
+ * bolunmus teslimat yerine gruplari), teslimatlar, IAS ve laboratuvar degerleri. Degerler {@link #values}: hacim ve verim
  * {@link AnalyticsService#totals} ile (tedarikci listesiyle ayni), IAS parti kilosuyla agirlikli, alim kg ile
  * agirlikli.
  *
  * @param deliveryOf parti -> teslimati
  */
 record ProductionData(List<BatchRow> rows, List<Delivery> deliveries, Map<Long, Delivery> deliveryOf,
-	Map<Long, Map<String, Double>> ias) {
+	Map<Long, Map<String, Double>> ias, Map<Long, String> oilClasses) {
+
+	private static final String EXTRA_VIRGIN = "extra_virgin";
 
 	static ProductionData load(AnalyticsQueries analytics, CompareQueries queries, Range range, Long productTypeId,
 		Long supplierId, Long fieldId) {
@@ -50,7 +52,7 @@ record ProductionData(List<BatchRow> rows, List<Delivery> deliveries, Map<Long, 
 			ias.computeIfAbsent(value.batchId(), k -> new HashMap<>())
 				.put(value.productKey() + "." + value.attributeKey(), value.valueDecimal().doubleValue());
 		}
-		return new ProductionData(rows, deliveries, deliveryOf, ias);
+		return new ProductionData(rows, deliveries, deliveryOf, ias, queries.oilClasses(batchIds));
 	}
 
 	/** Kosula uyan partiler ve teslimatlarin degerleri. */
@@ -83,6 +85,9 @@ record ProductionData(List<BatchRow> rows, List<Delivery> deliveries, Map<Long, 
 		v.put("olive_kpy", weighted(rows, "olive.kpy", BatchRow::incoming));
 		v.put("industrial_yield", weighted(rows, "olive.industrial_yield", BatchRow::incoming));
 		v.put("pomace_kpy", weighted(rows, "pomace.kpy", BatchRow::pomace));
+		v.put("avg_peroxide", weighted(rows, "olive_oil.peroxide", BatchRow::oil));
+		v.put("avg_k232", weighted(rows, "olive_oil.k232", BatchRow::oil));
+		v.put("extra_virgin_pct", extraVirgin(rows));
 		purchase(v, deliveries);
 		v.put("last_delivery_at", deliveries.stream().map(Delivery::receivedAt).filter(Objects::nonNull)
 			.max(Comparator.naturalOrder()).orElse(null));
@@ -117,6 +122,24 @@ record ProductionData(List<BatchRow> rows, List<Delivery> deliveries, Map<Long, 
 		v.put("main_channel", deliveries.stream().map(Delivery::supplyChannel).filter(Objects::nonNull)
 			.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
 			.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(null));
+	}
+
+	/** Sinifi belli partilerin yag kilosunda sizmanin payi (kilo yoksa 1). */
+	private Double extraVirgin(List<BatchRow> rows) {
+		double all = 0;
+		double extra = 0;
+		for (BatchRow row : rows) {
+			String grade = oilClasses.get(row.batchId());
+			if (grade == null) {
+				continue;
+			}
+			double w = row.oil() == null || row.oil() <= 0 ? 1 : row.oil();
+			all += w;
+			if (EXTRA_VIRGIN.equals(grade)) {
+				extra += w;
+			}
+		}
+		return all > 0 ? round(extra / all * 100, 1) : null;
 	}
 
 	/** Partilerin IAS degeri, partinin kilosuyla agirlikli (kilo yoksa 1). */

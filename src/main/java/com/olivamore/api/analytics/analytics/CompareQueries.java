@@ -122,8 +122,8 @@ class CompareQueries {
 	}
 
 	/**
-	 * Partilerin IAS degerleri (zeytin ve pirina: yag orani, KPY, endustriyel randiman); partinin o urundeki en son
-	 * materyalinden.
+	 * Partilerin IAS degerleri (zeytin ve pirina: yag orani, KPY, endustriyel randiman) ve laboratuvar degerleri
+	 * (zeytinyagi: peroksit, K232); partinin o urundeki en son materyalinden.
 	 */
 	List<IasValue> iasValues(List<Long> batchIds) {
 		if (batchIds.isEmpty()) {
@@ -138,10 +138,33 @@ class CompareQueries {
 			join material_attribute_values v on v.material_id = m.id
 			join production_product_attribute_definitions d on d.id = v.production_product_attribute_definition_id
 			join attribute_definitions a on a.id = d.attribute_definition_id
-			where m.production_batch_id in (:ids) and p.key in ('olive', 'pomace')
-				and a.attribute_key in ('oil_ratio', 'kpy', 'industrial_yield') and v.value_decimal is not null
+			where m.production_batch_id in (:ids) and p.key in ('olive', 'pomace', 'olive_oil')
+				and a.attribute_key in ('oil_ratio', 'kpy', 'industrial_yield', 'peroxide', 'k232')
+				and v.value_decimal is not null
 			order by m.production_batch_id, p.key, a.attribute_key, m.id desc
 			""").param("ids", batchIds).query(IasValue.class).list();
+	}
+
+	/** Parti -> zeytinyaginin sinifi (docs/QUALITY.md 1), partinin en son zeytinyagi materyalinden. */
+	Map<Long, String> oilClasses(List<Long> batchIds) {
+		Map<Long, String> out = new HashMap<>();
+		if (batchIds.isEmpty()) {
+			return out;
+		}
+		jdbc.sql("""
+			select distinct on (m.production_batch_id) m.production_batch_id, v.value_text
+			from materials m
+			join production_product_types t on t.id = m.production_product_type_id
+			join production_products p on p.id = t.production_product_id
+			join material_attribute_values v on v.material_id = m.id
+			join production_product_attribute_definitions d on d.id = v.production_product_attribute_definition_id
+			join attribute_definitions a on a.id = d.attribute_definition_id
+			where m.production_batch_id in (:ids) and p.key = 'olive_oil' and a.attribute_key = 'oil_class'
+				and coalesce(v.value_text, '') <> ''
+			order by m.production_batch_id, m.id desc
+			""").param("ids", batchIds).query((rs, n) -> Map.entry(rs.getLong(1), rs.getString(2))).list()
+			.forEach(e -> out.put(e.getKey(), e.getValue()));
+		return out;
 	}
 
 	List<Movement> movements(Range range, List<Long> tankIds) {

@@ -445,12 +445,12 @@
     "status" : 200,
     "response" : {
       "data" : {
-        "id" : 17,
+        "id" : 25,
         "production_product_id" : 5,
         "is_required" : true,
         "sort_order" : 5,
         "definition" : {
-          "id" : 10,
+          "id" : 18,
           "attribute_key" : "test_attr",
           "label" : "Test",
           "data_type" : "decimal",
@@ -461,8 +461,8 @@
         "label" : "Test",
         "data_type" : "decimal",
         "unit" : "%",
-        "created_at" : "2026-11-24T16:46:03Z",
-        "updated_at" : "2026-11-24T16:46:03Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : [ "M", "data.id" ]
@@ -478,7 +478,7 @@
     "status" : 200,
     "response" : {
       "data" : {
-        "id" : 18,
+        "id" : 26,
         "production_product_id" : 5,
         "is_required" : false,
         "sort_order" : 0,
@@ -494,8 +494,8 @@
         "label" : "Asitlik",
         "data_type" : "decimal",
         "unit" : "%",
-        "created_at" : "2026-11-24T16:46:03Z",
-        "updated_at" : "2026-11-24T16:46:03Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : [ "M2", "data.id" ]
@@ -511,12 +511,12 @@
     "status" : 200,
     "response" : {
       "data" : {
-        "id" : 17,
+        "id" : 25,
         "production_product_id" : 5,
         "is_required" : false,
         "sort_order" : 5,
         "definition" : {
-          "id" : 10,
+          "id" : 18,
           "attribute_key" : "test_attr",
           "label" : "Yeni Etiket",
           "data_type" : "decimal",
@@ -527,8 +527,8 @@
         "label" : "Yeni Etiket",
         "data_type" : "decimal",
         "unit" : "%",
-        "created_at" : "2026-11-24T16:46:03Z",
-        "updated_at" : "2026-11-24T16:46:04Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : null
@@ -542,12 +542,12 @@
     "status" : 200,
     "response" : {
       "data" : {
-        "id" : 17,
+        "id" : 25,
         "production_product_id" : 5,
         "is_required" : false,
         "sort_order" : 5,
         "definition" : {
-          "id" : 10,
+          "id" : 18,
           "attribute_key" : "test_attr",
           "label" : "Yeni Etiket",
           "data_type" : "decimal",
@@ -558,8 +558,8 @@
         "label" : "Yeni Etiket",
         "data_type" : "decimal",
         "unit" : "%",
-        "created_at" : "2026-11-24T16:46:03Z",
-        "updated_at" : "2026-11-24T16:46:04Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : null
@@ -584,7 +584,7 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 18,
+        "id" : 26,
         "production_product_id" : 5,
         "is_required" : false,
         "sort_order" : 0,
@@ -600,15 +600,15 @@
         "label" : "Asitlik",
         "data_type" : "decimal",
         "unit" : "%",
-        "created_at" : "2026-11-24T16:46:03Z",
-        "updated_at" : "2026-11-24T16:46:03Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }, {
-        "id" : 17,
+        "id" : 25,
         "production_product_id" : 5,
         "is_required" : false,
         "sort_order" : 5,
         "definition" : {
-          "id" : 10,
+          "id" : 18,
           "attribute_key" : "test_attr",
           "label" : "Yeni Etiket",
           "data_type" : "decimal",
@@ -619,8 +619,8 @@
         "label" : "Yeni Etiket",
         "data_type" : "decimal",
         "unit" : "%",
-        "created_at" : "2026-11-24T16:46:03Z",
-        "updated_at" : "2026-11-24T16:46:04Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       } ]
     },
     "save" : null
@@ -787,7 +787,7 @@
     "status" : 201,
     "response" : {
       "data" : {
-        "id" : 8,
+        "id" : 9,
         "process_type_id" : 13,
         "field_key" : "f1",
         "label" : "F1",
@@ -800,8 +800,8 @@
           "a" : [ 1, 2 ]
         },
         "default_value" : "x",
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : [ "F", "data.id" ]
@@ -818,7 +818,7 @@
     "status" : 201,
     "response" : {
       "data" : {
-        "id" : 9,
+        "id" : 10,
         "process_type_id" : 13,
         "field_key" : "f2",
         "label" : "F2",
@@ -829,8 +829,8 @@
         "is_active" : true,
         "options" : null,
         "default_value" : null,
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : [ "F2", "data.id" ]
@@ -866,7 +866,7 @@
     "status" : 201,
     "response" : {
       "data" : {
-        "id" : 10,
+        "id" : 11,
         "process_type_id" : 1,
         "field_key" : "f1",
         "label" : "X",
@@ -877,8 +877,8 @@
         "is_active" : true,
         "options" : null,
         "default_value" : null,
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : [ "F3", "data.id" ]
@@ -927,7 +927,7 @@
     "status" : 200,
     "response" : {
       "data" : {
-        "id" : 8,
+        "id" : 9,
         "process_type_id" : 13,
         "field_key" : "f1",
         "label" : "F1b",
@@ -938,8 +938,8 @@
         "is_active" : true,
         "options" : null,
         "default_value" : "x",
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : null
@@ -951,7 +951,7 @@
     "status" : 200,
     "response" : {
       "data" : [ {
-        "id" : 9,
+        "id" : 10,
         "process_type_id" : 13,
         "field_key" : "f2",
         "label" : "F2",
@@ -962,10 +962,10 @@
         "is_active" : true,
         "options" : null,
         "default_value" : null,
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }, {
-        "id" : 8,
+        "id" : 9,
         "process_type_id" : 13,
         "field_key" : "f1",
         "label" : "F1b",
@@ -976,8 +976,8 @@
         "is_active" : true,
         "options" : null,
         "default_value" : "x",
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       } ]
     },
     "save" : null
@@ -995,7 +995,7 @@
         "category" : "quality",
         "is_active" : true,
         "fields" : [ {
-          "id" : 9,
+          "id" : 10,
           "process_type_id" : 13,
           "field_key" : "f2",
           "label" : "F2",
@@ -1006,10 +1006,10 @@
           "is_active" : true,
           "options" : null,
           "default_value" : null,
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         }, {
-          "id" : 8,
+          "id" : 9,
           "process_type_id" : 13,
           "field_key" : "f1",
           "label" : "F1b",
@@ -1020,11 +1020,11 @@
           "is_active" : true,
           "options" : null,
           "default_value" : "x",
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         } ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : null
@@ -1349,7 +1349,7 @@
           "category" : "quality",
           "is_active" : true,
           "fields" : [ {
-            "id" : 8,
+            "id" : 9,
             "process_type_id" : 13,
             "field_key" : "f1",
             "label" : "F1b",
@@ -1360,15 +1360,15 @@
             "is_active" : true,
             "options" : null,
             "default_value" : "x",
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:29Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           } ],
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         },
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : [ "SB", "data.id" ]
@@ -1424,7 +1424,7 @@
           "category" : "quality",
           "is_active" : true,
           "fields" : [ {
-            "id" : 8,
+            "id" : 9,
             "process_type_id" : 13,
             "field_key" : "f1",
             "label" : "F1b",
@@ -1435,15 +1435,15 @@
             "is_active" : true,
             "options" : null,
             "default_value" : "x",
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:29Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           } ],
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         },
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:30Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : null
@@ -1500,8 +1500,8 @@
         "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }, {
         "id" : 39,
         "production_line_id" : 4,
@@ -1513,8 +1513,8 @@
         "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:29Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }, {
         "id" : 38,
         "production_line_id" : 4,
@@ -1531,7 +1531,7 @@
           "category" : "quality",
           "is_active" : true,
           "fields" : [ {
-            "id" : 8,
+            "id" : 9,
             "process_type_id" : 13,
             "field_key" : "f1",
             "label" : "F1b",
@@ -1542,15 +1542,15 @@
             "is_active" : true,
             "options" : null,
             "default_value" : "x",
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:29Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           } ],
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         },
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:30Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       } ]
     },
     "save" : null
@@ -1582,8 +1582,8 @@
         "uses_machine" : false,
         "process_type" : null,
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:30Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }, {
         "id" : 38,
         "production_line_id" : 4,
@@ -1600,7 +1600,7 @@
           "category" : "quality",
           "is_active" : true,
           "fields" : [ {
-            "id" : 8,
+            "id" : 9,
             "process_type_id" : 13,
             "field_key" : "f1",
             "label" : "F1b",
@@ -1611,15 +1611,15 @@
             "is_active" : true,
             "options" : null,
             "default_value" : "x",
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:29Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           } ],
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         },
         "extensions" : [ ],
-        "created_at" : "2026-11-23T17:59:29Z",
-        "updated_at" : "2026-11-23T17:59:30Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       } ]
     },
     "save" : null
@@ -1991,8 +1991,8 @@
               }
             } ]
           } ],
-          "created_at" : "2026-11-23T22:39:43Z",
-          "updated_at" : "2026-11-23T22:39:43Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         }, {
           "id" : 38,
           "production_line_id" : 4,
@@ -2009,7 +2009,7 @@
             "category" : "quality",
             "is_active" : true,
             "fields" : [ {
-              "id" : 8,
+              "id" : 9,
               "process_type_id" : 13,
               "field_key" : "f1",
               "label" : "F1b",
@@ -2020,18 +2020,18 @@
               "is_active" : true,
               "options" : null,
               "default_value" : "x",
-              "created_at" : "2026-11-23T22:39:43Z",
-              "updated_at" : "2026-11-23T22:39:43Z"
+              "created_at" : "2026-11-25T14:43:24Z",
+              "updated_at" : "2026-11-25T14:43:24Z"
             } ],
-            "created_at" : "2026-11-23T22:39:43Z",
-            "updated_at" : "2026-11-23T22:39:43Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           },
           "extensions" : [ ],
-          "created_at" : "2026-11-23T22:39:43Z",
-          "updated_at" : "2026-11-23T22:39:43Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         } ],
-        "created_at" : "2026-11-23T22:39:43Z",
-        "updated_at" : "2026-11-23T22:39:43Z"
+        "created_at" : "2026-11-25T14:43:24Z",
+        "updated_at" : "2026-11-25T14:43:24Z"
       }
     },
     "save" : null
@@ -2059,8 +2059,8 @@
             "name" : "Test Kategori 2",
             "description" : "Deneme"
           },
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         },
         "input_production_lines" : [ {
           "id" : 4,
@@ -2120,8 +2120,8 @@
             "requires_approval" : true,
             "uses_machine" : false,
             "process_type" : null,
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:30Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           }, {
             "id" : 38,
             "production_line_id" : 4,
@@ -2138,7 +2138,7 @@
               "category" : "quality",
               "is_active" : true,
               "fields" : [ {
-                "id" : 8,
+                "id" : 9,
                 "process_type_id" : 13,
                 "field_key" : "f1",
                 "label" : "F1b",
@@ -2149,17 +2149,17 @@
                 "is_active" : true,
                 "options" : null,
                 "default_value" : "x",
-                "created_at" : "2026-11-23T17:59:29Z",
-                "updated_at" : "2026-11-23T17:59:29Z"
+                "created_at" : "2026-11-25T14:43:24Z",
+                "updated_at" : "2026-11-25T14:43:24Z"
               } ],
-              "created_at" : "2026-11-23T17:59:29Z",
-              "updated_at" : "2026-11-23T17:59:29Z"
+              "created_at" : "2026-11-25T14:43:24Z",
+              "updated_at" : "2026-11-25T14:43:24Z"
             },
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:30Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           } ],
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         } ],
         "output_production_lines" : [ ],
         "production_lines" : [ {
@@ -2220,8 +2220,8 @@
             "requires_approval" : true,
             "uses_machine" : false,
             "process_type" : null,
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:30Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           }, {
             "id" : 38,
             "production_line_id" : 4,
@@ -2238,7 +2238,7 @@
               "category" : "quality",
               "is_active" : true,
               "fields" : [ {
-                "id" : 8,
+                "id" : 9,
                 "process_type_id" : 13,
                 "field_key" : "f1",
                 "label" : "F1b",
@@ -2249,17 +2249,17 @@
                 "is_active" : true,
                 "options" : null,
                 "default_value" : "x",
-                "created_at" : "2026-11-23T17:59:29Z",
-                "updated_at" : "2026-11-23T17:59:29Z"
+                "created_at" : "2026-11-25T14:43:24Z",
+                "updated_at" : "2026-11-25T14:43:24Z"
               } ],
-              "created_at" : "2026-11-23T17:59:29Z",
-              "updated_at" : "2026-11-23T17:59:29Z"
+              "created_at" : "2026-11-25T14:43:24Z",
+              "updated_at" : "2026-11-25T14:43:24Z"
             },
-            "created_at" : "2026-11-23T17:59:29Z",
-            "updated_at" : "2026-11-23T17:59:30Z"
+            "created_at" : "2026-11-25T14:43:24Z",
+            "updated_at" : "2026-11-25T14:43:24Z"
           } ],
-          "created_at" : "2026-11-23T17:59:29Z",
-          "updated_at" : "2026-11-23T17:59:29Z"
+          "created_at" : "2026-11-25T14:43:24Z",
+          "updated_at" : "2026-11-25T14:43:24Z"
         } ]
       }
     },

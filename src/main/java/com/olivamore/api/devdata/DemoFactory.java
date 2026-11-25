@@ -285,9 +285,9 @@ final class DemoFactory {
 			return false;
 		}
 		fields(operator, batch, stages.get(5), Map.of(ids.field("numune_no"),
-			"LAB-" + batch.day.format(CODE_DATE) + "-" + "%02d".formatted(batch.sequence)));
-		complete(operator, batch, stages.get(5), body("attributes",
-			List.of(body("attribute_key", "acidity", "value", acidity))));
+			"LAB-" + batch.day.format(CODE_DATE) + "-" + "%02d".formatted(batch.sequence), ids.field("laboratuvar"),
+			"Fabrika laboratuvarı"));
+		complete(operator, batch, stages.get(5), body("attributes", laboratory(batch, acidity)));
 
 		if (!later(10, 30)) {
 			return false;
@@ -657,15 +657,49 @@ final class DemoFactory {
 			return true;
 		}
 		api.patch(WAREHOUSE, "/api/finished-product-runs/" + run + "/status", body("status", "in_progress"));
+		Random checks = new Random(run * 7727L);
+		fillingCheck(run, checks, true);
 		if (last && index == 1 || !later(60, 180)) {
 			return true;
 		}
+		fillingCheck(run, checks, false);
 		api.patch(WAREHOUSE, "/api/finished-product-runs/" + run + "/status", body("status", "completed"));
 		scrapAtRun(run, product);
 		if (later(10, 30)) {
 			stockIn(run, product, bottles);
 		}
 		return true;
+	}
+
+	/**
+	 * Dolum kontrolu (docs/QUALITY.md 2): basta hat hazirligi ve ilk kontrol, bitmeden ikinci kontrol; kosularin
+	 * onda birinde kontrol yok. Agirliklar hedefin cevresinde, arada tolerans disi. Kosuya bagli rastgele kaynak.
+	 */
+	private void fillingCheck(long run, Random own, boolean first) {
+		if (own.nextDouble() < 0.1) {
+			return;
+		}
+		String path = "/api/finished-product-runs/" + run;
+		JsonNode current = api.get(WAREHOUSE, path + "/filling-checks").get("data");
+		if (first) {
+			api.put(WAREHOUSE, path + "/filling-setup", body("conveyor_clean", true, "air_checked", true,
+				"previous_product_cleared", true));
+		}
+		else if (current.get("setup").isNull()) {
+			return;
+		}
+		JsonNode target = current.get("summary").get("target_g");
+		if (target == null || target.isNull()) {
+			return;
+		}
+		double base = target.asDouble() + (own.nextDouble() < 0.08 ? target.asDouble() * 0.03 : 0);
+		List<BigDecimal> weights = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			weights.add(round2(base + (own.nextDouble() - 0.5) * target.asDouble() * 0.01));
+		}
+		boolean label = own.nextDouble() >= 0.04;
+		api.post(WAREHOUSE, path + "/filling-checks", body("weights", weights, "seal_ok", true, "cap_ok", true,
+			"label_ok", label, "coding_ok", true, "note", label ? null : "Etiket kaymış, düzeltildi"));
 	}
 
 	/**
@@ -708,6 +742,29 @@ final class DemoFactory {
 			api.post(operator, path, body("kind", "pomace", "oil_ratio", round2(2.5 + own.nextDouble() * 2),
 				"moisture", round2(55 + own.nextDouble() * 13), "sample_no", sample + "-P"));
 		}
+	}
+
+	/**
+	 * Laboratuvar analizi (docs/QUALITY.md 1): asitligin yaninda cogu partide peroksit, K232, K270, Delta K ve tadim;
+	 * cogu sizma, bir kismi K232 ya da kusurla birinci. Sinif sunucuda hesaplanir. Ayri rastgele kaynak: ana akis
+	 * kaymaz.
+	 */
+	private static List<Map<String, Object>> laboratory(Batch batch, BigDecimal acidity) {
+		Random own = new Random(batch.id * 32452843L);
+		List<Map<String, Object>> values = new ArrayList<>(List.of(body("attribute_key", "acidity", "value",
+			acidity)));
+		if (own.nextDouble() < 0.15) {
+			return values;
+		}
+		double k232 = own.nextDouble() < 0.1 ? 2.51 + own.nextDouble() * 0.08 : 1.6 + own.nextDouble() * 0.85;
+		double defect = own.nextDouble() < 0.1 ? 0.5 + own.nextDouble() * 2 : 0;
+		values.add(body("attribute_key", "peroxide", "value", round2(4 + own.nextDouble() * 12)));
+		values.add(body("attribute_key", "k232", "value", round2(k232)));
+		values.add(body("attribute_key", "k270", "value", round2(0.1 + own.nextDouble() * 0.11)));
+		values.add(body("attribute_key", "delta_k", "value", BigDecimal.valueOf(own.nextInt(9), 3)));
+		values.add(body("attribute_key", "defect_median", "value", round2(defect).stripTrailingZeros()));
+		values.add(body("attribute_key", "fruity_median", "value", round2(2 + own.nextDouble() * 4)));
+		return values;
 	}
 
 	private static BigDecimal round2(double value) {

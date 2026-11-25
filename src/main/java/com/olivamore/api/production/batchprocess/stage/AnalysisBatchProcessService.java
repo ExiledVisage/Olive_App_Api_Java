@@ -2,6 +2,7 @@ package com.olivamore.api.production.batchprocess.stage;
 
 import com.olivamore.api.inventory.StockOperations;
 import com.olivamore.api.inventory.StockOperations.AttributeValue;
+import com.olivamore.api.product.OliveOilGrade;
 import com.olivamore.api.production.batchprocess.stage.StageQueries.AttributeDefinition;
 import com.olivamore.api.production.batchprocess.stage.StageQueries.Extension;
 import com.olivamore.api.production.batchprocess.stage.StageQueries.Material;
@@ -14,9 +15,14 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-/** Materyalin attribute degerleri (tanim icin satir varsa degisir, yoksa eklenir). */
+/**
+ * Materyalin attribute degerleri (tanim icin satir varsa degisir, yoksa eklenir). Zeytinyaginda yag sinifi elle
+ * verilmediyse guncel degerlerden hesaplanip yazilir (docs/QUALITY.md 1); bos sinif "hesapla" demektir.
+ */
 @Service
 class AnalysisBatchProcessService extends StageBatchProcessService {
+
+	private static final String OLIVE_OIL = "olive_oil";
 
 	private static final List<String> TYPED_VALUES = List.of("value_boolean", "value_integer", "value_decimal", "value_text",
 		"value_json");
@@ -33,9 +39,25 @@ class AnalysisBatchProcessService extends StageBatchProcessService {
 			throw new BusinessRuleException("Analysis işlemi için attributes zorunludur.");
 		}
 		long productId = queries.productType(material.productionProductTypeId()).orElseThrow().productionProductId();
+		Long classMapping = queries.definitionByKey(productId, OliveOilGrade.CLASS_KEY).map(AttributeDefinition::id)
+			.orElse(null);
+		boolean manualClass = false;
 		for (OperationData attribute : attributes) {
 			AttributeDefinition definition = definition(productId, attribute);
-			stock.recordAttribute(material.id(), definition.id(), value(definition, attribute));
+			AttributeValue value = value(definition, attribute);
+			if (definition.id().equals(classMapping)) {
+				if (value.valueText() == null || value.valueText().isBlank()) {
+					continue;
+				}
+				manualClass = true;
+			}
+			stock.recordAttribute(material.id(), definition.id(), value);
+		}
+		if (classMapping != null && !manualClass && OLIVE_OIL.equals(queries.productKey(productId).orElse(null))) {
+			OliveOilGrade.Grade grade = OliveOilGrade.of(queries.decimalAttributes(material.id())).grade();
+			if (grade != null) {
+				stock.recordAttribute(material.id(), classMapping, new AttributeValue(null, null, null, grade.key(), null));
+			}
 		}
 	}
 

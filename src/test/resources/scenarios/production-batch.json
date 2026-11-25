@@ -540,7 +540,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1161,
+            "id" : 1452,
             "batch_process_id" : 3792,
             "process_type_field_id" : 4,
             "value_text" : null,
@@ -562,7 +562,7 @@
               "is_active" : true
             }
           }, {
-            "id" : 1162,
+            "id" : 1453,
             "batch_process_id" : 3792,
             "process_type_field_id" : 5,
             "value_text" : null,
@@ -615,7 +615,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2193,
+              "id" : 4087,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -633,6 +633,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4088,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 6.73,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4089,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.05,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4090,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.11,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4091,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.001,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4092,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 1.45,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4093,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4094,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-05T15:41:00Z",
               "updated_at" : "2026-11-05T15:41:00Z"
@@ -670,7 +824,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2189,
+              "id" : 4083,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 13,
               "value_boolean" : null,
@@ -692,7 +846,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2190,
+              "id" : 4084,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 14,
               "value_boolean" : null,
@@ -714,7 +868,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2191,
+              "id" : 4085,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 15,
               "value_boolean" : null,
@@ -736,7 +890,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2192,
+              "id" : 4086,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 16,
               "value_boolean" : null,
@@ -792,7 +946,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2183,
+              "id" : 4077,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 3,
               "value_boolean" : null,
@@ -814,7 +968,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2184,
+              "id" : 4078,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 2,
               "value_boolean" : null,
@@ -836,7 +990,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2185,
+              "id" : 4079,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 10,
               "value_boolean" : null,
@@ -858,7 +1012,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2186,
+              "id" : 4080,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 9,
               "value_boolean" : null,
@@ -880,7 +1034,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2187,
+              "id" : 4081,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 11,
               "value_boolean" : null,
@@ -902,7 +1056,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2188,
+              "id" : 4082,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 12,
               "value_boolean" : null,
@@ -944,6 +1098,24 @@
             "attributes" : [ {
               "value" : 0.41,
               "attribute_key" : "acidity"
+            }, {
+              "value" : 6.73,
+              "attribute_key" : "peroxide"
+            }, {
+              "value" : 2.05,
+              "attribute_key" : "k232"
+            }, {
+              "value" : 0.11,
+              "attribute_key" : "k270"
+            }, {
+              "value" : 0.001,
+              "attribute_key" : "delta_k"
+            }, {
+              "value" : 1.45,
+              "attribute_key" : "defect_median"
+            }, {
+              "value" : 2.32,
+              "attribute_key" : "fruity_median"
             } ]
           },
           "requires_approval" : null,
@@ -957,14 +1129,14 @@
           "operator" : null,
           "production_stage" : {
             "id" : 32,
-            "name" : "Asitlik Analizi",
+            "name" : "Laboratuvar Analizi",
             "stage_order" : 6,
             "is_required" : true
           },
           "process_type" : {
             "id" : 8,
-            "name" : "Asitlik Analizi",
-            "description" : "Asitlik ve kalite değerlerinin belirlenmesi",
+            "name" : "Laboratuvar Analizi",
+            "description" : "Asitlik, peroksit, K232, K270, tadım ve yağ sınıfı",
             "category" : "quality"
           },
           "field_definitions" : [ {
@@ -976,6 +1148,20 @@
             "is_required" : false,
             "unit" : null,
             "sort_order" : 1,
+            "is_active" : true,
+            "options" : null,
+            "default_value" : null,
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          }, {
+            "id" : 8,
+            "process_type_id" : 8,
+            "field_key" : "laboratuvar",
+            "label" : "Laboratuvar",
+            "data_type" : "text",
+            "is_required" : false,
+            "unit" : null,
+            "sort_order" : 2,
             "is_active" : true,
             "options" : null,
             "default_value" : null,
@@ -1012,7 +1198,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1163,
+            "id" : 1454,
             "batch_process_id" : 3793,
             "process_type_field_id" : 6,
             "value_text" : "LAB-261105-02",
@@ -1031,6 +1217,28 @@
               "is_required" : false,
               "unit" : null,
               "sort_order" : 1,
+              "is_active" : true
+            }
+          }, {
+            "id" : 1455,
+            "batch_process_id" : 3793,
+            "process_type_field_id" : 8,
+            "value_text" : "Fabrika laboratuvarı",
+            "value_decimal" : null,
+            "value_integer" : null,
+            "value_boolean" : null,
+            "value_datetime" : null,
+            "value_json" : null,
+            "resolved_value" : "Fabrika laboratuvarı",
+            "process_type_field" : {
+              "id" : 8,
+              "process_type_id" : 8,
+              "field_key" : "laboratuvar",
+              "label" : "Laboratuvar",
+              "data_type" : "text",
+              "is_required" : false,
+              "unit" : null,
+              "sort_order" : 2,
               "is_active" : true
             }
           } ],
@@ -1183,7 +1391,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2193,
+              "id" : 4087,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -1201,6 +1409,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4088,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 6.73,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4089,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.05,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4090,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.11,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4091,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.001,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4092,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 1.45,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4093,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4094,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-05T15:41:00Z",
               "updated_at" : "2026-11-05T15:41:00Z"
@@ -1276,7 +1638,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1166,
+            "id" : 1458,
             "batch_process_id" : 3795,
             "process_type_field_id" : 7,
             "value_text" : "Kartuş filtre",
@@ -1408,7 +1770,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2183,
+            "id" : 4077,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 3,
             "value_boolean" : null,
@@ -1430,7 +1792,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2184,
+            "id" : 4078,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 2,
             "value_boolean" : null,
@@ -1452,7 +1814,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2185,
+            "id" : 4079,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 10,
             "value_boolean" : null,
@@ -1474,7 +1836,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2186,
+            "id" : 4080,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 9,
             "value_boolean" : null,
@@ -1496,7 +1858,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2187,
+            "id" : 4081,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 11,
             "value_boolean" : null,
@@ -1518,7 +1880,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2188,
+            "id" : 4082,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 12,
             "value_boolean" : null,
@@ -1592,7 +1954,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2193,
+            "id" : 4087,
             "material_id" : 1485,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -1610,6 +1972,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4088,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 6.73,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4089,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.05,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4090,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.11,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4091,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.001,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4092,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.45,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4093,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.32,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4094,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-05T15:41:00Z",
             "updated_at" : "2026-11-05T15:41:00Z"
@@ -1671,7 +2187,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2189,
+            "id" : 4083,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 13,
             "value_boolean" : null,
@@ -1693,7 +2209,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2190,
+            "id" : 4084,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 14,
             "value_boolean" : null,
@@ -1715,7 +2231,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2191,
+            "id" : 4085,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 15,
             "value_boolean" : null,
@@ -1737,7 +2253,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2192,
+            "id" : 4086,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 16,
             "value_boolean" : null,
@@ -2803,7 +3319,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1158,
+            "id" : 1448,
             "batch_process_id" : 3779,
             "process_type_field_id" : 4,
             "value_text" : null,
@@ -2825,7 +3341,7 @@
               "is_active" : true
             }
           }, {
-            "id" : 1159,
+            "id" : 1449,
             "batch_process_id" : 3779,
             "process_type_field_id" : 5,
             "value_text" : null,
@@ -2878,7 +3394,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2182,
+              "id" : 4069,
               "material_id" : 1481,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -2896,6 +3412,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4070,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 7.01,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4071,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 1.7,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4072,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.14,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4073,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.002,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4074,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.0,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4075,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.31,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-05T10:08:00Z",
+              "updated_at" : "2026-11-05T10:08:00Z"
+            }, {
+              "id" : 4076,
+              "material_id" : 1481,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "extra_virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-05T10:08:00Z",
               "updated_at" : "2026-11-05T10:08:00Z"
@@ -2933,7 +3603,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2178,
+              "id" : 4065,
               "material_id" : 1482,
               "production_product_attribute_definition_id" : 13,
               "value_boolean" : null,
@@ -2955,7 +3625,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2179,
+              "id" : 4066,
               "material_id" : 1482,
               "production_product_attribute_definition_id" : 14,
               "value_boolean" : null,
@@ -2977,7 +3647,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2180,
+              "id" : 4067,
               "material_id" : 1482,
               "production_product_attribute_definition_id" : 15,
               "value_boolean" : null,
@@ -2999,7 +3669,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2181,
+              "id" : 4068,
               "material_id" : 1482,
               "production_product_attribute_definition_id" : 16,
               "value_boolean" : null,
@@ -3055,7 +3725,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2172,
+              "id" : 4059,
               "material_id" : 1480,
               "production_product_attribute_definition_id" : 3,
               "value_boolean" : null,
@@ -3077,7 +3747,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2173,
+              "id" : 4060,
               "material_id" : 1480,
               "production_product_attribute_definition_id" : 2,
               "value_boolean" : null,
@@ -3099,7 +3769,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2174,
+              "id" : 4061,
               "material_id" : 1480,
               "production_product_attribute_definition_id" : 10,
               "value_boolean" : null,
@@ -3121,7 +3791,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2175,
+              "id" : 4062,
               "material_id" : 1480,
               "production_product_attribute_definition_id" : 9,
               "value_boolean" : null,
@@ -3143,7 +3813,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2176,
+              "id" : 4063,
               "material_id" : 1480,
               "production_product_attribute_definition_id" : 11,
               "value_boolean" : null,
@@ -3165,7 +3835,7 @@
               "created_at" : "2026-11-05T09:28:00Z",
               "updated_at" : "2026-11-05T09:28:00Z"
             }, {
-              "id" : 2177,
+              "id" : 4064,
               "material_id" : 1480,
               "production_product_attribute_definition_id" : 12,
               "value_boolean" : null,
@@ -3207,6 +3877,24 @@
             "attributes" : [ {
               "value" : 0.32,
               "attribute_key" : "acidity"
+            }, {
+              "value" : 7.01,
+              "attribute_key" : "peroxide"
+            }, {
+              "value" : 1.7,
+              "attribute_key" : "k232"
+            }, {
+              "value" : 0.14,
+              "attribute_key" : "k270"
+            }, {
+              "value" : 0.002,
+              "attribute_key" : "delta_k"
+            }, {
+              "value" : 0,
+              "attribute_key" : "defect_median"
+            }, {
+              "value" : 2.31,
+              "attribute_key" : "fruity_median"
             } ]
           },
           "requires_approval" : null,
@@ -3220,14 +3908,14 @@
           "operator" : null,
           "production_stage" : {
             "id" : 20,
-            "name" : "Asitlik Analizi",
+            "name" : "Laboratuvar Analizi",
             "stage_order" : 6,
             "is_required" : true
           },
           "process_type" : {
             "id" : 8,
-            "name" : "Asitlik Analizi",
-            "description" : "Asitlik ve kalite değerlerinin belirlenmesi",
+            "name" : "Laboratuvar Analizi",
+            "description" : "Asitlik, peroksit, K232, K270, tadım ve yağ sınıfı",
             "category" : "quality"
           },
           "field_definitions" : [ {
@@ -3239,6 +3927,20 @@
             "is_required" : false,
             "unit" : null,
             "sort_order" : 1,
+            "is_active" : true,
+            "options" : null,
+            "default_value" : null,
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          }, {
+            "id" : 8,
+            "process_type_id" : 8,
+            "field_key" : "laboratuvar",
+            "label" : "Laboratuvar",
+            "data_type" : "text",
+            "is_required" : false,
+            "unit" : null,
+            "sort_order" : 2,
             "is_active" : true,
             "options" : null,
             "default_value" : null,
@@ -3275,7 +3977,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1160,
+            "id" : 1450,
             "batch_process_id" : 3780,
             "process_type_field_id" : 6,
             "value_text" : "LAB-261105-01",
@@ -3294,6 +3996,28 @@
               "is_required" : false,
               "unit" : null,
               "sort_order" : 1,
+              "is_active" : true
+            }
+          }, {
+            "id" : 1451,
+            "batch_process_id" : 3780,
+            "process_type_field_id" : 8,
+            "value_text" : "Fabrika laboratuvarı",
+            "value_decimal" : null,
+            "value_integer" : null,
+            "value_boolean" : null,
+            "value_datetime" : null,
+            "value_json" : null,
+            "resolved_value" : "Fabrika laboratuvarı",
+            "process_type_field" : {
+              "id" : 8,
+              "process_type_id" : 8,
+              "field_key" : "laboratuvar",
+              "label" : "Laboratuvar",
+              "data_type" : "text",
+              "is_required" : false,
+              "unit" : null,
+              "sort_order" : 2,
               "is_active" : true
             }
           } ],
@@ -3554,7 +4278,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2172,
+            "id" : 4059,
             "material_id" : 1480,
             "production_product_attribute_definition_id" : 3,
             "value_boolean" : null,
@@ -3576,7 +4300,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2173,
+            "id" : 4060,
             "material_id" : 1480,
             "production_product_attribute_definition_id" : 2,
             "value_boolean" : null,
@@ -3598,7 +4322,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2174,
+            "id" : 4061,
             "material_id" : 1480,
             "production_product_attribute_definition_id" : 10,
             "value_boolean" : null,
@@ -3620,7 +4344,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2175,
+            "id" : 4062,
             "material_id" : 1480,
             "production_product_attribute_definition_id" : 9,
             "value_boolean" : null,
@@ -3642,7 +4366,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2176,
+            "id" : 4063,
             "material_id" : 1480,
             "production_product_attribute_definition_id" : 11,
             "value_boolean" : null,
@@ -3664,7 +4388,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2177,
+            "id" : 4064,
             "material_id" : 1480,
             "production_product_attribute_definition_id" : 12,
             "value_boolean" : null,
@@ -3738,7 +4462,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2182,
+            "id" : 4069,
             "material_id" : 1481,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -3756,6 +4480,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4070,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 7.01,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4071,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.7,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4072,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.14,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4073,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.002,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4074,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.0,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4075,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.31,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-05T10:08:00Z",
+            "updated_at" : "2026-11-05T10:08:00Z"
+          }, {
+            "id" : 4076,
+            "material_id" : 1481,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-05T10:08:00Z",
             "updated_at" : "2026-11-05T10:08:00Z"
@@ -3812,7 +4690,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2178,
+            "id" : 4065,
             "material_id" : 1482,
             "production_product_attribute_definition_id" : 13,
             "value_boolean" : null,
@@ -3834,7 +4712,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2179,
+            "id" : 4066,
             "material_id" : 1482,
             "production_product_attribute_definition_id" : 14,
             "value_boolean" : null,
@@ -3856,7 +4734,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2180,
+            "id" : 4067,
             "material_id" : 1482,
             "production_product_attribute_definition_id" : 15,
             "value_boolean" : null,
@@ -3878,7 +4756,7 @@
             "created_at" : "2026-11-05T09:28:00Z",
             "updated_at" : "2026-11-05T09:28:00Z"
           }, {
-            "id" : 2181,
+            "id" : 4068,
             "material_id" : 1482,
             "production_product_attribute_definition_id" : 16,
             "value_boolean" : null,
@@ -4892,7 +5770,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1155,
+            "id" : 1444,
             "batch_process_id" : 3766,
             "process_type_field_id" : 4,
             "value_text" : null,
@@ -4914,7 +5792,7 @@
               "is_active" : true
             }
           }, {
-            "id" : 1156,
+            "id" : 1445,
             "batch_process_id" : 3766,
             "process_type_field_id" : 5,
             "value_text" : null,
@@ -4967,7 +5845,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2171,
+              "id" : 4057,
               "material_id" : 1477,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -4985,6 +5863,28 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-04T15:32:00Z",
+              "updated_at" : "2026-11-04T15:32:00Z"
+            }, {
+              "id" : 4058,
+              "material_id" : 1477,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "extra_virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-04T15:32:00Z",
               "updated_at" : "2026-11-04T15:32:00Z"
@@ -5056,7 +5956,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2165,
+              "id" : 4051,
               "material_id" : 1476,
               "production_product_attribute_definition_id" : 3,
               "value_boolean" : null,
@@ -5078,7 +5978,7 @@
               "created_at" : "2026-11-04T14:30:00Z",
               "updated_at" : "2026-11-04T14:30:00Z"
             }, {
-              "id" : 2166,
+              "id" : 4052,
               "material_id" : 1476,
               "production_product_attribute_definition_id" : 2,
               "value_boolean" : null,
@@ -5100,7 +6000,7 @@
               "created_at" : "2026-11-04T14:30:00Z",
               "updated_at" : "2026-11-04T14:30:00Z"
             }, {
-              "id" : 2167,
+              "id" : 4053,
               "material_id" : 1476,
               "production_product_attribute_definition_id" : 10,
               "value_boolean" : null,
@@ -5122,7 +6022,7 @@
               "created_at" : "2026-11-04T14:30:00Z",
               "updated_at" : "2026-11-04T14:30:00Z"
             }, {
-              "id" : 2168,
+              "id" : 4054,
               "material_id" : 1476,
               "production_product_attribute_definition_id" : 9,
               "value_boolean" : null,
@@ -5144,7 +6044,7 @@
               "created_at" : "2026-11-04T14:30:00Z",
               "updated_at" : "2026-11-04T14:30:00Z"
             }, {
-              "id" : 2169,
+              "id" : 4055,
               "material_id" : 1476,
               "production_product_attribute_definition_id" : 11,
               "value_boolean" : null,
@@ -5166,7 +6066,7 @@
               "created_at" : "2026-11-04T14:30:00Z",
               "updated_at" : "2026-11-04T14:30:00Z"
             }, {
-              "id" : 2170,
+              "id" : 4056,
               "material_id" : 1476,
               "production_product_attribute_definition_id" : 12,
               "value_boolean" : null,
@@ -5221,14 +6121,14 @@
           "operator" : null,
           "production_stage" : {
             "id" : 8,
-            "name" : "Asitlik Analizi",
+            "name" : "Laboratuvar Analizi",
             "stage_order" : 6,
             "is_required" : true
           },
           "process_type" : {
             "id" : 8,
-            "name" : "Asitlik Analizi",
-            "description" : "Asitlik ve kalite değerlerinin belirlenmesi",
+            "name" : "Laboratuvar Analizi",
+            "description" : "Asitlik, peroksit, K232, K270, tadım ve yağ sınıfı",
             "category" : "quality"
           },
           "field_definitions" : [ {
@@ -5240,6 +6140,20 @@
             "is_required" : false,
             "unit" : null,
             "sort_order" : 1,
+            "is_active" : true,
+            "options" : null,
+            "default_value" : null,
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          }, {
+            "id" : 8,
+            "process_type_id" : 8,
+            "field_key" : "laboratuvar",
+            "label" : "Laboratuvar",
+            "data_type" : "text",
+            "is_required" : false,
+            "unit" : null,
+            "sort_order" : 2,
             "is_active" : true,
             "options" : null,
             "default_value" : null,
@@ -5276,7 +6190,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1157,
+            "id" : 1446,
             "batch_process_id" : 3767,
             "process_type_field_id" : 6,
             "value_text" : "LAB-261104-02",
@@ -5295,6 +6209,28 @@
               "is_required" : false,
               "unit" : null,
               "sort_order" : 1,
+              "is_active" : true
+            }
+          }, {
+            "id" : 1447,
+            "batch_process_id" : 3767,
+            "process_type_field_id" : 8,
+            "value_text" : "Fabrika laboratuvarı",
+            "value_decimal" : null,
+            "value_integer" : null,
+            "value_boolean" : null,
+            "value_datetime" : null,
+            "value_json" : null,
+            "resolved_value" : "Fabrika laboratuvarı",
+            "process_type_field" : {
+              "id" : 8,
+              "process_type_id" : 8,
+              "field_key" : "laboratuvar",
+              "label" : "Laboratuvar",
+              "data_type" : "text",
+              "is_required" : false,
+              "unit" : null,
+              "sort_order" : 2,
               "is_active" : true
             }
           } ],
@@ -5555,7 +6491,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2165,
+            "id" : 4051,
             "material_id" : 1476,
             "production_product_attribute_definition_id" : 3,
             "value_boolean" : null,
@@ -5577,7 +6513,7 @@
             "created_at" : "2026-11-04T14:30:00Z",
             "updated_at" : "2026-11-04T14:30:00Z"
           }, {
-            "id" : 2166,
+            "id" : 4052,
             "material_id" : 1476,
             "production_product_attribute_definition_id" : 2,
             "value_boolean" : null,
@@ -5599,7 +6535,7 @@
             "created_at" : "2026-11-04T14:30:00Z",
             "updated_at" : "2026-11-04T14:30:00Z"
           }, {
-            "id" : 2167,
+            "id" : 4053,
             "material_id" : 1476,
             "production_product_attribute_definition_id" : 10,
             "value_boolean" : null,
@@ -5621,7 +6557,7 @@
             "created_at" : "2026-11-04T14:30:00Z",
             "updated_at" : "2026-11-04T14:30:00Z"
           }, {
-            "id" : 2168,
+            "id" : 4054,
             "material_id" : 1476,
             "production_product_attribute_definition_id" : 9,
             "value_boolean" : null,
@@ -5643,7 +6579,7 @@
             "created_at" : "2026-11-04T14:30:00Z",
             "updated_at" : "2026-11-04T14:30:00Z"
           }, {
-            "id" : 2169,
+            "id" : 4055,
             "material_id" : 1476,
             "production_product_attribute_definition_id" : 11,
             "value_boolean" : null,
@@ -5665,7 +6601,7 @@
             "created_at" : "2026-11-04T14:30:00Z",
             "updated_at" : "2026-11-04T14:30:00Z"
           }, {
-            "id" : 2170,
+            "id" : 4056,
             "material_id" : 1476,
             "production_product_attribute_definition_id" : 12,
             "value_boolean" : null,
@@ -5739,7 +6675,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2171,
+            "id" : 4057,
             "material_id" : 1477,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -5757,6 +6693,28 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-04T15:32:00Z",
+            "updated_at" : "2026-11-04T15:32:00Z"
+          }, {
+            "id" : 4058,
+            "material_id" : 1477,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "extra_virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-04T15:32:00Z",
             "updated_at" : "2026-11-04T15:32:00Z"
@@ -6805,7 +7763,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1152,
+            "id" : 1440,
             "batch_process_id" : 3753,
             "process_type_field_id" : 4,
             "value_text" : null,
@@ -6827,7 +7785,7 @@
               "is_active" : true
             }
           }, {
-            "id" : 1153,
+            "id" : 1441,
             "batch_process_id" : 3753,
             "process_type_field_id" : 5,
             "value_text" : null,
@@ -6880,7 +7838,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2164,
+              "id" : 4043,
               "material_id" : 1473,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -6898,6 +7856,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4044,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 9.58,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4045,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.26,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4046,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.16,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4047,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.002,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4048,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.55,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4049,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 3.8,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4050,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-04T10:58:00Z",
               "updated_at" : "2026-11-04T10:58:00Z"
@@ -6989,6 +8101,24 @@
             "attributes" : [ {
               "value" : 0.4,
               "attribute_key" : "acidity"
+            }, {
+              "value" : 9.58,
+              "attribute_key" : "peroxide"
+            }, {
+              "value" : 2.26,
+              "attribute_key" : "k232"
+            }, {
+              "value" : 0.16,
+              "attribute_key" : "k270"
+            }, {
+              "value" : 0.002,
+              "attribute_key" : "delta_k"
+            }, {
+              "value" : 0.55,
+              "attribute_key" : "defect_median"
+            }, {
+              "value" : 3.8,
+              "attribute_key" : "fruity_median"
             } ]
           },
           "requires_approval" : null,
@@ -7002,14 +8132,14 @@
           "operator" : null,
           "production_stage" : {
             "id" : 32,
-            "name" : "Asitlik Analizi",
+            "name" : "Laboratuvar Analizi",
             "stage_order" : 6,
             "is_required" : true
           },
           "process_type" : {
             "id" : 8,
-            "name" : "Asitlik Analizi",
-            "description" : "Asitlik ve kalite değerlerinin belirlenmesi",
+            "name" : "Laboratuvar Analizi",
+            "description" : "Asitlik, peroksit, K232, K270, tadım ve yağ sınıfı",
             "category" : "quality"
           },
           "field_definitions" : [ {
@@ -7021,6 +8151,20 @@
             "is_required" : false,
             "unit" : null,
             "sort_order" : 1,
+            "is_active" : true,
+            "options" : null,
+            "default_value" : null,
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          }, {
+            "id" : 8,
+            "process_type_id" : 8,
+            "field_key" : "laboratuvar",
+            "label" : "Laboratuvar",
+            "data_type" : "text",
+            "is_required" : false,
+            "unit" : null,
+            "sort_order" : 2,
             "is_active" : true,
             "options" : null,
             "default_value" : null,
@@ -7057,7 +8201,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1154,
+            "id" : 1442,
             "batch_process_id" : 3754,
             "process_type_field_id" : 6,
             "value_text" : "LAB-261104-01",
@@ -7076,6 +8220,28 @@
               "is_required" : false,
               "unit" : null,
               "sort_order" : 1,
+              "is_active" : true
+            }
+          }, {
+            "id" : 1443,
+            "batch_process_id" : 3754,
+            "process_type_field_id" : 8,
+            "value_text" : "Fabrika laboratuvarı",
+            "value_decimal" : null,
+            "value_integer" : null,
+            "value_boolean" : null,
+            "value_datetime" : null,
+            "value_json" : null,
+            "resolved_value" : "Fabrika laboratuvarı",
+            "process_type_field" : {
+              "id" : 8,
+              "process_type_id" : 8,
+              "field_key" : "laboratuvar",
+              "label" : "Laboratuvar",
+              "data_type" : "text",
+              "is_required" : false,
+              "unit" : null,
+              "sort_order" : 2,
               "is_active" : true
             }
           } ],
@@ -7228,7 +8394,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2164,
+              "id" : 4043,
               "material_id" : 1473,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -7246,6 +8412,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4044,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 9.58,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4045,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.26,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4046,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.16,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4047,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.002,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4048,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.55,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4049,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 3.8,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-04T10:58:00Z",
+              "updated_at" : "2026-11-04T10:58:00Z"
+            }, {
+              "id" : 4050,
+              "material_id" : 1473,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-04T10:58:00Z",
               "updated_at" : "2026-11-04T10:58:00Z"
@@ -7321,7 +8641,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1165,
+            "id" : 1457,
             "batch_process_id" : 3756,
             "process_type_field_id" : 7,
             "value_text" : "Kartuş filtre",
@@ -7505,7 +8825,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2164,
+            "id" : 4043,
             "material_id" : 1473,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -7523,6 +8843,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4044,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 9.58,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4045,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.26,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4046,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.16,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4047,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.002,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4048,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.55,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4049,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 3.8,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-04T10:58:00Z",
+            "updated_at" : "2026-11-04T10:58:00Z"
+          }, {
+            "id" : 4050,
+            "material_id" : 1473,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-04T10:58:00Z",
             "updated_at" : "2026-11-04T10:58:00Z"
@@ -9089,7 +10563,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1161,
+            "id" : 1452,
             "batch_process_id" : 3792,
             "process_type_field_id" : 4,
             "value_text" : null,
@@ -9111,7 +10585,7 @@
               "is_active" : true
             }
           }, {
-            "id" : 1162,
+            "id" : 1453,
             "batch_process_id" : 3792,
             "process_type_field_id" : 5,
             "value_text" : null,
@@ -9164,7 +10638,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2193,
+              "id" : 4087,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -9182,6 +10656,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4088,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 6.73,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4089,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.05,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4090,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.11,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4091,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.001,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4092,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 1.45,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4093,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4094,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-05T15:41:00Z",
               "updated_at" : "2026-11-05T15:41:00Z"
@@ -9219,7 +10847,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2189,
+              "id" : 4083,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 13,
               "value_boolean" : null,
@@ -9241,7 +10869,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2190,
+              "id" : 4084,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 14,
               "value_boolean" : null,
@@ -9263,7 +10891,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2191,
+              "id" : 4085,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 15,
               "value_boolean" : null,
@@ -9285,7 +10913,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2192,
+              "id" : 4086,
               "material_id" : 1486,
               "production_product_attribute_definition_id" : 16,
               "value_boolean" : null,
@@ -9341,7 +10969,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2183,
+              "id" : 4077,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 3,
               "value_boolean" : null,
@@ -9363,7 +10991,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2184,
+              "id" : 4078,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 2,
               "value_boolean" : null,
@@ -9385,7 +11013,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2185,
+              "id" : 4079,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 10,
               "value_boolean" : null,
@@ -9407,7 +11035,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2186,
+              "id" : 4080,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 9,
               "value_boolean" : null,
@@ -9429,7 +11057,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2187,
+              "id" : 4081,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 11,
               "value_boolean" : null,
@@ -9451,7 +11079,7 @@
               "created_at" : "2026-11-05T14:17:00Z",
               "updated_at" : "2026-11-05T14:17:00Z"
             }, {
-              "id" : 2188,
+              "id" : 4082,
               "material_id" : 1484,
               "production_product_attribute_definition_id" : 12,
               "value_boolean" : null,
@@ -9493,6 +11121,24 @@
             "attributes" : [ {
               "value" : 0.41,
               "attribute_key" : "acidity"
+            }, {
+              "value" : 6.73,
+              "attribute_key" : "peroxide"
+            }, {
+              "value" : 2.05,
+              "attribute_key" : "k232"
+            }, {
+              "value" : 0.11,
+              "attribute_key" : "k270"
+            }, {
+              "value" : 0.001,
+              "attribute_key" : "delta_k"
+            }, {
+              "value" : 1.45,
+              "attribute_key" : "defect_median"
+            }, {
+              "value" : 2.32,
+              "attribute_key" : "fruity_median"
             } ]
           },
           "requires_approval" : null,
@@ -9506,14 +11152,14 @@
           "operator" : null,
           "production_stage" : {
             "id" : 32,
-            "name" : "Asitlik Analizi",
+            "name" : "Laboratuvar Analizi",
             "stage_order" : 6,
             "is_required" : true
           },
           "process_type" : {
             "id" : 8,
-            "name" : "Asitlik Analizi",
-            "description" : "Asitlik ve kalite değerlerinin belirlenmesi",
+            "name" : "Laboratuvar Analizi",
+            "description" : "Asitlik, peroksit, K232, K270, tadım ve yağ sınıfı",
             "category" : "quality"
           },
           "field_definitions" : [ {
@@ -9525,6 +11171,20 @@
             "is_required" : false,
             "unit" : null,
             "sort_order" : 1,
+            "is_active" : true,
+            "options" : null,
+            "default_value" : null,
+            "created_at" : "2025-11-06T07:00:00Z",
+            "updated_at" : "2025-11-06T07:00:00Z"
+          }, {
+            "id" : 8,
+            "process_type_id" : 8,
+            "field_key" : "laboratuvar",
+            "label" : "Laboratuvar",
+            "data_type" : "text",
+            "is_required" : false,
+            "unit" : null,
+            "sort_order" : 2,
             "is_active" : true,
             "options" : null,
             "default_value" : null,
@@ -9561,7 +11221,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1163,
+            "id" : 1454,
             "batch_process_id" : 3793,
             "process_type_field_id" : 6,
             "value_text" : "LAB-261105-02",
@@ -9580,6 +11240,28 @@
               "is_required" : false,
               "unit" : null,
               "sort_order" : 1,
+              "is_active" : true
+            }
+          }, {
+            "id" : 1455,
+            "batch_process_id" : 3793,
+            "process_type_field_id" : 8,
+            "value_text" : "Fabrika laboratuvarı",
+            "value_decimal" : null,
+            "value_integer" : null,
+            "value_boolean" : null,
+            "value_datetime" : null,
+            "value_json" : null,
+            "resolved_value" : "Fabrika laboratuvarı",
+            "process_type_field" : {
+              "id" : 8,
+              "process_type_id" : 8,
+              "field_key" : "laboratuvar",
+              "label" : "Laboratuvar",
+              "data_type" : "text",
+              "is_required" : false,
+              "unit" : null,
+              "sort_order" : 2,
               "is_active" : true
             }
           } ],
@@ -9732,7 +11414,7 @@
               }
             },
             "attribute_values" : [ {
-              "id" : 2193,
+              "id" : 4087,
               "material_id" : 1485,
               "production_product_attribute_definition_id" : 4,
               "value_boolean" : null,
@@ -9750,6 +11432,160 @@
                 "is_required" : false,
                 "sort_order" : 1,
                 "description" : "Asitlik oranı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4088,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 17,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 6.73,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 17,
+                "production_product_id" : 2,
+                "attribute_key" : "peroxide",
+                "label" : "Peroksit",
+                "data_type" : "decimal",
+                "unit" : "meq O2/kg",
+                "is_required" : false,
+                "sort_order" : 5,
+                "description" : "Peroksit sayısı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4089,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 18,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.05,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 18,
+                "production_product_id" : 2,
+                "attribute_key" : "k232",
+                "label" : "K232",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 6,
+                "description" : "232 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4090,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 19,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.11,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 19,
+                "production_product_id" : 2,
+                "attribute_key" : "k270",
+                "label" : "K270",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 7,
+                "description" : "270 nm özgül soğurma"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4091,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 20,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 0.001,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 20,
+                "production_product_id" : 2,
+                "attribute_key" : "delta_k",
+                "label" : "Delta K",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 8,
+                "description" : "Delta E"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4092,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 22,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 1.45,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 22,
+                "production_product_id" : 2,
+                "attribute_key" : "defect_median",
+                "label" : "Kusur Medyanı (Md)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 10,
+                "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4093,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 23,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : 2.32,
+              "value_text" : null,
+              "value_json" : null,
+              "definition" : {
+                "id" : 23,
+                "production_product_id" : 2,
+                "attribute_key" : "fruity_median",
+                "label" : "Meyvemsilik Medyanı (Mf)",
+                "data_type" : "decimal",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 11,
+                "description" : "Duyusal analiz"
+              },
+              "created_at" : "2026-11-05T15:41:00Z",
+              "updated_at" : "2026-11-05T15:41:00Z"
+            }, {
+              "id" : 4094,
+              "material_id" : 1485,
+              "production_product_attribute_definition_id" : 24,
+              "value_boolean" : null,
+              "value_integer" : null,
+              "value_decimal" : null,
+              "value_text" : "virgin",
+              "value_json" : null,
+              "definition" : {
+                "id" : 24,
+                "production_product_id" : 2,
+                "attribute_key" : "oil_class",
+                "label" : "Yağ Sınıfı",
+                "data_type" : "string",
+                "unit" : null,
+                "is_required" : false,
+                "sort_order" : 12,
+                "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
               },
               "created_at" : "2026-11-05T15:41:00Z",
               "updated_at" : "2026-11-05T15:41:00Z"
@@ -9825,7 +11661,7 @@
             "output_production_products" : [ ]
           } ],
           "field_values" : [ {
-            "id" : 1166,
+            "id" : 1458,
             "batch_process_id" : 3795,
             "process_type_field_id" : 7,
             "value_text" : "Kartuş filtre",
@@ -9957,7 +11793,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2183,
+            "id" : 4077,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 3,
             "value_boolean" : null,
@@ -9979,7 +11815,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2184,
+            "id" : 4078,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 2,
             "value_boolean" : null,
@@ -10001,7 +11837,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2185,
+            "id" : 4079,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 10,
             "value_boolean" : null,
@@ -10023,7 +11859,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2186,
+            "id" : 4080,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 9,
             "value_boolean" : null,
@@ -10045,7 +11881,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2187,
+            "id" : 4081,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 11,
             "value_boolean" : null,
@@ -10067,7 +11903,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2188,
+            "id" : 4082,
             "material_id" : 1484,
             "production_product_attribute_definition_id" : 12,
             "value_boolean" : null,
@@ -10141,7 +11977,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2193,
+            "id" : 4087,
             "material_id" : 1485,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -10159,6 +11995,160 @@
               "is_required" : false,
               "sort_order" : 1,
               "description" : "Asitlik oranı"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4088,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 17,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 6.73,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 17,
+              "production_product_id" : 2,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "data_type" : "decimal",
+              "unit" : "meq O2/kg",
+              "is_required" : false,
+              "sort_order" : 5,
+              "description" : "Peroksit sayısı"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4089,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 18,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.05,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 18,
+              "production_product_id" : 2,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 6,
+              "description" : "232 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4090,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 19,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.11,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 19,
+              "production_product_id" : 2,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 7,
+              "description" : "270 nm özgül soğurma"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4091,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 20,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 0.001,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 20,
+              "production_product_id" : 2,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 8,
+              "description" : "Delta E"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4092,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 22,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 1.45,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 22,
+              "production_product_id" : 2,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 10,
+              "description" : "Duyusal analiz: en yoğun kusurun medyanı"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4093,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 23,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : 2.32,
+            "value_text" : null,
+            "value_json" : null,
+            "definition" : {
+              "id" : 23,
+              "production_product_id" : 2,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "data_type" : "decimal",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 11,
+              "description" : "Duyusal analiz"
+            },
+            "created_at" : "2026-11-05T15:41:00Z",
+            "updated_at" : "2026-11-05T15:41:00Z"
+          }, {
+            "id" : 4094,
+            "material_id" : 1485,
+            "production_product_attribute_definition_id" : 24,
+            "value_boolean" : null,
+            "value_integer" : null,
+            "value_decimal" : null,
+            "value_text" : "virgin",
+            "value_json" : null,
+            "definition" : {
+              "id" : 24,
+              "production_product_id" : 2,
+              "attribute_key" : "oil_class",
+              "label" : "Yağ Sınıfı",
+              "data_type" : "string",
+              "unit" : null,
+              "is_required" : false,
+              "sort_order" : 12,
+              "description" : "extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)"
             },
             "created_at" : "2026-11-05T15:41:00Z",
             "updated_at" : "2026-11-05T15:41:00Z"
@@ -10220,7 +12210,7 @@
             "status" : "consumed"
           },
           "attribute_values" : [ {
-            "id" : 2189,
+            "id" : 4083,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 13,
             "value_boolean" : null,
@@ -10242,7 +12232,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2190,
+            "id" : 4084,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 14,
             "value_boolean" : null,
@@ -10264,7 +12254,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2191,
+            "id" : 4085,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 15,
             "value_boolean" : null,
@@ -10286,7 +12276,7 @@
             "created_at" : "2026-11-05T14:17:00Z",
             "updated_at" : "2026-11-05T14:17:00Z"
           }, {
-            "id" : 2192,
+            "id" : 4086,
             "material_id" : 1486,
             "production_product_attribute_definition_id" : 16,
             "value_boolean" : null,

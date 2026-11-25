@@ -1621,7 +1621,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 377,
+            "id" : 721,
             "material_id" : 269,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -1700,7 +1700,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 377,
+            "id" : 721,
             "material_id" : 269,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,
@@ -1779,7 +1779,7 @@
             }
           },
           "attribute_values" : [ {
-            "id" : 377,
+            "id" : 721,
             "material_id" : 269,
             "production_product_attribute_definition_id" : 4,
             "value_boolean" : null,

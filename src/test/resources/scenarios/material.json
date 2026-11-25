@@ -24642,6 +24642,42 @@
               "label" : "Asitlik",
               "unit" : "%",
               "value" : 0.43
+            }, {
+              "definition_id" : 17,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "unit" : "meq O2/kg",
+              "value" : 12.34
+            }, {
+              "definition_id" : 18,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "unit" : null,
+              "value" : 1.94
+            }, {
+              "definition_id" : 19,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "unit" : null,
+              "value" : 0.18
+            }, {
+              "definition_id" : 20,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "unit" : null,
+              "value" : 0.004
+            }, {
+              "definition_id" : 22,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "unit" : null,
+              "value" : 0
+            }, {
+              "definition_id" : 23,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "unit" : null,
+              "value" : 3.68
             } ]
           } ],
           "is_focus" : false,
@@ -24752,6 +24788,34 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.39
+        }, {
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 14.19
+        }, {
+          "label" : "K232",
+          "unit" : null,
+          "value" : 1.96
+        }, {
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.16
+        }, {
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.003
+        }, {
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0.0
+        }, {
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 3.87
+        }, {
+          "label" : "Yağ Sınıfı",
+          "unit" : null,
+          "value" : "extra_virgin"
         } ],
         "movements" : [ {
           "id" : 38,
@@ -24905,6 +24969,42 @@
               "label" : "Asitlik",
               "unit" : "%",
               "value" : 0.4015
+            }, {
+              "definition_id" : 17,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "unit" : "meq O2/kg",
+              "value" : 13.6579
+            }, {
+              "definition_id" : 18,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "unit" : null,
+              "value" : 1.9542
+            }, {
+              "definition_id" : 19,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "unit" : null,
+              "value" : 0.1658
+            }, {
+              "definition_id" : 20,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "unit" : null,
+              "value" : 0.0033
+            }, {
+              "definition_id" : 22,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "unit" : null,
+              "value" : 0
+            }, {
+              "definition_id" : 23,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "unit" : null,
+              "value" : 3.8153
             } ]
           } ],
           "is_focus" : false,
@@ -25125,6 +25225,42 @@
               "label" : "Asitlik",
               "unit" : "%",
               "value" : 0.38
+            }, {
+              "definition_id" : 17,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "unit" : "meq O2/kg",
+              "value" : 5.83
+            }, {
+              "definition_id" : 18,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "unit" : null,
+              "value" : 2.05
+            }, {
+              "definition_id" : 19,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "unit" : null,
+              "value" : 0.2
+            }, {
+              "definition_id" : 20,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "unit" : null,
+              "value" : 0.003
+            }, {
+              "definition_id" : 22,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "unit" : null,
+              "value" : 0.55
+            }, {
+              "definition_id" : 23,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "unit" : null,
+              "value" : 2.85
             } ]
           } ],
           "is_focus" : false,
@@ -25357,6 +25493,42 @@
               "label" : "Asitlik",
               "unit" : "%",
               "value" : 0.33
+            }, {
+              "definition_id" : 17,
+              "attribute_key" : "peroxide",
+              "label" : "Peroksit",
+              "unit" : "meq O2/kg",
+              "value" : 13.47
+            }, {
+              "definition_id" : 18,
+              "attribute_key" : "k232",
+              "label" : "K232",
+              "unit" : null,
+              "value" : 1.61
+            }, {
+              "definition_id" : 19,
+              "attribute_key" : "k270",
+              "label" : "K270",
+              "unit" : null,
+              "value" : 0.17
+            }, {
+              "definition_id" : 20,
+              "attribute_key" : "delta_k",
+              "label" : "Delta K",
+              "unit" : null,
+              "value" : 0
+            }, {
+              "definition_id" : 22,
+              "attribute_key" : "defect_median",
+              "label" : "Kusur Medyanı (Md)",
+              "unit" : null,
+              "value" : 0
+            }, {
+              "definition_id" : 23,
+              "attribute_key" : "fruity_median",
+              "label" : "Meyvemsilik Medyanı (Mf)",
+              "unit" : null,
+              "value" : 4.19
             } ]
           } ],
           "is_focus" : false,
@@ -25467,6 +25639,34 @@
           "label" : "Asitlik",
           "unit" : "%",
           "value" : 0.33
+        }, {
+          "label" : "Peroksit",
+          "unit" : "meq O2/kg",
+          "value" : 10.93
+        }, {
+          "label" : "K232",
+          "unit" : null,
+          "value" : 1.73
+        }, {
+          "label" : "K270",
+          "unit" : null,
+          "value" : 0.21
+        }, {
+          "label" : "Delta K",
+          "unit" : null,
+          "value" : 0.005
+        }, {
+          "label" : "Kusur Medyanı (Md)",
+          "unit" : null,
+          "value" : 0.0
+        }, {
+          "label" : "Meyvemsilik Medyanı (Mf)",
+          "unit" : null,
+          "value" : 3.58
+        }, {
+          "label" : "Yağ Sınıfı",
+          "unit" : null,
+          "value" : "extra_virgin"
         } ],
         "movements" : [ {
           "id" : 1776,

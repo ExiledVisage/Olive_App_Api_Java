@@ -12,6 +12,7 @@ import tools.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -233,6 +234,26 @@ public class StageQueries {
 
 	public Optional<String> attributeDataType(Long attributeDefinitionId) {
 		return products.attributeDataType(attributeDefinitionId);
+	}
+
+	public Optional<String> productKey(long productId) {
+		return Optional.ofNullable(products.products(List.of(productId)).get(productId))
+			.map(ProductDirectory.Product::key);
+	}
+
+	/** Materyalin decimal attribute degerleri, attribute anahtariyla. */
+	public Map<String, BigDecimal> decimalAttributes(long materialId) {
+		List<MaterialDirectory.DecimalValue> rows = materials.decimalValues(List.of(materialId));
+		Map<Long, ProductDirectory.AttributeMapping> mappings = products.attributeMappings(rows.stream()
+			.map(MaterialDirectory.DecimalValue::mappingId).toList());
+		Map<String, BigDecimal> out = new HashMap<>();
+		for (MaterialDirectory.DecimalValue row : rows) {
+			ProductDirectory.AttributeMapping mapping = mappings.get(row.mappingId());
+			if (mapping != null && mapping.attributeKey() != null && row.valueDecimal() != null) {
+				out.put(mapping.attributeKey(), row.valueDecimal());
+			}
+		}
+		return out;
 	}
 
 	// ---- proses alanlari --------------------------------------------------

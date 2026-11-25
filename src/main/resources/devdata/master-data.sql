@@ -68,6 +68,9 @@ insert into role_permissions (role_id, permission_id) values
 	(1, 56),
 	(1, 57),
 	(1, 58),
+	(1, 59),
+	(1, 60),
+	(1, 61),
 	(2, 1),
 	(2, 4),
 	(2, 6),
@@ -125,6 +128,7 @@ insert into role_permissions (role_id, permission_id) values
 	(3, 54),
 	(3, 56),
 	(3, 58),
+	(3, 59),
 	(4, 1),
 	(4, 9),
 	(4, 11),
@@ -159,6 +163,7 @@ insert into role_permissions (role_id, permission_id) values
 	(5, 49),
 	(5, 51),
 	(5, 54),
+	(5, 61),
 	(6, 3),
 	(6, 9),
 	(6, 16),
@@ -172,7 +177,10 @@ insert into role_permissions (role_id, permission_id) values
 	(6, 45),
 	(6, 49),
 	(6, 56),
-	(6, 58);
+	(6, 58),
+	(6, 59),
+	(6, 60),
+	(6, 61);
 
 insert into users (id, name, email, password) values
 	(1, 'Olivamore Admin', 'admin@olivamore.com', '$2y$12$.1wjegORyxIF82qFmEsE7.rjgzakb4Lv3dY4FwMw0kNwQctzJWvFy'),
@@ -201,7 +209,17 @@ insert into attribute_definitions (id, attribute_key, label, data_type, unit, de
 	(6, 'mineral_profile', 'Mineral Profili', 'json', NULL, 'JSON formatında mineral bilgileri'),
 	(7, 'kpy', 'Kuru Bazda Yağ', 'decimal', '%', 'Yağ oranı / (100 - nem) x 100; IAS ölçümü'),
 	(8, 'industrial_yield', 'Endüstriyel Randıman', 'decimal', '%', 'IAS cihazının beklenen randımanı (zeytin)'),
-	(9, 'sample_no', 'Numune No', 'string', NULL, 'IAS cihazındaki numune numarası');
+	(9, 'sample_no', 'Numune No', 'string', NULL, 'IAS cihazındaki numune numarası'),
+	-- laboratuvar analizi (docs/QUALITY.md 1): zeytinyagi kalite kriterleri ve sinifi
+	(10, 'peroxide', 'Peroksit', 'decimal', 'meq O2/kg', 'Peroksit sayısı'),
+	(11, 'k232', 'K232', 'decimal', NULL, '232 nm özgül soğurma'),
+	(12, 'k270', 'K270', 'decimal', NULL, '270 nm özgül soğurma'),
+	(13, 'delta_k', 'Delta K', 'decimal', NULL, 'Delta E'),
+	(14, 'faee', 'Yağ Asidi Etil Esterleri', 'decimal', 'mg/kg', 'FAEE'),
+	(15, 'defect_median', 'Kusur Medyanı (Md)', 'decimal', NULL, 'Duyusal analiz: en yoğun kusurun medyanı'),
+	(16, 'fruity_median', 'Meyvemsilik Medyanı (Mf)', 'decimal', NULL, 'Duyusal analiz'),
+	(17, 'oil_class', 'Yağ Sınıfı', 'string', NULL,
+		'extra_virgin, virgin, lampante; boş bırakılırsa değerlerden hesaplanır (Türk Gıda Kodeksi 2017/26)');
 
 insert into production_products (id, key, name, description, default_density_kg_per_litre) values
 	(1, 'olive', 'Zeytin', 'Ham zeytin ürünü', null),
@@ -236,7 +254,16 @@ insert into production_product_attribute_definitions (id, production_product_id,
 	(13, 3, 4, false, 1),
 	(14, 3, 3, false, 2),
 	(15, 3, 7, false, 3),
-	(16, 3, 9, false, 4);
+	(16, 3, 9, false, 4),
+	-- laboratuvar analizi (docs/QUALITY.md 1): zeytinyagi
+	(17, 2, 10, false, 5),
+	(18, 2, 11, false, 6),
+	(19, 2, 12, false, 7),
+	(20, 2, 13, false, 8),
+	(21, 2, 14, false, 9),
+	(22, 2, 15, false, 10),
+	(23, 2, 16, false, 11),
+	(24, 2, 17, false, 12);
 
 insert into process_types (id, name, description, category, is_active) values
 	(1, 'Kantarda Tartım', 'Gelen zeytinin ilk kantar tartımı', 'weighing', true),
@@ -244,7 +271,7 @@ insert into process_types (id, name, description, category, is_active) values
 	(3, 'İkinci Tartım', 'Ayıklama sonrası ikinci kantar tartımı', 'weighing', true),
 	(4, 'Sıkım Ünitesine Transfer', 'Zeytinin sıkım ünitesine taşınması', 'transfer', true),
 	(5, 'Sıkım', 'Zeytinin sıkım işleminden geçirilmesi', 'machine_process', true),
-	(8, 'Asitlik Analizi', 'Asitlik ve kalite değerlerinin belirlenmesi', 'quality', true),
+	(8, 'Laboratuvar Analizi', 'Asitlik, peroksit, K232, K270, tadım ve yağ sınıfı', 'quality', true),
 	(9, 'Ön Dinlenme', 'Ürünün ön dinlenme tanklarına alınması', 'storage', true),
 	(10, 'Filtreleme', 'Filtreleme işlemlerinin uygulanması', 'machine', true),
 	(11, 'Tanklarda Toplama', 'Filtrelenmiş ürünün tanklarda toplanması', 'storage', true),
@@ -254,6 +281,7 @@ insert into process_type_fields (id, process_type_id, field_key, label, data_typ
 	(4, 5, 'zeytin_giris_sicakligi', 'Zeytin Giriş Sıcaklığı', 'decimal', false, '°C', 1, true, NULL, NULL),
 	(5, 5, 'ortam_sicakligi', 'Ortam Sıcaklığı', 'decimal', false, '°C', 2, true, NULL, NULL),
 	(6, 8, 'numune_no', 'Laboratuvar Numune No', 'text', false, NULL, 1, true, NULL, NULL),
+	(8, 8, 'laboratuvar', 'Laboratuvar', 'text', false, NULL, 2, true, NULL, NULL),
 	(7, 10, 'filtre_tipi', 'Filtre Tipi', 'text', false, NULL, 1, true, NULL, NULL);
 
 insert into production_lines (id, name, description) values
@@ -281,7 +309,7 @@ insert into production_stages (id, production_line_id, process_type_id, name, st
 	(3, 1, 3, 'İkinci Tartım', 3, true, false, false),
 	(4, 1, 4, 'Sıkım Ünitesine Transfer', 4, true, false, false),
 	(5, 1, 5, 'Sıkım', 5, true, false, true),
-	(8, 1, 8, 'Asitlik Analizi', 6, true, false, false),
+	(8, 1, 8, 'Laboratuvar Analizi', 6, true, false, false),
 	(9, 1, 9, 'Ön Dinlenme', 7, true, false, false),
 	(10, 1, 10, 'Filtreleme', 8, true, false, true),
 	(12, 1, 12, 'Randıman Tespiti', 9, true, false, false),
@@ -290,7 +318,7 @@ insert into production_stages (id, production_line_id, process_type_id, name, st
 	(15, 2, 3, 'İkinci Tartım', 3, true, false, false),
 	(16, 2, 4, 'Sıkım Ünitesine Transfer', 4, true, false, false),
 	(17, 2, 5, 'Sıkım', 5, true, false, true),
-	(20, 2, 8, 'Asitlik Analizi', 6, true, false, false),
+	(20, 2, 8, 'Laboratuvar Analizi', 6, true, false, false),
 	(21, 2, 9, 'Ön Dinlenme', 7, true, false, false),
 	(22, 2, 10, 'Filtreleme', 8, true, false, true),
 	(24, 2, 12, 'Randıman Tespiti', 9, true, false, false),
@@ -299,7 +327,7 @@ insert into production_stages (id, production_line_id, process_type_id, name, st
 	(27, 3, 3, 'İkinci Tartım', 3, true, false, false),
 	(28, 3, 4, 'Sıkım Ünitesine Transfer', 4, true, false, false),
 	(29, 3, 5, 'Sıkım', 5, true, false, true),
-	(32, 3, 8, 'Asitlik Analizi', 6, true, false, false),
+	(32, 3, 8, 'Laboratuvar Analizi', 6, true, false, false),
 	(33, 3, 9, 'Ön Dinlenme', 7, true, false, false),
 	(34, 3, 10, 'Filtreleme', 8, true, false, true),
 	(36, 3, 12, 'Randıman Tespiti', 9, true, false, false);
@@ -813,3 +841,31 @@ insert into finished_product_storage_slots (id, finished_product_storage_id, nam
 	(23, 3, 'L2', 1.0000, 600, 0, null),
 	(24, 3, 'T1', 5.0000, 150, 0, null),
 	(25, 3, 'T2', 5.0000, 150, 0, null);
+
+-- BRC/IFS dokuman kaydi (docs/QUALITY.md 4): temel liste; gozden gecirme tarihleri bugune gore
+insert into quality_documents (id, code, title, kind, clause, version, owner_user_id, status, review_months,
+	last_reviewed_at) values
+	(1, 'KYS-P-01', 'Doküman kontrol prosedürü', 'procedure', 'BRCGS 3.2', 'Rev 03', 7, 'active', 12, current_date - 120),
+	(2, 'KYS-P-02', 'İzlenebilirlik prosedürü', 'procedure', 'BRCGS 3.9', 'Rev 02', 7, 'active', 12, current_date - 300),
+	(3, 'KYS-P-03', 'Geri çağırma ve olay yönetimi prosedürü', 'procedure', 'BRCGS 3.11',
+		'Rev 02', 7, 'active', 12, current_date - 400),
+	(4, 'KYS-P-04', 'İç denetim prosedürü', 'procedure', 'BRCGS 3.4', 'Rev 01', 7, 'active', 12, current_date - 200),
+	(5, 'KYS-P-05', 'Tedarikçi onayı ve izleme prosedürü', 'procedure', 'BRCGS 3.5',
+		'Rev 02', 7, 'active', 12, current_date - 90),
+	(6, 'KYS-P-06', 'Müşteri şikayetleri prosedürü', 'procedure', 'BRCGS 3.10',
+		'Rev 01', 7, 'active', 12, current_date - 350),
+	(7, 'KYS-P-07', 'Düzeltici ve önleyici faaliyet prosedürü', 'procedure', 'BRCGS 3.7',
+		'Rev 01', 7, 'active', 12, current_date - 60),
+	(8, 'GG-PL-01', 'HACCP planı', 'plan', 'BRCGS 2', 'Rev 04', 7, 'active', 12, current_date - 150),
+	(9, 'GG-PL-02', 'Haşere kontrol planı', 'plan', 'BRCGS 4.14', 'Rev 02', 7, 'active', 12, current_date - 330),
+	(10, 'GG-PL-03', 'Temizlik planı', 'plan', 'BRCGS 4.11', 'Rev 03', 7, 'active', 6, current_date - 170),
+	(11, 'GG-T-01', 'Cam ve kırılgan madde talimatı', 'instruction', 'BRCGS 4.9.3',
+		'Rev 02', 7, 'active', 12, current_date - 100),
+	(12, 'GG-T-02', 'Kalibrasyon talimatı', 'instruction', 'BRCGS 6.4', 'Rev 01', 7, 'active', 12, current_date - 40),
+	(13, 'GG-T-03', 'Dolum hattı hazırlık ve kontrol talimatı', 'instruction', 'BRCGS 6.1',
+		'Rev 01', 7, 'active', 12, current_date - 20),
+	(14, 'GG-F-01', 'Dolum ve ambalaj proses kontrol formu', 'form', 'BRCGS 6.1',
+		'Rev 01', 7, 'active', 24, current_date - 20),
+	(15, 'GG-PO-01', 'Gıda güvenliği ve kalite politikası', 'policy', 'BRCGS 1.1',
+		'Rev 02', 7, 'active', 12, current_date - 250),
+	(16, 'IK-P-01', 'Eğitim prosedürü', 'procedure', 'BRCGS 7.1', 'Rev 01', 7, 'active', 12, null);
