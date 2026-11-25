@@ -1,6 +1,6 @@
 # Kalite
 
-Durum (2026-11-25): API ve Flutter yazildi (commit bekliyor); deploy kullanici istediginde.
+Durum (2026-11-25): API (5c00cea) ve Flutter (e918cca) tamam; sunucu sifirlanip kuruldu, APK 1.0.39.
 Kullanici: GreenOps'taki kalite tarafinin dordu de (laboratuvar analizi, dolum kontrolu, geri cagirma, BRC/IFS
 hazirligi). GreenOps'tan kod alinmaz; GreenOps'ta geri cagirma, HACCP ve laboratuvar testleri yalnizca arka uc
 taslagi, dolum kontrolu ve BRC izlenebilirlik paketi gercek (inceleme 2026-11-25).
