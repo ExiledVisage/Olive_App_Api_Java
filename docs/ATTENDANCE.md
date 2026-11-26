@@ -1,6 +1,6 @@
 # Giris-cikis (QR ile mesai takibi)
 
-Durum (2026-11-27): API tamam (AttendanceIT); Flutter sirada. Kullanici istegi: iscilerin fabrikaya giris ve
+Durum (2026-11-27): API ve Flutter tamam; sunucu sifirlanip kuruldu, APK 1.0.46. Kullanici istegi: iscilerin fabrikaya giris ve
 cikisi QR ile kaydedilsin, asil amac mesai ve fazla mesai (ekstra saat) takibi.
 
 Kullanicinin cevaplari:
