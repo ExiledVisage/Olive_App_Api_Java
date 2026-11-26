@@ -11,6 +11,7 @@ import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.finishedproduct.OrderDirectory;
 import com.olivamore.api.packaging.PackagingDirectory;
 import com.olivamore.api.shared.validation.ValidationErrors;
+import com.olivamore.api.shared.json.Patch;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,9 +47,11 @@ class FinishedProductService {
 		ValidationErrors errors = new ValidationErrors();
 		FinishedProductRecipe recipe = recipe(request.finishedProductRecipeId(), errors);
 		validateComponents(request.components(), errors);
+		validateCode("barcode", request.barcode(), null, errors);
+		validateCode("sku", request.sku(), null, errors);
 		errors.throwIfAny();
 		FinishedProduct product = products.save(new FinishedProduct(request.name(), recipe, request.volumeLitre(),
-			request.isActive()));
+			request.isActive(), request.barcode(), request.sku()));
 		saveComponents(product.getId(), request.components());
 		return product.getId();
 	}
@@ -62,6 +65,8 @@ class FinishedProductService {
 		if (request.components() != null) {
 			validateComponents(request.components(), errors);
 		}
+		Patch.ifPresent(request.barcode(), value -> validateCode("barcode", value, id, errors));
+		Patch.ifPresent(request.sku(), value -> validateCode("sku", value, id, errors));
 		errors.throwIfAny();
 		if (request.volumeLitre() != null && Quantities.differ(request.volumeLitre(), product.getVolumeLitre())
 			&& product.getTotalStock() > 0) {
@@ -106,6 +111,23 @@ class FinishedProductService {
 		List<Long> itemIds = lines.stream().map(ComponentLine::packagingItemId).toList();
 		errors.distinct("components", "packaging_item_id", itemIds);
 		errors.exists("components", "packaging_item_id", itemIds, packaging.items(itemIds).keySet());
+	}
+
+	/** Barkod ve SKU en fazla 64 karakter ve urunler arasinda benzersiz. */
+	private void validateCode(String column, String value, Long exceptId, ValidationErrors errors) {
+		if (value == null) {
+			return;
+		}
+		if (value.length() > 64) {
+			errors.add(column, MessageKeys.SIZE_MAX, "max", 64);
+			return;
+		}
+		boolean taken = jdbc.sql("select count(*) from finished_products where " + column
+			+ " = :value and (cast(:except as bigint) is null or id <> :except)").param("value", value)
+			.param("except", exceptId).query(Long.class).single() > 0;
+		if (taken) {
+			errors.add(column, MessageKeys.UNIQUE);
+		}
 	}
 
 	private void saveComponents(long productId, List<? extends ComponentLine> lines) {

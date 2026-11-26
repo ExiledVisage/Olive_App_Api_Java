@@ -2,6 +2,7 @@ package com.olivamore.api.finishedproduct.product;
 
 import com.olivamore.api.finishedproduct.recipe.FinishedProductRecipe;
 import com.olivamore.api.finishedproduct.support.Quantities;
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.persistence.AuditedEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,13 +45,21 @@ public class FinishedProduct extends AuditedEntity {
 	@Column(name = "is_active", nullable = false)
 	private boolean active = true;
 
-	FinishedProduct(String name, FinishedProductRecipe recipe, BigDecimal volumeLitre, Boolean active) {
+	/** Pazar yeri ve sitedeki urunle eslestirme (docs/INTEGRATIONS.md). */
+	private String barcode;
+
+	private String sku;
+
+	FinishedProduct(String name, FinishedProductRecipe recipe, BigDecimal volumeLitre, Boolean active, String barcode,
+		String sku) {
 		this.name = name;
 		this.recipe = recipe;
 		this.volumeLitre = Quantities.normalize(volumeLitre);
 		if (active != null) {
 			this.active = active;
 		}
+		this.barcode = barcode;
+		this.sku = sku;
 	}
 
 	/** Gelmeyen alanlar degismez. */
@@ -67,6 +76,8 @@ public class FinishedProduct extends AuditedEntity {
 		if (request.isActive() != null) {
 			active = request.isActive();
 		}
+		Patch.ifPresent(request.barcode(), value -> barcode = value);
+		Patch.ifPresent(request.sku(), value -> sku = value);
 	}
 
 	/** Cagiran satiri kilitlemis olmali. */

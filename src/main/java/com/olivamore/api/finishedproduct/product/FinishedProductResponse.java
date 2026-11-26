@@ -20,6 +20,8 @@ record FinishedProductResponse(
 	Long awaitingShipmentStock,
 	long unstoredStock,
 	boolean isActive,
+	String barcode,
+	String sku,
 	RecipeResponse.Summary recipe,
 	List<Component> components,
 	@JsonInclude(JsonInclude.Include.NON_NULL)

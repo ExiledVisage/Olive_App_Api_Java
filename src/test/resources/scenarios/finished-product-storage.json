@@ -44616,6 +44616,8 @@
         "awaiting_shipment_stock" : 1296,
         "unstored_stock" : 10,
         "is_active" : true,
+        "barcode" : "8691234000014",
+        "sku" : "OLV-0001",
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -55385,6 +55387,8 @@
         "awaiting_shipment_stock" : 1296,
         "unstored_stock" : 10,
         "is_active" : true,
+        "barcode" : "8691234000014",
+        "sku" : "OLV-0001",
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",

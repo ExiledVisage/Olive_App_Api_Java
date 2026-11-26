@@ -28,11 +28,21 @@ record CreateFinishedProductRequest(
 
 	Boolean isActive,
 
+	/** Pazar yeri ve sitedeki barkod (EAN); bos olabilir. */
+	@Size(max = 64, message = MessageKeys.SIZE_MAX)
+	String barcode,
+
+	/** Stok kodu; bos olabilir. */
+	@Size(max = 64, message = MessageKeys.SIZE_MAX)
+	String sku,
+
 	@NotEmpty(message = MessageKeys.REQUIRED)
 	List<@Valid Component> components) {
 
 	CreateFinishedProductRequest {
 		name = Texts.trim(name);
+		barcode = Texts.trim(barcode);
+		sku = Texts.trim(sku);
 	}
 
 

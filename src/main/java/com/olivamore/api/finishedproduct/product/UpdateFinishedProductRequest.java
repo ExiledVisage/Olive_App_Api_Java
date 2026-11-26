@@ -1,5 +1,6 @@
 package com.olivamore.api.finishedproduct.product;
 
+import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
@@ -23,11 +24,18 @@ record UpdateFinishedProductRequest(
 
 	Boolean isActive,
 
+	/** Gelmezse degismez, bos gelirse silinir. */
+	Patch<String> barcode,
+
+	Patch<String> sku,
+
 	@Size(min = 1, message = MessageKeys.ITEMS_MIN)
 	List<@Valid Component> components) {
 
 	UpdateFinishedProductRequest {
 		name = Texts.trim(name);
+		barcode = Texts.trim(barcode);
+		sku = Texts.trim(sku);
 	}
 
 
