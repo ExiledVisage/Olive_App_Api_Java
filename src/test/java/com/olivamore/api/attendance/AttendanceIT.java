@@ -202,6 +202,9 @@ class AttendanceIT {
 
 		assertThat(data(api.get("/api/attendance/events?from=2025-05-05&to=2025-05-05&user_id=" + OFFICE_ID)))
 			.hasSize(1);
+		assertThat(data(api.get("/api/attendance/people"))).extracting(u -> u.get("name").asString())
+			.contains("Kapı Görevlisi", "Depo ve Sipariş");
+		assertThat(api.as(OFFICE).get("/api/attendance/people").status()).isEqualTo(403);
 		assertThat(api.as(OFFICE).post("/api/attendance/events", Map.of()).status()).isEqualTo(403);
 		assertThat(api.as(GUARD).get("/api/attendance/report?from=2025-05-05&to=2025-05-05").status())
 			.isEqualTo(403);

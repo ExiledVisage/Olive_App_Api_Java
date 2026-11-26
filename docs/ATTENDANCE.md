@@ -61,7 +61,7 @@ Kullanicinin kararlari (2026-11-27):
 - `GET /api/attendance/my-code` -> {code, expires_at, ttl_seconds, inside, since}
 - `POST /api/attendance/scan` {code} -> {user, kind, occurred_at} (izin `attendance.scan`)
 - `GET /api/attendance/inside`, `GET /api/attendance/report?from&to&user_id`, `GET /api/attendance/me?from&to`,
-  `GET /api/attendance/events?from&to&user_id`
+  `GET /api/attendance/events?from&to&user_id`, `GET /api/attendance/people` (kisi secicisi)
 - `POST /api/attendance/events` (elle, gerekce zorunlu), `POST /api/attendance/events/{id}/void` (gerekce zorunlu)
 - `GET|PUT /api/attendance/schedules` (`user_id` bos: fabrika geneli), `DELETE /api/attendance/schedules/users/{id}`
 

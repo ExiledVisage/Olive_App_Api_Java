@@ -60,6 +60,13 @@ class AttendanceController {
 		return new ListResponse<>(attendance.inside());
 	}
 
+	/** Kisi secicisi (elle kayit, kisiye ozel plan). */
+	@GetMapping("/api/attendance/people")
+	@PreAuthorize("hasAuthority('attendance.view')")
+	ListResponse<Attendance.User> people() {
+		return new ListResponse<>(attendance.people());
+	}
+
 	/** Kisi x gun mesai raporu; {@code user_id} verilmezse araliktaki herkes. */
 	@GetMapping("/api/attendance/report")
 	@PreAuthorize("hasAuthority('attendance.view')")

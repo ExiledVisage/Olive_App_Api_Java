@@ -122,6 +122,12 @@ class Attendance {
 				rs.getTimestamp("occurred_at").toLocalDateTime())).list();
 	}
 
+	/** Kisi secicisi (elle kayit, kisiye ozel plan): butun kullanicilar, ada gore. */
+	@Transactional(readOnly = true)
+	List<User> people() {
+		return jdbc.sql("select id, name from users order by lower(name), id").query(User.class).list();
+	}
+
 	/** Yerel gun araligindaki kayitlar (iptaller dahil), eskiden yeniye. */
 	@Transactional(readOnly = true)
 	List<Event> events(Long userId, LocalDate from, LocalDate to) {
