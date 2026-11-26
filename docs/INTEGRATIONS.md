@@ -16,7 +16,7 @@ GreenOps'ta WooCommerce entegrasyonu var (HMAC'li webhook ile siparis); kod alin
 |---|---|---|
 | 0 | Ortak altyapi: modul, erisim bilgileri, urun eslestirme, kuyruk, Entegrasyonlar ekrani | - |
 | 1 | WooCommerce: siparis bize, stok siteye | Site adresi + REST anahtari (okuma/yazma) |
-| 2 | Trendyol: siparis bize, stok (ve istenirse fiyat) — yazildi | Satici id, API anahtari/sifresi; test ortami IP izni |
+| 2 | Trendyol: siparis bize, stok, hazirlaniyor bildirimi (fiyat sonra) — yazildi | Satici id, API anahtari/sifresi; test ortami IP izni |
 | 3 | Hepsiburada: siparis bize, stok | Merchant id + entegrasyon kullanicisi (Hepsiburada onayi) |
 | 4 | Satis faturasi kaydi (bizde) | Siparisten fatura; numara, KDV, cari |
 | 5 | Parasut: cari, satis faturasi, e-fatura/e-arsiv | Parasut uygulama kaydi (OAuth) |
@@ -85,7 +85,13 @@ Durum (2026-11-27): yazildi (9e27337), sahte Trendyol API'siyle test edildi; ger
 - Stok: `POST /inventory/sellers/{id}/products/price-and-inventory` (1000 kalem, urun basina en fazla 20.000);
   donen is numarasiyla `GET /product/sellers/{id}/products/batch-requests/{no}` sorgulanir, FAILED kalemin gerekcesi
   yazilir. Ayni istek 15 dk icinde tekrarlanmamali: yalniz degisen gonderildigi icin olmaz.
-- Henuz yok: paket durumunu Trendyol'a bildirme (Picking, Invoiced + fatura no), fiyat gonderimi, kargo etiketi.
+- Hazirlaniyor: siparis bizde onaylaninca (confirmed..ready) `PUT /order/sellers/{id}/shipment-packages/{paket}`
+  `{"status":"Picking","lines":[{lineId,quantity}],"params":{}}`; kalem numaralari siparis alinirken saklanir.
+  Satis modulu `SalesOrderStatusChanged` yayinlar, entegrasyon islem bittikten sonra bildirir (hata durum
+  degisikligini geri almaz). Reddedilirse (musteri iptal etmis) gerekce `integration_orders.platform_error`'a
+  yazilir; zamanlayici yarim saatte bir, "Simdi yeniden bildir" (`POST .../orders/report`) hemen dener.
+- Henuz yok: Invoiced + fatura no (fatura kaydi ve Parasut'le), fiyat gonderimi (satis fiyati alani ve kimin
+  yonettigi karari), kargo etiketi, bizde iptal edilen siparisin Trendyol'a "tedarik edilemedi" bildirimi.
 
 ## 3. Hepsiburada
 

@@ -15,9 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 class OrderPullController {
 
 	private final OrderPull pull;
+	private final PreparingReport preparing;
 
-	OrderPullController(OrderPull pull) {
+	OrderPullController(OrderPull pull, PreparingReport preparing) {
 		this.pull = pull;
+		this.preparing = preparing;
+	}
+
+	/** @param reported platforma bildirilen siparis sayisi */
+	record Reported(int reported) {
 	}
 
 	/** Simdi cek: bekleyenleri yeniden dener, yeni siparisleri alir. */
@@ -32,6 +38,13 @@ class OrderPullController {
 	@PreAuthorize("hasAuthority('integration.manage')")
 	DataResponse<OrderPull.Pull> retry(@PathVariable long id) {
 		return DataResponse.of(pull.retry(id));
+	}
+
+	/** Hazirlaniyor bildirimi reddedilen ya da bildirilmemis siparisleri simdi yeniden bildir. */
+	@PostMapping("/api/integrations/connections/{id}/orders/report")
+	@PreAuthorize("hasAuthority('integration.manage')")
+	DataResponse<Reported> report(@PathVariable long id) {
+		return DataResponse.of(new Reported(preparing.retry(id, true)));
 	}
 
 	/** {@code status}: imported ya da pending; en yeni 200. */

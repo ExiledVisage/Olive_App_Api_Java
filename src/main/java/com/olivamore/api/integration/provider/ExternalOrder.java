@@ -20,8 +20,11 @@ public record ExternalOrder(String externalId, String number, String status, Loc
 	public record Address(String country, String city, String district, String line, String postalCode) {
 	}
 
-	/** @param variantId varyantsiz urunde bos metin */
-	public record Line(String productId, String variantId, String name, String sku, int quantity) {
+	/**
+	 * @param variantId varyantsiz urunde bos metin
+	 * @param lineId    platformdaki kalem id'si (durum bildiriminde kalemler bununla gider); eski kayitlarda bos
+	 */
+	public record Line(String productId, String variantId, String name, String sku, int quantity, String lineId) {
 	}
 
 }

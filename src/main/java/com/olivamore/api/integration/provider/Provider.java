@@ -65,6 +65,14 @@ public enum Provider {
 		return fields;
 	}
 
+	/**
+	 * Siparis hazirlanmaya baslayinca platforma bildirilir mi (pazar yerinde paket "hazirlaniyor"). WooCommerce'te
+	 * odenmis siparis zaten "isleniyor" durumundadir.
+	 */
+	public boolean reportsPreparing() {
+		return this == TRENDYOL;
+	}
+
 	public static Optional<Provider> of(String key) {
 		return Arrays.stream(values()).filter(p -> p.key.equals(key)).findFirst();
 	}

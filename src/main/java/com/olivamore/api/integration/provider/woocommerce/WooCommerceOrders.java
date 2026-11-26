@@ -41,7 +41,8 @@ final class WooCommerceOrders {
 				String variantId = variation == null || "0".equals(String.valueOf(variation)) ? ""
 					: String.valueOf(variation);
 				lines.add(new ExternalOrder.Line(String.valueOf(line.get("product_id")), variantId,
-					text(line.get("name")), text(line.get("sku")), ((Number) line.get("quantity")).intValue()));
+					text(line.get("name")), text(line.get("sku")), ((Number) line.get("quantity")).intValue(),
+					text(line.get("id"))));
 			}
 		}
 		return new ExternalOrder(String.valueOf(order.get("id")), text(order.get("number")),

@@ -33,6 +33,7 @@ public class TrendyolClient implements ProviderClient {
 	private static final Duration ORDER_WINDOW = Duration.ofDays(14);
 	private static final String ORDERS = "/order/sellers/{seller}/v2/orders?status=Created&startDate={start}"
 		+ "&endDate={end}&orderByField=PackageLastModifiedDate&orderByDirection=ASC&page={page}&size={size}";
+	private static final String PACKAGE = "/order/sellers/{seller}/shipment-packages/{package}";
 
 	/** Urun listesinde sayfa basina kayit. */
 	private static final int PRODUCT_PAGE = 200;
@@ -143,6 +144,27 @@ public class TrendyolClient implements ProviderClient {
 				results.addAll(TrendyolMapping.stockResults(chunk, awaitResult(batchId)));
 			}
 			return results;
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	/**
+	 * Paket durumu "Picking" (hazirlaniyor): pakette butun kalemler adetleriyle gider. Bundan sonra musteri paketi
+	 * Trendyol'dan iptal edemez.
+	 */
+	@Override
+	public void reportPreparing(ExternalOrder order) {
+		List<Map<String, Object>> lines = new ArrayList<>();
+		for (ExternalOrder.Line line : order.lines()) {
+			if (line.lineId() == null) {
+				throw new ProviderException("Trendyol kalem numarası yok; sipariş eski bir çekimden.", null);
+			}
+			lines.add(Map.of("lineId", Long.parseLong(line.lineId()), "quantity", line.quantity()));
+		}
+		try {
+			http.put().uri(PACKAGE, sellerId, order.externalId())
+				.body(Map.of("lines", lines, "params", Map.of(), "status", "Picking")).retrieve().toBodilessEntity();
 		} catch (RestClientException e) {
 			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
 		}

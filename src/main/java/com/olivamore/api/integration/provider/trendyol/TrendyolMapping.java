@@ -72,7 +72,8 @@ final class TrendyolMapping {
 				String barcode = text(l.get("barcode"));
 				String sku = text(l.get("merchantSku")) != null ? text(l.get("merchantSku")) : text(l.get("stockCode"));
 				lines.add(new ExternalOrder.Line(barcode == null ? "" : barcode, "", text(l.get("productName")), sku,
-					l.get("quantity") instanceof Number n ? n.intValue() : 0));
+					l.get("quantity") instanceof Number n ? n.intValue() : 0,
+					text(l.get("lineId")) != null ? text(l.get("lineId")) : text(l.get("id"))));
 			}
 		}
 		Object packageId = pkg.get("shipmentPackageId") != null ? pkg.get("shipmentPackageId") : pkg.get("id");

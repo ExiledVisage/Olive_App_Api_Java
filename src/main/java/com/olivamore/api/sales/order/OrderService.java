@@ -1,6 +1,7 @@
 package com.olivamore.api.sales.order;
 
 import com.olivamore.api.finishedproduct.ShelfOperations;
+import com.olivamore.api.sales.SalesOrderStatusChanged;
 import com.olivamore.api.sales.customer.Customer;
 import com.olivamore.api.sales.customer.CustomerAddress;
 import com.olivamore.api.sales.customer.CustomerAddressRepository;
@@ -14,6 +15,7 @@ import com.olivamore.api.shared.error.ValidationFailedException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.ValidationErrors;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,10 +40,11 @@ class OrderService {
 	private final CustomerAddressRepository addresses;
 	private final OrderStockQueries stock;
 	private final ShelfOperations shelves;
+	private final ApplicationEventPublisher events;
 
 	OrderService(SalesOrderRepository orders, OrderItemRepository items, OrderStatusHistoryRepository histories,
 		CustomerRepository customers, CustomerAddressRepository addresses, OrderStockQueries stock,
-		ShelfOperations shelves) {
+		ShelfOperations shelves, ApplicationEventPublisher events) {
 		this.orders = orders;
 		this.items = items;
 		this.histories = histories;
@@ -49,6 +52,7 @@ class OrderService {
 		this.addresses = addresses;
 		this.stock = stock;
 		this.shelves = shelves;
+		this.events = events;
 	}
 
 	/** Taslak siparis; teslimat adresi musterinin olmali. */
@@ -114,6 +118,7 @@ class OrderService {
 		}
 		order.changeStatus(to);
 		histories.save(new OrderStatusHistory(id, from, to, userId, request.note()));
+		events.publishEvent(new SalesOrderStatusChanged(id, from.value(), to.value()));
 	}
 
 	@Transactional

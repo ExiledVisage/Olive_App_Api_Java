@@ -43,9 +43,13 @@ public class OrderPull {
 
 	}
 
-	/** @param customer siparisteki alici adi */
+	/**
+	 * @param customer       siparisteki alici adi
+	 * @param platformStatus pazar yerine bildirilen son durum (preparing); bildirilemediyse platformError
+	 */
 	record IntegrationOrder(long id, String externalId, String externalNumber, String status, Long orderId,
-		String problem, String customer, int lineCount, LocalDateTime receivedAt, LocalDateTime importedAt) {
+		String problem, String customer, int lineCount, LocalDateTime receivedAt, LocalDateTime importedAt,
+		String platformStatus, String platformError) {
 	}
 
 	private record PendingLine(long id, String payload) {
@@ -117,7 +121,7 @@ public class OrderPull {
 		return jdbc.sql("""
 			select id, external_id, external_number, status, order_id, problem,
 				payload -> 'customer' ->> 'name' as customer, jsonb_array_length(payload -> 'lines') as line_count,
-				received_at, imported_at
+				received_at, imported_at, platform_status, platform_error
 			from integration_orders
 			where connection_id = :connection and (cast(:status as varchar) is null or status = :status)
 			order by received_at desc, id desc limit 200

@@ -1,6 +1,7 @@
 package com.olivamore.api.integration.sync;
 
 import com.olivamore.api.integration.order.OrderPull;
+import com.olivamore.api.integration.order.PreparingReport;
 import com.olivamore.api.integration.stock.StockPush;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.util.List;
 
 /**
- * Zamanlanmis senkron (docs/INTEGRATIONS.md 0): aktif her baglantida, aciksa siparis cekme ve stok gonderimi.
+ * Zamanlanmis senkron (docs/INTEGRATIONS.md 0): aktif her baglantida, aciksa siparis cekme ve stok gonderimi;
+ * pazar yerinde bildirilemeyen "hazirlaniyor" durumlari yeniden denenir.
  * Bir baglantinin hatasi digerlerini durdurmaz; hata senkron gecmisine ve baglantiya yazilir. Testlerde kapali
  * ({@code olive.integration.schedule.enabled=false}).
  */
@@ -30,11 +32,13 @@ class SyncScheduler {
 	private final JdbcClient jdbc;
 	private final OrderPull orders;
 	private final StockPush stock;
+	private final PreparingReport preparing;
 
-	SyncScheduler(JdbcClient jdbc, OrderPull orders, StockPush stock) {
+	SyncScheduler(JdbcClient jdbc, OrderPull orders, StockPush stock, PreparingReport preparing) {
 		this.jdbc = jdbc;
 		this.orders = orders;
 		this.stock = stock;
+		this.preparing = preparing;
 	}
 
 	@Scheduled(initialDelayString = "${olive.integration.schedule.initial-delay:PT1M}",
@@ -48,6 +52,7 @@ class SyncScheduler {
 			if (target.orderPullEnabled()) {
 				safely(target.id(), "sipariş", () -> orders.pull(target.id(), SyncRuns.Trigger.SCHEDULE));
 			}
+			safely(target.id(), "bildirim", () -> preparing.retry(target.id(), false));
 			if (target.stockPushEnabled()) {
 				safely(target.id(), "stok", () -> stock.push(target.id(), SyncRuns.Trigger.SCHEDULE));
 			}

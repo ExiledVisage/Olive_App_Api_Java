@@ -28,7 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Trendyol baglantisi (docs/INTEGRATIONS.md 2), sahte Trendyol API'siyle: baglanti denemesi (Basic auth,
  * storeFrontCode, User-Agent), onayli urunlerin barkodla eslesmesi (arsivlenmis alinmaz), Created paketlerin son iki
- * haftadan cekilip siparise donmesi (GMT+3 siparis tarihi), stok-fiyat gonderimi ve kuyruk sonucundaki kalem hatasi.
+ * haftadan cekilip siparise donmesi (GMT+3 siparis tarihi), stok-fiyat gonderimi ve kuyruk sonucundaki kalem hatasi,
+ * siparis onaylaninca paketin "hazirlaniyor" (Picking) bildirilmesi ve reddedilen bildirimin yeniden denenmesi.
  */
 @ApiIntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -159,6 +160,68 @@ class IntegrationTrendyolIT {
 			"Trendyol canlı", "credentials", Map.of("seller_id", "1", "api_key", "k", "api_secret", "s")));
 		assertThat(live.status()).as("adres verilmezse canli adres").isEqualTo(201);
 		assertThat(data(live).get("base_url").isNull()).isTrue();
+	}
+
+	@Test
+	void confirmingATrendyolOrderReportsThePackageAsPicking() {
+		long now = Instant.now().toEpochMilli();
+		try (FakeTrendyol shop = new FakeTrendyol()
+			.product(barcode4, "OLV-0004", "Olivamore Gemlik Sızma 1 L", 30)
+			.shipmentPackage(9101, "10655511111", "Created", now, now, "Deniz", "Ak", "deniz@example.com", "5321230001",
+				"İstanbul", "Kadıköy", "Moda Cd. 1", List.of(new Line(81, barcode4, "Olivamore Gemlik Sızma 1 L", 1)))
+			.shipmentPackage(9102, "10655522222", "Created", now, now, "Can", "Er", "can@example.com", "5321230002",
+				"İzmir", "Konak", "Alsancak", List.of(new Line(82, barcode4, "Olivamore Gemlik Sızma 1 L", 2)))) {
+			long connection = data(api.post("/api/integrations/connections", Map.of("provider", "trendyol", "name",
+				"Trendyol bildirim", "base_url", shop.url(), "credentials", Map.of("seller_id", FakeTrendyol.SELLER,
+					"api_key", FakeTrendyol.KEY, "api_secret", FakeTrendyol.SECRET)))).get("id").asLong();
+			api.post(base(connection) + "/catalog/refresh", Map.of());
+			assertThat(data(api.post(base(connection) + "/orders/pull", Map.of())).get("imported").asInt())
+				.isEqualTo(2);
+			long order1 = orderOf(connection, "9101");
+			long order2 = orderOf(connection, "9102");
+			assertThat(shop.requests()).as("taslakta bildirim yok").noneMatch(r -> r.method().equals("PUT"));
+
+			// Onay: paket hazirlaniyor, butun kalemleriyle
+			Response confirmed = api.patch("/api/orders/" + order1 + "/status", Map.of("status", "confirmed"));
+			assertThat(confirmed.status()).as(confirmed.body()).isEqualTo(200);
+			assertThat(shop.statusOf(9101)).isEqualTo("Picking");
+			FakeTrendyol.Request put = shop.requests().stream().filter(r -> r.method().equals("PUT")).findFirst()
+				.orElseThrow();
+			assertThat(put.path()).endsWith("/order/sellers/" + FakeTrendyol.SELLER + "/shipment-packages/9101");
+			assertThat(put.body()).contains("\"status\":\"Picking\"").contains("\"lineId\":81");
+			JsonNode reported = integrationOrder(connection, "9101");
+			assertThat(reported.get("platform_status").asString()).isEqualTo("preparing");
+			assertThat(reported.get("platform_error").isNull()).isTrue();
+
+			// Musteri Trendyol'da iptal etmis: bizde onay gecer, hata kayda yazilir
+			shop.cancel(9102);
+			assertThat(api.patch("/api/orders/" + order2 + "/status", Map.of("status", "confirmed")).status())
+				.isEqualTo(200);
+			JsonNode rejected = integrationOrder(connection, "9102");
+			assertThat(rejected.get("platform_status").isNull()).isTrue();
+			assertThat(rejected.get("platform_error").asString()).contains("Trendyol hata döndü (400)")
+				.contains("Cancelled durumunda");
+			assertThat(data(api.get("/api/orders/" + order2)).get("status").asString()).isEqualTo("confirmed");
+
+			// Elle yeniden bildir; bildirilmis siparis bir daha gitmez
+			shop.restore(9102);
+			assertThat(data(api.post(base(connection) + "/orders/report", Map.of())).get("reported").asInt())
+				.isEqualTo(1);
+			assertThat(shop.statusOf(9102)).isEqualTo("Picking");
+			assertThat(integrationOrder(connection, "9102").get("platform_status").asString()).isEqualTo("preparing");
+			assertThat(data(api.post(base(connection) + "/orders/report", Map.of())).get("reported").asInt())
+				.isZero();
+			assertThat(shop.requests().stream().filter(r -> r.method().equals("PUT")).count()).isEqualTo(3);
+		}
+	}
+
+	private JsonNode integrationOrder(long connection, String externalId) {
+		return StreamSupport.stream(data(api.get(base(connection) + "/orders")).spliterator(), false)
+			.filter(o -> o.get("external_id").asString().equals(externalId)).findFirst().orElseThrow();
+	}
+
+	private long orderOf(long connection, String externalId) {
+		return integrationOrder(connection, externalId).get("order_id").asLong();
 	}
 
 	private static String base(long connection) {

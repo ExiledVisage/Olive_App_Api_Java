@@ -1,6 +1,8 @@
 -- integration_orders: platformdan gelen her siparis bir kez (docs/INTEGRATIONS.md 0). Kalemleri eslesirse siparis
 -- moduline taslak olarak alinir (imported, order_id); eslesmeyen kalem varsa siparise girmeden bekler (pending,
 -- problem) ve urun eslestirilince yeniden denenir. payload platformdan gelen siparis (yeniden deneme icin).
+-- platform_status: pazar yerine bildirilen son durum (preparing = "hazirlaniyor"); bildirim reddedilirse
+-- platform_error yazilir, zamanlayici daha sonra yeniden dener (platform_attempted_at).
 
 CREATE TABLE integration_orders (
     id bigint NOT NULL,
@@ -13,9 +15,13 @@ CREATE TABLE integration_orders (
     payload jsonb NOT NULL,
     received_at timestamp(0) without time zone NOT NULL,
     imported_at timestamp(0) without time zone,
+    platform_status character varying(20),
+    platform_error text,
+    platform_attempted_at timestamp(0) without time zone,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
-    CONSTRAINT integration_orders_status_check CHECK (status IN ('imported', 'pending'))
+    CONSTRAINT integration_orders_status_check CHECK (status IN ('imported', 'pending')),
+    CONSTRAINT integration_orders_platform_status_check CHECK (platform_status IN ('preparing'))
 );
 
 CREATE SEQUENCE integration_orders_id_seq

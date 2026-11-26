@@ -21,9 +21,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Testlerde Trendyol satici API'sinin yerine ({@code /integration}): onayli urunler, V2 siparis paketleri, stok-fiyat
- * gonderimi ve kuyruktaki isin sonucu, Trendyol'un belgelenmis bicimiyle. Basic auth, {@code storeFrontCode} basligi
- * ve yoldaki satici ID denetlenir; istekler kaydedilir.
+ * Testlerde Trendyol satici API'sinin yerine ({@code /integration}): onayli urunler, V2 siparis paketleri, paket
+ * durumu bildirimi (Picking), stok-fiyat gonderimi ve kuyruktaki isin sonucu, Trendyol'un belgelenmis bicimiyle.
+ * Basic auth, {@code storeFrontCode} basligi ve yoldaki satici ID denetlenir; istekler kaydedilir.
  */
 public final class FakeTrendyol implements AutoCloseable {
 
@@ -124,6 +124,27 @@ public final class FakeTrendyol implements AutoCloseable {
 		return this;
 	}
 
+	/** Musteri paketi Trendyol'da iptal etti: durum bildirimi reddedilir. */
+	public FakeTrendyol cancel(long packageId) {
+		pkg(packageId).put("status", "Cancelled");
+		return this;
+	}
+
+	/** Paket yeniden hazirlanabilir (iptal geri alindi). */
+	public FakeTrendyol restore(long packageId) {
+		pkg(packageId).put("status", "Created");
+		return this;
+	}
+
+	public String statusOf(long packageId) {
+		return (String) pkg(packageId).get("status");
+	}
+
+	private Map<String, Object> pkg(long packageId) {
+		return packages.stream().filter(p -> ((Number) p.get("id")).longValue() == packageId).findFirst()
+			.orElseThrow();
+	}
+
 	public Integer stockOf(String barcode) {
 		return products.stream().filter(p -> barcode.equals(p.get("barcode"))).findFirst()
 			.map(p -> (Integer) p.get("quantity")).orElse(null);
@@ -187,12 +208,50 @@ public final class FakeTrendyol implements AutoCloseable {
 				"failedItemCount", items.stream().filter(i -> "FAILED".equals(i.get("status"))).count(), "items",
 				items));
 			send(exchange, 200, Map.of("batchRequestId", id));
+		} else if ("PUT".equals(method) && path.contains("/shipment-packages/")) {
+			updatePackage(exchange, Long.parseLong(path.substring(path.lastIndexOf('/') + 1)),
+				JSON.readValue(body, Map.class));
 		} else if ("GET".equals(method) && path.contains("/products/batch-requests/")) {
 			String id = path.substring(path.lastIndexOf('/') + 1);
 			send(exchange, batches.containsKey(id) ? 200 : 404, batches.getOrDefault(id, Map.of()));
 		} else {
 			send(exchange, 404, Map.of("errors", List.of(Map.of("message", "Not found"))));
 		}
+	}
+
+	/** Picking yalniz Created pakete ve paketin butun kalemleriyle (lineId, adet) kabul edilir. */
+	@SuppressWarnings("unchecked")
+	private void updatePackage(HttpExchange exchange, long packageId, Map<String, Object> request)
+		throws IOException {
+		Map<String, Object> pkg = packages.stream().filter(p -> ((Number) p.get("id")).longValue() == packageId)
+			.findFirst().orElse(null);
+		if (pkg == null) {
+			send(exchange, 404, Map.of("errors", List.of(Map.of("message", "Paket bulunamadı."))));
+			return;
+		}
+		if (!"Picking".equals(request.get("status")) || !"Created".equals(pkg.get("status"))) {
+			send(exchange, 400, Map.of("errors", List.of(Map.of("key", "ShipmentPackageStatusException",
+				"message", "Paket " + pkg.get("status") + " durumunda; güncellenemez."))));
+			return;
+		}
+		Set<String> expected = new HashSet<>();
+		for (Object line : (List<Object>) pkg.get("lines")) {
+			Map<String, Object> l = (Map<String, Object>) line;
+			expected.add(l.get("lineId") + "x" + l.get("quantity"));
+		}
+		Set<String> given = new HashSet<>();
+		for (Object line : (List<Object>) request.get("lines")) {
+			Map<String, Object> l = (Map<String, Object>) line;
+			given.add(l.get("lineId") + "x" + l.get("quantity"));
+		}
+		if (!expected.equals(given)) {
+			send(exchange, 400, Map.of("errors", List.of(Map.of("message", "Kalemler paketle uyuşmuyor."))));
+			return;
+		}
+		pkg.put("status", "Picking");
+		pkg.put("shipmentPackageStatus", "Picking");
+		exchange.sendResponseHeaders(200, -1);
+		exchange.close();
 	}
 
 	private static void page(HttpExchange exchange, List<Map<String, Object>> all, Map<String, String> query)

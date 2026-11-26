@@ -28,6 +28,14 @@ public interface ProviderClient {
 	 */
 	List<StockUpdate.Result> pushStock(List<StockUpdate> updates);
 
+	/**
+	 * Siparisin hazirlanmaya basladigini bildirir; yalniz {@link Provider#reportsPreparing()} platformlarda cagrilir.
+	 * Platform reddederse ya da ulasilamazsa {@link ProviderException}.
+	 */
+	default void reportPreparing(ExternalOrder order) {
+		throw new UnsupportedOperationException("Bu platformda hazırlanıyor bildirimi yok.");
+	}
+
 	/** @param message basariliysa magaza/hesap ozeti, degilse hatanin gerekcesi */
 	record ConnectionCheck(boolean ok, String message) {
 	}
