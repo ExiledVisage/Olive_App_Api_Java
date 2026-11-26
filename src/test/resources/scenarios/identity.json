@@ -448,7 +448,7 @@
       "token_type" : "Bearer",
       "expires_in" : 900,
       "user" : {
-        "id" : 8,
+        "id" : 9,
         "name" : "Yeni Kullanici",
         "email" : "yeni@olivamore.com",
         "roles" : [ ],
@@ -477,7 +477,7 @@
       "token_type" : "Bearer",
       "expires_in" : 900,
       "user" : {
-        "id" : 8,
+        "id" : 9,
         "name" : "Yeni Kullanici",
         "email" : "yeni@olivamore.com",
         "roles" : [ ],
@@ -581,7 +581,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 9,
+        "id" : 10,
         "name" : "Test Kullanici",
         "email" : "test@olivamore.com",
         "roles" : [ "operator", "planner" ],
@@ -592,7 +592,7 @@
   }, {
     "name" : "users update rolsuz",
     "method" : "PUT",
-    "path" : "/api/users/9",
+    "path" : "/api/users/10",
     "body" : {
       "name" : "Test Kullanici 2",
       "email" : "test@olivamore.com"
@@ -601,7 +601,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 9,
+        "id" : 10,
         "name" : "Test Kullanici 2",
         "email" : "test@olivamore.com",
         "roles" : [ "operator", "planner" ],
@@ -612,7 +612,7 @@
   }, {
     "name" : "users update roller null",
     "method" : "PUT",
-    "path" : "/api/users/9",
+    "path" : "/api/users/10",
     "body" : {
       "name" : "Test Kullanici 2",
       "email" : "test@olivamore.com",
@@ -622,7 +622,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 9,
+        "id" : 10,
         "name" : "Test Kullanici 2",
         "email" : "test@olivamore.com",
         "roles" : [ ],
@@ -633,7 +633,7 @@
   }, {
     "name" : "users update email baskasinin",
     "method" : "PUT",
-    "path" : "/api/users/9",
+    "path" : "/api/users/10",
     "body" : {
       "name" : "X",
       "email" : "admin@olivamore.com"
@@ -644,7 +644,7 @@
       "title" : "Unprocessable Content",
       "status" : 422,
       "detail" : "The email has already been taken.",
-      "instance" : "/api/users/9",
+      "instance" : "/api/users/10",
       "errors" : {
         "email" : [ "The email has already been taken." ]
       }
@@ -652,7 +652,7 @@
   }, {
     "name" : "users update kisa sifre",
     "method" : "PATCH",
-    "path" : "/api/users/9",
+    "path" : "/api/users/10",
     "body" : {
       "name" : "X",
       "email" : "test@olivamore.com",
@@ -664,7 +664,7 @@
       "title" : "Unprocessable Content",
       "status" : 422,
       "detail" : "The password field must be at least 8 characters.",
-      "instance" : "/api/users/9",
+      "instance" : "/api/users/10",
       "errors" : {
         "password" : [ "The password field must be at least 8 characters." ]
       }
@@ -672,7 +672,7 @@
   }, {
     "name" : "user roles bos",
     "method" : "PATCH",
-    "path" : "/api/users/9/roles",
+    "path" : "/api/users/10/roles",
     "body" : {
       "roles" : [ ]
     },
@@ -682,7 +682,7 @@
       "title" : "Unprocessable Content",
       "status" : 422,
       "detail" : "The roles field is required.",
-      "instance" : "/api/users/9/roles",
+      "instance" : "/api/users/10/roles",
       "errors" : {
         "roles" : [ "The roles field is required." ]
       }
@@ -690,7 +690,7 @@
   }, {
     "name" : "user roles",
     "method" : "PATCH",
-    "path" : "/api/users/9/roles",
+    "path" : "/api/users/10/roles",
     "body" : {
       "roles" : [ "food_engineer" ]
     },
@@ -698,7 +698,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 9,
+        "id" : 10,
         "name" : "Test Kullanici 2",
         "email" : "test@olivamore.com",
         "roles" : [ "food_engineer" ],
@@ -754,7 +754,7 @@
   }, {
     "name" : "users delete",
     "method" : "DELETE",
-    "path" : "/api/users/9",
+    "path" : "/api/users/10",
     "body" : null,
     "status" : 200,
     "headers" : { },
@@ -764,15 +764,15 @@
   }, {
     "name" : "users delete tekrar",
     "method" : "DELETE",
-    "path" : "/api/users/9",
+    "path" : "/api/users/10",
     "body" : null,
     "status" : 404,
     "headers" : { },
     "response" : {
       "title" : "Not Found",
       "status" : 404,
-      "detail" : "User 9 not found.",
-      "instance" : "/api/users/9"
+      "detail" : "User 10 not found.",
+      "instance" : "/api/users/10"
     }
   }, {
     "name" : "roles store bos",
@@ -822,7 +822,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 7,
+        "id" : 8,
         "name" : "deneme_izinli",
         "permissions" : [ "customer.view", "order.view" ]
       }
@@ -838,7 +838,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 8,
+        "id" : 9,
         "name" : "deneme_rolu",
         "permissions" : [ ]
       }
@@ -846,7 +846,7 @@
   }, {
     "name" : "roles update izinsiz",
     "method" : "PUT",
-    "path" : "/api/roles/8",
+    "path" : "/api/roles/9",
     "body" : {
       "name" : "deneme_rolu_2"
     },
@@ -854,7 +854,7 @@
     "headers" : { },
     "response" : {
       "data" : {
-        "id" : 8,
+        "id" : 9,
         "name" : "deneme_rolu_2",
         "permissions" : [ ]
       }
@@ -890,7 +890,7 @@
   }, {
     "name" : "roles delete",
     "method" : "DELETE",
-    "path" : "/api/roles/8",
+    "path" : "/api/roles/9",
     "body" : null,
     "status" : 200,
     "headers" : { },
