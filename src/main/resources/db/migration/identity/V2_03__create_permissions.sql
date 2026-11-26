@@ -90,4 +90,6 @@ insert into permissions (id, name) values
 	(61, 'filling_check.record'),
 	(62, 'attendance.scan'),
 	(63, 'attendance.view'),
-	(64, 'attendance.manage');
+	(64, 'attendance.manage'),
+	(65, 'integration.view'),
+	(66, 'integration.manage');

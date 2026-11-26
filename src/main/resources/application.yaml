@@ -84,6 +84,11 @@ olive:
     code-secret: ${ATTENDANCE_CODE_SECRET:${JWT_PRIVATE_KEY:}}
     code-ttl: ${ATTENDANCE_CODE_TTL:60s}
     rounding-minutes: ${ATTENDANCE_ROUNDING_MINUTES:15}
+  # Site ve pazar yeri entegrasyonlari (docs/INTEGRATIONS.md); erisim bilgisi anahtari verilmezse JWT anahtarindan
+  integration:
+    secret: ${INTEGRATION_SECRET:${JWT_PRIVATE_KEY:}}
+    # Yalniz https adreslere baglanilir; gelistirmede yerel sahte sunucu icin true yapilabilir
+    allow-http: ${INTEGRATION_ALLOW_HTTP:false}
   # Mobil uygulama surumleri (version.json + APK); frontend'in yayinlama betigi buraya koyar
   releases-path: ${APP_RELEASES_PATH:releases}
   # Sisedeki QR'in actigi herkese acik sayfanin adres tabani (alan adi gelince degisir; QR'lar yeni adresle uretilir)
