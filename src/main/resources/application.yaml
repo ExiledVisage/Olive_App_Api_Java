@@ -89,6 +89,10 @@ olive:
     secret: ${INTEGRATION_SECRET:${JWT_PRIVATE_KEY:}}
     # Yalniz https adreslere baglanilir; gelistirmede yerel sahte sunucu icin true yapilabilir
     allow-http: ${INTEGRATION_ALLOW_HTTP:false}
+    # Siparis cekme ve stok gonderimi araligi (aktif baglantilarda, aciksa)
+    schedule:
+      enabled: ${INTEGRATION_SCHEDULE_ENABLED:true}
+      interval: ${INTEGRATION_SCHEDULE_INTERVAL:PT5M}
   # Mobil uygulama surumleri (version.json + APK); frontend'in yayinlama betigi buraya koyar
   releases-path: ${APP_RELEASES_PATH:releases}
   # Sisedeki QR'in actigi herkese acik sayfanin adres tabani (alan adi gelince degisir; QR'lar yeni adresle uretilir)

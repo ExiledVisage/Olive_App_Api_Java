@@ -5,6 +5,7 @@ import com.olivamore.api.integration.provider.ExternalProduct;
 import com.olivamore.api.integration.provider.ProviderClient;
 import com.olivamore.api.integration.provider.ProviderErrors;
 import com.olivamore.api.integration.provider.ProviderException;
+import com.olivamore.api.integration.provider.StockUpdate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -15,6 +16,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,6 +94,39 @@ public class WooCommerceClient implements ProviderClient {
 			+ (changedAfter == null ? "" : "&modified_after=" + ISO.format(changedAfter.withNano(0)));
 		try {
 			return pages(path).stream().map(WooCommerceOrders::order).toList();
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	/**
+	 * Toplu guncelleme: varyantsiz urunler {@code /products/batch}, varyantlar urun basina
+	 * {@code /products/{id}/variations/batch}; her istekte en fazla 100 kalem.
+	 */
+	@Override
+	public List<StockUpdate.Result> pushStock(List<StockUpdate> updates) {
+		Map<String, List<StockUpdate>> byTarget = new LinkedHashMap<>();
+		for (StockUpdate update : updates) {
+			String target = update.variantId() == null || update.variantId().isEmpty()
+				? "/products/batch" : "/products/" + update.productId() + "/variations/batch";
+			byTarget.computeIfAbsent(target, k -> new ArrayList<>()).add(update);
+		}
+		List<StockUpdate.Result> results = new ArrayList<>();
+		try {
+			for (Map.Entry<String, List<StockUpdate>> entry : byTarget.entrySet()) {
+				boolean variations = entry.getKey().endsWith("/variations/batch");
+				List<StockUpdate> all = entry.getValue();
+				for (int from = 0; from < all.size(); from += PAGE_SIZE) {
+					List<StockUpdate> chunk = all.subList(from, Math.min(all.size(), from + PAGE_SIZE));
+					List<Map<String, Object>> body = chunk.stream().map(u -> Map.<String, Object>of(
+						"id", Long.parseLong(variations ? u.variantId() : u.productId()), "manage_stock", true,
+						"stock_quantity", u.quantity())).toList();
+					Map<?, ?> response = http.post().uri(entry.getKey()).body(Map.of("update", body)).retrieve()
+						.body(Map.class);
+					results.addAll(WooCommerceStock.results(chunk, variations, response));
+				}
+			}
+			return results;
 		} catch (RestClientException e) {
 			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
 		}

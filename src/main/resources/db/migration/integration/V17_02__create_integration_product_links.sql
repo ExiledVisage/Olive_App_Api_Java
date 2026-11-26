@@ -1,7 +1,8 @@
 -- integration_product_links: platformdaki urun (ya da varyant) ile bizim bitmis urunumuzun eslestirmesi
 -- (docs/INTEGRATIONS.md 0). Katalog yenilenince platformdaki her urun bir satir; barkod, yoksa SKU tutarsa
 -- kendiliginden eslesir (match_source barcode/sku), elle baglanan "manual", bilerek eslestirilmeyen "ignored"
--- (kendiliginden eslestirmeye girmez).
+-- (kendiliginden eslestirmeye girmez). pushed_stock platforma en son gonderilen satilabilir adet: satilabilir adet
+-- bundan farkliysa stok gonderilir; gonderim basarisizsa degismez ve sonraki calismada yeniden denenir.
 
 CREATE TABLE integration_product_links (
     id bigint NOT NULL,
@@ -14,6 +15,9 @@ CREATE TABLE integration_product_links (
     external_stock integer,
     finished_product_id bigint,
     match_source character varying(10),
+    pushed_stock integer,
+    pushed_at timestamp(0) without time zone,
+    push_error text,
     last_seen_at timestamp(0) without time zone NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,

@@ -22,6 +22,12 @@ public interface ProviderClient {
 	 */
 	List<ExternalOrder> orders(LocalDateTime changedAfter);
 
+	/**
+	 * Stoklari toplu gonderir (platform stok yonetimini acar). Platform tek tek kalem hatasi dondurebilir; sonuc her
+	 * kalem icin. Platforma hic ulasilamazsa {@link ProviderException}.
+	 */
+	List<StockUpdate.Result> pushStock(List<StockUpdate> updates);
+
 	/** @param message basariliysa magaza/hesap ozeti, degilse hatanin gerekcesi */
 	record ConnectionCheck(boolean ok, String message) {
 	}

@@ -38,6 +38,7 @@ public final class FakeWooCommerce implements AutoCloseable {
 	private final List<Map<String, Object>> products = new ArrayList<>();
 	private final Map<Long, List<Map<String, Object>>> variations = new HashMap<>();
 	private final List<Map<String, Object>> orders = new ArrayList<>();
+	private final java.util.Set<Long> rejected = new java.util.HashSet<>();
 	private String currency = "TRY";
 
 	public FakeWooCommerce() {
@@ -186,6 +187,14 @@ public final class FakeWooCommerce implements AutoCloseable {
 			page(exchange, variations.getOrDefault(parent, List.of()), query);
 			return;
 		}
+		if ("POST".equals(exchange.getRequestMethod()) && path.equals("/products/batch")) {
+			batch(exchange, products, body);
+			return;
+		}
+		if ("POST".equals(exchange.getRequestMethod()) && path.matches("/products/[0-9]+/variations/batch")) {
+			batch(exchange, variations.getOrDefault(Long.parseLong(path.split("/")[2]), List.of()), body);
+			return;
+		}
 		if ("GET".equals(exchange.getRequestMethod()) && path.equals("/orders")) {
 			String status = query.get("status");
 			String after = query.get("modified_after");
@@ -202,6 +211,53 @@ public final class FakeWooCommerce implements AutoCloseable {
 		}
 		send(exchange, 404, Map.of("code", "rest_no_route", "message", "No route was found matching the URL.",
 			"data", Map.of("status", 404)), Map.of());
+	}
+
+	/** Sitedeki urun ya da varyantin stogu (stok gonderimini dogrulamak icin). */
+	public Integer stockOf(long id) {
+		List<Map<String, Object>> all = new ArrayList<>(products);
+		variations.values().forEach(all::addAll);
+		return all.stream().filter(p -> ((Number) p.get("id")).longValue() == id).findFirst()
+			.map(p -> (Integer) p.get("stock_quantity")).orElse(null);
+	}
+
+	/** Sitede stogu elle degistir (katalog yenilenince bize gelir). */
+	public FakeWooCommerce setStock(long id, int quantity) {
+		List<Map<String, Object>> all = new ArrayList<>(products);
+		variations.values().forEach(all::addAll);
+		all.stream().filter(p -> ((Number) p.get("id")).longValue() == id).forEach(p -> {
+			p.put("manage_stock", true);
+			p.put("stock_quantity", quantity);
+		});
+		return this;
+	}
+
+	/** Bu id'nin stok guncellemesi WooCommerce'in kalem hatasiyla reddedilir. */
+	public FakeWooCommerce rejectStockFor(long id) {
+		rejected.add(id);
+		return this;
+	}
+
+	/** WooCommerce toplu guncelleme: {@code {"update": [{"id", "stock_quantity", ...}]}}. */
+	@SuppressWarnings("unchecked")
+	private void batch(HttpExchange exchange, List<Map<String, Object>> items, String body) throws IOException {
+		Map<String, Object> request = JSON.readValue(body, Map.class);
+		List<Object> updated = new ArrayList<>();
+		for (Object entry : (List<Object>) request.getOrDefault("update", List.of())) {
+			Map<String, Object> change = (Map<String, Object>) entry;
+			long id = ((Number) change.get("id")).longValue();
+			if (rejected.contains(id)) {
+				updated.add(Map.of("id", id, "error", Map.of("code", "woocommerce_rest_invalid_id", "message",
+					"Geçersiz ID.", "data", Map.of("status", 400))));
+				continue;
+			}
+			items.stream().filter(p -> ((Number) p.get("id")).longValue() == id).findFirst().ifPresent(p -> {
+				p.put("manage_stock", change.get("manage_stock"));
+				p.put("stock_quantity", ((Number) change.get("stock_quantity")).intValue());
+				updated.add(p);
+			});
+		}
+		send(exchange, 200, Map.of("update", updated), Map.of());
 	}
 
 	/** WooCommerce sayfalamasi: {@code per_page}, {@code page}; toplam {@code X-WP-Total(Pages)} basliginda. */
