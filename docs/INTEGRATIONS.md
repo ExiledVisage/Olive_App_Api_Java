@@ -16,7 +16,7 @@ GreenOps'ta WooCommerce entegrasyonu var (HMAC'li webhook ile siparis); kod alin
 |---|---|---|
 | 0 | Ortak altyapi: modul, erisim bilgileri, urun eslestirme, kuyruk, Entegrasyonlar ekrani | - |
 | 1 | WooCommerce: siparis bize, stok siteye | Site adresi + REST anahtari (okuma/yazma) |
-| 2 | Trendyol: siparis bize, stok (ve istenirse fiyat) | Satici id, API anahtari/sifresi; test ortami IP izni |
+| 2 | Trendyol: siparis bize, stok (ve istenirse fiyat) — yazildi | Satici id, API anahtari/sifresi; test ortami IP izni |
 | 3 | Hepsiburada: siparis bize, stok | Merchant id + entegrasyon kullanicisi (Hepsiburada onayi) |
 | 4 | Satis faturasi kaydi (bizde) | Siparisten fatura; numara, KDV, cari |
 | 5 | Parasut: cari, satis faturasi, e-fatura/e-arsiv | Parasut uygulama kaydi (OAuth) |
@@ -74,11 +74,18 @@ Siparislere `source` (manual/woocommerce/...) ve `external_ref` eklendi; kapi `s
 
 ## 2. Trendyol
 
-- Satici API'si (Basic auth: API anahtari/sifresi, User-Agent: "<satici id> - SelfIntegration").
-- Siparis: paketler (`shipment-packages`) cekilir; bizde hazirlaninca durum Trendyol'a bildirilir (Picking,
-  Invoiced). Kargo etiketi ve fatura linki sonraki adim.
-- Stok ve fiyat: `price-and-inventory` toplu gonderim; islem sonucu ayrica sorgulanir.
-- Test ortami (stage) satici IP izni ister: sunucu IP'si 161.35.54.96 Trendyol'a bildirilir.
+Durum (2026-11-27): yazildi (9e27337), sahte Trendyol API'siyle test edildi; gercek hesap bekleniyor.
+
+- Satici API'si `https://apigw.trendyol.com/integration` (test: `stageapigw`); Basic auth (API anahtari/sifresi),
+  her istekte `storeFrontCode: TR`, User-Agent "<satici id> - SelfIntegration". Baglantida API adresi istege bagli.
+- Urunler: `GET /product/sellers/{id}/products?approved=true` sayfa sayfa; Trendyol urunu ve stogu barkodla tanir,
+  eslestirme anahtari barkod. Arsivlenmis urun alinmaz.
+- Siparis: `GET /order/sellers/{id}/v2/orders?status=Created` (eski uc 15.10.2026'da kalkiyor), son degisime gore;
+  aralik en fazla iki hafta. `orderDate` GMT+3 duvar saati milisaniyesi, UTC'ye cevrilir.
+- Stok: `POST /inventory/sellers/{id}/products/price-and-inventory` (1000 kalem, urun basina en fazla 20.000);
+  donen is numarasiyla `GET /product/sellers/{id}/products/batch-requests/{no}` sorgulanir, FAILED kalemin gerekcesi
+  yazilir. Ayni istek 15 dk icinde tekrarlanmamali: yalniz degisen gonderildigi icin olmaz.
+- Henuz yok: paket durumunu Trendyol'a bildirme (Picking, Invoiced + fatura no), fiyat gonderimi, kargo etiketi.
 
 ## 3. Hepsiburada
 
