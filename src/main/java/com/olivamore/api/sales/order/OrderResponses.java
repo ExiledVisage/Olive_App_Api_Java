@@ -85,7 +85,7 @@ class OrderResponses {
 	private static OrderResponse response(SalesOrder order, List<Item> orderItems, UserSummary creator,
 		List<History> history) {
 		return new OrderResponse(order.getId(), order.getStatus(), order.getStatus().transitions(),
-			order.getOrderDate().atStartOfDay(), order.getNote(),
+			order.getOrderDate().atStartOfDay(), order.getNote(), order.getSource(), order.getExternalRef(),
 			CustomerResponse.withoutAddresses(order.getCustomer()),
 			CustomerAddressResponse.of(order.getDeliveryAddress()), orderItems, creator, history,
 			order.getCreatedAt(), order.getUpdatedAt());

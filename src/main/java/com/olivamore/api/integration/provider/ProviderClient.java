@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.provider;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -13,6 +14,13 @@ public interface ProviderClient {
 
 	/** Platformdaki butun satilabilir urunler (varyantli urunde her varyant ayri). */
 	List<ExternalProduct> products();
+
+	/**
+	 * Hazirlanmayi bekleyen (odenmis) siparisler; {@code changedAfter} verilirse yalniz o andan sonra degisenler.
+	 *
+	 * @param changedAfter UTC
+	 */
+	List<ExternalOrder> orders(LocalDateTime changedAfter);
 
 	/** @param message basariliysa magaza/hesap ozeti, degilse hatanin gerekcesi */
 	record ConnectionCheck(boolean ok, String message) {

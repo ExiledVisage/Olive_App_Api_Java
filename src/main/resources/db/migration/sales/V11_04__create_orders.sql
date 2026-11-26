@@ -1,4 +1,5 @@
--- orders: siparisler
+-- orders: siparisler; source siparisin geldigi yer (elle ya da site/pazar yeri), external_ref oradaki numara
+-- (docs/INTEGRATIONS.md)
 
 CREATE TABLE orders (
     id bigint NOT NULL,
@@ -8,8 +9,11 @@ CREATE TABLE orders (
     status character varying(30) DEFAULT 'draft'::character varying NOT NULL,
     order_date date NOT NULL,
     note text,
+    source character varying(20) DEFAULT 'manual'::character varying NOT NULL,
+    external_ref character varying(100),
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT orders_source_check CHECK (source IN ('manual', 'woocommerce', 'trendyol', 'hepsiburada'))
 );
 
 CREATE SEQUENCE orders_id_seq

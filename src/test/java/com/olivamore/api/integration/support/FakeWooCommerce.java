@@ -37,6 +37,7 @@ public final class FakeWooCommerce implements AutoCloseable {
 	private final List<Request> requests = Collections.synchronizedList(new ArrayList<>());
 	private final List<Map<String, Object>> products = new ArrayList<>();
 	private final Map<Long, List<Map<String, Object>>> variations = new HashMap<>();
+	private final List<Map<String, Object>> orders = new ArrayList<>();
 	private String currency = "TRY";
 
 	public FakeWooCommerce() {
@@ -106,6 +107,46 @@ public final class FakeWooCommerce implements AutoCloseable {
 		return this;
 	}
 
+	/** Siparis kalemi: urun, varyant (yoksa 0), sitedeki ad, adet. */
+	public record Line(long productId, long variationId, String name, int quantity) {
+	}
+
+	/**
+	 * WooCommerce siparisi; tarihler GMT. Teslimat adresi {@code shipping}'te, e-posta ve telefon {@code billing}'de.
+	 *
+	 * @param modifiedGmt "2026-11-27T09:00:00"; {@code modified_after} suzgeci buna bakar
+	 */
+	public FakeWooCommerce order(long id, String number, String status, String modifiedGmt, String firstName,
+		String lastName, String email, String phone, String city, String address, List<Line> lines) {
+		Map<String, Object> order = new LinkedHashMap<>();
+		order.put("id", id);
+		order.put("number", number);
+		order.put("status", status);
+		order.put("currency", currency);
+		order.put("date_created_gmt", modifiedGmt);
+		order.put("date_modified_gmt", modifiedGmt);
+		order.put("customer_note", "Kapıya bırakın");
+		order.put("billing", fields("first_name", firstName, "last_name", lastName, "company", "", "address_1", "",
+			"address_2", "", "city", city, "state", "TR35", "postcode", "", "country", "TR", "email", email,
+			"phone", phone));
+		order.put("shipping", fields("first_name", firstName, "last_name", lastName, "company", "", "address_1",
+			address, "address_2", "D:3", "city", city, "state", "TR35", "postcode", "35000", "country", "TR"));
+		order.put("line_items", lines.stream().map(l -> Map.of("id", l.productId() * 100, "name", l.name(),
+			"product_id", l.productId(), "variation_id", l.variationId(), "quantity", l.quantity(), "sku", "",
+			"total", "100.00")).toList());
+		orders.add(order);
+		return this;
+	}
+
+	/** Anahtar, deger, anahtar, deger... (Map.of 10 ciftle sinirli). */
+	private static Map<String, Object> fields(String... keyValues) {
+		Map<String, Object> map = new LinkedHashMap<>();
+		for (int i = 0; i < keyValues.length; i += 2) {
+			map.put(keyValues[i], keyValues[i + 1]);
+		}
+		return map;
+	}
+
 	private static Map<String, Object> item(long id, String name, String sku, Integer stock) {
 		Map<String, Object> item = new LinkedHashMap<>();
 		item.put("id", id);
@@ -143,6 +184,15 @@ public final class FakeWooCommerce implements AutoCloseable {
 		if ("GET".equals(exchange.getRequestMethod()) && path.matches("/products/[0-9]+/variations")) {
 			long parent = Long.parseLong(path.split("/")[2]);
 			page(exchange, variations.getOrDefault(parent, List.of()), query);
+			return;
+		}
+		if ("GET".equals(exchange.getRequestMethod()) && path.equals("/orders")) {
+			String status = query.get("status");
+			String after = query.get("modified_after");
+			page(exchange, orders.stream()
+				.filter(o -> status == null || status.equals(o.get("status")))
+				.filter(o -> after == null || String.valueOf(o.get("date_modified_gmt")).compareTo(after) > 0)
+				.toList(), query);
 			return;
 		}
 		if ("GET".equals(exchange.getRequestMethod()) && path.equals("/settings/general/woocommerce_currency")) {

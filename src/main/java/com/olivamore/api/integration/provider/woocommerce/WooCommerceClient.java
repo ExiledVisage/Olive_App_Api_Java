@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.provider.woocommerce;
 
+import com.olivamore.api.integration.provider.ExternalOrder;
 import com.olivamore.api.integration.provider.ExternalProduct;
 import com.olivamore.api.integration.provider.ProviderClient;
 import com.olivamore.api.integration.provider.ProviderErrors;
@@ -11,6 +12,8 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +36,9 @@ public class WooCommerceClient implements ProviderClient {
 	private static final ParameterizedTypeReference<List<Map<String, Object>>> LIST =
 		new ParameterizedTypeReference<>() {
 		};
+
+	/** Saniyeli ISO bicimi ("2026-11-27T09:00:00"); toString saniye sifirsa saniyeyi atar. */
+	private static final DateTimeFormatter ISO = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
 	private final RestClient http;
 
@@ -74,6 +80,18 @@ public class WooCommerceClient implements ProviderClient {
 				}
 			}
 			return result;
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	@Override
+	public List<ExternalOrder> orders(LocalDateTime changedAfter) {
+		String path = "/orders?status=" + WooCommerceOrders.READY_STATUS + "&per_page=" + PAGE_SIZE
+			+ "&orderby=date&order=asc&dates_are_gmt=true"
+			+ (changedAfter == null ? "" : "&modified_after=" + ISO.format(changedAfter.withNano(0)));
+		try {
+			return pages(path).stream().map(WooCommerceOrders::order).toList();
 		} catch (RestClientException e) {
 			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
 		}

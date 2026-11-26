@@ -50,6 +50,14 @@ class SalesOrder extends AuditedEntity {
 
 	private String note;
 
+	/** Siparisin geldigi yer: manual ya da entegrasyon (ExternalOrderIntake yazar). */
+	@Column(insertable = false, updatable = false)
+	private String source;
+
+	/** Site ya da pazar yerindeki siparis numarasi. */
+	@Column(insertable = false, updatable = false)
+	private String externalRef;
+
 	SalesOrder(Customer customer, CustomerAddress address, LocalDate orderDate, String note, long userId) {
 		this.customer = customer;
 		deliveryAddress = address;
@@ -81,6 +89,11 @@ class SalesOrder extends AuditedEntity {
 
 	boolean addressBelongsToCustomer() {
 		return deliveryAddress.getCustomerId().equals(customer.getId());
+	}
+
+	/** Yeni kaydedilen elle sipariste kolonun varsayilani henuz okunmamis olabilir. */
+	public String getSource() {
+		return source == null ? "manual" : source;
 	}
 
 }

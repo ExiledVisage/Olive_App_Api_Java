@@ -15,6 +15,9 @@ record OrderResponse(
 	List<OrderStatus> allowedTransitions,
 	LocalDateTime orderDate,
 	String note,
+	/** manual, woocommerce, trendyol, hepsiburada */
+	String source,
+	String externalRef,
 	CustomerResponse customer,
 	CustomerAddressResponse deliveryAddress,
 	List<Item> items,
