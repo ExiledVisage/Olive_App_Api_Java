@@ -1,6 +1,7 @@
 # Dis yazilim entegrasyonlari
 
-Durum (2026-11-27): plan; kod yok. Kullanici entegrasyonlara gecmek istedi.
+Durum (2026-11-27): asama 0 ve WooCommerce baglayicisi API'de yazildi (sahte WooCommerce sunucusuyla test edildi;
+gercek site bilgisi henuz yok). Flutter Entegrasyonlar ekrani sirada.
 
 Kullanicinin cevaplari:
 - Satis kanallari: WooCommerce (kendi site), Trendyol, Hepsiburada.
@@ -45,6 +46,24 @@ oturur. Trendyol ve Hepsiburada ayni kalibi kullanir. Muhasebe icin once bizde f
 - **Uygulama:** Yonetim > Entegrasyonlar: baglantilar (durum, son senkron, "simdi esitle"), eslesmemis urunler,
   hatalar ve gecmis. Siparis kartinda kaynak rozeti (Trendyol, Site...).
 - **Yetkiler:** `integration.view`, `integration.manage`.
+
+## Yapilanlar (API)
+
+Paketler (`com.olivamore.api.integration`): `provider` (platform listesi, ortak istemci arayuzu, `woocommerce/`),
+`connection`, `catalog`, `order`, `stock`, `sync`. Testler `src/test/.../integration/` ve sahte site
+`integration/support/FakeWooCommerce`.
+
+| Is | Uc | Not |
+|---|---|---|
+| Barkod/SKU | `finished_products.barcode`, `sku` | benzersiz, demo urunlerde dolu |
+| Baglanti | `/api/integrations/providers`, `/api/integrations/connections[/{id}]`, `.../check` | sifreli bilgi, maskeli cevap |
+| Eslestirme | `.../catalog/refresh`, `.../catalog?status=`, `.../catalog/unlinked-products`, `PUT/DELETE /api/integrations/catalog-links/{id}` | barkod > SKU, elle, eslestirilmesin |
+| Siparis | `.../orders/pull`, `.../orders/retry`, `.../orders?status=` | eslesen taslak siparis, eslesmeyen bekler |
+| Stok | `.../stock`, `.../stock/push` | satilabilir = stok - acik siparis; yalniz degisen |
+| Gecmis | `.../runs` | her calisma; hata baglantiya |
+| Zamanlayici | `SyncScheduler` | 5 dk; `INTEGRATION_SCHEDULE_*` |
+
+Siparislere `source` (manual/woocommerce/...) ve `external_ref` eklendi; kapi `sales.ExternalOrderIntake`.
 
 ## 1. WooCommerce
 
