@@ -37,7 +37,8 @@ public class StockPush {
 		@Override
 		public String summary() {
 			return checked + " ürün kontrol edildi: " + updated + " güncellendi"
-				+ (failed > 0 ? ", " + failed + " hata" : "") + (unchanged > 0 ? ", " + unchanged + " zaten doğru" : "");
+				+ (failed > 0 ? ", " + failed + " hata" : "")
+				+ (unchanged > 0 ? ", " + unchanged + " zaten doğru" : "");
 		}
 
 	}
