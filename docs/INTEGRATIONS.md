@@ -17,7 +17,7 @@ GreenOps'ta WooCommerce entegrasyonu var (HMAC'li webhook ile siparis); kod alin
 | 0 | Ortak altyapi: modul, erisim bilgileri, urun eslestirme, kuyruk, Entegrasyonlar ekrani | - |
 | 1 | WooCommerce: siparis bize, stok siteye | Site adresi + REST anahtari (okuma/yazma) |
 | 2 | Trendyol: siparis bize, stok, hazirlaniyor bildirimi (fiyat sonra) — yazildi | Satici id, API anahtari/sifresi; test ortami IP izni |
-| 3 | Hepsiburada: siparis bize, stok | Merchant id + entegrasyon kullanicisi (Hepsiburada onayi) |
+| 3 | Hepsiburada: siparis bize, stok, paketleme — yazildi | Merchant id + entegrasyon kullanicisi (Hepsiburada onayi) |
 | 4 | Satis faturasi kaydi (bizde) | Siparisten fatura; numara, KDV, cari |
 | 5 | Parasut: cari, satis faturasi, e-fatura/e-arsiv | Parasut uygulama kaydi (OAuth) |
 | 6 | Logo / Mikro | Kurulum tipi (bulut / sirket ici) netlesince |
@@ -95,7 +95,25 @@ Durum (2026-11-27): yazildi (9e27337), sahte Trendyol API'siyle test edildi; ger
 
 ## 3. Hepsiburada
 
-- Merchant API (siparis, stok/fiyat listeleme). Entegrasyon kullanicisi Hepsiburada'dan alinir.
+Durum (2026-11-27): yazildi, sahte Hepsiburada API'siyle test edildi; gercek hesap bekleniyor. Uclar ve alan adlari
+resmi belgeden degil, acik kaynak bir istemciden (zanaat-dev/lonca) alindi; ilk gercek denemede dogrulanacak.
+
+- Sunucular: ilan ve stok `https://listing-external.hepsiburada.com`, siparis ve paket
+  `https://oms-external.hepsiburada.com` (test: `-sit`). Basic auth API kullanici adi/sifresi, User-Agent entegrator
+  adi, her istekte `x-correlationid`. Magaza ID yolda: ilanda `merchantid`, sipariste `merchantId`. Baglantida API
+  adresi verilirse butun isler o adrese gider (test).
+- Ilanlar: `GET /listings/merchantid/{id}?offset&limit` (`listings[]`, `totalCount`). Urun id'si Hepsiburada SKU'su,
+  eslestirme bizim SKU'yla (`merchantSku`); ilanda urun adi ve barkod yok. HB deposundaki ilan (`isFulfilledByHB`)
+  alinmaz: stogunu Hepsiburada tutar.
+- Siparis: `GET /orders/merchantId/{id}?offset&limit` (offset/limit zorunlu, en fazla 100) odemesi tamamlanmis,
+  paketlenmemis kalemleri kalem kalem doner (`items[]`: `id` kalem, `orderNumber`, `sku`, `merchantSKU`, `quantity`,
+  `orderDate`); ayni siparis numarasi tek siparis olur. Alici ve adres kalemdeki `shippingAddress`'ten (il `city`, ilce
+  `town`, mahalle `district`); bu alanlar dogrulanmadi, yoksa bos gecilir. Saat dilimsiz tarih Turkiye saati.
+- Stok: `POST /listings/merchantid/{id}/stock-uploads` `[{hepsiburadaSku, availableStock}]` (1000 kalem), donen `id`
+  ile `GET .../stock-uploads/id/{id}` (`status` Ready/InProgress/Done, `errors[]` SKU ve gerekce).
+- Hazirlaniyor: siparis onaylaninca kalemler paketlenir, `POST /packages/merchantId/{id}`
+  `{"lineItemRequests":[{id, quantity}], "parcelQuantity":1}`; Trendyol'daki gibi hata kayda yazilir, yeniden denenir.
+- Henuz yok: fatura linki/numarasi, kargo etiketi, fiyat, test (SIT) sunucularini secme.
 
 ## 5. Parasut
 
@@ -106,6 +124,7 @@ Durum (2026-11-27): yazildi (9e27337), sahte Trendyol API'siyle test edildi; ger
 
 - WooCommerce: site adresi ve okuma/yazma REST anahtari; tercihen deneme (staging) sitesi.
 - Trendyol: satici id, API anahtari ve sifresi (Satici paneli > Hesap > Entegrasyon bilgileri).
-- Hepsiburada: merchant id ve entegrasyon kullanicisi.
+- Hepsiburada: magaza (merchant) id, API kullanici adi ve sifresi, entegrator adi (Satici paneli > Ayarlar >
+  Entegrasyonlar).
 - Parasut: firma id; uygulama kaydi icin destekle yazisma.
 - Urunlerin barkodlari (pazar yerinde kullanilan).

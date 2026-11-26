@@ -1,8 +1,8 @@
 package com.olivamore.api.integration.provider;
 
+import com.olivamore.api.integration.provider.hepsiburada.HepsiburadaClient;
 import com.olivamore.api.integration.provider.trendyol.TrendyolClient;
 import com.olivamore.api.integration.provider.woocommerce.WooCommerceClient;
-import com.olivamore.api.shared.error.BusinessRuleException;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -17,8 +17,8 @@ public class ProviderClients {
 				credentials.get("consumer_secret"));
 			case TRENDYOL -> new TrendyolClient(baseUrl, credentials.get("seller_id"), credentials.get("api_key"),
 				credentials.get("api_secret"));
-			case HEPSIBURADA -> throw new BusinessRuleException(provider.label()
-				+ " bağlantısı henüz desteklenmiyor.");
+			case HEPSIBURADA -> new HepsiburadaClient(baseUrl, credentials.get("merchant_id"),
+				credentials.get("username"), credentials.get("password"), credentials.get("integrator"));
 		};
 	}
 

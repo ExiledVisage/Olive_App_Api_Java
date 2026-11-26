@@ -19,10 +19,11 @@ public enum Provider {
 		new Field("api_key", "API anahtarı", true),
 		new Field("api_secret", "API gizli anahtarı", true))),
 
-	HEPSIBURADA("hepsiburada", "Hepsiburada", false, false, List.of(
+	HEPSIBURADA("hepsiburada", "Hepsiburada", true, false, List.of(
 		new Field("merchant_id", "Mağaza (merchant) ID", false),
-		new Field("username", "Entegrasyon kullanıcısı", false),
-		new Field("password", "Entegrasyon şifresi", true)));
+		new Field("username", "API kullanıcı adı", false),
+		new Field("password", "API şifresi", true),
+		new Field("integrator", "Entegratör adı", false)));
 
 	/** @param secret cevapta maskelenir */
 	public record Field(String key, String label, boolean secret) {
@@ -66,11 +67,11 @@ public enum Provider {
 	}
 
 	/**
-	 * Siparis hazirlanmaya baslayinca platforma bildirilir mi (pazar yerinde paket "hazirlaniyor"). WooCommerce'te
-	 * odenmis siparis zaten "isleniyor" durumundadir.
+	 * Siparis hazirlanmaya baslayinca platforma bildirilir mi (Trendyol paketi "hazirlaniyor", Hepsiburada'da
+	 * kalemler paketlenir). WooCommerce'te odenmis siparis zaten "isleniyor" durumundadir.
 	 */
 	public boolean reportsPreparing() {
-		return this == TRENDYOL;
+		return this == TRENDYOL || this == HEPSIBURADA;
 	}
 
 	public static Optional<Provider> of(String key) {

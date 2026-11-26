@@ -48,7 +48,7 @@ class IntegrationConnectionIT {
 	}
 
 	@Test
-	void providersListWooCommerceAsSupportedAndMarketplacesAsComingSoon() {
+	void providersListEveryPlatformAsSupported() {
 		JsonNode providers = data(api.get("/api/integrations/providers"));
 		assertThat(providers).extracting(p -> p.get("key").asString())
 			.containsExactly("woocommerce", "trendyol", "hepsiburada");
@@ -58,7 +58,9 @@ class IntegrationConnectionIT {
 			.containsExactly("consumer_key", "consumer_secret");
 		assertThat(providers.get(1).get("supported").asBoolean()).as("Trendyol").isTrue();
 		assertThat(providers.get(1).get("needs_base_url").asBoolean()).as("pazar yerinde adres istege bagli").isFalse();
-		assertThat(providers.get(2).get("supported").asBoolean()).as("Hepsiburada").isFalse();
+		assertThat(providers.get(2).get("supported").asBoolean()).as("Hepsiburada").isTrue();
+		assertThat(providers.get(2).get("fields")).extracting(f -> f.get("key").asString())
+			.containsExactly("merchant_id", "username", "password", "integrator");
 	}
 
 	@Test
@@ -106,10 +108,10 @@ class IntegrationConnectionIT {
 		assertThat(missing.json().get("errors").has("base_url")).isTrue();
 		assertThat(missing.json().get("errors").has("credentials.consumer_secret")).isTrue();
 
-		Response notYet = api.post("/api/integrations/connections", Map.of("provider", "hepsiburada", "name", "HB",
-			"credentials", Map.of("merchant_id", "1", "username", "u", "password", "p")));
-		assertThat(notYet.status()).isEqualTo(422);
-		assertThat(notYet.body()).contains("henüz desteklenmiyor");
+		Response unknown = api.post("/api/integrations/connections", Map.of("provider", "amazon", "name", "Bilinmeyen",
+			"credentials", Map.of("x", "1")));
+		assertThat(unknown.status()).isEqualTo(422);
+		assertThat(unknown.json().get("errors").has("provider")).isTrue();
 
 		Response badUrl = api.post("/api/integrations/connections", Map.of("provider", "woocommerce", "name", "Kotu",
 			"base_url", "ftp://magaza", "credentials", Map.of("consumer_key", "ck_x", "consumer_secret", "cs_y")));

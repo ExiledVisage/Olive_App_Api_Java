@@ -46,7 +46,7 @@ class SyncScheduler {
 	void run() {
 		List<Target> targets = jdbc.sql("""
 			select id, order_pull_enabled, stock_push_enabled from integration_connections
-			where status = 'active' and provider in ('woocommerce', 'trendyol') order by id
+			where status = 'active' and provider in ('woocommerce', 'trendyol', 'hepsiburada') order by id
 			""").query(Target.class).list();
 		for (Target target : targets) {
 			if (target.orderPullEnabled()) {
