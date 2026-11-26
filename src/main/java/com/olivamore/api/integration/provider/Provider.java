@@ -14,7 +14,7 @@ public enum Provider {
 		new Field("consumer_key", "Tüketici anahtarı (ck_...)", true),
 		new Field("consumer_secret", "Tüketici gizli anahtarı (cs_...)", true))),
 
-	TRENDYOL("trendyol", "Trendyol", false, false, List.of(
+	TRENDYOL("trendyol", "Trendyol", true, false, List.of(
 		new Field("seller_id", "Satıcı ID", false),
 		new Field("api_key", "API anahtarı", true),
 		new Field("api_secret", "API gizli anahtarı", true))),
@@ -54,7 +54,9 @@ public enum Provider {
 		return supported;
 	}
 
-	/** Site adresi istenir mi (WooCommerce; pazar yerlerinin adresi sabit). */
+	/**
+	 * Site adresi zorunlu mu (WooCommerce). Pazar yerinde adres sabittir; verilirse (test ortami) o kullanilir.
+	 */
 	public boolean needsBaseUrl() {
 		return needsBaseUrl;
 	}

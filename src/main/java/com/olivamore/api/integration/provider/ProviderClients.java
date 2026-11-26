@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.provider;
 
+import com.olivamore.api.integration.provider.trendyol.TrendyolClient;
 import com.olivamore.api.integration.provider.woocommerce.WooCommerceClient;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,9 @@ public class ProviderClients {
 		return switch (provider) {
 			case WOOCOMMERCE -> new WooCommerceClient(baseUrl, credentials.get("consumer_key"),
 				credentials.get("consumer_secret"));
-			case TRENDYOL, HEPSIBURADA -> throw new BusinessRuleException(provider.label()
+			case TRENDYOL -> new TrendyolClient(baseUrl, credentials.get("seller_id"), credentials.get("api_key"),
+				credentials.get("api_secret"));
+			case HEPSIBURADA -> throw new BusinessRuleException(provider.label()
 				+ " bağlantısı henüz desteklenmiyor.");
 		};
 	}

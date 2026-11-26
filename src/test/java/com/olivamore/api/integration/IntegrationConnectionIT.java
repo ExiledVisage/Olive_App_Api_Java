@@ -56,7 +56,9 @@ class IntegrationConnectionIT {
 		assertThat(providers.get(0).get("needs_base_url").asBoolean()).isTrue();
 		assertThat(providers.get(0).get("fields")).extracting(f -> f.get("key").asString())
 			.containsExactly("consumer_key", "consumer_secret");
-		assertThat(providers.get(1).get("supported").asBoolean()).isFalse();
+		assertThat(providers.get(1).get("supported").asBoolean()).as("Trendyol").isTrue();
+		assertThat(providers.get(1).get("needs_base_url").asBoolean()).as("pazar yerinde adres istege bagli").isFalse();
+		assertThat(providers.get(2).get("supported").asBoolean()).as("Hepsiburada").isFalse();
 	}
 
 	@Test
@@ -104,8 +106,8 @@ class IntegrationConnectionIT {
 		assertThat(missing.json().get("errors").has("base_url")).isTrue();
 		assertThat(missing.json().get("errors").has("credentials.consumer_secret")).isTrue();
 
-		Response notYet = api.post("/api/integrations/connections", Map.of("provider", "trendyol", "name", "TY",
-			"credentials", Map.of("seller_id", "1", "api_key", "k", "api_secret", "s")));
+		Response notYet = api.post("/api/integrations/connections", Map.of("provider", "hepsiburada", "name", "HB",
+			"credentials", Map.of("merchant_id", "1", "username", "u", "password", "p")));
 		assertThat(notYet.status()).isEqualTo(422);
 		assertThat(notYet.body()).contains("henüz desteklenmiyor");
 

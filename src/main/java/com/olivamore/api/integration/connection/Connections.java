@@ -230,14 +230,16 @@ public class Connections {
 			""").param("name", name).param("except", exceptId).query(Long.class).single() > 0;
 	}
 
-	/** Site adresi: https (gelistirmede http'ye izin verilebilir), sondaki / atilir; pazar yerinde adres yok. */
+	/**
+	 * Site adresi: https (gelistirmede http'ye izin verilebilir), sondaki / atilir. Pazar yerinde istege bagli
+	 * (bos: platformun canli adresi; test ortami icin verilir).
+	 */
 	private String baseUrl(Provider provider, String value, ValidationErrors errors) {
-		if (!provider.needsBaseUrl()) {
-			return null;
-		}
 		String url = blank(value);
 		if (url == null) {
-			errors.add("base_url", MessageKeys.REQUIRED);
+			if (provider.needsBaseUrl()) {
+				errors.add("base_url", MessageKeys.REQUIRED);
+			}
 			return null;
 		}
 		url = url.replaceAll("/+$", "");
