@@ -36,6 +36,7 @@ public final class FakeWooCommerce implements AutoCloseable {
 	private final HttpServer server;
 	private final List<Request> requests = Collections.synchronizedList(new ArrayList<>());
 	private final List<Map<String, Object>> products = new ArrayList<>();
+	private final Map<Long, List<Map<String, Object>>> variations = new HashMap<>();
 	private String currency = "TRY";
 
 	public FakeWooCommerce() {
@@ -61,19 +62,61 @@ public final class FakeWooCommerce implements AutoCloseable {
 		return this;
 	}
 
-	/** Basit urun (varyantsiz). */
+	/** Basit urun (varyantsiz); barkod WooCommerce 9.2+ cekirdek alaninda ({@code global_unique_id}). */
 	public FakeWooCommerce product(long id, String name, String sku, String barcode, Integer stock) {
-		Map<String, Object> product = new LinkedHashMap<>();
-		product.put("id", id);
-		product.put("name", name);
+		Map<String, Object> product = item(id, name, sku, stock);
 		product.put("type", "simple");
-		product.put("sku", sku == null ? "" : sku);
-		product.put("manage_stock", stock != null);
-		product.put("stock_quantity", stock);
-		product.put("meta_data", barcode == null ? List.of() : List.of(Map.of("id", id * 10, "key", "_ean",
-			"value", barcode)));
+		product.put("global_unique_id", barcode == null ? "" : barcode);
 		products.add(product);
 		return this;
+	}
+
+	/** Eski sitedeki gibi barkodu eklenti meta alaninda ({@code _ean}) tutan urun. */
+	public FakeWooCommerce legacyProduct(long id, String name, String sku, String barcode, Integer stock) {
+		Map<String, Object> product = item(id, name, sku, stock);
+		product.put("type", "simple");
+		product.put("meta_data", List.of(Map.of("id", id * 10, "key", "_ean", "value", barcode)));
+		products.add(product);
+		return this;
+	}
+
+	/** Varyantli urun; varyantlar {@link #variation} ile. */
+	public FakeWooCommerce variable(long id, String name) {
+		Map<String, Object> product = item(id, name, "", null);
+		product.put("type", "variable");
+		products.add(product);
+		variations.put(id, new ArrayList<>());
+		return this;
+	}
+
+	public FakeWooCommerce variation(long parentId, long id, String option, String sku, String barcode,
+		Integer stock) {
+		Map<String, Object> variation = item(id, null, sku, stock);
+		variation.remove("name");
+		variation.put("attributes", List.of(Map.of("id", 1, "name", "Hacim", "option", option)));
+		variation.put("meta_data", barcode == null ? List.of() : List.of(Map.of("id", id * 10, "key", "_ean",
+			"value", barcode)));
+		variations.get(parentId).add(variation);
+		return this;
+	}
+
+	/** Siteden kaldir (katalogdan dusmesi icin). */
+	public FakeWooCommerce remove(long id) {
+		products.removeIf(p -> ((Number) p.get("id")).longValue() == id);
+		return this;
+	}
+
+	private static Map<String, Object> item(long id, String name, String sku, Integer stock) {
+		Map<String, Object> item = new LinkedHashMap<>();
+		item.put("id", id);
+		item.put("name", name);
+		item.put("status", "publish");
+		item.put("sku", sku == null ? "" : sku);
+		item.put("manage_stock", stock != null);
+		item.put("stock_quantity", stock);
+		item.put("global_unique_id", "");
+		item.put("meta_data", List.of());
+		return item;
 	}
 
 	@Override
@@ -94,13 +137,12 @@ public final class FakeWooCommerce implements AutoCloseable {
 		}
 		Map<String, String> query = query(uri.getRawQuery());
 		if ("GET".equals(exchange.getRequestMethod()) && path.equals("/products")) {
-			int perPage = Integer.parseInt(query.getOrDefault("per_page", "10"));
-			int page = Integer.parseInt(query.getOrDefault("page", "1"));
-			int from = Math.min(products.size(), (page - 1) * perPage);
-			int to = Math.min(products.size(), from + perPage);
-			int pages = Math.max(1, (int) Math.ceil(products.size() / (double) perPage));
-			send(exchange, 200, products.subList(from, to), Map.of("X-WP-Total", String.valueOf(products.size()),
-				"X-WP-TotalPages", String.valueOf(pages)));
+			page(exchange, products, query);
+			return;
+		}
+		if ("GET".equals(exchange.getRequestMethod()) && path.matches("/products/[0-9]+/variations")) {
+			long parent = Long.parseLong(path.split("/")[2]);
+			page(exchange, variations.getOrDefault(parent, List.of()), query);
 			return;
 		}
 		if ("GET".equals(exchange.getRequestMethod()) && path.equals("/settings/general/woocommerce_currency")) {
@@ -110,6 +152,18 @@ public final class FakeWooCommerce implements AutoCloseable {
 		}
 		send(exchange, 404, Map.of("code", "rest_no_route", "message", "No route was found matching the URL.",
 			"data", Map.of("status", 404)), Map.of());
+	}
+
+	/** WooCommerce sayfalamasi: {@code per_page}, {@code page}; toplam {@code X-WP-Total(Pages)} basliginda. */
+	private static void page(HttpExchange exchange, List<Map<String, Object>> all, Map<String, String> query)
+		throws IOException {
+		int perPage = Integer.parseInt(query.getOrDefault("per_page", "10"));
+		int page = Integer.parseInt(query.getOrDefault("page", "1"));
+		int from = Math.min(all.size(), (page - 1) * perPage);
+		int to = Math.min(all.size(), from + perPage);
+		int pages = Math.max(1, (int) Math.ceil(all.size() / (double) perPage));
+		send(exchange, 200, all.subList(from, to), Map.of("X-WP-Total", String.valueOf(all.size()),
+			"X-WP-TotalPages", String.valueOf(pages)));
 	}
 
 	private static boolean authorized(HttpExchange exchange) {
