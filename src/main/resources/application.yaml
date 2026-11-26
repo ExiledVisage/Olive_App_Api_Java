@@ -78,6 +78,12 @@ olive:
       issuer: ${JWT_ISSUER:olive-api}
       access-token-ttl: ${JWT_ACCESS_TOKEN_TTL:15m}
       refresh-token-ttl: ${JWT_REFRESH_TOKEN_TTL:30d}
+  # Giris-cikis ve mesai (docs/ATTENDANCE.md); QR imza anahtari verilmezse JWT anahtarindan turetilir
+  attendance:
+    zone: ${ATTENDANCE_ZONE:Europe/Istanbul}
+    code-secret: ${ATTENDANCE_CODE_SECRET:${JWT_PRIVATE_KEY:}}
+    code-ttl: ${ATTENDANCE_CODE_TTL:60s}
+    rounding-minutes: ${ATTENDANCE_ROUNDING_MINUTES:15}
   # Mobil uygulama surumleri (version.json + APK); frontend'in yayinlama betigi buraya koyar
   releases-path: ${APP_RELEASES_PATH:releases}
   # Sisedeki QR'in actigi herkese acik sayfanin adres tabani (alan adi gelince degisir; QR'lar yeni adresle uretilir)

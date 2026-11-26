@@ -87,4 +87,7 @@ insert into permissions (id, name) values
 	(58, 'production_batch.price'),
 	(59, 'quality.view'),
 	(60, 'quality.manage'),
-	(61, 'filling_check.record');
+	(61, 'filling_check.record'),
+	(62, 'attendance.scan'),
+	(63, 'attendance.view'),
+	(64, 'attendance.manage');

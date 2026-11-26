@@ -7,7 +7,8 @@ insert into roles (id, name) values
 	(3, 'planner'),
 	(4, 'production_operator'),
 	(5, 'warehouse_operator'),
-	(6, 'food_engineer');
+	(6, 'food_engineer'),
+	(7, 'guard');
 
 insert into role_permissions (role_id, permission_id) values
 	(1, 1),
@@ -71,6 +72,9 @@ insert into role_permissions (role_id, permission_id) values
 	(1, 59),
 	(1, 60),
 	(1, 61),
+	(1, 62),
+	(1, 63),
+	(1, 64),
 	(2, 1),
 	(2, 4),
 	(2, 6),
@@ -180,7 +184,8 @@ insert into role_permissions (role_id, permission_id) values
 	(6, 58),
 	(6, 59),
 	(6, 60),
-	(6, 61);
+	(6, 61),
+	(7, 62);
 
 insert into users (id, name, email, password) values
 	(1, 'Olivamore Admin', 'admin@olivamore.com', '$2y$12$.1wjegORyxIF82qFmEsE7.rjgzakb4Lv3dY4FwMw0kNwQctzJWvFy'),
@@ -189,7 +194,8 @@ insert into users (id, name, email, password) values
 	(4, 'Production Planner', 'planner@olivamore.com', '$2y$12$i8UndbJvC1jpmqLoDBve5.4hUW3KdewlKnnnDOgtpPVOOhoQsLOGu'),
 	(5, 'Üretim İşçisi', 'uretim@olivamore.com', '$2y$12$rgXXsNrQQkmG3o8/0RCESubPH7RF.7xZvgE6KbWra/ePNTJPfRLMO'),
 	(6, 'Depo ve Sipariş', 'depo@olivamore.com', '$2y$12$IwKlKcLTse0bIBSl40a1.eebM1kLdvtUlXw4gy75v6Lr6XNRIBke6'),
-	(7, 'Gıda Mühendisi', 'muhendis@olivamore.com', '$2y$12$NDGImNySyOiw0CCyx4KvZuvG64iPL3vdzEzkLogWPyvAbetGAyHam');
+	(7, 'Gıda Mühendisi', 'muhendis@olivamore.com', '$2y$12$NDGImNySyOiw0CCyx4KvZuvG64iPL3vdzEzkLogWPyvAbetGAyHam'),
+	(8, 'Kapı Görevlisi', 'bekci@olivamore.com', '$2y$12$NDGImNySyOiw0CCyx4KvZuvG64iPL3vdzEzkLogWPyvAbetGAyHam');
 
 insert into user_roles (user_id, role_id) values
 	(1, 1),
@@ -198,7 +204,8 @@ insert into user_roles (user_id, role_id) values
 	(4, 3),
 	(5, 4),
 	(6, 5),
-	(7, 6);
+	(7, 6),
+	(8, 7);
 
 insert into attribute_definitions (id, attribute_key, label, data_type, unit, description) values
 	(1, 'acidity', 'Asitlik', 'decimal', '%', 'Asitlik oranı'),
