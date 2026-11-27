@@ -4,6 +4,7 @@ import com.olivamore.api.integration.accounting.InvoiceExport;
 import com.olivamore.api.integration.order.InvoiceReport;
 import com.olivamore.api.integration.order.OrderPull;
 import com.olivamore.api.integration.order.PreparingReport;
+import com.olivamore.api.integration.order.UnsuppliedReport;
 import com.olivamore.api.integration.stock.StockPush;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +38,17 @@ class SyncScheduler {
 	private final PreparingReport preparing;
 	private final InvoiceExport invoices;
 	private final InvoiceReport invoiceReport;
+	private final UnsuppliedReport unsupplied;
 
 	SyncScheduler(JdbcClient jdbc, OrderPull orders, StockPush stock, PreparingReport preparing,
-		InvoiceExport invoices, InvoiceReport invoiceReport) {
+		InvoiceExport invoices, InvoiceReport invoiceReport, UnsuppliedReport unsupplied) {
 		this.jdbc = jdbc;
 		this.orders = orders;
 		this.stock = stock;
 		this.preparing = preparing;
 		this.invoices = invoices;
 		this.invoiceReport = invoiceReport;
+		this.unsupplied = unsupplied;
 	}
 
 	@Scheduled(initialDelayString = "${olive.integration.schedule.initial-delay:PT1M}",
@@ -61,6 +64,7 @@ class SyncScheduler {
 			}
 			safely(target.id(), "bildirim", () -> preparing.retry(target.id(), false));
 			safely(target.id(), "fatura bildirimi", () -> invoiceReport.retry(target.id(), false));
+			safely(target.id(), "tedarik edilemedi", () -> unsupplied.retry(target.id(), false));
 			if (target.stockPushEnabled()) {
 				safely(target.id(), "stok", () -> stock.push(target.id(), SyncRuns.Trigger.SCHEDULE));
 			}

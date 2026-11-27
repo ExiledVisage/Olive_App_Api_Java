@@ -95,7 +95,7 @@ class IntegrationHepsiburadaIT {
 		assertThat(pulled.get("imported").asInt()).isEqualTo(1);
 		assertThat(pulled.get("pending").asInt()).isEqualTo(1);
 		assertThat(hepsiburada.requests()).anyMatch(r -> r.path()
-			.equals("/orders/merchantId/" + FakeHepsiburada.MERCHANT + "?offset=0&limit=100"));
+			.equals("/orders/merchantid/" + FakeHepsiburada.MERCHANT + "?offset=0&limit=100"));
 
 		JsonNode imported = integrationOrder(connection, "4001");
 		assertThat(imported.get("status").asString()).isEqualTo("imported");
@@ -152,7 +152,7 @@ class IntegrationHepsiburadaIT {
 			assertThat(confirmed.status()).as(confirmed.body()).isEqualTo(200);
 			assertThat(shop.packageOf("5001")).isNotNull();
 			assertThat(shop.requests()).anyMatch(r -> r.method().equals("POST")
-				&& r.path().equals("/packages/merchantId/" + FakeHepsiburada.MERCHANT)
+				&& r.path().equals("/packages/merchantid/" + FakeHepsiburada.MERCHANT)
 				&& r.body().contains("\"id\":\"line-c1\""));
 			assertThat(integrationOrder(connection, "5001").get("platform_status").asString()).isEqualTo("preparing");
 

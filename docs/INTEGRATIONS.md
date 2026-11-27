@@ -92,32 +92,48 @@ Durum (2026-11-27): yazildi (9e27337), sahte Trendyol API'siyle test edildi; ger
   yazilir; zamanlayici yarim saatte bir, "Simdi yeniden bildir" (`POST .../orders/report`) hemen dener.
 - Faturalandi: fatura kesilince (resmilestirme varsa resmilesince) paket `Invoiced` + `params.invoiceNumber`, sonra
   resmi belgenin PDF'i `POST /sellers/{id}/seller-invoice-file` (multipart) ile yuklenir (docs/INVOICES.md).
-- Henuz yok: fiyat gonderimi (satis fiyati alani ve kimin yonettigi karari), kargo etiketi, bizde iptal edilen
-  siparisin Trendyol'a "tedarik edilemedi" bildirimi.
+- Kargo etiketi (resmi belgeden): paketin `cargoTrackingNumber`'i `GET /order/sellers/{id}/orders?shipmentPackageIds=`
+  ile okunur; `POST /sellers/{id}/common-label/{takip}` `{"format":"ZPL","boxQuantity":1}` ile istenir,
+  `GET` ile `data[].label` (ZPL metni) alinir. Trendyol'un anlasmali kargosu (TEX, Aras) icin; hazirlaniyor
+  bildirilmis sipariste. Saklanmaz, her istekte taze. `GET /api/integrations/sales-orders/{siparis}/label`
+  (`integration.view` ya da `order.update_status`).
+- Tedarik edilemedi (resmi belgeden): pazar yeri siparisi bizde iptal edilince
+  `PUT .../shipment-packages/{paket}/items/unsupplied` `{"lines":[{lineId,quantity}],"reasonId":500}` (500 stok
+  tukendi; digerleri 501 kusurlu, 502 hatali fiyat, 504 entegrasyon hatasi, 505 toplu alim, 506 mucbir sebep).
+  Trendyol paketi iptal eder (`platform_status = unsupplied`); hata kayda yazilir, yeniden denenir.
+- Henuz yok: fiyat gonderimi (satis fiyati alani ve kimin yonettigi karari), tedarik edememe gerekcesini secme
+  (hep 500).
 
 ## 3. Hepsiburada
 
-Durum (2026-11-27): yazildi, sahte Hepsiburada API'siyle test edildi; gercek hesap bekleniyor. Uclar ve alan adlari
-resmi belgeden degil, acik kaynak bir istemciden (zanaat-dev/lonca) alindi; ilk gercek denemede dogrulanacak.
+Durum (2026-11-27): yazildi, sahte Hepsiburada API'siyle test edildi; gercek hesap bekleniyor. Siparis, paket,
+etiket uclari ve siparis alanlari Hepsiburada'nin yayimladigi OMS taniminin bir kopyasindan (zanaat-dev/lonca
+`specs/hepsiburada/oms-external.json`) dogrulandi; ilan ve stok uclarinin tanimi yayimlanmamis, acik kaynak
+istemciden alindi.
 
 - Sunucular: ilan ve stok `https://listing-external.hepsiburada.com`, siparis ve paket
   `https://oms-external.hepsiburada.com` (test: `-sit`). Basic auth API kullanici adi/sifresi, User-Agent entegrator
-  adi, her istekte `x-correlationid`. Magaza ID yolda: ilanda `merchantid`, sipariste `merchantId`. Baglantida API
-  adresi verilirse butun isler o adrese gider (test).
+  adi, her istekte `x-correlationid`. Magaza ID yolda, kucuk harfle `merchantid`. Baglantida API adresi verilirse
+  butun isler o adrese gider (test).
 - Ilanlar: `GET /listings/merchantid/{id}?offset&limit` (`listings[]`, `totalCount`). Urun id'si Hepsiburada SKU'su,
   eslestirme bizim SKU'yla (`merchantSku`); ilanda urun adi ve barkod yok. HB deposundaki ilan (`isFulfilledByHB`)
   alinmaz: stogunu Hepsiburada tutar.
-- Siparis: `GET /orders/merchantId/{id}?offset&limit` (offset/limit zorunlu, en fazla 100) odemesi tamamlanmis,
+- Siparis: `GET /orders/merchantid/{id}?offset&limit` (offset/limit zorunlu, en fazla 100) odemesi tamamlanmis,
   paketlenmemis kalemleri kalem kalem doner (`items[]`: `id` kalem, `orderNumber`, `sku`, `merchantSKU`, `quantity`,
   `orderDate`); ayni siparis numarasi tek siparis olur. Alici ve adres kalemdeki `shippingAddress`'ten (il `city`, ilce
-  `town`, mahalle `district`); bu alanlar dogrulanmadi, yoksa bos gecilir. Saat dilimsiz tarih Turkiye saati.
+  `town`, mahalle `district`; tanimdan dogrulandi). Saat dilimsiz tarih Turkiye saati.
 - Stok: `POST /listings/merchantid/{id}/stock-uploads` `[{hepsiburadaSku, availableStock}]` (1000 kalem), donen `id`
   ile `GET .../stock-uploads/id/{id}` (`status` Ready/InProgress/Done, `errors[]` SKU ve gerekce).
-- Hazirlaniyor: siparis onaylaninca kalemler paketlenir, `POST /packages/merchantId/{id}`
-  `{"lineItemRequests":[{id, quantity}], "parcelQuantity":1}`; Trendyol'daki gibi hata kayda yazilir, yeniden denenir.
+- Hazirlaniyor: siparis onaylaninca kalemler paketlenir, `POST /packages/merchantid/{id}`
+  `{"lineItemRequests":[{id, quantity}], "parcelQuantity":1}`; cevaptaki `packageNumber` saklanir
+  (`integration_orders.platform_ref`). Trendyol'daki gibi hata kayda yazilir, yeniden denenir.
+- Kargo etiketi: `GET /packages/merchantid/{id}/packagenumber/{paket}` (kargo firmasi, `trackingInfoCode`) ve
+  `.../labels?format=ZPL` (`data[]`, `format`). Etiket verisinin bicimi ve `format` degerleri tanimda yazmiyor;
+  gercek hesapla dogrulanacak.
 - Henuz yok: fatura linki (Hepsiburada yalniz en az 10 yil acik kalacak link kabul ediyor:
   `PUT /packages/merchantid/{id}/packagenumber/{paket}/invoice`, `invoiceLink`; Parasut'un PDF adresi gecici, bizim
-  sunucunun alan adi yok), kargo etiketi, fiyat, test (SIT) sunucularini secme.
+  sunucunun alan adi yok), bizde iptal edilen siparisin bildirimi (`POST /lineitems/merchantid/{id}/id/{kalem}/
+  cancelbymerchant` `{reasonId}` var ama gerekce kodlari belgelenmemis), fiyat, test (SIT) sunucularini secme.
 
 ## 5. Parasut
 

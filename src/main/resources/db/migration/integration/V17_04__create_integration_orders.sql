@@ -2,8 +2,10 @@
 -- moduline taslak olarak alinir (imported, order_id); eslesmeyen kalem varsa siparise girmeden bekler (pending,
 -- problem) ve urun eslestirilince yeniden denenir. payload platformdan gelen siparis (yeniden deneme icin).
 -- platform_status: pazar yerine bildirilen son durum (preparing = "hazirlaniyor", invoiced = faturalandi ve fatura
--- numarasi, invoice_sent = fatura dosyasi da yuklendi; docs/INVOICES.md); bildirim reddedilirse platform_error
--- yazilir, zamanlayici daha sonra yeniden dener (platform_attempted_at).
+-- numarasi, invoice_sent = fatura dosyasi da yuklendi; docs/INVOICES.md; unsupplied = bizde iptal edildi, "tedarik
+-- edilemedi" bildirildi); bildirim reddedilirse platform_error yazilir, zamanlayici daha sonra yeniden dener
+-- (platform_attempted_at). platform_ref platformun hazirlaniyor bildirimiyle verdigi kayit (Hepsiburada paket
+-- numarasi; kargo etiketi bununla alinir).
 
 CREATE TABLE integration_orders (
     id bigint NOT NULL,
@@ -19,11 +21,12 @@ CREATE TABLE integration_orders (
     platform_status character varying(20),
     platform_error text,
     platform_attempted_at timestamp(0) without time zone,
+    platform_ref character varying(64),
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     CONSTRAINT integration_orders_status_check CHECK (status IN ('imported', 'pending')),
     CONSTRAINT integration_orders_platform_status_check
-        CHECK (platform_status IN ('preparing', 'invoiced', 'invoice_sent'))
+        CHECK (platform_status IN ('preparing', 'invoiced', 'invoice_sent', 'unsupplied'))
 );
 
 CREATE SEQUENCE integration_orders_id_seq

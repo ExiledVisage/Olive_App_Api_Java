@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * Testlerde Hepsiburada satici API'sinin yerine (ilan ve siparis sunucularinin ikisi de burada): ilanlar, odemesi
  * tamamlanmis siparis kalemleri, paketleme, stok yukleme ve yukleme sonucu. Basic auth, User-Agent ve yoldaki
- * magaza ID'si (ilanda {@code merchantid}, sipariste {@code merchantId}) denetlenir; liste uclari offset ve limit
+ * magaza ID'si (ilan, siparis ve paket yollarinda {@code merchantid}) denetlenir; liste uclari offset ve limit
  * olmadan 400 doner. Istekler kaydedilir.
  */
 public final class FakeHepsiburada implements AutoCloseable {
@@ -192,14 +192,26 @@ public final class FakeHepsiburada implements AutoCloseable {
 		} else if ("GET".equals(method) && path.startsWith(listingBase + "/stock-uploads/id/")) {
 			String id = path.substring(path.lastIndexOf('/') + 1);
 			send(exchange, uploads.containsKey(id) ? 200 : 404, uploads.getOrDefault(id, Map.of()));
-		} else if ("GET".equals(method) && path.equals("/orders/merchantId/" + MERCHANT)) {
+		} else if ("GET".equals(method) && path.equals("/orders/merchantid/" + MERCHANT)) {
 			if (!query.containsKey("offset") || !query.containsKey("limit")) {
 				send(exchange, 400, Map.of("code", 1001, "message",
 					"Bad Request limit and offset parameters are required"));
 				return;
 			}
 			page(exchange, lines.stream().filter(l -> l.get("packageNumber") == null).toList(), query, "items");
-		} else if ("POST".equals(method) && path.equals("/packages/merchantId/" + MERCHANT)) {
+		} else if ("GET".equals(method) && path.matches("/packages/merchantid/" + MERCHANT
+			+ "/packagenumber/[^/]+(/labels)?")) {
+			String packageNumber = path.split("/")[5];
+			if (lines.stream().noneMatch(l -> packageNumber.equals(l.get("packageNumber")))) {
+				send(exchange, 404, Map.of("message", "Paket bulunamadı."));
+			} else if (path.endsWith("/labels")) {
+				send(exchange, 200, Map.of("data", List.of("^XA^FD" + packageNumber + "^FS^XZ"), "format",
+					query.getOrDefault("format", "PDF"), "hasMerchantMutualBarcode", false));
+			} else {
+				send(exchange, 200, Map.of("packageNumber", packageNumber, "cargoCompany", "HepsiJET",
+					"trackingInfoCode", "HJ" + packageNumber, "status", "Packaged"));
+			}
+		} else if ("POST".equals(method) && path.equals("/packages/merchantid/" + MERCHANT)) {
 			createPackage(exchange, JSON.readValue(body, Map.class));
 		} else {
 			send(exchange, 404, Map.of("message", "Not found"));

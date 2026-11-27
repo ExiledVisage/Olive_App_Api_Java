@@ -5,6 +5,7 @@ import com.olivamore.api.integration.provider.ExternalProduct;
 import com.olivamore.api.integration.provider.ProviderClient;
 import com.olivamore.api.integration.provider.ProviderErrors;
 import com.olivamore.api.integration.provider.ProviderException;
+import com.olivamore.api.integration.provider.ShippingLabel;
 import com.olivamore.api.integration.provider.StockUpdate;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
@@ -20,8 +21,8 @@ import java.util.UUID;
 /**
  * Hepsiburada satici API istemcisi. Hepsiburada isleri ayri sunuculara boler: ilan ve stok
  * {@code listing-external}, siparis ve paket {@code oms-external}. API kullanici adi ve sifresiyle Basic auth,
- * User-Agent entegrator adi; magaza (merchant) ID yolda. Yoldaki yazim sunucuya gore degisir: ilanda
- * {@code merchantid}, sipariste {@code merchantId} (ikisi de Hepsiburada'nin kabul ettigi bicim).
+ * User-Agent entegrator adi; magaza (merchant) ID yolda, kucuk harfle {@code merchantid} (siparis ve paket yollari
+ * Hepsiburada'nin yayimladigi OMS tanimindan; ilan ve stok yollari acik kaynak istemciden).
  * Baglantida API adresi verilirse (test) butun isler o adrese gider. Cevaplarin okunmasi {@link HepsiburadaMapping}'de.
  */
 public class HepsiburadaClient implements ProviderClient {
@@ -33,8 +34,8 @@ public class HepsiburadaClient implements ProviderClient {
 	private static final String LISTINGS = "/listings/merchantid/{merchant}?offset={offset}&limit={limit}";
 	private static final String STOCK = "/listings/merchantid/{merchant}/stock-uploads";
 	private static final String STOCK_RESULT = "/listings/merchantid/{merchant}/stock-uploads/id/{id}";
-	private static final String ORDERS = "/orders/merchantId/{merchant}?offset={offset}&limit={limit}";
-	private static final String PACKAGES = "/packages/merchantId/{merchant}";
+	private static final String ORDERS = "/orders/merchantid/{merchant}?offset={offset}&limit={limit}";
+	private static final String PACKAGES = "/packages/merchantid/{merchant}";
 
 	/** Ilan sayfasinda kayit; siparis listesinde Hepsiburada en fazla 100 kabul eder. */
 	private static final int LISTING_PAGE = 500;
@@ -157,7 +158,7 @@ public class HepsiburadaClient implements ProviderClient {
 	 * ve fatura adimlari gelir.
 	 */
 	@Override
-	public void reportPreparing(ExternalOrder order) {
+	public String reportPreparing(ExternalOrder order) {
 		List<Map<String, Object>> lines = new ArrayList<>();
 		for (ExternalOrder.Line line : order.lines()) {
 			if (line.lineId() == null) {
@@ -166,8 +167,37 @@ public class HepsiburadaClient implements ProviderClient {
 			lines.add(Map.of("id", line.lineId(), "quantity", line.quantity()));
 		}
 		try {
-			oms.post().uri(PACKAGES, merchantId).body(Map.of("lineItemRequests", lines, "parcelQuantity", 1))
-				.retrieve().toBodilessEntity();
+			Map<?, ?> created = oms.post().uri(PACKAGES, merchantId)
+				.body(Map.of("lineItemRequests", lines, "parcelQuantity", 1)).retrieve().body(Map.class);
+			return created == null || created.get("packageNumber") == null ? null
+				: String.valueOf(created.get("packageNumber"));
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	/**
+	 * Paketin kargo bilgisi ({@code GET .../packagenumber/{paket}}: kargo firmasi, {@code trackingInfoCode}) ve ortak
+	 * barkod ({@code .../labels?format=ZPL}: {@code data[]}). Etiket verisinin bicimi belgede yazmiyor; gercek
+	 * hesapla dogrulanacak.
+	 */
+	@Override
+	public ShippingLabel label(ExternalOrder order, String packageNumber) {
+		if (packageNumber == null) {
+			throw new ProviderException("Hepsiburada paket numarası yok; sipariş önce paketlenmeli.", null);
+		}
+		try {
+			Map<?, ?> info = oms.get().uri(PACKAGES + "/packagenumber/{package}", merchantId, packageNumber)
+				.retrieve().body(Map.class);
+			Map<?, ?> barcode = oms.get().uri(PACKAGES + "/packagenumber/{package}/labels?format=ZPL", merchantId,
+				packageNumber).retrieve().body(Map.class);
+			List<String> labels = HepsiburadaMapping.labels(barcode);
+			if (labels.isEmpty()) {
+				throw new ProviderException("Hepsiburada etiketi henüz hazırlamadı; biraz sonra tekrar deneyin.", null);
+			}
+			String format = barcode.get("format") == null ? "ZPL" : String.valueOf(barcode.get("format"));
+			return new ShippingLabel(HepsiburadaMapping.text(info == null ? null : info.get("cargoCompany")),
+				HepsiburadaMapping.text(info == null ? null : info.get("trackingInfoCode")), format, labels);
 		} catch (RestClientException e) {
 			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
 		}

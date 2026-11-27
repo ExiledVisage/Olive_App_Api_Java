@@ -5,6 +5,7 @@ import com.olivamore.api.integration.provider.ExternalProduct;
 import com.olivamore.api.integration.provider.ProviderClient;
 import com.olivamore.api.integration.provider.ProviderErrors;
 import com.olivamore.api.integration.provider.ProviderException;
+import com.olivamore.api.integration.provider.ShippingLabel;
 import com.olivamore.api.integration.provider.StockUpdate;
 import com.olivamore.api.shared.time.Timestamps;
 import org.springframework.core.io.ByteArrayResource;
@@ -41,6 +42,12 @@ public class TrendyolClient implements ProviderClient {
 	private static final String ORDERS = "/order/sellers/{seller}/v2/orders?status=Created&startDate={start}"
 		+ "&endDate={end}&orderByField=PackageLastModifiedDate&orderByDirection=ASC&page={page}&size={size}";
 	private static final String PACKAGE = "/order/sellers/{seller}/shipment-packages/{package}";
+
+	private static final String LABEL = "/sellers/{seller}/common-label/{tracking}";
+	private static final Duration LABEL_WAIT = Duration.ofSeconds(1);
+
+	/** Tedarik edememe gerekcesi: 500 stok tukendi. */
+	private static final int OUT_OF_STOCK = 500;
 
 	/** Fatura tarihi Turkiye gunu. */
 	private static final ZoneId LOCAL = ZoneId.of("Europe/Istanbul");
@@ -164,11 +171,60 @@ public class TrendyolClient implements ProviderClient {
 	 * Trendyol'dan iptal edemez.
 	 */
 	@Override
-	public void reportPreparing(ExternalOrder order) {
+	public String reportPreparing(ExternalOrder order) {
 		List<Map<String, Object>> lines = lines(order);
 		try {
 			http.put().uri(PACKAGE, sellerId, order.externalId())
 				.body(Map.of("lines", lines, "params", Map.of(), "status", "Picking")).retrieve().toBodilessEntity();
+			return null;
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	/**
+	 * Ortak etiket: paketin kargo takip numarasi paket sorgusundan okunur, etiket {@code POST
+	 * /sellers/{id}/common-label/{takip}} ile istenir ve {@code GET} ile alinir (yalniz ZPL). Trendyol'un anlasmali
+	 * kargosu (TEX, Aras) icin; hazir olmayan etiket birkac kez beklenir.
+	 */
+	@Override
+	public ShippingLabel label(ExternalOrder order, String platformRef) {
+		try {
+			Map<?, ?> page = http.get().uri("/order/sellers/{seller}/orders?shipmentPackageIds={package}", sellerId,
+				order.externalId()).retrieve().body(Map.class);
+			Map<?, ?> pkg = TrendyolMapping.content(page).stream().findFirst()
+				.orElseThrow(() -> new ProviderException("Trendyol paketi bulunamadı.", null));
+			String tracking = TrendyolMapping.text(pkg.get("cargoTrackingNumber"));
+			if (tracking == null) {
+				throw new ProviderException("Trendyol paketin kargo takip numarasını henüz vermedi.", null);
+			}
+			http.post().uri(LABEL, sellerId, tracking).body(Map.of("format", "ZPL", "boxQuantity", 1)).retrieve()
+				.toBodilessEntity();
+			List<String> labels = List.of();
+			for (int attempt = 0; attempt < RESULT_ATTEMPTS && labels.isEmpty(); attempt++) {
+				if (attempt > 0) {
+					Thread.sleep(LABEL_WAIT.toMillis());
+				}
+				labels = TrendyolMapping.labels(http.get().uri(LABEL, sellerId, tracking).retrieve().body(Map.class));
+			}
+			if (labels.isEmpty()) {
+				throw new ProviderException("Trendyol etiketi henüz hazırlamadı; biraz sonra tekrar deneyin.", null);
+			}
+			return new ShippingLabel(TrendyolMapping.text(pkg.get("cargoProviderName")), tracking, "ZPL", labels);
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new ProviderException("Trendyol etiketi beklenirken durduruldu.", e);
+		}
+	}
+
+	/** Paketin butun kalemleri, gerekce 500 "Stok tukendi"; Trendyol paketi iptal eder. */
+	@Override
+	public void reportUnsupplied(ExternalOrder order) {
+		try {
+			http.put().uri(PACKAGE + "/items/unsupplied", sellerId, order.externalId())
+				.body(Map.of("lines", lines(order), "reasonId", OUT_OF_STOCK)).retrieve().toBodilessEntity();
 		} catch (RestClientException e) {
 			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
 		}

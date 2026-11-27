@@ -110,6 +110,8 @@ public final class FakeTrendyol implements AutoCloseable {
 		p.put("customerFirstName", firstName);
 		p.put("customerLastName", lastName);
 		p.put("customerEmail", email);
+		p.put("cargoTrackingNumber", "7330000" + packageId);
+		p.put("cargoProviderName", "Trendyol Express Marketplace");
 		p.put("shipmentAddress", Map.of("id", packageId * 10, "firstName", firstName, "lastName", lastName,
 			"address1", fullAddress, "city", city, "district", district, "postalCode", "34200", "countryCode", "TR",
 			"phone", phone, "fullAddress", fullAddress + " " + district + "/" + city));
@@ -210,6 +212,36 @@ public final class FakeTrendyol implements AutoCloseable {
 				"failedItemCount", items.stream().filter(i -> "FAILED".equals(i.get("status"))).count(), "items",
 				items));
 			send(exchange, 200, Map.of("batchRequestId", id));
+		} else if ("GET".equals(method) && path.endsWith("/orders") && query.containsKey("shipmentPackageIds")) {
+			long id = Long.parseLong(query.get("shipmentPackageIds"));
+			page(exchange, packages.stream().filter(p -> ((Number) p.get("id")).longValue() == id).toList(), query);
+		} else if (path.contains("/common-label/")) {
+			String tracking = path.substring(path.lastIndexOf('/') + 1);
+			if ("POST".equals(method)) {
+				Map<String, Object> request = JSON.readValue(body, Map.class);
+				if (!"ZPL".equals(request.get("format"))) {
+					send(exchange, 400, Map.of("errors", List.of(Map.of("message", "format ZPL olmalı."))));
+					return;
+				}
+				labels.add(tracking);
+				send(exchange, 200, Map.of());
+			} else {
+				send(exchange, 200, Map.of("data", labels.contains(tracking)
+					? List.of(Map.of("label", "^XA^FO50,50^FD" + tracking + "^FS^XZ", "format", "ZPL")) : List.of()));
+			}
+		} else if ("PUT".equals(method) && path.endsWith("/items/unsupplied")) {
+			String[] parts = path.split("/");
+			Map<String, Object> pkg = pkg(Long.parseLong(parts[parts.length - 3]));
+			Map<String, Object> request = JSON.readValue(body, Map.class);
+			if (!Integer.valueOf(500).equals(request.get("reasonId")) || !(request.get("lines") instanceof List<?> l)
+				|| l.isEmpty() || !List.of("Created", "Picking").contains(pkg.get("status"))) {
+				send(exchange, 400, Map.of("errors", List.of(Map.of("message", "Paket " + pkg.get("status")
+					+ " durumunda; tedarik edilemedi bildirilemez."))));
+				return;
+			}
+			pkg.put("status", "UnSupplied");
+			pkg.put("shipmentPackageStatus", "UnSupplied");
+			send(exchange, 200, Map.of());
 		} else if ("POST".equals(method) && path.endsWith("/seller-invoice-file")) {
 			invoiceFile(exchange, body, headers.getOrDefault("content-type", ""));
 		} else if ("PUT".equals(method) && path.contains("/shipment-packages/")) {
@@ -246,6 +278,8 @@ public final class FakeTrendyol implements AutoCloseable {
 	private static Pattern part(String name) {
 		return Pattern.compile("name=\"" + name + "\"\r?\n(?:[^\r\n]+\r?\n)*\r?\n([^\r\n]+)");
 	}
+
+	private final Set<String> labels = new HashSet<>();
 
 	/** Faturalandi bildirilen paketin fatura numarasi; bildirilmediyse null. */
 	public String invoiceNumberOf(long packageId) {

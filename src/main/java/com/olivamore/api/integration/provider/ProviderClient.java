@@ -32,9 +32,25 @@ public interface ProviderClient {
 	/**
 	 * Siparisin hazirlanmaya basladigini bildirir; yalniz {@link Provider#reportsPreparing()} platformlarda cagrilir.
 	 * Platform reddederse ya da ulasilamazsa {@link ProviderException}.
+	 *
+	 * @return platformun bu bildirimle verdigi kayit (Hepsiburada paket numarasi); yoksa bos
 	 */
-	default void reportPreparing(ExternalOrder order) {
+	default String reportPreparing(ExternalOrder order) {
 		throw new UnsupportedOperationException("Bu platformda hazırlanıyor bildirimi yok.");
+	}
+
+	/**
+	 * Kargo etiketi; yalniz {@link Provider#printsLabel()} platformlarda, hazirlaniyor bildirildikten sonra.
+	 *
+	 * @param platformRef hazirlaniyor bildiriminin dondurdugu kayit (Hepsiburada paket numarasi)
+	 */
+	default ShippingLabel label(ExternalOrder order, String platformRef) {
+		throw new UnsupportedOperationException("Bu platformda kargo etiketi yok.");
+	}
+
+	/** Bizde iptal edilen siparisin kalemlerinin tedarik edilemedigini bildirir (Trendyol, "stok tukendi"). */
+	default void reportUnsupplied(ExternalOrder order) {
+		throw new UnsupportedOperationException("Bu platformda tedarik edilemedi bildirimi yok.");
 	}
 
 	/**

@@ -90,6 +90,19 @@ public enum Provider {
 		return this == TRENDYOL;
 	}
 
+	/** Pazar yerinin kargo etiketi alinir mi (paket hazirlaniyor bildirildikten sonra). */
+	public boolean printsLabel() {
+		return this == TRENDYOL || this == HEPSIBURADA;
+	}
+
+	/**
+	 * Bizde iptal edilen siparis "tedarik edilemedi" olarak bildirilir mi. Hepsiburada'nin iptal gerekce kodlari
+	 * belgelenmedigi icin yalniz Trendyol.
+	 */
+	public boolean reportsUnsupplied() {
+		return this == TRENDYOL;
+	}
+
 	/** Muhasebe programi mi (satis kanali degil): urun, siparis ve stok isleri yok, faturalar gider. */
 	public boolean accounting() {
 		return this == PARASUT;

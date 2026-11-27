@@ -84,6 +84,19 @@ final class TrendyolMapping {
 			orderDate(pkg.get("orderDate")), customer, delivery, lines, null);
 	}
 
+	/** Ortak etiket cevabi: {@code data[].label} (ZPL metni). */
+	static List<String> labels(Map<?, ?> response) {
+		List<String> result = new ArrayList<>();
+		if (response != null && response.get("data") instanceof List<?> items) {
+			for (Object item : items) {
+				if (item instanceof Map<?, ?> m && text(m.get("label")) != null) {
+					result.add(String.valueOf(m.get("label")));
+				}
+			}
+		}
+		return result;
+	}
+
 	/** Kuyruktaki is henuz bitmedi mi (genel durum IN_PROGRESS ya da kalemlerden biri IN_PROGRESS). */
 	static boolean inProgress(Map<?, ?> result) {
 		if (result == null) {
@@ -138,7 +151,7 @@ final class TrendyolMapping {
 		return present.isEmpty() ? null : String.join(separator, present);
 	}
 
-	private static String text(Object value) {
+	static String text(Object value) {
 		if (value == null) {
 			return null;
 		}

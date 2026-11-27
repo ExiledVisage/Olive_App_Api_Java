@@ -17,11 +17,14 @@ class OrderPullController {
 	private final OrderPull pull;
 	private final PreparingReport preparing;
 	private final InvoiceReport invoices;
+	private final UnsuppliedReport unsupplied;
 
-	OrderPullController(OrderPull pull, PreparingReport preparing, InvoiceReport invoices) {
+	OrderPullController(OrderPull pull, PreparingReport preparing, InvoiceReport invoices,
+		UnsuppliedReport unsupplied) {
 		this.pull = pull;
 		this.preparing = preparing;
 		this.invoices = invoices;
+		this.unsupplied = unsupplied;
 	}
 
 	/** @param reported platforma bildirilen siparis sayisi */
@@ -48,7 +51,7 @@ class OrderPullController {
 	DataResponse<Reported> report(@PathVariable long id) {
 		// Once hazirlaniyor, sonra fatura: hazirlaniyor bildirilen siparisin faturasi da ayni istekte gider.
 		int prepared = preparing.retry(id, true);
-		return DataResponse.of(new Reported(prepared + invoices.retry(id, true)));
+		return DataResponse.of(new Reported(prepared + invoices.retry(id, true) + unsupplied.retry(id, true)));
 	}
 
 	/** {@code status}: imported ya da pending; en yeni 200. */

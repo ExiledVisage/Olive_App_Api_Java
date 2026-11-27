@@ -90,11 +90,11 @@ public class PreparingReport {
 		try {
 			ExternalOrder order = PAYLOAD.readValue(target.payload(), ExternalOrder.class);
 			Connections.Connection connection = connections.connection(target.connectionId());
-			connections.client(connection).reportPreparing(order);
+			String ref = connections.client(connection).reportPreparing(order);
 			jdbc.sql("""
-				update integration_orders set platform_status = 'preparing', platform_error = null,
+				update integration_orders set platform_status = 'preparing', platform_ref = :ref, platform_error = null,
 					platform_attempted_at = :now, updated_at = :now where id = :id
-				""").param("now", now).param("id", target.id()).update();
+				""").param("ref", ref).param("now", now).param("id", target.id()).update();
 			return true;
 		} catch (RuntimeException e) {
 			log.warn("Entegrasyon siparisi {} hazirlaniyor bildirilemedi: {}", target.id(), e.getMessage());

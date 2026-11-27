@@ -120,6 +120,15 @@ final class HepsiburadaMapping {
 		return Prices.money(Prices.decimal(map(item.get("unitPrice")).get("amount")));
 	}
 
+	/** Ortak barkod cevabi: {@code data[]} etiket verileri. */
+	static List<String> labels(Map<?, ?> response) {
+		List<String> result = new ArrayList<>();
+		if (response != null && response.get("data") instanceof List<?> items) {
+			items.stream().map(HepsiburadaMapping::text).filter(t -> t != null).forEach(result::add);
+		}
+		return result;
+	}
+
 	/** Stok isi hala kuyrukta ya da isleniyor mu. */
 	static boolean inProgress(Map<?, ?> result) {
 		return result == null || PENDING.contains(text(result.get("status")));
@@ -175,7 +184,7 @@ final class HepsiburadaMapping {
 		return present.isEmpty() ? null : String.join(separator, present);
 	}
 
-	private static String text(Object value) {
+	static String text(Object value) {
 		if (value == null) {
 			return null;
 		}
