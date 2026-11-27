@@ -1,10 +1,13 @@
 package com.olivamore.api.sales.invoice;
 
+import com.olivamore.api.sales.SalesInvoiceCancelled;
+import com.olivamore.api.sales.SalesInvoiceIssued;
 import com.olivamore.api.sales.invoice.InvoiceMath.Amounts;
 import com.olivamore.api.shared.error.BusinessRuleException;
 import com.olivamore.api.shared.error.ModelNotFoundException;
 import com.olivamore.api.shared.time.Timestamps;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,10 +45,12 @@ class InvoiceService {
 	private final JdbcClient jdbc;
 	private final String prefix;
 	private final ZoneId zone;
+	private final ApplicationEventPublisher events;
 
 	InvoiceService(JdbcClient jdbc, @Value("${olive.invoice.prefix:OLV}") String prefix,
-		@Value("${olive.integration.zone:Europe/Istanbul}") String zone) {
+		@Value("${olive.integration.zone:Europe/Istanbul}") String zone, ApplicationEventPublisher events) {
 		this.jdbc = jdbc;
+		this.events = events;
 		this.prefix = prefix;
 		this.zone = ZoneId.of(zone);
 	}
@@ -102,7 +107,8 @@ class InvoiceService {
 		long invoiceId = jdbc.sql("""
 			insert into invoices (order_id, customer_id, number, year, sequence, status, issue_date, buyer_name,
 				buyer_tax_number, buyer_tax_office, buyer_address, buyer_district, buyer_city, buyer_country,
-				buyer_email, buyer_phone, net_total, vat_total, gross_total, note, created_by_user_id, created_at, updated_at)
+				buyer_email, buyer_phone, net_total, vat_total, gross_total, note, created_by_user_id, created_at,
+				updated_at)
 			values (:order, :customer, :number, :year, :sequence, 'issued', :date, :name, :taxNumber, :taxOffice,
 				:address, :district, :city, :country, :email, :phone, :net, :vat, :gross, :note, :user, :now, :now)
 			returning id
@@ -126,6 +132,7 @@ class InvoiceService {
 				.param("rate", item.vatRate()).param("net", line.net()).param("vat", line.vat())
 				.param("gross", line.gross()).param("now", now).update();
 		}
+		events.publishEvent(new SalesInvoiceIssued(invoiceId));
 		return invoiceId;
 	}
 
@@ -143,6 +150,7 @@ class InvoiceService {
 				cancel_reason = :reason, updated_at = :now
 			where id = :id
 			""").param("now", now).param("user", userId).param("reason", request.reason()).param("id", id).update();
+		events.publishEvent(new SalesInvoiceCancelled(id));
 	}
 
 	private static BigDecimal price(ItemRow item) {

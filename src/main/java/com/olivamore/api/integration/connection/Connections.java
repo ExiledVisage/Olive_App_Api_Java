@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.connection;
 
+import com.olivamore.api.integration.provider.AccountingClient;
 import com.olivamore.api.integration.provider.Provider;
 import com.olivamore.api.integration.provider.ProviderClient;
 import com.olivamore.api.integration.provider.ProviderClients;
@@ -29,41 +30,46 @@ import java.util.Map;
 @Service
 public class Connections {
 
-	/** @param fields platformun istedigi erisim bilgileri (form icin) */
+	/**
+	 * @param fields     platformun istedigi erisim bilgileri (form icin)
+	 * @param accounting muhasebe programi (Parasut): siparis ve stok yok, faturalar gider
+	 */
 	record ProviderInfo(String key, String label, boolean supported, boolean needsBaseUrl,
-		List<Provider.Field> fields) {
+		List<Provider.Field> fields, boolean accounting) {
 	}
 
 	/** @param credentials maskeli ("ck_••••1a2b") */
 	record View(long id, String provider, String providerLabel, String name, String baseUrl, String status,
-		boolean orderPullEnabled, boolean stockPushEnabled, Map<String, String> credentials,
-		LocalDateTime lastOrderSyncAt, LocalDateTime lastStockSyncAt, String lastError, LocalDateTime lastErrorAt,
-		LocalDateTime createdAt) {
+		boolean orderPullEnabled, boolean stockPushEnabled, boolean invoicePushEnabled, boolean eDocumentEnabled,
+		Map<String, String> credentials, LocalDateTime lastOrderSyncAt, LocalDateTime lastStockSyncAt,
+		String lastError, LocalDateTime lastErrorAt, LocalDateTime createdAt) {
 	}
 
 	record CreateRequest(String provider, String name, String baseUrl, Map<String, String> credentials,
-		Boolean orderPullEnabled, Boolean stockPushEnabled) {
+		Boolean orderPullEnabled, Boolean stockPushEnabled, Boolean invoicePushEnabled, Boolean eDocumentEnabled) {
 	}
 
 	/** Verilmeyen alan degismez; {@code credentials} icindeki bos olmayan bilgiler eskisinin yerine gecer. */
 	record UpdateRequest(String name, String baseUrl, Map<String, String> credentials, String status,
-		Boolean orderPullEnabled, Boolean stockPushEnabled) {
+		Boolean orderPullEnabled, Boolean stockPushEnabled, Boolean invoicePushEnabled, Boolean eDocumentEnabled) {
 	}
 
-	/** Diger alt paketlerin (eslestirme, siparis, stok) kullandigi cozulmus baglanti. */
+	/** Diger alt paketlerin (eslestirme, siparis, stok, fatura) kullandigi cozulmus baglanti. */
 	public record Connection(long id, Provider provider, String name, String baseUrl, boolean active,
-		boolean orderPullEnabled, boolean stockPushEnabled, Map<String, String> credentials,
-		LocalDateTime lastOrderSyncAt) {
+		boolean orderPullEnabled, boolean stockPushEnabled, boolean invoicePushEnabled, boolean eDocumentEnabled,
+		Map<String, String> credentials, LocalDateTime lastOrderSyncAt) {
 	}
 
 	private record ConnectionRow(long id, String provider, String name, String baseUrl, String credentialsEncrypted,
-		String status, boolean orderPullEnabled, boolean stockPushEnabled, LocalDateTime lastOrderSyncAt,
-		LocalDateTime lastStockSyncAt, String lastError, LocalDateTime lastErrorAt, LocalDateTime createdAt) {
+		String status, boolean orderPullEnabled, boolean stockPushEnabled, boolean invoicePushEnabled,
+		boolean eDocumentEnabled, LocalDateTime lastOrderSyncAt, LocalDateTime lastStockSyncAt, String lastError,
+		LocalDateTime lastErrorAt, LocalDateTime createdAt) {
 	}
 
 	private static final String SELECT = """
 		select id, provider, name, base_url, credentials_encrypted, status, order_pull_enabled, stock_push_enabled,
-			last_order_sync_at, last_stock_sync_at, last_error, last_error_at, created_at
+			invoice_push_enabled, e_document_enabled, last_order_sync_at, last_stock_sync_at, last_error,
+			last_error_at, created_at
 		from integration_connections
 		""";
 
@@ -87,7 +93,8 @@ public class Connections {
 
 	List<ProviderInfo> providers() {
 		return List.of(Provider.values()).stream()
-			.map(p -> new ProviderInfo(p.key(), p.label(), p.supported(), p.needsBaseUrl(), p.fields())).toList();
+			.map(p -> new ProviderInfo(p.key(), p.label(), p.supported(), p.needsBaseUrl(), p.fields(),
+				p.accounting())).toList();
 	}
 
 	@Transactional(readOnly = true)
@@ -122,15 +129,20 @@ public class Connections {
 		Map<String, String> credentials = credentials(provider, request.credentials(), Map.of(), errors);
 		errors.throwIfAny();
 		LocalDateTime now = Timestamps.now();
+		// Muhasebe baglantisinda siparis ve stok yok; satis kanalinda fatura yok.
+		boolean accounting = provider.accounting();
 		long id = jdbc.sql("""
 			insert into integration_connections (provider, name, base_url, credentials_encrypted, order_pull_enabled,
-				stock_push_enabled, created_by_user_id, created_at, updated_at)
-			values (:provider, :name, :base, :creds, :pull, :push, :user, :now, :now)
+				stock_push_enabled, invoice_push_enabled, e_document_enabled, created_by_user_id, created_at,
+				updated_at)
+			values (:provider, :name, :base, :creds, :pull, :push, :invoices, :edoc, :user, :now, :now)
 			returning id
 			""").param("provider", provider.key()).param("name", name).param("base", baseUrl)
 			.param("creds", cipher.encrypt(json.writeValueAsString(credentials)))
-			.param("pull", request.orderPullEnabled() == null || request.orderPullEnabled())
-			.param("push", request.stockPushEnabled() != null && request.stockPushEnabled())
+			.param("pull", !accounting && (request.orderPullEnabled() == null || request.orderPullEnabled()))
+			.param("push", !accounting && Boolean.TRUE.equals(request.stockPushEnabled()))
+			.param("invoices", accounting && Boolean.TRUE.equals(request.invoicePushEnabled()))
+			.param("edoc", accounting && Boolean.TRUE.equals(request.eDocumentEnabled()))
 			.param("user", userId).param("now", now).query(Long.class).single();
 		return get(id);
 	}
@@ -153,14 +165,18 @@ public class Connections {
 			errors.add("status", MessageKeys.IN);
 		}
 		errors.throwIfAny();
+		boolean accounting = provider.accounting();
 		jdbc.sql("""
 			update integration_connections set name = :name, base_url = :base, credentials_encrypted = :creds,
-				status = :status, order_pull_enabled = :pull, stock_push_enabled = :push, updated_at = :now
+				status = :status, order_pull_enabled = :pull, stock_push_enabled = :push,
+				invoice_push_enabled = :invoices, e_document_enabled = :edoc, updated_at = :now
 			where id = :id
 			""").param("name", name).param("base", baseUrl)
 			.param("creds", cipher.encrypt(json.writeValueAsString(credentials))).param("status", status)
-			.param("pull", request.orderPullEnabled() == null ? row.orderPullEnabled() : request.orderPullEnabled())
-			.param("push", request.stockPushEnabled() == null ? row.stockPushEnabled() : request.stockPushEnabled())
+			.param("pull", !accounting && or(request.orderPullEnabled(), row.orderPullEnabled()))
+			.param("push", !accounting && or(request.stockPushEnabled(), row.stockPushEnabled()))
+			.param("invoices", accounting && or(request.invoicePushEnabled(), row.invoicePushEnabled()))
+			.param("edoc", accounting && or(request.eDocumentEnabled(), row.eDocumentEnabled()))
 			.param("now", Timestamps.now()).param("id", id).update();
 		return get(id);
 	}
@@ -183,13 +199,21 @@ public class Connections {
 	public Connection connection(long id) {
 		ConnectionRow row = row(id);
 		return new Connection(row.id(), Provider.of(row.provider()).orElseThrow(), row.name(), row.baseUrl(),
-			"active".equals(row.status()), row.orderPullEnabled(), row.stockPushEnabled(), decrypt(row),
-			row.lastOrderSyncAt());
+			"active".equals(row.status()), row.orderPullEnabled(), row.stockPushEnabled(), row.invoicePushEnabled(),
+			row.eDocumentEnabled(), decrypt(row), row.lastOrderSyncAt());
 	}
 
 	/** Bu baglantinin istemcisi. */
 	public ProviderClient client(Connection connection) {
 		return clients.create(connection.provider(), connection.baseUrl(), connection.credentials());
+	}
+
+	/** Muhasebe baglantisinin istemcisi; satis kanalinda 422. */
+	public AccountingClient accounting(Connection connection) {
+		if (client(connection) instanceof AccountingClient accounting) {
+			return accounting;
+		}
+		throw new BusinessRuleException(connection.provider().label() + " bir muhasebe bağlantısı değil.");
 	}
 
 	private View view(ConnectionRow row) {
@@ -201,8 +225,8 @@ public class Connections {
 			masked.put(field.key(), value == null ? null : field.secret() ? mask(value) : value);
 		}
 		return new View(row.id(), provider.key(), provider.label(), row.name(), row.baseUrl(), row.status(),
-			row.orderPullEnabled(), row.stockPushEnabled(), masked, row.lastOrderSyncAt(), row.lastStockSyncAt(),
-			row.lastError(), row.lastErrorAt(), row.createdAt());
+			row.orderPullEnabled(), row.stockPushEnabled(), row.invoicePushEnabled(), row.eDocumentEnabled(), masked,
+			row.lastOrderSyncAt(), row.lastStockSyncAt(), row.lastError(), row.lastErrorAt(), row.createdAt());
 	}
 
 	/** Son dort karakter gorunur: "ck_••••1a2b". */
@@ -271,6 +295,10 @@ public class Connections {
 		}
 		result.keySet().retainAll(provider.fields().stream().map(Provider.Field::key).toList());
 		return result;
+	}
+
+	private static boolean or(Boolean given, boolean current) {
+		return given == null ? current : given;
 	}
 
 	private static String blank(String value) {

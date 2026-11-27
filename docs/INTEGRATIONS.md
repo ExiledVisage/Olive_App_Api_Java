@@ -19,7 +19,7 @@ GreenOps'ta WooCommerce entegrasyonu var (HMAC'li webhook ile siparis); kod alin
 | 2 | Trendyol: siparis bize, stok, hazirlaniyor bildirimi (fiyat sonra) — yazildi | Satici id, API anahtari/sifresi; test ortami IP izni |
 | 3 | Hepsiburada: siparis bize, stok, paketleme — yazildi | Merchant id + entegrasyon kullanicisi (Hepsiburada onayi) |
 | 4 | Satis faturasi kaydi (bizde): fiyat, KDV — yazildi (docs/INVOICES.md) | - |
-| 5 | Parasut: cari, satis faturasi, e-fatura/e-arsiv | Parasut uygulama kaydi (OAuth) |
+| 5 | Parasut: cari, satis faturasi, e-fatura/e-arsiv — yazildi | Parasut uygulama kaydi (OAuth) |
 | 6 | Logo / Mikro | Kurulum tipi (bulut / sirket ici) netlesince |
 
 Neden bu sira: WooCommerce kendi siteniz, deneme magazasi kolay kurulur ve onay beklemez; ortak altyapi onunla
@@ -117,8 +117,9 @@ resmi belgeden degil, acik kaynak bir istemciden (zanaat-dev/lonca) alindi; ilk 
 
 ## 5. Parasut
 
-- OAuth2 (uygulama kaydi; firma id). Cari (contact), urun (product), satis faturasi (sales_invoice), e-fatura /
-  e-arsiv resmilestirme.
+Durum (2026-11-27): yazildi, sahte Parasut sunucusuyla test edildi; gercek hesap bekleniyor. Ayrintilar
+docs/INVOICES.md "Parasut": OAuth2 sifre akisi, cari ve urun bulma/acma, satis faturasi, e-fatura / e-arsiv
+resmilestirme (is olarak), hata ve yeniden deneme, iptal.
 
 ## Kullanicidan istenecekler
 

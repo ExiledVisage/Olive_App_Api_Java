@@ -1,6 +1,7 @@
 package com.olivamore.api.integration.provider;
 
 import com.olivamore.api.integration.provider.hepsiburada.HepsiburadaClient;
+import com.olivamore.api.integration.provider.parasut.ParasutClient;
 import com.olivamore.api.integration.provider.trendyol.TrendyolClient;
 import com.olivamore.api.integration.provider.woocommerce.WooCommerceClient;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ public class ProviderClients {
 				credentials.get("api_secret"));
 			case HEPSIBURADA -> new HepsiburadaClient(baseUrl, credentials.get("merchant_id"),
 				credentials.get("username"), credentials.get("password"), credentials.get("integrator"));
+			case PARASUT -> new ParasutClient(baseUrl, credentials.get("company_id"), credentials.get("client_id"),
+				credentials.get("client_secret"), credentials.get("username"), credentials.get("password"));
 		};
 	}
 

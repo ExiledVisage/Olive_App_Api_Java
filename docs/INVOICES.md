@@ -1,7 +1,8 @@
 # Satis faturasi
 
-Durum (2026-11-27): bizdeki fatura kaydi yazildi (API ve Flutter); Parasut'e gonderim sirada
-(docs/INTEGRATIONS.md asama 5). Fatura su an yalniz bizde bir kayit: resmi e-fatura / e-arsiv degil.
+Durum (2026-11-27): bizdeki fatura kaydi ve Parasut'e gonderim yazildi (API ve Flutter; sahte Parasut sunucusuyla
+test edildi, gercek hesap bekleniyor). Bizdeki fatura kendi basina resmi belge degil; resmilestirme Parasut'te
+(e-fatura / e-arsiv).
 
 ## Fiyat ve KDV
 
@@ -48,9 +49,47 @@ Durum (2026-11-27): bizdeki fatura kaydi yazildi (API ve Flutter); Parasut'e gon
 - Siparis detayi: kalem fiyati ve KDV orani, sipariste tutar; "Fatura kes" (onaylanmis siparis, `invoice.manage`),
   kesilmis faturanin karti. Fatura ekrani: alici, kalemler, KDV dokumu, iptal.
 
+## Parasut
+
+Uclar resmi belgeden degil (devhub.parasut.com otomatik okumaya kapali), acik kaynak istemcilerden
+(parasut-api-v4, netinternet/parasut-v4) ve bilinen API bicimlerinden; ilk gercek denemede dogrulanacak. En
+belirsizler: kalem `unit_price`'in KDV haric oldugu, `e_invoice_inboxes` filtresi (`filter[vkn]`), e-fatura
+govdesi (`scenario`, `to`), e-arsiv `internet_sale` alanlari, is durumlari ve resmi numaranin alani
+(`active_e_document` icinde `invoice_number`).
+
+- **Baglanti:** saglayici `parasut` (muhasebe; siparis, urun eslestirme ve stok yok). Erisim: firma ID, uygulama
+  (client) ID ve gizli anahtari, kullanici e-postasi ve sifresi. Ayarlar: `invoice_push_enabled` (faturalari gonder),
+  `e_document_enabled` (resmilestir; geri alinamaz, baslangicta kapali). API adresi verilirse (test) o kullanilir.
+- **Giris:** `POST /oauth/token` sifre akisi (`grant_type=password`, `redirect_uri=urn:ietf:wg:oauth:2.0:oob`);
+  isler `GET/POST /v4/{firma}/...`, JSON:API (`data.type`, `attributes`, `relationships`). Baglanti denemesi cari
+  sayisini okur.
+- **Gonderim:** fatura kesilince (`SalesInvoiceIssued`, islem bittikten sonra) her etkin Parasut baglantisina:
+  1. Cari: daha once eslesmisse o; yoksa `filter[tax_number]`, sonra `filter[email]` ile aranir, bulunamazsa acilir
+     (VKN 10 hane firma, degilse kisi; `account_type: customer`). Karsilik `integration_external_refs`'te.
+  2. Urun: eslesmisse o; yoksa `filter[code]` (bizim SKU), sonra `filter[name]`, bulunamazsa acilir (KDV orani, KDV
+     haric liste fiyati, `currency: TRL`).
+  3. Satis faturasi: `item_type: invoice`, aciklama bizim numara, kesim ve vade tarihi, siparis no (pazar yeri
+     numarasi ya da `#id`), alici vergi/adres bilgisi; kalemler KDV haric birim fiyat (net tutar / adet, 6 ondalik),
+     KDV orani, urun iliskisi.
+  4. Resmilestirme aciksa: VKN/TCKN `e_invoice_inboxes`'ta varsa e-fatura (`scenario: basic`, `to` posta kutusu),
+     yoksa e-arsiv. Site ve pazar yeri siparisinde e-arsive internet satisi: adres (Trendyol/Hepsiburada sitesi, site
+     icin baglanti adresi), odeme turu (pazar yerinde `ODEMEARACISI`, sitede `KREDIKARTI/BANKAKARTI`), platform ve
+     odeme tarihi (siparis tarihi). Is (`trackable_jobs`) birkac kez sorgulanir; bitince resmi numara okunur.
+- **Durum** (`integration_invoices`): pending, sent, formalizing, formalized, failed, cancelled. Hata gerekcesiyle
+  kaydedilir; yeniden deneme kaldigi adimdan devam eder (olusmus fatura yeniden olusturulmaz, reddedilen
+  resmilestirme bastan baslar). Zamanlayici yarim saatte bir dener; `POST .../invoices/retry` hemen, `POST
+  .../invoices/{fatura}/send` tek faturayi.
+- **Iptal:** bizde iptal edilen fatura Parasut'te `DELETE .../sales_invoices/{id}/cancel` ile iptal edilir;
+  resmilesmis faturaya dokunulmaz, kayda "Parasut'ten iptal edin" yazilir.
+- Uclar: `GET /api/integrations/connections/{id}/invoices` (son 200), `GET /api/integrations/invoices/{fatura}`
+  (faturanin butun muhasebe baglantilarindaki durumu), gonder ve yeniden dene (`integration.manage`).
+- Flutter: baglanti formunda Parasut (yonerge, "Faturalari gonder", "Resmilestir"), baglantida Ozet + Faturalar
+  sekmesi (durum, resmi no, hata, yeniden gonder), fatura ekraninda Muhasebe karti.
+- Yok: PDF, tahsilat (odeme) kaydi, iade faturasi, token yenileme (her is yeni token alir), resmilesmis faturanin
+  iptali.
+
 ## Sirada
 
-- Parasut: cari, urun, satis faturasi, e-fatura / e-arsiv resmilestirme; resmi numara ve PDF.
 - Pazar yerine fatura: Trendyol "Invoiced" + fatura numarasi/linki, Hepsiburada fatura linki.
 - Fatura listesi ekrani (Flutter), tarih araligi ve musteri filtresi.
 - Kargo ucreti ve siparis indirimi faturada ayri kalem degil (pazar yeri kalem fiyati indirim sonrasidir).

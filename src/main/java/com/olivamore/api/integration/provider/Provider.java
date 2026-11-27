@@ -23,7 +23,15 @@ public enum Provider {
 		new Field("merchant_id", "Mağaza (merchant) ID", false),
 		new Field("username", "API kullanıcı adı", false),
 		new Field("password", "API şifresi", true),
-		new Field("integrator", "Entegratör adı", false)));
+		new Field("integrator", "Entegratör adı", false))),
+
+	/** Muhasebe: satis faturalari gider; siparis ve stok yok (docs/INVOICES.md). */
+	PARASUT("parasut", "Paraşüt (muhasebe)", true, false, List.of(
+		new Field("company_id", "Firma ID", false),
+		new Field("client_id", "Uygulama (client) ID", false),
+		new Field("client_secret", "Uygulama gizli anahtarı", true),
+		new Field("username", "Paraşüt kullanıcı e-postası", false),
+		new Field("password", "Paraşüt şifresi", true)));
 
 	/** @param secret cevapta maskelenir */
 	public record Field(String key, String label, boolean secret) {
@@ -72,6 +80,11 @@ public enum Provider {
 	 */
 	public boolean reportsPreparing() {
 		return this == TRENDYOL || this == HEPSIBURADA;
+	}
+
+	/** Muhasebe programi mi (satis kanali degil): urun, siparis ve stok isleri yok, faturalar gider. */
+	public boolean accounting() {
+		return this == PARASUT;
 	}
 
 	public static Optional<Provider> of(String key) {

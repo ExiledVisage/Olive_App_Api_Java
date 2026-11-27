@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.sync;
 
+import com.olivamore.api.integration.accounting.InvoiceExport;
 import com.olivamore.api.integration.order.OrderPull;
 import com.olivamore.api.integration.order.PreparingReport;
 import com.olivamore.api.integration.stock.StockPush;
@@ -33,12 +34,15 @@ class SyncScheduler {
 	private final OrderPull orders;
 	private final StockPush stock;
 	private final PreparingReport preparing;
+	private final InvoiceExport invoices;
 
-	SyncScheduler(JdbcClient jdbc, OrderPull orders, StockPush stock, PreparingReport preparing) {
+	SyncScheduler(JdbcClient jdbc, OrderPull orders, StockPush stock, PreparingReport preparing,
+		InvoiceExport invoices) {
 		this.jdbc = jdbc;
 		this.orders = orders;
 		this.stock = stock;
 		this.preparing = preparing;
+		this.invoices = invoices;
 	}
 
 	@Scheduled(initialDelayString = "${olive.integration.schedule.initial-delay:PT1M}",
@@ -56,6 +60,12 @@ class SyncScheduler {
 			if (target.stockPushEnabled()) {
 				safely(target.id(), "stok", () -> stock.push(target.id(), SyncRuns.Trigger.SCHEDULE));
 			}
+		}
+		List<Long> accounting = jdbc.sql(
+			"select id from integration_connections where status = 'active' and provider = 'parasut'"
+				+ " and invoice_push_enabled order by id").query(Long.class).list();
+		for (long id : accounting) {
+			safely(id, "fatura", () -> invoices.retry(id, false));
 		}
 	}
 

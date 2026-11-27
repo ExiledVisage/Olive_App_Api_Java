@@ -51,7 +51,7 @@ class IntegrationConnectionIT {
 	void providersListEveryPlatformAsSupported() {
 		JsonNode providers = data(api.get("/api/integrations/providers"));
 		assertThat(providers).extracting(p -> p.get("key").asString())
-			.containsExactly("woocommerce", "trendyol", "hepsiburada");
+			.containsExactly("woocommerce", "trendyol", "hepsiburada", "parasut");
 		assertThat(providers.get(0).get("supported").asBoolean()).isTrue();
 		assertThat(providers.get(0).get("needs_base_url").asBoolean()).isTrue();
 		assertThat(providers.get(0).get("fields")).extracting(f -> f.get("key").asString())

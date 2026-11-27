@@ -1,5 +1,7 @@
 -- integration_connections: site ve pazar yeri baglantilari (docs/INTEGRATIONS.md 0). Erisim bilgileri sunucu
 -- anahtariyla sifreli (AES-GCM, credentials_encrypted); cevapta maskeli doner. Stok gonderimi baslangicta kapali.
+-- Muhasebe baglantisi (parasut): invoice_push_enabled faturalar gonderilsin mi, e_document_enabled e-fatura /
+-- e-arsiv olarak resmilestirilsin mi (geri alinamaz; baslangicta kapali, docs/INVOICES.md).
 
 CREATE TABLE integration_connections (
     id bigint NOT NULL,
@@ -10,6 +12,8 @@ CREATE TABLE integration_connections (
     status character varying(10) DEFAULT 'active'::character varying NOT NULL,
     order_pull_enabled boolean DEFAULT true NOT NULL,
     stock_push_enabled boolean DEFAULT false NOT NULL,
+    invoice_push_enabled boolean DEFAULT false NOT NULL,
+    e_document_enabled boolean DEFAULT false NOT NULL,
     last_order_sync_at timestamp(0) without time zone,
     last_stock_sync_at timestamp(0) without time zone,
     last_error text,
@@ -18,7 +22,7 @@ CREATE TABLE integration_connections (
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     CONSTRAINT integration_connections_provider_check
-        CHECK (provider IN ('woocommerce', 'trendyol', 'hepsiburada')),
+        CHECK (provider IN ('woocommerce', 'trendyol', 'hepsiburada', 'parasut')),
     CONSTRAINT integration_connections_status_check CHECK (status IN ('active', 'paused'))
 );
 

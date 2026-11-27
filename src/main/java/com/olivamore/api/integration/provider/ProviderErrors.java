@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /** Platform cevabindaki HTTP hatalarini kullanicinin anlayacagi gerekceye cevirir; butun istemciler kullanir. */
 public final class ProviderErrors {
 
-	private static final Pattern MESSAGE = Pattern.compile("\"message\"\\s*:\\s*\"([^\"]{1,300})\"");
+	private static final Pattern MESSAGE = Pattern.compile("\"(?:message|detail)\"\\s*:\\s*\"([^\"]{1,300})\"");
 
 	private ProviderErrors() {
 	}
@@ -31,7 +31,10 @@ public final class ProviderErrors {
 		return platform + " ile konuşulamadı: " + error.getMessage();
 	}
 
-	/** Cevaptaki ilk {@code "message"} (Trendyol ve WooCommerce hatayi boyle yazar): ": mesaj", yoksa bos. */
+	/**
+	 * Cevaptaki ilk {@code "message"} (Trendyol ve WooCommerce hatayi boyle yazar) ya da {@code "detail"} (Parasut,
+	 * JSON:API): ": mesaj", yoksa bos.
+	 */
 	private static String reason(RestClientResponseException response) {
 		Matcher m = MESSAGE.matcher(response.getResponseBodyAsString());
 		return m.find() ? ": " + m.group(1) : "";
