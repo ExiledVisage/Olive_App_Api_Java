@@ -22,6 +22,9 @@ record FinishedProductResponse(
 	boolean isActive,
 	String barcode,
 	String sku,
+	/** KDV dahil liste fiyati; bos olabilir. */
+	BigDecimal salePrice,
+	int vatRate,
 	RecipeResponse.Summary recipe,
 	List<Component> components,
 	@JsonInclude(JsonInclude.Include.NON_NULL)

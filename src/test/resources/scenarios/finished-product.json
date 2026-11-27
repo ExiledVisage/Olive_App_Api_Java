@@ -1578,6 +1578,8 @@
         "is_active" : true,
         "barcode" : "8691234000151",
         "sku" : "OLV-0015",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -1947,6 +1949,8 @@
         "is_active" : true,
         "barcode" : "8691234000229",
         "sku" : "OLV-0022",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 7,
           "name" : "Portakallı Ayvalık Blend",
@@ -1991,6 +1995,8 @@
         "is_active" : true,
         "barcode" : "8691234000212",
         "sku" : "OLV-0021",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 7,
           "name" : "Portakallı Ayvalık Blend",
@@ -2035,6 +2041,8 @@
         "is_active" : true,
         "barcode" : "8691234000205",
         "sku" : "OLV-0020",
+        "sale_price" : 525.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -2079,6 +2087,8 @@
         "is_active" : true,
         "barcode" : "8691234000199",
         "sku" : "OLV-0019",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -2123,6 +2133,8 @@
         "is_active" : true,
         "barcode" : "8691234000182",
         "sku" : "OLV-0018",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -2167,6 +2179,8 @@
         "is_active" : true,
         "barcode" : "8691234000175",
         "sku" : "OLV-0017",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -2217,6 +2231,8 @@
         "is_active" : true,
         "barcode" : "8691234000168",
         "sku" : "OLV-0016",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -2267,6 +2283,8 @@
         "is_active" : true,
         "barcode" : "8691234000151",
         "sku" : "OLV-0015",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -2317,6 +2335,8 @@
         "is_active" : true,
         "barcode" : "8691234000144",
         "sku" : "OLV-0014",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 4,
           "name" : "Naturel Sızma Ayvalık 0.9",
@@ -2361,6 +2381,8 @@
         "is_active" : true,
         "barcode" : "8691234000137",
         "sku" : "OLV-0013",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 4,
           "name" : "Naturel Sızma Ayvalık 0.9",
@@ -2405,6 +2427,8 @@
         "is_active" : true,
         "barcode" : "8691234000120",
         "sku" : "OLV-0012",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -2461,6 +2485,8 @@
         "is_active" : true,
         "barcode" : "8691234000113",
         "sku" : "OLV-0011",
+        "sale_price" : 450.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -2523,6 +2549,8 @@
         "is_active" : true,
         "barcode" : "8691234000106",
         "sku" : "OLV-0010",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -2591,6 +2619,8 @@
         "is_active" : true,
         "barcode" : "8691234000090",
         "sku" : "OLV-0009",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -2641,6 +2671,8 @@
         "is_active" : true,
         "barcode" : "8691234000083",
         "sku" : "OLV-0008",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -2697,6 +2729,8 @@
         "is_active" : true,
         "barcode" : "8691234000076",
         "sku" : "OLV-0007",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -2753,6 +2787,8 @@
         "is_active" : true,
         "barcode" : "8691234000069",
         "sku" : "OLV-0006",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -2803,6 +2839,8 @@
         "is_active" : true,
         "barcode" : "8691234000052",
         "sku" : "OLV-0005",
+        "sale_price" : 3000.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -2859,6 +2897,8 @@
         "is_active" : true,
         "barcode" : "8691234000045",
         "sku" : "OLV-0004",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -2909,6 +2949,8 @@
         "is_active" : true,
         "barcode" : "8691234000038",
         "sku" : "OLV-0003",
+        "sale_price" : 450.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -2965,6 +3007,8 @@
         "is_active" : true,
         "barcode" : "8691234000021",
         "sku" : "OLV-0002",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -3027,6 +3071,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -3099,6 +3145,8 @@
         "is_active" : true,
         "barcode" : "8691234000229",
         "sku" : "OLV-0022",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 7,
           "name" : "Portakallı Ayvalık Blend",
@@ -3143,6 +3191,8 @@
         "is_active" : true,
         "barcode" : "8691234000212",
         "sku" : "OLV-0021",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 7,
           "name" : "Portakallı Ayvalık Blend",
@@ -3187,6 +3237,8 @@
         "is_active" : true,
         "barcode" : "8691234000205",
         "sku" : "OLV-0020",
+        "sale_price" : 525.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -3231,6 +3283,8 @@
         "is_active" : true,
         "barcode" : "8691234000199",
         "sku" : "OLV-0019",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -3275,6 +3329,8 @@
         "is_active" : true,
         "barcode" : "8691234000182",
         "sku" : "OLV-0018",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -3319,6 +3375,8 @@
         "is_active" : true,
         "barcode" : "8691234000175",
         "sku" : "OLV-0017",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -3369,6 +3427,8 @@
         "is_active" : true,
         "barcode" : "8691234000168",
         "sku" : "OLV-0016",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -3419,6 +3479,8 @@
         "is_active" : true,
         "barcode" : "8691234000151",
         "sku" : "OLV-0015",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -3469,6 +3531,8 @@
         "is_active" : true,
         "barcode" : "8691234000144",
         "sku" : "OLV-0014",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 4,
           "name" : "Naturel Sızma Ayvalık 0.9",
@@ -3513,6 +3577,8 @@
         "is_active" : true,
         "barcode" : "8691234000137",
         "sku" : "OLV-0013",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 4,
           "name" : "Naturel Sızma Ayvalık 0.9",
@@ -3557,6 +3623,8 @@
         "is_active" : true,
         "barcode" : "8691234000120",
         "sku" : "OLV-0012",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -3613,6 +3681,8 @@
         "is_active" : true,
         "barcode" : "8691234000113",
         "sku" : "OLV-0011",
+        "sale_price" : 450.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -3675,6 +3745,8 @@
         "is_active" : true,
         "barcode" : "8691234000106",
         "sku" : "OLV-0010",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -3743,6 +3815,8 @@
         "is_active" : true,
         "barcode" : "8691234000090",
         "sku" : "OLV-0009",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -3793,6 +3867,8 @@
         "is_active" : true,
         "barcode" : "8691234000083",
         "sku" : "OLV-0008",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -3849,6 +3925,8 @@
         "is_active" : true,
         "barcode" : "8691234000076",
         "sku" : "OLV-0007",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -3905,6 +3983,8 @@
         "is_active" : true,
         "barcode" : "8691234000069",
         "sku" : "OLV-0006",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -3955,6 +4035,8 @@
         "is_active" : true,
         "barcode" : "8691234000052",
         "sku" : "OLV-0005",
+        "sale_price" : 3000.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -4011,6 +4093,8 @@
         "is_active" : true,
         "barcode" : "8691234000045",
         "sku" : "OLV-0004",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -4061,6 +4145,8 @@
         "is_active" : true,
         "barcode" : "8691234000038",
         "sku" : "OLV-0003",
+        "sale_price" : 450.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -4117,6 +4203,8 @@
         "is_active" : true,
         "barcode" : "8691234000021",
         "sku" : "OLV-0002",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -4179,6 +4267,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -4261,6 +4351,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -4339,6 +4431,8 @@
         "is_active" : true,
         "barcode" : "8691234000090",
         "sku" : "OLV-0009",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -4405,6 +4499,8 @@
         "is_active" : true,
         "barcode" : "8691234000106",
         "sku" : "OLV-0010",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -4489,6 +4585,8 @@
         "is_active" : true,
         "barcode" : "8691234000182",
         "sku" : "OLV-0018",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -4554,6 +4652,8 @@
         "is_active" : true,
         "barcode" : "8691234000199",
         "sku" : "OLV-0019",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -4632,6 +4732,8 @@
         "is_active" : true,
         "barcode" : "8691234000229",
         "sku" : "OLV-0022",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 7,
           "name" : "Portakallı Ayvalık Blend",
@@ -4676,6 +4778,8 @@
         "is_active" : true,
         "barcode" : "8691234000212",
         "sku" : "OLV-0021",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 7,
           "name" : "Portakallı Ayvalık Blend",
@@ -4720,6 +4824,8 @@
         "is_active" : true,
         "barcode" : "8691234000205",
         "sku" : "OLV-0020",
+        "sale_price" : 525.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -4764,6 +4870,8 @@
         "is_active" : true,
         "barcode" : "8691234000199",
         "sku" : "OLV-0019",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -4808,6 +4916,8 @@
         "is_active" : true,
         "barcode" : "8691234000182",
         "sku" : "OLV-0018",
+        "sale_price" : 175.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -4852,6 +4962,8 @@
         "is_active" : true,
         "barcode" : "8691234000175",
         "sku" : "OLV-0017",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -4902,6 +5014,8 @@
         "is_active" : true,
         "barcode" : "8691234000168",
         "sku" : "OLV-0016",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -4952,6 +5066,8 @@
         "is_active" : true,
         "barcode" : "8691234000151",
         "sku" : "OLV-0015",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 15,
           "name" : "Klasik Blend 0.5",
@@ -5002,6 +5118,8 @@
         "is_active" : true,
         "barcode" : "8691234000144",
         "sku" : "OLV-0014",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 4,
           "name" : "Naturel Sızma Ayvalık 0.9",
@@ -5046,6 +5164,8 @@
         "is_active" : true,
         "barcode" : "8691234000137",
         "sku" : "OLV-0013",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 4,
           "name" : "Naturel Sızma Ayvalık 0.9",
@@ -5090,6 +5210,8 @@
         "is_active" : true,
         "barcode" : "8691234000120",
         "sku" : "OLV-0012",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -5146,6 +5268,8 @@
         "is_active" : true,
         "barcode" : "8691234000113",
         "sku" : "OLV-0011",
+        "sale_price" : 450.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -5208,6 +5332,8 @@
         "is_active" : true,
         "barcode" : "8691234000106",
         "sku" : "OLV-0010",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -5276,6 +5402,8 @@
         "is_active" : true,
         "barcode" : "8691234000090",
         "sku" : "OLV-0009",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 3,
           "name" : "Naturel Sızma Ayvalık 0.4",
@@ -5326,6 +5454,8 @@
         "is_active" : true,
         "barcode" : "8691234000083",
         "sku" : "OLV-0008",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -5382,6 +5512,8 @@
         "is_active" : true,
         "barcode" : "8691234000076",
         "sku" : "OLV-0007",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -5438,6 +5570,8 @@
         "is_active" : true,
         "barcode" : "8691234000069",
         "sku" : "OLV-0006",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -5488,6 +5622,8 @@
         "is_active" : true,
         "barcode" : "8691234000052",
         "sku" : "OLV-0005",
+        "sale_price" : 3000.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -5544,6 +5680,8 @@
         "is_active" : true,
         "barcode" : "8691234000045",
         "sku" : "OLV-0004",
+        "sale_price" : 600.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -5594,6 +5732,8 @@
         "is_active" : true,
         "barcode" : "8691234000038",
         "sku" : "OLV-0003",
+        "sale_price" : 450.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -5650,6 +5790,8 @@
         "is_active" : true,
         "barcode" : "8691234000021",
         "sku" : "OLV-0002",
+        "sale_price" : 300.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -5712,6 +5854,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -5896,6 +6040,8 @@
         "is_active" : true,
         "barcode" : null,
         "sku" : null,
+        "sale_price" : null,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 10,
           "name" : "Muhendis Tarifi",
@@ -5946,6 +6092,8 @@
         "is_active" : false,
         "barcode" : null,
         "sku" : null,
+        "sale_price" : null,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 10,
           "name" : "Muhendis Tarifi",
@@ -5990,6 +6138,8 @@
         "is_active" : true,
         "barcode" : null,
         "sku" : null,
+        "sale_price" : null,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 10,
           "name" : "Muhendis Tarifi",
@@ -6051,6 +6201,8 @@
         "is_active" : false,
         "barcode" : null,
         "sku" : null,
+        "sale_price" : null,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 10,
           "name" : "Muhendis Tarifi",
@@ -6097,6 +6249,8 @@
         "is_active" : false,
         "barcode" : null,
         "sku" : null,
+        "sale_price" : null,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 10,
           "name" : "Muhendis Tarifi",
@@ -6172,6 +6326,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -6243,6 +6399,8 @@
         "is_active" : true,
         "barcode" : "8691234000199",
         "sku" : "OLV-0019",
+        "sale_price" : 350.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 6,
           "name" : "Portakallı Zeytinyağı",
@@ -6299,6 +6457,8 @@
         "is_active" : true,
         "barcode" : null,
         "sku" : null,
+        "sale_price" : null,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 2,
           "name" : "Naturel Sızma Gemlik 0.8",
@@ -6534,7 +6694,7 @@
     "save" : null
   }, {
     "name" : "urun 20 siparis kalemi",
-    "sql" : "insert into order_items (order_id, finished_product_id, quantity, created_at, updated_at) select min(id), 20, 1, now(), now() from orders where status = 'cancelled' returning id",
+    "sql" : "insert into order_items (order_id, finished_product_id, quantity, vat_rate, created_at, updated_at) select min(id), 20, 1, 1, now(), now() from orders where status = 'cancelled' returning id",
     "save" : null
   }, {
     "name" : "urun sil siparisli",

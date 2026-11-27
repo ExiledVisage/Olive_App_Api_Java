@@ -1,7 +1,9 @@
 package com.olivamore.api.integration.provider.woocommerce;
 
 import com.olivamore.api.integration.provider.ExternalOrder;
+import com.olivamore.api.integration.provider.Prices;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -40,14 +42,23 @@ final class WooCommerceOrders {
 				Object variation = line.get("variation_id");
 				String variantId = variation == null || "0".equals(String.valueOf(variation)) ? ""
 					: String.valueOf(variation);
+				int quantity = ((Number) line.get("quantity")).intValue();
 				lines.add(new ExternalOrder.Line(String.valueOf(line.get("product_id")), variantId,
-					text(line.get("name")), text(line.get("sku")), ((Number) line.get("quantity")).intValue(),
-					text(line.get("id"))));
+					text(line.get("name")), text(line.get("sku")), quantity, text(line.get("id")),
+					unitPrice(line, quantity)));
 			}
 		}
 		return new ExternalOrder(String.valueOf(order.get("id")), text(order.get("number")),
 			text(order.get("status")), date(order.get("date_created_gmt")), customer, delivery, lines,
 			text(order.get("customer_note")));
+	}
+
+	/** WooCommerce kalem tutari (indirim sonrasi) KDV haric verir: (total + total_tax) / adet. */
+	private static BigDecimal unitPrice(Map<?, ?> line, int quantity) {
+		BigDecimal total = Prices.decimal(line.get("total"));
+		BigDecimal tax = Prices.decimal(line.get("total_tax"));
+		return Prices.money(Prices.perUnit(total == null ? null : total.add(tax == null ? BigDecimal.ZERO : tax),
+			quantity));
 	}
 
 	private static LocalDateTime date(Object value) {

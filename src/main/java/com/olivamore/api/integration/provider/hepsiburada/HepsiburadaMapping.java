@@ -2,8 +2,10 @@ package com.olivamore.api.integration.provider.hepsiburada;
 
 import com.olivamore.api.integration.provider.ExternalOrder;
 import com.olivamore.api.integration.provider.ExternalProduct;
+import com.olivamore.api.integration.provider.Prices;
 import com.olivamore.api.integration.provider.StockUpdate;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -101,11 +103,21 @@ final class HepsiburadaMapping {
 			String sku = text(item.get("merchantSKU")) != null ? text(item.get("merchantSKU"))
 				: text(item.get("merchantSku"));
 			String hbSku = text(item.get("sku")) != null ? text(item.get("sku")) : text(item.get("hepsiburadaSku"));
-			lines.add(new ExternalOrder.Line(hbSku == null ? "" : hbSku, "", text(item.get("name")), sku,
-				item.get("quantity") instanceof Number n ? n.intValue() : 0, text(item.get("id"))));
+			int quantity = item.get("quantity") instanceof Number n ? n.intValue() : 0;
+			lines.add(new ExternalOrder.Line(hbSku == null ? "" : hbSku, "", text(item.get("name")), sku, quantity,
+				text(item.get("id")), unitPrice(item, quantity)));
 		}
 		return new ExternalOrder(number, number, text(first.get("status")), orderDate(first.get("orderDate")),
 			customer, delivery, lines, null);
+	}
+
+	/** KDV dahil: kalem toplami ({@code totalPrice}) varsa adede bolunur, yoksa {@code unitPrice}. */
+	private static BigDecimal unitPrice(Map<?, ?> item, int quantity) {
+		BigDecimal total = Prices.decimal(map(item.get("totalPrice")).get("amount"));
+		if (total != null) {
+			return Prices.money(Prices.perUnit(total, quantity));
+		}
+		return Prices.money(Prices.decimal(map(item.get("unitPrice")).get("amount")));
 	}
 
 	/** Stok isi hala kuyrukta ya da isleniyor mu. */

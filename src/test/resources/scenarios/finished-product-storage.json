@@ -44618,6 +44618,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",
@@ -55389,6 +55391,8 @@
         "is_active" : true,
         "barcode" : "8691234000014",
         "sku" : "OLV-0001",
+        "sale_price" : 150.0,
+        "vat_rate" : 1,
         "recipe" : {
           "id" : 1,
           "name" : "Naturel Sızma Gemlik 0.3",

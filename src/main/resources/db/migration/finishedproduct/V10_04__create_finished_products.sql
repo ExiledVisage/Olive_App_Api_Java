@@ -1,5 +1,6 @@
 -- finished_products: bitmis urunler (tarif + ambalaj); barkod ve SKU pazar yeri ve sitedeki urunle eslestirir
--- (docs/INTEGRATIONS.md)
+-- (docs/INTEGRATIONS.md). sale_price KDV dahil liste fiyati (elle siparisin varsayilani), vat_rate KDV yuzdesi
+-- (docs/INVOICES.md)
 
 CREATE TABLE finished_products (
     id bigint NOT NULL,
@@ -10,8 +11,12 @@ CREATE TABLE finished_products (
     is_active boolean DEFAULT true NOT NULL,
     barcode character varying(64),
     sku character varying(64),
+    sale_price numeric(12,2),
+    vat_rate integer DEFAULT 1 NOT NULL,
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT finished_products_sale_price_check CHECK (sale_price >= 0),
+    CONSTRAINT finished_products_vat_rate_check CHECK (vat_rate IN (0, 1, 10, 20))
 );
 
 CREATE SEQUENCE finished_products_id_seq

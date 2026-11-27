@@ -92,7 +92,8 @@ class FinishedProductResponses {
 				product.getRecipe().getName(), product.getRecipe().getVersion(),
 				recipeContents ? contents.getOrDefault(product.getRecipe().getId(), List.of()) : null);
 			return new FinishedProductResponse(id, product.getName(), product.getVolumeLitre(), product.getTotalStock(),
-				storedStock, awaitingStock, open, product.isActive(), product.getBarcode(), product.getSku(), recipe,
+				storedStock, awaitingStock, open, product.isActive(), product.getBarcode(), product.getSku(),
+				product.getSalePrice(), product.getVatRate(), recipe,
 				componentsByProduct.getOrDefault(id, List.of()),
 				withLocations ? locations.getOrDefault(id, List.of()) : null,
 				product.getCreatedAt(), product.getUpdatedAt());

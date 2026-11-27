@@ -5,6 +5,7 @@ import com.olivamore.api.sales.customer.CustomerAddressResponse;
 import com.olivamore.api.sales.customer.CustomerResponse;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,6 +22,10 @@ record OrderResponse(
 	CustomerResponse customer,
 	CustomerAddressResponse deliveryAddress,
 	List<Item> items,
+	/** KDV dahil siparis tutari; fiyati olmayan kalem varsa bos. */
+	BigDecimal total,
+	/** Gecerli fatura; kesilmediyse bos. */
+	Invoice invoice,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	UserSummary createdByUser,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
@@ -28,7 +33,12 @@ record OrderResponse(
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt) {
 
-	record Item(Long id, Product finishedProduct, int quantity) {
+	/** @param unitPrice KDV dahil; bos olabilir */
+	record Item(Long id, Product finishedProduct, int quantity, BigDecimal unitPrice, int vatRate,
+		BigDecimal lineTotal) {
+	}
+
+	record Invoice(Long id, String number, LocalDate issueDate, BigDecimal grossTotal) {
 	}
 
 	record Product(

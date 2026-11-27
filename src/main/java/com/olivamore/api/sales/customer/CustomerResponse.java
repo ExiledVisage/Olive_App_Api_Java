@@ -13,6 +13,8 @@ public record CustomerResponse(
 	String phone,
 	String email,
 	String notes,
+	String taxNumber,
+	String taxOffice,
 	boolean isActive,
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	List<CustomerAddressResponse> addresses,
@@ -25,7 +27,8 @@ public record CustomerResponse(
 
 	static CustomerResponse of(Customer c, List<CustomerAddressResponse> addresses) {
 		return new CustomerResponse(c.getId(), c.getName(), c.getCompanyName(), c.getPhone(), c.getEmail(),
-			c.getNotes(), c.isActive(), addresses, c.getCreatedAt(), c.getUpdatedAt());
+			c.getNotes(), c.getTaxNumber(), c.getTaxOffice(), c.isActive(), addresses, c.getCreatedAt(),
+			c.getUpdatedAt());
 	}
 
 }

@@ -107,6 +107,8 @@ class IntegrationHepsiburadaIT {
 		assertThat(order.get("delivery_address").get("district").asString()).isEqualTo("Sarıyer");
 		assertThat(order.get("items")).extracting(i -> i.get("finished_product").get("id").asLong() + "x"
 			+ i.get("quantity").asInt()).containsExactly("4x2", "6x1");
+		assertThat(order.get("items").get(0).get("unit_price").decimalValue()).as("HB birim fiyati, KDV dahil")
+			.isEqualByComparingTo("249.90");
 		assertThat(order.get("status_history").get(0).get("note").asString())
 			.isEqualTo("Hepsiburada siparişi #4001 alındı.");
 		assertThat(integrationOrder(connection, "4002").get("problem").asString())

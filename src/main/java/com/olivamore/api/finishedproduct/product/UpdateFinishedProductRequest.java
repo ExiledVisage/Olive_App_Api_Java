@@ -5,6 +5,7 @@ import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,6 +29,12 @@ record UpdateFinishedProductRequest(
 	Patch<String> barcode,
 
 	Patch<String> sku,
+
+	/** KDV dahil liste fiyati; bos gelirse silinir. */
+	Patch<@DecimalMin(value = "0", message = MessageKeys.MIN)
+		@Digits(integer = 10, fraction = 2, message = MessageKeys.NUMERIC) BigDecimal> salePrice,
+
+	Integer vatRate,
 
 	@Size(min = 1, message = MessageKeys.ITEMS_MIN)
 	List<@Valid Component> components) {

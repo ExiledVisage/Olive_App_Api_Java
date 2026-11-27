@@ -17,10 +17,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /** Bitmis urunler ve ambalaj bilesenleri. */
 @Service
 class FinishedProductService {
+
+	private static final Set<Integer> VAT_RATES = Set.of(0, 1, 10, 20);
 
 	private final FinishedProductRepository products;
 	private final FinishedProductComponentRepository components;
@@ -49,9 +52,10 @@ class FinishedProductService {
 		validateComponents(request.components(), errors);
 		validateCode("barcode", request.barcode(), null, errors);
 		validateCode("sku", request.sku(), null, errors);
+		validateVatRate(request.vatRate(), errors);
 		errors.throwIfAny();
 		FinishedProduct product = products.save(new FinishedProduct(request.name(), recipe, request.volumeLitre(),
-			request.isActive(), request.barcode(), request.sku()));
+			request.isActive(), request.barcode(), request.sku(), request.salePrice(), request.vatRate()));
 		saveComponents(product.getId(), request.components());
 		return product.getId();
 	}
@@ -67,6 +71,7 @@ class FinishedProductService {
 		}
 		Patch.ifPresent(request.barcode(), value -> validateCode("barcode", value, id, errors));
 		Patch.ifPresent(request.sku(), value -> validateCode("sku", value, id, errors));
+		validateVatRate(request.vatRate(), errors);
 		errors.throwIfAny();
 		if (request.volumeLitre() != null && Quantities.differ(request.volumeLitre(), product.getVolumeLitre())
 			&& product.getTotalStock() > 0) {
@@ -114,6 +119,13 @@ class FinishedProductService {
 	}
 
 	/** Barkod ve SKU en fazla 64 karakter ve urunler arasinda benzersiz. */
+	/** Turkiye'deki KDV oranlari. */
+	private static void validateVatRate(Integer rate, ValidationErrors errors) {
+		if (rate != null && !VAT_RATES.contains(rate)) {
+			errors.add("vat_rate", MessageKeys.IN);
+		}
+	}
+
 	private void validateCode(String column, String value, Long exceptId, ValidationErrors errors) {
 		if (value == null) {
 			return;

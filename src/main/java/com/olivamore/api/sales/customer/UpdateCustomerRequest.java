@@ -4,6 +4,7 @@ import com.olivamore.api.shared.validation.Texts;
 import com.olivamore.api.shared.json.Patch;
 import com.olivamore.api.shared.validation.MessageKeys;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /** {@code null} gelen alan degismez; {@code Patch} alanlar {@code null} ile temizlenebilir. */
@@ -20,6 +21,11 @@ record UpdateCustomerRequest(
 
 	Patch<String> notes,
 
+	Patch<@Pattern(regexp = "[0-9]{10,11}", message = MessageKeys.TAX_NUMBER)
+		String> taxNumber,
+
+	Patch<@Size(max = 100, message = MessageKeys.SIZE_MAX) String> taxOffice,
+
 	Boolean isActive) {
 
 	UpdateCustomerRequest {
@@ -28,6 +34,8 @@ record UpdateCustomerRequest(
 		email = Texts.trim(email);
 		phone = Texts.trim(phone);
 		notes = Texts.trim(notes);
+		taxNumber = Texts.trim(taxNumber);
+		taxOffice = Texts.trim(taxOffice);
 	}
 
 }

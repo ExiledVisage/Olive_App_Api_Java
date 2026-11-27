@@ -19,7 +19,8 @@ import java.util.stream.Collectors;
 @Component
 class OrderStockQueries {
 
-	record ProductRow(Long id, String name, BigDecimal volumeLitre, long totalStock) {
+	record ProductRow(Long id, String name, BigDecimal volumeLitre, long totalStock, BigDecimal salePrice,
+		int vatRate) {
 	}
 
 	record SlotStock(Long slotId, long quantity) {
@@ -40,7 +41,7 @@ class OrderStockQueries {
 
 	Map<Long, ProductRow> products(Collection<Long> ids) {
 		return directory.products(ids).values().stream().collect(Collectors.toMap(FinishedProductDirectory.Product::id,
-			p -> new ProductRow(p.id(), p.name(), p.volumeLitre(), p.totalStock())));
+			p -> new ProductRow(p.id(), p.name(), p.volumeLitre(), p.totalStock(), p.salePrice(), p.vatRate())));
 	}
 
 	Set<Long> existingSlots(Collection<Long> ids) {

@@ -50,8 +50,15 @@ public class FinishedProduct extends AuditedEntity {
 
 	private String sku;
 
+	/** KDV dahil liste fiyati; bos olabilir (docs/INVOICES.md). */
+	private BigDecimal salePrice;
+
+	/** KDV yuzdesi: 0, 1, 10, 20. */
+	@Column(nullable = false)
+	private int vatRate = 1;
+
 	FinishedProduct(String name, FinishedProductRecipe recipe, BigDecimal volumeLitre, Boolean active, String barcode,
-		String sku) {
+		String sku, BigDecimal salePrice, Integer vatRate) {
 		this.name = name;
 		this.recipe = recipe;
 		this.volumeLitre = Quantities.normalize(volumeLitre);
@@ -60,6 +67,10 @@ public class FinishedProduct extends AuditedEntity {
 		}
 		this.barcode = barcode;
 		this.sku = sku;
+		this.salePrice = salePrice;
+		if (vatRate != null) {
+			this.vatRate = vatRate;
+		}
 	}
 
 	/** Gelmeyen alanlar degismez. */
@@ -78,6 +89,10 @@ public class FinishedProduct extends AuditedEntity {
 		}
 		Patch.ifPresent(request.barcode(), value -> barcode = value);
 		Patch.ifPresent(request.sku(), value -> sku = value);
+		Patch.ifPresent(request.salePrice(), value -> salePrice = value);
+		if (request.vatRate() != null) {
+			vatRate = request.vatRate();
+		}
 	}
 
 	/** Cagiran satiri kilitlemis olmali. */

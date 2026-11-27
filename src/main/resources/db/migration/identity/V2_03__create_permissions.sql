@@ -92,4 +92,6 @@ insert into permissions (id, name) values
 	(63, 'attendance.view'),
 	(64, 'attendance.manage'),
 	(65, 'integration.view'),
-	(66, 'integration.manage');
+	(66, 'integration.manage'),
+	(67, 'invoice.view'),
+	(68, 'invoice.manage');

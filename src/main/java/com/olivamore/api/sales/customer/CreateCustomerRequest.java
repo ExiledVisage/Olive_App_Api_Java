@@ -5,6 +5,7 @@ import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
@@ -26,6 +27,13 @@ record CreateCustomerRequest(
 
 	String notes,
 
+	/** VKN (10 hane) ya da TCKN (11 hane). */
+	@Pattern(regexp = "[0-9]{10,11}", message = MessageKeys.TAX_NUMBER)
+	String taxNumber,
+
+	@Size(max = 100, message = MessageKeys.SIZE_MAX)
+	String taxOffice,
+
 	Boolean isActive,
 
 	List<@Valid CreateCustomerAddressRequest> addresses) {
@@ -36,6 +44,8 @@ record CreateCustomerRequest(
 		email = Texts.trim(email);
 		phone = Texts.trim(phone);
 		notes = Texts.trim(notes);
+		taxNumber = Texts.trim(taxNumber);
+		taxOffice = Texts.trim(taxOffice);
 	}
 
 }

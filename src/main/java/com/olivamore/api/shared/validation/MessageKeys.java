@@ -52,6 +52,8 @@ public final class MessageKeys {
 	public static final String DIFFERENT = "{validation.different}";
 	/** Degisken: {@code other}. */
 	public static final String AFTER_OR_EQUAL = "{validation.after-or-equal}";
+	/** VKN (10 hane) ya da TCKN (11 hane). */
+	public static final String TAX_NUMBER = "{validation.tax-number}";
 
 	private MessageKeys() {
 	}

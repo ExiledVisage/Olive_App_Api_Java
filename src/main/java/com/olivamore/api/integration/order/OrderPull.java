@@ -175,7 +175,7 @@ public class OrderPull {
 			} else if (line.quantity() <= 0) {
 				problems.add("Geçersiz adet: " + line.name());
 			} else {
-				items.add(new ExternalOrderIntake.Item(product.get(), line.quantity()));
+				items.add(new ExternalOrderIntake.Item(product.get(), line.quantity(), line.unitPrice()));
 			}
 		}
 		if (order.lines().isEmpty()) {

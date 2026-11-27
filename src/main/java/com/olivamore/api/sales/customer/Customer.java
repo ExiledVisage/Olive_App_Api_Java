@@ -33,6 +33,11 @@ public class Customer extends AuditedEntity {
 
 	private String notes;
 
+	/** VKN (10 hane) ya da TCKN (11 hane); faturada kullanilir. */
+	private String taxNumber;
+
+	private String taxOffice;
+
 	@Column(name = "is_active", nullable = false)
 	private boolean active = true;
 
@@ -42,6 +47,8 @@ public class Customer extends AuditedEntity {
 		phone = request.phone();
 		email = request.email();
 		notes = request.notes();
+		taxNumber = request.taxNumber();
+		taxOffice = request.taxOffice();
 		if (request.isActive() != null) {
 			active = request.isActive();
 		}
@@ -56,6 +63,8 @@ public class Customer extends AuditedEntity {
 		Patch.ifPresent(request.phone(), value -> phone = value);
 		Patch.ifPresent(request.email(), value -> email = value);
 		Patch.ifPresent(request.notes(), value -> notes = value);
+		Patch.ifPresent(request.taxNumber(), value -> taxNumber = value);
+		Patch.ifPresent(request.taxOffice(), value -> taxOffice = value);
 		if (request.isActive() != null) {
 			active = request.isActive();
 		}

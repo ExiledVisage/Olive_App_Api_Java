@@ -6,6 +6,7 @@ import com.olivamore.api.sales.customer.Customer;
 import com.olivamore.api.sales.customer.CustomerAddress;
 import com.olivamore.api.sales.customer.CustomerAddressRepository;
 import com.olivamore.api.sales.customer.CustomerRepository;
+import com.olivamore.api.sales.invoice.InvoiceDirectory;
 import com.olivamore.api.sales.order.OrderStockQueries.ProductRow;
 import com.olivamore.api.sales.order.OrderStockQueries.SlotStock;
 import com.olivamore.api.sales.order.StockCheckResponse.Item;
@@ -41,10 +42,11 @@ class OrderService {
 	private final OrderStockQueries stock;
 	private final ShelfOperations shelves;
 	private final ApplicationEventPublisher events;
+	private final InvoiceDirectory invoices;
 
 	OrderService(SalesOrderRepository orders, OrderItemRepository items, OrderStatusHistoryRepository histories,
 		CustomerRepository customers, CustomerAddressRepository addresses, OrderStockQueries stock,
-		ShelfOperations shelves, ApplicationEventPublisher events) {
+		ShelfOperations shelves, ApplicationEventPublisher events, InvoiceDirectory invoices) {
 		this.orders = orders;
 		this.items = items;
 		this.histories = histories;
@@ -53,6 +55,7 @@ class OrderService {
 		this.stock = stock;
 		this.shelves = shelves;
 		this.events = events;
+		this.invoices = invoices;
 	}
 
 	/** Taslak siparis; teslimat adresi musterinin olmali. */
@@ -76,6 +79,7 @@ class OrderService {
 		if (!order.getStatus().editable()) {
 			throw new BusinessRuleException("Sipariş '" + order.getStatus().value() + "' durumundayken düzenlenemez.");
 		}
+		assertNotInvoiced(id, "düzenlemek");
 		if (request.customerId() != null) {
 			order.changeCustomer(customer(request.customerId()));
 		}
@@ -106,6 +110,9 @@ class OrderService {
 		OrderStatus from = order.getStatus();
 		if (!from.transitions().contains(to)) {
 			throw new BusinessRuleException("'" + from.value() + "' durumundan '" + to.value() + "' durumuna geçiş yapılamaz.");
+		}
+		if (to == OrderStatus.CANCELLED) {
+			assertNotInvoiced(id, "iptal etmek");
 		}
 		if (to == OrderStatus.READY) {
 			pickFromShelves(id, request.picks(), userId);
@@ -229,8 +236,20 @@ class OrderService {
 		}
 	}
 
+	/** Fiyati verilmeyen kalem urunun liste fiyatini, her kalem urunun KDV oranini alir. */
 	private void saveItems(long orderId, List<OrderItemRequest> requests) {
-		requests.forEach(request -> items.save(new OrderItem(orderId, request)));
+		Map<Long, ProductRow> products = stock.products(
+			requests.stream().map(OrderItemRequest::finishedProductId).toList());
+		requests.forEach(request -> items.save(new OrderItem(orderId, request,
+			products.get(request.finishedProductId()))));
+	}
+
+	/** Faturasi kesilmis siparis degismez; once fatura iptal edilir. */
+	private void assertNotInvoiced(long orderId, String action) {
+		invoices.issuedFor(orderId).ifPresent(invoice -> {
+			throw new BusinessRuleException("Siparişin faturası kesildi (" + invoice.number() + "). Siparişi " + action
+				+ " için önce faturayı iptal edin.");
+		});
 	}
 
 	private void assertItems(List<OrderItemRequest> requests) {

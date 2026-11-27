@@ -18,7 +18,7 @@ GreenOps'ta WooCommerce entegrasyonu var (HMAC'li webhook ile siparis); kod alin
 | 1 | WooCommerce: siparis bize, stok siteye | Site adresi + REST anahtari (okuma/yazma) |
 | 2 | Trendyol: siparis bize, stok, hazirlaniyor bildirimi (fiyat sonra) — yazildi | Satici id, API anahtari/sifresi; test ortami IP izni |
 | 3 | Hepsiburada: siparis bize, stok, paketleme — yazildi | Merchant id + entegrasyon kullanicisi (Hepsiburada onayi) |
-| 4 | Satis faturasi kaydi (bizde) | Siparisten fatura; numara, KDV, cari |
+| 4 | Satis faturasi kaydi (bizde): fiyat, KDV — yazildi (docs/INVOICES.md) | - |
 | 5 | Parasut: cari, satis faturasi, e-fatura/e-arsiv | Parasut uygulama kaydi (OAuth) |
 | 6 | Logo / Mikro | Kurulum tipi (bulut / sirket ici) netlesince |
 

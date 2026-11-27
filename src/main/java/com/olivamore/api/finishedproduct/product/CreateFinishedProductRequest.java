@@ -4,6 +4,7 @@ import com.olivamore.api.shared.validation.MessageKeys;
 import com.olivamore.api.shared.validation.Texts;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -35,6 +36,14 @@ record CreateFinishedProductRequest(
 	/** Stok kodu; bos olabilir. */
 	@Size(max = 64, message = MessageKeys.SIZE_MAX)
 	String sku,
+
+	/** KDV dahil liste fiyati; bos olabilir. */
+	@DecimalMin(value = "0", message = MessageKeys.MIN)
+	@Digits(integer = 10, fraction = 2, message = MessageKeys.NUMERIC)
+	BigDecimal salePrice,
+
+	/** KDV yuzdesi (0, 1, 10, 20); verilmezse 1. */
+	Integer vatRate,
 
 	@NotEmpty(message = MessageKeys.REQUIRED)
 	List<@Valid Component> components) {

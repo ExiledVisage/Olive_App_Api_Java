@@ -1,4 +1,4 @@
--- customers: musteriler
+-- customers: musteriler; tax_number VKN (10 hane) ya da TCKN (11 hane), faturada kullanilir (docs/INVOICES.md)
 
 CREATE TABLE customers (
     id bigint NOT NULL,
@@ -7,6 +7,8 @@ CREATE TABLE customers (
     phone character varying(255),
     email character varying(255),
     notes text,
+    tax_number character varying(11),
+    tax_office character varying(100),
     is_active boolean DEFAULT true NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone

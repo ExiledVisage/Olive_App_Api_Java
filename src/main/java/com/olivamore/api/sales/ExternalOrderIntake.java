@@ -6,16 +6,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 /**
  * Site ve pazar yeri siparislerinin sales'e girdigi kapi (docs/INTEGRATIONS.md): musteri e-posta, yoksa telefonla
  * bulunur ya da olusur; teslimat adresi musteride yoksa eklenir; siparis taslak olarak, kaynagi ve dis numarasiyla
- * yazilir. Kalemlerin urunleri cagiran tarafindan eslestirilmis olmalidir.
+ * yazilir. Kalemlerin urunleri cagiran tarafindan eslestirilmis olmalidir; ayni urunun kalemleri birlesir (adetler
+ * toplanir, fiyat agirlikli ortalama). Fiyati gelmeyen kalem urunun liste fiyatini, her kalem urunun KDV oranini alir.
  */
 @Component
 public class ExternalOrderIntake {
@@ -33,7 +39,8 @@ public class ExternalOrderIntake {
 	public record Delivery(String country, String city, String district, String line, String postalCode) {
 	}
 
-	public record Item(long finishedProductId, int quantity) {
+	/** @param unitPrice KDV dahil, indirim sonrasi birim fiyat; bos olabilir */
+	public record Item(long finishedProductId, int quantity, BigDecimal unitPrice) {
 	}
 
 	private final JdbcClient jdbc;
@@ -64,12 +71,14 @@ public class ExternalOrderIntake {
 			""").param("customer", customerId).param("address", addressId).param("date", order.orderDate())
 			.param("note", order.note()).param("source", order.source()).param("ref", order.externalRef())
 			.param("now", now).query(Long.class).single();
-		for (Item item : order.items()) {
+		for (Item item : merged(order.items())) {
 			jdbc.sql("""
-				insert into order_items (order_id, finished_product_id, quantity, created_at, updated_at)
-				values (:order, :product, :quantity, :now, :now)
+				insert into order_items (order_id, finished_product_id, quantity, unit_price, vat_rate, created_at,
+					updated_at)
+				select :order, p.id, :quantity, coalesce(cast(:price as numeric), p.sale_price), p.vat_rate, :now, :now
+				from finished_products p where p.id = :product
 				""").param("order", orderId).param("product", item.finishedProductId())
-				.param("quantity", item.quantity()).param("now", now).update();
+				.param("quantity", item.quantity()).param("price", item.unitPrice()).param("now", now).update();
 		}
 		jdbc.sql("""
 			insert into order_status_histories (order_id, from_status, to_status, note, changed_at, created_at,
@@ -78,6 +87,25 @@ public class ExternalOrderIntake {
 			""").param("order", orderId).param("note", label + " siparişi #" + order.externalRef() + " alındı.")
 			.param("now", now).update();
 		return orderId;
+	}
+
+	/** Ayni urunun kalemleri tek kalem: adetler toplanir; fiyatlarin hepsi biliniyorsa agirlikli ortalama. */
+	static List<Item> merged(List<Item> items) {
+		Map<Long, List<Item>> byProduct = new LinkedHashMap<>();
+		items.forEach(item -> byProduct.computeIfAbsent(item.finishedProductId(), k -> new ArrayList<>()).add(item));
+		List<Item> result = new ArrayList<>();
+		byProduct.forEach((product, group) -> {
+			int quantity = group.stream().mapToInt(Item::quantity).sum();
+			boolean priced = group.stream().allMatch(i -> i.unitPrice() != null);
+			BigDecimal price = null;
+			if (priced && quantity > 0) {
+				BigDecimal total = group.stream().map(i -> i.unitPrice().multiply(BigDecimal.valueOf(i.quantity())))
+					.reduce(BigDecimal.ZERO, BigDecimal::add);
+				price = total.divide(BigDecimal.valueOf(quantity), 2, RoundingMode.HALF_UP);
+			}
+			result.add(new Item(product, quantity, price));
+		});
+		return result;
 	}
 
 	/** E-posta, yoksa telefon (yalniz rakamlar) ile var olan aktif musteri. */

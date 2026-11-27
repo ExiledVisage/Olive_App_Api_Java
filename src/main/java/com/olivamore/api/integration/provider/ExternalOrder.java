@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.provider;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,8 +24,10 @@ public record ExternalOrder(String externalId, String number, String status, Loc
 	/**
 	 * @param variantId varyantsiz urunde bos metin
 	 * @param lineId    platformdaki kalem id'si (durum bildiriminde kalemler bununla gider); eski kayitlarda bos
+	 * @param unitPrice KDV dahil, indirim sonrasi birim fiyat; platform vermediyse bos
 	 */
-	public record Line(String productId, String variantId, String name, String sku, int quantity, String lineId) {
+	public record Line(String productId, String variantId, String name, String sku, int quantity, String lineId,
+		BigDecimal unitPrice) {
 	}
 
 }

@@ -77,6 +77,8 @@ insert into role_permissions (role_id, permission_id) values
 	(1, 64),
 	(1, 65),
 	(1, 66),
+	(1, 67),
+	(1, 68),
 	(2, 1),
 	(2, 4),
 	(2, 6),
@@ -730,6 +732,10 @@ insert into finished_products (id, finished_product_recipe_id, name, volume_litr
 	(20, 6, 'Portakallı Zeytinyağı 750ml', 0.7500, 0, true, '8691234000205', 'OLV-0020'),
 	(21, 7, 'Portakallı Ayvalık Blend 250ml', 0.2500, 0, true, '8691234000212', 'OLV-0021'),
 	(22, 7, 'Portakallı Ayvalık Blend 500ml', 0.5000, 0, true, '8691234000229', 'OLV-0022');
+
+-- KDV dahil liste fiyati: litresi 600 TL, aromalilar 700 TL (demo)
+update finished_products set sale_price = round(volume_litre * case when finished_product_recipe_id in (6, 7) then 700
+	else 600 end, 2);
 
 insert into finished_product_components (id, finished_product_id, packaging_item_id, quantity) values
 	(1, 1, 1, 1),

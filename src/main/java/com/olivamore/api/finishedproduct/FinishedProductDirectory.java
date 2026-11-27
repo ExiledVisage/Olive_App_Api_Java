@@ -20,8 +20,9 @@ import java.util.stream.Collectors;
 @Component
 public class FinishedProductDirectory {
 
+	/** @param salePrice KDV dahil liste fiyati; bos olabilir */
 	public record Product(Long id, String name, BigDecimal volumeLitre, long totalStock, boolean isActive,
-		LocalDateTime createdAt, LocalDateTime updatedAt) {
+		LocalDateTime createdAt, LocalDateTime updatedAt, BigDecimal salePrice, int vatRate) {
 	}
 
 	public record ShelfLocation(Long productId, Long storageId, String storageName, Long slotId, String slotName,
@@ -55,7 +56,7 @@ public class FinishedProductDirectory {
 			return Map.of();
 		}
 		return jdbc.sql("""
-			select id, name, volume_litre, total_stock, is_active, created_at, updated_at
+			select id, name, volume_litre, total_stock, is_active, created_at, updated_at, sale_price, vat_rate
 			from finished_products where id in (:ids)
 			""").param("ids", present).query(Product.class).list().stream()
 			.collect(Collectors.toMap(Product::id, Function.identity()));

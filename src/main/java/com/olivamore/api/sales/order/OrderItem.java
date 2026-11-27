@@ -1,5 +1,6 @@
 package com.olivamore.api.sales.order;
 
+import com.olivamore.api.sales.order.OrderStockQueries.ProductRow;
 import com.olivamore.api.shared.persistence.AuditedEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_items")
@@ -30,10 +33,25 @@ class OrderItem extends AuditedEntity {
 	@Column(nullable = false)
 	private int quantity;
 
-	OrderItem(long orderId, OrderItemRequest request) {
+	/** KDV dahil birim fiyat; bos: faturada urunun liste fiyati (docs/INVOICES.md). */
+	private BigDecimal unitPrice;
+
+	/** Kalem yazilirken urunden alinan KDV yuzdesi. */
+	@Column(nullable = false)
+	private int vatRate;
+
+	/** Fiyat verilmezse urunun o anki liste fiyati. */
+	OrderItem(long orderId, OrderItemRequest request, ProductRow product) {
 		this.orderId = orderId;
 		finishedProductId = request.finishedProductId();
 		quantity = request.quantity();
+		unitPrice = request.unitPrice() != null ? request.unitPrice() : product.salePrice();
+		vatRate = product.vatRate();
+	}
+
+	/** KDV dahil kalem tutari; fiyat yoksa bos. */
+	BigDecimal lineTotal() {
+		return unitPrice == null ? null : unitPrice.multiply(BigDecimal.valueOf(quantity));
 	}
 
 }

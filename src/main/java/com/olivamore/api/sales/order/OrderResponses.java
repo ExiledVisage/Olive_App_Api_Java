@@ -2,6 +2,7 @@ package com.olivamore.api.sales.order;
 
 import com.olivamore.api.finishedproduct.FinishedProductDirectory;
 import com.olivamore.api.identity.UserDirectory;
+import com.olivamore.api.sales.invoice.InvoiceDirectory;
 import com.olivamore.api.sales.customer.CustomerAddressResponse;
 import com.olivamore.api.sales.customer.CustomerResponse;
 import com.olivamore.api.sales.order.OrderResponse.History;
@@ -17,6 +18,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,14 +38,16 @@ class OrderResponses {
 	private final OrderStatusHistoryRepository histories;
 	private final FinishedProductDirectory finishedProducts;
 	private final UserDirectory users;
+	private final InvoiceDirectory invoices;
 
 	OrderResponses(SalesOrderRepository orders, OrderItemRepository items, OrderStatusHistoryRepository histories,
-		FinishedProductDirectory finishedProducts, UserDirectory users) {
+		FinishedProductDirectory finishedProducts, UserDirectory users, InvoiceDirectory invoices) {
 		this.orders = orders;
 		this.items = items;
 		this.histories = histories;
 		this.finishedProducts = finishedProducts;
 		this.users = users;
+		this.invoices = invoices;
 	}
 
 	@Transactional(readOnly = true)
@@ -72,23 +76,38 @@ class OrderResponses {
 				row.getNote(), row.getChangedAt()))
 			.toList();
 		return response(order, itemsOf(List.of(order)).getOrDefault(id, List.of()),
-			user(users, order.getCreatedByUserId()), history);
+			invoices.issuedFor(id).orElse(null), user(users, order.getCreatedByUserId()), history);
 	}
 
 	private List<OrderResponse> responses(List<SalesOrder> rows) {
 		Map<Long, List<Item>> byOrder = itemsOf(rows);
+		Map<Long, InvoiceDirectory.Summary> issued = invoices.issuedFor(rows.stream().map(SalesOrder::getId).toList());
 		return rows.stream()
-			.map(order -> response(order, byOrder.getOrDefault(order.getId(), List.of()), null, null))
+			.map(order -> response(order, byOrder.getOrDefault(order.getId(), List.of()), issued.get(order.getId()),
+				null, null))
 			.toList();
 	}
 
-	private static OrderResponse response(SalesOrder order, List<Item> orderItems, UserSummary creator,
-		List<History> history) {
+	private static OrderResponse response(SalesOrder order, List<Item> orderItems, InvoiceDirectory.Summary invoice,
+		UserSummary creator, List<History> history) {
 		return new OrderResponse(order.getId(), order.getStatus(), order.getStatus().transitions(),
 			order.getOrderDate().atStartOfDay(), order.getNote(), order.getSource(), order.getExternalRef(),
 			CustomerResponse.withoutAddresses(order.getCustomer()),
-			CustomerAddressResponse.of(order.getDeliveryAddress()), orderItems, creator, history,
-			order.getCreatedAt(), order.getUpdatedAt());
+			CustomerAddressResponse.of(order.getDeliveryAddress()), orderItems, total(orderItems),
+			invoice == null ? null : new OrderResponse.Invoice(invoice.id(), invoice.number(), invoice.issueDate(),
+				invoice.grossTotal()), creator, history, order.getCreatedAt(), order.getUpdatedAt());
+	}
+
+	/** Fiyati olmayan kalem varsa bos. */
+	private static BigDecimal total(List<Item> orderItems) {
+		BigDecimal sum = BigDecimal.ZERO;
+		for (Item item : orderItems) {
+			if (item.lineTotal() == null) {
+				return null;
+			}
+			sum = sum.add(item.lineTotal());
+		}
+		return orderItems.isEmpty() ? null : sum;
 	}
 
 	private Map<Long, List<Item>> itemsOf(List<SalesOrder> rows) {
@@ -96,7 +115,7 @@ class OrderResponses {
 		Map<Long, Product> products = products(orderItems.stream().map(OrderItem::getFinishedProductId).toList());
 		return orderItems.stream().collect(Collectors.groupingBy(OrderItem::getOrderId,
 			Collectors.mapping(item -> new Item(item.getId(), products.get(item.getFinishedProductId()),
-				item.getQuantity()), Collectors.toList())));
+				item.getQuantity(), item.getUnitPrice(), item.getVatRate(), item.lineTotal()), Collectors.toList())));
 	}
 
 	private Map<Long, Product> products(List<Long> ids) {

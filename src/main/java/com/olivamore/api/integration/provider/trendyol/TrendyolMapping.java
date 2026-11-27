@@ -2,6 +2,7 @@ package com.olivamore.api.integration.provider.trendyol;
 
 import com.olivamore.api.integration.provider.ExternalOrder;
 import com.olivamore.api.integration.provider.ExternalProduct;
+import com.olivamore.api.integration.provider.Prices;
 import com.olivamore.api.integration.provider.StockUpdate;
 
 import java.time.LocalDateTime;
@@ -71,9 +72,11 @@ final class TrendyolMapping {
 				Map<?, ?> l = map(item);
 				String barcode = text(l.get("barcode"));
 				String sku = text(l.get("merchantSku")) != null ? text(l.get("merchantSku")) : text(l.get("stockCode"));
+				// price: KDV dahil, indirim sonrasi birim satis fiyati
 				lines.add(new ExternalOrder.Line(barcode == null ? "" : barcode, "", text(l.get("productName")), sku,
 					l.get("quantity") instanceof Number n ? n.intValue() : 0,
-					text(l.get("lineId")) != null ? text(l.get("lineId")) : text(l.get("id"))));
+					text(l.get("lineId")) != null ? text(l.get("lineId")) : text(l.get("id")),
+					Prices.money(Prices.decimal(l.get("price")))));
 			}
 		}
 		Object packageId = pkg.get("shipmentPackageId") != null ? pkg.get("shipmentPackageId") : pkg.get("id");

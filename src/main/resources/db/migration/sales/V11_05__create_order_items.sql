@@ -1,12 +1,17 @@
--- order_items: siparis kalemleri
+-- order_items: siparis kalemleri; unit_price KDV dahil, indirim sonrasi birim fiyat (bos: urunun liste fiyati
+-- faturada kullanilir), vat_rate kalem yazilirken urunden alinir (docs/INVOICES.md)
 
 CREATE TABLE order_items (
     id bigint NOT NULL,
     order_id bigint NOT NULL,
     finished_product_id bigint NOT NULL,
     quantity integer NOT NULL,
+    unit_price numeric(12,2),
+    vat_rate integer NOT NULL,
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT order_items_unit_price_check CHECK (unit_price >= 0),
+    CONSTRAINT order_items_vat_rate_check CHECK (vat_rate IN (0, 1, 10, 20))
 );
 
 CREATE SEQUENCE order_items_id_seq
