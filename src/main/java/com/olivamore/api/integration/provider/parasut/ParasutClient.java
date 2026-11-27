@@ -14,6 +14,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
+import java.net.URI;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -150,6 +151,17 @@ public class ParasutClient implements ProviderClient, AccountingClient {
 	public Optional<EDocument> eDocument(String salesInvoiceId) {
 		return ParasutMapping.eDocument(get(api("/sales_invoices/" + salesInvoiceId),
 			Map.of("include", "active_e_document")));
+	}
+
+	/** {@code GET /{e_archives|e_invoices}/{id}/pdf} gecici bir indirme adresi verir; dosya oradan indirilir. */
+	@Override
+	public Optional<byte[]> pdf(EDocument document) {
+		String url = ParasutMapping.pdfUrl(get(api("/" + document.type() + "/" + document.id() + "/pdf"), Map.of()));
+		if (url == null) {
+			return Optional.empty();
+		}
+		return Optional.ofNullable(call(() -> RestClient.create().get().uri(URI.create(url)).retrieve()
+			.body(byte[].class)));
 	}
 
 	@Override

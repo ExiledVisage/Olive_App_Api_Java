@@ -130,6 +130,11 @@ final class ParasutMapping {
 		return Optional.of(new AccountingClient.EDocument(type, id, number));
 	}
 
+	/** PDF cevabinda indirme adresi ({@code data.attributes.url}); hazir degilse bos. */
+	static String pdfUrl(Map<?, ?> response) {
+		return text(attributes(data(response)).get("url"));
+	}
+
 	static Map<?, ?> data(Map<?, ?> response) {
 		return response == null ? Map.of() : map(response.get("data"));
 	}

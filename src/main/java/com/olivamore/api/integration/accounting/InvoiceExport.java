@@ -11,6 +11,7 @@ import com.olivamore.api.shared.time.Timestamps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.event.TransactionPhase;
@@ -19,6 +20,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,17 +52,35 @@ public class InvoiceExport {
 	private record Sale(String provider, String baseUrl) {
 	}
 
+	private record Formalized(long id, long connectionId, String officialNumber, String eDocumentType,
+		String eDocumentId) {
+	}
+
+	/**
+	 * Pazar yerine bildirilecek fatura.
+	 *
+	 * @param pdf resmi belgenin dosyasi; yoksa bos
+	 */
+	public record Ready(String number, LocalDate issueDate, byte[] pdf) {
+	}
+
+	/** Fatura resmilesti (muhasebe programinda); pazar yeri bildirimi dinler. */
+	public record InvoiceFormalized(long invoiceId) {
+	}
+
 	private final JdbcClient jdbc;
 	private final Connections connections;
 	private final SalesInvoiceDocuments documents;
 	private final Duration jobWait;
+	private final ApplicationEventPublisher events;
 
 	InvoiceExport(JdbcClient jdbc, Connections connections, SalesInvoiceDocuments documents,
-		@Value("${olive.integration.accounting.job-wait:PT2S}") Duration jobWait) {
+		@Value("${olive.integration.accounting.job-wait:PT2S}") Duration jobWait, ApplicationEventPublisher events) {
 		this.jdbc = jdbc;
 		this.connections = connections;
 		this.documents = documents;
 		this.jobWait = jobWait;
+		this.events = events;
 	}
 
 	/** Fatura kesildi: kaydedildikten sonra gonderilir. */
@@ -227,11 +247,67 @@ public class InvoiceExport {
 				.param("now", now).param("id", export.id()).update();
 			return;
 		}
-		String number = client.eDocument(externalId).map(AccountingClient.EDocument::number).orElse(null);
+		Optional<AccountingClient.EDocument> eDocument = client.eDocument(externalId);
 		jdbc.sql("""
-			update integration_invoices set status = 'formalized', official_number = :number, error = null,
-				attempted_at = :now, formalized_at = :now, updated_at = :now where id = :id
-			""").param("number", number).param("now", now).param("id", export.id()).update();
+			update integration_invoices set status = 'formalized', official_number = :number,
+				e_document_id = :document, error = null, attempted_at = :now, formalized_at = :now, updated_at = :now
+			where id = :id
+			""").param("number", eDocument.map(AccountingClient.EDocument::number).orElse(null))
+			.param("document", eDocument.map(AccountingClient.EDocument::id).orElse(null)).param("now", now)
+			.param("id", export.id()).update();
+		events.publishEvent(new InvoiceFormalized(document.id()));
+	}
+
+	/**
+	 * Pazar yerine bildirilecek fatura: numara, tarih ve varsa PDF. Resmilestiren (faturalari gonderen, resmilestirme
+	 * acik) etkin bir muhasebe baglantisi yoksa bizdeki numara, dosyasiz. Varsa fatura resmilesene kadar bos; sonra
+	 * resmi numara ve resmi belgenin PDF'i (ilk gerektiginde indirilir, saklanir; indirilemezse dosyasiz).
+	 */
+	public Optional<Ready> ready(long invoiceId) {
+		Optional<Document> found = documents.document(invoiceId);
+		if (found.isEmpty() || !"issued".equals(found.get().status())) {
+			return Optional.empty();
+		}
+		Document document = found.get();
+		boolean formalizing = jdbc.sql("""
+			select count(*) from integration_connections
+			where provider = 'parasut' and status = 'active' and invoice_push_enabled and e_document_enabled
+			""").query(Long.class).single() > 0;
+		if (!formalizing) {
+			return Optional.of(new Ready(document.number(), document.issueDate(), null));
+		}
+		Optional<Formalized> formalized = jdbc.sql("""
+			select x.id, x.connection_id, x.official_number, x.e_document_type, x.e_document_id
+			from integration_invoices x join integration_connections c on c.id = x.connection_id
+			where x.invoice_id = :invoice and x.status = 'formalized' and c.e_document_enabled
+			order by x.id limit 1
+			""").param("invoice", invoiceId).query(Formalized.class).optional();
+		if (formalized.isEmpty()) {
+			return Optional.empty();
+		}
+		Formalized f = formalized.get();
+		return Optional.of(new Ready(f.officialNumber() != null ? f.officialNumber() : document.number(),
+			document.issueDate(), pdf(f).orElse(null)));
+	}
+
+	/** Saklanmis PDF; yoksa Parasut'ten indirilip saklanir. */
+	private Optional<byte[]> pdf(Formalized f) {
+		Optional<byte[]> stored = jdbc.sql("select pdf from integration_invoices where id = :id and pdf is not null")
+			.param("id", f.id()).query(byte[].class).optional();
+		if (stored.isPresent() || f.eDocumentId() == null) {
+			return stored;
+		}
+		try {
+			AccountingClient client = connections.accounting(connections.connection(f.connectionId()));
+			String type = "e_invoice".equals(f.eDocumentType()) ? "e_invoices" : "e_archives";
+			Optional<byte[]> pdf = client.pdf(new AccountingClient.EDocument(type, f.eDocumentId(), null));
+			pdf.ifPresent(bytes -> jdbc.sql("update integration_invoices set pdf = :pdf, updated_at = :now"
+				+ " where id = :id").param("pdf", bytes).param("now", Timestamps.now()).param("id", f.id()).update());
+			return pdf;
+		} catch (RuntimeException e) {
+			log.warn("Fatura PDF'i indirilemedi ({}): {}", f.id(), e.getMessage());
+			return Optional.empty();
+		}
 	}
 
 	private AccountingClient.Job waitFor(AccountingClient client, String jobId) {

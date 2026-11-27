@@ -64,6 +64,9 @@ public interface AccountingClient {
 	/** Faturanin resmi belgesi; resmilesmemisse bos. */
 	Optional<EDocument> eDocument(String salesInvoiceId);
 
+	/** Resmi belgenin PDF'i; program henuz hazirlamadiysa bos. */
+	Optional<byte[]> pdf(EDocument document);
+
 	/** Resmilesmemis satis faturasini iptal eder. */
 	void cancelSalesInvoice(String salesInvoiceId);
 

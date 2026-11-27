@@ -90,8 +90,10 @@ Durum (2026-11-27): yazildi (9e27337), sahte Trendyol API'siyle test edildi; ger
   Satis modulu `SalesOrderStatusChanged` yayinlar, entegrasyon islem bittikten sonra bildirir (hata durum
   degisikligini geri almaz). Reddedilirse (musteri iptal etmis) gerekce `integration_orders.platform_error`'a
   yazilir; zamanlayici yarim saatte bir, "Simdi yeniden bildir" (`POST .../orders/report`) hemen dener.
-- Henuz yok: Invoiced + fatura no (fatura kaydi ve Parasut'le), fiyat gonderimi (satis fiyati alani ve kimin
-  yonettigi karari), kargo etiketi, bizde iptal edilen siparisin Trendyol'a "tedarik edilemedi" bildirimi.
+- Faturalandi: fatura kesilince (resmilestirme varsa resmilesince) paket `Invoiced` + `params.invoiceNumber`, sonra
+  resmi belgenin PDF'i `POST /sellers/{id}/seller-invoice-file` (multipart) ile yuklenir (docs/INVOICES.md).
+- Henuz yok: fiyat gonderimi (satis fiyati alani ve kimin yonettigi karari), kargo etiketi, bizde iptal edilen
+  siparisin Trendyol'a "tedarik edilemedi" bildirimi.
 
 ## 3. Hepsiburada
 
@@ -113,7 +115,9 @@ resmi belgeden degil, acik kaynak bir istemciden (zanaat-dev/lonca) alindi; ilk 
   ile `GET .../stock-uploads/id/{id}` (`status` Ready/InProgress/Done, `errors[]` SKU ve gerekce).
 - Hazirlaniyor: siparis onaylaninca kalemler paketlenir, `POST /packages/merchantId/{id}`
   `{"lineItemRequests":[{id, quantity}], "parcelQuantity":1}`; Trendyol'daki gibi hata kayda yazilir, yeniden denenir.
-- Henuz yok: fatura linki/numarasi, kargo etiketi, fiyat, test (SIT) sunucularini secme.
+- Henuz yok: fatura linki (Hepsiburada yalniz en az 10 yil acik kalacak link kabul ediyor:
+  `PUT /packages/merchantid/{id}/packagenumber/{paket}/invoice`, `invoiceLink`; Parasut'un PDF adresi gecici, bizim
+  sunucunun alan adi yok), kargo etiketi, fiyat, test (SIT) sunucularini secme.
 
 ## 5. Parasut
 

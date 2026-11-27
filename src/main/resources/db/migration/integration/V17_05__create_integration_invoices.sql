@@ -1,6 +1,7 @@
 -- integration_invoices: satis faturasinin muhasebe programina (Parasut) gonderimi (docs/INVOICES.md). Adimlar:
 -- cari ve urunler bulunur ya da acilir, satis faturasi olusur (sent, external_id), resmilestirme acik ise e-fatura
--- ya da e-arsiv isi baslar (formalizing, job_id) ve bitince formalized (official_number). Hata olursa failed ve
+-- ya da e-arsiv isi baslar (formalizing, job_id) ve bitince formalized (official_number, e_document_id; pdf resmi
+-- belgenin dosyasi, pazar yerine yuklemek icin ilk gerektiginde indirilir). Hata olursa failed ve
 -- gerekce (error); yeniden deneme kaldigi adimdan devam eder (olusmus fatura yeniden olusturulmaz). Bizde iptal
 -- edilen fatura Parasut'te de iptal edilir (cancelled); resmilesmis fatura Parasut'ten iptal edilmelidir.
 
@@ -13,6 +14,8 @@ CREATE TABLE integration_invoices (
     e_document_type character varying(10),
     job_id character varying(64),
     official_number character varying(32),
+    e_document_id character varying(64),
+    pdf bytea,
     error text,
     attempted_at timestamp(0) without time zone,
     sent_at timestamp(0) without time zone,

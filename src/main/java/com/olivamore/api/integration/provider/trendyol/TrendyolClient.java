@@ -7,12 +7,19 @@ import com.olivamore.api.integration.provider.ProviderErrors;
 import com.olivamore.api.integration.provider.ProviderException;
 import com.olivamore.api.integration.provider.StockUpdate;
 import com.olivamore.api.shared.time.Timestamps;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +41,9 @@ public class TrendyolClient implements ProviderClient {
 	private static final String ORDERS = "/order/sellers/{seller}/v2/orders?status=Created&startDate={start}"
 		+ "&endDate={end}&orderByField=PackageLastModifiedDate&orderByDirection=ASC&page={page}&size={size}";
 	private static final String PACKAGE = "/order/sellers/{seller}/shipment-packages/{package}";
+
+	/** Fatura tarihi Turkiye gunu. */
+	private static final ZoneId LOCAL = ZoneId.of("Europe/Istanbul");
 
 	/** Urun listesinde sayfa basina kayit. */
 	private static final int PRODUCT_PAGE = 200;
@@ -155,6 +165,56 @@ public class TrendyolClient implements ProviderClient {
 	 */
 	@Override
 	public void reportPreparing(ExternalOrder order) {
+		List<Map<String, Object>> lines = lines(order);
+		try {
+			http.put().uri(PACKAGE, sellerId, order.externalId())
+				.body(Map.of("lines", lines, "params", Map.of(), "status", "Picking")).retrieve().toBodilessEntity();
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	/** Paket durumu "Invoiced": butun kalemler ve {@code params.invoiceNumber}. */
+	@Override
+	public void reportInvoiced(ExternalOrder order, String invoiceNumber) {
+		try {
+			http.put().uri(PACKAGE, sellerId, order.externalId())
+				.body(Map.of("lines", lines(order), "params", Map.of("invoiceNumber", invoiceNumber), "status",
+					"Invoiced")).retrieve().toBodilessEntity();
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	/**
+	 * {@code POST /sellers/{id}/seller-invoice-file} (multipart: paket, dosya, fatura tarihi saniye, numara). Pakette
+	 * zaten fatura varsa Trendyol 409 doner; gonderilmis sayilir.
+	 */
+	@Override
+	public void sendInvoiceFile(ExternalOrder order, String invoiceNumber, LocalDate issueDate, byte[] pdf) {
+		MultiValueMap<String, Object> parts = new LinkedMultiValueMap<>();
+		parts.add("shipmentPackageId", order.externalId());
+		parts.add("invoiceNumber", invoiceNumber);
+		parts.add("invoiceDateTime", String.valueOf(issueDate.atStartOfDay(LOCAL).toEpochSecond()));
+		parts.add("file", new ByteArrayResource(pdf) {
+			@Override
+			public String getFilename() {
+				return invoiceNumber + ".pdf";
+			}
+		});
+		try {
+			http.post().uri("/sellers/{seller}/seller-invoice-file", sellerId)
+				.contentType(MediaType.MULTIPART_FORM_DATA).body(parts).retrieve().toBodilessEntity();
+		} catch (RestClientResponseException e) {
+			if (e.getStatusCode().value() != 409) {
+				throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+			}
+		} catch (RestClientException e) {
+			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
+		}
+	}
+
+	private static List<Map<String, Object>> lines(ExternalOrder order) {
 		List<Map<String, Object>> lines = new ArrayList<>();
 		for (ExternalOrder.Line line : order.lines()) {
 			if (line.lineId() == null) {
@@ -162,12 +222,7 @@ public class TrendyolClient implements ProviderClient {
 			}
 			lines.add(Map.of("lineId", Long.parseLong(line.lineId()), "quantity", line.quantity()));
 		}
-		try {
-			http.put().uri(PACKAGE, sellerId, order.externalId())
-				.body(Map.of("lines", lines, "params", Map.of(), "status", "Picking")).retrieve().toBodilessEntity();
-		} catch (RestClientException e) {
-			throw new ProviderException(ProviderErrors.describe(PLATFORM, e), e);
-		}
+		return lines;
 	}
 
 	private Map<?, ?> awaitResult(String batchId) {

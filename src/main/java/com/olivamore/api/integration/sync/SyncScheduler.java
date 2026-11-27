@@ -1,6 +1,7 @@
 package com.olivamore.api.integration.sync;
 
 import com.olivamore.api.integration.accounting.InvoiceExport;
+import com.olivamore.api.integration.order.InvoiceReport;
 import com.olivamore.api.integration.order.OrderPull;
 import com.olivamore.api.integration.order.PreparingReport;
 import com.olivamore.api.integration.stock.StockPush;
@@ -35,14 +36,16 @@ class SyncScheduler {
 	private final StockPush stock;
 	private final PreparingReport preparing;
 	private final InvoiceExport invoices;
+	private final InvoiceReport invoiceReport;
 
 	SyncScheduler(JdbcClient jdbc, OrderPull orders, StockPush stock, PreparingReport preparing,
-		InvoiceExport invoices) {
+		InvoiceExport invoices, InvoiceReport invoiceReport) {
 		this.jdbc = jdbc;
 		this.orders = orders;
 		this.stock = stock;
 		this.preparing = preparing;
 		this.invoices = invoices;
+		this.invoiceReport = invoiceReport;
 	}
 
 	@Scheduled(initialDelayString = "${olive.integration.schedule.initial-delay:PT1M}",
@@ -57,6 +60,7 @@ class SyncScheduler {
 				safely(target.id(), "sipariş", () -> orders.pull(target.id(), SyncRuns.Trigger.SCHEDULE));
 			}
 			safely(target.id(), "bildirim", () -> preparing.retry(target.id(), false));
+			safely(target.id(), "fatura bildirimi", () -> invoiceReport.retry(target.id(), false));
 			if (target.stockPushEnabled()) {
 				safely(target.id(), "stok", () -> stock.push(target.id(), SyncRuns.Trigger.SCHEDULE));
 			}

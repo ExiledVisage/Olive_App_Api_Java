@@ -19,6 +19,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Testlerde Trendyol satici API'sinin yerine ({@code /integration}): onayli urunler, V2 siparis paketleri, paket
@@ -208,6 +210,8 @@ public final class FakeTrendyol implements AutoCloseable {
 				"failedItemCount", items.stream().filter(i -> "FAILED".equals(i.get("status"))).count(), "items",
 				items));
 			send(exchange, 200, Map.of("batchRequestId", id));
+		} else if ("POST".equals(method) && path.endsWith("/seller-invoice-file")) {
+			invoiceFile(exchange, body, headers.getOrDefault("content-type", ""));
 		} else if ("PUT".equals(method) && path.contains("/shipment-packages/")) {
 			updatePackage(exchange, Long.parseLong(path.substring(path.lastIndexOf('/') + 1)),
 				JSON.readValue(body, Map.class));
@@ -219,7 +223,44 @@ public final class FakeTrendyol implements AutoCloseable {
 		}
 	}
 
-	/** Picking yalniz Created pakete ve paketin butun kalemleriyle (lineId, adet) kabul edilir. */
+	/**
+	 * Fatura dosyasi (multipart): paket, numara ve PDF dosyasi olmali; pakette zaten fatura varsa 409.
+	 */
+	private void invoiceFile(HttpExchange exchange, String body, String contentType) throws IOException {
+		Matcher packageId = part("shipmentPackageId").matcher(body);
+		Matcher number = part("invoiceNumber").matcher(body);
+		if (!contentType.startsWith("multipart/form-data") || !packageId.find() || !number.find()
+			|| !body.contains("filename=") || !body.contains("%PDF")) {
+			send(exchange, 400, Map.of("errors", List.of(Map.of("message", "Eksik fatura bilgisi."))));
+			return;
+		}
+		Map<String, Object> pkg = pkg(Long.parseLong(packageId.group(1).trim()));
+		if (pkg.get("invoiceFile") != null) {
+			send(exchange, 409, Map.of("errors", List.of(Map.of("message", "Paketin faturası zaten var."))));
+			return;
+		}
+		pkg.put("invoiceFile", number.group(1).trim());
+		send(exchange, 201, Map.of());
+	}
+
+	private static Pattern part(String name) {
+		return Pattern.compile("name=\"" + name + "\"\r?\n(?:[^\r\n]+\r?\n)*\r?\n([^\r\n]+)");
+	}
+
+	/** Faturalandi bildirilen paketin fatura numarasi; bildirilmediyse null. */
+	public String invoiceNumberOf(long packageId) {
+		return (String) pkg(packageId).get("invoiceNumber");
+	}
+
+	/** Yuklenen fatura dosyasinin numarasi; yuklenmediyse null. */
+	public String invoiceFileOf(long packageId) {
+		return (String) pkg(packageId).get("invoiceFile");
+	}
+
+	/**
+	 * Picking yalniz Created pakete, Invoiced yalniz Picking pakete ve fatura numarasiyla; ikisi de paketin butun
+	 * kalemleriyle (lineId, adet) kabul edilir.
+	 */
 	@SuppressWarnings("unchecked")
 	private void updatePackage(HttpExchange exchange, long packageId, Map<String, Object> request)
 		throws IOException {
@@ -229,7 +270,12 @@ public final class FakeTrendyol implements AutoCloseable {
 			send(exchange, 404, Map.of("errors", List.of(Map.of("message", "Paket bulunamadı."))));
 			return;
 		}
-		if (!"Picking".equals(request.get("status")) || !"Created".equals(pkg.get("status"))) {
+		String to = String.valueOf(request.get("status"));
+		String number = request.get("params") instanceof Map<?, ?> params ? (String) params.get("invoiceNumber")
+			: null;
+		boolean allowed = ("Picking".equals(to) && "Created".equals(pkg.get("status")))
+			|| ("Invoiced".equals(to) && "Picking".equals(pkg.get("status")) && number != null);
+		if (!allowed) {
 			send(exchange, 400, Map.of("errors", List.of(Map.of("key", "ShipmentPackageStatusException",
 				"message", "Paket " + pkg.get("status") + " durumunda; güncellenemez."))));
 			return;
@@ -248,8 +294,11 @@ public final class FakeTrendyol implements AutoCloseable {
 			send(exchange, 400, Map.of("errors", List.of(Map.of("message", "Kalemler paketle uyuşmuyor."))));
 			return;
 		}
-		pkg.put("status", "Picking");
-		pkg.put("shipmentPackageStatus", "Picking");
+		pkg.put("status", to);
+		pkg.put("shipmentPackageStatus", to);
+		if (number != null) {
+			pkg.put("invoiceNumber", number);
+		}
 		exchange.sendResponseHeaders(200, -1);
 		exchange.close();
 	}

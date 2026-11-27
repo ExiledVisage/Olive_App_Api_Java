@@ -141,6 +141,15 @@ public final class FakeParasut implements AutoCloseable {
 			}
 			return;
 		}
+		if ("GET".equals(method) && path.startsWith("/files/")) {
+			byte[] pdf = ("%PDF-1.4 sahte " + path.substring("/files/".length())).getBytes(StandardCharsets.UTF_8);
+			exchange.getResponseHeaders().add("Content-Type", "application/pdf");
+			exchange.sendResponseHeaders(200, pdf.length);
+			try (OutputStream out = exchange.getResponseBody()) {
+				out.write(pdf);
+			}
+			return;
+		}
 		if (!("Bearer " + TOKEN).equals(exchange.getRequestHeaders().getFirst("Authorization"))) {
 			send(exchange, 401, Map.of("errors", List.of(Map.of("title", "Unauthorized"))));
 			return;
@@ -183,6 +192,13 @@ public final class FakeParasut implements AutoCloseable {
 			send(exchange, 200, Map.of("data", found));
 		} else if ("POST".equals(method) && (resource.equals("/e_invoices") || resource.equals("/e_archives"))) {
 			formalize(exchange, resource.substring(1), data);
+		} else if ("GET".equals(method) && resource.matches("/e_(archives|invoices)/[^/]+/pdf")) {
+			String documentId = resource.split("/")[2];
+			boolean exists = invoices.values().stream().anyMatch(i -> i.get("e_document") instanceof Map<?, ?> d
+				&& documentId.equals(d.get("id")));
+			send(exchange, exists ? 200 : 404, exists ? Map.of("data", Map.of("id", documentId, "type",
+				"e_document_pdfs", "attributes", Map.of("url", url() + "/files/" + documentId + ".pdf")))
+				: errors("Belge bulunamadı."));
 		} else if ("GET".equals(method) && resource.startsWith("/trackable_jobs/")) {
 			job(exchange, resource.substring("/trackable_jobs/".length()));
 		} else {

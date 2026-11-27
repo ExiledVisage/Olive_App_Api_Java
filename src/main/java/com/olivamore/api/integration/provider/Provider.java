@@ -82,6 +82,14 @@ public enum Provider {
 		return this == TRENDYOL || this == HEPSIBURADA;
 	}
 
+	/**
+	 * Fatura pazar yerine bildirilir mi (Trendyol: paket "Invoiced" ve fatura dosyasi). Hepsiburada yalniz kalici
+	 * fatura linki kabul ediyor; alan adi olmadan verilemedigi icin yok (docs/INVOICES.md).
+	 */
+	public boolean reportsInvoice() {
+		return this == TRENDYOL;
+	}
+
 	/** Muhasebe programi mi (satis kanali degil): urun, siparis ve stok isleri yok, faturalar gider. */
 	public boolean accounting() {
 		return this == PARASUT;

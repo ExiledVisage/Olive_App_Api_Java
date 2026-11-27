@@ -88,8 +88,23 @@ govdesi (`scenario`, `to`), e-arsiv `internet_sale` alanlari, is durumlari ve re
 - Yok: PDF, tahsilat (odeme) kaydi, iade faturasi, token yenileme (her is yeni token alir), resmilesmis faturanin
   iptali.
 
+## Pazar yerine fatura
+
+- Trendyol (resmi belgeden dogrulandi): "hazirlaniyor" bildirilmis siparisin faturasi kesilince paket `Invoiced`
+  olur, `params.invoiceNumber` fatura numarasi (`integration_orders.platform_status = invoiced`); resmi belgenin PDF'i
+  varsa `POST /sellers/{id}/seller-invoice-file` (multipart: `shipmentPackageId`, `invoiceNumber`, `invoiceDateTime`
+  saniye, `file`) ile yuklenir (`invoice_sent`; pakette zaten fatura varsa 409, gonderilmis sayilir).
+- Resmilestiren (faturalari gonderen ve resmilestirme acik) etkin bir Parasut baglantisi varsa fatura resmilesene
+  kadar beklenir: resmi numara gider ve PDF Parasut'ten (`GET /{e_archives|e_invoices}/{id}/pdf` -> gecici
+  `data.attributes.url`) indirilip saklanir (`integration_invoices.pdf`). Yoksa bizdeki numara gider, dosya yok.
+- Hata siparisin kaydina yazilir (`platform_error`); zamanlayici yarim saatte bir, "Simdi yeniden bildir"
+  (`POST .../orders/report`) hemen dener.
+- Hepsiburada: yok. Yalniz en az 10 yil acik kalacak fatura linki kabul ediyor (Trendyol'un link secenegi de ayni
+  sarti koyuyor); Parasut'un PDF adresi gecici, bizim sunucunun alan adi ve HTTPS'i yok. Alan adi gelince faturalar
+  bizden kalici, tahmin edilemez bir adresle sunulup link gonderilebilir.
+
 ## Sirada
 
-- Pazar yerine fatura: Trendyol "Invoiced" + fatura numarasi/linki, Hepsiburada fatura linki.
+- Hepsiburada fatura linki (alan adi gelince).
 - Fatura listesi ekrani (Flutter), tarih araligi ve musteri filtresi.
 - Kargo ucreti ve siparis indirimi faturada ayri kalem degil (pazar yeri kalem fiyati indirim sonrasidir).

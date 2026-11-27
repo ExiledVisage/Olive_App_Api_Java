@@ -16,10 +16,12 @@ class OrderPullController {
 
 	private final OrderPull pull;
 	private final PreparingReport preparing;
+	private final InvoiceReport invoices;
 
-	OrderPullController(OrderPull pull, PreparingReport preparing) {
+	OrderPullController(OrderPull pull, PreparingReport preparing, InvoiceReport invoices) {
 		this.pull = pull;
 		this.preparing = preparing;
+		this.invoices = invoices;
 	}
 
 	/** @param reported platforma bildirilen siparis sayisi */
@@ -44,7 +46,9 @@ class OrderPullController {
 	@PostMapping("/api/integrations/connections/{id}/orders/report")
 	@PreAuthorize("hasAuthority('integration.manage')")
 	DataResponse<Reported> report(@PathVariable long id) {
-		return DataResponse.of(new Reported(preparing.retry(id, true)));
+		// Once hazirlaniyor, sonra fatura: hazirlaniyor bildirilen siparisin faturasi da ayni istekte gider.
+		int prepared = preparing.retry(id, true);
+		return DataResponse.of(new Reported(prepared + invoices.retry(id, true)));
 	}
 
 	/** {@code status}: imported ya da pending; en yeni 200. */

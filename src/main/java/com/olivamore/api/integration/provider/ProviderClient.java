@@ -1,5 +1,6 @@
 package com.olivamore.api.integration.provider;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,6 +35,19 @@ public interface ProviderClient {
 	 */
 	default void reportPreparing(ExternalOrder order) {
 		throw new UnsupportedOperationException("Bu platformda hazırlanıyor bildirimi yok.");
+	}
+
+	/**
+	 * Siparisin faturalandigini fatura numarasiyla bildirir; yalniz {@link Provider#reportsInvoice()} platformlarda,
+	 * hazirlaniyor bildirildikten sonra cagrilir.
+	 */
+	default void reportInvoiced(ExternalOrder order, String invoiceNumber) {
+		throw new UnsupportedOperationException("Bu platformda fatura bildirimi yok.");
+	}
+
+	/** Faturanin dosyasini (PDF) yukler; platformda zaten fatura varsa hata vermez. */
+	default void sendInvoiceFile(ExternalOrder order, String invoiceNumber, LocalDate issueDate, byte[] pdf) {
+		throw new UnsupportedOperationException("Bu platformda fatura dosyası yükleme yok.");
 	}
 
 	/** @param message basariliysa magaza/hesap ozeti, degilse hatanin gerekcesi */
