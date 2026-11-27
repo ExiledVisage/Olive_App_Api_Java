@@ -141,6 +141,20 @@ Durum (2026-11-27): yazildi, sahte Parasut sunucusuyla test edildi; gercek hesap
 docs/INVOICES.md "Parasut": OAuth2 sifre akisi, cari ve urun bulma/acma, satis faturasi, e-fatura / e-arsiv
 resmilestirme (is olarak), hata ve yeniden deneme, iptal.
 
+## 6. Logo / Mikro
+
+Durum (2026-11-27): yazilmadi; urun ve kurulum bilgisi bekleniyor. Muhasebe tarafi `AccountingClient` arayuzune
+bagli (cari, urun, satis faturasi, resmilestirme); Logo ya da Mikro bu arayuzun yeni bir uygulamasi olarak eklenir,
+fatura gonderimi, yeniden deneme ve ekranlar ortak.
+
+- Logo: Tiger 3 / Tiger Enterprise 3 icin "Logo REST Service" (Logo Objects uzerinde; Logo Objects lisansi gerekir),
+  j-Platform urunleri icin j-Platform REST (`/logo/rest/v1.0/...`, ornek cari `fiarpcardexchanges`). Satis faturasi
+  ucunun ayrintisi acik belgede yok. Sirket ici kurulumda sunucumuzun Logo sunucusuna ag erisimi (VPN ya da disa
+  acik, HTTPS'li adres) gerekir.
+- Mikro: acik API belgesi bulunamadi; erisim urune (Run, Jump, Fly) ve lisansa bagli, Mikro'dan istenir.
+- Istenecekler: hangi urun ve surum (Logo Tiger 3 / Go 3 / j-Platform; Mikro Jump / Fly), bulut mu sirket ici mi,
+  REST servisinin adresi ve kullanicisi, varsa test firmasi; Logo/Mikro bayisinden API belgesi.
+
 ## Kullanicidan istenecekler
 
 - WooCommerce: site adresi ve okuma/yazma REST anahtari; tercihen deneme (staging) sitesi.
